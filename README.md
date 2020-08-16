@@ -1,6 +1,6 @@
 # VS Code's schemas
 
-The data here is the following VS Code's schemas retrieved and saved using [save-vscode-schemas](https://github.com/wraith13/vscode-schemas).
+The data here is the following VS Code's schemas retrieved and saved using [save-vscode-schemas](https://github.com/wraith13/save-vscode-schemas).
 
 - [`vscode://schemas/settings/default`](./en/latest/schemas/settings/default.json)
 - [`vscode://schemas/settings/folder`](./en/latest/schemas/settings/folder.json)
