@@ -27,7 +27,7 @@ The data here is the following VS Code's schemas retrieved and saved using [save
 ## History
 
 - [VS Code v1.48.0](./en/v1.48.0/)
-- [VS Code v1.48.0](./en/v1.47.3/)
+- [VS Code v1.47.3](./en/v1.47.3/)
 
 ## Locales
 
