@@ -1,0 +1,4697 @@
+{
+    "type": "object",
+    "properties": {
+        "foreground": {
+            "type": "string",
+            "description": "Overall foreground color. This color is only used if not overridden by a component.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "errorForeground": {
+            "type": "string",
+            "description": "Overall foreground color for error messages. This color is only used if not overridden by a component.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "descriptionForeground": {
+            "type": "string",
+            "description": "Foreground color for description text providing additional information, for example for a label.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "icon.foreground": {
+            "type": "string",
+            "description": "The default color for icons in the workbench.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "focusBorder": {
+            "type": "string",
+            "description": "Overall border color for focused elements. This color is only used if not overridden by a component.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "contrastBorder": {
+            "type": "string",
+            "description": "An extra border around elements to separate them from others for greater contrast.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "contrastActiveBorder": {
+            "type": "string",
+            "description": "An extra border around active elements to separate them from others for greater contrast.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "selection.background": {
+            "type": "string",
+            "description": "The background color of text selections in the workbench (e.g. for input fields or text areas). Note that this does not apply to selections within the editor.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "textSeparator.foreground": {
+            "type": "string",
+            "description": "Color for text separators.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "textLink.foreground": {
+            "type": "string",
+            "description": "Foreground color for links in text.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "textLink.activeForeground": {
+            "type": "string",
+            "description": "Foreground color for links in text when clicked on and on mouse hover.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "textPreformat.foreground": {
+            "type": "string",
+            "description": "Foreground color for preformatted text segments.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "textBlockQuote.background": {
+            "type": "string",
+            "description": "Background color for block quotes in text.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "textBlockQuote.border": {
+            "type": "string",
+            "description": "Border color for block quotes in text.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "textCodeBlock.background": {
+            "type": "string",
+            "description": "Background color for code blocks in text.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "widget.shadow": {
+            "type": "string",
+            "description": "Shadow color of widgets such as find/replace inside the editor.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "input.background": {
+            "type": "string",
+            "description": "Input box background.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "input.foreground": {
+            "type": "string",
+            "description": "Input box foreground.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "input.border": {
+            "type": "string",
+            "description": "Input box border.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "inputOption.activeBorder": {
+            "type": "string",
+            "description": "Border color of activated options in input fields.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "inputOption.activeBackground": {
+            "type": "string",
+            "description": "Background color of activated options in input fields.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "inputOption.activeForeground": {
+            "type": "string",
+            "description": "Foreground color of activated options in input fields.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "input.placeholderForeground": {
+            "type": "string",
+            "description": "Input box foreground color for placeholder text.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "inputValidation.infoBackground": {
+            "type": "string",
+            "description": "Input validation background color for information severity.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "inputValidation.infoForeground": {
+            "type": "string",
+            "description": "Input validation foreground color for information severity.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "inputValidation.infoBorder": {
+            "type": "string",
+            "description": "Input validation border color for information severity.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "inputValidation.warningBackground": {
+            "type": "string",
+            "description": "Input validation background color for warning severity.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "inputValidation.warningForeground": {
+            "type": "string",
+            "description": "Input validation foreground color for warning severity.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "inputValidation.warningBorder": {
+            "type": "string",
+            "description": "Input validation border color for warning severity.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "inputValidation.errorBackground": {
+            "type": "string",
+            "description": "Input validation background color for error severity.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "inputValidation.errorForeground": {
+            "type": "string",
+            "description": "Input validation foreground color for error severity.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "inputValidation.errorBorder": {
+            "type": "string",
+            "description": "Input validation border color for error severity.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "dropdown.background": {
+            "type": "string",
+            "description": "Dropdown background.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "dropdown.listBackground": {
+            "type": "string",
+            "description": "Dropdown list background.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "dropdown.foreground": {
+            "type": "string",
+            "description": "Dropdown foreground.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "dropdown.border": {
+            "type": "string",
+            "description": "Dropdown border.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "checkbox.background": {
+            "type": "string",
+            "description": "Background color of checkbox widget.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "checkbox.foreground": {
+            "type": "string",
+            "description": "Foreground color of checkbox widget.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "checkbox.border": {
+            "type": "string",
+            "description": "Border color of checkbox widget.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "button.foreground": {
+            "type": "string",
+            "description": "Button foreground color.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "button.background": {
+            "type": "string",
+            "description": "Button background color.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "button.hoverBackground": {
+            "type": "string",
+            "description": "Button background color when hovering.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "button.secondaryForeground": {
+            "type": "string",
+            "description": "Secondary button foreground color.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "button.secondaryBackground": {
+            "type": "string",
+            "description": "Secondary button background color.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "button.secondaryHoverBackground": {
+            "type": "string",
+            "description": "Secondary button background color when hovering.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "badge.background": {
+            "type": "string",
+            "description": "Badge background color. Badges are small information labels, e.g. for search results count.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "badge.foreground": {
+            "type": "string",
+            "description": "Badge foreground color. Badges are small information labels, e.g. for search results count.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "scrollbar.shadow": {
+            "type": "string",
+            "description": "Scrollbar shadow to indicate that the view is scrolled.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "scrollbarSlider.background": {
+            "type": "string",
+            "description": "Scrollbar slider background color.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "scrollbarSlider.hoverBackground": {
+            "type": "string",
+            "description": "Scrollbar slider background color when hovering.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "scrollbarSlider.activeBackground": {
+            "type": "string",
+            "description": "Scrollbar slider background color when clicked on.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "progressBar.background": {
+            "type": "string",
+            "description": "Background color of the progress bar that can show for long running operations.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editorError.foreground": {
+            "type": "string",
+            "description": "Foreground color of error squigglies in the editor.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editorError.border": {
+            "type": "string",
+            "description": "Border color of error boxes in the editor.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editorWarning.foreground": {
+            "type": "string",
+            "description": "Foreground color of warning squigglies in the editor.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editorWarning.border": {
+            "type": "string",
+            "description": "Border color of warning boxes in the editor.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editorInfo.foreground": {
+            "type": "string",
+            "description": "Foreground color of info squigglies in the editor.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editorInfo.border": {
+            "type": "string",
+            "description": "Border color of info boxes in the editor.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editorHint.foreground": {
+            "type": "string",
+            "description": "Foreground color of hint squigglies in the editor.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editorHint.border": {
+            "type": "string",
+            "description": "Border color of hint boxes in the editor.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editor.background": {
+            "type": "string",
+            "description": "Editor background color.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editor.foreground": {
+            "type": "string",
+            "description": "Editor default foreground color.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editorWidget.background": {
+            "type": "string",
+            "description": "Background color of editor widgets, such as find/replace.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editorWidget.foreground": {
+            "type": "string",
+            "description": "Foreground color of editor widgets, such as find/replace.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editorWidget.border": {
+            "type": "string",
+            "description": "Border color of editor widgets. The color is only used if the widget chooses to have a border and if the color is not overridden by a widget.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editorWidget.resizeBorder": {
+            "type": "string",
+            "description": "Border color of the resize bar of editor widgets. The color is only used if the widget chooses to have a resize border and if the color is not overridden by a widget.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "quickInput.background": {
+            "type": "string",
+            "description": "Quick picker background color. The quick picker widget is the container for pickers like the command palette.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "quickInput.foreground": {
+            "type": "string",
+            "description": "Quick picker foreground color. The quick picker widget is the container for pickers like the command palette.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "quickInputTitle.background": {
+            "type": "string",
+            "description": "Quick picker title background color. The quick picker widget is the container for pickers like the command palette.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "pickerGroup.foreground": {
+            "type": "string",
+            "description": "Quick picker color for grouping labels.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "pickerGroup.border": {
+            "type": "string",
+            "description": "Quick picker color for grouping borders.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editor.selectionBackground": {
+            "type": "string",
+            "description": "Color of the editor selection.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editor.selectionForeground": {
+            "type": "string",
+            "description": "Color of the selected text for high contrast.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editor.inactiveSelectionBackground": {
+            "type": "string",
+            "description": "Color of the selection in an inactive editor. The color must not be opaque so as not to hide underlying decorations.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editor.selectionHighlightBackground": {
+            "type": "string",
+            "description": "Color for regions with the same content as the selection. The color must not be opaque so as not to hide underlying decorations.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editor.selectionHighlightBorder": {
+            "type": "string",
+            "description": "Border color for regions with the same content as the selection.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editor.findMatchBackground": {
+            "type": "string",
+            "description": "Color of the current search match.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editor.findMatchHighlightBackground": {
+            "type": "string",
+            "description": "Color of the other search matches. The color must not be opaque so as not to hide underlying decorations.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editor.findRangeHighlightBackground": {
+            "type": "string",
+            "description": "Color of the range limiting the search. The color must not be opaque so as not to hide underlying decorations.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editor.findMatchBorder": {
+            "type": "string",
+            "description": "Border color of the current search match.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editor.findMatchHighlightBorder": {
+            "type": "string",
+            "description": "Border color of the other search matches.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editor.findRangeHighlightBorder": {
+            "type": "string",
+            "description": "Border color of the range limiting the search. The color must not be opaque so as not to hide underlying decorations.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "searchEditor.findMatchBackground": {
+            "type": "string",
+            "description": "Color of the Search Editor query matches.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "searchEditor.findMatchBorder": {
+            "type": "string",
+            "description": "Border color of the Search Editor query matches.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editor.hoverHighlightBackground": {
+            "type": "string",
+            "description": "Highlight below the word for which a hover is shown. The color must not be opaque so as not to hide underlying decorations.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editorHoverWidget.background": {
+            "type": "string",
+            "description": "Background color of the editor hover.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editorHoverWidget.foreground": {
+            "type": "string",
+            "description": "Foreground color of the editor hover.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editorHoverWidget.border": {
+            "type": "string",
+            "description": "Border color of the editor hover.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editorHoverWidget.statusBarBackground": {
+            "type": "string",
+            "description": "Background color of the editor hover status bar.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editorLink.activeForeground": {
+            "type": "string",
+            "description": "Color of active links.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editorLightBulb.foreground": {
+            "type": "string",
+            "description": "The color used for the lightbulb actions icon.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editorLightBulbAutoFix.foreground": {
+            "type": "string",
+            "description": "The color used for the lightbulb auto fix actions icon.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "diffEditor.insertedTextBackground": {
+            "type": "string",
+            "description": "Background color for text that got inserted. The color must not be opaque so as not to hide underlying decorations.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "diffEditor.removedTextBackground": {
+            "type": "string",
+            "description": "Background color for text that got removed. The color must not be opaque so as not to hide underlying decorations.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "diffEditor.insertedTextBorder": {
+            "type": "string",
+            "description": "Outline color for the text that got inserted.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "diffEditor.removedTextBorder": {
+            "type": "string",
+            "description": "Outline color for text that got removed.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "diffEditor.border": {
+            "type": "string",
+            "description": "Border color between the two text editors.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "diffEditor.diagonalFill": {
+            "type": "string",
+            "description": "Color of the diff editor's diagonal fill. The diagonal fill is used in side-by-side diff views.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "list.focusBackground": {
+            "type": "string",
+            "description": "List/Tree background color for the focused item when the list/tree is active. An active list/tree has keyboard focus, an inactive does not.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "list.focusForeground": {
+            "type": "string",
+            "description": "List/Tree foreground color for the focused item when the list/tree is active. An active list/tree has keyboard focus, an inactive does not.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "list.activeSelectionBackground": {
+            "type": "string",
+            "description": "List/Tree background color for the selected item when the list/tree is active. An active list/tree has keyboard focus, an inactive does not.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "list.activeSelectionForeground": {
+            "type": "string",
+            "description": "List/Tree foreground color for the selected item when the list/tree is active. An active list/tree has keyboard focus, an inactive does not.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "list.inactiveSelectionBackground": {
+            "type": "string",
+            "description": "List/Tree background color for the selected item when the list/tree is inactive. An active list/tree has keyboard focus, an inactive does not.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "list.inactiveSelectionForeground": {
+            "type": "string",
+            "description": "List/Tree foreground color for the selected item when the list/tree is inactive. An active list/tree has keyboard focus, an inactive does not.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "list.inactiveFocusBackground": {
+            "type": "string",
+            "description": "List/Tree background color for the focused item when the list/tree is inactive. An active list/tree has keyboard focus, an inactive does not.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "list.hoverBackground": {
+            "type": "string",
+            "description": "List/Tree background when hovering over items using the mouse.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "list.hoverForeground": {
+            "type": "string",
+            "description": "List/Tree foreground when hovering over items using the mouse.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "list.dropBackground": {
+            "type": "string",
+            "description": "List/Tree drag and drop background when moving items around using the mouse.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "list.highlightForeground": {
+            "type": "string",
+            "description": "List/Tree foreground color of the match highlights when searching inside the list/tree.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "list.invalidItemForeground": {
+            "type": "string",
+            "description": "List/Tree foreground color for invalid items, for example an unresolved root in explorer.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "list.errorForeground": {
+            "type": "string",
+            "description": "Foreground color of list items containing errors.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "list.warningForeground": {
+            "type": "string",
+            "description": "Foreground color of list items containing warnings.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "listFilterWidget.background": {
+            "type": "string",
+            "description": "Background color of the type filter widget in lists and trees.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "listFilterWidget.outline": {
+            "type": "string",
+            "description": "Outline color of the type filter widget in lists and trees.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "listFilterWidget.noMatchesOutline": {
+            "type": "string",
+            "description": "Outline color of the type filter widget in lists and trees, when there are no matches.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "list.filterMatchBackground": {
+            "type": "string",
+            "description": "Background color of the filtered match.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "list.filterMatchBorder": {
+            "type": "string",
+            "description": "Border color of the filtered match.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "tree.indentGuidesStroke": {
+            "type": "string",
+            "description": "Tree stroke color for the indentation guides.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "list.deemphasizedForeground": {
+            "type": "string",
+            "description": "List/Tree foreground color for items that are deemphasized. ",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "menu.border": {
+            "type": "string",
+            "description": "Border color of menus.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "menu.foreground": {
+            "type": "string",
+            "description": "Foreground color of menu items.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "menu.background": {
+            "type": "string",
+            "description": "Background color of menu items.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "menu.selectionForeground": {
+            "type": "string",
+            "description": "Foreground color of the selected menu item in menus.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "menu.selectionBackground": {
+            "type": "string",
+            "description": "Background color of the selected menu item in menus.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "menu.selectionBorder": {
+            "type": "string",
+            "description": "Border color of the selected menu item in menus.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "menu.separatorBackground": {
+            "type": "string",
+            "description": "Color of a separator menu item in menus.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editor.snippetTabstopHighlightBackground": {
+            "type": "string",
+            "description": "Highlight background color of a snippet tabstop.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editor.snippetTabstopHighlightBorder": {
+            "type": "string",
+            "description": "Highlight border color of a snippet tabstop.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editor.snippetFinalTabstopHighlightBackground": {
+            "type": "string",
+            "description": "Highlight background color of the final tabstop of a snippet.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editor.snippetFinalTabstopHighlightBorder": {
+            "type": "string",
+            "description": "Highlight border color of the final stabstop of a snippet.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "breadcrumb.foreground": {
+            "type": "string",
+            "description": "Color of focused breadcrumb items.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "breadcrumb.background": {
+            "type": "string",
+            "description": "Background color of breadcrumb items.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "breadcrumb.focusForeground": {
+            "type": "string",
+            "description": "Color of focused breadcrumb items.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "breadcrumb.activeSelectionForeground": {
+            "type": "string",
+            "description": "Color of selected breadcrumb items.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "breadcrumbPicker.background": {
+            "type": "string",
+            "description": "Background color of breadcrumb item picker.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "merge.currentHeaderBackground": {
+            "type": "string",
+            "description": "Current header background in inline merge-conflicts. The color must not be opaque so as not to hide underlying decorations.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "merge.currentContentBackground": {
+            "type": "string",
+            "description": "Current content background in inline merge-conflicts. The color must not be opaque so as not to hide underlying decorations.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "merge.incomingHeaderBackground": {
+            "type": "string",
+            "description": "Incoming header background in inline merge-conflicts. The color must not be opaque so as not to hide underlying decorations.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "merge.incomingContentBackground": {
+            "type": "string",
+            "description": "Incoming content background in inline merge-conflicts. The color must not be opaque so as not to hide underlying decorations.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "merge.commonHeaderBackground": {
+            "type": "string",
+            "description": "Common ancestor header background in inline merge-conflicts. The color must not be opaque so as not to hide underlying decorations.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "merge.commonContentBackground": {
+            "type": "string",
+            "description": "Common ancestor content background in inline merge-conflicts. The color must not be opaque so as not to hide underlying decorations.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "merge.border": {
+            "type": "string",
+            "description": "Border color on headers and the splitter in inline merge-conflicts.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editorOverviewRuler.currentContentForeground": {
+            "type": "string",
+            "description": "Current overview ruler foreground for inline merge-conflicts.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editorOverviewRuler.incomingContentForeground": {
+            "type": "string",
+            "description": "Incoming overview ruler foreground for inline merge-conflicts.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editorOverviewRuler.commonContentForeground": {
+            "type": "string",
+            "description": "Common ancestor overview ruler foreground for inline merge-conflicts.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editorOverviewRuler.findMatchForeground": {
+            "type": "string",
+            "description": "Overview ruler marker color for find matches. The color must not be opaque so as not to hide underlying decorations.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editorOverviewRuler.selectionHighlightForeground": {
+            "type": "string",
+            "description": "Overview ruler marker color for selection highlights. The color must not be opaque so as not to hide underlying decorations.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "minimap.findMatchHighlight": {
+            "type": "string",
+            "description": "Minimap marker color for find matches.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "minimap.selectionHighlight": {
+            "type": "string",
+            "description": "Minimap marker color for the editor selection.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "minimap.errorHighlight": {
+            "type": "string",
+            "description": "Minimap marker color for errors.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "minimap.warningHighlight": {
+            "type": "string",
+            "description": "Minimap marker color for warnings.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "minimap.background": {
+            "type": "string",
+            "description": "Minimap background color.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "minimapSlider.background": {
+            "type": "string",
+            "description": "Minimap slider background color.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "minimapSlider.hoverBackground": {
+            "type": "string",
+            "description": "Minimap slider background color when hovering.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "minimapSlider.activeBackground": {
+            "type": "string",
+            "description": "Minimap slider background color when clicked on.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "problemsErrorIcon.foreground": {
+            "type": "string",
+            "description": "The color used for the problems error icon.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "problemsWarningIcon.foreground": {
+            "type": "string",
+            "description": "The color used for the problems warning icon.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "problemsInfoIcon.foreground": {
+            "type": "string",
+            "description": "The color used for the problems info icon.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editor.lineHighlightBackground": {
+            "type": "string",
+            "description": "Background color for the highlight of line at the cursor position.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editor.lineHighlightBorder": {
+            "type": "string",
+            "description": "Background color for the border around the line at the cursor position.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editor.rangeHighlightBackground": {
+            "type": "string",
+            "description": "Background color of highlighted ranges, like by quick open and find features. The color must not be opaque so as not to hide underlying decorations.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editor.rangeHighlightBorder": {
+            "type": "string",
+            "description": "Background color of the border around highlighted ranges.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editor.symbolHighlightBackground": {
+            "type": "string",
+            "description": "Background color of highlighted symbol, like for go to definition or go next/previous symbol. The color must not be opaque so as not to hide underlying decorations.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editor.symbolHighlightBorder": {
+            "type": "string",
+            "description": "Background color of the border around highlighted symbols.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editorCursor.foreground": {
+            "type": "string",
+            "description": "Color of the editor cursor.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editorCursor.background": {
+            "type": "string",
+            "description": "The background color of the editor cursor. Allows customizing the color of a character overlapped by a block cursor.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editorWhitespace.foreground": {
+            "type": "string",
+            "description": "Color of whitespace characters in the editor.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editorIndentGuide.background": {
+            "type": "string",
+            "description": "Color of the editor indentation guides.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editorIndentGuide.activeBackground": {
+            "type": "string",
+            "description": "Color of the active editor indentation guides.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editorLineNumber.foreground": {
+            "type": "string",
+            "description": "Color of editor line numbers.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editorActiveLineNumber.foreground": {
+            "type": "string",
+            "description": "Color of editor active line number",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "deprecationMessage": "Id is deprecated. Use 'editorLineNumber.activeForeground' instead."
+        },
+        "editorLineNumber.activeForeground": {
+            "type": "string",
+            "description": "Color of editor active line number",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editorRuler.foreground": {
+            "type": "string",
+            "description": "Color of the editor rulers.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editorCodeLens.foreground": {
+            "type": "string",
+            "description": "Foreground color of editor CodeLens",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editorBracketMatch.background": {
+            "type": "string",
+            "description": "Background color behind matching brackets",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editorBracketMatch.border": {
+            "type": "string",
+            "description": "Color for matching brackets boxes",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editorOverviewRuler.border": {
+            "type": "string",
+            "description": "Color of the overview ruler border.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editorOverviewRuler.background": {
+            "type": "string",
+            "description": "Background color of the editor overview ruler. Only used when the minimap is enabled and placed on the right side of the editor.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editorGutter.background": {
+            "type": "string",
+            "description": "Background color of the editor gutter. The gutter contains the glyph margins and the line numbers.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editorUnnecessaryCode.border": {
+            "type": "string",
+            "description": "Border color of unnecessary (unused) source code in the editor.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editorUnnecessaryCode.opacity": {
+            "type": "string",
+            "description": "Opacity of unnecessary (unused) source code in the editor. For example, \"#000000c0\" will render the code with 75% opacity. For high contrast themes, use the  'editorUnnecessaryCode.border' theme color to underline unnecessary code instead of fading it out.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editorOverviewRuler.rangeHighlightForeground": {
+            "type": "string",
+            "description": "Overview ruler marker color for range highlights. The color must not be opaque so as not to hide underlying decorations.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editorOverviewRuler.errorForeground": {
+            "type": "string",
+            "description": "Overview ruler marker color for errors.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editorOverviewRuler.warningForeground": {
+            "type": "string",
+            "description": "Overview ruler marker color for warnings.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editorOverviewRuler.infoForeground": {
+            "type": "string",
+            "description": "Overview ruler marker color for infos.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editorOverviewRuler.bracketMatchForeground": {
+            "type": "string",
+            "description": "Overview ruler marker color for matching brackets.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "symbolIcon.arrayForeground": {
+            "type": "string",
+            "description": "The foreground color for array symbols. These symbols appear in the outline, breadcrumb, and suggest widget.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "symbolIcon.booleanForeground": {
+            "type": "string",
+            "description": "The foreground color for boolean symbols. These symbols appear in the outline, breadcrumb, and suggest widget.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "symbolIcon.classForeground": {
+            "type": "string",
+            "description": "The foreground color for class symbols. These symbols appear in the outline, breadcrumb, and suggest widget.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "symbolIcon.colorForeground": {
+            "type": "string",
+            "description": "The foreground color for color symbols. These symbols appear in the outline, breadcrumb, and suggest widget.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "symbolIcon.constantForeground": {
+            "type": "string",
+            "description": "The foreground color for constant symbols. These symbols appear in the outline, breadcrumb, and suggest widget.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "symbolIcon.constructorForeground": {
+            "type": "string",
+            "description": "The foreground color for constructor symbols. These symbols appear in the outline, breadcrumb, and suggest widget.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "symbolIcon.enumeratorForeground": {
+            "type": "string",
+            "description": "The foreground color for enumerator symbols. These symbols appear in the outline, breadcrumb, and suggest widget.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "symbolIcon.enumeratorMemberForeground": {
+            "type": "string",
+            "description": "The foreground color for enumerator member symbols. These symbols appear in the outline, breadcrumb, and suggest widget.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "symbolIcon.eventForeground": {
+            "type": "string",
+            "description": "The foreground color for event symbols. These symbols appear in the outline, breadcrumb, and suggest widget.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "symbolIcon.fieldForeground": {
+            "type": "string",
+            "description": "The foreground color for field symbols. These symbols appear in the outline, breadcrumb, and suggest widget.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "symbolIcon.fileForeground": {
+            "type": "string",
+            "description": "The foreground color for file symbols. These symbols appear in the outline, breadcrumb, and suggest widget.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "symbolIcon.folderForeground": {
+            "type": "string",
+            "description": "The foreground color for folder symbols. These symbols appear in the outline, breadcrumb, and suggest widget.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "symbolIcon.functionForeground": {
+            "type": "string",
+            "description": "The foreground color for function symbols. These symbols appear in the outline, breadcrumb, and suggest widget.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "symbolIcon.interfaceForeground": {
+            "type": "string",
+            "description": "The foreground color for interface symbols. These symbols appear in the outline, breadcrumb, and suggest widget.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "symbolIcon.keyForeground": {
+            "type": "string",
+            "description": "The foreground color for key symbols. These symbols appear in the outline, breadcrumb, and suggest widget.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "symbolIcon.keywordForeground": {
+            "type": "string",
+            "description": "The foreground color for keyword symbols. These symbols appear in the outline, breadcrumb, and suggest widget.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "symbolIcon.methodForeground": {
+            "type": "string",
+            "description": "The foreground color for method symbols. These symbols appear in the outline, breadcrumb, and suggest widget.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "symbolIcon.moduleForeground": {
+            "type": "string",
+            "description": "The foreground color for module symbols. These symbols appear in the outline, breadcrumb, and suggest widget.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "symbolIcon.namespaceForeground": {
+            "type": "string",
+            "description": "The foreground color for namespace symbols. These symbols appear in the outline, breadcrumb, and suggest widget.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "symbolIcon.nullForeground": {
+            "type": "string",
+            "description": "The foreground color for null symbols. These symbols appear in the outline, breadcrumb, and suggest widget.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "symbolIcon.numberForeground": {
+            "type": "string",
+            "description": "The foreground color for number symbols. These symbols appear in the outline, breadcrumb, and suggest widget.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "symbolIcon.objectForeground": {
+            "type": "string",
+            "description": "The foreground color for object symbols. These symbols appear in the outline, breadcrumb, and suggest widget.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "symbolIcon.operatorForeground": {
+            "type": "string",
+            "description": "The foreground color for operator symbols. These symbols appear in the outline, breadcrumb, and suggest widget.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "symbolIcon.packageForeground": {
+            "type": "string",
+            "description": "The foreground color for package symbols. These symbols appear in the outline, breadcrumb, and suggest widget.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "symbolIcon.propertyForeground": {
+            "type": "string",
+            "description": "The foreground color for property symbols. These symbols appear in the outline, breadcrumb, and suggest widget.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "symbolIcon.referenceForeground": {
+            "type": "string",
+            "description": "The foreground color for reference symbols. These symbols appear in the outline, breadcrumb, and suggest widget.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "symbolIcon.snippetForeground": {
+            "type": "string",
+            "description": "The foreground color for snippet symbols. These symbols appear in the outline, breadcrumb, and suggest widget.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "symbolIcon.stringForeground": {
+            "type": "string",
+            "description": "The foreground color for string symbols. These symbols appear in the outline, breadcrumb, and suggest widget.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "symbolIcon.structForeground": {
+            "type": "string",
+            "description": "The foreground color for struct symbols. These symbols appear in the outline, breadcrumb, and suggest widget.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "symbolIcon.textForeground": {
+            "type": "string",
+            "description": "The foreground color for text symbols. These symbols appear in the outline, breadcrumb, and suggest widget.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "symbolIcon.typeParameterForeground": {
+            "type": "string",
+            "description": "The foreground color for type parameter symbols. These symbols appear in the outline, breadcrumb, and suggest widget.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "symbolIcon.unitForeground": {
+            "type": "string",
+            "description": "The foreground color for unit symbols. These symbols appear in the outline, breadcrumb, and suggest widget.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "symbolIcon.variableForeground": {
+            "type": "string",
+            "description": "The foreground color for variable symbols. These symbols appear in the outline, breadcrumb, and suggest widget.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editor.foldBackground": {
+            "type": "string",
+            "description": "Background color behind folded ranges. The color must not be opaque so as not to hide underlying decorations.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editorGutter.foldingControlForeground": {
+            "type": "string",
+            "description": "Color of the folding control in the editor gutter.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "peekViewTitle.background": {
+            "type": "string",
+            "description": "Background color of the peek view title area.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "peekViewTitleLabel.foreground": {
+            "type": "string",
+            "description": "Color of the peek view title.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "peekViewTitleDescription.foreground": {
+            "type": "string",
+            "description": "Color of the peek view title info.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "peekView.border": {
+            "type": "string",
+            "description": "Color of the peek view borders and arrow.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "peekViewResult.background": {
+            "type": "string",
+            "description": "Background color of the peek view result list.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "peekViewResult.lineForeground": {
+            "type": "string",
+            "description": "Foreground color for line nodes in the peek view result list.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "peekViewResult.fileForeground": {
+            "type": "string",
+            "description": "Foreground color for file nodes in the peek view result list.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "peekViewResult.selectionBackground": {
+            "type": "string",
+            "description": "Background color of the selected entry in the peek view result list.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "peekViewResult.selectionForeground": {
+            "type": "string",
+            "description": "Foreground color of the selected entry in the peek view result list.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "peekViewEditor.background": {
+            "type": "string",
+            "description": "Background color of the peek view editor.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "peekViewEditorGutter.background": {
+            "type": "string",
+            "description": "Background color of the gutter in the peek view editor.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "peekViewResult.matchHighlightBackground": {
+            "type": "string",
+            "description": "Match highlight color in the peek view result list.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "peekViewEditor.matchHighlightBackground": {
+            "type": "string",
+            "description": "Match highlight color in the peek view editor.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "peekViewEditor.matchHighlightBorder": {
+            "type": "string",
+            "description": "Match highlight border in the peek view editor.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editorSuggestWidget.background": {
+            "type": "string",
+            "description": "Background color of the suggest widget.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editorSuggestWidget.border": {
+            "type": "string",
+            "description": "Border color of the suggest widget.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editorSuggestWidget.foreground": {
+            "type": "string",
+            "description": "Foreground color of the suggest widget.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editorSuggestWidget.selectedBackground": {
+            "type": "string",
+            "description": "Background color of the selected entry in the suggest widget.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editorSuggestWidget.highlightForeground": {
+            "type": "string",
+            "description": "Color of the match highlights in the suggest widget.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editor.wordHighlightBackground": {
+            "type": "string",
+            "description": "Background color of a symbol during read-access, like reading a variable. The color must not be opaque so as not to hide underlying decorations.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editor.wordHighlightStrongBackground": {
+            "type": "string",
+            "description": "Background color of a symbol during write-access, like writing to a variable. The color must not be opaque so as not to hide underlying decorations.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editor.wordHighlightBorder": {
+            "type": "string",
+            "description": "Border color of a symbol during read-access, like reading a variable.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editor.wordHighlightStrongBorder": {
+            "type": "string",
+            "description": "Border color of a symbol during write-access, like writing to a variable.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editorOverviewRuler.wordHighlightForeground": {
+            "type": "string",
+            "description": "Overview ruler marker color for symbol highlights. The color must not be opaque so as not to hide underlying decorations.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editorOverviewRuler.wordHighlightStrongForeground": {
+            "type": "string",
+            "description": "Overview ruler marker color for write-access symbol highlights. The color must not be opaque so as not to hide underlying decorations.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editorMarkerNavigationError.background": {
+            "type": "string",
+            "description": "Editor marker navigation widget error color.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editorMarkerNavigationWarning.background": {
+            "type": "string",
+            "description": "Editor marker navigation widget warning color.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editorMarkerNavigationInfo.background": {
+            "type": "string",
+            "description": "Editor marker navigation widget info color.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editorMarkerNavigation.background": {
+            "type": "string",
+            "description": "Editor marker navigation widget background.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "tab.activeBackground": {
+            "type": "string",
+            "description": "Active tab background color in an active group. Tabs are the containers for editors in the editor area. Multiple tabs can be opened in one editor group. There can be multiple editor groups.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "tab.unfocusedActiveBackground": {
+            "type": "string",
+            "description": "Active tab background color in an unfocused group. Tabs are the containers for editors in the editor area. Multiple tabs can be opened in one editor group. There can be multiple editor groups.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "tab.inactiveBackground": {
+            "type": "string",
+            "description": "Inactive tab background color in an active group. Tabs are the containers for editors in the editor area. Multiple tabs can be opened in one editor group. There can be multiple editor groups.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "tab.unfocusedInactiveBackground": {
+            "type": "string",
+            "description": "Inactive tab background color in an unfocused group. Tabs are the containers for editors in the editor area. Multiple tabs can be opened in one editor group. There can be multiple editor groups.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "tab.activeForeground": {
+            "type": "string",
+            "description": "Active tab foreground color in an active group. Tabs are the containers for editors in the editor area. Multiple tabs can be opened in one editor group. There can be multiple editor groups.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "tab.inactiveForeground": {
+            "type": "string",
+            "description": "Inactive tab foreground color in an active group. Tabs are the containers for editors in the editor area. Multiple tabs can be opened in one editor group. There can be multiple editor groups.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "tab.unfocusedActiveForeground": {
+            "type": "string",
+            "description": "Active tab foreground color in an unfocused group. Tabs are the containers for editors in the editor area. Multiple tabs can be opened in one editor group. There can be multiple editor groups.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "tab.unfocusedInactiveForeground": {
+            "type": "string",
+            "description": "Inactive tab foreground color in an unfocused group. Tabs are the containers for editors in the editor area. Multiple tabs can be opened in one editor group. There can be multiple editor groups.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "tab.hoverBackground": {
+            "type": "string",
+            "description": "Tab background color when hovering. Tabs are the containers for editors in the editor area. Multiple tabs can be opened in one editor group. There can be multiple editor groups.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "tab.unfocusedHoverBackground": {
+            "type": "string",
+            "description": "Tab background color in an unfocused group when hovering. Tabs are the containers for editors in the editor area. Multiple tabs can be opened in one editor group. There can be multiple editor groups.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "tab.hoverForeground": {
+            "type": "string",
+            "description": "Tab foreground color when hovering. Tabs are the containers for editors in the editor area. Multiple tabs can be opened in one editor group. There can be multiple editor groups.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "tab.unfocusedHoverForeground": {
+            "type": "string",
+            "description": "Tab foreground color in an unfocused group when hovering. Tabs are the containers for editors in the editor area. Multiple tabs can be opened in one editor group. There can be multiple editor groups.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "tab.activeBorder": {
+            "type": "string",
+            "description": "Border on the bottom of an active tab. Tabs are the containers for editors in the editor area. Multiple tabs can be opened in one editor group. There can be multiple editor groups.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "tab.unfocusedActiveBorder": {
+            "type": "string",
+            "description": "Border on the bottom of an active tab in an unfocused group. Tabs are the containers for editors in the editor area. Multiple tabs can be opened in one editor group. There can be multiple editor groups.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "tab.activeBorderTop": {
+            "type": "string",
+            "description": "Border to the top of an active tab. Tabs are the containers for editors in the editor area. Multiple tabs can be opened in one editor group. There can be multiple editor groups.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "tab.unfocusedActiveBorderTop": {
+            "type": "string",
+            "description": "Border to the top of an active tab in an unfocused group. Tabs are the containers for editors in the editor area. Multiple tabs can be opened in one editor group. There can be multiple editor groups.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "tab.hoverBorder": {
+            "type": "string",
+            "description": "Border to highlight tabs when hovering. Tabs are the containers for editors in the editor area. Multiple tabs can be opened in one editor group. There can be multiple editor groups.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "tab.unfocusedHoverBorder": {
+            "type": "string",
+            "description": "Border to highlight tabs in an unfocused group when hovering. Tabs are the containers for editors in the editor area. Multiple tabs can be opened in one editor group. There can be multiple editor groups.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "tab.activeModifiedBorder": {
+            "type": "string",
+            "description": "Border on the top of modified (dirty) active tabs in an active group. Tabs are the containers for editors in the editor area. Multiple tabs can be opened in one editor group. There can be multiple editor groups.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "tab.inactiveModifiedBorder": {
+            "type": "string",
+            "description": "Border on the top of modified (dirty) inactive tabs in an active group. Tabs are the containers for editors in the editor area. Multiple tabs can be opened in one editor group. There can be multiple editor groups.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "tab.unfocusedActiveModifiedBorder": {
+            "type": "string",
+            "description": "Border on the top of modified (dirty) active tabs in an unfocused group. Tabs are the containers for editors in the editor area. Multiple tabs can be opened in one editor group. There can be multiple editor groups.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "tab.unfocusedInactiveModifiedBorder": {
+            "type": "string",
+            "description": "Border on the top of modified (dirty) inactive tabs in an unfocused group. Tabs are the containers for editors in the editor area. Multiple tabs can be opened in one editor group. There can be multiple editor groups.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "tab.border": {
+            "type": "string",
+            "description": "Border to separate tabs from each other. Tabs are the containers for editors in the editor area. Multiple tabs can be opened in one editor group. There can be multiple editor groups.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editorPane.background": {
+            "type": "string",
+            "description": "Background color of the editor pane visible on the left and right side of the centered editor layout.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editorGroup.background": {
+            "type": "string",
+            "description": "Deprecated background color of an editor group.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "deprecationMessage": "Deprecated: Background color of an editor group is no longer being supported with the introduction of the grid editor layout. You can use editorGroup.emptyBackground to set the background color of empty editor groups."
+        },
+        "editorGroup.emptyBackground": {
+            "type": "string",
+            "description": "Background color of an empty editor group. Editor groups are the containers of editors.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editorGroup.focusedEmptyBorder": {
+            "type": "string",
+            "description": "Border color of an empty editor group that is focused. Editor groups are the containers of editors.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editorGroupHeader.tabsBackground": {
+            "type": "string",
+            "description": "Background color of the editor group title header when tabs are enabled. Editor groups are the containers of editors.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editorGroupHeader.tabsBorder": {
+            "type": "string",
+            "description": "Border color of the editor group title header when tabs are enabled. Editor groups are the containers of editors.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editorGroupHeader.noTabsBackground": {
+            "type": "string",
+            "description": "Background color of the editor group title header when tabs are disabled (`\"workbench.editor.showTabs\": false`). Editor groups are the containers of editors.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editorGroupHeader.border": {
+            "type": "string",
+            "description": "Border color of the editor group title header. Editor groups are the containers of editors.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editorGroup.border": {
+            "type": "string",
+            "description": "Color to separate multiple editor groups from each other. Editor groups are the containers of editors.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editorGroup.dropBackground": {
+            "type": "string",
+            "description": "Background color when dragging editors around. The color should have transparency so that the editor contents can still shine through.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "imagePreview.border": {
+            "type": "string",
+            "description": "Border color for image in image preview.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "panel.background": {
+            "type": "string",
+            "description": "Panel background color. Panels are shown below the editor area and contain views like output and integrated terminal.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "panel.border": {
+            "type": "string",
+            "description": "Panel border color to separate the panel from the editor. Panels are shown below the editor area and contain views like output and integrated terminal.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "panelTitle.activeForeground": {
+            "type": "string",
+            "description": "Title color for the active panel. Panels are shown below the editor area and contain views like output and integrated terminal.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "panelTitle.inactiveForeground": {
+            "type": "string",
+            "description": "Title color for the inactive panel. Panels are shown below the editor area and contain views like output and integrated terminal.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "panelTitle.activeBorder": {
+            "type": "string",
+            "description": "Border color for the active panel title. Panels are shown below the editor area and contain views like output and integrated terminal.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "panelInput.border": {
+            "type": "string",
+            "description": "Input box border for inputs in the panel.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "panel.dropBorder": {
+            "type": "string",
+            "description": "Drag and drop feedback color for the panel titles. Panels are shown below the editor area and contain views like output and integrated terminal.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "panelSection.dropBackground": {
+            "type": "string",
+            "description": "Drag and drop feedback color for the panel sections. The color should have transparency so that the panel sections can still shine through. Panels are shown below the editor area and contain views like output and integrated terminal.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "panelSectionHeader.background": {
+            "type": "string",
+            "description": "Panel section header background color. Panels are shown below the editor area and contain views like output and integrated terminal.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "panelSectionHeader.foreground": {
+            "type": "string",
+            "description": "Panel section header foreground color. Panels are shown below the editor area and contain views like output and integrated terminal.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "panelSectionHeader.border": {
+            "type": "string",
+            "description": "Panel section header border color used when multiple views are stacked vertically in the panel. Panels are shown below the editor area and contain views like output and integrated terminal.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "panelSection.border": {
+            "type": "string",
+            "description": "Panel section border color used when multiple views are stacked horizontally in the panel. Panels are shown below the editor area and contain views like output and integrated terminal.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "statusBar.foreground": {
+            "type": "string",
+            "description": "Status bar foreground color when a workspace is opened. The status bar is shown in the bottom of the window.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "statusBar.noFolderForeground": {
+            "type": "string",
+            "description": "Status bar foreground color when no folder is opened. The status bar is shown in the bottom of the window.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "statusBar.background": {
+            "type": "string",
+            "description": "Status bar background color when a workspace is opened. The status bar is shown in the bottom of the window.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "statusBar.noFolderBackground": {
+            "type": "string",
+            "description": "Status bar background color when no folder is opened. The status bar is shown in the bottom of the window.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "statusBar.border": {
+            "type": "string",
+            "description": "Status bar border color separating to the sidebar and editor. The status bar is shown in the bottom of the window.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "statusBar.noFolderBorder": {
+            "type": "string",
+            "description": "Status bar border color separating to the sidebar and editor when no folder is opened. The status bar is shown in the bottom of the window.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "statusBarItem.activeBackground": {
+            "type": "string",
+            "description": "Status bar item background color when clicking. The status bar is shown in the bottom of the window.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "statusBarItem.hoverBackground": {
+            "type": "string",
+            "description": "Status bar item background color when hovering. The status bar is shown in the bottom of the window.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "statusBarItem.prominentForeground": {
+            "type": "string",
+            "description": "Status bar prominent items foreground color. Prominent items stand out from other status bar entries to indicate importance. Change mode `Toggle Tab Key Moves Focus` from command palette to see an example. The status bar is shown in the bottom of the window.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "statusBarItem.prominentBackground": {
+            "type": "string",
+            "description": "Status bar prominent items background color. Prominent items stand out from other status bar entries to indicate importance. Change mode `Toggle Tab Key Moves Focus` from command palette to see an example. The status bar is shown in the bottom of the window.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "statusBarItem.prominentHoverBackground": {
+            "type": "string",
+            "description": "Status bar prominent items background color when hovering. Prominent items stand out from other status bar entries to indicate importance. Change mode `Toggle Tab Key Moves Focus` from command palette to see an example. The status bar is shown in the bottom of the window.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "activityBar.background": {
+            "type": "string",
+            "description": "Activity bar background color. The activity bar is showing on the far left or right and allows to switch between views of the side bar.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "activityBar.foreground": {
+            "type": "string",
+            "description": "Activity bar item foreground color when it is active. The activity bar is showing on the far left or right and allows to switch between views of the side bar.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "activityBar.inactiveForeground": {
+            "type": "string",
+            "description": "Activity bar item foreground color when it is inactive. The activity bar is showing on the far left or right and allows to switch between views of the side bar.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "activityBar.border": {
+            "type": "string",
+            "description": "Activity bar border color separating to the side bar. The activity bar is showing on the far left or right and allows to switch between views of the side bar.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "activityBar.activeBorder": {
+            "type": "string",
+            "description": "Activity bar border color for the active item. The activity bar is showing on the far left or right and allows to switch between views of the side bar.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "activityBar.activeFocusBorder": {
+            "type": "string",
+            "description": "Activity bar focus border color for the active item. The activity bar is showing on the far left or right and allows to switch between views of the side bar.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "activityBar.activeBackground": {
+            "type": "string",
+            "description": "Activity bar background color for the active item. The activity bar is showing on the far left or right and allows to switch between views of the side bar.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "activityBar.dropBorder": {
+            "type": "string",
+            "description": "Drag and drop feedback color for the activity bar items. The activity bar is showing on the far left or right and allows to switch between views of the side bar.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "activityBarBadge.background": {
+            "type": "string",
+            "description": "Activity notification badge background color. The activity bar is showing on the far left or right and allows to switch between views of the side bar.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "activityBarBadge.foreground": {
+            "type": "string",
+            "description": "Activity notification badge foreground color. The activity bar is showing on the far left or right and allows to switch between views of the side bar.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "statusBarItem.remoteBackground": {
+            "type": "string",
+            "description": "Background color for the remote indicator on the status bar.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "statusBarItem.remoteForeground": {
+            "type": "string",
+            "description": "Foreground color for the remote indicator on the status bar.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "extensionBadge.remoteBackground": {
+            "type": "string",
+            "description": "Background color for the remote badge in the extensions view.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "extensionBadge.remoteForeground": {
+            "type": "string",
+            "description": "Foreground color for the remote badge in the extensions view.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "sideBar.background": {
+            "type": "string",
+            "description": "Side bar background color. The side bar is the container for views like explorer and search.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "sideBar.foreground": {
+            "type": "string",
+            "description": "Side bar foreground color. The side bar is the container for views like explorer and search.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "sideBar.border": {
+            "type": "string",
+            "description": "Side bar border color on the side separating to the editor. The side bar is the container for views like explorer and search.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "sideBarTitle.foreground": {
+            "type": "string",
+            "description": "Side bar title foreground color. The side bar is the container for views like explorer and search.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "sideBar.dropBackground": {
+            "type": "string",
+            "description": "Drag and drop feedback color for the side bar sections. The color should have transparency so that the side bar sections can still shine through. The side bar is the container for views like explorer and search.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "sideBarSectionHeader.background": {
+            "type": "string",
+            "description": "Side bar section header background color. The side bar is the container for views like explorer and search.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "sideBarSectionHeader.foreground": {
+            "type": "string",
+            "description": "Side bar section header foreground color. The side bar is the container for views like explorer and search.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "sideBarSectionHeader.border": {
+            "type": "string",
+            "description": "Side bar section header border color. The side bar is the container for views like explorer and search.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "titleBar.activeForeground": {
+            "type": "string",
+            "description": "Title bar foreground when the window is active.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "titleBar.inactiveForeground": {
+            "type": "string",
+            "description": "Title bar foreground when the window is inactive.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "titleBar.activeBackground": {
+            "type": "string",
+            "description": "Title bar background when the window is active.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "titleBar.inactiveBackground": {
+            "type": "string",
+            "description": "Title bar background when the window is inactive.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "titleBar.border": {
+            "type": "string",
+            "description": "Title bar border color.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "menubar.selectionForeground": {
+            "type": "string",
+            "description": "Foreground color of the selected menu item in the menubar.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "menubar.selectionBackground": {
+            "type": "string",
+            "description": "Background color of the selected menu item in the menubar.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "menubar.selectionBorder": {
+            "type": "string",
+            "description": "Border color of the selected menu item in the menubar.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "notificationCenter.border": {
+            "type": "string",
+            "description": "Notifications center border color. Notifications slide in from the bottom right of the window.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "notificationToast.border": {
+            "type": "string",
+            "description": "Notification toast border color. Notifications slide in from the bottom right of the window.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "notifications.foreground": {
+            "type": "string",
+            "description": "Notifications foreground color. Notifications slide in from the bottom right of the window.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "notifications.background": {
+            "type": "string",
+            "description": "Notifications background color. Notifications slide in from the bottom right of the window.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "notificationLink.foreground": {
+            "type": "string",
+            "description": "Notification links foreground color. Notifications slide in from the bottom right of the window.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "notificationCenterHeader.foreground": {
+            "type": "string",
+            "description": "Notifications center header foreground color. Notifications slide in from the bottom right of the window.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "notificationCenterHeader.background": {
+            "type": "string",
+            "description": "Notifications center header background color. Notifications slide in from the bottom right of the window.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "notifications.border": {
+            "type": "string",
+            "description": "Notifications border color separating from other notifications in the notifications center. Notifications slide in from the bottom right of the window.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "notificationsErrorIcon.foreground": {
+            "type": "string",
+            "description": "The color used for the icon of error notifications. Notifications slide in from the bottom right of the window.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "notificationsWarningIcon.foreground": {
+            "type": "string",
+            "description": "The color used for the icon of warning notifications. Notifications slide in from the bottom right of the window.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "notificationsInfoIcon.foreground": {
+            "type": "string",
+            "description": "The color used for the icon of info notifications. Notifications slide in from the bottom right of the window.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "window.activeBorder": {
+            "type": "string",
+            "description": "The color used for the border of the window when it is active. Only supported in the desktop client when using the custom title bar.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "window.inactiveBorder": {
+            "type": "string",
+            "description": "The color used for the border of the window when it is inactive. Only supported in the desktop client when using the custom title bar.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editorGutter.commentRangeForeground": {
+            "type": "string",
+            "description": "Editor gutter decoration color for commenting ranges.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editor.stackFrameHighlightBackground": {
+            "type": "string",
+            "description": "Background color for the highlight of line at the top stack frame position.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editor.focusedStackFrameHighlightBackground": {
+            "type": "string",
+            "description": "Background color for the highlight of line at focused stack frame position.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "terminal.background": {
+            "type": "string",
+            "description": "The background color of the terminal, this allows coloring the terminal differently to the panel.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "terminal.foreground": {
+            "type": "string",
+            "description": "The foreground color of the terminal.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "terminalCursor.foreground": {
+            "type": "string",
+            "description": "The foreground color of the terminal cursor.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "terminalCursor.background": {
+            "type": "string",
+            "description": "The background color of the terminal cursor. Allows customizing the color of a character overlapped by a block cursor.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "terminal.selectionBackground": {
+            "type": "string",
+            "description": "The selection background color of the terminal.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "terminal.border": {
+            "type": "string",
+            "description": "The color of the border that separates split panes within the terminal. This defaults to panel.border.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "walkThrough.embeddedEditorBackground": {
+            "type": "string",
+            "description": "Background color for the embedded editors on the Interactive Playground.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editorGutter.modifiedBackground": {
+            "type": "string",
+            "description": "Editor gutter background color for lines that are modified.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editorGutter.addedBackground": {
+            "type": "string",
+            "description": "Editor gutter background color for lines that are added.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editorGutter.deletedBackground": {
+            "type": "string",
+            "description": "Editor gutter background color for lines that are deleted.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "minimapGutter.modifiedBackground": {
+            "type": "string",
+            "description": "Minimap gutter background color for lines that are modified.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "minimapGutter.addedBackground": {
+            "type": "string",
+            "description": "Minimap gutter background color for lines that are added.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "minimapGutter.deletedBackground": {
+            "type": "string",
+            "description": "Minimap gutter background color for lines that are deleted.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editorOverviewRuler.modifiedForeground": {
+            "type": "string",
+            "description": "Overview ruler marker color for modified content.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editorOverviewRuler.addedForeground": {
+            "type": "string",
+            "description": "Overview ruler marker color for added content.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editorOverviewRuler.deletedForeground": {
+            "type": "string",
+            "description": "Overview ruler marker color for deleted content.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "statusBar.debuggingBackground": {
+            "type": "string",
+            "description": "Status bar background color when a program is being debugged. The status bar is shown in the bottom of the window",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "statusBar.debuggingForeground": {
+            "type": "string",
+            "description": "Status bar foreground color when a program is being debugged. The status bar is shown in the bottom of the window",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "statusBar.debuggingBorder": {
+            "type": "string",
+            "description": "Status bar border color separating to the sidebar and editor when a program is being debugged. The status bar is shown in the bottom of the window",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "welcomePage.buttonBackground": {
+            "type": "string",
+            "description": "Background color for the buttons on the Welcome page.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "welcomePage.buttonHoverBackground": {
+            "type": "string",
+            "description": "Hover background color for the buttons on the Welcome page.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "welcomePage.background": {
+            "type": "string",
+            "description": "Background color for the Welcome page.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "settings.headerForeground": {
+            "type": "string",
+            "description": "The foreground color for a section header or active title.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "settings.modifiedItemIndicator": {
+            "type": "string",
+            "description": "The color of the modified setting indicator.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "settings.dropdownBackground": {
+            "type": "string",
+            "description": "Settings editor dropdown background.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "settings.dropdownForeground": {
+            "type": "string",
+            "description": "Settings editor dropdown foreground.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "settings.dropdownBorder": {
+            "type": "string",
+            "description": "Settings editor dropdown border.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "settings.dropdownListBorder": {
+            "type": "string",
+            "description": "Settings editor dropdown list border. This surrounds the options and separates the options from the description.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "settings.checkboxBackground": {
+            "type": "string",
+            "description": "Settings editor checkbox background.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "settings.checkboxForeground": {
+            "type": "string",
+            "description": "Settings editor checkbox foreground.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "settings.checkboxBorder": {
+            "type": "string",
+            "description": "Settings editor checkbox border.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "settings.textInputBackground": {
+            "type": "string",
+            "description": "Settings editor text input box background.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "settings.textInputForeground": {
+            "type": "string",
+            "description": "Settings editor text input box foreground.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "settings.textInputBorder": {
+            "type": "string",
+            "description": "Settings editor text input box border.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "settings.numberInputBackground": {
+            "type": "string",
+            "description": "Settings editor number input box background.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "settings.numberInputForeground": {
+            "type": "string",
+            "description": "Settings editor number input box foreground.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "settings.numberInputBorder": {
+            "type": "string",
+            "description": "Settings editor number input box border.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "debugExceptionWidget.border": {
+            "type": "string",
+            "description": "Exception widget border color.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "debugExceptionWidget.background": {
+            "type": "string",
+            "description": "Exception widget background color.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "searchEditor.textInputBorder": {
+            "type": "string",
+            "description": "Search editor text input box border.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "debugIcon.breakpointForeground": {
+            "type": "string",
+            "description": "Icon color for breakpoints.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "debugIcon.breakpointDisabledForeground": {
+            "type": "string",
+            "description": "Icon color for disabled breakpoints.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "debugIcon.breakpointUnverifiedForeground": {
+            "type": "string",
+            "description": "Icon color for unverified breakpoints.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "debugIcon.breakpointCurrentStackframeForeground": {
+            "type": "string",
+            "description": "Icon color for the current breakpoint stack frame.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "debugIcon.breakpointStackframeForeground": {
+            "type": "string",
+            "description": "Icon color for all breakpoint stack frames.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "debugToolBar.background": {
+            "type": "string",
+            "description": "Debug toolbar background color.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "debugToolBar.border": {
+            "type": "string",
+            "description": "Debug toolbar border color.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "debugIcon.startForeground": {
+            "type": "string",
+            "description": "Debug toolbar icon for start debugging.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "debugIcon.pauseForeground": {
+            "type": "string",
+            "description": "Debug toolbar icon for pause.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "debugIcon.stopForeground": {
+            "type": "string",
+            "description": "Debug toolbar icon for stop.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "debugIcon.disconnectForeground": {
+            "type": "string",
+            "description": "Debug toolbar icon for disconnect.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "debugIcon.restartForeground": {
+            "type": "string",
+            "description": "Debug toolbar icon for restart.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "debugIcon.stepOverForeground": {
+            "type": "string",
+            "description": "Debug toolbar icon for step over.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "debugIcon.stepIntoForeground": {
+            "type": "string",
+            "description": "Debug toolbar icon for step into.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "debugIcon.stepOutForeground": {
+            "type": "string",
+            "description": "Debug toolbar icon for step over.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "debugIcon.continueForeground": {
+            "type": "string",
+            "description": "Debug toolbar icon for continue.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "debugIcon.stepBackForeground": {
+            "type": "string",
+            "description": "Debug toolbar icon for step back.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "debugTokenExpression.name": {
+            "type": "string",
+            "description": "Foreground color for the token names shown in the debug views (ie. the Variables or Watch view).",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "debugTokenExpression.value": {
+            "type": "string",
+            "description": "Foreground color for the token values shown in the debug views (ie. the Variables or Watch view).",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "debugTokenExpression.string": {
+            "type": "string",
+            "description": "Foreground color for strings in the debug views (ie. the Variables or Watch view).",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "debugTokenExpression.boolean": {
+            "type": "string",
+            "description": "Foreground color for booleans in the debug views (ie. the Variables or Watch view).",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "debugTokenExpression.number": {
+            "type": "string",
+            "description": "Foreground color for numbers in the debug views (ie. the Variables or Watch view).",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "debugTokenExpression.error": {
+            "type": "string",
+            "description": "Foreground color for expression errors in the debug views (ie. the Variables or Watch view) and for error logs shown in the debug console.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "debugView.exceptionLabelForeground": {
+            "type": "string",
+            "description": "Foreground color for a label shown in the CALL STACK view when the debugger breaks on an exception.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "debugView.exceptionLabelBackground": {
+            "type": "string",
+            "description": "Background color for a label shown in the CALL STACK view when the debugger breaks on an exception.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "debugView.stateLabelForeground": {
+            "type": "string",
+            "description": "Foreground color for a label in the CALL STACK view showing the current session's or thread's state.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "debugView.stateLabelBackground": {
+            "type": "string",
+            "description": "Background color for a label in the CALL STACK view showing the current session's or thread's state.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "debugView.valueChangedHighlight": {
+            "type": "string",
+            "description": "Color used to highlight value changes in the debug views (ie. in the Variables view).",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "debugConsole.infoForeground": {
+            "type": "string",
+            "description": "Foreground color for info messages in debug REPL console.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "debugConsole.warningForeground": {
+            "type": "string",
+            "description": "Foreground color for warning messages in debug REPL console.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "debugConsole.errorForeground": {
+            "type": "string",
+            "description": "Foreground color for error messages in debug REPL console.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "debugConsole.sourceForeground": {
+            "type": "string",
+            "description": "Foreground color for source filenames in debug REPL console.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "debugConsoleInputIcon.foreground": {
+            "type": "string",
+            "description": "Foreground color for debug console input marker icon.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "extensionButton.prominentBackground": {
+            "type": "string",
+            "description": "Button background color for actions extension that stand out (e.g. install button).",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "extensionButton.prominentForeground": {
+            "type": "string",
+            "description": "Button foreground color for actions extension that stand out (e.g. install button).",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "extensionButton.prominentHoverBackground": {
+            "type": "string",
+            "description": "Button background hover color for actions extension that stand out (e.g. install button).",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "notebook.cellBorderColor": {
+            "type": "string",
+            "description": "The border color for notebook cells.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "notebook.focusedEditorBorder": {
+            "type": "string",
+            "description": "The color of the notebook cell editor border.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "notebookStatusSuccessIcon.foreground": {
+            "type": "string",
+            "description": "The error icon color of notebook cells in the cell status bar.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "notebookStatusErrorIcon.foreground": {
+            "type": "string",
+            "description": "The error icon color of notebook cells in the cell status bar.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "notebookStatusRunningIcon.foreground": {
+            "type": "string",
+            "description": "The running icon color of notebook cells in the cell status bar.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "notebook.outputContainerBackgroundColor": {
+            "type": "string",
+            "description": "The Color of the notebook output container background.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "notebook.cellToolbarSeperator": {
+            "type": "string",
+            "description": "The color of the seperator in the cell bottom toolbar",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "notebook.focusedCellBackground": {
+            "type": "string",
+            "description": "The background color of a cell when the cell is focused.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "notebook.cellHoverBackground": {
+            "type": "string",
+            "description": "The background color of a cell when the cell is hovered.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "notebook.focusedCellBorder": {
+            "type": "string",
+            "description": "The color of the cell's top and bottom border when the cell is focused.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "notebook.focusedCellShadow": {
+            "type": "string",
+            "description": "The color of the cell shadow when cells are focused.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "notebook.cellStatusBarItemHoverBackground": {
+            "type": "string",
+            "description": "The background color of notebook cell status bar items.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "notebook.cellInsertionIndicator": {
+            "type": "string",
+            "description": "The color of the notebook cell insertion indicator.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "notebookScrollbarSlider.background": {
+            "type": "string",
+            "description": "Notebook scrollbar slider background color.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "notebookScrollbarSlider.hoverBackground": {
+            "type": "string",
+            "description": "Notebook scrollbar slider background color when hovering.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "notebookScrollbarSlider.activeBackground": {
+            "type": "string",
+            "description": "Notebook scrollbar slider background color when clicked on.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "scm.providerBorder": {
+            "type": "string",
+            "description": "SCM Provider separator border.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "terminal.ansiBlack": {
+            "type": "string",
+            "description": "'Black' ANSI color in the terminal.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "terminal.ansiRed": {
+            "type": "string",
+            "description": "'Red' ANSI color in the terminal.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "terminal.ansiGreen": {
+            "type": "string",
+            "description": "'Green' ANSI color in the terminal.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "terminal.ansiYellow": {
+            "type": "string",
+            "description": "'Yellow' ANSI color in the terminal.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "terminal.ansiBlue": {
+            "type": "string",
+            "description": "'Blue' ANSI color in the terminal.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "terminal.ansiMagenta": {
+            "type": "string",
+            "description": "'Magenta' ANSI color in the terminal.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "terminal.ansiCyan": {
+            "type": "string",
+            "description": "'Cyan' ANSI color in the terminal.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "terminal.ansiWhite": {
+            "type": "string",
+            "description": "'White' ANSI color in the terminal.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "terminal.ansiBrightBlack": {
+            "type": "string",
+            "description": "'BrightBlack' ANSI color in the terminal.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "terminal.ansiBrightRed": {
+            "type": "string",
+            "description": "'BrightRed' ANSI color in the terminal.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "terminal.ansiBrightGreen": {
+            "type": "string",
+            "description": "'BrightGreen' ANSI color in the terminal.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "terminal.ansiBrightYellow": {
+            "type": "string",
+            "description": "'BrightYellow' ANSI color in the terminal.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "terminal.ansiBrightBlue": {
+            "type": "string",
+            "description": "'BrightBlue' ANSI color in the terminal.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "terminal.ansiBrightMagenta": {
+            "type": "string",
+            "description": "'BrightMagenta' ANSI color in the terminal.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "terminal.ansiBrightCyan": {
+            "type": "string",
+            "description": "'BrightCyan' ANSI color in the terminal.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "terminal.ansiBrightWhite": {
+            "type": "string",
+            "description": "'BrightWhite' ANSI color in the terminal.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "gitDecoration.addedResourceForeground": {
+            "type": "string",
+            "description": "Color for added resources.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "gitDecoration.modifiedResourceForeground": {
+            "type": "string",
+            "description": "Color for modified resources.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "gitDecoration.deletedResourceForeground": {
+            "type": "string",
+            "description": "Color for deleted resources.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "gitDecoration.untrackedResourceForeground": {
+            "type": "string",
+            "description": "Color for untracked resources.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "gitDecoration.ignoredResourceForeground": {
+            "type": "string",
+            "description": "Color for ignored resources.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "gitDecoration.conflictingResourceForeground": {
+            "type": "string",
+            "description": "Color for resources with conflicts.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "gitDecoration.submoduleResourceForeground": {
+            "type": "string",
+            "description": "Color for submodule resources.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        }
+    }
+}

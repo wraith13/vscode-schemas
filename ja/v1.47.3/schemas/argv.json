@@ -1,0 +1,33 @@
+{
+    "id": "vscode://schemas/argv",
+    "allowComments": true,
+    "allowTrailingCommas": true,
+    "description": "VSCode static command line definition file",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "locale": {
+            "type": "string",
+            "description": "使用する表示言語。異なる言語を選択するには、関連付けられた言語パックをインストールする必要があります。"
+        },
+        "disable-hardware-acceleration": {
+            "type": "boolean",
+            "description": "ハードウェア アクセラレータを無効にします。グラフィックの問題が発生した場合にのみ、このオプションを変更してください。"
+        },
+        "disable-color-correct-rendering": {
+            "type": "boolean",
+            "description": "カラー プロファイルの選択に関する問題を解決します。グラフィックの問題が発生した場合にのみ、このオプションを変更してください。"
+        },
+        "force-color-profile": {
+            "type": "string",
+            "markdownDescription": "使用するカラー プロファイルをオーバーライドできます。色が正しく表示されない場合は、これを 'srgb' に設定して再起動してみてください。"
+        },
+        "enable-proposed-api": {
+            "type": "array",
+            "description": "拡張機能 ID のリストに対して提案された API を有効にします ('vscode.git' など)。提案された API は不安定で、警告なしに中断することがあります。これは拡張機能の開発とテストを目的とする場合にのみ設定してください。",
+            "items": {
+                "type": "string"
+            }
+        }
+    }
+}

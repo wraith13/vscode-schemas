@@ -1,0 +1,357 @@
+{
+    "allowComments": true,
+    "allowTrailingCommas": true,
+    "default": {
+        "comments": {
+            "blockComment": [
+                "/*",
+                "*/"
+            ],
+            "lineComment": "//"
+        },
+        "brackets": [
+            [
+                "(",
+                ")"
+            ],
+            [
+                "[",
+                "]"
+            ],
+            [
+                "{",
+                "}"
+            ]
+        ],
+        "autoClosingPairs": [
+            [
+                "(",
+                ")"
+            ],
+            [
+                "[",
+                "]"
+            ],
+            [
+                "{",
+                "}"
+            ]
+        ],
+        "surroundingPairs": [
+            [
+                "(",
+                ")"
+            ],
+            [
+                "[",
+                "]"
+            ],
+            [
+                "{",
+                "}"
+            ]
+        ]
+    },
+    "definitions": {
+        "openBracket": {
+            "type": "string",
+            "description": "The opening bracket character or string sequence."
+        },
+        "closeBracket": {
+            "type": "string",
+            "description": "The closing bracket character or string sequence."
+        },
+        "bracketPair": {
+            "type": "array",
+            "items": [
+                {
+                    "$ref": "#definitions/openBracket"
+                },
+                {
+                    "$ref": "#definitions/closeBracket"
+                }
+            ]
+        }
+    },
+    "properties": {
+        "comments": {
+            "default": {
+                "blockComment": [
+                    "/*",
+                    "*/"
+                ],
+                "lineComment": "//"
+            },
+            "description": "Defines the comment symbols",
+            "type": "object",
+            "properties": {
+                "blockComment": {
+                    "type": "array",
+                    "description": "Defines how block comments are marked.",
+                    "items": [
+                        {
+                            "type": "string",
+                            "description": "The character sequence that starts a block comment."
+                        },
+                        {
+                            "type": "string",
+                            "description": "The character sequence that ends a block comment."
+                        }
+                    ]
+                },
+                "lineComment": {
+                    "type": "string",
+                    "description": "The character sequence that starts a line comment."
+                }
+            }
+        },
+        "brackets": {
+            "default": [
+                [
+                    "(",
+                    ")"
+                ],
+                [
+                    "[",
+                    "]"
+                ],
+                [
+                    "{",
+                    "}"
+                ]
+            ],
+            "description": "Defines the bracket symbols that increase or decrease the indentation.",
+            "type": "array",
+            "items": {
+                "$ref": "#definitions/bracketPair"
+            }
+        },
+        "autoClosingPairs": {
+            "default": [
+                [
+                    "(",
+                    ")"
+                ],
+                [
+                    "[",
+                    "]"
+                ],
+                [
+                    "{",
+                    "}"
+                ]
+            ],
+            "description": "Defines the bracket pairs. When a opening bracket is entered, the closing bracket is inserted automatically.",
+            "type": "array",
+            "items": {
+                "oneOf": [
+                    {
+                        "$ref": "#definitions/bracketPair"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "open": {
+                                "$ref": "#definitions/openBracket"
+                            },
+                            "close": {
+                                "$ref": "#definitions/closeBracket"
+                            },
+                            "notIn": {
+                                "type": "array",
+                                "description": "Defines a list of scopes where the auto pairs are disabled.",
+                                "items": {
+                                    "enum": [
+                                        "string",
+                                        "comment"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                ]
+            }
+        },
+        "autoCloseBefore": {
+            "default": ";:.,=}])> \n\t",
+            "description": "Defines what characters must be after the cursor in order for bracket or quote autoclosing to occur when using the 'languageDefined' autoclosing setting. This is typically the set of characters which can not start an expression.",
+            "type": "string"
+        },
+        "surroundingPairs": {
+            "default": [
+                [
+                    "(",
+                    ")"
+                ],
+                [
+                    "[",
+                    "]"
+                ],
+                [
+                    "{",
+                    "}"
+                ]
+            ],
+            "description": "Defines the bracket pairs that can be used to surround a selected string.",
+            "type": "array",
+            "items": {
+                "oneOf": [
+                    {
+                        "$ref": "#definitions/bracketPair"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "open": {
+                                "$ref": "#definitions/openBracket"
+                            },
+                            "close": {
+                                "$ref": "#definitions/closeBracket"
+                            }
+                        }
+                    }
+                ]
+            }
+        },
+        "wordPattern": {
+            "default": "",
+            "description": "Defines what is considered to be a word in the programming language.",
+            "type": [
+                "string",
+                "object"
+            ],
+            "properties": {
+                "pattern": {
+                    "type": "string",
+                    "description": "The RegExp pattern used to match words.",
+                    "default": ""
+                },
+                "flags": {
+                    "type": "string",
+                    "description": "The RegExp flags used to match words.",
+                    "default": "g",
+                    "pattern": "^([gimuy]+)$",
+                    "patternErrorMessage": "Must match the pattern `/^([gimuy]+)$/`."
+                }
+            }
+        },
+        "indentationRules": {
+            "default": {
+                "increaseIndentPattern": "",
+                "decreaseIndentPattern": ""
+            },
+            "description": "The language's indentation settings.",
+            "type": "object",
+            "properties": {
+                "increaseIndentPattern": {
+                    "type": [
+                        "string",
+                        "object"
+                    ],
+                    "description": "If a line matches this pattern, then all the lines after it should be indented once (until another rule matches).",
+                    "properties": {
+                        "pattern": {
+                            "type": "string",
+                            "description": "The RegExp pattern for increaseIndentPattern.",
+                            "default": ""
+                        },
+                        "flags": {
+                            "type": "string",
+                            "description": "The RegExp flags for increaseIndentPattern.",
+                            "default": "",
+                            "pattern": "^([gimuy]+)$",
+                            "patternErrorMessage": "Must match the pattern `/^([gimuy]+)$/`."
+                        }
+                    }
+                },
+                "decreaseIndentPattern": {
+                    "type": [
+                        "string",
+                        "object"
+                    ],
+                    "description": "If a line matches this pattern, then all the lines after it should be unindented once (until another rule matches).",
+                    "properties": {
+                        "pattern": {
+                            "type": "string",
+                            "description": "The RegExp pattern for decreaseIndentPattern.",
+                            "default": ""
+                        },
+                        "flags": {
+                            "type": "string",
+                            "description": "The RegExp flags for decreaseIndentPattern.",
+                            "default": "",
+                            "pattern": "^([gimuy]+)$",
+                            "patternErrorMessage": "Must match the pattern `/^([gimuy]+)$/`."
+                        }
+                    }
+                },
+                "indentNextLinePattern": {
+                    "type": [
+                        "string",
+                        "object"
+                    ],
+                    "description": "If a line matches this pattern, then **only the next line** after it should be indented once.",
+                    "properties": {
+                        "pattern": {
+                            "type": "string",
+                            "description": "The RegExp pattern for indentNextLinePattern.",
+                            "default": ""
+                        },
+                        "flags": {
+                            "type": "string",
+                            "description": "The RegExp flags for indentNextLinePattern.",
+                            "default": "",
+                            "pattern": "^([gimuy]+)$",
+                            "patternErrorMessage": "Must match the pattern `/^([gimuy]+)$/`."
+                        }
+                    }
+                },
+                "unIndentedLinePattern": {
+                    "type": [
+                        "string",
+                        "object"
+                    ],
+                    "description": "If a line matches this pattern, then its indentation should not be changed and it should not be evaluated against the other rules.",
+                    "properties": {
+                        "pattern": {
+                            "type": "string",
+                            "description": "The RegExp pattern for unIndentedLinePattern.",
+                            "default": ""
+                        },
+                        "flags": {
+                            "type": "string",
+                            "description": "The RegExp flags for unIndentedLinePattern.",
+                            "default": "",
+                            "pattern": "^([gimuy]+)$",
+                            "patternErrorMessage": "Must match the pattern `/^([gimuy]+)$/`."
+                        }
+                    }
+                }
+            }
+        },
+        "folding": {
+            "type": "object",
+            "description": "The language's folding settings.",
+            "properties": {
+                "offSide": {
+                    "type": "boolean",
+                    "description": "A language adheres to the off-side rule if blocks in that language are expressed by their indentation. If set, empty lines belong to the subsequent block."
+                },
+                "markers": {
+                    "type": "object",
+                    "description": "Language specific folding markers such as '#region' and '#endregion'. The start and end regexes will be tested against the contents of all lines and must be designed efficiently",
+                    "properties": {
+                        "start": {
+                            "type": "string",
+                            "description": "The RegExp pattern for the start marker. The regexp must start with '^'."
+                        },
+                        "end": {
+                            "type": "string",
+                            "description": "The RegExp pattern for the end marker. The regexp must start with '^'."
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
