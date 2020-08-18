@@ -1,0 +1,5 @@
+{
+    "type": "string",
+    "pattern": "^([a-z0-9A-Z][a-z0-9-A-Z]*)\\.([a-z0-9A-Z][a-z0-9-A-Z]*)$",
+    "errorMessage": "予期される形式 '${publisher}.${name}'。例: 'vscode.csharp'。"
+}

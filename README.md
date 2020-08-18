@@ -12,6 +12,8 @@ The data here is the following VS Code's schemas retrieved and saved using [save
 - [`vscode://schemas/extensions`](./en/latest/schemas/extensions.json)
 - [`vscode://schemas/global-snippets`](./en/latest/schemas/global-snippets.json)
 - [`vscode://schemas/icon-theme`](./en/latest/schemas/icon-theme.json)
+- [`vscode://schemas/ignoredExtensions`](./en/latest/schemas/ignoredExtensions.json)
+- [`vscode://schemas/ignoredSettings`](./en/latest/schemas/ignoredSettings.json)
 - [`vscode://schemas/keybindings`](./en/latest/schemas/keybindings.json)
 - [`vscode://schemas/language-configuration`](./en/latest/schemas/language-configuration.json)
 - [`vscode://schemas/launch`](./en/latest/schemas/launch.json)

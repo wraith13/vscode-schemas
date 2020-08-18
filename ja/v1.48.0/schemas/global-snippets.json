@@ -1,0 +1,58 @@
+{
+    "id": "vscode://schemas/global-snippets",
+    "allowComments": true,
+    "allowTrailingCommas": true,
+    "defaultSnippets": [
+        {
+            "label": "空のスニペット",
+            "body": {
+                "${1:snippetName}": {
+                    "scope": "${2:scope}",
+                    "prefix": "${3:prefix}",
+                    "body": "${4:snippet}",
+                    "description": "${5:description}"
+                }
+            }
+        }
+    ],
+    "type": "object",
+    "description": "ユーザー スニペット構成",
+    "additionalProperties": {
+        "type": "object",
+        "required": [
+            "prefix",
+            "body"
+        ],
+        "properties": {
+            "prefix": {
+                "description": "Intellisense でスニペットを選択するときに使用するプレフィックス",
+                "type": [
+                    "string",
+                    "array"
+                ]
+            },
+            "body": {
+                "markdownDescription": "スニペットの内容。カーソルの位置を定義するには '$1'、'${1:defaultText}' を使用し、最後のカーソルの位置には '$0' を使用します。'${varName}' と '${varName:defaultText}' を含む変数値 (例: 'This is file: $TM_FILENAME') を挿入します。",
+                "type": [
+                    "string",
+                    "array"
+                ],
+                "items": {
+                    "type": "string"
+                }
+            },
+            "description": {
+                "description": "スニペットについての記述。",
+                "type": [
+                    "string",
+                    "array"
+                ]
+            },
+            "scope": {
+                "description": "このスニペットが適用される言語名のリスト (例: 'typescript,javascript')。",
+                "type": "string"
+            }
+        },
+        "additionalProperties": false
+    }
+}
