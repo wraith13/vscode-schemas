@@ -1,0 +1,5 @@
+{
+    "type": "string",
+    "pattern": "^([a-z0-9A-Z][a-z0-9-A-Z]*)\\.([a-z0-9A-Z][a-z0-9-A-Z]*)$",
+    "errorMessage": "Expected format '${publisher}.${name}'. Example: 'vscode.csharp'."
+}
