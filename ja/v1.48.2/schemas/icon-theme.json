@@ -1,0 +1,218 @@
+{
+    "type": "object",
+    "allowComments": true,
+    "allowTrailingCommas": true,
+    "definitions": {
+        "folderExpanded": {
+            "type": "string",
+            "description": "折りたたんだフォルダーのフォルダー アイコン。展開したフォルダー アイコンは省略可能です。設定していない場合は、フォルダーに定義したアイコンが表示されます。"
+        },
+        "folder": {
+            "type": "string",
+            "description": "折りたたんだフォルダー、または folderExpanded が設定されていない場合は展開したフォルダーのフォルダー アイコン。"
+        },
+        "file": {
+            "type": "string",
+            "description": "どの拡張子、ファイル名、または言語 ID とも一致しないファイルすべてに表示される既定のファイル アイコン。"
+        },
+        "folderNames": {
+            "type": "object",
+            "description": "フォルダー名をアイコンに関連付けます。オブジェクト キーはフォルダー名ですが、パスの部分は含みません。パターンやワイルドカードは使用できません。フォルダー名の一致では大文字と小文字を区別しません。",
+            "additionalProperties": {
+                "type": "string",
+                "description": "関連付けのためのアイコン定義の ID。"
+            }
+        },
+        "folderNamesExpanded": {
+            "type": "object",
+            "description": "フォルダー名を展開したフォルダーのアイコンに関連付けます。オブジェクト キーはフォルダー名ですが、パスの部分は含みません。パターンやワイルドカードは使用できません。フォルダー名の一致では大文字と小文字を区別しません。",
+            "additionalProperties": {
+                "type": "string",
+                "description": "関連付けのためのアイコン定義の ID。"
+            }
+        },
+        "fileExtensions": {
+            "type": "object",
+            "description": "ファイル拡張子をアイコンに関連付けます。オブジェクト キーはファイル拡張子名です。拡張子名は、最後のドットに続くファイル名の最後の部分です (ドットは含みません)。拡張子の比較は大文字と小文字が区別しないで行われます。",
+            "additionalProperties": {
+                "type": "string",
+                "description": "関連付けのためのアイコン定義の ID。"
+            }
+        },
+        "fileNames": {
+            "type": "object",
+            "description": "ファイル名をアイコンに関連付けます。オブジェクト キーは完全なファイル名ですが、パスの部分は含みません。ファイル名にはドットおよび可能なファイル拡張子が含まれる場合があります。パターンやワイルドカードは使用できません。ファイル名の一致では大文字と小文字を区別しません。",
+            "additionalProperties": {
+                "type": "string",
+                "description": "関連付けのためのアイコン定義の ID。"
+            }
+        },
+        "languageIds": {
+            "type": "object",
+            "description": "言語をアイコンに関連付けます。オブジェクト キーは言語のコントリビューション ポイントで定義された言語 ID です。",
+            "additionalProperties": {
+                "type": "string",
+                "description": "関連付けのためのアイコン定義の ID。"
+            }
+        },
+        "associations": {
+            "type": "object",
+            "properties": {
+                "folderExpanded": {
+                    "$ref": "#/definitions/folderExpanded"
+                },
+                "folder": {
+                    "$ref": "#/definitions/folder"
+                },
+                "file": {
+                    "$ref": "#/definitions/file"
+                },
+                "folderNames": {
+                    "$ref": "#/definitions/folderNames"
+                },
+                "folderNamesExpanded": {
+                    "$ref": "#/definitions/folderNamesExpanded"
+                },
+                "fileExtensions": {
+                    "$ref": "#/definitions/fileExtensions"
+                },
+                "fileNames": {
+                    "$ref": "#/definitions/fileNames"
+                },
+                "languageIds": {
+                    "$ref": "#/definitions/languageIds"
+                }
+            }
+        }
+    },
+    "properties": {
+        "fonts": {
+            "type": "array",
+            "description": "アイコン定義で使用されるフォントです。",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "フォントの ID。",
+                        "pattern": "^([\\w-_]+)$",
+                        "patternErrorMessage": "ID に使用できるのは、文字、数字、アンダースコア、マイナスのみです。"
+                    },
+                    "src": {
+                        "type": "array",
+                        "description": "フォントの場所。",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "path": {
+                                    "type": "string",
+                                    "description": "現在のファイル アイコン テーマ ファイルに相対的なフォント パス。"
+                                },
+                                "format": {
+                                    "type": "string",
+                                    "description": "フォントの形式。",
+                                    "enum": [
+                                        "woff",
+                                        "woff2",
+                                        "truetype",
+                                        "opentype",
+                                        "embedded-opentype",
+                                        "svg"
+                                    ]
+                                }
+                            },
+                            "required": [
+                                "path",
+                                "format"
+                            ]
+                        }
+                    },
+                    "weight": {
+                        "type": "string",
+                        "description": "フォントの太さ。有効な値については、https://developer.mozilla.org/ja/docs/Web/CSS/font-weight を参照してください。",
+                        "pattern": "^(normal|bold|lighter|bolder|(\\d{0-1000}))$"
+                    },
+                    "style": {
+                        "type": "string",
+                        "description": "フォントのスタイル。有効な値については、https://developer.mozilla.org/ja/docs/Web/CSS/font-style を参照してください。",
+                        "pattern": "^(normal|italic|(oblique[ \\w\\s-]+))$"
+                    },
+                    "size": {
+                        "type": "string",
+                        "description": "フォントの既定のサイズ。有効な値については、https://developer.mozilla.org/ja-jp/docs/Web/CSS/font-size をご覧ください。",
+                        "pattern": "^([\\w .%-_]+)$"
+                    }
+                },
+                "required": [
+                    "id",
+                    "src"
+                ]
+            }
+        },
+        "iconDefinitions": {
+            "type": "object",
+            "description": "ファイルをアイコンに関連付けるときに使用できるすべてのアイコンの説明。",
+            "additionalProperties": {
+                "type": "object",
+                "description": "アイコンの定義です。オブジェクト キーは定義の ID です。",
+                "properties": {
+                    "iconPath": {
+                        "type": "string",
+                        "description": "SVG または PNG を使用する場合: イメージへのパス。アイコン設定ファイルへの相対パスです。"
+                    },
+                    "fontCharacter": {
+                        "type": "string",
+                        "description": "グリフ フォントを使用する場合: 使用するフォントの文字。"
+                    },
+                    "fontColor": {
+                        "type": "string",
+                        "format": "color-hex",
+                        "description": "グリフ フォントを使用する場合: 使用する色。"
+                    },
+                    "fontSize": {
+                        "type": "string",
+                        "description": "フォントを使用する場合: テキスト フォントに対するフォント サイズの割合。設定されていない場合、既定値はフォント定義のサイズになります。",
+                        "pattern": "^([\\w .%-_]+)$"
+                    },
+                    "fontId": {
+                        "type": "string",
+                        "description": "フォントを使用する場合: フォントの ID。設定されていない場合、最初のフォント定義が既定で設定されます。"
+                    }
+                }
+            }
+        },
+        "folderExpanded": {
+            "$ref": "#/definitions/folderExpanded"
+        },
+        "folder": {
+            "$ref": "#/definitions/folder"
+        },
+        "file": {
+            "$ref": "#/definitions/file"
+        },
+        "folderNames": {
+            "$ref": "#/definitions/folderNames"
+        },
+        "fileExtensions": {
+            "$ref": "#/definitions/fileExtensions"
+        },
+        "fileNames": {
+            "$ref": "#/definitions/fileNames"
+        },
+        "languageIds": {
+            "$ref": "#/definitions/languageIds"
+        },
+        "light": {
+            "$ref": "#/definitions/associations",
+            "description": "明るい配色テーマでのファイル アイコンの任意の関連付け。"
+        },
+        "highContrast": {
+            "$ref": "#/definitions/associations",
+            "description": "ハイ コントラスト配色テーマでのファイル アイコンの任意の関連付け。"
+        },
+        "hidesExplorerArrows": {
+            "type": "boolean",
+            "description": "このテーマがアクティブな時に、エクスプローラーの矢印を非表示にするかどうかを構成します。"
+        }
+    }
+}
