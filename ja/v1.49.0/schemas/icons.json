@@ -1,0 +1,1956 @@
+{
+    "definitions": {
+        "icons": {
+            "type": "object",
+            "properties": {
+                "fontId": {
+                    "type": "string",
+                    "description": "使用するフォントの ID。設定されていない場合は、最初に定義されているフォントが使用されます。"
+                },
+                "fontCharacter": {
+                    "type": "string",
+                    "description": "アイコン定義に関連付けられたフォント文字。"
+                }
+            },
+            "additionalProperties": false,
+            "defaultSnippets": [
+                {
+                    "body": {
+                        "fontCharacter": "\\\\e030"
+                    }
+                }
+            ]
+        }
+    },
+    "type": "object",
+    "properties": {
+        "add": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'add' のアイコン: $(add)"
+        },
+        "plus": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'plus' のアイコン: $(plus)"
+        },
+        "gist-new": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'gist-new' のアイコン: $(gist-new)"
+        },
+        "repo-create": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'repo-create' のアイコン: $(repo-create)"
+        },
+        "lightbulb": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'lightbulb' のアイコン: $(lightbulb)"
+        },
+        "light-bulb": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'light-bulb' のアイコン: $(light-bulb)"
+        },
+        "repo": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'repo' のアイコン: $(repo)"
+        },
+        "repo-delete": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'repo-delete' のアイコン: $(repo-delete)"
+        },
+        "gist-fork": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'gist-fork' のアイコン: $(gist-fork)"
+        },
+        "repo-forked": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'repo-forked' のアイコン: $(repo-forked)"
+        },
+        "git-pull-request": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'git-pull-request' のアイコン: $(git-pull-request)"
+        },
+        "git-pull-request-abandoned": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'git-pull-request-abandoned' のアイコン: $(git-pull-request-abandoned)"
+        },
+        "record-keys": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'record-keys' のアイコン: $(record-keys)"
+        },
+        "keyboard": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'keyboard' のアイコン: $(keyboard)"
+        },
+        "tag": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'tag' のアイコン: $(tag)"
+        },
+        "tag-add": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'tag-add' のアイコン: $(tag-add)"
+        },
+        "tag-remove": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'tag-remove' のアイコン: $(tag-remove)"
+        },
+        "person": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'person' のアイコン: $(person)"
+        },
+        "person-add": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'person-add' のアイコン: $(person-add)"
+        },
+        "person-follow": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'person-follow' のアイコン: $(person-follow)"
+        },
+        "person-outline": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'person-outline' のアイコン: $(person-outline)"
+        },
+        "person-filled": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'person-filled' のアイコン: $(person-filled)"
+        },
+        "git-branch": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'git-branch' のアイコン: $(git-branch)"
+        },
+        "git-branch-create": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'git-branch-create' のアイコン: $(git-branch-create)"
+        },
+        "git-branch-delete": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'git-branch-delete' のアイコン: $(git-branch-delete)"
+        },
+        "source-control": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'source-control' のアイコン: $(source-control)"
+        },
+        "mirror": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'mirror' のアイコン: $(mirror)"
+        },
+        "mirror-public": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'mirror-public' のアイコン: $(mirror-public)"
+        },
+        "star": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'star' のアイコン: $(star)"
+        },
+        "star-add": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'star-add' のアイコン: $(star-add)"
+        },
+        "star-delete": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'star-delete' のアイコン: $(star-delete)"
+        },
+        "star-empty": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'star-empty' のアイコン: $(star-empty)"
+        },
+        "comment": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'comment' のアイコン: $(comment)"
+        },
+        "comment-add": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'comment-add' のアイコン: $(comment-add)"
+        },
+        "alert": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'alert' のアイコン: $(alert)"
+        },
+        "warning": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'warning' のアイコン: $(warning)"
+        },
+        "search": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'search' のアイコン: $(search)"
+        },
+        "search-save": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'search-save' のアイコン: $(search-save)"
+        },
+        "log-out": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'log-out' のアイコン: $(log-out)"
+        },
+        "sign-out": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'sign-out' のアイコン: $(sign-out)"
+        },
+        "log-in": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'log-in' のアイコン: $(log-in)"
+        },
+        "sign-in": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'sign-in' のアイコン: $(sign-in)"
+        },
+        "eye": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'eye' のアイコン: $(eye)"
+        },
+        "eye-unwatch": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'eye-unwatch' のアイコン: $(eye-unwatch)"
+        },
+        "eye-watch": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'eye-watch' のアイコン: $(eye-watch)"
+        },
+        "circle-filled": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'circle-filled' のアイコン: $(circle-filled)"
+        },
+        "primitive-dot": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'primitive-dot' のアイコン: $(primitive-dot)"
+        },
+        "close-dirty": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'close-dirty' のアイコン: $(close-dirty)"
+        },
+        "debug-breakpoint": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'debug-breakpoint' のアイコン: $(debug-breakpoint)"
+        },
+        "debug-breakpoint-disabled": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'debug-breakpoint-disabled' のアイコン: $(debug-breakpoint-disabled)"
+        },
+        "debug-hint": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'debug-hint' のアイコン: $(debug-hint)"
+        },
+        "primitive-square": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'primitive-square' のアイコン: $(primitive-square)"
+        },
+        "edit": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'edit' のアイコン: $(edit)"
+        },
+        "pencil": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'pencil' のアイコン: $(pencil)"
+        },
+        "info": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'info' のアイコン: $(info)"
+        },
+        "issue-opened": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'issue-opened' のアイコン: $(issue-opened)"
+        },
+        "gist-private": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'gist-private' のアイコン: $(gist-private)"
+        },
+        "git-fork-private": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'git-fork-private' のアイコン: $(git-fork-private)"
+        },
+        "lock": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'lock' のアイコン: $(lock)"
+        },
+        "mirror-private": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'mirror-private' のアイコン: $(mirror-private)"
+        },
+        "close": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'close' のアイコン: $(close)"
+        },
+        "remove-close": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'remove-close' のアイコン: $(remove-close)"
+        },
+        "x": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'x' のアイコン: $(x)"
+        },
+        "repo-sync": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'repo-sync' のアイコン: $(repo-sync)"
+        },
+        "sync": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'sync' のアイコン: $(sync)"
+        },
+        "clone": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'clone' のアイコン: $(clone)"
+        },
+        "desktop-download": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'desktop-download' のアイコン: $(desktop-download)"
+        },
+        "beaker": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'beaker' のアイコン: $(beaker)"
+        },
+        "microscope": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'microscope' のアイコン: $(microscope)"
+        },
+        "vm": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'vm' のアイコン: $(vm)"
+        },
+        "device-desktop": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'device-desktop' のアイコン: $(device-desktop)"
+        },
+        "file": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'file' のアイコン: $(file)"
+        },
+        "file-text": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'file-text' のアイコン: $(file-text)"
+        },
+        "more": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'more' のアイコン: $(more)"
+        },
+        "ellipsis": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'ellipsis' のアイコン: $(ellipsis)"
+        },
+        "kebab-horizontal": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'kebab-horizontal' のアイコン: $(kebab-horizontal)"
+        },
+        "mail-reply": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'mail-reply' のアイコン: $(mail-reply)"
+        },
+        "reply": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'reply' のアイコン: $(reply)"
+        },
+        "organization": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'organization' のアイコン: $(organization)"
+        },
+        "organization-filled": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'organization-filled' のアイコン: $(organization-filled)"
+        },
+        "organization-outline": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'organization-outline' のアイコン: $(organization-outline)"
+        },
+        "new-file": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'new-file' のアイコン: $(new-file)"
+        },
+        "file-add": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'file-add' のアイコン: $(file-add)"
+        },
+        "new-folder": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'new-folder' のアイコン: $(new-folder)"
+        },
+        "file-directory-create": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'file-directory-create' のアイコン: $(file-directory-create)"
+        },
+        "trash": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'trash' のアイコン: $(trash)"
+        },
+        "trashcan": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'trashcan' のアイコン: $(trashcan)"
+        },
+        "history": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'history' のアイコン: $(history)"
+        },
+        "clock": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'clock' のアイコン: $(clock)"
+        },
+        "folder": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'folder' のアイコン: $(folder)"
+        },
+        "file-directory": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'file-directory' のアイコン: $(file-directory)"
+        },
+        "symbol-folder": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'symbol-folder' のアイコン: $(symbol-folder)"
+        },
+        "logo-github": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'logo-github' のアイコン: $(logo-github)"
+        },
+        "mark-github": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'mark-github' のアイコン: $(mark-github)"
+        },
+        "github": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'github' のアイコン: $(github)"
+        },
+        "terminal": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'terminal' のアイコン: $(terminal)"
+        },
+        "console": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'console' のアイコン: $(console)"
+        },
+        "repl": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'repl' のアイコン: $(repl)"
+        },
+        "zap": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'zap' のアイコン: $(zap)"
+        },
+        "symbol-event": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'symbol-event' のアイコン: $(symbol-event)"
+        },
+        "error": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'error' のアイコン: $(error)"
+        },
+        "stop": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'stop' のアイコン: $(stop)"
+        },
+        "variable": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'variable' のアイコン: $(variable)"
+        },
+        "symbol-variable": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'symbol-variable' のアイコン: $(symbol-variable)"
+        },
+        "array": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'array' のアイコン: $(array)"
+        },
+        "symbol-array": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'symbol-array' のアイコン: $(symbol-array)"
+        },
+        "symbol-module": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'symbol-module' のアイコン: $(symbol-module)"
+        },
+        "symbol-package": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'symbol-package' のアイコン: $(symbol-package)"
+        },
+        "symbol-namespace": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'symbol-namespace' のアイコン: $(symbol-namespace)"
+        },
+        "symbol-object": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'symbol-object' のアイコン: $(symbol-object)"
+        },
+        "symbol-method": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'symbol-method' のアイコン: $(symbol-method)"
+        },
+        "symbol-function": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'symbol-function' のアイコン: $(symbol-function)"
+        },
+        "symbol-constructor": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'symbol-constructor' のアイコン: $(symbol-constructor)"
+        },
+        "symbol-boolean": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'symbol-boolean' のアイコン: $(symbol-boolean)"
+        },
+        "symbol-null": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'symbol-null' のアイコン: $(symbol-null)"
+        },
+        "symbol-numeric": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'symbol-numeric' のアイコン: $(symbol-numeric)"
+        },
+        "symbol-number": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'symbol-number' のアイコン: $(symbol-number)"
+        },
+        "symbol-structure": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'symbol-structure' のアイコン: $(symbol-structure)"
+        },
+        "symbol-struct": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'symbol-struct' のアイコン: $(symbol-struct)"
+        },
+        "symbol-parameter": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'symbol-parameter' のアイコン: $(symbol-parameter)"
+        },
+        "symbol-type-parameter": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'symbol-type-parameter' のアイコン: $(symbol-type-parameter)"
+        },
+        "symbol-key": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'symbol-key' のアイコン: $(symbol-key)"
+        },
+        "symbol-text": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'symbol-text' のアイコン: $(symbol-text)"
+        },
+        "symbol-reference": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'symbol-reference' のアイコン: $(symbol-reference)"
+        },
+        "go-to-file": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'go-to-file' のアイコン: $(go-to-file)"
+        },
+        "symbol-enum": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'symbol-enum' のアイコン: $(symbol-enum)"
+        },
+        "symbol-value": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'symbol-value' のアイコン: $(symbol-value)"
+        },
+        "symbol-ruler": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'symbol-ruler' のアイコン: $(symbol-ruler)"
+        },
+        "symbol-unit": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'symbol-unit' のアイコン: $(symbol-unit)"
+        },
+        "activate-breakpoints": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'activate-breakpoints' のアイコン: $(activate-breakpoints)"
+        },
+        "archive": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'archive' のアイコン: $(archive)"
+        },
+        "arrow-both": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'arrow-both' のアイコン: $(arrow-both)"
+        },
+        "arrow-down": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'arrow-down' のアイコン: $(arrow-down)"
+        },
+        "arrow-left": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'arrow-left' のアイコン: $(arrow-left)"
+        },
+        "arrow-right": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'arrow-right' のアイコン: $(arrow-right)"
+        },
+        "arrow-small-down": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'arrow-small-down' のアイコン: $(arrow-small-down)"
+        },
+        "arrow-small-left": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'arrow-small-left' のアイコン: $(arrow-small-left)"
+        },
+        "arrow-small-right": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'arrow-small-right' のアイコン: $(arrow-small-right)"
+        },
+        "arrow-small-up": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'arrow-small-up' のアイコン: $(arrow-small-up)"
+        },
+        "arrow-up": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'arrow-up' のアイコン: $(arrow-up)"
+        },
+        "bell": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'bell' のアイコン: $(bell)"
+        },
+        "bold": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'bold' のアイコン: $(bold)"
+        },
+        "book": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'book' のアイコン: $(book)"
+        },
+        "bookmark": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'bookmark' のアイコン: $(bookmark)"
+        },
+        "debug-breakpoint-conditional-unverified": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'debug-breakpoint-conditional-unverified' のアイコン: $(debug-breakpoint-conditional-unverified)"
+        },
+        "debug-breakpoint-conditional": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'debug-breakpoint-conditional' のアイコン: $(debug-breakpoint-conditional)"
+        },
+        "debug-breakpoint-conditional-disabled": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'debug-breakpoint-conditional-disabled' のアイコン: $(debug-breakpoint-conditional-disabled)"
+        },
+        "debug-breakpoint-data-unverified": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'debug-breakpoint-data-unverified' のアイコン: $(debug-breakpoint-data-unverified)"
+        },
+        "debug-breakpoint-data": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'debug-breakpoint-data' のアイコン: $(debug-breakpoint-data)"
+        },
+        "debug-breakpoint-data-disabled": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'debug-breakpoint-data-disabled' のアイコン: $(debug-breakpoint-data-disabled)"
+        },
+        "debug-breakpoint-log-unverified": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'debug-breakpoint-log-unverified' のアイコン: $(debug-breakpoint-log-unverified)"
+        },
+        "debug-breakpoint-log": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'debug-breakpoint-log' のアイコン: $(debug-breakpoint-log)"
+        },
+        "debug-breakpoint-log-disabled": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'debug-breakpoint-log-disabled' のアイコン: $(debug-breakpoint-log-disabled)"
+        },
+        "briefcase": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'briefcase' のアイコン: $(briefcase)"
+        },
+        "broadcast": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'broadcast' のアイコン: $(broadcast)"
+        },
+        "browser": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'browser' のアイコン: $(browser)"
+        },
+        "bug": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'bug' のアイコン: $(bug)"
+        },
+        "calendar": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'calendar' のアイコン: $(calendar)"
+        },
+        "case-sensitive": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'case-sensitive' のアイコン: $(case-sensitive)"
+        },
+        "check": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'check' のアイコン: $(check)"
+        },
+        "checklist": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'checklist' のアイコン: $(checklist)"
+        },
+        "chevron-down": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'chevron-down' のアイコン: $(chevron-down)"
+        },
+        "chevron-left": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'chevron-left' のアイコン: $(chevron-left)"
+        },
+        "chevron-right": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'chevron-right' のアイコン: $(chevron-right)"
+        },
+        "chevron-up": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'chevron-up' のアイコン: $(chevron-up)"
+        },
+        "chrome-close": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'chrome-close' のアイコン: $(chrome-close)"
+        },
+        "chrome-maximize": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'chrome-maximize' のアイコン: $(chrome-maximize)"
+        },
+        "chrome-minimize": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'chrome-minimize' のアイコン: $(chrome-minimize)"
+        },
+        "chrome-restore": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'chrome-restore' のアイコン: $(chrome-restore)"
+        },
+        "circle-outline": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'circle-outline' のアイコン: $(circle-outline)"
+        },
+        "debug-breakpoint-unverified": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'debug-breakpoint-unverified' のアイコン: $(debug-breakpoint-unverified)"
+        },
+        "circle-slash": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'circle-slash' のアイコン: $(circle-slash)"
+        },
+        "circuit-board": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'circuit-board' のアイコン: $(circuit-board)"
+        },
+        "clear-all": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'clear-all' のアイコン: $(clear-all)"
+        },
+        "clippy": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'clippy' のアイコン: $(clippy)"
+        },
+        "close-all": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'close-all' のアイコン: $(close-all)"
+        },
+        "cloud-download": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'cloud-download' のアイコン: $(cloud-download)"
+        },
+        "cloud-upload": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'cloud-upload' のアイコン: $(cloud-upload)"
+        },
+        "code": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'code' のアイコン: $(code)"
+        },
+        "collapse-all": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'collapse-all' のアイコン: $(collapse-all)"
+        },
+        "color-mode": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'color-mode' のアイコン: $(color-mode)"
+        },
+        "comment-discussion": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'comment-discussion' のアイコン: $(comment-discussion)"
+        },
+        "compare-changes": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'compare-changes' のアイコン: $(compare-changes)"
+        },
+        "credit-card": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'credit-card' のアイコン: $(credit-card)"
+        },
+        "dash": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'dash' のアイコン: $(dash)"
+        },
+        "dashboard": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'dashboard' のアイコン: $(dashboard)"
+        },
+        "database": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'database' のアイコン: $(database)"
+        },
+        "debug-continue": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'debug-continue' のアイコン: $(debug-continue)"
+        },
+        "debug-disconnect": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'debug-disconnect' のアイコン: $(debug-disconnect)"
+        },
+        "debug-pause": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'debug-pause' のアイコン: $(debug-pause)"
+        },
+        "debug-restart": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'debug-restart' のアイコン: $(debug-restart)"
+        },
+        "debug-start": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'debug-start' のアイコン: $(debug-start)"
+        },
+        "debug-step-into": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'debug-step-into' のアイコン: $(debug-step-into)"
+        },
+        "debug-step-out": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'debug-step-out' のアイコン: $(debug-step-out)"
+        },
+        "debug-step-over": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'debug-step-over' のアイコン: $(debug-step-over)"
+        },
+        "debug-stop": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'debug-stop' のアイコン: $(debug-stop)"
+        },
+        "debug": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'debug' のアイコン: $(debug)"
+        },
+        "device-camera-video": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'device-camera-video' のアイコン: $(device-camera-video)"
+        },
+        "device-camera": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'device-camera' のアイコン: $(device-camera)"
+        },
+        "device-mobile": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'device-mobile' のアイコン: $(device-mobile)"
+        },
+        "diff-added": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'diff-added' のアイコン: $(diff-added)"
+        },
+        "diff-ignored": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'diff-ignored' のアイコン: $(diff-ignored)"
+        },
+        "diff-modified": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'diff-modified' のアイコン: $(diff-modified)"
+        },
+        "diff-removed": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'diff-removed' のアイコン: $(diff-removed)"
+        },
+        "diff-renamed": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'diff-renamed' のアイコン: $(diff-renamed)"
+        },
+        "diff": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'diff' のアイコン: $(diff)"
+        },
+        "discard": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'discard' のアイコン: $(discard)"
+        },
+        "editor-layout": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'editor-layout' のアイコン: $(editor-layout)"
+        },
+        "empty-window": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'empty-window' のアイコン: $(empty-window)"
+        },
+        "exclude": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'exclude' のアイコン: $(exclude)"
+        },
+        "extensions": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'extensions' のアイコン: $(extensions)"
+        },
+        "eye-closed": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'eye-closed' のアイコン: $(eye-closed)"
+        },
+        "file-binary": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'file-binary' のアイコン: $(file-binary)"
+        },
+        "file-code": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'file-code' のアイコン: $(file-code)"
+        },
+        "file-media": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'file-media' のアイコン: $(file-media)"
+        },
+        "file-pdf": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'file-pdf' のアイコン: $(file-pdf)"
+        },
+        "file-submodule": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'file-submodule' のアイコン: $(file-submodule)"
+        },
+        "file-symlink-directory": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'file-symlink-directory' のアイコン: $(file-symlink-directory)"
+        },
+        "file-symlink-file": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'file-symlink-file' のアイコン: $(file-symlink-file)"
+        },
+        "file-zip": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'file-zip' のアイコン: $(file-zip)"
+        },
+        "files": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'files' のアイコン: $(files)"
+        },
+        "filter": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'filter' のアイコン: $(filter)"
+        },
+        "flame": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'flame' のアイコン: $(flame)"
+        },
+        "fold-down": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'fold-down' のアイコン: $(fold-down)"
+        },
+        "fold-up": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'fold-up' のアイコン: $(fold-up)"
+        },
+        "fold": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'fold' のアイコン: $(fold)"
+        },
+        "folder-active": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'folder-active' のアイコン: $(folder-active)"
+        },
+        "folder-opened": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'folder-opened' のアイコン: $(folder-opened)"
+        },
+        "gear": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'gear' のアイコン: $(gear)"
+        },
+        "gift": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'gift' のアイコン: $(gift)"
+        },
+        "gist-secret": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'gist-secret' のアイコン: $(gist-secret)"
+        },
+        "gist": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'gist' のアイコン: $(gist)"
+        },
+        "git-commit": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'git-commit' のアイコン: $(git-commit)"
+        },
+        "git-compare": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'git-compare' のアイコン: $(git-compare)"
+        },
+        "git-merge": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'git-merge' のアイコン: $(git-merge)"
+        },
+        "github-action": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'github-action' のアイコン: $(github-action)"
+        },
+        "github-alt": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'github-alt' のアイコン: $(github-alt)"
+        },
+        "globe": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'globe' のアイコン: $(globe)"
+        },
+        "grabber": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'grabber' のアイコン: $(grabber)"
+        },
+        "graph": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'graph' のアイコン: $(graph)"
+        },
+        "gripper": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'gripper' のアイコン: $(gripper)"
+        },
+        "heart": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'heart' のアイコン: $(heart)"
+        },
+        "home": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'home' のアイコン: $(home)"
+        },
+        "horizontal-rule": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'horizontal-rule' のアイコン: $(horizontal-rule)"
+        },
+        "hubot": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'hubot' のアイコン: $(hubot)"
+        },
+        "inbox": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'inbox' のアイコン: $(inbox)"
+        },
+        "issue-closed": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'issue-closed' のアイコン: $(issue-closed)"
+        },
+        "issue-reopened": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'issue-reopened' のアイコン: $(issue-reopened)"
+        },
+        "issues": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'issues' のアイコン: $(issues)"
+        },
+        "italic": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'italic' のアイコン: $(italic)"
+        },
+        "jersey": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'jersey' のアイコン: $(jersey)"
+        },
+        "json": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'json' のアイコン: $(json)"
+        },
+        "kebab-vertical": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'kebab-vertical' のアイコン: $(kebab-vertical)"
+        },
+        "key": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'key' のアイコン: $(key)"
+        },
+        "law": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'law' のアイコン: $(law)"
+        },
+        "lightbulb-autofix": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'lightbulb-autofix' のアイコン: $(lightbulb-autofix)"
+        },
+        "link-external": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'link-external' のアイコン: $(link-external)"
+        },
+        "link": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'link' のアイコン: $(link)"
+        },
+        "list-ordered": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'list-ordered' のアイコン: $(list-ordered)"
+        },
+        "list-unordered": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'list-unordered' のアイコン: $(list-unordered)"
+        },
+        "live-share": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'live-share' のアイコン: $(live-share)"
+        },
+        "loading": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'loading' のアイコン: $(loading)"
+        },
+        "location": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'location' のアイコン: $(location)"
+        },
+        "mail-read": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'mail-read' のアイコン: $(mail-read)"
+        },
+        "mail": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'mail' のアイコン: $(mail)"
+        },
+        "markdown": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'markdown' のアイコン: $(markdown)"
+        },
+        "megaphone": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'megaphone' のアイコン: $(megaphone)"
+        },
+        "mention": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'mention' のアイコン: $(mention)"
+        },
+        "milestone": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'milestone' のアイコン: $(milestone)"
+        },
+        "mortar-board": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'mortar-board' のアイコン: $(mortar-board)"
+        },
+        "move": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'move' のアイコン: $(move)"
+        },
+        "multiple-windows": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'multiple-windows' のアイコン: $(multiple-windows)"
+        },
+        "mute": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'mute' のアイコン: $(mute)"
+        },
+        "no-newline": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'no-newline' のアイコン: $(no-newline)"
+        },
+        "note": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'note' のアイコン: $(note)"
+        },
+        "octoface": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'octoface' のアイコン: $(octoface)"
+        },
+        "open-preview": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'open-preview' のアイコン: $(open-preview)"
+        },
+        "package": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'package' のアイコン: $(package)"
+        },
+        "paintcan": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'paintcan' のアイコン: $(paintcan)"
+        },
+        "pin": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'pin' のアイコン: $(pin)"
+        },
+        "play": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'play' のアイコン: $(play)"
+        },
+        "run": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'run' のアイコン: $(run)"
+        },
+        "plug": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'plug' のアイコン: $(plug)"
+        },
+        "preserve-case": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'preserve-case' のアイコン: $(preserve-case)"
+        },
+        "preview": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'preview' のアイコン: $(preview)"
+        },
+        "project": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'project' のアイコン: $(project)"
+        },
+        "pulse": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'pulse' のアイコン: $(pulse)"
+        },
+        "question": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'question' のアイコン: $(question)"
+        },
+        "quote": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'quote' のアイコン: $(quote)"
+        },
+        "radio-tower": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'radio-tower' のアイコン: $(radio-tower)"
+        },
+        "reactions": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'reactions' のアイコン: $(reactions)"
+        },
+        "references": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'references' のアイコン: $(references)"
+        },
+        "refresh": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'refresh' のアイコン: $(refresh)"
+        },
+        "regex": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'regex' のアイコン: $(regex)"
+        },
+        "remote-explorer": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'remote-explorer' のアイコン: $(remote-explorer)"
+        },
+        "remote": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'remote' のアイコン: $(remote)"
+        },
+        "remove": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'remove' のアイコン: $(remove)"
+        },
+        "replace-all": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'replace-all' のアイコン: $(replace-all)"
+        },
+        "replace": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'replace' のアイコン: $(replace)"
+        },
+        "repo-clone": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'repo-clone' のアイコン: $(repo-clone)"
+        },
+        "repo-force-push": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'repo-force-push' のアイコン: $(repo-force-push)"
+        },
+        "repo-pull": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'repo-pull' のアイコン: $(repo-pull)"
+        },
+        "repo-push": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'repo-push' のアイコン: $(repo-push)"
+        },
+        "report": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'report' のアイコン: $(report)"
+        },
+        "request-changes": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'request-changes' のアイコン: $(request-changes)"
+        },
+        "rocket": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'rocket' のアイコン: $(rocket)"
+        },
+        "root-folder-opened": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'root-folder-opened' のアイコン: $(root-folder-opened)"
+        },
+        "root-folder": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'root-folder' のアイコン: $(root-folder)"
+        },
+        "rss": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'rss' のアイコン: $(rss)"
+        },
+        "ruby": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'ruby' のアイコン: $(ruby)"
+        },
+        "save-all": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'save-all' のアイコン: $(save-all)"
+        },
+        "save-as": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'save-as' のアイコン: $(save-as)"
+        },
+        "save": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'save' のアイコン: $(save)"
+        },
+        "screen-full": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'screen-full' のアイコン: $(screen-full)"
+        },
+        "screen-normal": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'screen-normal' のアイコン: $(screen-normal)"
+        },
+        "search-stop": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'search-stop' のアイコン: $(search-stop)"
+        },
+        "server": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'server' のアイコン: $(server)"
+        },
+        "settings-gear": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'settings-gear' のアイコン: $(settings-gear)"
+        },
+        "settings": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'settings' のアイコン: $(settings)"
+        },
+        "shield": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'shield' のアイコン: $(shield)"
+        },
+        "smiley": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'smiley' のアイコン: $(smiley)"
+        },
+        "sort-precedence": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'sort-precedence' のアイコン: $(sort-precedence)"
+        },
+        "split-horizontal": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'split-horizontal' のアイコン: $(split-horizontal)"
+        },
+        "split-vertical": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'split-vertical' のアイコン: $(split-vertical)"
+        },
+        "squirrel": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'squirrel' のアイコン: $(squirrel)"
+        },
+        "star-full": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'star-full' のアイコン: $(star-full)"
+        },
+        "star-half": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'star-half' のアイコン: $(star-half)"
+        },
+        "symbol-class": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'symbol-class' のアイコン: $(symbol-class)"
+        },
+        "symbol-color": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'symbol-color' のアイコン: $(symbol-color)"
+        },
+        "symbol-constant": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'symbol-constant' のアイコン: $(symbol-constant)"
+        },
+        "symbol-enum-member": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'symbol-enum-member' のアイコン: $(symbol-enum-member)"
+        },
+        "symbol-field": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'symbol-field' のアイコン: $(symbol-field)"
+        },
+        "symbol-file": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'symbol-file' のアイコン: $(symbol-file)"
+        },
+        "symbol-interface": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'symbol-interface' のアイコン: $(symbol-interface)"
+        },
+        "symbol-keyword": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'symbol-keyword' のアイコン: $(symbol-keyword)"
+        },
+        "symbol-misc": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'symbol-misc' のアイコン: $(symbol-misc)"
+        },
+        "symbol-operator": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'symbol-operator' のアイコン: $(symbol-operator)"
+        },
+        "symbol-property": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'symbol-property' のアイコン: $(symbol-property)"
+        },
+        "wrench": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'wrench' のアイコン: $(wrench)"
+        },
+        "wrench-subaction": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'wrench-subaction' のアイコン: $(wrench-subaction)"
+        },
+        "symbol-snippet": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'symbol-snippet' のアイコン: $(symbol-snippet)"
+        },
+        "tasklist": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'tasklist' のアイコン: $(tasklist)"
+        },
+        "telescope": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'telescope' のアイコン: $(telescope)"
+        },
+        "text-size": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'text-size' のアイコン: $(text-size)"
+        },
+        "three-bars": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'three-bars' のアイコン: $(three-bars)"
+        },
+        "thumbsdown": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'thumbsdown' のアイコン: $(thumbsdown)"
+        },
+        "thumbsup": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'thumbsup' のアイコン: $(thumbsup)"
+        },
+        "tools": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'tools' のアイコン: $(tools)"
+        },
+        "triangle-down": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'triangle-down' のアイコン: $(triangle-down)"
+        },
+        "triangle-left": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'triangle-left' のアイコン: $(triangle-left)"
+        },
+        "triangle-right": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'triangle-right' のアイコン: $(triangle-right)"
+        },
+        "triangle-up": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'triangle-up' のアイコン: $(triangle-up)"
+        },
+        "twitter": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'twitter' のアイコン: $(twitter)"
+        },
+        "unfold": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'unfold' のアイコン: $(unfold)"
+        },
+        "unlock": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'unlock' のアイコン: $(unlock)"
+        },
+        "unmute": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'unmute' のアイコン: $(unmute)"
+        },
+        "unverified": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'unverified' のアイコン: $(unverified)"
+        },
+        "verified": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'verified' のアイコン: $(verified)"
+        },
+        "versions": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'versions' のアイコン: $(versions)"
+        },
+        "vm-active": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'vm-active' のアイコン: $(vm-active)"
+        },
+        "vm-outline": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'vm-outline' のアイコン: $(vm-outline)"
+        },
+        "vm-running": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'vm-running' のアイコン: $(vm-running)"
+        },
+        "watch": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'watch' のアイコン: $(watch)"
+        },
+        "whitespace": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'whitespace' のアイコン: $(whitespace)"
+        },
+        "whole-word": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'whole-word' のアイコン: $(whole-word)"
+        },
+        "window": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'window' のアイコン: $(window)"
+        },
+        "word-wrap": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'word-wrap' のアイコン: $(word-wrap)"
+        },
+        "zoom-in": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'zoom-in' のアイコン: $(zoom-in)"
+        },
+        "zoom-out": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'zoom-out' のアイコン: $(zoom-out)"
+        },
+        "list-filter": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'list-filter' のアイコン: $(list-filter)"
+        },
+        "list-flat": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'list-flat' のアイコン: $(list-flat)"
+        },
+        "list-selection": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'list-selection' のアイコン: $(list-selection)"
+        },
+        "selection": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'selection' のアイコン: $(selection)"
+        },
+        "list-tree": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'list-tree' のアイコン: $(list-tree)"
+        },
+        "debug-breakpoint-function-unverified": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'debug-breakpoint-function-unverified' のアイコン: $(debug-breakpoint-function-unverified)"
+        },
+        "debug-breakpoint-function": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'debug-breakpoint-function' のアイコン: $(debug-breakpoint-function)"
+        },
+        "debug-breakpoint-function-disabled": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'debug-breakpoint-function-disabled' のアイコン: $(debug-breakpoint-function-disabled)"
+        },
+        "debug-stackframe-active": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'debug-stackframe-active' のアイコン: $(debug-stackframe-active)"
+        },
+        "debug-stackframe-dot": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'debug-stackframe-dot' のアイコン: $(debug-stackframe-dot)"
+        },
+        "debug-stackframe": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'debug-stackframe' のアイコン: $(debug-stackframe)"
+        },
+        "debug-stackframe-focused": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'debug-stackframe-focused' のアイコン: $(debug-stackframe-focused)"
+        },
+        "debug-breakpoint-unsupported": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'debug-breakpoint-unsupported' のアイコン: $(debug-breakpoint-unsupported)"
+        },
+        "symbol-string": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'symbol-string' のアイコン: $(symbol-string)"
+        },
+        "debug-reverse-continue": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'debug-reverse-continue' のアイコン: $(debug-reverse-continue)"
+        },
+        "debug-step-back": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'debug-step-back' のアイコン: $(debug-step-back)"
+        },
+        "debug-restart-frame": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'debug-restart-frame' のアイコン: $(debug-restart-frame)"
+        },
+        "call-incoming": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'call-incoming' のアイコン: $(call-incoming)"
+        },
+        "call-outgoing": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'call-outgoing' のアイコン: $(call-outgoing)"
+        },
+        "menu": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'menu' のアイコン: $(menu)"
+        },
+        "expand-all": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'expand-all' のアイコン: $(expand-all)"
+        },
+        "feedback": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'feedback' のアイコン: $(feedback)"
+        },
+        "group-by-ref-type": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'group-by-ref-type' のアイコン: $(group-by-ref-type)"
+        },
+        "ungroup-by-ref-type": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'ungroup-by-ref-type' のアイコン: $(ungroup-by-ref-type)"
+        },
+        "account": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'account' のアイコン: $(account)"
+        },
+        "bell-dot": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'bell-dot' のアイコン: $(bell-dot)"
+        },
+        "debug-console": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'debug-console' のアイコン: $(debug-console)"
+        },
+        "library": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'library' のアイコン: $(library)"
+        },
+        "output": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'output' のアイコン: $(output)"
+        },
+        "run-all": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'run-all' のアイコン: $(run-all)"
+        },
+        "sync-ignored": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'sync-ignored' のアイコン: $(sync-ignored)"
+        },
+        "pinned": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'pinned' のアイコン: $(pinned)"
+        },
+        "github-inverted": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'github-inverted' のアイコン: $(github-inverted)"
+        },
+        "debug-alt": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'debug-alt' のアイコン: $(debug-alt)"
+        },
+        "server-process": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'server-process' のアイコン: $(server-process)"
+        },
+        "server-environment": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'server-environment' のアイコン: $(server-environment)"
+        },
+        "pass": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'pass' のアイコン: $(pass)"
+        },
+        "stop-circle": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'stop-circle' のアイコン: $(stop-circle)"
+        },
+        "play-circle": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'play-circle' のアイコン: $(play-circle)"
+        },
+        "record": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'record' のアイコン: $(record)"
+        },
+        "debug-alt-small": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'debug-alt-small' のアイコン: $(debug-alt-small)"
+        },
+        "vm-connect": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'vm-connect' のアイコン: $(vm-connect)"
+        },
+        "cloud": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'cloud' のアイコン: $(cloud)"
+        },
+        "merge": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'merge' のアイコン: $(merge)"
+        },
+        "scrollbar-button-left": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'scrollbar-button-left' のアイコン: $(scrollbar-button-left)"
+        },
+        "scrollbar-button-right": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'scrollbar-button-right' のアイコン: $(scrollbar-button-right)"
+        },
+        "scrollbar-button-up": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'scrollbar-button-up' のアイコン: $(scrollbar-button-up)"
+        },
+        "scrollbar-button-down": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'scrollbar-button-down' のアイコン: $(scrollbar-button-down)"
+        },
+        "tree-item-expanded": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'tree-item-expanded' のアイコン: $(tree-item-expanded)"
+        },
+        "tree-filter-on-type-on": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'tree-filter-on-type-on' のアイコン: $(tree-filter-on-type-on)"
+        },
+        "tree-filter-on-type-off": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'tree-filter-on-type-off' のアイコン: $(tree-filter-on-type-off)"
+        },
+        "tree-filter-clear": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'tree-filter-clear' のアイコン: $(tree-filter-clear)"
+        },
+        "tree-item-loading": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'tree-item-loading' のアイコン: $(tree-item-loading)"
+        },
+        "breadcrumb-separator": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'breadcrumb-separator' のアイコン: $(breadcrumb-separator)"
+        },
+        "dialog-error": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'dialog-error' のアイコン: $(dialog-error)"
+        },
+        "dialog-warning": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'dialog-warning' のアイコン: $(dialog-warning)"
+        },
+        "dialog-info": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'dialog-info' のアイコン: $(dialog-info)"
+        },
+        "dialog-close": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'dialog-close' のアイコン: $(dialog-close)"
+        },
+        "menu-selection": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'menu-selection' のアイコン: $(menu-selection)"
+        },
+        "menu-submenu": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'menu-submenu' のアイコン: $(menu-submenu)"
+        },
+        "menubar-more": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'menubar-more' のアイコン: $(menubar-more)"
+        },
+        "toolbar-more": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'toolbar-more' のアイコン: $(toolbar-more)"
+        },
+        "quick-input-back": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'quick-input-back' のアイコン: $(quick-input-back)"
+        },
+        "folding-expanded": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'folding-expanded' のアイコン: $(folding-expanded)"
+        },
+        "folding-collapsed": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'folding-collapsed' のアイコン: $(folding-collapsed)"
+        },
+        "diff-review-insert": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'diff-review-insert' のアイコン: $(diff-review-insert)"
+        },
+        "diff-review-remove": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'diff-review-remove' のアイコン: $(diff-review-remove)"
+        },
+        "diff-review-close": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'diff-review-close' のアイコン: $(diff-review-close)"
+        },
+        "diff-insert": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'diff-insert' のアイコン: $(diff-insert)"
+        },
+        "diff-remove": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'diff-remove' のアイコン: $(diff-remove)"
+        },
+        "find-selection": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'find-selection' のアイコン: $(find-selection)"
+        },
+        "find-collapsed": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'find-collapsed' のアイコン: $(find-collapsed)"
+        },
+        "find-expanded": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'find-expanded' のアイコン: $(find-expanded)"
+        },
+        "find-close": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'find-close' のアイコン: $(find-close)"
+        },
+        "find-replace": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'find-replace' のアイコン: $(find-replace)"
+        },
+        "find-replace-all": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'find-replace-all' のアイコン: $(find-replace-all)"
+        },
+        "find-previous-match": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'find-previous-match' のアイコン: $(find-previous-match)"
+        },
+        "find-next-match": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'find-next-match' のアイコン: $(find-next-match)"
+        },
+        "parameter-hints-next": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'parameter-hints-next' のアイコン: $(parameter-hints-next)"
+        },
+        "parameter-hints-previous": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'parameter-hints-previous' のアイコン: $(parameter-hints-previous)"
+        },
+        "suggest-more-info": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'suggest-more-info' のアイコン: $(suggest-more-info)"
+        },
+        "marker-navigation-next": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'marker-navigation-next' のアイコン: $(marker-navigation-next)"
+        },
+        "marker-navigation-previous": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'marker-navigation-previous' のアイコン: $(marker-navigation-previous)"
+        },
+        "notifications-clear": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'notifications-clear' のアイコン: $(notifications-clear)"
+        },
+        "notifications-clear-all": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'notifications-clear-all' のアイコン: $(notifications-clear-all)"
+        },
+        "notifications-hide": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'notifications-hide' のアイコン: $(notifications-hide)"
+        },
+        "notifications-expand": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'notifications-expand' のアイコン: $(notifications-expand)"
+        },
+        "notifications-collapse": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'notifications-collapse' のアイコン: $(notifications-collapse)"
+        },
+        "notifications-configure": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'notifications-configure' のアイコン: $(notifications-configure)"
+        },
+        "search-details": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'search-details' のアイコン: $(search-details)"
+        },
+        "search-show-context": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'search-show-context' のアイコン: $(search-show-context)"
+        },
+        "search-hide-replace": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'search-hide-replace' のアイコン: $(search-hide-replace)"
+        },
+        "search-show-replace": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'search-show-replace' のアイコン: $(search-show-replace)"
+        },
+        "search-replace-all": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'search-replace-all' のアイコン: $(search-replace-all)"
+        },
+        "search-replace": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'search-replace' のアイコン: $(search-replace)"
+        },
+        "search-remove": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'search-remove' のアイコン: $(search-remove)"
+        },
+        "search-refresh": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'search-refresh' のアイコン: $(search-refresh)"
+        },
+        "search-collapse-results": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'search-collapse-results' のアイコン: $(search-collapse-results)"
+        },
+        "search-expand-results": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'search-expand-results' のアイコン: $(search-expand-results)"
+        },
+        "search-clear-results": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'search-clear-results' のアイコン: $(search-clear-results)"
+        },
+        "search-new-editor": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'search-new-editor' のアイコン: $(search-new-editor)"
+        },
+        "search-goto-file": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'search-goto-file' のアイコン: $(search-goto-file)"
+        },
+        "callhierarchy-incoming": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'callhierarchy-incoming' のアイコン: $(callhierarchy-incoming)"
+        },
+        "callhierarchy-outgoing": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'callhierarchy-outgoing' のアイコン: $(callhierarchy-outgoing)"
+        },
+        "preferences-edit": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'preferences-edit' のアイコン: $(preferences-edit)"
+        },
+        "panel-maximize": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'panel-maximize' のアイコン: $(panel-maximize)"
+        },
+        "panel-restore": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'panel-restore' のアイコン: $(panel-restore)"
+        },
+        "panel-close": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'panel-close' のアイコン: $(panel-close)"
+        },
+        "remote-explorer-get-started": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'remote-explorer-get-started' のアイコン: $(remote-explorer-get-started)"
+        },
+        "remote-explorer-documentation": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'remote-explorer-documentation' のアイコン: $(remote-explorer-documentation)"
+        },
+        "remote-explorer-feedback": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'remote-explorer-feedback' のアイコン: $(remote-explorer-feedback)"
+        },
+        "remote-explorer-review-issues": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'remote-explorer-review-issues' のアイコン: $(remote-explorer-review-issues)"
+        },
+        "remote-explorer-report-issues": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "識別子が 'remote-explorer-report-issues' のアイコン: $(remote-explorer-report-issues)"
+        }
+    }
+}

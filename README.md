@@ -7,12 +7,13 @@ The data here is the following VS Code's schemas retrieved and saved using [save
 - [`vscode://schemas/settings/machine`](./en/latest/schemas/settings/machine.json)
 - [`vscode://schemas/settings/resourceLanguage`](./en/latest/schemas/settings/resourceLanguage.json)
 - [`vscode://schemas/settings/user`](./en/latest/schemas/settings/user.json)
+- [`vscode://schemas/settings/workspace`](./en/latest/schemas/settings/workspace.json)
 - [`vscode://schemas/argv`](./en/latest/schemas/argv.json)
 - [`vscode://schemas/color-theme`](./en/latest/schemas/color-theme.json)
 - [`vscode://schemas/extensions`](./en/latest/schemas/extensions.json)
 - [`vscode://schemas/global-snippets`](./en/latest/schemas/global-snippets.json)
 - [`vscode://schemas/icon-theme`](./en/latest/schemas/icon-theme.json)
-- [`vscode://schemas/ignoredExtensions`](./en/latest/schemas/ignoredExtensions.json)
+- [`vscode://schemas/icons`](./en/latest/schemas/icons.json)
 - [`vscode://schemas/ignoredSettings`](./en/latest/schemas/ignoredSettings.json)
 - [`vscode://schemas/keybindings`](./en/latest/schemas/keybindings.json)
 - [`vscode://schemas/language-configuration`](./en/latest/schemas/language-configuration.json)
@@ -28,6 +29,7 @@ The data here is the following VS Code's schemas retrieved and saved using [save
 
 ## History
 
+- [VS Code v1.49.0](./en/v1.49.0/)
 - [VS Code v1.48.2](./en/v1.48.2/)
 - [VS Code v1.48.1](./en/v1.48.1/)
 - [VS Code v1.48.0](./en/v1.48.0/)

@@ -1,0 +1,33 @@
+{
+    "type": "object",
+    "allowComments": true,
+    "allowTrailingCommas": true,
+    "properties": {
+        "colors": {
+            "description": "Colors in the workbench",
+            "$ref": "vscode://schemas/workbench-colors",
+            "additionalProperties": false
+        },
+        "tokenColors": {
+            "anyOf": [
+                {
+                    "type": "string",
+                    "description": "Path to a tmTheme file (relative to the current file)."
+                },
+                {
+                    "description": "Colors for syntax highlighting",
+                    "$ref": "vscode://schemas/textmate-colors"
+                }
+            ]
+        },
+        "semanticHighlighting": {
+            "type": "boolean",
+            "description": "Whether semantic highlighting should be enabled for this theme."
+        },
+        "semanticTokenColors": {
+            "type": "object",
+            "description": "Colors for semantic tokens",
+            "$ref": "vscode://schemas/token-styling"
+        }
+    }
+}
