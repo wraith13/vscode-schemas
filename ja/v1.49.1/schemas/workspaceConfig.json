@@ -1,0 +1,96 @@
+{
+    "allowComments": true,
+    "allowTrailingCommas": true,
+    "default": {
+        "folders": [
+            {
+                "path": ""
+            }
+        ],
+        "settings": {}
+    },
+    "required": [
+        "folders"
+    ],
+    "properties": {
+        "folders": {
+            "minItems": 0,
+            "uniqueItems": true,
+            "description": "ワークスペースで読み込まれるフォルダーのリスト。",
+            "items": {
+                "type": "object",
+                "default": {
+                    "path": ""
+                },
+                "oneOf": [
+                    {
+                        "properties": {
+                            "path": {
+                                "type": "string",
+                                "description": "ファイルパス。例: `/root/folderA` または `./folderA` のようなワークスペース ファイルの場所に対して解決される相対パス。"
+                            },
+                            "name": {
+                                "type": "string",
+                                "description": "フォルダーにつけるオプションの名前。"
+                            }
+                        },
+                        "required": [
+                            "path"
+                        ]
+                    },
+                    {
+                        "properties": {
+                            "uri": {
+                                "type": "string",
+                                "description": "フォルダーの URI"
+                            },
+                            "name": {
+                                "type": "string",
+                                "description": "フォルダーにつけるオプションの名前。"
+                            }
+                        },
+                        "required": [
+                            "uri"
+                        ]
+                    }
+                ]
+            }
+        },
+        "settings": {
+            "type": "object",
+            "default": {},
+            "description": "ワークスペースの設定",
+            "$ref": "vscode://schemas/settings/workspace"
+        },
+        "launch": {
+            "type": "object",
+            "default": {
+                "configurations": [],
+                "compounds": []
+            },
+            "description": "ワークスペースの起動構成",
+            "$ref": "vscode://schemas/launch"
+        },
+        "tasks": {
+            "type": "object",
+            "default": {
+                "version": "2.0.0",
+                "tasks": []
+            },
+            "description": "ワークスペース タスクの構成",
+            "$ref": "vscode://schemas/tasks"
+        },
+        "extensions": {
+            "type": "object",
+            "default": {},
+            "description": "ワークスペースの拡張機能",
+            "$ref": "vscode://schemas/extensions"
+        },
+        "remoteAuthority": {
+            "type": "string",
+            "doNotSuggest": true,
+            "description": "ワークスペースがあるリモート サーバー。保存されていないリモート ワークスペースでのみ使用されます。"
+        }
+    },
+    "errorMessage": "不明なワークスペース構成のプロパティ"
+}
