@@ -1,0 +1,1956 @@
+{
+    "definitions": {
+        "icons": {
+            "type": "object",
+            "properties": {
+                "fontId": {
+                    "type": "string",
+                    "description": "The id of the font to use. If not set, the font that is defined first is used."
+                },
+                "fontCharacter": {
+                    "type": "string",
+                    "description": "The font character associated with the icon definition."
+                }
+            },
+            "additionalProperties": false,
+            "defaultSnippets": [
+                {
+                    "body": {
+                        "fontCharacter": "\\\\e030"
+                    }
+                }
+            ]
+        }
+    },
+    "type": "object",
+    "properties": {
+        "add": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'add': $(add)"
+        },
+        "plus": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'plus': $(plus)"
+        },
+        "gist-new": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'gist-new': $(gist-new)"
+        },
+        "repo-create": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'repo-create': $(repo-create)"
+        },
+        "lightbulb": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'lightbulb': $(lightbulb)"
+        },
+        "light-bulb": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'light-bulb': $(light-bulb)"
+        },
+        "repo": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'repo': $(repo)"
+        },
+        "repo-delete": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'repo-delete': $(repo-delete)"
+        },
+        "gist-fork": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'gist-fork': $(gist-fork)"
+        },
+        "repo-forked": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'repo-forked': $(repo-forked)"
+        },
+        "git-pull-request": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'git-pull-request': $(git-pull-request)"
+        },
+        "git-pull-request-abandoned": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'git-pull-request-abandoned': $(git-pull-request-abandoned)"
+        },
+        "record-keys": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'record-keys': $(record-keys)"
+        },
+        "keyboard": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'keyboard': $(keyboard)"
+        },
+        "tag": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'tag': $(tag)"
+        },
+        "tag-add": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'tag-add': $(tag-add)"
+        },
+        "tag-remove": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'tag-remove': $(tag-remove)"
+        },
+        "person": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'person': $(person)"
+        },
+        "person-add": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'person-add': $(person-add)"
+        },
+        "person-follow": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'person-follow': $(person-follow)"
+        },
+        "person-outline": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'person-outline': $(person-outline)"
+        },
+        "person-filled": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'person-filled': $(person-filled)"
+        },
+        "git-branch": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'git-branch': $(git-branch)"
+        },
+        "git-branch-create": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'git-branch-create': $(git-branch-create)"
+        },
+        "git-branch-delete": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'git-branch-delete': $(git-branch-delete)"
+        },
+        "source-control": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'source-control': $(source-control)"
+        },
+        "mirror": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'mirror': $(mirror)"
+        },
+        "mirror-public": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'mirror-public': $(mirror-public)"
+        },
+        "star": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'star': $(star)"
+        },
+        "star-add": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'star-add': $(star-add)"
+        },
+        "star-delete": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'star-delete': $(star-delete)"
+        },
+        "star-empty": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'star-empty': $(star-empty)"
+        },
+        "comment": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'comment': $(comment)"
+        },
+        "comment-add": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'comment-add': $(comment-add)"
+        },
+        "alert": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'alert': $(alert)"
+        },
+        "warning": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'warning': $(warning)"
+        },
+        "search": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'search': $(search)"
+        },
+        "search-save": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'search-save': $(search-save)"
+        },
+        "log-out": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'log-out': $(log-out)"
+        },
+        "sign-out": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'sign-out': $(sign-out)"
+        },
+        "log-in": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'log-in': $(log-in)"
+        },
+        "sign-in": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'sign-in': $(sign-in)"
+        },
+        "eye": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'eye': $(eye)"
+        },
+        "eye-unwatch": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'eye-unwatch': $(eye-unwatch)"
+        },
+        "eye-watch": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'eye-watch': $(eye-watch)"
+        },
+        "circle-filled": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'circle-filled': $(circle-filled)"
+        },
+        "primitive-dot": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'primitive-dot': $(primitive-dot)"
+        },
+        "close-dirty": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'close-dirty': $(close-dirty)"
+        },
+        "debug-breakpoint": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'debug-breakpoint': $(debug-breakpoint)"
+        },
+        "debug-breakpoint-disabled": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'debug-breakpoint-disabled': $(debug-breakpoint-disabled)"
+        },
+        "debug-hint": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'debug-hint': $(debug-hint)"
+        },
+        "primitive-square": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'primitive-square': $(primitive-square)"
+        },
+        "edit": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'edit': $(edit)"
+        },
+        "pencil": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'pencil': $(pencil)"
+        },
+        "info": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'info': $(info)"
+        },
+        "issue-opened": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'issue-opened': $(issue-opened)"
+        },
+        "gist-private": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'gist-private': $(gist-private)"
+        },
+        "git-fork-private": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'git-fork-private': $(git-fork-private)"
+        },
+        "lock": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'lock': $(lock)"
+        },
+        "mirror-private": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'mirror-private': $(mirror-private)"
+        },
+        "close": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'close': $(close)"
+        },
+        "remove-close": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'remove-close': $(remove-close)"
+        },
+        "x": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'x': $(x)"
+        },
+        "repo-sync": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'repo-sync': $(repo-sync)"
+        },
+        "sync": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'sync': $(sync)"
+        },
+        "clone": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'clone': $(clone)"
+        },
+        "desktop-download": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'desktop-download': $(desktop-download)"
+        },
+        "beaker": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'beaker': $(beaker)"
+        },
+        "microscope": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'microscope': $(microscope)"
+        },
+        "vm": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'vm': $(vm)"
+        },
+        "device-desktop": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'device-desktop': $(device-desktop)"
+        },
+        "file": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'file': $(file)"
+        },
+        "file-text": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'file-text': $(file-text)"
+        },
+        "more": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'more': $(more)"
+        },
+        "ellipsis": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'ellipsis': $(ellipsis)"
+        },
+        "kebab-horizontal": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'kebab-horizontal': $(kebab-horizontal)"
+        },
+        "mail-reply": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'mail-reply': $(mail-reply)"
+        },
+        "reply": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'reply': $(reply)"
+        },
+        "organization": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'organization': $(organization)"
+        },
+        "organization-filled": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'organization-filled': $(organization-filled)"
+        },
+        "organization-outline": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'organization-outline': $(organization-outline)"
+        },
+        "new-file": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'new-file': $(new-file)"
+        },
+        "file-add": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'file-add': $(file-add)"
+        },
+        "new-folder": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'new-folder': $(new-folder)"
+        },
+        "file-directory-create": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'file-directory-create': $(file-directory-create)"
+        },
+        "trash": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'trash': $(trash)"
+        },
+        "trashcan": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'trashcan': $(trashcan)"
+        },
+        "history": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'history': $(history)"
+        },
+        "clock": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'clock': $(clock)"
+        },
+        "folder": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'folder': $(folder)"
+        },
+        "file-directory": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'file-directory': $(file-directory)"
+        },
+        "symbol-folder": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'symbol-folder': $(symbol-folder)"
+        },
+        "logo-github": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'logo-github': $(logo-github)"
+        },
+        "mark-github": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'mark-github': $(mark-github)"
+        },
+        "github": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'github': $(github)"
+        },
+        "terminal": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'terminal': $(terminal)"
+        },
+        "console": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'console': $(console)"
+        },
+        "repl": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'repl': $(repl)"
+        },
+        "zap": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'zap': $(zap)"
+        },
+        "symbol-event": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'symbol-event': $(symbol-event)"
+        },
+        "error": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'error': $(error)"
+        },
+        "stop": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'stop': $(stop)"
+        },
+        "variable": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'variable': $(variable)"
+        },
+        "symbol-variable": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'symbol-variable': $(symbol-variable)"
+        },
+        "array": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'array': $(array)"
+        },
+        "symbol-array": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'symbol-array': $(symbol-array)"
+        },
+        "symbol-module": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'symbol-module': $(symbol-module)"
+        },
+        "symbol-package": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'symbol-package': $(symbol-package)"
+        },
+        "symbol-namespace": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'symbol-namespace': $(symbol-namespace)"
+        },
+        "symbol-object": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'symbol-object': $(symbol-object)"
+        },
+        "symbol-method": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'symbol-method': $(symbol-method)"
+        },
+        "symbol-function": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'symbol-function': $(symbol-function)"
+        },
+        "symbol-constructor": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'symbol-constructor': $(symbol-constructor)"
+        },
+        "symbol-boolean": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'symbol-boolean': $(symbol-boolean)"
+        },
+        "symbol-null": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'symbol-null': $(symbol-null)"
+        },
+        "symbol-numeric": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'symbol-numeric': $(symbol-numeric)"
+        },
+        "symbol-number": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'symbol-number': $(symbol-number)"
+        },
+        "symbol-structure": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'symbol-structure': $(symbol-structure)"
+        },
+        "symbol-struct": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'symbol-struct': $(symbol-struct)"
+        },
+        "symbol-parameter": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'symbol-parameter': $(symbol-parameter)"
+        },
+        "symbol-type-parameter": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'symbol-type-parameter': $(symbol-type-parameter)"
+        },
+        "symbol-key": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'symbol-key': $(symbol-key)"
+        },
+        "symbol-text": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'symbol-text': $(symbol-text)"
+        },
+        "symbol-reference": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'symbol-reference': $(symbol-reference)"
+        },
+        "go-to-file": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'go-to-file': $(go-to-file)"
+        },
+        "symbol-enum": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'symbol-enum': $(symbol-enum)"
+        },
+        "symbol-value": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'symbol-value': $(symbol-value)"
+        },
+        "symbol-ruler": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'symbol-ruler': $(symbol-ruler)"
+        },
+        "symbol-unit": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'symbol-unit': $(symbol-unit)"
+        },
+        "activate-breakpoints": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'activate-breakpoints': $(activate-breakpoints)"
+        },
+        "archive": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'archive': $(archive)"
+        },
+        "arrow-both": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'arrow-both': $(arrow-both)"
+        },
+        "arrow-down": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'arrow-down': $(arrow-down)"
+        },
+        "arrow-left": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'arrow-left': $(arrow-left)"
+        },
+        "arrow-right": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'arrow-right': $(arrow-right)"
+        },
+        "arrow-small-down": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'arrow-small-down': $(arrow-small-down)"
+        },
+        "arrow-small-left": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'arrow-small-left': $(arrow-small-left)"
+        },
+        "arrow-small-right": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'arrow-small-right': $(arrow-small-right)"
+        },
+        "arrow-small-up": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'arrow-small-up': $(arrow-small-up)"
+        },
+        "arrow-up": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'arrow-up': $(arrow-up)"
+        },
+        "bell": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'bell': $(bell)"
+        },
+        "bold": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'bold': $(bold)"
+        },
+        "book": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'book': $(book)"
+        },
+        "bookmark": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'bookmark': $(bookmark)"
+        },
+        "debug-breakpoint-conditional-unverified": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'debug-breakpoint-conditional-unverified': $(debug-breakpoint-conditional-unverified)"
+        },
+        "debug-breakpoint-conditional": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'debug-breakpoint-conditional': $(debug-breakpoint-conditional)"
+        },
+        "debug-breakpoint-conditional-disabled": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'debug-breakpoint-conditional-disabled': $(debug-breakpoint-conditional-disabled)"
+        },
+        "debug-breakpoint-data-unverified": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'debug-breakpoint-data-unverified': $(debug-breakpoint-data-unverified)"
+        },
+        "debug-breakpoint-data": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'debug-breakpoint-data': $(debug-breakpoint-data)"
+        },
+        "debug-breakpoint-data-disabled": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'debug-breakpoint-data-disabled': $(debug-breakpoint-data-disabled)"
+        },
+        "debug-breakpoint-log-unverified": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'debug-breakpoint-log-unverified': $(debug-breakpoint-log-unverified)"
+        },
+        "debug-breakpoint-log": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'debug-breakpoint-log': $(debug-breakpoint-log)"
+        },
+        "debug-breakpoint-log-disabled": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'debug-breakpoint-log-disabled': $(debug-breakpoint-log-disabled)"
+        },
+        "briefcase": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'briefcase': $(briefcase)"
+        },
+        "broadcast": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'broadcast': $(broadcast)"
+        },
+        "browser": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'browser': $(browser)"
+        },
+        "bug": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'bug': $(bug)"
+        },
+        "calendar": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'calendar': $(calendar)"
+        },
+        "case-sensitive": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'case-sensitive': $(case-sensitive)"
+        },
+        "check": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'check': $(check)"
+        },
+        "checklist": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'checklist': $(checklist)"
+        },
+        "chevron-down": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'chevron-down': $(chevron-down)"
+        },
+        "chevron-left": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'chevron-left': $(chevron-left)"
+        },
+        "chevron-right": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'chevron-right': $(chevron-right)"
+        },
+        "chevron-up": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'chevron-up': $(chevron-up)"
+        },
+        "chrome-close": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'chrome-close': $(chrome-close)"
+        },
+        "chrome-maximize": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'chrome-maximize': $(chrome-maximize)"
+        },
+        "chrome-minimize": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'chrome-minimize': $(chrome-minimize)"
+        },
+        "chrome-restore": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'chrome-restore': $(chrome-restore)"
+        },
+        "circle-outline": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'circle-outline': $(circle-outline)"
+        },
+        "debug-breakpoint-unverified": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'debug-breakpoint-unverified': $(debug-breakpoint-unverified)"
+        },
+        "circle-slash": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'circle-slash': $(circle-slash)"
+        },
+        "circuit-board": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'circuit-board': $(circuit-board)"
+        },
+        "clear-all": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'clear-all': $(clear-all)"
+        },
+        "clippy": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'clippy': $(clippy)"
+        },
+        "close-all": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'close-all': $(close-all)"
+        },
+        "cloud-download": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'cloud-download': $(cloud-download)"
+        },
+        "cloud-upload": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'cloud-upload': $(cloud-upload)"
+        },
+        "code": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'code': $(code)"
+        },
+        "collapse-all": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'collapse-all': $(collapse-all)"
+        },
+        "color-mode": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'color-mode': $(color-mode)"
+        },
+        "comment-discussion": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'comment-discussion': $(comment-discussion)"
+        },
+        "compare-changes": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'compare-changes': $(compare-changes)"
+        },
+        "credit-card": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'credit-card': $(credit-card)"
+        },
+        "dash": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'dash': $(dash)"
+        },
+        "dashboard": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'dashboard': $(dashboard)"
+        },
+        "database": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'database': $(database)"
+        },
+        "debug-continue": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'debug-continue': $(debug-continue)"
+        },
+        "debug-disconnect": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'debug-disconnect': $(debug-disconnect)"
+        },
+        "debug-pause": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'debug-pause': $(debug-pause)"
+        },
+        "debug-restart": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'debug-restart': $(debug-restart)"
+        },
+        "debug-start": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'debug-start': $(debug-start)"
+        },
+        "debug-step-into": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'debug-step-into': $(debug-step-into)"
+        },
+        "debug-step-out": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'debug-step-out': $(debug-step-out)"
+        },
+        "debug-step-over": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'debug-step-over': $(debug-step-over)"
+        },
+        "debug-stop": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'debug-stop': $(debug-stop)"
+        },
+        "debug": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'debug': $(debug)"
+        },
+        "device-camera-video": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'device-camera-video': $(device-camera-video)"
+        },
+        "device-camera": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'device-camera': $(device-camera)"
+        },
+        "device-mobile": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'device-mobile': $(device-mobile)"
+        },
+        "diff-added": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'diff-added': $(diff-added)"
+        },
+        "diff-ignored": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'diff-ignored': $(diff-ignored)"
+        },
+        "diff-modified": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'diff-modified': $(diff-modified)"
+        },
+        "diff-removed": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'diff-removed': $(diff-removed)"
+        },
+        "diff-renamed": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'diff-renamed': $(diff-renamed)"
+        },
+        "diff": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'diff': $(diff)"
+        },
+        "discard": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'discard': $(discard)"
+        },
+        "editor-layout": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'editor-layout': $(editor-layout)"
+        },
+        "empty-window": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'empty-window': $(empty-window)"
+        },
+        "exclude": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'exclude': $(exclude)"
+        },
+        "extensions": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'extensions': $(extensions)"
+        },
+        "eye-closed": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'eye-closed': $(eye-closed)"
+        },
+        "file-binary": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'file-binary': $(file-binary)"
+        },
+        "file-code": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'file-code': $(file-code)"
+        },
+        "file-media": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'file-media': $(file-media)"
+        },
+        "file-pdf": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'file-pdf': $(file-pdf)"
+        },
+        "file-submodule": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'file-submodule': $(file-submodule)"
+        },
+        "file-symlink-directory": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'file-symlink-directory': $(file-symlink-directory)"
+        },
+        "file-symlink-file": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'file-symlink-file': $(file-symlink-file)"
+        },
+        "file-zip": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'file-zip': $(file-zip)"
+        },
+        "files": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'files': $(files)"
+        },
+        "filter": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'filter': $(filter)"
+        },
+        "flame": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'flame': $(flame)"
+        },
+        "fold-down": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'fold-down': $(fold-down)"
+        },
+        "fold-up": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'fold-up': $(fold-up)"
+        },
+        "fold": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'fold': $(fold)"
+        },
+        "folder-active": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'folder-active': $(folder-active)"
+        },
+        "folder-opened": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'folder-opened': $(folder-opened)"
+        },
+        "gear": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'gear': $(gear)"
+        },
+        "gift": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'gift': $(gift)"
+        },
+        "gist-secret": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'gist-secret': $(gist-secret)"
+        },
+        "gist": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'gist': $(gist)"
+        },
+        "git-commit": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'git-commit': $(git-commit)"
+        },
+        "git-compare": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'git-compare': $(git-compare)"
+        },
+        "git-merge": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'git-merge': $(git-merge)"
+        },
+        "github-action": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'github-action': $(github-action)"
+        },
+        "github-alt": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'github-alt': $(github-alt)"
+        },
+        "globe": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'globe': $(globe)"
+        },
+        "grabber": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'grabber': $(grabber)"
+        },
+        "graph": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'graph': $(graph)"
+        },
+        "gripper": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'gripper': $(gripper)"
+        },
+        "heart": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'heart': $(heart)"
+        },
+        "home": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'home': $(home)"
+        },
+        "horizontal-rule": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'horizontal-rule': $(horizontal-rule)"
+        },
+        "hubot": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'hubot': $(hubot)"
+        },
+        "inbox": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'inbox': $(inbox)"
+        },
+        "issue-closed": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'issue-closed': $(issue-closed)"
+        },
+        "issue-reopened": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'issue-reopened': $(issue-reopened)"
+        },
+        "issues": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'issues': $(issues)"
+        },
+        "italic": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'italic': $(italic)"
+        },
+        "jersey": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'jersey': $(jersey)"
+        },
+        "json": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'json': $(json)"
+        },
+        "kebab-vertical": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'kebab-vertical': $(kebab-vertical)"
+        },
+        "key": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'key': $(key)"
+        },
+        "law": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'law': $(law)"
+        },
+        "lightbulb-autofix": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'lightbulb-autofix': $(lightbulb-autofix)"
+        },
+        "link-external": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'link-external': $(link-external)"
+        },
+        "link": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'link': $(link)"
+        },
+        "list-ordered": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'list-ordered': $(list-ordered)"
+        },
+        "list-unordered": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'list-unordered': $(list-unordered)"
+        },
+        "live-share": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'live-share': $(live-share)"
+        },
+        "loading": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'loading': $(loading)"
+        },
+        "location": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'location': $(location)"
+        },
+        "mail-read": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'mail-read': $(mail-read)"
+        },
+        "mail": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'mail': $(mail)"
+        },
+        "markdown": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'markdown': $(markdown)"
+        },
+        "megaphone": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'megaphone': $(megaphone)"
+        },
+        "mention": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'mention': $(mention)"
+        },
+        "milestone": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'milestone': $(milestone)"
+        },
+        "mortar-board": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'mortar-board': $(mortar-board)"
+        },
+        "move": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'move': $(move)"
+        },
+        "multiple-windows": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'multiple-windows': $(multiple-windows)"
+        },
+        "mute": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'mute': $(mute)"
+        },
+        "no-newline": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'no-newline': $(no-newline)"
+        },
+        "note": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'note': $(note)"
+        },
+        "octoface": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'octoface': $(octoface)"
+        },
+        "open-preview": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'open-preview': $(open-preview)"
+        },
+        "package": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'package': $(package)"
+        },
+        "paintcan": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'paintcan': $(paintcan)"
+        },
+        "pin": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'pin': $(pin)"
+        },
+        "play": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'play': $(play)"
+        },
+        "run": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'run': $(run)"
+        },
+        "plug": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'plug': $(plug)"
+        },
+        "preserve-case": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'preserve-case': $(preserve-case)"
+        },
+        "preview": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'preview': $(preview)"
+        },
+        "project": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'project': $(project)"
+        },
+        "pulse": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'pulse': $(pulse)"
+        },
+        "question": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'question': $(question)"
+        },
+        "quote": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'quote': $(quote)"
+        },
+        "radio-tower": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'radio-tower': $(radio-tower)"
+        },
+        "reactions": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'reactions': $(reactions)"
+        },
+        "references": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'references': $(references)"
+        },
+        "refresh": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'refresh': $(refresh)"
+        },
+        "regex": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'regex': $(regex)"
+        },
+        "remote-explorer": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'remote-explorer': $(remote-explorer)"
+        },
+        "remote": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'remote': $(remote)"
+        },
+        "remove": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'remove': $(remove)"
+        },
+        "replace-all": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'replace-all': $(replace-all)"
+        },
+        "replace": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'replace': $(replace)"
+        },
+        "repo-clone": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'repo-clone': $(repo-clone)"
+        },
+        "repo-force-push": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'repo-force-push': $(repo-force-push)"
+        },
+        "repo-pull": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'repo-pull': $(repo-pull)"
+        },
+        "repo-push": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'repo-push': $(repo-push)"
+        },
+        "report": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'report': $(report)"
+        },
+        "request-changes": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'request-changes': $(request-changes)"
+        },
+        "rocket": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'rocket': $(rocket)"
+        },
+        "root-folder-opened": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'root-folder-opened': $(root-folder-opened)"
+        },
+        "root-folder": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'root-folder': $(root-folder)"
+        },
+        "rss": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'rss': $(rss)"
+        },
+        "ruby": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'ruby': $(ruby)"
+        },
+        "save-all": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'save-all': $(save-all)"
+        },
+        "save-as": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'save-as': $(save-as)"
+        },
+        "save": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'save': $(save)"
+        },
+        "screen-full": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'screen-full': $(screen-full)"
+        },
+        "screen-normal": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'screen-normal': $(screen-normal)"
+        },
+        "search-stop": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'search-stop': $(search-stop)"
+        },
+        "server": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'server': $(server)"
+        },
+        "settings-gear": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'settings-gear': $(settings-gear)"
+        },
+        "settings": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'settings': $(settings)"
+        },
+        "shield": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'shield': $(shield)"
+        },
+        "smiley": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'smiley': $(smiley)"
+        },
+        "sort-precedence": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'sort-precedence': $(sort-precedence)"
+        },
+        "split-horizontal": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'split-horizontal': $(split-horizontal)"
+        },
+        "split-vertical": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'split-vertical': $(split-vertical)"
+        },
+        "squirrel": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'squirrel': $(squirrel)"
+        },
+        "star-full": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'star-full': $(star-full)"
+        },
+        "star-half": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'star-half': $(star-half)"
+        },
+        "symbol-class": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'symbol-class': $(symbol-class)"
+        },
+        "symbol-color": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'symbol-color': $(symbol-color)"
+        },
+        "symbol-constant": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'symbol-constant': $(symbol-constant)"
+        },
+        "symbol-enum-member": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'symbol-enum-member': $(symbol-enum-member)"
+        },
+        "symbol-field": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'symbol-field': $(symbol-field)"
+        },
+        "symbol-file": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'symbol-file': $(symbol-file)"
+        },
+        "symbol-interface": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'symbol-interface': $(symbol-interface)"
+        },
+        "symbol-keyword": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'symbol-keyword': $(symbol-keyword)"
+        },
+        "symbol-misc": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'symbol-misc': $(symbol-misc)"
+        },
+        "symbol-operator": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'symbol-operator': $(symbol-operator)"
+        },
+        "symbol-property": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'symbol-property': $(symbol-property)"
+        },
+        "wrench": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'wrench': $(wrench)"
+        },
+        "wrench-subaction": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'wrench-subaction': $(wrench-subaction)"
+        },
+        "symbol-snippet": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'symbol-snippet': $(symbol-snippet)"
+        },
+        "tasklist": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'tasklist': $(tasklist)"
+        },
+        "telescope": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'telescope': $(telescope)"
+        },
+        "text-size": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'text-size': $(text-size)"
+        },
+        "three-bars": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'three-bars': $(three-bars)"
+        },
+        "thumbsdown": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'thumbsdown': $(thumbsdown)"
+        },
+        "thumbsup": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'thumbsup': $(thumbsup)"
+        },
+        "tools": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'tools': $(tools)"
+        },
+        "triangle-down": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'triangle-down': $(triangle-down)"
+        },
+        "triangle-left": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'triangle-left': $(triangle-left)"
+        },
+        "triangle-right": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'triangle-right': $(triangle-right)"
+        },
+        "triangle-up": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'triangle-up': $(triangle-up)"
+        },
+        "twitter": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'twitter': $(twitter)"
+        },
+        "unfold": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'unfold': $(unfold)"
+        },
+        "unlock": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'unlock': $(unlock)"
+        },
+        "unmute": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'unmute': $(unmute)"
+        },
+        "unverified": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'unverified': $(unverified)"
+        },
+        "verified": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'verified': $(verified)"
+        },
+        "versions": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'versions': $(versions)"
+        },
+        "vm-active": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'vm-active': $(vm-active)"
+        },
+        "vm-outline": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'vm-outline': $(vm-outline)"
+        },
+        "vm-running": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'vm-running': $(vm-running)"
+        },
+        "watch": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'watch': $(watch)"
+        },
+        "whitespace": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'whitespace': $(whitespace)"
+        },
+        "whole-word": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'whole-word': $(whole-word)"
+        },
+        "window": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'window': $(window)"
+        },
+        "word-wrap": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'word-wrap': $(word-wrap)"
+        },
+        "zoom-in": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'zoom-in': $(zoom-in)"
+        },
+        "zoom-out": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'zoom-out': $(zoom-out)"
+        },
+        "list-filter": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'list-filter': $(list-filter)"
+        },
+        "list-flat": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'list-flat': $(list-flat)"
+        },
+        "list-selection": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'list-selection': $(list-selection)"
+        },
+        "selection": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'selection': $(selection)"
+        },
+        "list-tree": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'list-tree': $(list-tree)"
+        },
+        "debug-breakpoint-function-unverified": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'debug-breakpoint-function-unverified': $(debug-breakpoint-function-unverified)"
+        },
+        "debug-breakpoint-function": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'debug-breakpoint-function': $(debug-breakpoint-function)"
+        },
+        "debug-breakpoint-function-disabled": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'debug-breakpoint-function-disabled': $(debug-breakpoint-function-disabled)"
+        },
+        "debug-stackframe-active": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'debug-stackframe-active': $(debug-stackframe-active)"
+        },
+        "debug-stackframe-dot": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'debug-stackframe-dot': $(debug-stackframe-dot)"
+        },
+        "debug-stackframe": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'debug-stackframe': $(debug-stackframe)"
+        },
+        "debug-stackframe-focused": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'debug-stackframe-focused': $(debug-stackframe-focused)"
+        },
+        "debug-breakpoint-unsupported": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'debug-breakpoint-unsupported': $(debug-breakpoint-unsupported)"
+        },
+        "symbol-string": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'symbol-string': $(symbol-string)"
+        },
+        "debug-reverse-continue": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'debug-reverse-continue': $(debug-reverse-continue)"
+        },
+        "debug-step-back": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'debug-step-back': $(debug-step-back)"
+        },
+        "debug-restart-frame": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'debug-restart-frame': $(debug-restart-frame)"
+        },
+        "call-incoming": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'call-incoming': $(call-incoming)"
+        },
+        "call-outgoing": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'call-outgoing': $(call-outgoing)"
+        },
+        "menu": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'menu': $(menu)"
+        },
+        "expand-all": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'expand-all': $(expand-all)"
+        },
+        "feedback": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'feedback': $(feedback)"
+        },
+        "group-by-ref-type": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'group-by-ref-type': $(group-by-ref-type)"
+        },
+        "ungroup-by-ref-type": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'ungroup-by-ref-type': $(ungroup-by-ref-type)"
+        },
+        "account": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'account': $(account)"
+        },
+        "bell-dot": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'bell-dot': $(bell-dot)"
+        },
+        "debug-console": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'debug-console': $(debug-console)"
+        },
+        "library": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'library': $(library)"
+        },
+        "output": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'output': $(output)"
+        },
+        "run-all": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'run-all': $(run-all)"
+        },
+        "sync-ignored": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'sync-ignored': $(sync-ignored)"
+        },
+        "pinned": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'pinned': $(pinned)"
+        },
+        "github-inverted": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'github-inverted': $(github-inverted)"
+        },
+        "debug-alt": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'debug-alt': $(debug-alt)"
+        },
+        "server-process": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'server-process': $(server-process)"
+        },
+        "server-environment": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'server-environment': $(server-environment)"
+        },
+        "pass": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'pass': $(pass)"
+        },
+        "stop-circle": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'stop-circle': $(stop-circle)"
+        },
+        "play-circle": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'play-circle': $(play-circle)"
+        },
+        "record": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'record': $(record)"
+        },
+        "debug-alt-small": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'debug-alt-small': $(debug-alt-small)"
+        },
+        "vm-connect": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'vm-connect': $(vm-connect)"
+        },
+        "cloud": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'cloud': $(cloud)"
+        },
+        "merge": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'merge': $(merge)"
+        },
+        "scrollbar-button-left": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'scrollbar-button-left': $(scrollbar-button-left)"
+        },
+        "scrollbar-button-right": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'scrollbar-button-right': $(scrollbar-button-right)"
+        },
+        "scrollbar-button-up": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'scrollbar-button-up': $(scrollbar-button-up)"
+        },
+        "scrollbar-button-down": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'scrollbar-button-down': $(scrollbar-button-down)"
+        },
+        "tree-item-expanded": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'tree-item-expanded': $(tree-item-expanded)"
+        },
+        "tree-filter-on-type-on": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'tree-filter-on-type-on': $(tree-filter-on-type-on)"
+        },
+        "tree-filter-on-type-off": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'tree-filter-on-type-off': $(tree-filter-on-type-off)"
+        },
+        "tree-filter-clear": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'tree-filter-clear': $(tree-filter-clear)"
+        },
+        "tree-item-loading": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'tree-item-loading': $(tree-item-loading)"
+        },
+        "breadcrumb-separator": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'breadcrumb-separator': $(breadcrumb-separator)"
+        },
+        "dialog-error": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'dialog-error': $(dialog-error)"
+        },
+        "dialog-warning": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'dialog-warning': $(dialog-warning)"
+        },
+        "dialog-info": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'dialog-info': $(dialog-info)"
+        },
+        "dialog-close": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'dialog-close': $(dialog-close)"
+        },
+        "menu-selection": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'menu-selection': $(menu-selection)"
+        },
+        "menu-submenu": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'menu-submenu': $(menu-submenu)"
+        },
+        "menubar-more": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'menubar-more': $(menubar-more)"
+        },
+        "toolbar-more": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'toolbar-more': $(toolbar-more)"
+        },
+        "quick-input-back": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'quick-input-back': $(quick-input-back)"
+        },
+        "folding-expanded": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'folding-expanded': $(folding-expanded)"
+        },
+        "folding-collapsed": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'folding-collapsed': $(folding-collapsed)"
+        },
+        "diff-review-insert": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'diff-review-insert': $(diff-review-insert)"
+        },
+        "diff-review-remove": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'diff-review-remove': $(diff-review-remove)"
+        },
+        "diff-review-close": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'diff-review-close': $(diff-review-close)"
+        },
+        "diff-insert": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'diff-insert': $(diff-insert)"
+        },
+        "diff-remove": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'diff-remove': $(diff-remove)"
+        },
+        "find-selection": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'find-selection': $(find-selection)"
+        },
+        "find-collapsed": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'find-collapsed': $(find-collapsed)"
+        },
+        "find-expanded": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'find-expanded': $(find-expanded)"
+        },
+        "find-close": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'find-close': $(find-close)"
+        },
+        "find-replace": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'find-replace': $(find-replace)"
+        },
+        "find-replace-all": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'find-replace-all': $(find-replace-all)"
+        },
+        "find-previous-match": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'find-previous-match': $(find-previous-match)"
+        },
+        "find-next-match": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'find-next-match': $(find-next-match)"
+        },
+        "parameter-hints-next": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'parameter-hints-next': $(parameter-hints-next)"
+        },
+        "parameter-hints-previous": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'parameter-hints-previous': $(parameter-hints-previous)"
+        },
+        "suggest-more-info": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'suggest-more-info': $(suggest-more-info)"
+        },
+        "marker-navigation-next": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'marker-navigation-next': $(marker-navigation-next)"
+        },
+        "marker-navigation-previous": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'marker-navigation-previous': $(marker-navigation-previous)"
+        },
+        "notifications-clear": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'notifications-clear': $(notifications-clear)"
+        },
+        "notifications-clear-all": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'notifications-clear-all': $(notifications-clear-all)"
+        },
+        "notifications-hide": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'notifications-hide': $(notifications-hide)"
+        },
+        "notifications-expand": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'notifications-expand': $(notifications-expand)"
+        },
+        "notifications-collapse": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'notifications-collapse': $(notifications-collapse)"
+        },
+        "notifications-configure": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'notifications-configure': $(notifications-configure)"
+        },
+        "search-details": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'search-details': $(search-details)"
+        },
+        "search-show-context": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'search-show-context': $(search-show-context)"
+        },
+        "search-hide-replace": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'search-hide-replace': $(search-hide-replace)"
+        },
+        "search-show-replace": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'search-show-replace': $(search-show-replace)"
+        },
+        "search-replace-all": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'search-replace-all': $(search-replace-all)"
+        },
+        "search-replace": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'search-replace': $(search-replace)"
+        },
+        "search-remove": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'search-remove': $(search-remove)"
+        },
+        "search-refresh": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'search-refresh': $(search-refresh)"
+        },
+        "search-collapse-results": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'search-collapse-results': $(search-collapse-results)"
+        },
+        "search-expand-results": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'search-expand-results': $(search-expand-results)"
+        },
+        "search-clear-results": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'search-clear-results': $(search-clear-results)"
+        },
+        "search-new-editor": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'search-new-editor': $(search-new-editor)"
+        },
+        "search-goto-file": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'search-goto-file': $(search-goto-file)"
+        },
+        "callhierarchy-incoming": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'callhierarchy-incoming': $(callhierarchy-incoming)"
+        },
+        "callhierarchy-outgoing": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'callhierarchy-outgoing': $(callhierarchy-outgoing)"
+        },
+        "preferences-edit": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'preferences-edit': $(preferences-edit)"
+        },
+        "panel-maximize": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'panel-maximize': $(panel-maximize)"
+        },
+        "panel-restore": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'panel-restore': $(panel-restore)"
+        },
+        "panel-close": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'panel-close': $(panel-close)"
+        },
+        "remote-explorer-get-started": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'remote-explorer-get-started': $(remote-explorer-get-started)"
+        },
+        "remote-explorer-documentation": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'remote-explorer-documentation': $(remote-explorer-documentation)"
+        },
+        "remote-explorer-feedback": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'remote-explorer-feedback': $(remote-explorer-feedback)"
+        },
+        "remote-explorer-review-issues": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'remote-explorer-review-issues': $(remote-explorer-review-issues)"
+        },
+        "remote-explorer-report-issues": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon with identifier 'remote-explorer-report-issues': $(remote-explorer-report-issues)"
+        }
+    }
+}
