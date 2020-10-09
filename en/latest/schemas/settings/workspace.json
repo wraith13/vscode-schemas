@@ -657,13 +657,13 @@
         },
         "workbench.editor.scrollToSwitchTabs": {
             "type": "boolean",
-            "description": "Controls whether scrolling over tabs will open them or not. By default tabs will only reveal upon scrolling, but not open. You can press and hold the Shift-key while scrolling to change this behaviour for that duration.",
+            "markdownDescription": "Controls whether scrolling over tabs will open them or not. By default tabs will only reveal upon scrolling, but not open. You can press and hold the Shift-key while scrolling to change this behaviour for that duration. This value is ignored when `#workbench.editor.showTabs#` is `false`.",
             "default": false,
             "scope": 3
         },
         "workbench.editor.highlightModifiedTabs": {
             "type": "boolean",
-            "description": "Controls whether a top border is drawn on modified (dirty) editor tabs or not.",
+            "markdownDescription": "Controls whether a top border is drawn on modified (dirty) editor tabs or not. This value is ignored when `#workbench.editor.showTabs#` is `false`.",
             "default": false,
             "scope": 3
         },
@@ -707,7 +707,7 @@
                 "off"
             ],
             "default": "right",
-            "description": "Controls the position of the editor's tabs close buttons, or disables them when set to 'off'.",
+            "markdownDescription": "Controls the position of the editor's tabs close buttons, or disables them when set to 'off'. This value is ignored when `#workbench.editor.showTabs#` is `false`.",
             "scope": 3
         },
         "workbench.editor.tabSizing": {
@@ -721,7 +721,23 @@
                 "Always keep tabs large enough to show the full editor label.",
                 "Allow tabs to get smaller when the available space is not enough to show all tabs at once."
             ],
-            "description": "Controls the sizing of editor tabs.",
+            "markdownDescription": "Controls the sizing of editor tabs. This value is ignored when `#workbench.editor.showTabs#` is `false`.",
+            "scope": 3
+        },
+        "workbench.editor.pinnedTabSizing": {
+            "type": "string",
+            "enum": [
+                "normal",
+                "compact",
+                "shrink"
+            ],
+            "default": "normal",
+            "enumDescriptions": [
+                "A pinned tab inherits the look of non pinned tabs.",
+                "A pinned tab will show in a compact form with only icon or first letter of the editor name.",
+                "A pinned tab shrinks to a compact fixed size showing parts of the editor name."
+            ],
+            "markdownDescription": "Controls the sizing of pinned editor tabs. Pinned tabs are sorted to the begining of all opened tabs and typically do not close until unpinned. This value is ignored when `#workbench.editor.showTabs#` is `false`.",
             "scope": 3
         },
         "workbench.editor.splitSizing": {
@@ -894,6 +910,22 @@
             ],
             "default": "bottom",
             "description": "Controls the default location of the panel (terminal, debug console, output, problems). It can either show at the bottom, right, or left of the workbench.",
+            "scope": 3
+        },
+        "workbench.panel.opensMaximized": {
+            "type": "string",
+            "enum": [
+                "always",
+                "never",
+                "preserve"
+            ],
+            "default": "preserve",
+            "description": "Controls whether the panel opens maximized. It can either always open maximized, never open maximized, or open to the last state it was in before being closed.",
+            "enumDescriptions": [
+                "Always maximize the panel when opening it.",
+                "Never maximize the panel when opening it. The panel will open un-maximized.",
+                "Open the panel to the state that it was in, before it was closed."
+            ],
             "scope": 3
         },
         "workbench.statusBar.visible": {
@@ -1134,6 +1166,18 @@
             "default": null,
             "scope": 3
         },
+        "remote.downloadExtensionsLocally": {
+            "type": "boolean",
+            "markdownDescription": "When enabled extensions are downloaded locally and installed on remote.",
+            "default": false,
+            "scope": 3
+        },
+        "remote.restoreForwardedPorts": {
+            "type": "boolean",
+            "markdownDescription": "Restores the ports you forwarded in a workspace.",
+            "default": false,
+            "scope": 3
+        },
         "remote.extensionKind": {
             "type": "object",
             "markdownDescription": "Override the kind of an extension. `ui` extensions are installed and run on the local machine while `workspace` extensions are run on the remote. By overriding an extension's default kind using this setting, you specify if that extension should be installed and enabled locally or remotely.",
@@ -1223,7 +1267,7 @@
         },
         "workbench.preferredDarkColorTheme": {
             "type": "string",
-            "description": "Specifies the preferred color theme for dark OS appearance when 'window.autoDetectColorScheme' is enabled.",
+            "markdownDescription": "Specifies the preferred color theme for dark OS appearance when `#window.autoDetectColorScheme#` is enabled.",
             "default": "Default Dark+",
             "enum": [
                 "Abyss",
@@ -1262,7 +1306,7 @@
         },
         "workbench.preferredLightColorTheme": {
             "type": "string",
-            "description": "Specifies the preferred color theme for light OS appearance when 'window.autoDetectColorScheme' is enabled.",
+            "markdownDescription": "Specifies the preferred color theme for light OS appearance when `#window.autoDetectColorScheme#` is enabled.",
             "default": "Default Light+",
             "enum": [
                 "Abyss",
@@ -1301,7 +1345,7 @@
         },
         "workbench.preferredHighContrastColorTheme": {
             "type": "string",
-            "description": "Specifies the preferred color theme used in high contrast mode when 'window.autoDetectHighContrast' is enabled.",
+            "markdownDescription": "Specifies the preferred color theme used in high contrast mode when `#window.autoDetectHighContrast#` is enabled.",
             "default": "Default High Contrast",
             "enum": [
                 "Abyss",
@@ -1337,12 +1381,6 @@
             ],
             "included": true,
             "errorMessage": "Theme is unknown or not installed.",
-            "scope": 3
-        },
-        "window.autoDetectColorScheme": {
-            "type": "boolean",
-            "description": "If set, automatically switch to the preferred color theme based on the OS appearance.",
-            "default": false,
             "scope": 3
         },
         "workbench.iconTheme": {
@@ -1457,6 +1495,12 @@
             "errorMessage": "Product icon theme is unknown or not installed.",
             "scope": 3
         },
+        "window.autoDetectColorScheme": {
+            "type": "boolean",
+            "description": "If set, automatically switch to the preferred color theme based on the OS appearance.",
+            "default": false,
+            "scope": 3
+        },
         "editor.tokenColorCustomizations": {
             "description": "Overrides editor syntax colors and font style from the currently selected color theme.",
             "default": {},
@@ -1498,6 +1542,7 @@
                         "semanticHighlighting": {
                             "description": "Whether semantic highlighting should be enabled for this theme.",
                             "deprecationMessage": "Use `enabled` in `editor.semanticTokenColorCustomizations` setting instead.",
+                            "markdownDeprecationMessage": "Use `enabled` in `#editor.semanticTokenColorCustomizations#` setting instead.",
                             "type": "boolean"
                         }
                     }
@@ -1541,6 +1586,7 @@
                                 "semanticHighlighting": {
                                     "description": "Whether semantic highlighting should be enabled for this theme.",
                                     "deprecationMessage": "Use `enabled` in `editor.semanticTokenColorCustomizations` setting instead.",
+                                    "markdownDeprecationMessage": "Use `enabled` in `#editor.semanticTokenColorCustomizations#` setting instead.",
                                     "type": "boolean"
                                 }
                             },
@@ -1583,6 +1629,7 @@
                                 "semanticHighlighting": {
                                     "description": "Whether semantic highlighting should be enabled for this theme.",
                                     "deprecationMessage": "Use `enabled` in `editor.semanticTokenColorCustomizations` setting instead.",
+                                    "markdownDeprecationMessage": "Use `enabled` in `#editor.semanticTokenColorCustomizations#` setting instead.",
                                     "type": "boolean"
                                 }
                             },
@@ -1625,6 +1672,7 @@
                                 "semanticHighlighting": {
                                     "description": "Whether semantic highlighting should be enabled for this theme.",
                                     "deprecationMessage": "Use `enabled` in `editor.semanticTokenColorCustomizations` setting instead.",
+                                    "markdownDeprecationMessage": "Use `enabled` in `#editor.semanticTokenColorCustomizations#` setting instead.",
                                     "type": "boolean"
                                 }
                             },
@@ -1667,6 +1715,7 @@
                                 "semanticHighlighting": {
                                     "description": "Whether semantic highlighting should be enabled for this theme.",
                                     "deprecationMessage": "Use `enabled` in `editor.semanticTokenColorCustomizations` setting instead.",
+                                    "markdownDeprecationMessage": "Use `enabled` in `#editor.semanticTokenColorCustomizations#` setting instead.",
                                     "type": "boolean"
                                 }
                             },
@@ -1709,6 +1758,7 @@
                                 "semanticHighlighting": {
                                     "description": "Whether semantic highlighting should be enabled for this theme.",
                                     "deprecationMessage": "Use `enabled` in `editor.semanticTokenColorCustomizations` setting instead.",
+                                    "markdownDeprecationMessage": "Use `enabled` in `#editor.semanticTokenColorCustomizations#` setting instead.",
                                     "type": "boolean"
                                 }
                             },
@@ -1751,6 +1801,7 @@
                                 "semanticHighlighting": {
                                     "description": "Whether semantic highlighting should be enabled for this theme.",
                                     "deprecationMessage": "Use `enabled` in `editor.semanticTokenColorCustomizations` setting instead.",
+                                    "markdownDeprecationMessage": "Use `enabled` in `#editor.semanticTokenColorCustomizations#` setting instead.",
                                     "type": "boolean"
                                 }
                             },
@@ -1793,6 +1844,7 @@
                                 "semanticHighlighting": {
                                     "description": "Whether semantic highlighting should be enabled for this theme.",
                                     "deprecationMessage": "Use `enabled` in `editor.semanticTokenColorCustomizations` setting instead.",
+                                    "markdownDeprecationMessage": "Use `enabled` in `#editor.semanticTokenColorCustomizations#` setting instead.",
                                     "type": "boolean"
                                 }
                             },
@@ -1835,6 +1887,7 @@
                                 "semanticHighlighting": {
                                     "description": "Whether semantic highlighting should be enabled for this theme.",
                                     "deprecationMessage": "Use `enabled` in `editor.semanticTokenColorCustomizations` setting instead.",
+                                    "markdownDeprecationMessage": "Use `enabled` in `#editor.semanticTokenColorCustomizations#` setting instead.",
                                     "type": "boolean"
                                 }
                             },
@@ -1877,6 +1930,7 @@
                                 "semanticHighlighting": {
                                     "description": "Whether semantic highlighting should be enabled for this theme.",
                                     "deprecationMessage": "Use `enabled` in `editor.semanticTokenColorCustomizations` setting instead.",
+                                    "markdownDeprecationMessage": "Use `enabled` in `#editor.semanticTokenColorCustomizations#` setting instead.",
                                     "type": "boolean"
                                 }
                             },
@@ -1919,6 +1973,7 @@
                                 "semanticHighlighting": {
                                     "description": "Whether semantic highlighting should be enabled for this theme.",
                                     "deprecationMessage": "Use `enabled` in `editor.semanticTokenColorCustomizations` setting instead.",
+                                    "markdownDeprecationMessage": "Use `enabled` in `#editor.semanticTokenColorCustomizations#` setting instead.",
                                     "type": "boolean"
                                 }
                             },
@@ -1961,6 +2016,7 @@
                                 "semanticHighlighting": {
                                     "description": "Whether semantic highlighting should be enabled for this theme.",
                                     "deprecationMessage": "Use `enabled` in `editor.semanticTokenColorCustomizations` setting instead.",
+                                    "markdownDeprecationMessage": "Use `enabled` in `#editor.semanticTokenColorCustomizations#` setting instead.",
                                     "type": "boolean"
                                 }
                             },
@@ -2003,6 +2059,7 @@
                                 "semanticHighlighting": {
                                     "description": "Whether semantic highlighting should be enabled for this theme.",
                                     "deprecationMessage": "Use `enabled` in `editor.semanticTokenColorCustomizations` setting instead.",
+                                    "markdownDeprecationMessage": "Use `enabled` in `#editor.semanticTokenColorCustomizations#` setting instead.",
                                     "type": "boolean"
                                 }
                             },
@@ -2045,6 +2102,7 @@
                                 "semanticHighlighting": {
                                     "description": "Whether semantic highlighting should be enabled for this theme.",
                                     "deprecationMessage": "Use `enabled` in `editor.semanticTokenColorCustomizations` setting instead.",
+                                    "markdownDeprecationMessage": "Use `enabled` in `#editor.semanticTokenColorCustomizations#` setting instead.",
                                     "type": "boolean"
                                 }
                             },
@@ -2087,6 +2145,7 @@
                                 "semanticHighlighting": {
                                     "description": "Whether semantic highlighting should be enabled for this theme.",
                                     "deprecationMessage": "Use `enabled` in `editor.semanticTokenColorCustomizations` setting instead.",
+                                    "markdownDeprecationMessage": "Use `enabled` in `#editor.semanticTokenColorCustomizations#` setting instead.",
                                     "type": "boolean"
                                 }
                             },
@@ -2353,6 +2412,7 @@
         },
         "editor.tokenColorCustomizationsExperimental": {
             "deprecationMessage": "Use `editor.semanticTokenColorCustomizations` instead.",
+            "markdownDeprecationMessage": "Use `#editor.semanticTokenColorCustomizations#` instead.",
             "default": {},
             "allOf": [
                 {
@@ -2566,18 +2626,6 @@
                 "Prompts whether to save editors before running."
             ],
             "default": "always",
-            "scope": 3
-        },
-        "remote.downloadExtensionsLocally": {
-            "type": "boolean",
-            "markdownDescription": "When enabled extensions are downloaded locally and installed on remote.",
-            "default": false,
-            "scope": 3
-        },
-        "remote.restoreForwardedPorts": {
-            "type": "boolean",
-            "markdownDescription": "Restores the ports you forwarded in a workspace.",
-            "default": false,
             "scope": 3
         },
         "workbench.editorAssociations": {
@@ -3423,40 +3471,66 @@
             "scope": 3
         },
         "terminal.integrated.fontWeight": {
-            "type": "string",
-            "enum": [
-                "normal",
-                "bold",
-                "100",
-                "200",
-                "300",
-                "400",
-                "500",
-                "600",
-                "700",
-                "800",
-                "900"
+            "anyOf": [
+                {
+                    "type": "number",
+                    "minimum": 1,
+                    "maximum": 1000,
+                    "errorMessage": "Only \"normal\" and \"bold\" keywords or numbers between 1 and 1000 are allowed."
+                },
+                {
+                    "type": "string",
+                    "pattern": "^(normal|bold|1000|[1-9][0-9]{0,2})$"
+                },
+                {
+                    "enum": [
+                        "normal",
+                        "bold",
+                        "100",
+                        "200",
+                        "300",
+                        "400",
+                        "500",
+                        "600",
+                        "700",
+                        "800",
+                        "900"
+                    ]
+                }
             ],
-            "description": "The font weight to use within the terminal for non-bold text.",
+            "description": "The font weight to use within the terminal for non-bold text. Accepts \"normal\" and \"bold\" keywords or numbers between 1 and 1000.",
             "default": "normal",
             "scope": 3
         },
         "terminal.integrated.fontWeightBold": {
-            "type": "string",
-            "enum": [
-                "normal",
-                "bold",
-                "100",
-                "200",
-                "300",
-                "400",
-                "500",
-                "600",
-                "700",
-                "800",
-                "900"
+            "anyOf": [
+                {
+                    "type": "number",
+                    "minimum": 1,
+                    "maximum": 1000,
+                    "errorMessage": "Only \"normal\" and \"bold\" keywords or numbers between 1 and 1000 are allowed."
+                },
+                {
+                    "type": "string",
+                    "pattern": "^(normal|bold|1000|[1-9][0-9]{0,2})$"
+                },
+                {
+                    "enum": [
+                        "normal",
+                        "bold",
+                        "100",
+                        "200",
+                        "300",
+                        "400",
+                        "500",
+                        "600",
+                        "700",
+                        "800",
+                        "900"
+                    ]
+                }
             ],
-            "description": "The font weight to use within the terminal for bold text.",
+            "description": "The font weight to use within the terminal for bold text. Accepts \"normal\" and \"bold\" keywords or numbers between 1 and 1000.",
             "default": "bold",
             "scope": 3
         },
@@ -3775,28 +3849,6 @@
             ],
             "default": "off",
             "description": "Traces the communication between VS Code and the CSS language server."
-        },
-        "debug.node.autoAttach": {
-            "scope": 3,
-            "type": "string",
-            "enum": [
-                "disabled",
-                "on",
-                "off"
-            ],
-            "enumDescriptions": [
-                "Auto attach is disabled and not shown in status bar.",
-                "Auto attach is active.",
-                "Auto attach is inactive."
-            ],
-            "description": "Automatically attach node debugger when node.js was launched in debug mode from integrated terminal.",
-            "default": "disabled"
-        },
-        "debug.javascript.usePreviewAutoAttach": {
-            "scope": 3,
-            "type": "boolean",
-            "default": true,
-            "description": "Whether to use the preview debugger's version of auto attach."
         },
         "emmet.showExpandedAbbreviation": {
             "type": [
@@ -4170,6 +4222,18 @@
             "description": "Controls whether to ask for confirmation before force-pushing.",
             "scope": 3
         },
+        "git.allowNoVerifyCommit": {
+            "type": "boolean",
+            "default": false,
+            "description": "Controls whether commits without running pre-commit and commit-msg hooks are allowed.",
+            "scope": 3
+        },
+        "git.confirmNoVerifyCommit": {
+            "type": "boolean",
+            "default": true,
+            "description": "Controls whether to ask for confirmation before commiting without verification.",
+            "scope": 3
+        },
         "git.branchSortOrder": {
             "type": "string",
             "enum": [
@@ -4299,12 +4363,6 @@
             ],
             "default": "top",
             "description": "Where a \"Run\" and \"Debug\" code lens should be shown in your npm scripts. It may be on \"all\", scripts, on \"top\" of the script section, or \"never\".",
-            "scope": 3
-        },
-        "debug.javascript.warnOnLongPrediction": {
-            "type": "boolean",
-            "default": true,
-            "description": "Whether a loading prompt should be shown if breakpoint prediction takes a while.",
             "scope": 3
         },
         "debug.javascript.terminalOptions": {
@@ -4558,7 +4616,7 @@
                 "nodeVersionHint": {
                     "type": "number",
                     "minimum": 8,
-                    "description": "Retry for this number of milliseconds to connect to Node.js. Default is 10000 ms.",
+                    "description": "Allows you to explicitly specify the Node version that's running, which can be used to disable or enable certain behaviors in cases where the automatic version detection does not working.",
                     "default": 12
                 },
                 "command": {
@@ -5085,7 +5143,7 @@
                                         "nodeVersionHint": {
                                             "type": "number",
                                             "minimum": 8,
-                                            "description": "Retry for this number of milliseconds to connect to Node.js. Default is 10000 ms.",
+                                            "description": "Allows you to explicitly specify the Node version that's running, which can be used to disable or enable certain behaviors in cases where the automatic version detection does not working.",
                                             "default": 12
                                         },
                                         "program": {
@@ -5435,7 +5493,7 @@
                                         "nodeVersionHint": {
                                             "type": "number",
                                             "minimum": 8,
-                                            "description": "Retry for this number of milliseconds to connect to Node.js. Default is 10000 ms.",
+                                            "description": "Allows you to explicitly specify the Node version that's running, which can be used to disable or enable certain behaviors in cases where the automatic version detection does not working.",
                                             "default": 12
                                         },
                                         "command": {
@@ -5793,7 +5851,7 @@
                 "nodeVersionHint": {
                     "type": "number",
                     "minimum": 8,
-                    "description": "Retry for this number of milliseconds to connect to Node.js. Default is 10000 ms.",
+                    "description": "Allows you to explicitly specify the Node version that's running, which can be used to disable or enable certain behaviors in cases where the automatic version detection does not working.",
                     "default": 12
                 },
                 "address": {
@@ -5860,16 +5918,18 @@
         },
         "debug.javascript.autoAttachFilter": {
             "type": "string",
-            "default": "smart",
+            "default": "disabled",
             "enum": [
                 "always",
                 "smart",
-                "onlyWithFlag"
+                "onlyWithFlag",
+                "disabled"
             ],
             "enumDescriptions": [
                 "Auto attach to every Node.js process launched in the terminal.",
                 "Auto attach when running scripts that aren't in a node_modules folder.",
-                "Only auto attach when the `--inspect` is given."
+                "Only auto attach when the `--inspect` is given.",
+                "Auto attach is disabled and not shown in status bar."
             ],
             "markdownDescription": "Configures which processes to automatically attach and debug when `#debug.node.autoAttach#` is on. A Node process launched with the `--inspect` flag will always be attached to, regardless of this setting.",
             "scope": 3
@@ -5880,16 +5940,22 @@
                 "type": "string"
             },
             "default": [
-                "!**/node_modules/**",
+                "!**/{node_modules,npm-global,.yarn}/**",
                 "**/$KNOWN_TOOLS$/**"
             ],
-            "markdownDescription": "If one of these glob patterns matches the Node.js entrypoint script in smart `#debug.javascript.autoAttachFilter#` mode, we will debug that process. `$KNOWN_TOOLS$` is replaced with a list of names of common test and code runners.",
+            "markdownDescription": "Configures glob patterns for determining when to attach in \"smart\" `#debug.javascript.autoAttachFilter#` mode. `$KNOWN_TOOLS$` is replaced with a list of names of common test and code runners. [Read more on the VS Code docs](https://code.visualstudio.com/docs/nodejs/nodejs-debugging#_auto-attach-smart-patterns).",
             "scope": 3
         },
         "debug.javascript.breakOnConditionalError": {
             "type": "boolean",
             "default": false,
             "markdownDescription": "Whether to stop when conditional breakpoints throw an error. Note: your launch.json `type` must be prefixed with `pwa-` to use this, such as `pwa-node`.",
+            "scope": 3
+        },
+        "debug.javascript.unmapMissingSources": {
+            "type": "boolean",
+            "default": false,
+            "description": "Configures whether sourcemapped file where the original file can't be read will automatically be unmapped. If this is false (default), a prompt is shown.",
             "scope": 3
         },
         "debug.node.showUseWslIsDeprecatedWarning": {
@@ -6383,11 +6449,11 @@
             ],
             "enumDescriptions": [
                 "The editor will use platform APIs to detect when a Screen Reader is attached.",
-                "The editor will be permanently optimized for usage with a Screen Reader.",
+                "The editor will be permanently optimized for usage with a Screen Reader. Word wrapping will be disabled.",
                 "The editor will never be optimized for usage with a Screen Reader."
             ],
             "default": "auto",
-            "description": "Controls whether the editor should run in a mode where it is optimized for screen readers.",
+            "description": "Controls whether the editor should run in a mode where it is optimized for screen readers. Setting to on will disable word wrapping.",
             "scope": 5
         },
         "editor.accessibilityPageSize": {
@@ -6477,7 +6543,7 @@
                 "Surround with brackets but not quotes.",
                 ""
             ],
-            "description": "Controls whether the editor should automatically surround selections.",
+            "description": "Controls whether the editor should automatically surround selections when typing quotes or brackets.",
             "type": "string",
             "enum": [
                 "languageDefined",
@@ -6558,7 +6624,7 @@
             "scope": 5
         },
         "editor.cursorSurroundingLines": {
-            "description": "Controls the minimal number of visible leading and trailing lines surrounding the cursor. Known as 'scrollOff' or `scrollOffset` in some other editors.",
+            "description": "Controls the minimal number of visible leading and trailing lines surrounding the cursor. Known as 'scrollOff' or 'scrollOffset' in some other editors.",
             "type": "integer",
             "default": 0,
             "minimum": 0,
@@ -7640,9 +7706,9 @@
             "description": "Remove unusual line terminators that might cause problems.",
             "type": "string",
             "enum": [
+                "auto",
                 "off",
-                "prompt",
-                "auto"
+                "prompt"
             ],
             "default": "prompt",
             "scope": 5
@@ -8513,7 +8579,7 @@
         },
         "css.customData": {
             "type": "array",
-            "markdownDescription": "A list of relative file paths pointing to JSON files following the [custom data format](https://github.com/Microsoft/vscode-css-languageservice/blob/master/docs/customData.md).\n\nVS Code loads custom data on startup to enhance its CSS support for the custom CSS properties, at directives, pseudo classes and pseudo elements you specify in the JSON files.\n\nThe file paths are relative to workspace and only workspace folder settings are considered.",
+            "markdownDescription": "A list of relative file paths pointing to JSON files following the [custom data format](https://github.com/microsoft/vscode-css-languageservice/blob/master/docs/customData.md).\n\nVS Code loads custom data on startup to enhance its CSS support for the custom CSS properties, at directives, pseudo classes and pseudo elements you specify in the JSON files.\n\nThe file paths are relative to workspace and only workspace folder settings are considered.",
             "default": [],
             "items": {
                 "type": "string"
@@ -9475,7 +9541,7 @@
         },
         "html.customData": {
             "type": "array",
-            "markdownDescription": "A list of relative file paths pointing to JSON files following the [custom data format](https://github.com/Microsoft/vscode-html-languageservice/blob/master/docs/customData.md).\n\nVS Code loads custom data on startup to enhance its HTML support for the custom HTML tags, attributes and attribute values you specify in the JSON files.\n\nThe file paths are relative to workspace and only workspace folder settings are considered.",
+            "markdownDescription": "A list of relative file paths pointing to JSON files following the [custom data format](https://github.com/microsoft/vscode-html-languageservice/blob/master/docs/customData.md).\n\nVS Code loads custom data on startup to enhance its HTML support for the custom HTML tags, attributes and attribute values you specify in the JSON files.\n\nThe file paths are relative to workspace and only workspace folder settings are considered.",
             "default": [],
             "items": {
                 "type": "string"

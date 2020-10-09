@@ -657,13 +657,13 @@
         },
         "workbench.editor.scrollToSwitchTabs": {
             "type": "boolean",
-            "description": "タブの上をスクロールしたときに、タブを開くかどうかを制御します。既定では、スクロール時にはタブは表示されるだけで、開かれることはありません。スクロール中に Shift キーを押したままにすると、その間この動作を変更できます。",
+            "markdownDescription": "タブの上をスクロールしたときに、タブを開くかどうかを制御します。既定では、スクロール時にはタブは表示されるだけで、開かれることはありません。スクロール中に Shift キーを押したままにすると、その間この動作を変更できます。`#workbench.editor.showTabs#` が `false` の場合、この値は無視されます。",
             "default": false,
             "scope": 3
         },
         "workbench.editor.highlightModifiedTabs": {
             "type": "boolean",
-            "description": "変更された (ダーティ) エディター タブに上部の境界線を描画するかどうかを制御します。",
+            "markdownDescription": "変更された (ダーティ) エディターのタブで上罫線を描画するかどうかを制御します。`#workbench.editor.showTabs#` が `false` の場合、この値は無視されます。",
             "default": false,
             "scope": 3
         },
@@ -707,7 +707,7 @@
                 "off"
             ],
             "default": "right",
-            "description": "エディター タブの閉じるボタンの位置を制御し、'off' にするとこの機能を無効にします。",
+            "markdownDescription": "エディターのタブの [閉じる] ボタンの位置を制御するか、'off' に設定された場合に無効にします。`#workbench.editor.showTabs#` が `false` の場合、この値は無視されます。",
             "scope": 3
         },
         "workbench.editor.tabSizing": {
@@ -721,7 +721,23 @@
                 "常に完全なエディター ラベルを表示するのに足りるタブの大きさを維持します。",
                 "すべてのタブを一度に表示するには利用可能なスペースが足りない場合に、タブを縮小するようにします。"
             ],
-            "description": "エディターのタブの大きさを制御します。",
+            "markdownDescription": "エディターのタブのサイズ設定を制御します。`#workbench.editor.showTabs#` が `false` の場合、この値は無視されます。",
+            "scope": 3
+        },
+        "workbench.editor.pinnedTabSizing": {
+            "type": "string",
+            "enum": [
+                "normal",
+                "compact",
+                "shrink"
+            ],
+            "default": "normal",
+            "enumDescriptions": [
+                "固定されたタブは、固定されていないタブの外観を継承します。",
+                "固定されたタブは、コンパクト形式でアイコンまたはエディター名の最初の文字のみが表示されます。",
+                "固定されたタブは、エディター名の一部を示すコンパクトな固定サイズに縮小されます。"
+            ],
+            "markdownDescription": "固定されたエディターのタブのサイズ設定を制御します。固定されたタブは、開いているすべてのタブの先頭に表示され、通常、固定が解除されるまで閉じません。`#workbench.editor.showTabs#` が `false` の場合、この値は無視されます。",
             "scope": 3
         },
         "workbench.editor.splitSizing": {
@@ -894,6 +910,22 @@
             ],
             "default": "bottom",
             "description": "パネル (端末、デバッグ コンソール、出力、問題) の既定の場所を制御します。ワークベンチの下、右、左に表示できます。",
+            "scope": 3
+        },
+        "workbench.panel.opensMaximized": {
+            "type": "string",
+            "enum": [
+                "always",
+                "never",
+                "preserve"
+            ],
+            "default": "preserve",
+            "description": "パネルを開くときに最大化するかどうかを制御します。開くときに必ず最大化するか、決して最大化しないか、最後に閉じたときの状態で開くかを選択できます。",
+            "enumDescriptions": [
+                "開くときにパネルを常に最大化します。",
+                "開くときにパネルを決して最大化しません。パネルは最大化されずに開きます。",
+                "閉じる前の状態でパネルを開きます。"
+            ],
             "scope": 3
         },
         "workbench.statusBar.visible": {
@@ -1134,6 +1166,18 @@
             "default": null,
             "scope": 3
         },
+        "remote.downloadExtensionsLocally": {
+            "type": "boolean",
+            "markdownDescription": "有効にすると、拡張機能がローカルにダウンロードされ、リモート上にインストールされます。",
+            "default": false,
+            "scope": 3
+        },
+        "remote.restoreForwardedPorts": {
+            "type": "boolean",
+            "markdownDescription": "ワークスペースで転送したポートを復元します。",
+            "default": false,
+            "scope": 3
+        },
         "remote.extensionKind": {
             "type": "object",
             "markdownDescription": "拡張子の種類をオーバーライドします。'ui' 拡張機能はローカル マシンでインストールされて実行されますが、'workspace' 拡張機能はリモートで実行されます。この設定を使用して拡張機能の既定の種類をオーバーライドすることで、その拡張機能をローカルまたはリモートのいずれかでインストールして有効にするかどうかを指定します。",
@@ -1223,7 +1267,7 @@
         },
         "workbench.preferredDarkColorTheme": {
             "type": "string",
-            "description": "'window.autoDetectColorScheme' が有効な場合に、暗い OS の外観に適した色のテーマを指定します。",
+            "markdownDescription": "`#window.autoDetectColorScheme#` が有効な場合に、ダークな OS の外観に適した色のテーマを指定します。",
             "default": "Default Dark+",
             "enum": [
                 "Abyss",
@@ -1262,7 +1306,7 @@
         },
         "workbench.preferredLightColorTheme": {
             "type": "string",
-            "description": "'window.autoDetectColorScheme' が有効な場合に、ライトな OS の外観に適した色のテーマを指定します。",
+            "markdownDescription": "`#window.autoDetectColorScheme#` が有効な場合に、ライトな OS の外観に適した色のテーマを指定します。",
             "default": "Default Light+",
             "enum": [
                 "Abyss",
@@ -1301,7 +1345,7 @@
         },
         "workbench.preferredHighContrastColorTheme": {
             "type": "string",
-            "description": "'window.autoDetectHighContrast' が有効な場合に、ハイ コントラスト モードに適した色のテーマを指定します。",
+            "markdownDescription": "`#window.autoDetectHighContrast#` が有効な場合に、ハイ コントラスト モードに適した色のテーマを指定します。",
             "default": "Default High Contrast",
             "enum": [
                 "Abyss",
@@ -1337,12 +1381,6 @@
             ],
             "included": true,
             "errorMessage": "テーマが不明、またはインストールされていません。",
-            "scope": 3
-        },
-        "window.autoDetectColorScheme": {
-            "type": "boolean",
-            "description": "設定されている場合は、OS の外観に基づいて自動的に優先の配色テーマに切り替わります。",
-            "default": false,
             "scope": 3
         },
         "workbench.iconTheme": {
@@ -1457,6 +1495,12 @@
             "errorMessage": "製品アイコンのテーマが不明であるか、インストールされていません。",
             "scope": 3
         },
+        "window.autoDetectColorScheme": {
+            "type": "boolean",
+            "description": "設定されている場合は、OS の外観に基づいて自動的に優先の配色テーマに切り替わります。",
+            "default": false,
+            "scope": 3
+        },
         "editor.tokenColorCustomizations": {
             "description": "エディターの構文の色とフォント スタイルを、現在選択されている配色テーマからオーバーライドします。",
             "default": {},
@@ -1498,6 +1542,7 @@
                         "semanticHighlighting": {
                             "description": "このテーマに対してセマンティックの強調表示を有効にするかどうか。",
                             "deprecationMessage": "代わりに 'editor.semanticTokenColorCustomizations' 設定で 'enabled' を使用してください。",
+                            "markdownDeprecationMessage": "代わりに `#editor.semanticTokenColorCustomizations#` 設定で 'enabled' を使用してください。",
                             "type": "boolean"
                         }
                     }
@@ -1541,6 +1586,7 @@
                                 "semanticHighlighting": {
                                     "description": "このテーマに対してセマンティックの強調表示を有効にするかどうか。",
                                     "deprecationMessage": "代わりに 'editor.semanticTokenColorCustomizations' 設定で 'enabled' を使用してください。",
+                                    "markdownDeprecationMessage": "代わりに `#editor.semanticTokenColorCustomizations#` 設定で 'enabled' を使用してください。",
                                     "type": "boolean"
                                 }
                             },
@@ -1583,6 +1629,7 @@
                                 "semanticHighlighting": {
                                     "description": "このテーマに対してセマンティックの強調表示を有効にするかどうか。",
                                     "deprecationMessage": "代わりに 'editor.semanticTokenColorCustomizations' 設定で 'enabled' を使用してください。",
+                                    "markdownDeprecationMessage": "代わりに `#editor.semanticTokenColorCustomizations#` 設定で 'enabled' を使用してください。",
                                     "type": "boolean"
                                 }
                             },
@@ -1625,6 +1672,7 @@
                                 "semanticHighlighting": {
                                     "description": "このテーマに対してセマンティックの強調表示を有効にするかどうか。",
                                     "deprecationMessage": "代わりに 'editor.semanticTokenColorCustomizations' 設定で 'enabled' を使用してください。",
+                                    "markdownDeprecationMessage": "代わりに `#editor.semanticTokenColorCustomizations#` 設定で 'enabled' を使用してください。",
                                     "type": "boolean"
                                 }
                             },
@@ -1667,6 +1715,7 @@
                                 "semanticHighlighting": {
                                     "description": "このテーマに対してセマンティックの強調表示を有効にするかどうか。",
                                     "deprecationMessage": "代わりに 'editor.semanticTokenColorCustomizations' 設定で 'enabled' を使用してください。",
+                                    "markdownDeprecationMessage": "代わりに `#editor.semanticTokenColorCustomizations#` 設定で 'enabled' を使用してください。",
                                     "type": "boolean"
                                 }
                             },
@@ -1709,6 +1758,7 @@
                                 "semanticHighlighting": {
                                     "description": "このテーマに対してセマンティックの強調表示を有効にするかどうか。",
                                     "deprecationMessage": "代わりに 'editor.semanticTokenColorCustomizations' 設定で 'enabled' を使用してください。",
+                                    "markdownDeprecationMessage": "代わりに `#editor.semanticTokenColorCustomizations#` 設定で 'enabled' を使用してください。",
                                     "type": "boolean"
                                 }
                             },
@@ -1751,6 +1801,7 @@
                                 "semanticHighlighting": {
                                     "description": "このテーマに対してセマンティックの強調表示を有効にするかどうか。",
                                     "deprecationMessage": "代わりに 'editor.semanticTokenColorCustomizations' 設定で 'enabled' を使用してください。",
+                                    "markdownDeprecationMessage": "代わりに `#editor.semanticTokenColorCustomizations#` 設定で 'enabled' を使用してください。",
                                     "type": "boolean"
                                 }
                             },
@@ -1793,6 +1844,7 @@
                                 "semanticHighlighting": {
                                     "description": "このテーマに対してセマンティックの強調表示を有効にするかどうか。",
                                     "deprecationMessage": "代わりに 'editor.semanticTokenColorCustomizations' 設定で 'enabled' を使用してください。",
+                                    "markdownDeprecationMessage": "代わりに `#editor.semanticTokenColorCustomizations#` 設定で 'enabled' を使用してください。",
                                     "type": "boolean"
                                 }
                             },
@@ -1835,6 +1887,7 @@
                                 "semanticHighlighting": {
                                     "description": "このテーマに対してセマンティックの強調表示を有効にするかどうか。",
                                     "deprecationMessage": "代わりに 'editor.semanticTokenColorCustomizations' 設定で 'enabled' を使用してください。",
+                                    "markdownDeprecationMessage": "代わりに `#editor.semanticTokenColorCustomizations#` 設定で 'enabled' を使用してください。",
                                     "type": "boolean"
                                 }
                             },
@@ -1877,6 +1930,7 @@
                                 "semanticHighlighting": {
                                     "description": "このテーマに対してセマンティックの強調表示を有効にするかどうか。",
                                     "deprecationMessage": "代わりに 'editor.semanticTokenColorCustomizations' 設定で 'enabled' を使用してください。",
+                                    "markdownDeprecationMessage": "代わりに `#editor.semanticTokenColorCustomizations#` 設定で 'enabled' を使用してください。",
                                     "type": "boolean"
                                 }
                             },
@@ -1919,6 +1973,7 @@
                                 "semanticHighlighting": {
                                     "description": "このテーマに対してセマンティックの強調表示を有効にするかどうか。",
                                     "deprecationMessage": "代わりに 'editor.semanticTokenColorCustomizations' 設定で 'enabled' を使用してください。",
+                                    "markdownDeprecationMessage": "代わりに `#editor.semanticTokenColorCustomizations#` 設定で 'enabled' を使用してください。",
                                     "type": "boolean"
                                 }
                             },
@@ -1961,6 +2016,7 @@
                                 "semanticHighlighting": {
                                     "description": "このテーマに対してセマンティックの強調表示を有効にするかどうか。",
                                     "deprecationMessage": "代わりに 'editor.semanticTokenColorCustomizations' 設定で 'enabled' を使用してください。",
+                                    "markdownDeprecationMessage": "代わりに `#editor.semanticTokenColorCustomizations#` 設定で 'enabled' を使用してください。",
                                     "type": "boolean"
                                 }
                             },
@@ -2003,6 +2059,7 @@
                                 "semanticHighlighting": {
                                     "description": "このテーマに対してセマンティックの強調表示を有効にするかどうか。",
                                     "deprecationMessage": "代わりに 'editor.semanticTokenColorCustomizations' 設定で 'enabled' を使用してください。",
+                                    "markdownDeprecationMessage": "代わりに `#editor.semanticTokenColorCustomizations#` 設定で 'enabled' を使用してください。",
                                     "type": "boolean"
                                 }
                             },
@@ -2045,6 +2102,7 @@
                                 "semanticHighlighting": {
                                     "description": "このテーマに対してセマンティックの強調表示を有効にするかどうか。",
                                     "deprecationMessage": "代わりに 'editor.semanticTokenColorCustomizations' 設定で 'enabled' を使用してください。",
+                                    "markdownDeprecationMessage": "代わりに `#editor.semanticTokenColorCustomizations#` 設定で 'enabled' を使用してください。",
                                     "type": "boolean"
                                 }
                             },
@@ -2087,6 +2145,7 @@
                                 "semanticHighlighting": {
                                     "description": "このテーマに対してセマンティックの強調表示を有効にするかどうか。",
                                     "deprecationMessage": "代わりに 'editor.semanticTokenColorCustomizations' 設定で 'enabled' を使用してください。",
+                                    "markdownDeprecationMessage": "代わりに `#editor.semanticTokenColorCustomizations#` 設定で 'enabled' を使用してください。",
                                     "type": "boolean"
                                 }
                             },
@@ -2353,6 +2412,7 @@
         },
         "editor.tokenColorCustomizationsExperimental": {
             "deprecationMessage": "代わりに 'editor.semanticTokenColorCustomizations' を使用してください。",
+            "markdownDeprecationMessage": "代わりに `#editor.semanticTokenColorCustomizations#` を使用してください。",
             "default": {},
             "allOf": [
                 {
@@ -2535,7 +2595,7 @@
             "scope": 3
         },
         "task.quickOpen.detail": {
-            "markdownDescription": "[タスクの実行] クイック ピックに詳細があるタスクについてタスクの詳細を表示するかどうかを制御します。",
+            "markdownDescription": "[タスクの実行] など、タスク クイック ピックに詳細があるタスクについてタスクの詳細を表示するかどうかを制御します。",
             "type": "boolean",
             "default": true,
             "scope": 3
@@ -2566,18 +2626,6 @@
                 "実行前にエディターを保存するかどうかを確認します。"
             ],
             "default": "always",
-            "scope": 3
-        },
-        "remote.downloadExtensionsLocally": {
-            "type": "boolean",
-            "markdownDescription": "有効にすると、拡張機能がローカルにダウンロードされ、リモート上にインストールされます。",
-            "default": false,
-            "scope": 3
-        },
-        "remote.restoreForwardedPorts": {
-            "type": "boolean",
-            "markdownDescription": "ワークスペースで転送したポートを復元します。",
-            "default": false,
             "scope": 3
         },
         "workbench.editorAssociations": {
@@ -3423,40 +3471,66 @@
             "scope": 3
         },
         "terminal.integrated.fontWeight": {
-            "type": "string",
-            "enum": [
-                "normal",
-                "bold",
-                "100",
-                "200",
-                "300",
-                "400",
-                "500",
-                "600",
-                "700",
-                "800",
-                "900"
+            "anyOf": [
+                {
+                    "type": "number",
+                    "minimum": 1,
+                    "maximum": 1000,
+                    "errorMessage": "使用できるのは \"標準\" および \"太字\" のキーワードまたは 1 ～ 1000 の数字のみです。"
+                },
+                {
+                    "type": "string",
+                    "pattern": "^(normal|bold|1000|[1-9][0-9]{0,2})$"
+                },
+                {
+                    "enum": [
+                        "normal",
+                        "bold",
+                        "100",
+                        "200",
+                        "300",
+                        "400",
+                        "500",
+                        "600",
+                        "700",
+                        "800",
+                        "900"
+                    ]
+                }
             ],
-            "description": "ターミナル内で太字以外のテキストに使用するフォントの太さ。",
+            "description": "端末内で太字以外のテキストに使用するフォントの太さ。\"normal\" と \"bold\" のキーワード、または 1 から 1000 の間の数字を受け入れます。",
             "default": "normal",
             "scope": 3
         },
         "terminal.integrated.fontWeightBold": {
-            "type": "string",
-            "enum": [
-                "normal",
-                "bold",
-                "100",
-                "200",
-                "300",
-                "400",
-                "500",
-                "600",
-                "700",
-                "800",
-                "900"
+            "anyOf": [
+                {
+                    "type": "number",
+                    "minimum": 1,
+                    "maximum": 1000,
+                    "errorMessage": "使用できるのは \"標準\" および \"太字\" のキーワードまたは 1 ～ 1000 の数字のみです。"
+                },
+                {
+                    "type": "string",
+                    "pattern": "^(normal|bold|1000|[1-9][0-9]{0,2})$"
+                },
+                {
+                    "enum": [
+                        "normal",
+                        "bold",
+                        "100",
+                        "200",
+                        "300",
+                        "400",
+                        "500",
+                        "600",
+                        "700",
+                        "800",
+                        "900"
+                    ]
+                }
             ],
-            "description": "ターミナル内で太字のテキストに使用するフォントの太さ。",
+            "description": "端末内で太字のテキストに使用するフォントの太さ。\"normal\" と \"bold\" のキーワード、または 1 から 1000 の間の数字を受け入れます。",
             "default": "bold",
             "scope": 3
         },
@@ -3775,28 +3849,6 @@
             ],
             "default": "off",
             "description": "VS Code と CSS 言語サーバー間の通信をトレースします。"
-        },
-        "debug.node.autoAttach": {
-            "scope": 3,
-            "type": "string",
-            "enum": [
-                "disabled",
-                "on",
-                "off"
-            ],
-            "enumDescriptions": [
-                "オート アタッチが無効で、ステータス バーに表示されません。",
-                "自動アタッチがアクティブです。",
-                "自動アタッチが非アクティブです。"
-            ],
-            "description": "統合ターミナルからデバッグ モードで node.js が起動されたときに、自動的に node デバッガーをアタッチします。",
-            "default": "disabled"
-        },
-        "debug.javascript.usePreviewAutoAttach": {
-            "scope": 3,
-            "type": "boolean",
-            "default": true,
-            "description": "自動アタッチのプレビュー デバッガーのバージョンを使用するかどうか。"
         },
         "emmet.showExpandedAbbreviation": {
             "type": [
@@ -4170,6 +4222,18 @@
             "description": "強制的なプッシュの前に確認を求めるかどうかを制御します。",
             "scope": 3
         },
+        "git.allowNoVerifyCommit": {
+            "type": "boolean",
+            "default": false,
+            "description": "pre-commit と commit-msg フックを実行しないコミットを許可するかどうかを制御します。",
+            "scope": 3
+        },
+        "git.confirmNoVerifyCommit": {
+            "type": "boolean",
+            "default": true,
+            "description": "確認せずにコミットする前に確認メッセージを表示するかどうかを制御します。",
+            "scope": 3
+        },
         "git.branchSortOrder": {
             "type": "string",
             "enum": [
@@ -4299,12 +4363,6 @@
             ],
             "default": "top",
             "description": "Where a \"Run\" and \"Debug\" code lens should be shown in your npm scripts. It may be on \"all\", scripts, on \"top\" of the script section, or \"never\".",
-            "scope": 3
-        },
-        "debug.javascript.warnOnLongPrediction": {
-            "type": "boolean",
-            "default": true,
-            "description": "Whether a loading prompt should be shown if breakpoint prediction takes a while.",
             "scope": 3
         },
         "debug.javascript.terminalOptions": {
@@ -4558,7 +4616,7 @@
                 "nodeVersionHint": {
                     "type": "number",
                     "minimum": 8,
-                    "description": "Retry for this number of milliseconds to connect to Node.js. Default is 10000 ms.",
+                    "description": "Allows you to explicitly specify the Node version that's running, which can be used to disable or enable certain behaviors in cases where the automatic version detection does not working.",
                     "default": 12
                 },
                 "command": {
@@ -5085,7 +5143,7 @@
                                         "nodeVersionHint": {
                                             "type": "number",
                                             "minimum": 8,
-                                            "description": "Retry for this number of milliseconds to connect to Node.js. Default is 10000 ms.",
+                                            "description": "Allows you to explicitly specify the Node version that's running, which can be used to disable or enable certain behaviors in cases where the automatic version detection does not working.",
                                             "default": 12
                                         },
                                         "program": {
@@ -5435,7 +5493,7 @@
                                         "nodeVersionHint": {
                                             "type": "number",
                                             "minimum": 8,
-                                            "description": "Retry for this number of milliseconds to connect to Node.js. Default is 10000 ms.",
+                                            "description": "Allows you to explicitly specify the Node version that's running, which can be used to disable or enable certain behaviors in cases where the automatic version detection does not working.",
                                             "default": 12
                                         },
                                         "command": {
@@ -5793,7 +5851,7 @@
                 "nodeVersionHint": {
                     "type": "number",
                     "minimum": 8,
-                    "description": "Retry for this number of milliseconds to connect to Node.js. Default is 10000 ms.",
+                    "description": "Allows you to explicitly specify the Node version that's running, which can be used to disable or enable certain behaviors in cases where the automatic version detection does not working.",
                     "default": 12
                 },
                 "address": {
@@ -5860,16 +5918,18 @@
         },
         "debug.javascript.autoAttachFilter": {
             "type": "string",
-            "default": "smart",
+            "default": "disabled",
             "enum": [
                 "always",
                 "smart",
-                "onlyWithFlag"
+                "onlyWithFlag",
+                "disabled"
             ],
             "enumDescriptions": [
                 "Auto attach to every Node.js process launched in the terminal.",
                 "Auto attach when running scripts that aren't in a node_modules folder.",
-                "Only auto attach when the `--inspect` is given."
+                "Only auto attach when the `--inspect` is given.",
+                "Auto attach is disabled and not shown in status bar."
             ],
             "markdownDescription": "Configures which processes to automatically attach and debug when `#debug.node.autoAttach#` is on. A Node process launched with the `--inspect` flag will always be attached to, regardless of this setting.",
             "scope": 3
@@ -5880,16 +5940,22 @@
                 "type": "string"
             },
             "default": [
-                "!**/node_modules/**",
+                "!**/{node_modules,npm-global,.yarn}/**",
                 "**/$KNOWN_TOOLS$/**"
             ],
-            "markdownDescription": "If one of these glob patterns matches the Node.js entrypoint script in smart `#debug.javascript.autoAttachFilter#` mode, we will debug that process. `$KNOWN_TOOLS$` is replaced with a list of names of common test and code runners.",
+            "markdownDescription": "Configures glob patterns for determining when to attach in \"smart\" `#debug.javascript.autoAttachFilter#` mode. `$KNOWN_TOOLS$` is replaced with a list of names of common test and code runners. [Read more on the VS Code docs](https://code.visualstudio.com/docs/nodejs/nodejs-debugging#_auto-attach-smart-patterns).",
             "scope": 3
         },
         "debug.javascript.breakOnConditionalError": {
             "type": "boolean",
             "default": false,
             "markdownDescription": "Whether to stop when conditional breakpoints throw an error. Note: your launch.json `type` must be prefixed with `pwa-` to use this, such as `pwa-node`.",
+            "scope": 3
+        },
+        "debug.javascript.unmapMissingSources": {
+            "type": "boolean",
+            "default": false,
+            "description": "Configures whether sourcemapped file where the original file can't be read will automatically be unmapped. If this is false (default), a prompt is shown.",
             "scope": 3
         },
         "debug.node.showUseWslIsDeprecatedWarning": {
@@ -6383,11 +6449,11 @@
             ],
             "enumDescriptions": [
                 "エディターはスクリーン リーダーがいつ接続されたかを検出するためにプラットフォーム API を使用します。",
-                "エディターは永続的にスクリーン リーダー向けに最適化されます。",
+                "エディターは永続的にスクリーン リーダーでの使用向けに最適化されます。単語の折り返しは無効になります。",
                 "エディターはスクリーン リーダー向けに最適化されません。"
             ],
             "default": "auto",
-            "description": "エディターをスクリーン リーダーに最適化されたモードで実行するかどうかを制御します。",
+            "description": "エディターをスクリーン リーダーに最適化されたモードで実行するかどうかを制御します。オンに設定すると単語の折り返しが無効になります。",
             "scope": 5
         },
         "editor.accessibilityPageSize": {
@@ -6477,7 +6543,7 @@
                 "引用符ではなく、角かっこで囲みます。",
                 ""
             ],
-            "description": "エディターが自動的に選択範囲を囲む必要があるかどうかを制御します。",
+            "description": "引用符または角かっこを入力するときに、エディターが選択範囲を自動的に囲むかどうかを制御します。",
             "type": "string",
             "enum": [
                 "languageDefined",
@@ -7640,9 +7706,9 @@
             "description": "問題を起こす可能性がある、普通ではない行終端記号は削除してください。",
             "type": "string",
             "enum": [
+                "auto",
                 "off",
-                "prompt",
-                "auto"
+                "prompt"
             ],
             "default": "prompt",
             "scope": 5
@@ -8513,7 +8579,7 @@
         },
         "css.customData": {
             "type": "array",
-            "markdownDescription": "[カスタムデータ形式](https://github.com/Microsoft/vscode-css-languageservice/blob/master/docs/customData.md) に従って JSON ファイルを指す相対ファイル パスの一覧。\r\n\r\nVS Code では、起動時にカスタム データを読み込んで、ユーザーが JSON ファイルに指定したカスタム CSS プロパティ、ディレクティブ、擬似クラス、擬似要素の CSS サポートを強化します。\r\n\r\nファイル パスはワークスペースに対して相対的であり、ワークスペース フォルダーの設定のみが考慮されます。",
+            "markdownDescription": "[カスタム データ形式](https://github.com/microsoft/vscode-css-languageservice/blob/master/docs/customData.md) に従って JSON ファイルを指す相対ファイル パスの一覧。\r\n\r\nVS Code では、起動時にカスタム データを読み込んで、ユーザーが JSON ファイルに指定するカスタム CSS プロパティ、ディレクティブ、擬似クラス、擬似要素の CSS サポートを強化します。\r\n\r\nファイル パスはワークスペースに対して相対的であり、ワークスペース フォルダーの設定のみが考慮されます。",
             "default": [],
             "items": {
                 "type": "string"
@@ -9475,7 +9541,7 @@
         },
         "html.customData": {
             "type": "array",
-            "markdownDescription": "[カスタム データ形式](https://github.com/Microsoft/vscode-html-languageservice/blob/master/docs/customData.md) に従って JSON ファイルを指す相対ファイル パスの一覧。\r\n\r\nVS Code では、起動時にカスタム データを読み込んで、ユーザーが JSON ファイルに指定したカスタム HTML タグ、属性、属性値の HTML サポートを強化します。\r\n\r\nファイル パスはワークスペースを基準とした相対パスであり、ワークスペース フォルダーの設定のみが考慮されます。",
+            "markdownDescription": "[カスタム データ形式](https://github.com/microsoft/vscode-html-languageservice/blob/master/docs/customData.md) に従って JSON ファイルを指す相対ファイル パスの一覧。\r\n\r\nVS Code では、起動時にカスタム データを読み込んで、ユーザーが JSON ファイルに指定するカスタム HTML タグ、属性、属性値の HTML サポートを強化します。\r\n\r\nファイル パスはワークスペースを基準とした相対パスであり、ワークスペース フォルダーの設定のみが考慮されます。",
             "default": [],
             "items": {
                 "type": "string"
