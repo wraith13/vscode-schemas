@@ -507,7 +507,7 @@
         },
         "telemetry.enableTelemetry": {
             "type": "boolean",
-            "description": "Enable usage data and errors to be sent to a Microsoft online service.",
+            "markdownDescription": "Enable usage data and errors to be sent to a Microsoft online service. Read our privacy statement [here](https://go.microsoft.com/fwlink/?LinkId=786907).",
             "default": true,
             "tags": [
                 "usesOnlineServices"
@@ -737,7 +737,7 @@
                 "A pinned tab will show in a compact form with only icon or first letter of the editor name.",
                 "A pinned tab shrinks to a compact fixed size showing parts of the editor name."
             ],
-            "markdownDescription": "Controls the sizing of pinned editor tabs. Pinned tabs are sorted to the begining of all opened tabs and typically do not close until unpinned. This value is ignored when `#workbench.editor.showTabs#` is `false`.",
+            "markdownDescription": "Controls the sizing of pinned editor tabs. Pinned tabs are sorted to the beginning of all opened tabs and typically do not close until unpinned. This value is ignored when `#workbench.editor.showTabs#` is `false`.",
             "scope": 3
         },
         "workbench.editor.splitSizing": {
@@ -1071,18 +1071,18 @@
             "default": [],
             "scope": 3
         },
+        "problems.decorations.enabled": {
+            "description": "Show Errors & Warnings on files and folder.",
+            "type": "boolean",
+            "default": true,
+            "scope": 3
+        },
         "workbench.sash.size": {
             "type": "number",
             "default": 4,
             "minimum": 4,
             "maximum": 20,
             "description": "Controls the feedback area size in pixels of the dragging area in between views/editors. Set it to a larger value if you feel it's hard to resize views using the mouse.",
-            "scope": 3
-        },
-        "problems.decorations.enabled": {
-            "description": "Show Errors & Warnings on files and folder.",
-            "type": "boolean",
-            "default": true,
             "scope": 3
         },
         "window.zoomLevel": {
@@ -1172,12 +1172,6 @@
             "default": false,
             "scope": 3
         },
-        "remote.restoreForwardedPorts": {
-            "type": "boolean",
-            "markdownDescription": "Restores the ports you forwarded in a workspace.",
-            "default": false,
-            "scope": 3
-        },
         "remote.extensionKind": {
             "type": "object",
             "markdownDescription": "Override the kind of an extension. `ui` extensions are installed and run on the local machine while `workspace` extensions are run on the remote. By overriding an extension's default kind using this setting, you specify if that extension should be installed and enabled locally or remotely.",
@@ -1224,6 +1218,18 @@
                     "ui"
                 ]
             },
+            "scope": 3
+        },
+        "remote.restoreForwardedPorts": {
+            "type": "boolean",
+            "markdownDescription": "Restores the ports you forwarded in a workspace.",
+            "default": false,
+            "scope": 3
+        },
+        "remote.autoForwardPorts": {
+            "type": "boolean",
+            "markdownDescription": "When enabled, URLs with ports (ex. `http://127.0.0.1:3000`) that are printed to your terminals are automatically forwarded.",
+            "default": true,
             "scope": 3
         },
         "workbench.colorTheme": {
@@ -2932,7 +2938,7 @@
         },
         "explorer.openEditors.visible": {
             "type": "number",
-            "description": "Number of editors shown in the Open Editors pane.",
+            "description": "Number of editors shown in the Open Editors pane. Setting this to 0 hides the Open Editors pane.",
             "default": 9,
             "scope": 3
         },
@@ -3777,6 +3783,48 @@
             "default": true,
             "scope": 3
         },
+        "terminal.integrated.localEchoLatencyThreshold": {
+            "description": "Experimental: length of network delay, in milliseconds, where local edits will be echoed on the terminal without waiting for server acknowledgement. If '0', local echo will always be on, and if '-1' it will be disabled.",
+            "type": "integer",
+            "minimum": -1,
+            "default": 30,
+            "scope": 3
+        },
+        "terminal.integrated.localEchoStyle": {
+            "description": "Experimental: terminal style of locally echoed text; either a font style or an RGB color.",
+            "default": "dim",
+            "oneOf": [
+                {
+                    "type": "string",
+                    "default": "dim",
+                    "enum": [
+                        "bold",
+                        "dim",
+                        "italic",
+                        "underlined",
+                        "inverted"
+                    ]
+                },
+                {
+                    "type": "string",
+                    "format": "color-hex",
+                    "default": "#ff0000"
+                }
+            ],
+            "scope": 3
+        },
+        "terminal.integrated.serverSpawn": {
+            "description": "Experimental: spawn remote terminals from the remote agent process instead of the remote extension host",
+            "type": "boolean",
+            "default": true,
+            "scope": 3
+        },
+        "terminal.integrated.enablePersistentSessions": {
+            "description": "Experimental: persist terminal sessions for the workspace across window reloads. Currently only supported in VS Code Remote workspaces.",
+            "type": "boolean",
+            "default": true,
+            "scope": 3
+        },
         "timeline.excludeSources": {
             "type": [
                 "array",
@@ -4142,15 +4190,6 @@
             "default": false,
             "scope": 3
         },
-        "git.defaultCloneDirectory": {
-            "type": [
-                "string",
-                "null"
-            ],
-            "default": null,
-            "description": "The default location to clone a git repository.",
-            "scope": 3
-        },
         "git.decorations.enabled": {
             "type": "boolean",
             "default": true,
@@ -4248,6 +4287,25 @@
             "deprecationMessage": "This setting is now deprecated, please use `github.gitAuthentication` instead.",
             "scope": 3,
             "default": null
+        },
+        "git.timeline.date": {
+            "enum": [
+                "committed",
+                "authored"
+            ],
+            "enumDescriptions": [
+                "Use the committed date",
+                "Use the authored date"
+            ],
+            "default": "committed",
+            "description": "Controls which date to use for items in the Timeline view",
+            "scope": 3
+        },
+        "git.timeline.showAuthor": {
+            "type": "boolean",
+            "default": true,
+            "description": "Controls whether to show the commit author in the Timeline view",
+            "scope": 3
         },
         "html.format.enable": {
             "type": "boolean",
@@ -5508,6 +5566,16 @@
                                 }
                             ]
                         },
+                        "perScriptSourcemaps": {
+                            "type": "string",
+                            "default": "auto",
+                            "enum": [
+                                "yes",
+                                "no",
+                                "auto"
+                            ],
+                            "description": "Whether scripts are loaded individually with unique sourcemaps containing the basename of the source file. This can be set to optimize sourcemap handling when dealing with lots of small scripts. If set to \"auto\", we'll detect known cases where this is appropriate."
+                        },
                         "port": {
                             "type": "number",
                             "description": "Port for the browser to listen on. Defaults to \"0\", which will cause the browser to be debugged via pipes, which is generally more secure and should be chosen unless you need to attach to the browser from another tool.",
@@ -5940,7 +6008,7 @@
                 "type": "string"
             },
             "default": [
-                "!**/{node_modules,npm-global,.yarn}/**",
+                "!**/{node_modules,npm-global,.yarn,.nvm}/**",
                 "**/$KNOWN_TOOLS$/**"
             ],
             "markdownDescription": "Configures glob patterns for determining when to attach in \"smart\" `#debug.javascript.autoAttachFilter#` mode. `$KNOWN_TOOLS$` is replaced with a list of names of common test and code runners. [Read more on the VS Code docs](https://code.visualstudio.com/docs/nodejs/nodejs-debugging#_auto-attach-smart-patterns).",
@@ -7455,12 +7523,16 @@
             "description": "Controls whether to show or hide icons in suggestions.",
             "scope": 5
         },
+        "editor.suggest.showStatusBar": {
+            "type": "boolean",
+            "default": false,
+            "description": "Controls the visibility of the status bar at the bottom of the suggest widget.",
+            "scope": 5
+        },
         "editor.suggest.maxVisibleSuggestions": {
             "type": "number",
-            "default": 12,
-            "minimum": 1,
-            "maximum": 15,
-            "description": "Controls how many suggestions IntelliSense will show before showing a scrollbar (maximum 15).",
+            "deprecationMessage": "This setting is deprecated. The suggest widget can now be resized.",
+            "default": 0,
             "scope": 5
         },
         "editor.suggest.filteredTypes": {
@@ -7637,12 +7709,6 @@
             "markdownDescription": "When enabled IntelliSense shows `issues`-suggestions.",
             "scope": 5
         },
-        "editor.suggest.statusBar.visible": {
-            "type": "boolean",
-            "default": false,
-            "markdownDescription": "Controls the visibility of the status bar at the bottom of the suggest widget.",
-            "scope": 5
-        },
         "editor.suggestFontSize": {
             "markdownDescription": "Font size for the suggest widget. When set to `0`, the value of `#editor.fontSize#` is used.",
             "type": "integer",
@@ -7699,9 +7765,9 @@
         },
         "editor.unusualLineTerminators": {
             "enumDescriptions": [
+                "Unusual line terminators are automatically removed.",
                 "Unusual line terminators are ignored.",
-                "Unusual line terminators prompt to be removed.",
-                "Unusual line terminators are automatically removed."
+                "Unusual line terminators prompt to be removed."
             ],
             "description": "Remove unusual line terminators that might cause problems.",
             "type": "string",
@@ -7788,6 +7854,12 @@
             "type": "boolean",
             "default": true,
             "scope": 5
+        },
+        "editor.smartSelect.selectLeadingAndTrailingWhitespace": {
+            "scope": 5,
+            "description": "Weather leading and trailing whitespace should always be selected.",
+            "default": true,
+            "type": "boolean"
         },
         "editor.rename.enablePreview": {
             "scope": 5,
@@ -7982,8 +8054,15 @@
             "default": null,
             "enum": [
                 null,
-                "vscode.configuration-editing",
                 "vscode.css-language-features",
+                "vscode.html-language-features",
+                "vscode.json-language-features",
+                "vscode.markdown-language-features",
+                "vscode.php-language-features",
+                "ms-vscode.references-view",
+                "vscode.search-result",
+                "vscode.typescript-language-features",
+                "vscode.configuration-editing",
                 "vscode.debug-auto-launch",
                 "vscode.debug-server-ready",
                 "vscode.emmet",
@@ -7994,30 +8073,30 @@
                 "vscode.github-authentication",
                 "vscode.grunt",
                 "vscode.gulp",
-                "vscode.html-language-features",
                 "vscode.image-preview",
                 "vscode.jake",
-                "vscode.json-language-features",
-                "vscode.markdown-language-features",
-                "vscode.merge-conflict",
-                "vscode.microsoft-authentication",
                 "ms-vscode.js-debug",
                 "ms-vscode.js-debug-companion",
+                "vscode.merge-conflict",
+                "vscode.microsoft-authentication",
                 "ms-vscode.node-debug",
                 "ms-vscode.node-debug2",
-                "ms-vscode.references-view",
-                "ms-vscode.vscode-js-profile-table",
                 "vscode.npm",
-                "vscode.php-language-features",
                 "vscode.python",
-                "vscode.search-result",
-                "vscode.typescript-language-features",
-                "wraith13.save-vscode-schemas"
+                "wraith13.save-vscode-schemas",
+                "ms-vscode.vscode-js-profile-table"
             ],
             "markdownEnumDescriptions": [
                 "None",
-                "Provides capabilities (advanced IntelliSense, auto-fixing) in configuration files like settings, launch, and extension recommendation files.",
                 "Provides rich language support for CSS, LESS and SCSS files.",
+                "Provides rich language support for HTML and Handlebar files",
+                "Provides rich language support for JSON files.",
+                "Provides rich language support for Markdown.",
+                "Provides rich language support for PHP files.",
+                "Reference Search results as separate, stable view in the sidebar",
+                "Provides syntax highlighting and language features for tabbed search results.",
+                "Provides rich language support for JavaScript and TypeScript.",
+                "Provides capabilities (advanced IntelliSense, auto-fixing) in configuration files like settings, launch, and extension recommendation files.",
                 "Helper for auto-attach feature when node-debug extensions are not active.",
                 "Open URI in browser if server under debugging is ready.",
                 "Emmet support for VS Code",
@@ -8028,25 +8107,18 @@
                 "GitHub Authentication Provider",
                 "Extension to add Grunt capabilities to VS Code.",
                 "Extension to add Gulp capabilities to VSCode.",
-                "Provides rich language support for HTML and Handlebar files",
                 "Provides VS Code's built-in image preview",
                 "Extension to add Jake capabilities to VS Code.",
-                "Provides rich language support for JSON files.",
-                "Provides rich language support for Markdown.",
-                "Highlighting and commands for inline merge conflicts.",
-                "Microsoft authentication provider",
                 "An extension for debugging Node.js programs and Chrome.",
                 "Companion extension to js-debug that provides capability for remote debugging",
+                "Highlighting and commands for inline merge conflicts.",
+                "Microsoft authentication provider",
                 "Node.js debugging support (versions < 8.0)",
                 "Node.js debugging support",
-                "Reference Search results as separate, stable view in the sidebar",
-                "Text visualizer for profiles taken from the JavaScript debugger",
                 "Extension to add task support for npm scripts.",
-                "Provides rich language support for PHP files.",
                 "Provides syntax highlighting, bracket matching and folding in Python files.",
-                "Provides syntax highlighting and language features for tabbed search results.",
-                "Provides rich language support for JavaScript and TypeScript.",
-                "Save VS Code's schemas"
+                "Save VS Code's schemas",
+                "Text visualizer for profiles taken from the JavaScript debugger"
             ],
             "scope": 5
         },
@@ -8171,6 +8243,55 @@
             "description": "The default character set encoding to use when reading and writing files. This setting can also be configured per language.",
             "scope": 5,
             "enumDescriptions": [
+                "UTF-8",
+                "UTF-8 with BOM",
+                "UTF-16 LE",
+                "UTF-16 BE",
+                "Western (Windows 1252)",
+                "Western (ISO 8859-1)",
+                "Western (ISO 8859-3)",
+                "Western (ISO 8859-15)",
+                "Western (Mac Roman)",
+                "DOS (CP 437)",
+                "Arabic (Windows 1256)",
+                "Arabic (ISO 8859-6)",
+                "Baltic (Windows 1257)",
+                "Baltic (ISO 8859-4)",
+                "Celtic (ISO 8859-14)",
+                "Central European (Windows 1250)",
+                "Central European (ISO 8859-2)",
+                "Central European (CP 852)",
+                "Cyrillic (Windows 1251)",
+                "Cyrillic (CP 866)",
+                "Cyrillic (ISO 8859-5)",
+                "Cyrillic (KOI8-R)",
+                "Cyrillic (KOI8-U)",
+                "Estonian (ISO 8859-13)",
+                "Greek (Windows 1253)",
+                "Greek (ISO 8859-7)",
+                "Hebrew (Windows 1255)",
+                "Hebrew (ISO 8859-8)",
+                "Nordic (ISO 8859-10)",
+                "Romanian (ISO 8859-16)",
+                "Turkish (Windows 1254)",
+                "Turkish (ISO 8859-9)",
+                "Vietnamese (Windows 1258)",
+                "Simplified Chinese (GBK)",
+                "Simplified Chinese (GB18030)",
+                "Traditional Chinese (Big5)",
+                "Traditional Chinese (Big5-HKSCS)",
+                "Japanese (Shift JIS)",
+                "Japanese (EUC-JP)",
+                "Korean (EUC-KR)",
+                "Thai (Windows 874)",
+                "Latin/Thai (ISO 8859-11)",
+                "Cyrillic (KOI8-RU)",
+                "Tajik (KOI8-T)",
+                "Simplified Chinese (GB 2312)",
+                "Nordic DOS (CP 865)",
+                "Western European DOS (CP 850)"
+            ],
+            "enumItemLabels": [
                 "UTF-8",
                 "UTF-8 with BOM",
                 "UTF-16 LE",
@@ -9942,6 +10063,12 @@
             "description": "Defines space handling after opening and before closing non-empty braces.",
             "scope": 4
         },
+        "typescript.format.insertSpaceAfterOpeningAndBeforeClosingEmptyBraces": {
+            "type": "boolean",
+            "default": true,
+            "description": "Defines space handling after opening and before closing empty braces.",
+            "scope": 4
+        },
         "typescript.format.insertSpaceAfterOpeningAndBeforeClosingTemplateStringBraces": {
             "type": "boolean",
             "default": false,
@@ -10046,6 +10173,12 @@
             "type": "boolean",
             "default": true,
             "description": "Defines space handling after opening and before closing non-empty braces.",
+            "scope": 4
+        },
+        "javascript.format.insertSpaceAfterOpeningAndBeforeClosingEmptyBraces": {
+            "type": "boolean",
+            "default": true,
+            "description": "Defines space handling after opening and before closing empty braces.",
             "scope": 4
         },
         "javascript.format.insertSpaceAfterOpeningAndBeforeClosingTemplateStringBraces": {

@@ -507,7 +507,7 @@
         },
         "telemetry.enableTelemetry": {
             "type": "boolean",
-            "description": "利用状況データとエラーを Microsoft のオンライン サービスに送信できるようにします。",
+            "markdownDescription": "使用状況データとエラーを Microsoft のオンライン サービスに送信できるようにします。Microsoft のプライバシーに関する声明を[こちら](https://go.microsoft.com/fwlink/?LinkId=786907)からご確認ください。",
             "default": true,
             "tags": [
                 "usesOnlineServices"
@@ -737,7 +737,7 @@
                 "固定されたタブは、コンパクト形式でアイコンまたはエディター名の最初の文字のみが表示されます。",
                 "固定されたタブは、エディター名の一部を示すコンパクトな固定サイズに縮小されます。"
             ],
-            "markdownDescription": "固定されたエディターのタブのサイズ設定を制御します。固定されたタブは、開いているすべてのタブの先頭に表示され、通常、固定が解除されるまで閉じません。`#workbench.editor.showTabs#` が `false` の場合、この値は無視されます。",
+            "markdownDescription": "固定されたエディターのタブのサイズ設定を制御します。固定されたタブは、開いているすべてのタブの先頭に表示され、通常、固定が解除されるまで閉じられません。'#workbench.editor.showTabs#' が 'false' の場合、この値は無視されます。",
             "scope": 3
         },
         "workbench.editor.splitSizing": {
@@ -1071,18 +1071,18 @@
             "default": [],
             "scope": 3
         },
+        "problems.decorations.enabled": {
+            "description": "ファイルとフォルダーのエラーと警告を表示します。",
+            "type": "boolean",
+            "default": true,
+            "scope": 3
+        },
         "workbench.sash.size": {
             "type": "number",
             "default": 4,
             "minimum": 4,
             "maximum": 20,
             "description": "ビューまたはエディター間にあるドラッグ領域のフィードバック領域のサイズをピクセル単位で制御します。マウスを使用してビューのサイズを変更するのが困難な場合は、これを大きな値に設定してください。",
-            "scope": 3
-        },
-        "problems.decorations.enabled": {
-            "description": "ファイルとフォルダーのエラーと警告を表示します。",
-            "type": "boolean",
-            "default": true,
             "scope": 3
         },
         "window.zoomLevel": {
@@ -1172,12 +1172,6 @@
             "default": false,
             "scope": 3
         },
-        "remote.restoreForwardedPorts": {
-            "type": "boolean",
-            "markdownDescription": "ワークスペースで転送したポートを復元します。",
-            "default": false,
-            "scope": 3
-        },
         "remote.extensionKind": {
             "type": "object",
             "markdownDescription": "拡張子の種類をオーバーライドします。'ui' 拡張機能はローカル マシンでインストールされて実行されますが、'workspace' 拡張機能はリモートで実行されます。この設定を使用して拡張機能の既定の種類をオーバーライドすることで、その拡張機能をローカルまたはリモートのいずれかでインストールして有効にするかどうかを指定します。",
@@ -1224,6 +1218,18 @@
                     "ui"
                 ]
             },
+            "scope": 3
+        },
+        "remote.restoreForwardedPorts": {
+            "type": "boolean",
+            "markdownDescription": "ワークスペースで転送したポートを復元します。",
+            "default": false,
+            "scope": 3
+        },
+        "remote.autoForwardPorts": {
+            "type": "boolean",
+            "markdownDescription": "有効にすると、ターミナルに出力されるポートを含む URL (例: 'http://127.0.0.1:3000') が自動的に転送されます。",
+            "default": true,
             "scope": 3
         },
         "workbench.colorTheme": {
@@ -2932,7 +2938,7 @@
         },
         "explorer.openEditors.visible": {
             "type": "number",
-            "description": "[開いているエディター] ウィンドウに表示するエディターの数。",
+            "description": "[開いているエディター] ペインに表示されるエディターの数。これを 0 に設定すると、[開いているエディター] ペインが非表示になります。",
             "default": 9,
             "scope": 3
         },
@@ -3777,6 +3783,48 @@
             "default": true,
             "scope": 3
         },
+        "terminal.integrated.localEchoLatencyThreshold": {
+            "description": "試験的: ネットワーク遅延の長さ (ミリ秒単位)。ローカルの編集内容はサーバーの確認を待たずに端末にエコーされます。'0' の場合ローカル エコーは常にオンになり、'-1' の場合は無効になります。",
+            "type": "integer",
+            "minimum": -1,
+            "default": 30,
+            "scope": 3
+        },
+        "terminal.integrated.localEchoStyle": {
+            "description": "試験的: ローカル エコー テキストの端末スタイル。フォント スタイルまたは RGB カラー。",
+            "default": "dim",
+            "oneOf": [
+                {
+                    "type": "string",
+                    "default": "dim",
+                    "enum": [
+                        "bold",
+                        "dim",
+                        "italic",
+                        "underlined",
+                        "inverted"
+                    ]
+                },
+                {
+                    "type": "string",
+                    "format": "color-hex",
+                    "default": "#ff0000"
+                }
+            ],
+            "scope": 3
+        },
+        "terminal.integrated.serverSpawn": {
+            "description": "試験段階: リモート拡張機能ホストの代わりにリモート エージェント プロセスからリモート ターミナルを生成する",
+            "type": "boolean",
+            "default": true,
+            "scope": 3
+        },
+        "terminal.integrated.enablePersistentSessions": {
+            "description": "試験段階: ウィンドウの再読み込みをまたいでワークスペースのターミナル セッションを保持します。現在、VS Code リモート ワークスペースでのみサポートされています。",
+            "type": "boolean",
+            "default": true,
+            "scope": 3
+        },
         "timeline.excludeSources": {
             "type": [
                 "array",
@@ -4142,15 +4190,6 @@
             "default": false,
             "scope": 3
         },
-        "git.defaultCloneDirectory": {
-            "type": [
-                "string",
-                "null"
-            ],
-            "default": null,
-            "description": "Git リポジトリをクローンする既定の場所。",
-            "scope": 3
-        },
         "git.decorations.enabled": {
             "type": "boolean",
             "default": true,
@@ -4248,6 +4287,25 @@
             "deprecationMessage": "This setting is now deprecated, please use `github.gitAuthentication` instead.",
             "scope": 3,
             "default": null
+        },
+        "git.timeline.date": {
+            "enum": [
+                "committed",
+                "authored"
+            ],
+            "enumDescriptions": [
+                "コミットされた日付を使用する",
+                "作成日を使用する"
+            ],
+            "default": "committed",
+            "description": "タイムライン ビューでアイテムに使用する日付を制御します",
+            "scope": 3
+        },
+        "git.timeline.showAuthor": {
+            "type": "boolean",
+            "default": true,
+            "description": "タイムライン ビューにコミット作成者を表示するかどうかを制御します",
+            "scope": 3
         },
         "html.format.enable": {
             "type": "boolean",
@@ -5508,6 +5566,16 @@
                                 }
                             ]
                         },
+                        "perScriptSourcemaps": {
+                            "type": "string",
+                            "default": "auto",
+                            "enum": [
+                                "yes",
+                                "no",
+                                "auto"
+                            ],
+                            "description": "Whether scripts are loaded individually with unique sourcemaps containing the basename of the source file. This can be set to optimize sourcemap handling when dealing with lots of small scripts. If set to \"auto\", we'll detect known cases where this is appropriate."
+                        },
                         "port": {
                             "type": "number",
                             "description": "Port for the browser to listen on. Defaults to \"0\", which will cause the browser to be debugged via pipes, which is generally more secure and should be chosen unless you need to attach to the browser from another tool.",
@@ -5940,7 +6008,7 @@
                 "type": "string"
             },
             "default": [
-                "!**/{node_modules,npm-global,.yarn}/**",
+                "!**/{node_modules,npm-global,.yarn,.nvm}/**",
                 "**/$KNOWN_TOOLS$/**"
             ],
             "markdownDescription": "Configures glob patterns for determining when to attach in \"smart\" `#debug.javascript.autoAttachFilter#` mode. `$KNOWN_TOOLS$` is replaced with a list of names of common test and code runners. [Read more on the VS Code docs](https://code.visualstudio.com/docs/nodejs/nodejs-debugging#_auto-attach-smart-patterns).",
@@ -7455,12 +7523,16 @@
             "description": "提案のアイコンを表示するか、非表示にするかを制御します。",
             "scope": 5
         },
+        "editor.suggest.showStatusBar": {
+            "type": "boolean",
+            "default": false,
+            "description": "候補ウィジェットの下部にあるステータス バーの表示を制御します。",
+            "scope": 5
+        },
         "editor.suggest.maxVisibleSuggestions": {
             "type": "number",
-            "default": 12,
-            "minimum": 1,
-            "maximum": 15,
-            "description": "スクロール バーを表示する前に IntelliSense が表示する候補の数を制御します (最大 15 個)。",
+            "deprecationMessage": "この設定は非推奨です。候補ウィジェットのサイズ変更ができるようになりました。",
+            "default": 0,
             "scope": 5
         },
         "editor.suggest.filteredTypes": {
@@ -7637,12 +7709,6 @@
             "markdownDescription": "有効にすると、IntelliSense によって '問題' 候補が示されます。",
             "scope": 5
         },
-        "editor.suggest.statusBar.visible": {
-            "type": "boolean",
-            "default": false,
-            "markdownDescription": "候補ウィジェットの下部にあるステータス バーの表示を制御します。",
-            "scope": 5
-        },
         "editor.suggestFontSize": {
             "markdownDescription": "候補ウィジェットのフォント サイズ。`0` に設定すると、`#editor.fontSize#` の値が使用されます。",
             "type": "integer",
@@ -7699,9 +7765,9 @@
         },
         "editor.unusualLineTerminators": {
             "enumDescriptions": [
+                "通常とは異なる行の終端文字は自動的に削除される。",
                 "通常とは異なる行の終端文字は無視される。",
-                "通常とは異なる行の終端文字の削除プロンプトが表示される。",
-                "通常とは異なる行の終端文字は自動的に削除される。"
+                "通常とは異なる行の終端文字の削除プロンプトが表示される。"
             ],
             "description": "問題を起こす可能性がある、普通ではない行終端記号は削除してください。",
             "type": "string",
@@ -7788,6 +7854,12 @@
             "type": "boolean",
             "default": true,
             "scope": 5
+        },
+        "editor.smartSelect.selectLeadingAndTrailingWhitespace": {
+            "scope": 5,
+            "description": "先頭と末尾の空白を常に選択するかどうか。",
+            "default": true,
+            "type": "boolean"
         },
         "editor.rename.enablePreview": {
             "scope": 5,
@@ -7982,8 +8054,15 @@
             "default": null,
             "enum": [
                 null,
-                "vscode.configuration-editing",
                 "vscode.css-language-features",
+                "vscode.html-language-features",
+                "vscode.json-language-features",
+                "vscode.markdown-language-features",
+                "vscode.php-language-features",
+                "ms-vscode.references-view",
+                "vscode.search-result",
+                "vscode.typescript-language-features",
+                "vscode.configuration-editing",
                 "vscode.debug-auto-launch",
                 "vscode.debug-server-ready",
                 "vscode.emmet",
@@ -7994,30 +8073,30 @@
                 "vscode.github-authentication",
                 "vscode.grunt",
                 "vscode.gulp",
-                "vscode.html-language-features",
                 "vscode.image-preview",
                 "vscode.jake",
-                "vscode.json-language-features",
-                "vscode.markdown-language-features",
-                "vscode.merge-conflict",
-                "vscode.microsoft-authentication",
                 "ms-vscode.js-debug",
                 "ms-vscode.js-debug-companion",
+                "vscode.merge-conflict",
+                "vscode.microsoft-authentication",
                 "ms-vscode.node-debug",
                 "ms-vscode.node-debug2",
-                "ms-vscode.references-view",
-                "ms-vscode.vscode-js-profile-table",
                 "vscode.npm",
-                "vscode.php-language-features",
                 "vscode.python",
-                "vscode.search-result",
-                "vscode.typescript-language-features",
-                "wraith13.save-vscode-schemas"
+                "wraith13.save-vscode-schemas",
+                "ms-vscode.vscode-js-profile-table"
             ],
             "markdownEnumDescriptions": [
                 "なし",
-                "設定、起動、拡張機能の推奨事項ファイルといった、構成ファイルの機能 (高度な IntelliSense、auto-fixing など) を提供します。",
                 "CSS、LESS、SCSS ファイルに豊富な言語サポートを提供。",
+                "HTML と Handlebar ファイルに豊富な言語サポートを提供します",
+                "JSON ファイルに豊富な言語サポートを提供。",
+                "Markdown に豊富な言語サポートを提供。",
+                "PHP ファイルに豊富な言語サポートを提供します。",
+                "Reference Search results as separate, stable view in the sidebar",
+                "シンタックスハイライトとタブ付き検索結果向け言語機能を提供します。",
+                "JavaScript と TypeScript ファイルに豊富な言語サポートを提供。",
+                "設定、起動、拡張機能の推奨事項ファイルといった、構成ファイルの機能 (高度な IntelliSense、auto-fixing など) を提供します。",
                 "node-debug 拡張がアクティブではないときに自動的にアタッチする機能を補助します。",
                 "デバッグ対象のサーバーが準備完了になったら、URI をブラウザーで開きます。",
                 "VSCode の Emmet サポート",
@@ -8028,25 +8107,18 @@
                 "GitHub 認証プロバイダー",
                 "Extension to add Grunt capabilities to VS Code.",
                 "VS Code に Gulp 機能を追加する拡張機能。",
-                "HTML と Handlebar ファイルに豊富な言語サポートを提供します",
                 "VS Code の組み込みイメージ プレビューを提供します",
                 "VS Code に Jake 機能を追加する拡張機能。",
-                "JSON ファイルに豊富な言語サポートを提供。",
-                "Markdown に豊富な言語サポートを提供。",
-                "行内マージ競合のハイライト、コマンドを提供します。",
-                "Microsoft 認証プロバイダー",
                 "An extension for debugging Node.js programs and Chrome.",
                 "Companion extension to js-debug that provides capability for remote debugging",
+                "行内マージ競合のハイライト、コマンドを提供します。",
+                "Microsoft 認証プロバイダー",
                 "Node.js デバッグ サポート（バージョン 8.0 未満）",
                 "Node.js デバッグ サポート",
-                "Reference Search results as separate, stable view in the sidebar",
-                "Text visualizer for profiles taken from the JavaScript debugger",
                 "npm スクリプトのタスクサポートを追加する拡張",
-                "PHP ファイルに豊富な言語サポートを提供します。",
                 "Python ファイル内で構文ハイライト、かっこ一致、折りたたみを提供します。",
-                "シンタックスハイライトとタブ付き検索結果向け言語機能を提供します。",
-                "JavaScript と TypeScript ファイルに豊富な言語サポートを提供。",
-                "Save VS Code's schemas"
+                "Save VS Code's schemas",
+                "Text visualizer for profiles taken from the JavaScript debugger"
             ],
             "scope": 5
         },
@@ -8171,6 +8243,55 @@
             "description": "ファイルの読み取り/書き込みで使用する既定の文字セット エンコーディング。言語ごとに構成することも可能です。",
             "scope": 5,
             "enumDescriptions": [
+                "UTF-8",
+                "UTF-8 with BOM",
+                "UTF-16 LE",
+                "UTF-16 BE",
+                "Western (Windows 1252)",
+                "Western (ISO 8859-1)",
+                "Western (ISO 8859-3)",
+                "Western (ISO 8859-15)",
+                "Western (Mac Roman)",
+                "DOS (CP 437)",
+                "Arabic (Windows 1256)",
+                "Arabic (ISO 8859-6)",
+                "Baltic (Windows 1257)",
+                "Baltic (ISO 8859-4)",
+                "Celtic (ISO 8859-14)",
+                "Central European (Windows 1250)",
+                "Central European (ISO 8859-2)",
+                "Central European (CP 852)",
+                "Cyrillic (Windows 1251)",
+                "Cyrillic (CP 866)",
+                "Cyrillic (ISO 8859-5)",
+                "Cyrillic (KOI8-R)",
+                "Cyrillic (KOI8-U)",
+                "Estonian (ISO 8859-13)",
+                "Greek (Windows 1253)",
+                "Greek (ISO 8859-7)",
+                "Hebrew (Windows 1255)",
+                "Hebrew (ISO 8859-8)",
+                "Nordic (ISO 8859-10)",
+                "Romanian (ISO 8859-16)",
+                "Turkish (Windows 1254)",
+                "Turkish (ISO 8859-9)",
+                "Vietnamese (Windows 1258)",
+                "Simplified Chinese (GBK)",
+                "Simplified Chinese (GB18030)",
+                "Traditional Chinese (Big5)",
+                "Traditional Chinese (Big5-HKSCS)",
+                "Japanese (Shift JIS)",
+                "Japanese (EUC-JP)",
+                "Korean (EUC-KR)",
+                "Thai (Windows 874)",
+                "Latin/Thai (ISO 8859-11)",
+                "Cyrillic (KOI8-RU)",
+                "Tajik (KOI8-T)",
+                "Simplified Chinese (GB 2312)",
+                "Nordic DOS (CP 865)",
+                "Western European DOS (CP 850)"
+            ],
+            "enumItemLabels": [
                 "UTF-8",
                 "UTF-8 with BOM",
                 "UTF-16 LE",
@@ -9942,6 +10063,12 @@
             "description": "左右の空でないかっこの間のスペース処理を定義します。",
             "scope": 4
         },
+        "typescript.format.insertSpaceAfterOpeningAndBeforeClosingEmptyBraces": {
+            "type": "boolean",
+            "default": true,
+            "description": "左右の空のかっこの間のスペース処理を定義します。",
+            "scope": 4
+        },
         "typescript.format.insertSpaceAfterOpeningAndBeforeClosingTemplateStringBraces": {
             "type": "boolean",
             "default": false,
@@ -10046,6 +10173,12 @@
             "type": "boolean",
             "default": true,
             "description": "左右の空でないかっこの間のスペース処理を定義します。",
+            "scope": 4
+        },
+        "javascript.format.insertSpaceAfterOpeningAndBeforeClosingEmptyBraces": {
+            "type": "boolean",
+            "default": true,
+            "description": "左右の空のかっこの間のスペース処理を定義します。",
             "scope": 4
         },
         "javascript.format.insertSpaceAfterOpeningAndBeforeClosingTemplateStringBraces": {
