@@ -591,6 +591,16 @@
             "markdownDescription": "Controls whether keyboard navigation in lists and trees is automatically triggered simply by typing. If set to `false`, keyboard navigation is only triggered when executing the `list.toggleKeyboardNavigation` command, for which you can assign a keyboard shortcut.",
             "scope": 3
         },
+        "workbench.tree.expandMode": {
+            "type": "string",
+            "enum": [
+                "singleClick",
+                "doubleClick"
+            ],
+            "default": "singleClick",
+            "description": "Controls how tree folders are expanded when clicking the folder names.",
+            "scope": 3
+        },
         "breadcrumbs.enabled": {
             "description": "Enable/disable navigation breadcrumbs.",
             "type": "boolean",
@@ -655,15 +665,33 @@
             "default": true,
             "scope": 3
         },
+        "workbench.editor.wrapTabs": {
+            "type": "boolean",
+            "markdownDescription": "Controls whether tabs should be wrapped over multiple lines when exceeding available space or whether a scrollbar should appear instead. This value is ignored when `#workbench.editor.showTabs#` is disabled.",
+            "default": false,
+            "scope": 3
+        },
         "workbench.editor.scrollToSwitchTabs": {
             "type": "boolean",
-            "markdownDescription": "Controls whether scrolling over tabs will open them or not. By default tabs will only reveal upon scrolling, but not open. You can press and hold the Shift-key while scrolling to change this behaviour for that duration. This value is ignored when `#workbench.editor.showTabs#` is `false`.",
+            "markdownDescription": "Controls whether scrolling over tabs will open them or not. By default tabs will only reveal upon scrolling, but not open. You can press and hold the Shift-key while scrolling to change this behaviour for that duration. This value is ignored when `#workbench.editor.showTabs#` is disabled.",
             "default": false,
             "scope": 3
         },
         "workbench.editor.highlightModifiedTabs": {
             "type": "boolean",
-            "markdownDescription": "Controls whether a top border is drawn on modified (dirty) editor tabs or not. This value is ignored when `#workbench.editor.showTabs#` is `false`.",
+            "markdownDescription": "Controls whether a top border is drawn on modified (dirty) editor tabs or not. This value is ignored when `#workbench.editor.showTabs#` is disabled.",
+            "default": false,
+            "scope": 3
+        },
+        "workbench.editor.decorations.badges": {
+            "type": "boolean",
+            "markdownDescription": "Controls whether editor file decorations should use badges.",
+            "default": false,
+            "scope": 3
+        },
+        "workbench.editor.decorations.colors": {
+            "type": "boolean",
+            "markdownDescription": "Controls whether editor file decorations should use colors.",
             "default": false,
             "scope": 3
         },
@@ -707,7 +735,7 @@
                 "off"
             ],
             "default": "right",
-            "markdownDescription": "Controls the position of the editor's tabs close buttons, or disables them when set to 'off'. This value is ignored when `#workbench.editor.showTabs#` is `false`.",
+            "markdownDescription": "Controls the position of the editor's tabs close buttons, or disables them when set to 'off'. This value is ignored when `#workbench.editor.showTabs#` is disabled.",
             "scope": 3
         },
         "workbench.editor.tabSizing": {
@@ -721,7 +749,7 @@
                 "Always keep tabs large enough to show the full editor label.",
                 "Allow tabs to get smaller when the available space is not enough to show all tabs at once."
             ],
-            "markdownDescription": "Controls the sizing of editor tabs. This value is ignored when `#workbench.editor.showTabs#` is `false`.",
+            "markdownDescription": "Controls the sizing of editor tabs. This value is ignored when `#workbench.editor.showTabs#` is disabled.",
             "scope": 3
         },
         "workbench.editor.pinnedTabSizing": {
@@ -737,7 +765,7 @@
                 "A pinned tab will show in a compact form with only icon or first letter of the editor name.",
                 "A pinned tab shrinks to a compact fixed size showing parts of the editor name."
             ],
-            "markdownDescription": "Controls the sizing of pinned editor tabs. Pinned tabs are sorted to the beginning of all opened tabs and typically do not close until unpinned. This value is ignored when `#workbench.editor.showTabs#` is `false`.",
+            "markdownDescription": "Controls the sizing of pinned editor tabs. Pinned tabs are sorted to the beginning of all opened tabs and typically do not close until unpinned. This value is ignored when `#workbench.editor.showTabs#` is disabled.",
             "scope": 3
         },
         "workbench.editor.splitSizing": {
@@ -754,6 +782,12 @@
             "description": "Controls the sizing of editor groups when splitting them.",
             "scope": 3
         },
+        "workbench.editor.splitOnDragAndDrop": {
+            "type": "boolean",
+            "default": true,
+            "description": "Controls if editor groups can be split from drag and drop operations by dropping an editor or file on the edges of the editor area.",
+            "scope": 3
+        },
         "workbench.editor.focusRecentEditorAfterClose": {
             "type": "boolean",
             "description": "Controls whether tabs are closed in most recently used order or from left to right.",
@@ -768,14 +802,20 @@
         },
         "workbench.editor.enablePreview": {
             "type": "boolean",
-            "description": "Controls whether opened editors show as preview. Preview editors are reused until they are explicitly set to be kept open (e.g. via double click or editing) and show up with an italic font style.",
+            "description": "Controls whether opened editors show as preview. Preview editors do not keep open and are reused until explicitly set to be kept open (e.g. via double click or editing) and show up with an italic font style.",
             "default": true,
             "scope": 3
         },
         "workbench.editor.enablePreviewFromQuickOpen": {
             "type": "boolean",
-            "description": "Controls whether editors opened from Quick Open show as preview. Preview editors are reused until they are explicitly set to be kept open (e.g. via double click or editing).",
-            "default": true,
+            "markdownDescription": "Controls whether editors opened from Quick Open show as preview. Preview editors do not keep open and are reused until explicitly set to be kept open (e.g. via double click or editing). This value is ignored when `#workbench.editor.enablePreview#` is disabled.",
+            "default": false,
+            "scope": 3
+        },
+        "workbench.editor.enablePreviewFromCodeNavigation": {
+            "type": "boolean",
+            "markdownDescription": "Controls whether editors remain in preview when a code navigation is started from them. Preview editors do not keep open and are reused until explicitly set to be kept open (e.g. via double click or editing). This value is ignored when `#workbench.editor.enablePreview#` is disabled.",
+            "default": false,
             "scope": 3
         },
         "workbench.editor.closeOnFileDelete": {
@@ -977,7 +1017,7 @@
         "window.title": {
             "type": "string",
             "default": "${dirty}${activeEditorShort}${separator}${rootName}${separator}${appName}",
-            "markdownDescription": "Controls the window title based on the active editor. Variables are substituted based on the context:\n- `${activeEditorShort}`: the file name (e.g. myFile.txt).\n- `${activeEditorMedium}`: the path of the file relative to the workspace folder (e.g. myFolder/myFileFolder/myFile.txt).\n- `${activeEditorLong}`: the full path of the file (e.g. /Users/Development/myFolder/myFileFolder/myFile.txt).\n- `${activeFolderShort}`: the name of the folder the file is contained in (e.g. myFileFolder).\n- `${activeFolderMedium}`: the path of the folder the file is contained in, relative to the workspace folder (e.g. myFolder/myFileFolder).\n- `${activeFolderLong}`: the full path of the folder the file is contained in (e.g. /Users/Development/myFolder/myFileFolder).\n- `${folderName}`: name of the workspace folder the file is contained in (e.g. myFolder).\n- `${folderPath}`: file path of the workspace folder the file is contained in (e.g. /Users/Development/myFolder).\n- `${rootName}`: name of the workspace (e.g. myFolder or myWorkspace).\n- `${rootPath}`: file path of the workspace (e.g. /Users/Development/myWorkspace).\n- `${appName}`: e.g. VS Code.\n- `${remoteName}`: e.g. SSH\n- `${dirty}`: a dirty indicator if the active editor is dirty.\n- `${separator}`: a conditional separator (\" - \") that only shows when surrounded by variables with values or static text.",
+            "markdownDescription": "Controls the window title based on the active editor. Variables are substituted based on the context:\n- `${activeEditorShort}`: the file name (e.g. myFile.txt).\n- `${activeEditorMedium}`: the path of the file relative to the workspace folder (e.g. myFolder/myFileFolder/myFile.txt).\n- `${activeEditorLong}`: the full path of the file (e.g. /Users/Development/myFolder/myFileFolder/myFile.txt).\n- `${activeFolderShort}`: the name of the folder the file is contained in (e.g. myFileFolder).\n- `${activeFolderMedium}`: the path of the folder the file is contained in, relative to the workspace folder (e.g. myFolder/myFileFolder).\n- `${activeFolderLong}`: the full path of the folder the file is contained in (e.g. /Users/Development/myFolder/myFileFolder).\n- `${folderName}`: name of the workspace folder the file is contained in (e.g. myFolder).\n- `${folderPath}`: file path of the workspace folder the file is contained in (e.g. /Users/Development/myFolder).\n- `${rootName}`: name of the opened workspace or folder (e.g. myFolder or myWorkspace).\n- `${rootPath}`: file path of the opened workspace or folder (e.g. /Users/Development/myWorkspace).\n- `${appName}`: e.g. VS Code.\n- `${remoteName}`: e.g. SSH\n- `${dirty}`: a dirty indicator if the active editor is dirty.\n- `${separator}`: a conditional separator (\" - \") that only shows when surrounded by variables with values or static text.",
             "scope": 3
         },
         "window.titleSeparator": {
@@ -1024,7 +1064,7 @@
         },
         "zenMode.restore": {
             "type": "boolean",
-            "default": false,
+            "default": true,
             "description": "Controls whether a window should restore to zen mode if it was exited in zen mode.",
             "scope": 3
         },
@@ -1089,6 +1129,7 @@
             "type": "number",
             "default": 0,
             "description": "Adjust the zoom level of the window. The original size is 0 and each increment above (e.g. 1) or below (e.g. -1) represents zooming 20% larger or smaller. You can also enter decimals to adjust the zoom level with a finer granularity.",
+            "ignoreSync": true,
             "scope": 3
         },
         "window.closeWhenEmpty": {
@@ -1106,14 +1147,39 @@
             ],
             "scope": 3
         },
-        "comments.openPanel": {
-            "enum": [
-                "neverOpen",
-                "openOnSessionStart",
-                "openOnSessionStartWithComments"
+        "workbench.externalUriOpeners": {
+            "type": "object",
+            "markdownDescription": "Configure the opener to use for external uris (i.e. http, https).",
+            "defaultSnippets": [
+                {
+                    "body": {
+                        "example.com": "$1"
+                    }
+                }
             ],
-            "default": "openOnSessionStartWithComments",
-            "description": "Controls when the comments panel should open.",
+            "additionalProperties": {
+                "anyOf": [
+                    {
+                        "type": "string",
+                        "markdownDescription": "Map uri pattern to an opener id.\nExample patterns: \n\n- `https://microsoft.com`: Matches this specific domain using https\n- `https://microsoft.com:8080`: Matches this specific domain on this port using https\n- `https://microsoft.com:*`: Matches this specific domain on any port using https\n- `https://microsoft.com/foo`: Matches `https://microsoft.com/foo` and `https://microsoft.com/foo/bar`, but not `https://microsoft.com/foobar` or `https://microsoft.com/bar`\n- `https://*.microsoft.com`: Match all domains ending in `microsoft.com` using https\n- `microsoft.com`: Match this specific domain using either http or https\n- `*.microsoft.com`: Match all domains ending in `microsoft.com` using either http or https\n- `http://192.168.0.1`: Matches this specific IP using http\n- `http://192.168.0.*`: Matches all IP's with this prefix using http\n- `*`: Match all domains using either http or https"
+                    },
+                    {
+                        "type": "string",
+                        "markdownDescription": "Map uri pattern to an opener id.\nExample patterns: \n\n- `https://microsoft.com`: Matches this specific domain using https\n- `https://microsoft.com:8080`: Matches this specific domain on this port using https\n- `https://microsoft.com:*`: Matches this specific domain on any port using https\n- `https://microsoft.com/foo`: Matches `https://microsoft.com/foo` and `https://microsoft.com/foo/bar`, but not `https://microsoft.com/foobar` or `https://microsoft.com/bar`\n- `https://*.microsoft.com`: Match all domains ending in `microsoft.com` using https\n- `microsoft.com`: Match this specific domain using either http or https\n- `*.microsoft.com`: Match all domains ending in `microsoft.com` using either http or https\n- `http://192.168.0.1`: Matches this specific IP using http\n- `http://192.168.0.*`: Matches all IP's with this prefix using http\n- `*`: Match all domains using either http or https",
+                        "enum": [
+                            "default"
+                        ],
+                        "enumDescriptions": [
+                            "Open using VS Code's standard opener."
+                        ]
+                    },
+                    {
+                        "type": "string",
+                        "enum": []
+                    }
+                ]
+            },
+            "default": {},
             "scope": 3
         },
         "workbench.settings.enableNaturalLanguageSearch": {
@@ -1137,33 +1203,6 @@
             ],
             "description": "Controls the behavior of the settings editor Table of Contents while searching.",
             "default": "filter",
-            "scope": 3
-        },
-        "terminal.integrated.shell.linux": {
-            "markdownDescription": "The path of the shell that the terminal uses on Linux (default: /bin/bash). [Read more about configuring the shell](https://code.visualstudio.com/docs/editor/integrated-terminal#_configuration).",
-            "type": [
-                "string",
-                "null"
-            ],
-            "default": null,
-            "scope": 3
-        },
-        "terminal.integrated.shell.osx": {
-            "markdownDescription": "The path of the shell that the terminal uses on macOS (default: /bin/bash). [Read more about configuring the shell](https://code.visualstudio.com/docs/editor/integrated-terminal#_configuration).",
-            "type": [
-                "string",
-                "null"
-            ],
-            "default": null,
-            "scope": 3
-        },
-        "terminal.integrated.shell.windows": {
-            "markdownDescription": "The path of the shell that the terminal uses on Windows (default: C:\\WINDOWS\\Sysnative\\WindowsPowerShell\\v1.0\\powershell.exe). [Read more about configuring the shell](https://code.visualstudio.com/docs/editor/integrated-terminal#_configuration).",
-            "type": [
-                "string",
-                "null"
-            ],
-            "default": null,
             "scope": 3
         },
         "remote.downloadExtensionsLocally": {
@@ -1223,13 +1262,68 @@
         "remote.restoreForwardedPorts": {
             "type": "boolean",
             "markdownDescription": "Restores the ports you forwarded in a workspace.",
-            "default": false,
+            "default": true,
             "scope": 3
         },
         "remote.autoForwardPorts": {
             "type": "boolean",
-            "markdownDescription": "When enabled, URLs with ports (ex. `http://127.0.0.1:3000`) that are printed to your terminals are automatically forwarded.",
+            "markdownDescription": "When enabled, new running processes are detected and ports that they listen on are automatically forwarded.",
             "default": true,
+            "scope": 3
+        },
+        "remote.portsAttributes": {
+            "type": "object",
+            "patternProperties": {
+                "^\\d+(\\-\\d+)?$": {
+                    "type": "object",
+                    "description": "A port, or range of ports (ex. \"40000-55000\") that the attributes should apply to",
+                    "properties": {
+                        "onAutoForward": {
+                            "type": "string",
+                            "enum": [
+                                "notify",
+                                "openBrowser",
+                                "silent",
+                                "ignore"
+                            ],
+                            "enumDescriptions": [
+                                "Shows a notification when a port is automatically forwarded.",
+                                "Opens the browser when the port is automatically forwarded. Depending on your settings, this could open an embedded browser.",
+                                "Shows no notification and takes no action when this port is automatically forwarded.",
+                                "This port will not be automatically forwarded."
+                            ],
+                            "description": "Defines the action that occurs when the port is discovered for automatic forwarding",
+                            "default": "notify"
+                        },
+                        "elevateIfNeeded": {
+                            "type": "boolean",
+                            "description": "Automatically prompt for elevation (if needed) when this port is forwarded. Elevate is required if the local port is a privileged port.",
+                            "default": false
+                        },
+                        "label": {
+                            "type": "string",
+                            "description": "Label that will be shown in the UI for this port.",
+                            "default": "Labeled Port"
+                        }
+                    },
+                    "default": {
+                        "label": "Labeled Port",
+                        "onAutoForward": "notify"
+                    }
+                }
+            },
+            "markdownDescription": "Allows setting of default properties that are set when a specific port number is forwarded. For example:\n\n```\n\"3000\": {\n  \"label\": \"Labeled Port\"\n},\n\"40000-55000\": {\n  \"onAutoForward\": \"ignore\"\n}\n```",
+            "default": {},
+            "scope": 3
+        },
+        "comments.openPanel": {
+            "enum": [
+                "neverOpen",
+                "openOnSessionStart",
+                "openOnSessionStartWithComments"
+            ],
+            "default": "openOnSessionStartWithComments",
+            "description": "Controls when the comments panel should open.",
             "scope": 3
         },
         "workbench.colorTheme": {
@@ -1267,6 +1361,22 @@
                 "",
                 "",
                 ""
+            ],
+            "enumItemLabels": [
+                "Abyss",
+                "Dark+ (default dark)",
+                "Light+ (default light)",
+                "Dark (Visual Studio)",
+                "Light (Visual Studio)",
+                "High Contrast",
+                "Kimbie Dark",
+                "Monokai",
+                "Monokai Dimmed",
+                "Quiet Light",
+                "Red",
+                "Solarized Dark",
+                "Solarized Light",
+                "Tomorrow Night Blue"
             ],
             "errorMessage": "Theme is unknown or not installed.",
             "scope": 3
@@ -1307,6 +1417,22 @@
                 "",
                 ""
             ],
+            "enumItemLabels": [
+                "Abyss",
+                "Dark+ (default dark)",
+                "Light+ (default light)",
+                "Dark (Visual Studio)",
+                "Light (Visual Studio)",
+                "High Contrast",
+                "Kimbie Dark",
+                "Monokai",
+                "Monokai Dimmed",
+                "Quiet Light",
+                "Red",
+                "Solarized Dark",
+                "Solarized Light",
+                "Tomorrow Night Blue"
+            ],
             "errorMessage": "Theme is unknown or not installed.",
             "scope": 3
         },
@@ -1345,6 +1471,22 @@
                 "",
                 "",
                 ""
+            ],
+            "enumItemLabels": [
+                "Abyss",
+                "Dark+ (default dark)",
+                "Light+ (default light)",
+                "Dark (Visual Studio)",
+                "Light (Visual Studio)",
+                "High Contrast",
+                "Kimbie Dark",
+                "Monokai",
+                "Monokai Dimmed",
+                "Quiet Light",
+                "Red",
+                "Solarized Dark",
+                "Solarized Light",
+                "Tomorrow Night Blue"
             ],
             "errorMessage": "Theme is unknown or not installed.",
             "scope": 3
@@ -1385,6 +1527,22 @@
                 "",
                 ""
             ],
+            "enumItemLabels": [
+                "Abyss",
+                "Dark+ (default dark)",
+                "Light+ (default light)",
+                "Dark (Visual Studio)",
+                "Light (Visual Studio)",
+                "High Contrast",
+                "Kimbie Dark",
+                "Monokai",
+                "Monokai Dimmed",
+                "Quiet Light",
+                "Red",
+                "Solarized Dark",
+                "Solarized Light",
+                "Tomorrow Night Blue"
+            ],
             "included": true,
             "errorMessage": "Theme is unknown or not installed.",
             "scope": 3
@@ -1400,6 +1558,11 @@
                 null,
                 "vs-minimal",
                 "vs-seti"
+            ],
+            "enumItemLabels": [
+                "None",
+                "Minimal (Visual Studio Code)",
+                "Seti (Visual Studio Code)"
             ],
             "enumDescriptions": [
                 "No file icons",
@@ -1493,6 +1656,9 @@
             "default": "Default",
             "description": "Specifies the product icon theme used.",
             "enum": [
+                "Default"
+            ],
+            "enumItemLabels": [
                 "Default"
             ],
             "enumDescriptions": [
@@ -2541,6 +2707,18 @@
             "description": "Controls the size (in pixels) of the mouse indicator in screencast mode.",
             "scope": 3
         },
+        "notebook.outline.showCodeCells": {
+            "type": "boolean",
+            "default": false,
+            "markdownDescription": "When enabled notebook outline shows code cells.",
+            "scope": 3
+        },
+        "notebook.breadcrumbs.showCodeCells": {
+            "type": "boolean",
+            "default": true,
+            "markdownDescription": "When enabled notebook breadcrumbs contain code cells.",
+            "scope": 3
+        },
         "task.problemMatchers.neverPrompt": {
             "markdownDescription": "Configures whether to show the problem matcher prompt when running a task. Set to `true` to never prompt, or use a dictionary of task types to turn off prompting only for specific task types.",
             "oneOf": [
@@ -2682,7 +2860,7 @@
         },
         "files.participants.timeout": {
             "type": "number",
-            "default": 5000,
+            "default": 60000,
             "markdownDescription": "Timeout in milliseconds after which file participants for create, rename, and delete are cancelled. Use `0` to disable participants.",
             "scope": 3
         },
@@ -2847,7 +3025,7 @@
         },
         "extensions.showRecommendationsOnlyOnDemand": {
             "type": "boolean",
-            "description": "When enabled, recommendations will not be fetched or shown unless specifically requested by the user. Some recommendations are fetched from a Microsoft online service.",
+            "deprecationMessage": "This setting is deprecated. Use extensions.ignoreRecommendations setting to control recommendation notifications. Use Extensions view's visibility actions to hide Recommended view by default.",
             "default": false,
             "tags": [
                 "usesOnlineServices"
@@ -2942,6 +3120,20 @@
             "default": 9,
             "scope": 3
         },
+        "explorer.openEditors.sortOrder": {
+            "type": "string",
+            "enum": [
+                "editorOrder",
+                "alphabetical"
+            ],
+            "description": "Controls the sorting order of editors in the Open Editors pane.",
+            "enumDescriptions": [
+                "Editors are ordered in the same order editor tabs are shown.",
+                "Editors are ordered in alphabetical order inside each editor group."
+            ],
+            "default": "editorOrder",
+            "scope": 3
+        },
         "explorer.autoReveal": {
             "type": [
                 "boolean",
@@ -2963,7 +3155,7 @@
         },
         "explorer.enableDragAndDrop": {
             "type": "boolean",
-            "description": "Controls whether the explorer should allow to move files and folders via drag and drop.",
+            "description": "Controls whether the explorer should allow to move files and folders via drag and drop. This setting only effects drag and drop from inside the explorer.",
             "default": true,
             "scope": 3
         },
@@ -3100,54 +3292,6 @@
             "default": true,
             "scope": 3
         },
-        "outline.showObjects": {
-            "type": "boolean",
-            "default": true,
-            "markdownDescription": "When enabled outline shows `object`-symbols.",
-            "scope": 3
-        },
-        "outline.showKeys": {
-            "type": "boolean",
-            "default": true,
-            "markdownDescription": "When enabled outline shows `key`-symbols.",
-            "scope": 3
-        },
-        "outline.showNull": {
-            "type": "boolean",
-            "default": true,
-            "markdownDescription": "When enabled outline shows `null`-symbols.",
-            "scope": 3
-        },
-        "outline.showEnumMembers": {
-            "type": "boolean",
-            "default": true,
-            "markdownDescription": "When enabled outline shows `enumMember`-symbols.",
-            "scope": 3
-        },
-        "outline.showStructs": {
-            "type": "boolean",
-            "default": true,
-            "markdownDescription": "When enabled outline shows `struct`-symbols.",
-            "scope": 3
-        },
-        "outline.showEvents": {
-            "type": "boolean",
-            "default": true,
-            "markdownDescription": "When enabled outline shows `event`-symbols.",
-            "scope": 3
-        },
-        "outline.showOperators": {
-            "type": "boolean",
-            "default": true,
-            "markdownDescription": "When enabled outline shows `operator`-symbols.",
-            "scope": 3
-        },
-        "outline.showTypeParameters": {
-            "type": "boolean",
-            "default": true,
-            "markdownDescription": "When enabled outline shows `typeParameter`-symbols.",
-            "scope": 3
-        },
         "output.smartScroll.enabled": {
             "type": "boolean",
             "description": "Enable/disable the ability of smart scrolling in the output view. Smart scrolling allows you to lock scrolling automatically when you click in the output view and unlocks when you click in the last line.",
@@ -3156,6 +3300,22 @@
             "tags": [
                 "output"
             ]
+        },
+        "search.mode": {
+            "type": "string",
+            "enum": [
+                "view",
+                "reuseEditor",
+                "newEditor"
+            ],
+            "default": "view",
+            "markdownDescription": "Controls where new `Search: Find in Files` and `Find in Folder` operations occur: either in the sidebar's search view, or in a search editor",
+            "enumDescriptions": [
+                "Search in the search view, either in the panel or sidebar.",
+                "Search in an existing search editor if present, otherwise in a new search editor",
+                "Search in a new search editor"
+            ],
+            "scope": 3
         },
         "search.useRipgrep": {
             "type": "boolean",
@@ -3264,7 +3424,7 @@
                 "Position the actionbar to the right when the search view is narrow, and immediately after the content when the search view is wide.",
                 "Always position the actionbar to the right."
             ],
-            "default": "auto",
+            "default": "right",
             "description": "Controls the positioning of the actionbar on rows in the search view.",
             "scope": 3
         },
@@ -3283,7 +3443,7 @@
         "search.seedOnFocus": {
             "type": "boolean",
             "default": false,
-            "description": "Update workspace search query to the editor's selected text when focusing the search view. This happens either on click or when triggering the `workbench.views.search.focus` command.",
+            "description": "Update the search query to the editor's selected text when focusing the search view. This happens either on click or when triggering the `workbench.views.search.focus` command.",
             "scope": 3
         },
         "search.searchOnTypeDebouncePeriod": {
@@ -3343,6 +3503,18 @@
                 "Results are sorted by count per file, in ascending order."
             ],
             "description": "Controls sorting order of search results.",
+            "scope": 3
+        },
+        "search.experimental.searchInOpenEditors": {
+            "type": "boolean",
+            "default": false,
+            "markdownDescription": "Experimental. When enabled, an option is provided to make workspace search only search files that have been opened. **Requires restart to take effect.**",
+            "scope": 3
+        },
+        "terminal.integrated.sendKeybindingsToShell": {
+            "markdownDescription": "Dispatches most keybindings to the terminal instead of the workbench, overriding `#terminal.integrated.commandsToSkipShell#`, which can be used alternatively for fine tuning.",
+            "type": "boolean",
+            "default": false,
             "scope": 3
         },
         "terminal.integrated.automationShell.linux": {
@@ -3420,6 +3592,12 @@
             "description": "Controls whether to force selection when using Option+click on macOS. This will force a regular (line) selection and disallow the use of column selection mode. This enables copying and pasting using the regular terminal selection, for example, when mouse mode is enabled in tmux.",
             "type": "boolean",
             "default": false,
+            "scope": 3
+        },
+        "terminal.integrated.altClickMovesCursor": {
+            "description": "If enabled, alt/option + click will reposition the prompt cursor to underneath the mouse when `#editor.multiCursorModifier#` is set to `'alt'` (the default value). This may not work reliably depending on your shell.",
+            "type": "boolean",
+            "default": true,
             "scope": 3
         },
         "terminal.integrated.copyOnSelection": {
@@ -3596,7 +3774,7 @@
                 "Let VS Code guess which renderer to use.",
                 "Use the standard GPU/canvas-based renderer.",
                 "Use the fallback DOM-based renderer.",
-                "Use the experimental webgl-based renderer. Note that this has some [known issues](https://github.com/xtermjs/xterm.js/issues?q=is%3Aopen+is%3Aissue+label%3Aarea%2Faddon%2Fwebgl) and this will only be enabled for new terminals (not hot swappable like the other renderers)."
+                "Use the experimental webgl-based renderer. Note that this has some [known issues](https://github.com/xtermjs/xterm.js/issues?q=is%3Aopen+is%3Aissue+label%3Aarea%2Faddon%2Fwebgl)."
             ],
             "default": "auto",
             "description": "Controls how the terminal is rendered.",
@@ -3654,7 +3832,7 @@
             "scope": 3
         },
         "terminal.integrated.allowMnemonics": {
-            "markdownDescription": "Whether to allow menubar mnemonics (eg. alt+f) to trigger the open the menubar. Note that this will cause all alt keystrokes will skip the shell when true. This does nothing on macOS.",
+            "markdownDescription": "Whether to allow menubar mnemonics (eg. alt+f) to trigger the open the menubar. Note that this will cause all alt keystrokes to skip the shell when true. This does nothing on macOS.",
             "type": "boolean",
             "default": false,
             "scope": 3
@@ -3790,6 +3968,21 @@
             "default": 30,
             "scope": 3
         },
+        "terminal.integrated.localEchoExcludePrograms": {
+            "description": "Experimental: local echo will be disabled when any of these program names are found in the terminal title.",
+            "type": "array",
+            "items": {
+                "type": "string",
+                "uniqueItems": true
+            },
+            "default": [
+                "vim",
+                "vi",
+                "nano",
+                "tmux"
+            ],
+            "scope": 3
+        },
         "terminal.integrated.localEchoStyle": {
             "description": "Experimental: terminal style of locally echoed text; either a font style or an RGB color.",
             "default": "dim",
@@ -3821,6 +4014,12 @@
         },
         "terminal.integrated.enablePersistentSessions": {
             "description": "Experimental: persist terminal sessions for the workspace across window reloads. Currently only supported in VS Code Remote workspaces.",
+            "type": "boolean",
+            "default": true,
+            "scope": 3
+        },
+        "terminal.integrated.flowControl": {
+            "description": "Experimental: whether to enable flow control which will slow the program on the remote side to avoid flooding remote connections with terminal output. This setting has no effect for local terminals and terminals where the output/input is controlled by an extension. Changing this will only affect new terminals.",
             "type": "boolean",
             "default": true,
             "scope": 3
@@ -3869,22 +4068,31 @@
             "default": "integrated",
             "scope": 3
         },
-        "sync.keybindingsPerPlatform": {
-            "type": "boolean",
-            "deprecationMessage": "Deprecated, use settingsSync.keybindingsPerPlatform instead",
-            "default": false,
+        "terminal.integrated.shell.linux": {
+            "markdownDescription": "The path of the shell that the terminal uses on Linux (default: /bin/bash). [Read more about configuring the shell](https://code.visualstudio.com/docs/editor/integrated-terminal#_configuration).",
+            "type": [
+                "string",
+                "null"
+            ],
+            "default": null,
             "scope": 3
         },
-        "sync.ignoredExtensions": {
-            "type": "array",
-            "deprecationMessage": "Deprecated, use settingsSync.ignoredExtensions instead",
-            "default": [],
+        "terminal.integrated.shell.osx": {
+            "markdownDescription": "The path of the shell that the terminal uses on macOS (default: /bin/bash). [Read more about configuring the shell](https://code.visualstudio.com/docs/editor/integrated-terminal#_configuration).",
+            "type": [
+                "string",
+                "null"
+            ],
+            "default": null,
             "scope": 3
         },
-        "sync.ignoredSettings": {
-            "type": "array",
-            "deprecationMessage": "Deprecated, use settingsSync.ignoredSettings instead",
-            "default": [],
+        "terminal.integrated.shell.windows": {
+            "markdownDescription": "The path of the shell that the terminal uses on Windows (default: C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe). [Read more about configuring the shell](https://code.visualstudio.com/docs/editor/integrated-terminal#_configuration).",
+            "type": [
+                "string",
+                "null"
+            ],
+            "default": null,
             "scope": 3
         },
         "css.trace.server": {
@@ -4149,21 +4357,27 @@
             "scope": 3
         },
         "git.checkoutType": {
-            "type": "string",
-            "enum": [
-                "all",
+            "type": "array",
+            "items": {
+                "type": "string",
+                "enum": [
+                    "local",
+                    "tags",
+                    "remote"
+                ],
+                "enumDescriptions": [
+                    "Local branches",
+                    "Tags",
+                    "Remote branches"
+                ]
+            },
+            "uniqueItems": true,
+            "markdownDescription": "Controls what type of git refs are listed when running `Checkout to...`.",
+            "default": [
                 "local",
-                "tags",
-                "remote"
+                "remote",
+                "tags"
             ],
-            "enumDescriptions": [
-                "Show all references.",
-                "Show only local branches.",
-                "Show only tags.",
-                "Show only remote branches."
-            ],
-            "markdownDescription": "Controls what type of branches are listed when running `Checkout to...`.",
-            "default": "all",
             "scope": 3
         },
         "git.ignoreLegacyWarning": {
@@ -4190,10 +4404,34 @@
             "default": false,
             "scope": 3
         },
+        "git.ignoreRebaseWarning": {
+            "type": "boolean",
+            "description": "Ignores the warning when it looks like the branch might have been rebased when pulling.",
+            "default": false,
+            "scope": 3
+        },
         "git.decorations.enabled": {
             "type": "boolean",
             "default": true,
             "description": "Controls whether Git contributes colors and badges to the explorer and the open editors view.",
+            "scope": 3
+        },
+        "git.openAfterClone": {
+            "type": "string",
+            "enum": [
+                "always",
+                "alwaysNewWindow",
+                "whenNoFolderOpen",
+                "prompt"
+            ],
+            "enumDescriptions": [
+                "Always open in current window.",
+                "Always open in a new window.",
+                "Only open in current window when no folder is opened.",
+                "Always prompt for action."
+            ],
+            "default": "prompt",
+            "description": "Controls whether to open a repository automatically after cloning.",
             "scope": 3
         },
         "git.showInlineOpenFileAction": {
@@ -4281,6 +4519,12 @@
             ],
             "default": "committerdate",
             "description": "Controls the sort order for branches.",
+            "scope": 3
+        },
+        "git.requireGitUserConfig": {
+            "type": "boolean",
+            "description": "Controls whether to require explicit Git user configuration or allow Git to guess if missing",
+            "default": true,
             "scope": 3
         },
         "git.githubAuthentication": {
@@ -4612,6 +4856,11 @@
                     "type": "string",
                     "description": "Customize the textual description the debugger shows for objects (local variables, etc...). Samples:\n      1. this.toString() // will call toString to print all objects\n      2. this.customDescription ? this.customDescription() : defaultValue // Use customDescription method if available, if not return defaultValue\n      3. function (def) { return this.customDescription ? this.customDescription() : def } // Use customDescription method if available, if not return defaultValue\n      "
                 },
+                "customPropertiesGenerator": {
+                    "type": "string",
+                    "deprecated": true,
+                    "description": "Customize the properties shown for an object in the debugger (local variables, etc...). Samples:\n    1. { ...this, extraProperty: '12345' } // Add an extraProperty 12345 to all objects\n    2. this.customProperties ? this.customProperties() : this // Use customProperties method if available, if not use the properties in this (the default properties)\n    3. function () { return this.customProperties ? this.customProperties() : this } // Use customDescription method if available, if not return the default properties\n\n    Deprecated: This is a temporary implementation of this feature until we have time to implement it in the way described here: https://github.com/microsoft/vscode/issues/102181"
+                },
                 "cascadeTerminateToConfigurations": {
                     "type": "array",
                     "items": {
@@ -4623,8 +4872,9 @@
                 },
                 "cwd": {
                     "type": "string",
-                    "description": "Absolute path to the working directory of the program being debugged.",
-                    "default": "${workspaceFolder}"
+                    "description": "Absolute path to the working directory of the program being debugged. If you've set localRoot then cwd will match that value otherwise it falls back to your workspaceFolder",
+                    "default": "${workspaceFolder}",
+                    "docDefault": "localRoot || ${workspaceFolder}"
                 },
                 "localRoot": {
                     "type": [
@@ -4896,6 +5146,11 @@
                             "type": "string",
                             "description": "Customize the textual description the debugger shows for objects (local variables, etc...). Samples:\n      1. this.toString() // will call toString to print all objects\n      2. this.customDescription ? this.customDescription() : defaultValue // Use customDescription method if available, if not return defaultValue\n      3. function (def) { return this.customDescription ? this.customDescription() : def } // Use customDescription method if available, if not return defaultValue\n      "
                         },
+                        "customPropertiesGenerator": {
+                            "type": "string",
+                            "deprecated": true,
+                            "description": "Customize the properties shown for an object in the debugger (local variables, etc...). Samples:\n    1. { ...this, extraProperty: '12345' } // Add an extraProperty 12345 to all objects\n    2. this.customProperties ? this.customProperties() : this // Use customProperties method if available, if not use the properties in this (the default properties)\n    3. function () { return this.customProperties ? this.customProperties() : this } // Use customDescription method if available, if not return the default properties\n\n    Deprecated: This is a temporary implementation of this feature until we have time to implement it in the way described here: https://github.com/microsoft/vscode/issues/102181"
+                        },
                         "cascadeTerminateToConfigurations": {
                             "type": "array",
                             "items": {
@@ -4935,7 +5190,7 @@
                                 "string",
                                 "null"
                             ],
-                            "description": "Format to use to rewrite the inspectUri: It's a template string that interpolates keys in `{curlyBraces}`. Available keys are:\n - `url.*` is the parsed address of the running application. For instance, `{url.port}`, `{url.hostname}`\n - `port` is the debug port that Chrome is listening on.\n - `browserInspectUri` is the inspector URI on the launched browser\n - `wsProtocol` is the hinted websocket protocol. This is set to `wss` if the original URL is `https`, or `ws` otherwise.\n",
+                            "description": "Format to use to rewrite the inspectUri: It's a template string that interpolates keys in `{curlyBraces}`. Available keys are:\n - `url.*` is the parsed address of the running application. For instance, `{url.port}`, `{url.hostname}`\n - `port` is the debug port that Chrome is listening on.\n - `browserInspectUri` is the inspector URI on the launched browser\n - `browserInspectUriPath` is the path part of the inspector URI on the launched browser (e.g.: \"/devtools/browser/e9ec0098-306e-472a-8133-5e42488929c2\").\n - `wsProtocol` is the hinted websocket protocol. This is set to `wss` if the original URL is `https`, or `ws` otherwise.\n",
                             "default": null
                         },
                         "vueComponentPaths": {
@@ -5139,6 +5394,11 @@
                                             "type": "string",
                                             "description": "Customize the textual description the debugger shows for objects (local variables, etc...). Samples:\n      1. this.toString() // will call toString to print all objects\n      2. this.customDescription ? this.customDescription() : defaultValue // Use customDescription method if available, if not return defaultValue\n      3. function (def) { return this.customDescription ? this.customDescription() : def } // Use customDescription method if available, if not return defaultValue\n      "
                                         },
+                                        "customPropertiesGenerator": {
+                                            "type": "string",
+                                            "deprecated": true,
+                                            "description": "Customize the properties shown for an object in the debugger (local variables, etc...). Samples:\n    1. { ...this, extraProperty: '12345' } // Add an extraProperty 12345 to all objects\n    2. this.customProperties ? this.customProperties() : this // Use customProperties method if available, if not use the properties in this (the default properties)\n    3. function () { return this.customProperties ? this.customProperties() : this } // Use customDescription method if available, if not return the default properties\n\n    Deprecated: This is a temporary implementation of this feature until we have time to implement it in the way described here: https://github.com/microsoft/vscode/issues/102181"
+                                        },
                                         "cascadeTerminateToConfigurations": {
                                             "type": "array",
                                             "items": {
@@ -5150,7 +5410,7 @@
                                         },
                                         "cwd": {
                                             "type": "string",
-                                            "description": "Absolute path to the working directory of the program being debugged.",
+                                            "description": "Absolute path to the working directory of the program being debugged. If you've set localRoot then cwd will match that value otherwise it falls back to your workspaceFolder",
                                             "default": "${workspaceFolder}"
                                         },
                                         "localRoot": {
@@ -5294,6 +5554,16 @@
                                             "type": "integer",
                                             "description": "If set, attaches to the process via the given port. This is generally no longer necessary for Node.js programs and loses the ability to debug child processes, but can be useful in more esoteric scenarios such as with Deno and Docker launches. If set to 0, a random port will be chosen and --inspect-brk added to the launch arguments automatically.",
                                             "default": 9229
+                                        },
+                                        "killBehavior": {
+                                            "type": "string",
+                                            "enum": [
+                                                "forceful",
+                                                "polite",
+                                                "none"
+                                            ],
+                                            "default": "forceful",
+                                            "markdownDescription": "Configures how debug process are killed when stopping the sesssion. Can be:\n\n- forceful (default): forcefully tears down the process tree. Sends SIGKILL on posix, or `taskkill.exe /F` on Windows.\n- polite: gracefully tears down the process tree. It's possible that misbehaving processes continue to run after shutdown in this way. Sends SIGTERM on posix, or `taskkill.exe` with no `/F` (force) flag on Windows.\n- none: no termination will happen."
                                         }
                                     }
                                 },
@@ -5489,6 +5759,11 @@
                                             "type": "string",
                                             "description": "Customize the textual description the debugger shows for objects (local variables, etc...). Samples:\n      1. this.toString() // will call toString to print all objects\n      2. this.customDescription ? this.customDescription() : defaultValue // Use customDescription method if available, if not return defaultValue\n      3. function (def) { return this.customDescription ? this.customDescription() : def } // Use customDescription method if available, if not return defaultValue\n      "
                                         },
+                                        "customPropertiesGenerator": {
+                                            "type": "string",
+                                            "deprecated": true,
+                                            "description": "Customize the properties shown for an object in the debugger (local variables, etc...). Samples:\n    1. { ...this, extraProperty: '12345' } // Add an extraProperty 12345 to all objects\n    2. this.customProperties ? this.customProperties() : this // Use customProperties method if available, if not use the properties in this (the default properties)\n    3. function () { return this.customProperties ? this.customProperties() : this } // Use customDescription method if available, if not return the default properties\n\n    Deprecated: This is a temporary implementation of this feature until we have time to implement it in the way described here: https://github.com/microsoft/vscode/issues/102181"
+                                        },
                                         "cascadeTerminateToConfigurations": {
                                             "type": "array",
                                             "items": {
@@ -5500,8 +5775,9 @@
                                         },
                                         "cwd": {
                                             "type": "string",
-                                            "description": "Absolute path to the working directory of the program being debugged.",
-                                            "default": "${workspaceFolder}"
+                                            "description": "Absolute path to the working directory of the program being debugged. If you've set localRoot then cwd will match that value otherwise it falls back to your workspaceFolder",
+                                            "default": "${workspaceFolder}",
+                                            "docDefault": "localRoot || ${workspaceFolder}"
                                         },
                                         "localRoot": {
                                             "type": [
@@ -5857,6 +6133,11 @@
                     "type": "string",
                     "description": "Customize the textual description the debugger shows for objects (local variables, etc...). Samples:\n      1. this.toString() // will call toString to print all objects\n      2. this.customDescription ? this.customDescription() : defaultValue // Use customDescription method if available, if not return defaultValue\n      3. function (def) { return this.customDescription ? this.customDescription() : def } // Use customDescription method if available, if not return defaultValue\n      "
                 },
+                "customPropertiesGenerator": {
+                    "type": "string",
+                    "deprecated": true,
+                    "description": "Customize the properties shown for an object in the debugger (local variables, etc...). Samples:\n    1. { ...this, extraProperty: '12345' } // Add an extraProperty 12345 to all objects\n    2. this.customProperties ? this.customProperties() : this // Use customProperties method if available, if not use the properties in this (the default properties)\n    3. function () { return this.customProperties ? this.customProperties() : this } // Use customDescription method if available, if not return the default properties\n\n    Deprecated: This is a temporary implementation of this feature until we have time to implement it in the way described here: https://github.com/microsoft/vscode/issues/102181"
+                },
                 "cascadeTerminateToConfigurations": {
                     "type": "array",
                     "items": {
@@ -5868,8 +6149,9 @@
                 },
                 "cwd": {
                     "type": "string",
-                    "description": "Absolute path to the working directory of the program being debugged.",
-                    "default": "${workspaceFolder}"
+                    "description": "Absolute path to the working directory of the program being debugged. If you've set localRoot then cwd will match that value otherwise it falls back to your workspaceFolder",
+                    "default": "${workspaceFolder}",
+                    "docDefault": "localRoot || ${workspaceFolder}"
                 },
                 "localRoot": {
                     "type": [
@@ -6026,25 +6308,36 @@
             "description": "Configures whether sourcemapped file where the original file can't be read will automatically be unmapped. If this is false (default), a prompt is shown.",
             "scope": 3
         },
+        "debug.javascript.defaultRuntimeExecutable": {
+            "type": "object",
+            "default": {
+                "pwa-node": "node"
+            },
+            "markdownDescription": "The default `runtimeExecutable` used for launch configurations, if unspecified. This can be used to config custom paths to Node.js or browser installations.",
+            "properties": {
+                "pwa-node": {
+                    "type": "string"
+                },
+                "pwa-chrome": {
+                    "type": "string"
+                },
+                "pwa-msedge": {
+                    "type": "string"
+                }
+            },
+            "scope": 3
+        },
+        "debug.javascript.resourceRequestOptions": {
+            "type": "object",
+            "default": {},
+            "markdownDescription": "Request options to use when loading resources, such as source maps, in the debugger. You may need to configure this if your sourcemaps require authentication or use a self-signed certificate, for instance. Options are used to create a request using the [`got`](https://github.com/sindresorhus/got) library.\n\nA common case to disable certificate verification can be done by passing `{ \"https\": { \"rejectUnauthorized\": false } }`.",
+            "scope": 3
+        },
         "debug.node.showUseWslIsDeprecatedWarning": {
             "scope": 3,
             "type": "boolean",
             "description": "Controls whether to show a warning when the 'useWSL' attribute is used.",
             "default": true
-        },
-        "debug.node.useV3": {
-            "type": "boolean",
-            "description": "Controls whether to delegate \"node\"-type launch configs to the js-debug extension.",
-            "deprecationMessage": "This setting is deprecated - please use `debug.javascript.usePreview` instead",
-            "default": false,
-            "scope": 3
-        },
-        "debug.extensionHost.useV3": {
-            "type": "boolean",
-            "description": "Controls whether to delegate \"extensionHost\"-type launch configs to the js-debug extension.",
-            "deprecationMessage": "This setting is deprecated - please use `debug.javascript.usePreview` instead",
-            "default": false,
-            "scope": 3
         },
         "references.preferredLocation": {
             "description": "Controls whether 'Peek References' or 'Find References' is invoked when selecting code lens references",
@@ -6099,6 +6392,25 @@
             ],
             "default": "onSave",
             "description": "Whether the linter is run on save or on type.",
+            "scope": 3
+        },
+        "simpleBrowser.focusLockIndicator.enabled": {
+            "type": "boolean",
+            "default": true,
+            "title": "Focus Lock Indicator Enabled",
+            "description": "Enable/disable the floating indicator that shows when focused in the simple browser.",
+            "scope": 3
+        },
+        "testing.enableCodeLens": {
+            "description": "Whether code lens on test cases and suites should be visible",
+            "type": "boolean",
+            "default": true,
+            "scope": 3
+        },
+        "testing.enableProblemDiagnostics": {
+            "description": "Whether test failures should be reported in the 'problems' view and show as errors in the editor.",
+            "type": "boolean",
+            "default": false,
             "scope": 3
         },
         "typescript.tsdk": {
@@ -6161,6 +6473,12 @@
             "description": "Enable/disable implementations CodeLens. This CodeLens shows the implementers of an interface.",
             "scope": 3
         },
+        "typescript.tsserver.enableTracing": {
+            "type": "boolean",
+            "default": false,
+            "description": "Enables tracing TS server performance to a directory. These trace files can be used to diagnose TS Server performance issues. The log may contain file paths, source code, and other potentially sensitive information from your project.",
+            "scope": 3
+        },
         "typescript.tsserver.log": {
             "type": "string",
             "enum": [
@@ -6217,13 +6535,41 @@
         "javascript.implicitProjectConfig.checkJs": {
             "type": "boolean",
             "default": false,
-            "description": "Enable/disable semantic checking of JavaScript files. Existing jsconfig.json or tsconfig.json files override this setting.",
+            "markdownDescription": "Enable/disable semantic checking of JavaScript files. Existing `jsconfig.json` or `tsconfig.json` files override this setting.",
+            "markdownDeprecationMessage": "This setting has been deprecated in favor of `js/ts.implicitProjectConfig.checkJs`.",
+            "scope": 3,
+            "deprecationMessage": "This setting has been deprecated in favor of `js/ts.implicitProjectConfig.checkJs`."
+        },
+        "js/ts.implicitProjectConfig.checkJs": {
+            "type": "boolean",
+            "default": false,
+            "markdownDescription": "Enable/disable semantic checking of JavaScript files. Existing `jsconfig.json` or `tsconfig.json` files override this setting.",
             "scope": 3
         },
         "javascript.implicitProjectConfig.experimentalDecorators": {
             "type": "boolean",
             "default": false,
-            "markdownDescription": "Enable/disable `experimentalDecorators` for JavaScript files that are not part of a project. Existing jsconfig.json or tsconfig.json files override this setting.",
+            "markdownDescription": "Enable/disable `experimentalDecorators` in JavaScript files that are not part of a project. Existing `jsconfig.json` or `tsconfig.json` files override this setting.",
+            "markdownDeprecationMessage": "This setting has been deprecated in favor of `js/ts.implicitProjectConfig.experimentalDecorators`.",
+            "scope": 3,
+            "deprecationMessage": "This setting has been deprecated in favor of `js/ts.implicitProjectConfig.experimentalDecorators`."
+        },
+        "js/ts.implicitProjectConfig.experimentalDecorators": {
+            "type": "boolean",
+            "default": false,
+            "markdownDescription": "Enable/disable `experimentalDecorators` in JavaScript files that are not part of a project. Existing `jsconfig.json` or `tsconfig.json` files override this setting.",
+            "scope": 3
+        },
+        "js/ts.implicitProjectConfig.strictNullChecks": {
+            "type": "boolean",
+            "default": false,
+            "markdownDescription": "Enable/disable [strict null checks](https://www.typescriptlang.org/tsconfig#strictNullChecks) in JavaScript and TypeScript files that are not part of a project. Existing `jsconfig.json` or `tsconfig.json` files override this setting.",
+            "scope": 3
+        },
+        "js/ts.implicitProjectConfig.strictFunctionTypes": {
+            "type": "boolean",
+            "default": true,
+            "markdownDescription": "Enable/disable [strict function types](https://www.typescriptlang.org/tsconfig#strictFunctionTypes) in JavaScript and TypeScript files that are not part of a project. Existing `jsconfig.json` or `tsconfig.json` files override this setting.",
             "scope": 3
         },
         "typescript.tsc.autoDetect": {
@@ -6429,6 +6775,21 @@
             "description": "Controls whether completions should be computed based on words in the document.",
             "scope": 5
         },
+        "editor.wordBasedSuggestionsMode": {
+            "enum": [
+                "currentDocument",
+                "matchingDocuments",
+                "allDocuments"
+            ],
+            "default": "matchingDocuments",
+            "enumDescriptions": [
+                "Only suggest words from the active document.",
+                "Suggest words from all open documents of the same language.",
+                "Suggest words from all open documents."
+            ],
+            "description": "Controls form what documents word based completions are computed.",
+            "scope": 5
+        },
         "editor.semanticHighlighting.enabled": {
             "enum": [
                 true,
@@ -6484,6 +6845,21 @@
             "type": "boolean",
             "default": false,
             "description": "Controls whether the editor shows CodeLens.",
+            "scope": 5
+        },
+        "diffEditor.wordWrap": {
+            "type": "string",
+            "enum": [
+                "off",
+                "on",
+                "inherit"
+            ],
+            "default": "inherit",
+            "markdownEnumDescriptions": [
+                "Lines will never wrap.",
+                "Lines will wrap at the viewport width.",
+                "Lines will wrap according to the `#editor.wordWrap#` setting."
+            ],
             "scope": 5
         },
         "editor.acceptSuggestionOnCommitCharacter": {
@@ -6626,6 +7002,20 @@
             "description": "Controls whether the editor shows CodeLens.",
             "type": "boolean",
             "default": true,
+            "scope": 5
+        },
+        "editor.codeLensFontFamily": {
+            "description": "Controls the font family for CodeLens.",
+            "type": "string",
+            "default": "",
+            "scope": 5
+        },
+        "editor.codeLensFontSize": {
+            "type": "integer",
+            "default": 0,
+            "minimum": 0,
+            "maximum": 100,
+            "description": "Controls the font size in pixels for CodeLens. When set to `0`, the 90% of `#editor.fontSize#` is used.",
             "scope": 5
         },
         "editor.colorDecorators": {
@@ -6821,14 +7211,14 @@
             "anyOf": [
                 {
                     "type": "boolean",
-                    "description": "Enables/Disables font ligatures."
+                    "description": "Enables/Disables font ligatures ('calt' and 'liga' font features). Change this to a string for fine-grained control of the 'font-feature-settings' CSS property."
                 },
                 {
                     "type": "string",
-                    "description": "Explicit font-feature-settings."
+                    "description": "Explicit 'font-feature-settings' CSS property. A boolean can be passed instead if one only needs to turn on/off ligatures."
                 }
             ],
-            "description": "Configures font ligatures or font features.",
+            "description": "Configures font ligatures or font features. Can be either a boolean to enable/disable ligatures or a string for the value of the CSS 'font-feature-settings' property.",
             "default": false,
             "scope": 5
         },
@@ -7073,6 +7463,12 @@
             "description": "Controls the display of line numbers.",
             "scope": 5
         },
+        "editor.linkedEditing": {
+            "description": "Controls whether the editor has linked editing enabled. Depending on the language, related symbols, e.g. HTML tags, are updated while editing.",
+            "type": "boolean",
+            "default": false,
+            "scope": 5
+        },
         "editor.links": {
             "description": "Controls whether the editor should detect links and make them clickable.",
             "type": "boolean",
@@ -7307,9 +7703,11 @@
         },
         "editor.renameOnType": {
             "description": "Controls whether the editor auto renames on type.",
+            "markdownDeprecationMessage": "Deprecated, use `editor.linkedEditing` instead.",
             "type": "boolean",
             "default": false,
-            "scope": 5
+            "scope": 5,
+            "deprecationMessage": "Deprecated, use `editor.linkedEditing` instead."
         },
         "editor.renderControlCharacters": {
             "description": "Controls whether the editor should render control characters.",
@@ -7473,8 +7871,20 @@
             "default": "inline",
             "scope": 5
         },
+        "editor.smartSelect.selectLeadingAndTrailingWhitespace": {
+            "description": "Whether leading and trailing whitespace should always be selected.",
+            "default": true,
+            "type": "boolean",
+            "scope": 5
+        },
         "editor.smoothScrolling": {
             "description": "Controls whether the editor will scroll using an animation.",
+            "type": "boolean",
+            "default": false,
+            "scope": 5
+        },
+        "editor.stickyTabStops": {
+            "description": "Emulate selection behaviour of tab characters when using spaces for indentation. Selection will stick to tab stops.",
             "type": "boolean",
             "default": false,
             "scope": 5
@@ -7527,6 +7937,12 @@
             "type": "boolean",
             "default": false,
             "description": "Controls the visibility of the status bar at the bottom of the suggest widget.",
+            "scope": 5
+        },
+        "editor.suggest.showInlineDetails": {
+            "type": "boolean",
+            "default": true,
+            "description": "Controls whether suggest details show inline with the label or only in the details widget",
             "scope": 5
         },
         "editor.suggest.maxVisibleSuggestions": {
@@ -7718,7 +8134,7 @@
             "scope": 5
         },
         "editor.suggestLineHeight": {
-            "markdownDescription": "Line height for the suggest widget. When set to `0`, the value of `#editor.lineHeight#` is used.",
+            "markdownDescription": "Line height for the suggest widget. When set to `0`, the value of `#editor.lineHeight#` is used. The minimum value is 8.",
             "type": "integer",
             "default": 0,
             "minimum": 0,
@@ -7855,11 +8271,23 @@
             "default": true,
             "scope": 5
         },
-        "editor.smartSelect.selectLeadingAndTrailingWhitespace": {
-            "scope": 5,
-            "description": "Weather leading and trailing whitespace should always be selected.",
+        "editor.inlineHints.enabled": {
+            "type": "boolean",
             "default": true,
-            "type": "boolean"
+            "description": "Enables the inline hints in the editor.",
+            "scope": 5
+        },
+        "editor.inlineHints.fontSize": {
+            "type": "number",
+            "default": 0,
+            "description": "Controls font size of inline hints in the editor. When set to `0`, the 90% of `#editor.fontSize#` is used.",
+            "scope": 5
+        },
+        "editor.inlineHints.fontFamily": {
+            "type": "string",
+            "default": "Consolas, 'Courier New', monospace",
+            "description": "Controls font family of inline hints in the editor.",
+            "scope": 5
         },
         "editor.rename.enablePreview": {
             "scope": 5,
@@ -8082,8 +8510,10 @@
                 "ms-vscode.node-debug",
                 "ms-vscode.node-debug2",
                 "vscode.npm",
-                "vscode.python",
+                "ms-vscode-remote.remote-wsl-recommender",
                 "wraith13.save-vscode-schemas",
+                "vscode.simple-browser",
+                "vscode.testing-editor-contributions",
                 "ms-vscode.vscode-js-profile-table"
             ],
             "markdownEnumDescriptions": [
@@ -8116,8 +8546,10 @@
                 "Node.js debugging support (versions < 8.0)",
                 "Node.js debugging support",
                 "Extension to add task support for npm scripts.",
-                "Provides syntax highlighting, bracket matching and folding in Python files.",
+                "Recommends using the Windows Subsystem for Linux (WSL) and the Remote WSL extension.",
                 "Save VS Code's schemas",
+                "A very basic built-in webview for displaying web content.",
+                "Provides the in-editor experience for tests and test results.",
                 "Text visualizer for profiles taken from the JavaScript debugger"
             ],
             "scope": 5
@@ -8156,6 +8588,26 @@
                     "description": "Controls whether 'Organize imports' actions should be run on file save."
                 }
             }
+        },
+        "workbench.startupEditor": {
+            "scope": 4,
+            "type": "string",
+            "enum": [
+                "none",
+                "welcomePage",
+                "readme",
+                "newUntitledFile",
+                "welcomePageInEmptyWorkbench"
+            ],
+            "enumDescriptions": [
+                "Start without an editor.",
+                "Open the Welcome page (default).",
+                "Open the README when opening a folder that contains one, fallback to 'welcomePage' otherwise.",
+                "Open a new untitled file (only applies when opening an empty window).",
+                "Open the Welcome page when opening an empty workbench."
+            ],
+            "default": "welcomePage",
+            "description": "Controls which editor is shown at startup, if none are restored from the previous session."
         },
         "files.exclude": {
             "type": "object",
@@ -8423,7 +8875,7 @@
                 "Format the whole file.",
                 "Format modifications (requires source control)."
             ],
-            "markdownDescription": "Controls if format on save formats the whole file or only modifications. Only applies when `#editor.formatOnSave#` is `true`.",
+            "markdownDescription": "Controls if format on save formats the whole file or only modifications. Only applies when `#editor.formatOnSave#` is enabled.",
             "scope": 5
         },
         "outline.showFiles": {
@@ -8534,6 +8986,54 @@
             "scope": 5,
             "markdownDescription": "When enabled outline shows `array`-symbols."
         },
+        "outline.showObjects": {
+            "type": "boolean",
+            "default": true,
+            "scope": 5,
+            "markdownDescription": "When enabled outline shows `object`-symbols."
+        },
+        "outline.showKeys": {
+            "type": "boolean",
+            "default": true,
+            "scope": 5,
+            "markdownDescription": "When enabled outline shows `key`-symbols."
+        },
+        "outline.showNull": {
+            "type": "boolean",
+            "default": true,
+            "scope": 5,
+            "markdownDescription": "When enabled outline shows `null`-symbols."
+        },
+        "outline.showEnumMembers": {
+            "type": "boolean",
+            "default": true,
+            "scope": 5,
+            "markdownDescription": "When enabled outline shows `enumMember`-symbols."
+        },
+        "outline.showStructs": {
+            "type": "boolean",
+            "default": true,
+            "scope": 5,
+            "markdownDescription": "When enabled outline shows `struct`-symbols."
+        },
+        "outline.showEvents": {
+            "type": "boolean",
+            "default": true,
+            "scope": 5,
+            "markdownDescription": "When enabled outline shows `event`-symbols."
+        },
+        "outline.showOperators": {
+            "type": "boolean",
+            "default": true,
+            "scope": 5,
+            "markdownDescription": "When enabled outline shows `operator`-symbols."
+        },
+        "outline.showTypeParameters": {
+            "type": "boolean",
+            "default": true,
+            "scope": 5,
+            "markdownDescription": "When enabled outline shows `typeParameter`-symbols."
+        },
         "scm.diffDecorations": {
             "type": "string",
             "enum": [
@@ -8579,6 +9079,20 @@
             ],
             "description": "Controls the visibility of the Source Control diff decorator in the gutter.",
             "default": "always",
+            "scope": 4
+        },
+        "scm.diffDecorationsGutterAction": {
+            "type": "string",
+            "enum": [
+                "diff",
+                "none"
+            ],
+            "enumDescriptions": [
+                "Show the inline diff peek view on click.",
+                "Do nothing."
+            ],
+            "description": "Controls the behavior of Source Control diff gutter decorations.",
+            "default": "diff",
             "scope": 4
         },
         "scm.alwaysShowActions": {
@@ -9425,9 +9939,19 @@
             "default": true
         },
         "git.autofetch": {
-            "type": "boolean",
+            "anyOf": [
+                {
+                    "type": "boolean"
+                },
+                {
+                    "type": "string",
+                    "enum": [
+                        "all"
+                    ]
+                }
+            ],
             "scope": 4,
-            "description": "When enabled, commits will automatically be fetched from the default remote of the current Git repository.",
+            "description": "When set to true, commits will automatically be fetched from the default remote of the current Git repository. Setting to `all` will fetch from all remotes",
             "default": false,
             "tags": [
                 "usesOnlineServices"
@@ -9499,6 +10023,28 @@
             "description": "Controls whether the Git Sync command appears in the status bar.",
             "scope": 4
         },
+        "git.followTagsWhenSync": {
+            "type": "boolean",
+            "scope": 4,
+            "default": false,
+            "description": "Follow push all tags when running the sync command."
+        },
+        "git.promptToSaveFilesBeforeStash": {
+            "type": "string",
+            "enum": [
+                "always",
+                "staged",
+                "never"
+            ],
+            "enumDescriptions": [
+                "Check for any unsaved files.",
+                "Check only for unsaved staged files.",
+                "Disable this check."
+            ],
+            "scope": 4,
+            "default": "always",
+            "description": "Controls whether Git should check for unsaved files before stashing changes."
+        },
         "git.promptToSaveFilesBeforeCommit": {
             "type": "string",
             "enum": [
@@ -9555,6 +10101,12 @@
             "default": false,
             "description": "Controls the signoff flag for all commits."
         },
+        "git.ignoreSubmodules": {
+            "type": "boolean",
+            "scope": 4,
+            "default": false,
+            "description": "Ignore modifications to submodules in the file tree."
+        },
         "git.scanRepositories": {
             "type": "array",
             "items": {
@@ -9581,6 +10133,12 @@
             "scope": 4,
             "default": false,
             "description": "When enabled, fetch all branches when pulling. Otherwise, fetch just the current one."
+        },
+        "git.pruneOnFetch": {
+            "type": "boolean",
+            "scope": 4,
+            "default": false,
+            "description": "Prune when fetching."
         },
         "git.pullTags": {
             "type": "boolean",
@@ -9633,6 +10191,12 @@
             "scope": 4,
             "default": true,
             "description": "Controls whether to enable VS Code to be the authentication handler for git processes spawned in the integrated terminal. Note: terminals need to be restarted to pick up a change in this setting."
+        },
+        "git.useCommitInputAsStashMessage": {
+            "type": "boolean",
+            "scope": 4,
+            "default": false,
+            "description": "Controls whether to use the message from the commit input box as the default stash message."
         },
         "github.gitAuthentication": {
             "type": "boolean",
@@ -9759,6 +10323,27 @@
             ],
             "description": "Wrap attributes."
         },
+        "html.format.wrapAttributesIndentSize": {
+            "type": [
+                "number",
+                "null"
+            ],
+            "scope": 4,
+            "default": null,
+            "description": "Alignment size when using 'force aligned' and 'aligned multiple' in `#html.format.wrapAttributes#` or `null` to use the default indent size."
+        },
+        "html.format.templating": {
+            "type": "boolean",
+            "scope": 4,
+            "default": false,
+            "description": "Honor django, erb, handlebars and php templating language tags."
+        },
+        "html.format.unformattedContentDelimiter": {
+            "type": "string",
+            "scope": 4,
+            "default": "",
+            "markdownDescription": "Keep text content together between this string."
+        },
         "html.suggest.html5": {
             "type": "boolean",
             "scope": 4,
@@ -9783,12 +10368,24 @@
             "default": true,
             "description": "Enable/disable autoclosing of HTML tags."
         },
+        "html.hover.documentation": {
+            "type": "boolean",
+            "scope": 4,
+            "default": true,
+            "description": "Show tag and attribute documentation in hover."
+        },
+        "html.hover.references": {
+            "type": "boolean",
+            "scope": 4,
+            "default": true,
+            "description": "Show references to MDN in hover."
+        },
         "html.mirrorCursorOnMatchingTag": {
             "type": "boolean",
             "scope": 4,
             "default": false,
             "description": "Enable/disable mirroring cursor on matching HTML tag.",
-            "deprecationMessage": "Deprecated in favor of `editor.renameOnType`"
+            "deprecationMessage": "Deprecated in favor of `editor.linkedEditing`"
         },
         "jake.autoDetect": {
             "scope": 4,
@@ -9947,11 +10544,18 @@
             "scope": 4,
             "type": "string",
             "enum": [
+                "auto",
                 "npm",
                 "yarn",
                 "pnpm"
             ],
-            "default": "npm",
+            "enumDescriptions": [
+                "Auto-detect which package manager to use for running scripts based on lock files and installed package managers.",
+                "Use npm as the package manager for running scripts.",
+                "Use yarn as the package manager for running scripts.",
+                "Use pnpm as the package manager for running scripts."
+            ],
+            "default": "auto",
             "description": "The package manager used to run scripts."
         },
         "npm.exclude": {
@@ -10300,32 +10904,36 @@
         "javascript.preferences.importModuleSpecifier": {
             "type": "string",
             "enum": [
-                "auto",
+                "shortest",
                 "relative",
-                "non-relative"
+                "non-relative",
+                "project-relative"
             ],
             "markdownEnumDescriptions": [
-                "Automatically select import path style. Prefers using a relative import if `baseUrl` is configured and the relative path has fewer segments than the non-relative import.",
-                "Relative to the file location.",
-                "Based on the `baseUrl` configured in your `jsconfig.json` / `tsconfig.json`."
+                "Prefers a non-relative import only if one is available that has fewer path segments than a relative import.",
+                "Prefers a relative path to the imported file location.",
+                "Prefers a non-relative import based on the `baseUrl` or `paths` configured in your `jsconfig.json` / `tsconfig.json`.",
+                "Prefers a non-relative import only if the relative import path would leave the package or project directory. Requires using TypeScript 4.2+ in the workspace."
             ],
-            "default": "auto",
+            "default": "shortest",
             "description": "Preferred path style for auto imports.",
             "scope": 4
         },
         "typescript.preferences.importModuleSpecifier": {
             "type": "string",
             "enum": [
-                "auto",
+                "shortest",
                 "relative",
-                "non-relative"
+                "non-relative",
+                "project-relative"
             ],
             "markdownEnumDescriptions": [
-                "Automatically select import path style. Prefers using a relative import if `baseUrl` is configured and the relative path has fewer segments than the non-relative import.",
-                "Relative to the file location.",
-                "Based on the `baseUrl` configured in your `jsconfig.json` / `tsconfig.json`."
+                "Prefers a non-relative import only if one is available that has fewer path segments than a relative import.",
+                "Prefers a relative path to the imported file location.",
+                "Prefers a non-relative import based on the `baseUrl` or `paths` configured in your `jsconfig.json` / `tsconfig.json`.",
+                "Prefers a non-relative import only if the relative import path would leave the package or project directory. Requires using TypeScript 4.2+ in the workspace."
             ],
-            "default": "auto",
+            "default": "shortest",
             "description": "Preferred path style for auto imports.",
             "scope": 4
         },
