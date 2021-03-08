@@ -314,6 +314,20 @@
             "$ref": "vscode://schemas/settings/resourceLanguage",
             "default": {}
         },
+        "[julia]": {
+            "type": "object",
+            "description": "Configure editor settings to be overridden for a language.",
+            "errorMessage": "This setting does not support per-language configuration.",
+            "$ref": "vscode://schemas/settings/resourceLanguage",
+            "default": {}
+        },
+        "[juliamarkdown]": {
+            "type": "object",
+            "description": "Configure editor settings to be overridden for a language.",
+            "errorMessage": "This setting does not support per-language configuration.",
+            "$ref": "vscode://schemas/settings/resourceLanguage",
+            "default": {}
+        },
         "[lua]": {
             "type": "object",
             "description": "Configure editor settings to be overridden for a language.",
@@ -535,7 +549,7 @@
                 "doubleClick"
             ],
             "default": "singleClick",
-            "description": "Controls how to open items in trees and lists using the mouse (if supported). For parents with children in trees, this setting will control if a single click expands the parent or a double click. Note that some trees and lists might choose to ignore this setting if it is not applicable. ",
+            "description": "Controls how to open items in trees and lists using the mouse (if supported). Note that some trees and lists might choose to ignore this setting if it is not applicable.",
             "scope": 3
         },
         "workbench.list.horizontalScrolling": {
@@ -598,7 +612,7 @@
                 "doubleClick"
             ],
             "default": "singleClick",
-            "description": "Controls how tree folders are expanded when clicking the folder names.",
+            "description": "Controls how tree folders are expanded when clicking the folder names. Note that some trees and lists might choose to ignore this setting if it is not applicable.",
             "scope": 3
         },
         "breadcrumbs.enabled": {
@@ -725,6 +739,17 @@
             ],
             "default": "content",
             "description": "Controls the format of the label for an untitled editor.",
+            "scope": 3
+        },
+        "workbench.editor.untitled.hint": {
+            "type": "string",
+            "enum": [
+                "text",
+                "button",
+                "hidden"
+            ],
+            "default": "hidden",
+            "markdownDescription": "Controls if the untitled hint should be inline text in the editor or a floating button or hidden.",
             "scope": 3
         },
         "workbench.editor.tabCloseButton": {
@@ -1111,6 +1136,52 @@
             "default": [],
             "scope": 3
         },
+        "workbench.editorAssociations": {
+            "type": "array",
+            "markdownDescription": "Configure which editor to use for specific file types.",
+            "items": {
+                "type": "object",
+                "defaultSnippets": [
+                    {
+                        "body": {
+                            "viewType": "$1",
+                            "filenamePattern": "$2"
+                        }
+                    }
+                ],
+                "properties": {
+                    "viewType": {
+                        "anyOf": [
+                            {
+                                "type": "string",
+                                "description": "The unique id of the editor to use."
+                            },
+                            {
+                                "type": "string",
+                                "enum": [
+                                    "default",
+                                    "imagePreview.previewEditor",
+                                    "vscode.markdown.preview.editor",
+                                    "jsProfileVisualizer.cpuprofile.table"
+                                ],
+                                "enumDescriptions": [
+                                    "Source: Built-in",
+                                    "Source: Built-in",
+                                    "Source: Built-in",
+                                    "Source: Built-in"
+                                ]
+                            }
+                        ]
+                    },
+                    "filenamePattern": {
+                        "type": "string",
+                        "description": "Glob pattern specifying which files the editor should be used for."
+                    }
+                }
+            },
+            "default": [],
+            "scope": 3
+        },
         "problems.decorations.enabled": {
             "description": "Show Errors & Warnings on files and folder.",
             "type": "boolean",
@@ -1271,6 +1342,20 @@
             "default": true,
             "scope": 3
         },
+        "remote.autoForwardPortsSource": {
+            "type": "string",
+            "markdownDescription": "Sets the source from which ports are automatically forwarded when `remote.autoForwardPorts` is true. On Windows and Mac remotes, the `process` option has no effect and `output` will be used. Requires a reload to take effect.",
+            "enum": [
+                "process",
+                "output"
+            ],
+            "enumDescriptions": [
+                "Ports will be automatically forwarded when discovered by watching for processes that are started and include a port.",
+                "Ports will be automatically forwarded when discovered by reading terminal and debug output. Not all processes that use ports will print to the integrated terminal or debug console, so some ports will be missed. Ports forwarded based on output will not be \"un-forwarded\" until reload or until the port is closed by the user in the Ports view."
+            ],
+            "default": "process",
+            "scope": 3
+        },
         "remote.portsAttributes": {
             "type": "object",
             "patternProperties": {
@@ -1283,12 +1368,14 @@
                             "enum": [
                                 "notify",
                                 "openBrowser",
+                                "openPreview",
                                 "silent",
                                 "ignore"
                             ],
                             "enumDescriptions": [
                                 "Shows a notification when a port is automatically forwarded.",
                                 "Opens the browser when the port is automatically forwarded. Depending on your settings, this could open an embedded browser.",
+                                "Opens a preview in the same window when the port is automatically forwarded.",
                                 "Shows no notification and takes no action when this port is automatically forwarded.",
                                 "This port will not be automatically forwarded."
                             ],
@@ -1312,7 +1399,19 @@
                     }
                 }
             },
-            "markdownDescription": "Allows setting of default properties that are set when a specific port number is forwarded. For example:\n\n```\n\"3000\": {\n  \"label\": \"Labeled Port\"\n},\n\"40000-55000\": {\n  \"onAutoForward\": \"ignore\"\n}\n```",
+            "markdownDescription": "Set default properties that are applied when a specific port number is forwarded. For example:\n\n```\n\"3000\": {\n  \"label\": \"Labeled Port\"\n},\n\"40000-55000\": {\n  \"onAutoForward\": \"ignore\"\n}\n```",
+            "defaultSnippets": [
+                {
+                    "body": {
+                        "${1:3000}": {
+                            "label": "${2:My Port}",
+                            "onAutoForward": "notify"
+                        }
+                    }
+                }
+            ],
+            "errorMessage": "Must be a port number or a range of port numbers",
+            "additionalProperties": false,
             "default": {},
             "scope": 3
         },
@@ -2812,209 +2911,10 @@
             "default": "always",
             "scope": 3
         },
-        "workbench.editorAssociations": {
-            "type": "array",
-            "markdownDescription": "Configure which editor to use for specific file types.",
-            "items": {
-                "type": "object",
-                "defaultSnippets": [
-                    {
-                        "body": {
-                            "viewType": "$1",
-                            "filenamePattern": "$2"
-                        }
-                    }
-                ],
-                "properties": {
-                    "viewType": {
-                        "anyOf": [
-                            {
-                                "type": "string",
-                                "description": "The unique id of the editor to use."
-                            },
-                            {
-                                "type": "string",
-                                "enum": [
-                                    "default",
-                                    "imagePreview.previewEditor",
-                                    "vscode.markdown.preview.editor",
-                                    "jsProfileVisualizer.cpuprofile.table"
-                                ],
-                                "enumDescriptions": [
-                                    "Source: Built-in",
-                                    "Source: Built-in",
-                                    "Source: Built-in",
-                                    "Source: Built-in"
-                                ]
-                            }
-                        ]
-                    },
-                    "filenamePattern": {
-                        "type": "string",
-                        "description": "Glob pattern specifying which files the editor should be used for."
-                    }
-                }
-            },
-            "default": [],
-            "scope": 3
-        },
         "files.participants.timeout": {
             "type": "number",
             "default": 60000,
             "markdownDescription": "Timeout in milliseconds after which file participants for create, rename, and delete are cancelled. Use `0` to disable participants.",
-            "scope": 3
-        },
-        "debug.allowBreakpointsEverywhere": {
-            "type": "boolean",
-            "description": "Allow setting breakpoints in any file.",
-            "default": false,
-            "scope": 3
-        },
-        "debug.openExplorerOnEnd": {
-            "type": "boolean",
-            "description": "Automatically open the explorer view at the end of a debug session.",
-            "default": false,
-            "scope": 3
-        },
-        "debug.inlineValues": {
-            "type": "boolean",
-            "description": "Show variable values inline in editor while debugging.",
-            "default": false,
-            "scope": 3
-        },
-        "debug.toolBarLocation": {
-            "enum": [
-                "floating",
-                "docked",
-                "hidden"
-            ],
-            "markdownDescription": "Controls the location of the debug toolbar. Either `floating` in all views, `docked` in the debug view, or `hidden`.",
-            "default": "floating",
-            "scope": 3
-        },
-        "debug.showInStatusBar": {
-            "enum": [
-                "never",
-                "always",
-                "onFirstSessionStart"
-            ],
-            "enumDescriptions": [
-                "Never show debug in status bar",
-                "Always show debug in status bar",
-                "Show debug in status bar only after debug was started for the first time"
-            ],
-            "description": "Controls when the debug status bar should be visible.",
-            "default": "onFirstSessionStart",
-            "scope": 3
-        },
-        "debug.internalConsoleOptions": {
-            "enum": [
-                "neverOpen",
-                "openOnSessionStart",
-                "openOnFirstSessionStart"
-            ],
-            "default": "openOnFirstSessionStart",
-            "description": "Controls when the internal debug console should open.",
-            "scope": 3,
-            "pattern": "^(?!.*\\$\\{(env|config|command)\\.)",
-            "patternErrorMessage": "'env.', 'config.' and 'command.' are deprecated, use 'env:', 'config:' and 'command:' instead."
-        },
-        "debug.console.closeOnEnd": {
-            "type": "boolean",
-            "description": "Controls if the debug console should be automatically closed when the debug session ends.",
-            "default": false,
-            "scope": 3
-        },
-        "debug.openDebug": {
-            "enum": [
-                "neverOpen",
-                "openOnSessionStart",
-                "openOnFirstSessionStart",
-                "openOnDebugBreak"
-            ],
-            "default": "openOnFirstSessionStart",
-            "description": "Controls when the debug view should open.",
-            "scope": 3
-        },
-        "debug.showSubSessionsInToolBar": {
-            "type": "boolean",
-            "description": "Controls whether the debug sub-sessions are shown in the debug tool bar. When this setting is false the stop command on a sub-session will also stop the parent session.",
-            "default": false,
-            "scope": 3
-        },
-        "debug.console.fontSize": {
-            "type": "number",
-            "description": "Controls the font size in pixels in the debug console.",
-            "default": 14,
-            "scope": 3
-        },
-        "debug.console.fontFamily": {
-            "type": "string",
-            "description": "Controls the font family in the debug console.",
-            "default": "default",
-            "scope": 3
-        },
-        "debug.console.lineHeight": {
-            "type": "number",
-            "description": "Controls the line height in pixels in the debug console. Use 0 to compute the line height from the font size.",
-            "default": 0,
-            "scope": 3
-        },
-        "debug.console.wordWrap": {
-            "type": "boolean",
-            "description": "Controls if the lines should wrap in the debug console.",
-            "default": true,
-            "scope": 3
-        },
-        "debug.console.historySuggestions": {
-            "type": "boolean",
-            "description": "Controls if the debug console should suggest previously typed input.",
-            "default": true,
-            "scope": 3
-        },
-        "launch": {
-            "type": "object",
-            "description": "Global debug launch configuration. Should be used as an alternative to 'launch.json' that is shared across workspaces.",
-            "default": {
-                "configurations": [],
-                "compounds": []
-            },
-            "$ref": "vscode://schemas/launch",
-            "scope": 3
-        },
-        "debug.focusWindowOnBreak": {
-            "type": "boolean",
-            "description": "Controls whether the workbench window should be focused when the debugger breaks.",
-            "default": true,
-            "scope": 3
-        },
-        "debug.onTaskErrors": {
-            "enum": [
-                "debugAnyway",
-                "showErrors",
-                "prompt",
-                "abort"
-            ],
-            "enumDescriptions": [
-                "Ignore task errors and start debugging.",
-                "Show the Problems view and do not start debugging.",
-                "Prompt user.",
-                "Cancel debugging."
-            ],
-            "description": "Controls what to do when errors are encountered after running a preLaunchTask.",
-            "default": "prompt",
-            "scope": 3
-        },
-        "debug.showBreakpointsInOverviewRuler": {
-            "type": "boolean",
-            "description": "Controls whether breakpoints should be shown in the overview ruler.",
-            "default": false,
-            "scope": 3
-        },
-        "debug.showInlineBreakpointCandidates": {
-            "type": "boolean",
-            "description": "Controls whether inline breakpoints candidate decorations should be shown in the editor while debugging.",
-            "default": true,
             "scope": 3
         },
         "extensions.ignoreRecommendations": {
@@ -3048,178 +2948,6 @@
             "type": "boolean",
             "description": "Enable web worker extension host.",
             "default": false,
-            "scope": 3
-        },
-        "files.associations": {
-            "type": "object",
-            "markdownDescription": "Configure file associations to languages (e.g. `\"*.extension\": \"html\"`). These have precedence over the default associations of the languages installed.",
-            "additionalProperties": {
-                "type": "string"
-            },
-            "default": {},
-            "scope": 3
-        },
-        "files.enableTrash": {
-            "type": "boolean",
-            "default": true,
-            "description": "Moves files/folders to the OS trash (recycle bin on Windows) when deleting. Disabling this will delete files/folders permanently.",
-            "scope": 3
-        },
-        "files.autoSave": {
-            "type": "string",
-            "enum": [
-                "off",
-                "afterDelay",
-                "onFocusChange",
-                "onWindowChange"
-            ],
-            "markdownEnumDescriptions": [
-                "A dirty editor is never automatically saved.",
-                "A dirty editor is automatically saved after the configured `#files.autoSaveDelay#`.",
-                "A dirty editor is automatically saved when the editor loses focus.",
-                "A dirty editor is automatically saved when the window loses focus."
-            ],
-            "default": "off",
-            "markdownDescription": "Controls auto save of dirty editors. Read more about autosave [here](https://code.visualstudio.com/docs/editor/codebasics#_save-auto-save).",
-            "scope": 3
-        },
-        "files.autoSaveDelay": {
-            "type": "number",
-            "default": 1000,
-            "markdownDescription": "Controls the delay in ms after which a dirty editor is saved automatically. Only applies when `#files.autoSave#` is set to `afterDelay`.",
-            "scope": 3
-        },
-        "files.defaultLanguage": {
-            "type": "string",
-            "markdownDescription": "The default language mode that is assigned to new files. If configured to `${activeEditorLanguage}`, will use the language mode of the currently active text editor if any.",
-            "default": "",
-            "scope": 3
-        },
-        "files.maxMemoryForLargeFilesMB": {
-            "type": "number",
-            "default": 4096,
-            "markdownDescription": "Controls the memory available to VS Code after restart when trying to open large files. Same effect as specifying `--max-memory=NEWSIZE` on the command line.",
-            "included": true,
-            "scope": 3
-        },
-        "files.restoreUndoStack": {
-            "type": "boolean",
-            "description": "Restore the undo stack when a file is reopened.",
-            "default": true,
-            "scope": 3
-        },
-        "files.simpleDialog.enable": {
-            "type": "boolean",
-            "description": "Enables the simple file dialog. The simple file dialog replaces the system file dialog when enabled.",
-            "default": false,
-            "scope": 3
-        },
-        "explorer.openEditors.visible": {
-            "type": "number",
-            "description": "Number of editors shown in the Open Editors pane. Setting this to 0 hides the Open Editors pane.",
-            "default": 9,
-            "scope": 3
-        },
-        "explorer.openEditors.sortOrder": {
-            "type": "string",
-            "enum": [
-                "editorOrder",
-                "alphabetical"
-            ],
-            "description": "Controls the sorting order of editors in the Open Editors pane.",
-            "enumDescriptions": [
-                "Editors are ordered in the same order editor tabs are shown.",
-                "Editors are ordered in alphabetical order inside each editor group."
-            ],
-            "default": "editorOrder",
-            "scope": 3
-        },
-        "explorer.autoReveal": {
-            "type": [
-                "boolean",
-                "string"
-            ],
-            "enum": [
-                true,
-                false,
-                "focusNoScroll"
-            ],
-            "default": true,
-            "enumDescriptions": [
-                "Files will be revealed and selected.",
-                "Files will not be revealed and selected.",
-                "Files will not be scrolled into view, but will still be focused."
-            ],
-            "description": "Controls whether the explorer should automatically reveal and select files when opening them.",
-            "scope": 3
-        },
-        "explorer.enableDragAndDrop": {
-            "type": "boolean",
-            "description": "Controls whether the explorer should allow to move files and folders via drag and drop. This setting only effects drag and drop from inside the explorer.",
-            "default": true,
-            "scope": 3
-        },
-        "explorer.confirmDragAndDrop": {
-            "type": "boolean",
-            "description": "Controls whether the explorer should ask for confirmation to move files and folders via drag and drop.",
-            "default": true,
-            "scope": 3
-        },
-        "explorer.confirmDelete": {
-            "type": "boolean",
-            "description": "Controls whether the explorer should ask for confirmation when deleting a file via the trash.",
-            "default": true,
-            "scope": 3
-        },
-        "explorer.sortOrder": {
-            "type": "string",
-            "enum": [
-                "default",
-                "mixed",
-                "filesFirst",
-                "type",
-                "modified"
-            ],
-            "default": "default",
-            "enumDescriptions": [
-                "Files and folders are sorted by their names, in alphabetical order. Folders are displayed before files.",
-                "Files and folders are sorted by their names, in alphabetical order. Files are interwoven with folders.",
-                "Files and folders are sorted by their names, in alphabetical order. Files are displayed before folders.",
-                "Files and folders are sorted by their extensions, in alphabetical order. Folders are displayed before files.",
-                "Files and folders are sorted by last modified date, in descending order. Folders are displayed before files."
-            ],
-            "description": "Controls sorting order of files and folders in the explorer.",
-            "scope": 3
-        },
-        "explorer.decorations.colors": {
-            "type": "boolean",
-            "description": "Controls whether file decorations should use colors.",
-            "default": true,
-            "scope": 3
-        },
-        "explorer.decorations.badges": {
-            "type": "boolean",
-            "description": "Controls whether file decorations should use badges.",
-            "default": true,
-            "scope": 3
-        },
-        "explorer.incrementalNaming": {
-            "enum": [
-                "simple",
-                "smart"
-            ],
-            "enumDescriptions": [
-                "Appends the word \"copy\" at the end of the duplicated name potentially followed by a number",
-                "Adds a number at the end of the duplicated name. If some number is already part of the name, tries to increase that number"
-            ],
-            "description": "Controls what naming strategy to use when a giving a new name to a duplicated explorer item on paste.",
-            "default": "simple",
-            "scope": 3
-        },
-        "explorer.compactFolders": {
-            "type": "boolean",
-            "description": "Controls whether the explorer should render folders in a compact form. In such a form, single child folders will be compressed in a combined tree element. Useful for Java package structures, for example.",
-            "default": true,
             "scope": 3
         },
         "problems.autoReveal": {
@@ -3268,30 +2996,6 @@
             "default": true,
             "scope": 3
         },
-        "outline.icons": {
-            "description": "Render Outline Elements with Icons.",
-            "type": "boolean",
-            "default": true,
-            "scope": 3
-        },
-        "outline.problems.enabled": {
-            "description": "Show Errors & Warnings on Outline Elements.",
-            "type": "boolean",
-            "default": true,
-            "scope": 3
-        },
-        "outline.problems.colors": {
-            "description": "Use colors for Errors & Warnings.",
-            "type": "boolean",
-            "default": true,
-            "scope": 3
-        },
-        "outline.problems.badges": {
-            "description": "Use badges for Errors & Warnings.",
-            "type": "boolean",
-            "default": true,
-            "scope": 3
-        },
         "output.smartScroll.enabled": {
             "type": "boolean",
             "description": "Enable/disable the ability of smart scrolling in the output view. Smart scrolling allows you to lock scrolling automatically when you click in the output view and unlocks when you click in the last line.",
@@ -3300,216 +3004,6 @@
             "tags": [
                 "output"
             ]
-        },
-        "search.mode": {
-            "type": "string",
-            "enum": [
-                "view",
-                "reuseEditor",
-                "newEditor"
-            ],
-            "default": "view",
-            "markdownDescription": "Controls where new `Search: Find in Files` and `Find in Folder` operations occur: either in the sidebar's search view, or in a search editor",
-            "enumDescriptions": [
-                "Search in the search view, either in the panel or sidebar.",
-                "Search in an existing search editor if present, otherwise in a new search editor",
-                "Search in a new search editor"
-            ],
-            "scope": 3
-        },
-        "search.useRipgrep": {
-            "type": "boolean",
-            "description": "This setting is deprecated and now falls back on \"search.usePCRE2\".",
-            "deprecationMessage": "Deprecated. Consider \"search.usePCRE2\" for advanced regex feature support.",
-            "default": true,
-            "scope": 3
-        },
-        "search.maintainFileSearchCache": {
-            "type": "boolean",
-            "description": "When enabled, the searchService process will be kept alive instead of being shut down after an hour of inactivity. This will keep the file search cache in memory.",
-            "default": false,
-            "scope": 3
-        },
-        "search.quickOpen.includeSymbols": {
-            "type": "boolean",
-            "description": "Whether to include results from a global symbol search in the file results for Quick Open.",
-            "default": false,
-            "scope": 3
-        },
-        "search.quickOpen.includeHistory": {
-            "type": "boolean",
-            "description": "Whether to include results from recently opened files in the file results for Quick Open.",
-            "default": true,
-            "scope": 3
-        },
-        "search.quickOpen.history.filterSortOrder": {
-            "type": "string",
-            "enum": [
-                "default",
-                "recency"
-            ],
-            "default": "default",
-            "enumDescriptions": [
-                "History entries are sorted by relevance based on the filter value used. More relevant entries appear first.",
-                "History entries are sorted by recency. More recently opened entries appear first."
-            ],
-            "description": "Controls sorting order of editor history in quick open when filtering.",
-            "scope": 3
-        },
-        "search.followSymlinks": {
-            "type": "boolean",
-            "description": "Controls whether to follow symlinks while searching.",
-            "default": true,
-            "scope": 3
-        },
-        "search.smartCase": {
-            "type": "boolean",
-            "description": "Search case-insensitively if the pattern is all lowercase, otherwise, search case-sensitively.",
-            "default": false,
-            "scope": 3
-        },
-        "search.location": {
-            "type": "string",
-            "enum": [
-                "sidebar",
-                "panel"
-            ],
-            "default": "sidebar",
-            "description": "Controls whether the search will be shown as a view in the sidebar or as a panel in the panel area for more horizontal space.",
-            "deprecationMessage": "This setting is deprecated. Please use drag and drop instead by dragging the search icon.",
-            "scope": 3
-        },
-        "search.collapseResults": {
-            "type": "string",
-            "enum": [
-                "auto",
-                "alwaysCollapse",
-                "alwaysExpand"
-            ],
-            "enumDescriptions": [
-                "Files with less than 10 results are expanded. Others are collapsed.",
-                "",
-                ""
-            ],
-            "default": "alwaysExpand",
-            "description": "Controls whether the search results will be collapsed or expanded.",
-            "scope": 3
-        },
-        "search.useReplacePreview": {
-            "type": "boolean",
-            "default": true,
-            "description": "Controls whether to open Replace Preview when selecting or replacing a match.",
-            "scope": 3
-        },
-        "search.showLineNumbers": {
-            "type": "boolean",
-            "default": false,
-            "description": "Controls whether to show line numbers for search results.",
-            "scope": 3
-        },
-        "search.usePCRE2": {
-            "type": "boolean",
-            "default": false,
-            "description": "Whether to use the PCRE2 regex engine in text search. This enables using some advanced regex features like lookahead and backreferences. However, not all PCRE2 features are supported - only features that are also supported by JavaScript.",
-            "deprecationMessage": "Deprecated. PCRE2 will be used automatically when using regex features that are only supported by PCRE2.",
-            "scope": 3
-        },
-        "search.actionsPosition": {
-            "type": "string",
-            "enum": [
-                "auto",
-                "right"
-            ],
-            "enumDescriptions": [
-                "Position the actionbar to the right when the search view is narrow, and immediately after the content when the search view is wide.",
-                "Always position the actionbar to the right."
-            ],
-            "default": "right",
-            "description": "Controls the positioning of the actionbar on rows in the search view.",
-            "scope": 3
-        },
-        "search.searchOnType": {
-            "type": "boolean",
-            "default": true,
-            "description": "Search all files as you type.",
-            "scope": 3
-        },
-        "search.seedWithNearestWord": {
-            "type": "boolean",
-            "default": false,
-            "description": "Enable seeding search from the word nearest the cursor when the active editor has no selection.",
-            "scope": 3
-        },
-        "search.seedOnFocus": {
-            "type": "boolean",
-            "default": false,
-            "description": "Update the search query to the editor's selected text when focusing the search view. This happens either on click or when triggering the `workbench.views.search.focus` command.",
-            "scope": 3
-        },
-        "search.searchOnTypeDebouncePeriod": {
-            "type": "number",
-            "default": 300,
-            "markdownDescription": "When `#search.searchOnType#` is enabled, controls the timeout in milliseconds between a character being typed and the search starting. Has no effect when `search.searchOnType` is disabled.",
-            "scope": 3
-        },
-        "search.searchEditor.doubleClickBehaviour": {
-            "type": "string",
-            "enum": [
-                "selectWord",
-                "goToLocation",
-                "openLocationToSide"
-            ],
-            "default": "goToLocation",
-            "enumDescriptions": [
-                "Double clicking selects the word under the cursor.",
-                "Double clicking opens the result in the active editor group.",
-                "Double clicking opens the result in the editor group to the side, creating one if it does not yet exist."
-            ],
-            "markdownDescription": "Configure effect of double clicking a result in a search editor.",
-            "scope": 3
-        },
-        "search.searchEditor.reusePriorSearchConfiguration": {
-            "type": "boolean",
-            "default": false,
-            "markdownDescription": "When enabled, new Search Editors will reuse the includes, excludes, and flags of the previously opened Search Editor",
-            "scope": 3
-        },
-        "search.searchEditor.defaultNumberOfContextLines": {
-            "type": [
-                "number",
-                "null"
-            ],
-            "default": 1,
-            "markdownDescription": "The default number of surrounding context lines to use when creating new Search Editors. If using `#search.searchEditor.reusePriorSearchConfiguration#`, this can be set to `null` (empty) to use the prior Search Editor's configuration.",
-            "scope": 3
-        },
-        "search.sortOrder": {
-            "type": "string",
-            "enum": [
-                "default",
-                "fileNames",
-                "type",
-                "modified",
-                "countDescending",
-                "countAscending"
-            ],
-            "default": "default",
-            "enumDescriptions": [
-                "Results are sorted by folder and file names, in alphabetical order.",
-                "Results are sorted by file names ignoring folder order, in alphabetical order.",
-                "Results are sorted by file extensions, in alphabetical order.",
-                "Results are sorted by file last modified date, in descending order.",
-                "Results are sorted by count per file, in descending order.",
-                "Results are sorted by count per file, in ascending order."
-            ],
-            "description": "Controls sorting order of search results.",
-            "scope": 3
-        },
-        "search.experimental.searchInOpenEditors": {
-            "type": "boolean",
-            "default": false,
-            "markdownDescription": "Experimental. When enabled, an option is provided to make workspace search only search files that have been opened. **Requires restart to take effect.**",
-            "scope": 3
         },
         "terminal.integrated.sendKeybindingsToShell": {
             "markdownDescription": "Dispatches most keybindings to the terminal instead of the workbench, overriding `#terminal.integrated.commandsToSkipShell#`, which can be used alternatively for fine tuning.",
@@ -4013,7 +3507,7 @@
             "scope": 3
         },
         "terminal.integrated.enablePersistentSessions": {
-            "description": "Experimental: persist terminal sessions for the workspace across window reloads. Currently only supported in VS Code Remote workspaces.",
+            "description": "Persist terminal sessions for the workspace across window reloads.",
             "type": "boolean",
             "default": true,
             "scope": 3
@@ -4022,6 +3516,612 @@
             "description": "Experimental: whether to enable flow control which will slow the program on the remote side to avoid flooding remote connections with terminal output. This setting has no effect for local terminals and terminals where the output/input is controlled by an extension. Changing this will only affect new terminals.",
             "type": "boolean",
             "default": true,
+            "scope": 3
+        },
+        "testing.autoRun.delay": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "How long to wait, in milliseconds, after a test is marked as outdated and starting a new run.",
+            "default": 1000,
+            "scope": 3
+        },
+        "testing.automaticallyOpenPeekView": {
+            "description": "Configures when the error peek view is automatically opened.",
+            "enum": [
+                "failureAnywhere",
+                "failureInVisibleDocument"
+            ],
+            "default": "failureInVisibleDocument",
+            "enumDescriptions": [
+                "Open automatically no matter where the failure is.",
+                "Open automatically when a test fails in a visible document."
+            ],
+            "scope": 3
+        },
+        "testing.automaticallyOpenPeekViewDuringAutoRun": {
+            "description": "Controls whether to automatically open the peek view during auto-run mode.",
+            "type": "boolean",
+            "default": false,
+            "scope": 3
+        },
+        "debug.allowBreakpointsEverywhere": {
+            "type": "boolean",
+            "description": "Allow setting breakpoints in any file.",
+            "default": false,
+            "scope": 3
+        },
+        "debug.openExplorerOnEnd": {
+            "type": "boolean",
+            "description": "Automatically open the explorer view at the end of a debug session.",
+            "default": false,
+            "scope": 3
+        },
+        "debug.inlineValues": {
+            "type": "boolean",
+            "description": "Show variable values inline in editor while debugging.",
+            "default": false,
+            "scope": 3
+        },
+        "debug.toolBarLocation": {
+            "enum": [
+                "floating",
+                "docked",
+                "hidden"
+            ],
+            "markdownDescription": "Controls the location of the debug toolbar. Either `floating` in all views, `docked` in the debug view, or `hidden`.",
+            "default": "floating",
+            "scope": 3
+        },
+        "debug.showInStatusBar": {
+            "enum": [
+                "never",
+                "always",
+                "onFirstSessionStart"
+            ],
+            "enumDescriptions": [
+                "Never show debug in status bar",
+                "Always show debug in status bar",
+                "Show debug in status bar only after debug was started for the first time"
+            ],
+            "description": "Controls when the debug status bar should be visible.",
+            "default": "onFirstSessionStart",
+            "scope": 3
+        },
+        "debug.internalConsoleOptions": {
+            "enum": [
+                "neverOpen",
+                "openOnSessionStart",
+                "openOnFirstSessionStart"
+            ],
+            "default": "openOnFirstSessionStart",
+            "description": "Controls when the internal debug console should open.",
+            "scope": 3,
+            "pattern": "^(?!.*\\$\\{(env|config|command)\\.)",
+            "patternErrorMessage": "'env.', 'config.' and 'command.' are deprecated, use 'env:', 'config:' and 'command:' instead."
+        },
+        "debug.console.closeOnEnd": {
+            "type": "boolean",
+            "description": "Controls if the debug console should be automatically closed when the debug session ends.",
+            "default": false,
+            "scope": 3
+        },
+        "debug.openDebug": {
+            "enum": [
+                "neverOpen",
+                "openOnSessionStart",
+                "openOnFirstSessionStart",
+                "openOnDebugBreak"
+            ],
+            "default": "openOnFirstSessionStart",
+            "description": "Controls when the debug view should open.",
+            "scope": 3
+        },
+        "debug.showSubSessionsInToolBar": {
+            "type": "boolean",
+            "description": "Controls whether the debug sub-sessions are shown in the debug tool bar. When this setting is false the stop command on a sub-session will also stop the parent session.",
+            "default": false,
+            "scope": 3
+        },
+        "debug.console.fontSize": {
+            "type": "number",
+            "description": "Controls the font size in pixels in the debug console.",
+            "default": 14,
+            "scope": 3
+        },
+        "debug.console.fontFamily": {
+            "type": "string",
+            "description": "Controls the font family in the debug console.",
+            "default": "default",
+            "scope": 3
+        },
+        "debug.console.lineHeight": {
+            "type": "number",
+            "description": "Controls the line height in pixels in the debug console. Use 0 to compute the line height from the font size.",
+            "default": 0,
+            "scope": 3
+        },
+        "debug.console.wordWrap": {
+            "type": "boolean",
+            "description": "Controls if the lines should wrap in the debug console.",
+            "default": true,
+            "scope": 3
+        },
+        "debug.console.historySuggestions": {
+            "type": "boolean",
+            "description": "Controls if the debug console should suggest previously typed input.",
+            "default": true,
+            "scope": 3
+        },
+        "debug.console.collapseIdenticalLines": {
+            "type": "boolean",
+            "description": "Controls if the debug console should collapse identical lines and show a number of occurrences with a badge.",
+            "default": true,
+            "scope": 3
+        },
+        "launch": {
+            "type": "object",
+            "description": "Global debug launch configuration. Should be used as an alternative to 'launch.json' that is shared across workspaces.",
+            "default": {
+                "configurations": [],
+                "compounds": []
+            },
+            "$ref": "vscode://schemas/launch",
+            "scope": 3
+        },
+        "debug.focusWindowOnBreak": {
+            "type": "boolean",
+            "description": "Controls whether the workbench window should be focused when the debugger breaks.",
+            "default": true,
+            "scope": 3
+        },
+        "debug.onTaskErrors": {
+            "enum": [
+                "debugAnyway",
+                "showErrors",
+                "prompt",
+                "abort"
+            ],
+            "enumDescriptions": [
+                "Ignore task errors and start debugging.",
+                "Show the Problems view and do not start debugging.",
+                "Prompt user.",
+                "Cancel debugging."
+            ],
+            "description": "Controls what to do when errors are encountered after running a preLaunchTask.",
+            "default": "prompt",
+            "scope": 3
+        },
+        "debug.showBreakpointsInOverviewRuler": {
+            "type": "boolean",
+            "description": "Controls whether breakpoints should be shown in the overview ruler.",
+            "default": false,
+            "scope": 3
+        },
+        "debug.showInlineBreakpointCandidates": {
+            "type": "boolean",
+            "description": "Controls whether inline breakpoints candidate decorations should be shown in the editor while debugging.",
+            "default": true,
+            "scope": 3
+        },
+        "debug.saveBeforeStart": {
+            "description": "Controls what editors to save before starting a debug session.",
+            "enum": [
+                "allEditorsInActiveGroup",
+                "nonUntitledEditorsInActiveGroup",
+                "none"
+            ],
+            "enumDescriptions": [
+                "Save all editors in the active group before starting a debug session.",
+                "Save all editors in the active group except untitled ones before starting a debug session.",
+                "Don't save any editors before starting a debug session."
+            ],
+            "default": "allEditorsInActiveGroup",
+            "scope": 3
+        },
+        "files.associations": {
+            "type": "object",
+            "markdownDescription": "Configure file associations to languages (e.g. `\"*.extension\": \"html\"`). These have precedence over the default associations of the languages installed.",
+            "additionalProperties": {
+                "type": "string"
+            },
+            "default": {},
+            "scope": 3
+        },
+        "files.enableTrash": {
+            "type": "boolean",
+            "default": true,
+            "description": "Moves files/folders to the OS trash (recycle bin on Windows) when deleting. Disabling this will delete files/folders permanently.",
+            "scope": 3
+        },
+        "files.autoSave": {
+            "type": "string",
+            "enum": [
+                "off",
+                "afterDelay",
+                "onFocusChange",
+                "onWindowChange"
+            ],
+            "markdownEnumDescriptions": [
+                "A dirty editor is never automatically saved.",
+                "A dirty editor is automatically saved after the configured `#files.autoSaveDelay#`.",
+                "A dirty editor is automatically saved when the editor loses focus.",
+                "A dirty editor is automatically saved when the window loses focus."
+            ],
+            "default": "off",
+            "markdownDescription": "Controls auto save of dirty editors. Read more about autosave [here](https://code.visualstudio.com/docs/editor/codebasics#_save-auto-save).",
+            "scope": 3
+        },
+        "files.autoSaveDelay": {
+            "type": "number",
+            "default": 1000,
+            "markdownDescription": "Controls the delay in ms after which a dirty editor is saved automatically. Only applies when `#files.autoSave#` is set to `afterDelay`.",
+            "scope": 3
+        },
+        "files.defaultLanguage": {
+            "type": "string",
+            "markdownDescription": "The default language mode that is assigned to new files. If configured to `${activeEditorLanguage}`, will use the language mode of the currently active text editor if any.",
+            "default": "",
+            "scope": 3
+        },
+        "files.maxMemoryForLargeFilesMB": {
+            "type": "number",
+            "default": 4096,
+            "markdownDescription": "Controls the memory available to VS Code after restart when trying to open large files. Same effect as specifying `--max-memory=NEWSIZE` on the command line.",
+            "included": true,
+            "scope": 3
+        },
+        "files.restoreUndoStack": {
+            "type": "boolean",
+            "description": "Restore the undo stack when a file is reopened.",
+            "default": true,
+            "scope": 3
+        },
+        "files.simpleDialog.enable": {
+            "type": "boolean",
+            "description": "Enables the simple file dialog. The simple file dialog replaces the system file dialog when enabled.",
+            "default": false,
+            "scope": 3
+        },
+        "explorer.openEditors.visible": {
+            "type": "number",
+            "description": "Number of editors shown in the Open Editors pane. Setting this to 0 hides the Open Editors pane.",
+            "default": 9,
+            "scope": 3
+        },
+        "explorer.openEditors.sortOrder": {
+            "type": "string",
+            "enum": [
+                "editorOrder",
+                "alphabetical"
+            ],
+            "description": "Controls the sorting order of editors in the Open Editors pane.",
+            "enumDescriptions": [
+                "Editors are ordered in the same order editor tabs are shown.",
+                "Editors are ordered in alphabetical order inside each editor group."
+            ],
+            "default": "editorOrder",
+            "scope": 3
+        },
+        "explorer.autoReveal": {
+            "type": [
+                "boolean",
+                "string"
+            ],
+            "enum": [
+                true,
+                false,
+                "focusNoScroll"
+            ],
+            "default": true,
+            "enumDescriptions": [
+                "Files will be revealed and selected.",
+                "Files will not be revealed and selected.",
+                "Files will not be scrolled into view, but will still be focused."
+            ],
+            "description": "Controls whether the explorer should automatically reveal and select files when opening them.",
+            "scope": 3
+        },
+        "explorer.enableDragAndDrop": {
+            "type": "boolean",
+            "description": "Controls whether the explorer should allow to move files and folders via drag and drop. This setting only effects drag and drop from inside the explorer.",
+            "default": true,
+            "scope": 3
+        },
+        "explorer.confirmDragAndDrop": {
+            "type": "boolean",
+            "description": "Controls whether the explorer should ask for confirmation to move files and folders via drag and drop.",
+            "default": true,
+            "scope": 3
+        },
+        "explorer.confirmDelete": {
+            "type": "boolean",
+            "description": "Controls whether the explorer should ask for confirmation when deleting a file via the trash.",
+            "default": true,
+            "scope": 3
+        },
+        "explorer.sortOrder": {
+            "type": "string",
+            "enum": [
+                "default",
+                "mixed",
+                "filesFirst",
+                "type",
+                "modified"
+            ],
+            "default": "default",
+            "enumDescriptions": [
+                "Files and folders are sorted by their names, in alphabetical order. Folders are displayed before files.",
+                "Files and folders are sorted by their names, in alphabetical order. Files are interwoven with folders.",
+                "Files and folders are sorted by their names, in alphabetical order. Files are displayed before folders.",
+                "Files and folders are sorted by their extensions, in alphabetical order. Folders are displayed before files.",
+                "Files and folders are sorted by last modified date, in descending order. Folders are displayed before files."
+            ],
+            "description": "Controls sorting order of files and folders in the explorer.",
+            "scope": 3
+        },
+        "explorer.decorations.colors": {
+            "type": "boolean",
+            "description": "Controls whether file decorations should use colors.",
+            "default": true,
+            "scope": 3
+        },
+        "explorer.decorations.badges": {
+            "type": "boolean",
+            "description": "Controls whether file decorations should use badges.",
+            "default": true,
+            "scope": 3
+        },
+        "explorer.incrementalNaming": {
+            "enum": [
+                "simple",
+                "smart"
+            ],
+            "enumDescriptions": [
+                "Appends the word \"copy\" at the end of the duplicated name potentially followed by a number",
+                "Adds a number at the end of the duplicated name. If some number is already part of the name, tries to increase that number"
+            ],
+            "description": "Controls what naming strategy to use when a giving a new name to a duplicated explorer item on paste.",
+            "default": "simple",
+            "scope": 3
+        },
+        "explorer.compactFolders": {
+            "type": "boolean",
+            "description": "Controls whether the explorer should render folders in a compact form. In such a form, single child folders will be compressed in a combined tree element. Useful for Java package structures, for example.",
+            "default": true,
+            "scope": 3
+        },
+        "outline.icons": {
+            "description": "Render Outline Elements with Icons.",
+            "type": "boolean",
+            "default": true,
+            "scope": 3
+        },
+        "outline.problems.enabled": {
+            "description": "Show Errors & Warnings on Outline Elements.",
+            "type": "boolean",
+            "default": true,
+            "scope": 3
+        },
+        "outline.problems.colors": {
+            "description": "Use colors for Errors & Warnings.",
+            "type": "boolean",
+            "default": true,
+            "scope": 3
+        },
+        "outline.problems.badges": {
+            "description": "Use badges for Errors & Warnings.",
+            "type": "boolean",
+            "default": true,
+            "scope": 3
+        },
+        "search.mode": {
+            "type": "string",
+            "enum": [
+                "view",
+                "reuseEditor",
+                "newEditor"
+            ],
+            "default": "view",
+            "markdownDescription": "Controls where new `Search: Find in Files` and `Find in Folder` operations occur: either in the sidebar's search view, or in a search editor",
+            "enumDescriptions": [
+                "Search in the search view, either in the panel or sidebar.",
+                "Search in an existing search editor if present, otherwise in a new search editor",
+                "Search in a new search editor"
+            ],
+            "scope": 3
+        },
+        "search.useRipgrep": {
+            "type": "boolean",
+            "description": "This setting is deprecated and now falls back on \"search.usePCRE2\".",
+            "deprecationMessage": "Deprecated. Consider \"search.usePCRE2\" for advanced regex feature support.",
+            "default": true,
+            "scope": 3
+        },
+        "search.maintainFileSearchCache": {
+            "type": "boolean",
+            "description": "When enabled, the searchService process will be kept alive instead of being shut down after an hour of inactivity. This will keep the file search cache in memory.",
+            "default": false,
+            "scope": 3
+        },
+        "search.quickOpen.includeSymbols": {
+            "type": "boolean",
+            "description": "Whether to include results from a global symbol search in the file results for Quick Open.",
+            "default": false,
+            "scope": 3
+        },
+        "search.quickOpen.includeHistory": {
+            "type": "boolean",
+            "description": "Whether to include results from recently opened files in the file results for Quick Open.",
+            "default": true,
+            "scope": 3
+        },
+        "search.quickOpen.history.filterSortOrder": {
+            "type": "string",
+            "enum": [
+                "default",
+                "recency"
+            ],
+            "default": "default",
+            "enumDescriptions": [
+                "History entries are sorted by relevance based on the filter value used. More relevant entries appear first.",
+                "History entries are sorted by recency. More recently opened entries appear first."
+            ],
+            "description": "Controls sorting order of editor history in quick open when filtering.",
+            "scope": 3
+        },
+        "search.followSymlinks": {
+            "type": "boolean",
+            "description": "Controls whether to follow symlinks while searching.",
+            "default": true,
+            "scope": 3
+        },
+        "search.smartCase": {
+            "type": "boolean",
+            "description": "Search case-insensitively if the pattern is all lowercase, otherwise, search case-sensitively.",
+            "default": false,
+            "scope": 3
+        },
+        "search.location": {
+            "type": "string",
+            "enum": [
+                "sidebar",
+                "panel"
+            ],
+            "default": "sidebar",
+            "description": "Controls whether the search will be shown as a view in the sidebar or as a panel in the panel area for more horizontal space.",
+            "deprecationMessage": "This setting is deprecated. Please use drag and drop instead by dragging the search icon.",
+            "scope": 3
+        },
+        "search.collapseResults": {
+            "type": "string",
+            "enum": [
+                "auto",
+                "alwaysCollapse",
+                "alwaysExpand"
+            ],
+            "enumDescriptions": [
+                "Files with less than 10 results are expanded. Others are collapsed.",
+                "",
+                ""
+            ],
+            "default": "alwaysExpand",
+            "description": "Controls whether the search results will be collapsed or expanded.",
+            "scope": 3
+        },
+        "search.useReplacePreview": {
+            "type": "boolean",
+            "default": true,
+            "description": "Controls whether to open Replace Preview when selecting or replacing a match.",
+            "scope": 3
+        },
+        "search.showLineNumbers": {
+            "type": "boolean",
+            "default": false,
+            "description": "Controls whether to show line numbers for search results.",
+            "scope": 3
+        },
+        "search.usePCRE2": {
+            "type": "boolean",
+            "default": false,
+            "description": "Whether to use the PCRE2 regex engine in text search. This enables using some advanced regex features like lookahead and backreferences. However, not all PCRE2 features are supported - only features that are also supported by JavaScript.",
+            "deprecationMessage": "Deprecated. PCRE2 will be used automatically when using regex features that are only supported by PCRE2.",
+            "scope": 3
+        },
+        "search.actionsPosition": {
+            "type": "string",
+            "enum": [
+                "auto",
+                "right"
+            ],
+            "enumDescriptions": [
+                "Position the actionbar to the right when the search view is narrow, and immediately after the content when the search view is wide.",
+                "Always position the actionbar to the right."
+            ],
+            "default": "right",
+            "description": "Controls the positioning of the actionbar on rows in the search view.",
+            "scope": 3
+        },
+        "search.searchOnType": {
+            "type": "boolean",
+            "default": true,
+            "description": "Search all files as you type.",
+            "scope": 3
+        },
+        "search.seedWithNearestWord": {
+            "type": "boolean",
+            "default": false,
+            "description": "Enable seeding search from the word nearest the cursor when the active editor has no selection.",
+            "scope": 3
+        },
+        "search.seedOnFocus": {
+            "type": "boolean",
+            "default": false,
+            "description": "Update the search query to the editor's selected text when focusing the search view. This happens either on click or when triggering the `workbench.views.search.focus` command.",
+            "scope": 3
+        },
+        "search.searchOnTypeDebouncePeriod": {
+            "type": "number",
+            "default": 300,
+            "markdownDescription": "When `#search.searchOnType#` is enabled, controls the timeout in milliseconds between a character being typed and the search starting. Has no effect when `search.searchOnType` is disabled.",
+            "scope": 3
+        },
+        "search.searchEditor.doubleClickBehaviour": {
+            "type": "string",
+            "enum": [
+                "selectWord",
+                "goToLocation",
+                "openLocationToSide"
+            ],
+            "default": "goToLocation",
+            "enumDescriptions": [
+                "Double clicking selects the word under the cursor.",
+                "Double clicking opens the result in the active editor group.",
+                "Double clicking opens the result in the editor group to the side, creating one if it does not yet exist."
+            ],
+            "markdownDescription": "Configure effect of double clicking a result in a search editor.",
+            "scope": 3
+        },
+        "search.searchEditor.reusePriorSearchConfiguration": {
+            "type": "boolean",
+            "default": false,
+            "markdownDescription": "When enabled, new Search Editors will reuse the includes, excludes, and flags of the previously opened Search Editor",
+            "scope": 3
+        },
+        "search.searchEditor.defaultNumberOfContextLines": {
+            "type": [
+                "number",
+                "null"
+            ],
+            "default": 1,
+            "markdownDescription": "The default number of surrounding context lines to use when creating new Search Editors. If using `#search.searchEditor.reusePriorSearchConfiguration#`, this can be set to `null` (empty) to use the prior Search Editor's configuration.",
+            "scope": 3
+        },
+        "search.sortOrder": {
+            "type": "string",
+            "enum": [
+                "default",
+                "fileNames",
+                "type",
+                "modified",
+                "countDescending",
+                "countAscending"
+            ],
+            "default": "default",
+            "enumDescriptions": [
+                "Results are sorted by folder and file names, in alphabetical order.",
+                "Results are sorted by file names ignoring folder order, in alphabetical order.",
+                "Results are sorted by file extensions, in alphabetical order.",
+                "Results are sorted by file last modified date, in descending order.",
+                "Results are sorted by count per file, in descending order.",
+                "Results are sorted by count per file, in ascending order."
+            ],
+            "description": "Controls sorting order of search results.",
+            "scope": 3
+        },
+        "search.experimental.searchInOpenEditors": {
+            "type": "boolean",
+            "default": false,
+            "markdownDescription": "Experimental. When enabled, an option is provided to make workspace search only search files that have been opened. **Requires restart to take effect.**",
             "scope": 3
         },
         "timeline.excludeSources": {
@@ -4087,7 +4187,7 @@
             "scope": 3
         },
         "terminal.integrated.shell.windows": {
-            "markdownDescription": "The path of the shell that the terminal uses on Windows (default: C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe). [Read more about configuring the shell](https://code.visualstudio.com/docs/editor/integrated-terminal#_configuration).",
+            "markdownDescription": "The path of the shell that the terminal uses on Windows (default: C:\\WINDOWS\\SysNative\\WindowsPowerShell\\v1.0\\powershell.exe). [Read more about configuring the shell](https://code.visualstudio.com/docs/editor/integrated-terminal#_configuration).",
             "type": [
                 "string",
                 "null"
@@ -4167,6 +4267,7 @@
         "emmet.extensionsPath": {
             "type": [
                 "string",
+                "array",
                 "null"
             ],
             "default": null,
@@ -4295,6 +4396,16 @@
                     "type": "number",
                     "default": 0.3,
                     "description": "The minimum score (from 0 to 1) that fuzzy-matched abbreviation should achieve. Lower values may produce many false-positive matches, higher values may reduce possible matches."
+                },
+                "output.reverseAttributes": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "If `true`, reverses attribute merging directions when resolving snippets."
+                },
+                "css.color.short": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "If `true`, color values like #f will be expanded to #fff instead of #ffffff."
                 }
             },
             "scope": 3
@@ -6290,7 +6401,8 @@
                 "type": "string"
             },
             "default": [
-                "!**/{node_modules,npm-global,.yarn,.nvm}/**",
+                "${workspaceFolder}/**",
+                "!**/node_modules/**",
                 "**/$KNOWN_TOOLS$/**"
             ],
             "markdownDescription": "Configures glob patterns for determining when to attach in \"smart\" `#debug.javascript.autoAttachFilter#` mode. `$KNOWN_TOOLS$` is replaced with a list of names of common test and code runners. [Read more on the VS Code docs](https://code.visualstudio.com/docs/nodejs/nodejs-debugging#_auto-attach-smart-patterns).",
@@ -6787,7 +6899,7 @@
                 "Suggest words from all open documents of the same language.",
                 "Suggest words from all open documents."
             ],
-            "description": "Controls form what documents word based completions are computed.",
+            "description": "Controls from what documents word based completions are computed.",
             "scope": 5
         },
         "editor.semanticHighlighting.enabled": {
@@ -8597,17 +8709,156 @@
                 "welcomePage",
                 "readme",
                 "newUntitledFile",
-                "welcomePageInEmptyWorkbench"
+                "welcomePageInEmptyWorkbench",
+                "gettingStarted"
             ],
             "enumDescriptions": [
                 "Start without an editor.",
-                "Open the Welcome page (default).",
+                "Open the Welcome page.",
                 "Open the README when opening a folder that contains one, fallback to 'welcomePage' otherwise.",
                 "Open a new untitled file (only applies when opening an empty window).",
-                "Open the Welcome page when opening an empty workbench."
+                "Open the Welcome page when opening an empty workbench.",
+                "Open the Getting Started page."
             ],
             "default": "welcomePage",
             "description": "Controls which editor is shown at startup, if none are restored from the previous session."
+        },
+        "scm.diffDecorations": {
+            "type": "string",
+            "enum": [
+                "all",
+                "gutter",
+                "overview",
+                "minimap",
+                "none"
+            ],
+            "enumDescriptions": [
+                "Show the diff decorations in all available locations.",
+                "Show the diff decorations only in the editor gutter.",
+                "Show the diff decorations only in the overview ruler.",
+                "Show the diff decorations only in the minimap.",
+                "Do not show the diff decorations."
+            ],
+            "default": "all",
+            "description": "Controls diff decorations in the editor.",
+            "scope": 4
+        },
+        "scm.diffDecorationsGutterWidth": {
+            "type": "number",
+            "enum": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ],
+            "default": 3,
+            "description": "Controls the width(px) of diff decorations in gutter (added & modified).",
+            "scope": 4
+        },
+        "scm.diffDecorationsGutterVisibility": {
+            "type": "string",
+            "enum": [
+                "always",
+                "hover"
+            ],
+            "enumDescriptions": [
+                "Show the diff decorator in the gutter at all times.",
+                "Show the diff decorator in the gutter only on hover."
+            ],
+            "description": "Controls the visibility of the Source Control diff decorator in the gutter.",
+            "default": "always",
+            "scope": 4
+        },
+        "scm.diffDecorationsGutterAction": {
+            "type": "string",
+            "enum": [
+                "diff",
+                "none"
+            ],
+            "enumDescriptions": [
+                "Show the inline diff peek view on click.",
+                "Do nothing."
+            ],
+            "description": "Controls the behavior of Source Control diff gutter decorations.",
+            "default": "diff",
+            "scope": 4
+        },
+        "scm.alwaysShowActions": {
+            "type": "boolean",
+            "description": "Controls whether inline actions are always visible in the Source Control view.",
+            "default": false,
+            "scope": 4
+        },
+        "scm.countBadge": {
+            "type": "string",
+            "enum": [
+                "all",
+                "focused",
+                "off"
+            ],
+            "enumDescriptions": [
+                "Show the sum of all Source Control Provider count badges.",
+                "Show the count badge of the focused Source Control Provider.",
+                "Disable the Source Control count badge."
+            ],
+            "description": "Controls the count badge on the Source Control icon on the Activity Bar.",
+            "default": "all",
+            "scope": 4
+        },
+        "scm.providerCountBadge": {
+            "type": "string",
+            "enum": [
+                "hidden",
+                "auto",
+                "visible"
+            ],
+            "enumDescriptions": [
+                "Hide Source Control Provider count badges.",
+                "Only show count badge for Source Control Provider when non-zero.",
+                "Show Source Control Provider count badges."
+            ],
+            "description": "Controls the count badges on Source Control Provider headers. These headers only appear when there is more than one provider.",
+            "default": "hidden",
+            "scope": 4
+        },
+        "scm.defaultViewMode": {
+            "type": "string",
+            "enum": [
+                "tree",
+                "list"
+            ],
+            "enumDescriptions": [
+                "Show the repository changes as a tree.",
+                "Show the repository changes as a list."
+            ],
+            "description": "Controls the default Source Control repository view mode.",
+            "default": "list",
+            "scope": 4
+        },
+        "scm.autoReveal": {
+            "type": "boolean",
+            "description": "Controls whether the SCM view should automatically reveal and select files when opening them.",
+            "default": true,
+            "scope": 4
+        },
+        "scm.inputFontFamily": {
+            "type": "string",
+            "markdownDescription": "Controls the font for the input message. Use `default` for the workbench user interface font family, `editor` for the `#editor.fontFamily#`'s value, or a custom font family.",
+            "default": "default",
+            "scope": 4
+        },
+        "scm.alwaysShowRepositories": {
+            "type": "boolean",
+            "markdownDescription": "Controls whether repositories should always be visible in the SCM view.",
+            "default": false,
+            "scope": 4
+        },
+        "scm.repositories.visible": {
+            "type": "number",
+            "description": "Controls how many repositories are visible in the Source Control Repositories section. Set to `0` to be able to manually resize the view.",
+            "default": 10,
+            "scope": 4
         },
         "files.exclude": {
             "type": "object",
@@ -9034,143 +9285,6 @@
             "scope": 5,
             "markdownDescription": "When enabled outline shows `typeParameter`-symbols."
         },
-        "scm.diffDecorations": {
-            "type": "string",
-            "enum": [
-                "all",
-                "gutter",
-                "overview",
-                "minimap",
-                "none"
-            ],
-            "enumDescriptions": [
-                "Show the diff decorations in all available locations.",
-                "Show the diff decorations only in the editor gutter.",
-                "Show the diff decorations only in the overview ruler.",
-                "Show the diff decorations only in the minimap.",
-                "Do not show the diff decorations."
-            ],
-            "default": "all",
-            "description": "Controls diff decorations in the editor.",
-            "scope": 4
-        },
-        "scm.diffDecorationsGutterWidth": {
-            "type": "number",
-            "enum": [
-                1,
-                2,
-                3,
-                4,
-                5
-            ],
-            "default": 3,
-            "description": "Controls the width(px) of diff decorations in gutter (added & modified).",
-            "scope": 4
-        },
-        "scm.diffDecorationsGutterVisibility": {
-            "type": "string",
-            "enum": [
-                "always",
-                "hover"
-            ],
-            "enumDescriptions": [
-                "Show the diff decorator in the gutter at all times.",
-                "Show the diff decorator in the gutter only on hover."
-            ],
-            "description": "Controls the visibility of the Source Control diff decorator in the gutter.",
-            "default": "always",
-            "scope": 4
-        },
-        "scm.diffDecorationsGutterAction": {
-            "type": "string",
-            "enum": [
-                "diff",
-                "none"
-            ],
-            "enumDescriptions": [
-                "Show the inline diff peek view on click.",
-                "Do nothing."
-            ],
-            "description": "Controls the behavior of Source Control diff gutter decorations.",
-            "default": "diff",
-            "scope": 4
-        },
-        "scm.alwaysShowActions": {
-            "type": "boolean",
-            "description": "Controls whether inline actions are always visible in the Source Control view.",
-            "default": false,
-            "scope": 4
-        },
-        "scm.countBadge": {
-            "type": "string",
-            "enum": [
-                "all",
-                "focused",
-                "off"
-            ],
-            "enumDescriptions": [
-                "Show the sum of all Source Control Provider count badges.",
-                "Show the count badge of the focused Source Control Provider.",
-                "Disable the Source Control count badge."
-            ],
-            "description": "Controls the count badge on the Source Control icon on the Activity Bar.",
-            "default": "all",
-            "scope": 4
-        },
-        "scm.providerCountBadge": {
-            "type": "string",
-            "enum": [
-                "hidden",
-                "auto",
-                "visible"
-            ],
-            "enumDescriptions": [
-                "Hide Source Control Provider count badges.",
-                "Only show count badge for Source Control Provider when non-zero.",
-                "Show Source Control Provider count badges."
-            ],
-            "description": "Controls the count badges on Source Control Provider headers. These headers only appear when there is more than one provider.",
-            "default": "hidden",
-            "scope": 4
-        },
-        "scm.defaultViewMode": {
-            "type": "string",
-            "enum": [
-                "tree",
-                "list"
-            ],
-            "enumDescriptions": [
-                "Show the repository changes as a tree.",
-                "Show the repository changes as a list."
-            ],
-            "description": "Controls the default Source Control repository view mode.",
-            "default": "list",
-            "scope": 4
-        },
-        "scm.autoReveal": {
-            "type": "boolean",
-            "description": "Controls whether the SCM view should automatically reveal and select files when opening them.",
-            "default": true,
-            "scope": 4
-        },
-        "scm.inputFontFamily": {
-            "type": "string",
-            "markdownDescription": "Controls the font for the input message. Use `default` for the workbench user interface font family, `editor` for the `#editor.fontFamily#`'s value, or a custom font family.",
-            "default": "default",
-            "scope": 4
-        },
-        "scm.alwaysShowRepositories": {
-            "type": "boolean",
-            "markdownDescription": "Controls whether repositories should always be visible in the SCM view.",
-            "default": false,
-            "scope": 4
-        },
-        "scm.repositories.visible": {
-            "type": "number",
-            "description": "Controls how many repositories are visible in the Source Control Repositories section. Set to `0` to be able to manually resize the view.",
-            "default": 10,
-            "scope": 4
-        },
         "search.exclude": {
             "type": "object",
             "markdownDescription": "Configure glob patterns for excluding files and folders in fulltext searches and quick open. Inherits all glob patterns from the `#files.exclude#` setting. Read more about glob patterns [here](https://code.visualstudio.com/docs/editor/codebasics#_advanced-search-options).",
@@ -9238,6 +9352,18 @@
             "scope": 4,
             "default": true,
             "description": "Enables or disables all validations."
+        },
+        "css.hover.documentation": {
+            "type": "boolean",
+            "scope": 4,
+            "default": true,
+            "description": "Show tag and attribute documentation in CSS hovers."
+        },
+        "css.hover.references": {
+            "type": "boolean",
+            "scope": 4,
+            "default": true,
+            "description": "Show references to MDN in CSS hovers."
         },
         "css.lint.compatibleVendorPrefixes": {
             "type": "string",
@@ -9476,6 +9602,18 @@
             "default": true,
             "description": "Enables or disables all validations."
         },
+        "scss.hover.documentation": {
+            "type": "boolean",
+            "scope": 4,
+            "default": true,
+            "description": "Show tag and attribute documentation in SCSS hovers."
+        },
+        "scss.hover.references": {
+            "type": "boolean",
+            "scope": 4,
+            "default": true,
+            "description": "Show references to MDN in SCSS hovers."
+        },
         "scss.lint.compatibleVendorPrefixes": {
             "type": "string",
             "scope": 4,
@@ -9712,6 +9850,18 @@
             "scope": 4,
             "default": true,
             "description": "Enables or disables all validations."
+        },
+        "less.hover.documentation": {
+            "type": "boolean",
+            "scope": 4,
+            "default": true,
+            "description": "Show tag and attribute documentation in LESS hovers."
+        },
+        "less.hover.references": {
+            "type": "boolean",
+            "scope": 4,
+            "default": true,
+            "description": "Show references to MDN in LESS hovers."
         },
         "less.lint.compatibleVendorPrefixes": {
             "type": "string",
@@ -10865,6 +11015,18 @@
             "type": "boolean",
             "default": true,
             "description": "Enable/disable suggestion to complete JSDoc comments.",
+            "scope": 4
+        },
+        "javascript.suggest.jsdoc.generateReturns": {
+            "type": "boolean",
+            "default": true,
+            "markdownDescription": "Enable/disable generating `@return` annotations for JSDoc templates. Requires using TypeScript 4.2+ in the workspace.",
+            "scope": 4
+        },
+        "typescript.suggest.jsdoc.generateReturns": {
+            "type": "boolean",
+            "default": true,
+            "markdownDescription": "Enable/disable generating `@return` annotations for JSDoc templates. Requires using TypeScript 4.2+ in the workspace.",
             "scope": 4
         },
         "javascript.suggestionActions.enabled": {
