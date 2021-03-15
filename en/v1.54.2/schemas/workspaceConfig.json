@@ -16,7 +16,7 @@
         "folders": {
             "minItems": 0,
             "uniqueItems": true,
-            "description": "ワークスペースで読み込まれるフォルダーのリスト。",
+            "description": "List of folders to be loaded in the workspace.",
             "items": {
                 "type": "object",
                 "default": {
@@ -27,11 +27,11 @@
                         "properties": {
                             "path": {
                                 "type": "string",
-                                "description": "ファイルパス。例: `/root/folderA` または `./folderA` のようなワークスペース ファイルの場所に対して解決される相対パス。"
+                                "description": "A file path. e.g. `/root/folderA` or `./folderA` for a relative path that will be resolved against the location of the workspace file."
                             },
                             "name": {
                                 "type": "string",
-                                "description": "フォルダーにつけるオプションの名前。"
+                                "description": "An optional name for the folder. "
                             }
                         },
                         "required": [
@@ -42,11 +42,11 @@
                         "properties": {
                             "uri": {
                                 "type": "string",
-                                "description": "フォルダーの URI"
+                                "description": "URI of the folder"
                             },
                             "name": {
                                 "type": "string",
-                                "description": "フォルダーにつけるオプションの名前。"
+                                "description": "An optional name for the folder. "
                             }
                         },
                         "required": [
@@ -59,7 +59,7 @@
         "settings": {
             "type": "object",
             "default": {},
-            "description": "ワークスペースの設定",
+            "description": "Workspace settings",
             "$ref": "vscode://schemas/settings/workspace"
         },
         "launch": {
@@ -68,7 +68,7 @@
                 "configurations": [],
                 "compounds": []
             },
-            "description": "ワークスペースの起動構成",
+            "description": "Workspace launch configurations",
             "$ref": "vscode://schemas/launch"
         },
         "tasks": {
@@ -77,20 +77,20 @@
                 "version": "2.0.0",
                 "tasks": []
             },
-            "description": "ワークスペース タスクの構成",
+            "description": "Workspace task configurations",
             "$ref": "vscode://schemas/tasks"
         },
         "extensions": {
             "type": "object",
             "default": {},
-            "description": "ワークスペースの拡張機能",
+            "description": "Workspace extensions",
             "$ref": "vscode://schemas/extensions"
         },
         "remoteAuthority": {
             "type": "string",
             "doNotSuggest": true,
-            "description": "ワークスペースがあるリモート サーバー。保存されていないリモート ワークスペースでのみ使用されます。"
+            "description": "The remote server where the workspace is located. Only used by unsaved remote workspaces."
         }
     },
-    "errorMessage": "不明なワークスペース構成のプロパティ"
+    "errorMessage": "Unknown workspace configuration property"
 }
