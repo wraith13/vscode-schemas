@@ -1,0 +1,52 @@
+{
+    "id": "vscode://schemas/snippets",
+    "allowComments": true,
+    "allowTrailingCommas": true,
+    "defaultSnippets": [
+        {
+            "label": "空のスニペット",
+            "body": {
+                "${1:snippetName}": {
+                    "prefix": "${2:prefix}",
+                    "body": "${3:snippet}",
+                    "description": "${4:description}"
+                }
+            }
+        }
+    ],
+    "type": "object",
+    "description": "ユーザー スニペット構成",
+    "additionalProperties": {
+        "type": "object",
+        "required": [
+            "body"
+        ],
+        "properties": {
+            "prefix": {
+                "description": "Intellisense でスニペットを選択するときに使用するプレフィックス",
+                "type": [
+                    "string",
+                    "array"
+                ]
+            },
+            "body": {
+                "markdownDescription": "スニペットの内容。カーソルの位置を定義するには '$1'、'${1:defaultText}' を使用し、最後のカーソルの位置には '$0' を使用します。'${varName}' と '${varName:defaultText}' を含む変数値 (例: 'This is file: $TM_FILENAME') を挿入します。",
+                "type": [
+                    "string",
+                    "array"
+                ],
+                "items": {
+                    "type": "string"
+                }
+            },
+            "description": {
+                "description": "スニペットについての記述。",
+                "type": [
+                    "string",
+                    "array"
+                ]
+            }
+        },
+        "additionalProperties": false
+    }
+}

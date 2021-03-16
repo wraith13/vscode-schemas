@@ -1,0 +1,94 @@
+{
+    "type": "object",
+    "allowComments": true,
+    "allowTrailingCommas": true,
+    "properties": {
+        "fonts": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "フォントの ID。",
+                        "pattern": "^([\\w-_]+)$",
+                        "patternErrorMessage": "ID に使用できるのは、文字、数字、アンダースコア、マイナスのみです。"
+                    },
+                    "src": {
+                        "type": "array",
+                        "description": "フォントの場所。",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "path": {
+                                    "type": "string",
+                                    "description": "現在の製品アイコン テーマ ファイルに相対的なフォント パス"
+                                },
+                                "format": {
+                                    "type": "string",
+                                    "description": "フォントの形式。",
+                                    "enum": [
+                                        "woff",
+                                        "woff2",
+                                        "truetype",
+                                        "opentype",
+                                        "embedded-opentype",
+                                        "svg"
+                                    ]
+                                }
+                            },
+                            "required": [
+                                "path",
+                                "format"
+                            ]
+                        }
+                    },
+                    "weight": {
+                        "type": "string",
+                        "description": "フォントの太さ。有効な値については、https://developer.mozilla.org/ja/docs/Web/CSS/font-weight を参照してください。",
+                        "anyOf": [
+                            {
+                                "enum": [
+                                    "normal",
+                                    "bold",
+                                    "lighter",
+                                    "bolder"
+                                ]
+                            },
+                            {
+                                "type": "string",
+                                "pattern": "^(normal|bold|lighter|bolder|(\\d{0-1000}))$"
+                            }
+                        ]
+                    },
+                    "style": {
+                        "type": "string",
+                        "description": "フォントのスタイル。有効な値については、https://developer.mozilla.org/ja/docs/Web/CSS/font-style を参照してください。",
+                        "anyOf": [
+                            {
+                                "enum": [
+                                    "normal",
+                                    "italic",
+                                    "oblique"
+                                ]
+                            },
+                            {
+                                "type": "string",
+                                "pattern": "^(normal|italic|(oblique[ \\w\\s-]+))$"
+                            }
+                        ]
+                    }
+                },
+                "required": [
+                    "id",
+                    "src"
+                ]
+            }
+        },
+        "iconDefinitions": {
+            "description": "アイコン名のフォント文字との関連付け。",
+            "$ref": "vscode://schemas/icons",
+            "additionalProperties": false
+        }
+    }
+}
