@@ -475,6 +475,13 @@
             "$ref": "vscode://schemas/settings/resourceLanguage",
             "default": {}
         },
+        "[dockercompose]": {
+            "type": "object",
+            "description": "言語に対して上書きされるエディター設定を構成します。",
+            "errorMessage": "この設定では、言語ごとの構成はサポートされていません。",
+            "$ref": "vscode://schemas/settings/resourceLanguage",
+            "default": {}
+        },
         "http.proxy": {
             "type": "string",
             "pattern": "^https?://([^:]*(:[^@]*)?@)?([^:]+|\\[[:0-9a-fA-F]+\\])(:\\d+)?/?$|^$",
@@ -700,13 +707,13 @@
         "workbench.editor.decorations.badges": {
             "type": "boolean",
             "markdownDescription": "エディター ファイルの装飾にバッジを使用するかどうかを制御します。",
-            "default": false,
+            "default": true,
             "scope": 3
         },
         "workbench.editor.decorations.colors": {
             "type": "boolean",
             "markdownDescription": "エディター ファイルの装飾に配色を使用するかどうかを制御します。",
-            "default": false,
+            "default": true,
             "scope": 3
         },
         "workbench.editor.labelFormat": {
@@ -746,9 +753,10 @@
             "enum": [
                 "text",
                 "button",
-                "hidden"
+                "hidden",
+                "default"
             ],
-            "default": "hidden",
+            "default": "default",
             "markdownDescription": "無題のヒントをエディター内のインライン テキストにするか、フローティング ボタンにするか、非表示にするかを制御します。",
             "scope": 3
         },
@@ -1039,6 +1047,12 @@
             "default": "ui",
             "scope": 3
         },
+        "workbench.hover.delay": {
+            "type": "number",
+            "description": "ワークベンチ項目にホバーが表示されるまでの待ち時間 (ミリ秒) を制御します (例: 拡張機能が用意されている一部のツリー ビュー項目)。既に表示されている項目では、この設定の変更を反映するために更新が必要な場合があります。",
+            "default": 500,
+            "scope": 3
+        },
         "window.title": {
             "type": "string",
             "default": "${dirty}${activeEditorShort}${separator}${rootName}${separator}${appName}",
@@ -1191,9 +1205,17 @@
         "workbench.sash.size": {
             "type": "number",
             "default": 4,
-            "minimum": 4,
+            "minimum": 1,
             "maximum": 20,
             "description": "ビューまたはエディター間にあるドラッグ領域のフィードバック領域のサイズをピクセル単位で制御します。マウスを使用してビューのサイズを変更するのが困難な場合は、これを大きな値に設定してください。",
+            "scope": 3
+        },
+        "workbench.sash.hoverDelay": {
+            "type": "number",
+            "default": 300,
+            "minimum": 0,
+            "maximum": 2000,
+            "description": "ビューまたはエディター間のドラッグ領域のホバー フィードバックの遅延をミリ秒単位で制御します。",
             "scope": 3
         },
         "window.zoomLevel": {
@@ -1359,9 +1381,9 @@
         "remote.portsAttributes": {
             "type": "object",
             "patternProperties": {
-                "^\\d+(\\-\\d+)?$": {
+                "(^\\d+(\\-\\d+)?$)|(.+)": {
                     "type": "object",
-                    "description": "属性が適用されるポートまたはポート範囲 (例: \"40000-55000\")",
+                    "description": "ポート、ポートの範囲 (例: \"40000-55000\")、または正規表現 (例: \".+\\\\/server.js\")。  ポート番号または範囲の場合、属性はそのポート番号またはポート番号の範囲に適用されます。正規表現を使用した属性は、関連付けられたプロセス コマンド ラインが正規表現に一致するポートに適用されます。",
                     "properties": {
                         "onAutoForward": {
                             "type": "string",
@@ -1390,27 +1412,72 @@
                         "label": {
                             "type": "string",
                             "description": "このポートの UI に表示されるラベル。",
-                            "default": "ラベル付きポート"
+                            "default": "アプリケーション"
                         }
                     },
                     "default": {
-                        "label": "ラベル付きポート",
+                        "label": "アプリケーション",
                         "onAutoForward": "notify"
                     }
                 }
             },
-            "markdownDescription": "特定のポート番号が転送されるときに適用される既定のプロパティを設定します。例:\r\n\r\n```\r\n\"3000\": {\r\n  \"label\": \"ラベル付きポート\"\r\n},\r\n\"40000-55000\": {\r\n  \"onAutoForward\": \"ignore\"\r\n}\r\n```",
+            "markdownDescription": "特定のポート番号が転送されるときに適用されるプロパティを設定します。例:\r\n\r\n```\r\n\"3000\": {\r\n  \"label\": \"Application\"\r\n},\r\n\"40000-55000\": {\r\n  \"onAutoForward\": \"ignore\"\r\n},\r\n\".+\\\\/server.js\": {\r\n \"onAutoForward\": \"openPreview\"\r\n}\r\n```",
             "defaultSnippets": [
                 {
                     "body": {
                         "${1:3000}": {
-                            "label": "${2:My Port}",
-                            "onAutoForward": "notify"
+                            "label": "${2:Application}",
+                            "onAutoForward": "openPreview"
                         }
                     }
                 }
             ],
-            "errorMessage": "ポート番号か、ポート番号の範囲でなければなりません",
+            "errorMessage": "ポート番号、ポート番号の範囲、または正規表現でなければなりません。",
+            "additionalProperties": false,
+            "default": {},
+            "scope": 3
+        },
+        "remote.otherPortsAttributes": {
+            "type": "object",
+            "properties": {
+                "onAutoForward": {
+                    "type": "string",
+                    "enum": [
+                        "notify",
+                        "openBrowser",
+                        "openPreview",
+                        "silent",
+                        "ignore"
+                    ],
+                    "enumDescriptions": [
+                        "ポートが自動的に転送されたときに通知を表示します。",
+                        "ポートが自動的に転送されたときにブラウザーを開きます。設定によっては、埋め込みブラウザーが開く可能性があります。",
+                        "ポートが自動的に転送されるときに、同じウィンドウでプレビューを開きます。",
+                        "このポートが自動的に転送されたときに通知を表示せず、何も実行しません。",
+                        "このポートは自動的に転送されません。"
+                    ],
+                    "description": "自動転送用にポートが検出されたときに発生するアクションを定義します",
+                    "default": "notify"
+                },
+                "elevateIfNeeded": {
+                    "type": "boolean",
+                    "description": "このポートが転送されるときに、昇格を自動的に確認します (必要な場合)。ローカル ポートが特権ポートである場合は、昇格が必要です。",
+                    "default": false
+                },
+                "label": {
+                    "type": "string",
+                    "description": "このポートの UI に表示されるラベル。",
+                    "default": "アプリケーション"
+                }
+            },
+            "defaultSnippets": [
+                {
+                    "body": {
+                        "onAutoForward": "ignore"
+                    }
+                }
+            ],
+            "markdownDescription": "設定 `remote.portsAttributes` からプロパティを取得しないすべてのポートに適用される既定のプロパティを設定します。例:\r\n\r\n```\r\n{\r\n  \"onAutoForward\": \"ignore\"\r\n}\r\n```",
             "additionalProperties": false,
             "default": {},
             "scope": 3
@@ -2806,18 +2873,6 @@
             "description": "スクリーンキャスト モードのマウス インジケーターのサイズ (ピクセル単位) を制御します。",
             "scope": 3
         },
-        "notebook.outline.showCodeCells": {
-            "type": "boolean",
-            "default": false,
-            "markdownDescription": "有効にすると、ノートブック アウトラインにコード セルが表示されます。",
-            "scope": 3
-        },
-        "notebook.breadcrumbs.showCodeCells": {
-            "type": "boolean",
-            "default": true,
-            "markdownDescription": "有効にすると、ノートブックの階層リンクにコード セルが含まれます。",
-            "scope": 3
-        },
         "task.problemMatchers.neverPrompt": {
             "markdownDescription": "タスクの実行時に問題マッチャーのプロンプトを表示するかどうかを構成します。'true' に設定してプロンプトしないようにするか、タスクの種類のディクショナリを使用して、特定のタスクの種類に対してのみプロンプトをオフにします。",
             "oneOf": [
@@ -2917,6 +2972,18 @@
             "markdownDescription": "作成、名前変更、削除のファイル参加者が取り消されるまでのタイムアウト (ミリ秒)。参加者を無効にするには、'0' を使用します。",
             "scope": 3
         },
+        "notebook.outline.showCodeCells": {
+            "type": "boolean",
+            "default": false,
+            "markdownDescription": "有効にすると、ノートブック アウトラインにコード セルが表示されます。",
+            "scope": 3
+        },
+        "notebook.breadcrumbs.showCodeCells": {
+            "type": "boolean",
+            "default": true,
+            "markdownDescription": "有効にすると、ノートブックの階層リンクにコード セルが含まれます。",
+            "scope": 3
+        },
         "extensions.ignoreRecommendations": {
             "type": "boolean",
             "description": "有効にした場合、拡張機能の推奨事項の通知を表示しません。",
@@ -2938,12 +3005,6 @@
             "default": false,
             "scope": 3
         },
-        "extensions.confirmedUriHandlerExtensionIds": {
-            "type": "array",
-            "description": "拡張機能がここに表示されている場合、その拡張機能が URI を処理するときに確認プロンプトは表示されません。",
-            "default": [],
-            "scope": 3
-        },
         "extensions.webWorker": {
             "type": "boolean",
             "description": "web worker 拡張機能ホストを有効にします。",
@@ -2960,6 +3021,18 @@
             "description": "有効にすると、現在発生している問題がステータス バーに表示されます。",
             "type": "boolean",
             "default": false,
+            "scope": 3
+        },
+        "notebook.diff.ignoreMetadata": {
+            "type": "boolean",
+            "default": false,
+            "markdownDescription": "メタデータの違いを非表示にする",
+            "scope": 3
+        },
+        "notebook.diff.ignoreOutputs": {
+            "type": "boolean",
+            "default": false,
+            "markdownDescription": "出力の違いを非表示にする",
             "scope": 3
         },
         "notebook.displayOrder": {
@@ -3076,6 +3149,203 @@
             "default": [],
             "scope": 3
         },
+        "terminal.integrated.profiles.windows": {
+            "markdownDescription": "ターミナルのドロップダウンを使用して新しいターミナルを作成するときに表示する Windows プロファイル。除外する場合は null に設定し、検出された既定の構成を使用する場合は `source` プロパティを使用します。または、`path` とオプションの `args`. を設定します",
+            "type": "object",
+            "default": {
+                "PowerShell": {
+                    "source": "PowerShell"
+                },
+                "Command Prompt": {
+                    "path": [
+                        "${env:windir}\\Sysnative\\cmd.exe",
+                        "${env:windir}\\System32\\cmd.exe"
+                    ],
+                    "args": []
+                },
+                "Git Bash": {
+                    "source": "Git Bash"
+                }
+            },
+            "additionalProperties": {
+                "anyOf": [
+                    {
+                        "type": "object",
+                        "required": [
+                            "source"
+                        ],
+                        "properties": {
+                            "source": {
+                                "description": "シェルへのパスを自動検出するプロファイル ソース。",
+                                "enum": [
+                                    "PowerShell",
+                                    "Git Bash"
+                                ]
+                            },
+                            "overrideName": {
+                                "description": "検出されたものをオーバーライドするターミナルの省略可能な名前です。",
+                                "type": "boolean"
+                            }
+                        }
+                    },
+                    {
+                        "type": "null"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "path"
+                        ],
+                        "properties": {
+                            "path": {
+                                "description": "シェルの実行可能ファイルへの単一のパス、または失敗した場合にフォールバックとして使用されるパスの配列です。",
+                                "type": [
+                                    "string",
+                                    "array"
+                                ],
+                                "items": {
+                                    "type": "string"
+                                }
+                            },
+                            "args": {
+                                "description": "シェル実行可能ファイルを実行するための引数の省略可能なセットです。",
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            },
+                            "overrideName": {
+                                "description": "検出されたものをオーバーライドするターミナルの省略可能な名前です。",
+                                "type": "boolean"
+                            }
+                        }
+                    }
+                ]
+            },
+            "scope": 3
+        },
+        "terminal.integrated.profiles.osx": {
+            "markdownDescription": "ターミナルのドロップダウンを使用して新しいターミナルを作成するときに表示する macOS プロファイル。設定すると、検出された既定のプロファイルがオーバーライドされます。これらは、`path` とオプションの `args`. で構成されています",
+            "type": "object",
+            "default": {
+                "bash": {
+                    "path": "bash"
+                },
+                "zsh": {
+                    "path": "zsh"
+                },
+                "fish": {
+                    "path": "fish"
+                },
+                "tmux": {
+                    "path": "tmux"
+                },
+                "pwsh": {
+                    "path": "pwsh"
+                }
+            },
+            "additionalProperties": {
+                "anyOf": [
+                    {
+                        "type": "null"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "path"
+                        ],
+                        "properties": {
+                            "path": {
+                                "description": "シェルの実行可能ファイルへの単一のパス、または失敗した場合にフォールバックとして使用されるパスの配列です。",
+                                "type": [
+                                    "string",
+                                    "array"
+                                ],
+                                "items": {
+                                    "type": "string"
+                                }
+                            },
+                            "args": {
+                                "description": "シェル実行可能ファイルを実行するための引数の省略可能なセットです。",
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            },
+                            "overrideName": {
+                                "description": "検出されたものをオーバーライドするターミナルの省略可能な名前です。",
+                                "type": "boolean"
+                            }
+                        }
+                    }
+                ]
+            },
+            "scope": 3
+        },
+        "terminal.integrated.profiles.linux": {
+            "markdownDescription": "ターミナルのドロップダウンを使用して新しいターミナルを作成するときに表示する Linux プロファイル。設定すると、検出された既定のプロファイルがオーバーライドされます。これらは、`path` とオプションの `args`. で構成されています",
+            "type": "object",
+            "default": {
+                "bash": {
+                    "path": "bash"
+                },
+                "zsh": {
+                    "path": "zsh"
+                },
+                "fish": {
+                    "path": "fish"
+                },
+                "tmux": {
+                    "path": "tmux"
+                },
+                "pwsh": {
+                    "path": "pwsh"
+                }
+            },
+            "additionalProperties": {
+                "anyOf": [
+                    {
+                        "type": "null"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "path"
+                        ],
+                        "properties": {
+                            "path": {
+                                "description": "シェルの実行可能ファイルへの単一のパス、または失敗した場合にフォールバックとして使用されるパスの配列です。",
+                                "type": [
+                                    "string",
+                                    "array"
+                                ],
+                                "items": {
+                                    "type": "string"
+                                }
+                            },
+                            "args": {
+                                "description": "シェル実行可能ファイルを実行するための引数の省略可能なセットです。",
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            },
+                            "overrideName": {
+                                "description": "検出されたものをオーバーライドするターミナルの省略可能な名前です。",
+                                "type": "boolean"
+                            }
+                        }
+                    }
+                ]
+            },
+            "scope": 3
+        },
+        "terminal.integrated.useWslProfiles": {
+            "description": "Controls whether or not WSL distros are shown in the terminal dropdown",
+            "type": "boolean",
+            "default": true,
+            "scope": 3
+        },
         "terminal.integrated.macOptionIsMeta": {
             "description": "option キーを macOS 上のターミナルの meta キーとして扱うかどうかを制御します。",
             "type": "boolean",
@@ -3089,7 +3359,7 @@
             "scope": 3
         },
         "terminal.integrated.altClickMovesCursor": {
-            "description": "有効にすれば、`#editor.multiCursorModifier#` が `'alt'` (既定値) に設定されている場合に、alt または option キーを押しながらクリックすると、プロンプト カーソルがマウスの下に移動します。これは、お客様のシェルによっては正確に動作しないことがあります。",
+            "markdownDescription": "有効にすれば、`#editor.multiCursorModifier#` が `'alt'` (既定値) に設定されている場合に、alt または option キーを押しながらクリックすると、プロンプト カーソルがマウスの下に移動します。これは、お客様のシェルによっては正確に動作しないことがあります。",
             "type": "boolean",
             "default": true,
             "scope": 3
@@ -3389,6 +3659,12 @@
             "default": "warnonly",
             "scope": 3
         },
+        "terminal.integrated.environmentChangesRelaunch": {
+            "markdownDescription": "拡張機能が環境に参加する必要があり、まだ対話が行われていない場合に、自動的に端末を再起動するかどうか。",
+            "type": "boolean",
+            "default": true,
+            "scope": 3
+        },
         "terminal.integrated.showExitAlert": {
             "description": "終了コードがゼロ以外の場合に、\"ターミナルの処理が終了しました (終了コード: )\" という警告を表示するかどうかを制御します。",
             "type": "boolean",
@@ -3500,22 +3776,23 @@
             ],
             "scope": 3
         },
-        "terminal.integrated.serverSpawn": {
-            "description": "Experimental: spawn remote terminals from the remote agent process instead of the remote extension host",
-            "type": "boolean",
-            "default": true,
-            "scope": 3
-        },
         "terminal.integrated.enablePersistentSessions": {
             "description": "ウィンドウの再読み込み時にワークスペースのターミナル セッションを保持します。",
             "type": "boolean",
             "default": true,
             "scope": 3
         },
-        "terminal.integrated.flowControl": {
-            "description": "試験段階: ターミナル出力とのリモート接続のオーバーフローを防ぐため、リモート側のプログラムの処理速度を低下させるフロー制御を有効にするかどうか。この設定は、ローカル ターミナルと、出力または入力が拡張機能によって制御されているターミナルには影響しません。この変更は、新しいターミナルにのみ適用されます。",
-            "type": "boolean",
-            "default": true,
+        "testing.autoRun.mode": {
+            "description": "どのテストを自動的に実行するかを制御します。",
+            "enum": [
+                "all",
+                "rerun"
+            ],
+            "default": "all",
+            "enumDescriptions": [
+                "自動実行が切り替えられたときに、検出されたすべてのテストを自動的に実行します。変更されたときに、個々のテストを再実行します。",
+                "変更されたときに、個々のテストを再実行します。まだ実行されていないテストは自動的に実行されません。"
+            ],
             "scope": 3
         },
         "testing.autoRun.delay": {
@@ -3602,6 +3879,12 @@
         "debug.console.closeOnEnd": {
             "type": "boolean",
             "description": "デバッグ セッションの終了時にデバッグ コンソールを自動的に閉じるかどうかを制御します。",
+            "default": false,
+            "scope": 3
+        },
+        "debug.terminal.clearBeforeReusing": {
+            "type": "boolean",
+            "description": "統合または外部ターミナルで新しいデバッグ セッションを開始する前に、ターミナルをクリアします。",
             "default": false,
             "scope": 3
         },
@@ -4118,12 +4401,6 @@
             "description": "検索結果の並べ替え順序を制御します。",
             "scope": 3
         },
-        "search.experimental.searchInOpenEditors": {
-            "type": "boolean",
-            "default": false,
-            "markdownDescription": "試験的。有効にすると、ワークスペースの検索で、開いているファイルのみを検索するためのオプションが提供されます。**有効にするには再起動が必要です。**",
-            "scope": 3
-        },
         "timeline.excludeSources": {
             "type": [
                 "array",
@@ -4265,12 +4542,11 @@
             "scope": 3
         },
         "emmet.extensionsPath": {
-            "type": [
-                "string",
-                "array",
-                "null"
-            ],
-            "default": null,
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "default": [],
             "description": "Emmet のプロファイルとスニペットを含むフォルダーへのパス。",
             "scope": 3
         },
@@ -6513,18 +6789,6 @@
             "description": "単純なブラウザーにフォーカスが置かれたときに表示されるフローティング インジケーターを有効または無効にします。",
             "scope": 3
         },
-        "testing.enableCodeLens": {
-            "description": "テスト ケースとスイートにコード レンズを表示するかどうか",
-            "type": "boolean",
-            "default": true,
-            "scope": 3
-        },
-        "testing.enableProblemDiagnostics": {
-            "description": "テスト エラーを '問題' ビューで報告し、エディターでエラーとして表示するかどうか。",
-            "type": "boolean",
-            "default": false,
-            "scope": 3
-        },
         "typescript.tsdk": {
             "type": [
                 "string",
@@ -6785,6 +7049,7 @@
                     "type": "string",
                     "description": "個々のファイルを監視するための方法。",
                     "enum": [
+                        "fixedChunkSizePolling",
                         "fixedPollingInterval",
                         "priorityPollingInterval",
                         "dynamicPriorityPolling",
@@ -6792,6 +7057,7 @@
                         "useFsEventsOnParentDirectory"
                     ],
                     "enumDescriptions": [
+                        "定期的にファイルのチャンクをポーリングします。ワークスペースで TypeScript 4.3 以上を使用する必要があります。",
                         "すべてのファイルで、一定の間隔で 1 秒に数回変更がないかを確認します。",
                         "すべてのファイルで 1 秒間に数回変更を確認しますが、ヒューリスティックを使用して、特定の種類のファイルを他のファイルよりも少ない頻繁で確認することができます。",
                         "変更頻度の低いファイルの確認頻度が低い場合は、動的キューを使用します。",
@@ -6804,11 +7070,13 @@
                     "type": "string",
                     "description": "再帰的なファイル監視機能を持たないシステムでディレクトリ ツリー全体を監視するための方法。",
                     "enum": [
+                        "fixedChunkSizePolling",
                         "fixedPollingInterval",
                         "dynamicPriorityPolling",
                         "useFsEvents"
                     ],
                     "enumDescriptions": [
+                        "定期的にディレクトリのチャンクをポーリングします。ワークスペースで TypeScript 4.3 以上を使用する必要があります。",
                         "すべてのディレクトリで、一定の間隔で 1 秒間に数回、変更を確認します。",
                         "変更頻度の少ないディレクトリの確認頻度が少ない動的キューを使用します。",
                         "ディレクトリの変更にオペレーティング システムまたはファイル システムのネイティブ イベントを使用します。"
@@ -7013,7 +7281,8 @@
             "scope": 5
         },
         "editor.accessibilityPageSize": {
-            "description": "スクリーン リーダーで読み上げることができるエディターの行数を制御します。警告: 既定値を上回る数を指定すると、パフォーマンスに影響を与えます。",
+            "description": "一度にスクリーン リーダーによって読み上げることができるエディターの行数を制御します。スクリーン リーダーが検出されると、既定値が 2000 に自動的に設定されます。警告: 既定値より大きい数値の場合は、パフォーマンスに影響があります。",
+            "deprecationMessage": "この設定は非推奨です。スクリーン リーダーが検出されると、アクセシビリティのページ サイズがエディターによって自動的に選択されます。2000 行が新しい既定値になります。",
             "type": "integer",
             "default": 10,
             "minimum": 1,
@@ -7036,6 +7305,22 @@
                 "never"
             ],
             "default": "languageDefined",
+            "scope": 5
+        },
+        "editor.autoClosingDelete": {
+            "enumDescriptions": [
+                "",
+                "隣接する終わり引用符または括弧が自動的に挿入された場合にのみ、それらを削除します。",
+                ""
+            ],
+            "description": "削除時にエディターで隣接する終わり引用符または括弧を削除するかどうかを制御します。",
+            "type": "string",
+            "enum": [
+                "always",
+                "auto",
+                "never"
+            ],
+            "default": "auto",
             "scope": 5
         },
         "editor.autoClosingOvertype": {
@@ -8628,6 +8913,42 @@
                 "vscode.testing-editor-contributions",
                 "ms-vscode.vscode-js-profile-table"
             ],
+            "enumItemLabels": [
+                "なし",
+                "CSS 言語機能",
+                "HTML 言語機能",
+                "JSON 言語機能",
+                "Markdown 言語機能",
+                "PHP 言語機能",
+                "Reference Search View",
+                "検索結果",
+                "TypeScript と JavaScript の言語機能",
+                "設定の編集機能",
+                "Node デバッグの自動アタッチ",
+                "サーバーの準備完了アクション",
+                "Emmet",
+                "拡張機能の作成",
+                "Git",
+                "Git UI",
+                "GitHub",
+                "GitHub 認証",
+                "Grunt support for VS Code",
+                "VSCode の Gulp サポート",
+                "画像プレビュー",
+                "VS Code の Jake サポート",
+                "JavaScript Debugger",
+                "JavaScript Debugger Companion Extension",
+                "マージの競合",
+                "Microsoft アカウント",
+                "Node Debug (legacy)",
+                "Node Debug",
+                "VS Code の npm サポート",
+                "Remote - WSL: Recommender",
+                "save-vscode-schemas",
+                "シンプル ブラウザー",
+                "エディターのコントリビューションをテストする",
+                ""
+            ],
             "markdownEnumDescriptions": [
                 "なし",
                 "CSS、LESS、SCSS ファイルに豊富な言語サポートを提供。",
@@ -8846,6 +9167,12 @@
             "type": "string",
             "markdownDescription": "入力メッセージのフォントを制御します。ワークベンチ ユーザー インターフェイスのフォント ファミリーを使う場合は 'default'、'#editor.fontFamily#' の値を使う場合は 'editor' を使用します。カスタム フォント ファミリーを使うこともできます。",
             "default": "default",
+            "scope": 4
+        },
+        "scm.inputFontSize": {
+            "type": "number",
+            "markdownDescription": "入力メッセージのフォント サイズをピクセル単位で制御します。",
+            "default": 13,
             "scope": 4
         },
         "scm.alwaysShowRepositories": {

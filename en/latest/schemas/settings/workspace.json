@@ -475,6 +475,13 @@
             "$ref": "vscode://schemas/settings/resourceLanguage",
             "default": {}
         },
+        "[dockercompose]": {
+            "type": "object",
+            "description": "Configure editor settings to be overridden for a language.",
+            "errorMessage": "This setting does not support per-language configuration.",
+            "$ref": "vscode://schemas/settings/resourceLanguage",
+            "default": {}
+        },
         "http.proxy": {
             "type": "string",
             "pattern": "^https?://([^:]*(:[^@]*)?@)?([^:]+|\\[[:0-9a-fA-F]+\\])(:\\d+)?/?$|^$",
@@ -516,7 +523,7 @@
         "http.systemCertificates": {
             "type": "boolean",
             "default": true,
-            "description": "Controls whether CA certificates should be loaded from the OS. (On Windows and macOS a reload of the window is required after turning this off.)",
+            "description": "Controls whether CA certificates should be loaded from the OS. (On Windows and macOS, a reload of the window is required after turning this off.)",
             "scope": 3
         },
         "telemetry.enableTelemetry": {
@@ -667,7 +674,7 @@
             ],
             "enumDescriptions": [
                 "The default size.",
-                "Increases the size, so it can be grabbed more easily with the mouse"
+                "Increases the size, so it can be grabbed more easily with the mouse."
             ],
             "description": "Controls the height of the scrollbars used for tabs and breadcrumbs in the editor title area.",
             "default": "default",
@@ -687,7 +694,7 @@
         },
         "workbench.editor.scrollToSwitchTabs": {
             "type": "boolean",
-            "markdownDescription": "Controls whether scrolling over tabs will open them or not. By default tabs will only reveal upon scrolling, but not open. You can press and hold the Shift-key while scrolling to change this behaviour for that duration. This value is ignored when `#workbench.editor.showTabs#` is disabled.",
+            "markdownDescription": "Controls whether scrolling over tabs will open them or not. By default tabs will only reveal upon scrolling, but not open. You can press and hold the Shift-key while scrolling to change this behavior for that duration. This value is ignored when `#workbench.editor.showTabs#` is disabled.",
             "default": false,
             "scope": 3
         },
@@ -700,13 +707,13 @@
         "workbench.editor.decorations.badges": {
             "type": "boolean",
             "markdownDescription": "Controls whether editor file decorations should use badges.",
-            "default": false,
+            "default": true,
             "scope": 3
         },
         "workbench.editor.decorations.colors": {
             "type": "boolean",
             "markdownDescription": "Controls whether editor file decorations should use colors.",
-            "default": false,
+            "default": true,
             "scope": 3
         },
         "workbench.editor.labelFormat": {
@@ -746,9 +753,10 @@
             "enum": [
                 "text",
                 "button",
-                "hidden"
+                "hidden",
+                "default"
             ],
-            "default": "hidden",
+            "default": "default",
             "markdownDescription": "Controls if the untitled hint should be inline text in the editor or a floating button or hidden.",
             "scope": 3
         },
@@ -868,7 +876,7 @@
                 "down"
             ],
             "default": "right",
-            "markdownDescription": "Controls the default direction of editors that are opened side by side (e.g. from the explorer). By default, editors will open on the right hand side of the currently active one. If changed to `down`, the editors will open below the currently active one.",
+            "markdownDescription": "Controls the default direction of editors that are opened side by side (for example, from the Explorer). By default, editors will open on the right hand side of the currently active one. If changed to `down`, the editors will open below the currently active one.",
             "scope": 3
         },
         "workbench.editor.closeEmptyGroups": {
@@ -1039,6 +1047,12 @@
             "default": "ui",
             "scope": 3
         },
+        "workbench.hover.delay": {
+            "type": "number",
+            "description": "Controls the delay in milliseconds after which the hover is shown for workbench items (ex. some extension provided tree view items). Already visible items may require a refresh before reflecting this setting change.",
+            "default": 500,
+            "scope": 3
+        },
         "window.title": {
             "type": "string",
             "default": "${dirty}${activeEditorShort}${separator}${rootName}${separator}${appName}",
@@ -1191,9 +1205,17 @@
         "workbench.sash.size": {
             "type": "number",
             "default": 4,
-            "minimum": 4,
+            "minimum": 1,
             "maximum": 20,
             "description": "Controls the feedback area size in pixels of the dragging area in between views/editors. Set it to a larger value if you feel it's hard to resize views using the mouse.",
+            "scope": 3
+        },
+        "workbench.sash.hoverDelay": {
+            "type": "number",
+            "default": 300,
+            "minimum": 0,
+            "maximum": 2000,
+            "description": "Controls the hover feedback delay in milliseconds of the dragging area in between views/editors.",
             "scope": 3
         },
         "window.zoomLevel": {
@@ -1220,7 +1242,7 @@
         },
         "workbench.externalUriOpeners": {
             "type": "object",
-            "markdownDescription": "Configure the opener to use for external uris (i.e. http, https).",
+            "markdownDescription": "Configure the opener to use for external URIs (http, https).",
             "defaultSnippets": [
                 {
                     "body": {
@@ -1232,11 +1254,11 @@
                 "anyOf": [
                     {
                         "type": "string",
-                        "markdownDescription": "Map uri pattern to an opener id.\nExample patterns: \n\n- `https://microsoft.com`: Matches this specific domain using https\n- `https://microsoft.com:8080`: Matches this specific domain on this port using https\n- `https://microsoft.com:*`: Matches this specific domain on any port using https\n- `https://microsoft.com/foo`: Matches `https://microsoft.com/foo` and `https://microsoft.com/foo/bar`, but not `https://microsoft.com/foobar` or `https://microsoft.com/bar`\n- `https://*.microsoft.com`: Match all domains ending in `microsoft.com` using https\n- `microsoft.com`: Match this specific domain using either http or https\n- `*.microsoft.com`: Match all domains ending in `microsoft.com` using either http or https\n- `http://192.168.0.1`: Matches this specific IP using http\n- `http://192.168.0.*`: Matches all IP's with this prefix using http\n- `*`: Match all domains using either http or https"
+                        "markdownDescription": "Map URI pattern to an opener id.\nExample patterns: \n\n- `https://microsoft.com`: Matches this specific domain using https\n- `https://microsoft.com:8080`: Matches this specific domain on this port using https\n- `https://microsoft.com:*`: Matches this specific domain on any port using https\n- `https://microsoft.com/foo`: Matches `https://microsoft.com/foo` and `https://microsoft.com/foo/bar`, but not `https://microsoft.com/foobar` or `https://microsoft.com/bar`\n- `https://*.microsoft.com`: Match all domains ending in `microsoft.com` using https\n- `microsoft.com`: Match this specific domain using either http or https\n- `*.microsoft.com`: Match all domains ending in `microsoft.com` using either http or https\n- `http://192.168.0.1`: Matches this specific IP using http\n- `http://192.168.0.*`: Matches all IP's with this prefix using http\n- `*`: Match all domains using either http or https"
                     },
                     {
                         "type": "string",
-                        "markdownDescription": "Map uri pattern to an opener id.\nExample patterns: \n\n- `https://microsoft.com`: Matches this specific domain using https\n- `https://microsoft.com:8080`: Matches this specific domain on this port using https\n- `https://microsoft.com:*`: Matches this specific domain on any port using https\n- `https://microsoft.com/foo`: Matches `https://microsoft.com/foo` and `https://microsoft.com/foo/bar`, but not `https://microsoft.com/foobar` or `https://microsoft.com/bar`\n- `https://*.microsoft.com`: Match all domains ending in `microsoft.com` using https\n- `microsoft.com`: Match this specific domain using either http or https\n- `*.microsoft.com`: Match all domains ending in `microsoft.com` using either http or https\n- `http://192.168.0.1`: Matches this specific IP using http\n- `http://192.168.0.*`: Matches all IP's with this prefix using http\n- `*`: Match all domains using either http or https",
+                        "markdownDescription": "Map URI pattern to an opener id.\nExample patterns: \n\n- `https://microsoft.com`: Matches this specific domain using https\n- `https://microsoft.com:8080`: Matches this specific domain on this port using https\n- `https://microsoft.com:*`: Matches this specific domain on any port using https\n- `https://microsoft.com/foo`: Matches `https://microsoft.com/foo` and `https://microsoft.com/foo/bar`, but not `https://microsoft.com/foobar` or `https://microsoft.com/bar`\n- `https://*.microsoft.com`: Match all domains ending in `microsoft.com` using https\n- `microsoft.com`: Match this specific domain using either http or https\n- `*.microsoft.com`: Match all domains ending in `microsoft.com` using either http or https\n- `http://192.168.0.1`: Matches this specific IP using http\n- `http://192.168.0.*`: Matches all IP's with this prefix using http\n- `*`: Match all domains using either http or https",
                         "enum": [
                             "default"
                         ],
@@ -1359,9 +1381,9 @@
         "remote.portsAttributes": {
             "type": "object",
             "patternProperties": {
-                "^\\d+(\\-\\d+)?$": {
+                "(^\\d+(\\-\\d+)?$)|(.+)": {
                     "type": "object",
-                    "description": "A port, or range of ports (ex. \"40000-55000\") that the attributes should apply to",
+                    "description": "A port, range of ports (ex. \"40000-55000\"), or regular expression (ex. \".+\\\\/server.js\").  For a port number or range, the attributes will apply to that port number or range of port numbers. Attributes which use a regular expression will apply to ports whose associated process command line matches the expression.",
                     "properties": {
                         "onAutoForward": {
                             "type": "string",
@@ -1390,27 +1412,72 @@
                         "label": {
                             "type": "string",
                             "description": "Label that will be shown in the UI for this port.",
-                            "default": "Labeled Port"
+                            "default": "Application"
                         }
                     },
                     "default": {
-                        "label": "Labeled Port",
+                        "label": "Application",
                         "onAutoForward": "notify"
                     }
                 }
             },
-            "markdownDescription": "Set default properties that are applied when a specific port number is forwarded. For example:\n\n```\n\"3000\": {\n  \"label\": \"Labeled Port\"\n},\n\"40000-55000\": {\n  \"onAutoForward\": \"ignore\"\n}\n```",
+            "markdownDescription": "Set properties that are applied when a specific port number is forwarded. For example:\n\n```\n\"3000\": {\n  \"label\": \"Application\"\n},\n\"40000-55000\": {\n  \"onAutoForward\": \"ignore\"\n},\n\".+\\\\/server.js\": {\n \"onAutoForward\": \"openPreview\"\n}\n```",
             "defaultSnippets": [
                 {
                     "body": {
                         "${1:3000}": {
-                            "label": "${2:My Port}",
-                            "onAutoForward": "notify"
+                            "label": "${2:Application}",
+                            "onAutoForward": "openPreview"
                         }
                     }
                 }
             ],
-            "errorMessage": "Must be a port number or a range of port numbers",
+            "errorMessage": "Must be a port number, range of port numbers, or regular expression.",
+            "additionalProperties": false,
+            "default": {},
+            "scope": 3
+        },
+        "remote.otherPortsAttributes": {
+            "type": "object",
+            "properties": {
+                "onAutoForward": {
+                    "type": "string",
+                    "enum": [
+                        "notify",
+                        "openBrowser",
+                        "openPreview",
+                        "silent",
+                        "ignore"
+                    ],
+                    "enumDescriptions": [
+                        "Shows a notification when a port is automatically forwarded.",
+                        "Opens the browser when the port is automatically forwarded. Depending on your settings, this could open an embedded browser.",
+                        "Opens a preview in the same window when the port is automatically forwarded.",
+                        "Shows no notification and takes no action when this port is automatically forwarded.",
+                        "This port will not be automatically forwarded."
+                    ],
+                    "description": "Defines the action that occurs when the port is discovered for automatic forwarding",
+                    "default": "notify"
+                },
+                "elevateIfNeeded": {
+                    "type": "boolean",
+                    "description": "Automatically prompt for elevation (if needed) when this port is forwarded. Elevate is required if the local port is a privileged port.",
+                    "default": false
+                },
+                "label": {
+                    "type": "string",
+                    "description": "Label that will be shown in the UI for this port.",
+                    "default": "Application"
+                }
+            },
+            "defaultSnippets": [
+                {
+                    "body": {
+                        "onAutoForward": "ignore"
+                    }
+                }
+            ],
+            "markdownDescription": "Set default properties that are applied to all ports that don't get properties from the setting `remote.portsAttributes`. For example:\n\n```\n{\n  \"onAutoForward\": \"ignore\"\n}\n```",
             "additionalProperties": false,
             "default": {},
             "scope": 3
@@ -2806,18 +2873,6 @@
             "description": "Controls the size (in pixels) of the mouse indicator in screencast mode.",
             "scope": 3
         },
-        "notebook.outline.showCodeCells": {
-            "type": "boolean",
-            "default": false,
-            "markdownDescription": "When enabled notebook outline shows code cells.",
-            "scope": 3
-        },
-        "notebook.breadcrumbs.showCodeCells": {
-            "type": "boolean",
-            "default": true,
-            "markdownDescription": "When enabled notebook breadcrumbs contain code cells.",
-            "scope": 3
-        },
         "task.problemMatchers.neverPrompt": {
             "markdownDescription": "Configures whether to show the problem matcher prompt when running a task. Set to `true` to never prompt, or use a dictionary of task types to turn off prompting only for specific task types.",
             "oneOf": [
@@ -2917,6 +2972,18 @@
             "markdownDescription": "Timeout in milliseconds after which file participants for create, rename, and delete are cancelled. Use `0` to disable participants.",
             "scope": 3
         },
+        "notebook.outline.showCodeCells": {
+            "type": "boolean",
+            "default": false,
+            "markdownDescription": "When enabled notebook outline shows code cells.",
+            "scope": 3
+        },
+        "notebook.breadcrumbs.showCodeCells": {
+            "type": "boolean",
+            "default": true,
+            "markdownDescription": "When enabled notebook breadcrumbs contain code cells.",
+            "scope": 3
+        },
         "extensions.ignoreRecommendations": {
             "type": "boolean",
             "description": "When enabled, the notifications for extension recommendations will not be shown.",
@@ -2938,12 +3005,6 @@
             "default": false,
             "scope": 3
         },
-        "extensions.confirmedUriHandlerExtensionIds": {
-            "type": "array",
-            "description": "When an extension is listed here, a confirmation prompt will not be shown when that extension handles a URI.",
-            "default": [],
-            "scope": 3
-        },
         "extensions.webWorker": {
             "type": "boolean",
             "description": "Enable web worker extension host.",
@@ -2960,6 +3021,18 @@
             "description": "When enabled shows the current problem in the status bar.",
             "type": "boolean",
             "default": false,
+            "scope": 3
+        },
+        "notebook.diff.ignoreMetadata": {
+            "type": "boolean",
+            "default": false,
+            "markdownDescription": "Hide Metadata Differences",
+            "scope": 3
+        },
+        "notebook.diff.ignoreOutputs": {
+            "type": "boolean",
+            "default": false,
+            "markdownDescription": "Hide Outputs Differences",
             "scope": 3
         },
         "notebook.displayOrder": {
@@ -3076,6 +3149,203 @@
             "default": [],
             "scope": 3
         },
+        "terminal.integrated.profiles.windows": {
+            "markdownDescription": "The Windows profiles to present when creating a new terminal via the terminal dropdown. Set to null to exclude them, use the `source` property to use the default detected configuration. Or, set the `path` and optional `args`.",
+            "type": "object",
+            "default": {
+                "PowerShell": {
+                    "source": "PowerShell"
+                },
+                "Command Prompt": {
+                    "path": [
+                        "${env:windir}\\Sysnative\\cmd.exe",
+                        "${env:windir}\\System32\\cmd.exe"
+                    ],
+                    "args": []
+                },
+                "Git Bash": {
+                    "source": "Git Bash"
+                }
+            },
+            "additionalProperties": {
+                "anyOf": [
+                    {
+                        "type": "object",
+                        "required": [
+                            "source"
+                        ],
+                        "properties": {
+                            "source": {
+                                "description": "A profile source that will auto detect the paths to the shell.",
+                                "enum": [
+                                    "PowerShell",
+                                    "Git Bash"
+                                ]
+                            },
+                            "overrideName": {
+                                "description": "Controls whether or not the profile name overrides the auto detected one.",
+                                "type": "boolean"
+                            }
+                        }
+                    },
+                    {
+                        "type": "null"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "path"
+                        ],
+                        "properties": {
+                            "path": {
+                                "description": "A single path to a shell executable or an array of paths that will be used as fallbacks when one fails.",
+                                "type": [
+                                    "string",
+                                    "array"
+                                ],
+                                "items": {
+                                    "type": "string"
+                                }
+                            },
+                            "args": {
+                                "description": "An optional set of arguments to run the shell executable with.",
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            },
+                            "overrideName": {
+                                "description": "Controls whether or not the profile name overrides the auto detected one.",
+                                "type": "boolean"
+                            }
+                        }
+                    }
+                ]
+            },
+            "scope": 3
+        },
+        "terminal.integrated.profiles.osx": {
+            "markdownDescription": "The macOS profiles to present when creating a new terminal via the terminal dropdown. When set, these will override the default detected profiles. They are comprised of a `path` and optional `args`.",
+            "type": "object",
+            "default": {
+                "bash": {
+                    "path": "bash"
+                },
+                "zsh": {
+                    "path": "zsh"
+                },
+                "fish": {
+                    "path": "fish"
+                },
+                "tmux": {
+                    "path": "tmux"
+                },
+                "pwsh": {
+                    "path": "pwsh"
+                }
+            },
+            "additionalProperties": {
+                "anyOf": [
+                    {
+                        "type": "null"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "path"
+                        ],
+                        "properties": {
+                            "path": {
+                                "description": "A single path to a shell executable or an array of paths that will be used as fallbacks when one fails.",
+                                "type": [
+                                    "string",
+                                    "array"
+                                ],
+                                "items": {
+                                    "type": "string"
+                                }
+                            },
+                            "args": {
+                                "description": "An optional set of arguments to run the shell executable with.",
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            },
+                            "overrideName": {
+                                "description": "Controls whether or not the profile name overrides the auto detected one.",
+                                "type": "boolean"
+                            }
+                        }
+                    }
+                ]
+            },
+            "scope": 3
+        },
+        "terminal.integrated.profiles.linux": {
+            "markdownDescription": "The Linux profiles to present when creating a new terminal via the terminal dropdown. When set, these will override the default detected profiles. They are comprised of a `path` and optional `args`.",
+            "type": "object",
+            "default": {
+                "bash": {
+                    "path": "bash"
+                },
+                "zsh": {
+                    "path": "zsh"
+                },
+                "fish": {
+                    "path": "fish"
+                },
+                "tmux": {
+                    "path": "tmux"
+                },
+                "pwsh": {
+                    "path": "pwsh"
+                }
+            },
+            "additionalProperties": {
+                "anyOf": [
+                    {
+                        "type": "null"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "path"
+                        ],
+                        "properties": {
+                            "path": {
+                                "description": "A single path to a shell executable or an array of paths that will be used as fallbacks when one fails.",
+                                "type": [
+                                    "string",
+                                    "array"
+                                ],
+                                "items": {
+                                    "type": "string"
+                                }
+                            },
+                            "args": {
+                                "description": "An optional set of arguments to run the shell executable with.",
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            },
+                            "overrideName": {
+                                "description": "Controls whether or not the profile name overrides the auto detected one.",
+                                "type": "boolean"
+                            }
+                        }
+                    }
+                ]
+            },
+            "scope": 3
+        },
+        "terminal.integrated.useWslProfiles": {
+            "description": "Controls whether or not WSL distros are shown in the terminal dropdown",
+            "type": "boolean",
+            "default": true,
+            "scope": 3
+        },
         "terminal.integrated.macOptionIsMeta": {
             "description": "Controls whether to treat the option key as the meta key in the terminal on macOS.",
             "type": "boolean",
@@ -3089,7 +3359,7 @@
             "scope": 3
         },
         "terminal.integrated.altClickMovesCursor": {
-            "description": "If enabled, alt/option + click will reposition the prompt cursor to underneath the mouse when `#editor.multiCursorModifier#` is set to `'alt'` (the default value). This may not work reliably depending on your shell.",
+            "markdownDescription": "If enabled, alt/option + click will reposition the prompt cursor to underneath the mouse when `#editor.multiCursorModifier#` is set to `'alt'` (the default value). This may not work reliably depending on your shell.",
             "type": "boolean",
             "default": true,
             "scope": 3
@@ -3389,6 +3659,12 @@
             "default": "warnonly",
             "scope": 3
         },
+        "terminal.integrated.environmentChangesRelaunch": {
+            "markdownDescription": "Whether to relaunch terminals automatically if extension want to contribute to their environment and have not been interacted with yet.",
+            "type": "boolean",
+            "default": true,
+            "scope": 3
+        },
         "terminal.integrated.showExitAlert": {
             "description": "Controls whether to show the alert \"The terminal process terminated with exit code\" when exit code is non-zero.",
             "type": "boolean",
@@ -3500,22 +3776,23 @@
             ],
             "scope": 3
         },
-        "terminal.integrated.serverSpawn": {
-            "description": "Experimental: spawn remote terminals from the remote agent process instead of the remote extension host",
-            "type": "boolean",
-            "default": true,
-            "scope": 3
-        },
         "terminal.integrated.enablePersistentSessions": {
             "description": "Persist terminal sessions for the workspace across window reloads.",
             "type": "boolean",
             "default": true,
             "scope": 3
         },
-        "terminal.integrated.flowControl": {
-            "description": "Experimental: whether to enable flow control which will slow the program on the remote side to avoid flooding remote connections with terminal output. This setting has no effect for local terminals and terminals where the output/input is controlled by an extension. Changing this will only affect new terminals.",
-            "type": "boolean",
-            "default": true,
+        "testing.autoRun.mode": {
+            "description": "Controls which tests are automatically run.",
+            "enum": [
+                "all",
+                "rerun"
+            ],
+            "default": "all",
+            "enumDescriptions": [
+                "Automatically runs all discovered test when auto-run is toggled. Re-runs individual tests when they are changed.",
+                "Re-runs individual tests when they are changed. Will not automatically run any tests that have not been already executed."
+            ],
             "scope": 3
         },
         "testing.autoRun.delay": {
@@ -3602,6 +3879,12 @@
         "debug.console.closeOnEnd": {
             "type": "boolean",
             "description": "Controls if the debug console should be automatically closed when the debug session ends.",
+            "default": false,
+            "scope": 3
+        },
+        "debug.terminal.clearBeforeReusing": {
+            "type": "boolean",
+            "description": "Before starting a new debug session in an integrated or external terminal, clear the terminal.",
             "default": false,
             "scope": 3
         },
@@ -3925,8 +4208,8 @@
             "markdownDescription": "Controls where new `Search: Find in Files` and `Find in Folder` operations occur: either in the sidebar's search view, or in a search editor",
             "enumDescriptions": [
                 "Search in the search view, either in the panel or sidebar.",
-                "Search in an existing search editor if present, otherwise in a new search editor",
-                "Search in a new search editor"
+                "Search in an existing search editor if present, otherwise in a new search editor.",
+                "Search in a new search editor."
             ],
             "scope": 3
         },
@@ -4084,7 +4367,7 @@
         "search.searchEditor.reusePriorSearchConfiguration": {
             "type": "boolean",
             "default": false,
-            "markdownDescription": "When enabled, new Search Editors will reuse the includes, excludes, and flags of the previously opened Search Editor",
+            "markdownDescription": "When enabled, new Search Editors will reuse the includes, excludes, and flags of the previously opened Search Editor.",
             "scope": 3
         },
         "search.searchEditor.defaultNumberOfContextLines": {
@@ -4118,19 +4401,13 @@
             "description": "Controls sorting order of search results.",
             "scope": 3
         },
-        "search.experimental.searchInOpenEditors": {
-            "type": "boolean",
-            "default": false,
-            "markdownDescription": "Experimental. When enabled, an option is provided to make workspace search only search files that have been opened. **Requires restart to take effect.**",
-            "scope": 3
-        },
         "timeline.excludeSources": {
             "type": [
                 "array",
                 "null"
             ],
             "default": null,
-            "description": "An array of Timeline sources that should be excluded from the Timeline view",
+            "description": "An array of Timeline sources that should be excluded from the Timeline view.",
             "scope": 3
         },
         "timeline.pageSize": {
@@ -4139,13 +4416,13 @@
                 "null"
             ],
             "default": null,
-            "markdownDescription": "The number of items to show in the Timeline view by default and when loading more items. Setting to `null` (the default) will automatically choose a page size based on the visible area of the Timeline view",
+            "markdownDescription": "The number of items to show in the Timeline view by default and when loading more items. Setting to `null` (the default) will automatically choose a page size based on the visible area of the Timeline view.",
             "scope": 3
         },
         "timeline.pageOnScroll": {
             "type": "boolean",
             "default": false,
-            "description": "Experimental. Controls whether the Timeline view will load the next page of items when you scroll to the end of the list",
+            "description": "Experimental. Controls whether the Timeline view will load the next page of items when you scroll to the end of the list.",
             "scope": 3
         },
         "workbench.tips.enabled": {
@@ -4231,7 +4508,7 @@
                 "type": "string"
             },
             "default": {},
-            "markdownDescription": "Enable Emmet abbreviations in languages that are not supported by default. Add a mapping here between the language and emmet supported language.\n E.g.: `{\"vue-html\": \"html\", \"javascript\": \"javascriptreact\"}`",
+            "markdownDescription": "Enable Emmet abbreviations in languages that are not supported by default. Add a mapping here between the language and Emmet supported language.\n For example: `{\"vue-html\": \"html\", \"javascript\": \"javascriptreact\"}`",
             "scope": 3
         },
         "emmet.variables": {
@@ -4265,12 +4542,11 @@
             "scope": 3
         },
         "emmet.extensionsPath": {
-            "type": [
-                "string",
-                "array",
-                "null"
-            ],
-            "default": null,
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "default": [],
             "description": "Path to a folder containing Emmet profiles and snippets.",
             "scope": 3
         },
@@ -4419,7 +4695,7 @@
         "emmet.optimizeStylesheetParsing": {
             "type": "boolean",
             "default": true,
-            "markdownDescription": "When set to `false`, the whole file is parsed to determine if current position is valid for expanding Emmet abbreviations. When set to `true`, only the content around the current position in css/scss/less files is parsed.",
+            "markdownDescription": "When set to `false`, the whole file is parsed to determine if current position is valid for expanding Emmet abbreviations. When set to `true`, only the content around the current position in CSS/SCSS/Less files is parsed.",
             "scope": 3
         },
         "git.autoRepositoryDetection": {
@@ -4524,7 +4800,7 @@
         "git.decorations.enabled": {
             "type": "boolean",
             "default": true,
-            "description": "Controls whether Git contributes colors and badges to the explorer and the open editors view.",
+            "description": "Controls whether Git contributes colors and badges to the Explorer and the Open Editors view.",
             "scope": 3
         },
         "git.openAfterClone": {
@@ -4634,7 +4910,7 @@
         },
         "git.requireGitUserConfig": {
             "type": "boolean",
-            "description": "Controls whether to require explicit Git user configuration or allow Git to guess if missing",
+            "description": "Controls whether to require explicit Git user configuration or allow Git to guess if missing.",
             "default": true,
             "scope": 3
         },
@@ -4653,13 +4929,13 @@
                 "Use the authored date"
             ],
             "default": "committed",
-            "description": "Controls which date to use for items in the Timeline view",
+            "description": "Controls which date to use for items in the Timeline view.",
             "scope": 3
         },
         "git.timeline.showAuthor": {
             "type": "boolean",
             "default": true,
-            "description": "Controls whether to show the commit author in the Timeline view",
+            "description": "Controls whether to show the commit author in the Timeline view.",
             "scope": 3
         },
         "html.format.enable": {
@@ -4725,7 +5001,7 @@
                 "verbose"
             ],
             "default": "off",
-            "description": "Enable debug logging for the markdown extension.",
+            "description": "Enable debug logging for the Markdown extension.",
             "scope": 3
         },
         "merge-conflict.codeLens.enabled": {
@@ -6513,18 +6789,6 @@
             "description": "Enable/disable the floating indicator that shows when focused in the simple browser.",
             "scope": 3
         },
-        "testing.enableCodeLens": {
-            "description": "Whether code lens on test cases and suites should be visible",
-            "type": "boolean",
-            "default": true,
-            "scope": 3
-        },
-        "testing.enableProblemDiagnostics": {
-            "description": "Whether test failures should be reported in the 'problems' view and show as errors in the editor.",
-            "type": "boolean",
-            "default": false,
-            "scope": 3
-        },
         "typescript.tsdk": {
             "type": [
                 "string",
@@ -6785,6 +7049,7 @@
                     "type": "string",
                     "description": "Strategy for how individual files are watched.",
                     "enum": [
+                        "fixedChunkSizePolling",
                         "fixedPollingInterval",
                         "priorityPollingInterval",
                         "dynamicPriorityPolling",
@@ -6792,6 +7057,7 @@
                         "useFsEventsOnParentDirectory"
                     ],
                     "enumDescriptions": [
+                        "Polls files in chunks at regular interval. Requires using TypeScript 4.3+ in the workspace.",
                         "Check every file for changes several times a second at a fixed interval.",
                         "Check every file for changes several times a second, but use heuristics to check certain types of files less frequently than others.",
                         "Use a dynamic queue where less-frequently modified files will be checked less often.",
@@ -6804,11 +7070,13 @@
                     "type": "string",
                     "description": "Strategy for how entire directory trees are watched under systems that lack recursive file-watching functionality.",
                     "enum": [
+                        "fixedChunkSizePolling",
                         "fixedPollingInterval",
                         "dynamicPriorityPolling",
                         "useFsEvents"
                     ],
                     "enumDescriptions": [
+                        "Polls directories in chunks at regular interval. Requires using TypeScript 4.3+ in the workspace.",
                         "Check every directory for changes several times a second at a fixed interval.",
                         "Use a dynamic queue where less-frequently modified directories will be checked less often.",
                         "Attempt to use the operating system/file system’s native events for directory changes."
@@ -6899,7 +7167,7 @@
                 "Suggest words from all open documents of the same language.",
                 "Suggest words from all open documents."
             ],
-            "description": "Controls from what documents word based completions are computed.",
+            "description": "Controls from which documents word based completions are computed.",
             "scope": 5
         },
         "editor.semanticHighlighting.enabled": {
@@ -7013,7 +7281,8 @@
             "scope": 5
         },
         "editor.accessibilityPageSize": {
-            "description": "Controls the number of lines in the editor that can be read out by a screen reader. Warning: this has a performance implication for numbers larger than the default.",
+            "description": "Controls the number of lines in the editor that can be read out by a screen reader at once. When we detect a screen reader we automatically set the default to be 2000. Warning: this has a performance implication for numbers larger than the default.",
+            "deprecationMessage": "This setting is deprecated, editor will automatically choose the accessibility page size when we detect a screen reader. 2000 lines will be the new default.",
             "type": "integer",
             "default": 10,
             "minimum": 1,
@@ -7036,6 +7305,22 @@
                 "never"
             ],
             "default": "languageDefined",
+            "scope": 5
+        },
+        "editor.autoClosingDelete": {
+            "enumDescriptions": [
+                "",
+                "Remove adjacent closing quotes or brackets only if they were automatically inserted.",
+                ""
+            ],
+            "description": "Controls whether the editor should remove adjacent closing quotes or brackets when deleting.",
+            "type": "string",
+            "enum": [
+                "always",
+                "auto",
+                "never"
+            ],
+            "default": "auto",
             "scope": 5
         },
         "editor.autoClosingOvertype": {
@@ -7262,8 +7547,8 @@
             ],
             "default": "never",
             "enumDescriptions": [
-                "Never turn on Find in selection automatically (default)",
-                "Always turn on Find in selection automatically",
+                "Never turn on Find in selection automatically (default).",
+                "Always turn on Find in selection automatically.",
                 "Turn on Find in selection automatically when multiple lines of content are selected."
             ],
             "description": "Controls the condition for turning on find in selection automatically.",
@@ -7858,7 +8143,7 @@
             "scope": 5
         },
         "editor.renderLineHighlightOnlyWhenFocus": {
-            "description": "Controls if the editor should render the current line highlight only when the editor is focused",
+            "description": "Controls if the editor should render the current line highlight only when the editor is focused.",
             "type": "boolean",
             "default": false,
             "scope": 5
@@ -7868,7 +8153,7 @@
                 "",
                 "Render whitespace characters except for single spaces between words.",
                 "Render whitespace characters only on selected text.",
-                "Render only trailing whitespace characters",
+                "Render only trailing whitespace characters.",
                 ""
             ],
             "description": "Controls how the editor should render whitespace characters.",
@@ -7996,7 +8281,7 @@
             "scope": 5
         },
         "editor.stickyTabStops": {
-            "description": "Emulate selection behaviour of tab characters when using spaces for indentation. Selection will stick to tab stops.",
+            "description": "Emulate selection behavior of tab characters when using spaces for indentation. Selection will stick to tab stops.",
             "type": "boolean",
             "default": false,
             "scope": 5
@@ -8024,7 +8309,7 @@
         "editor.suggest.localityBonus": {
             "type": "boolean",
             "default": false,
-            "description": "Controls whether sorting favours words that appear close to the cursor.",
+            "description": "Controls whether sorting favors words that appear close to the cursor.",
             "scope": 5
         },
         "editor.suggest.shareSuggestSelections": {
@@ -8628,6 +8913,42 @@
                 "vscode.testing-editor-contributions",
                 "ms-vscode.vscode-js-profile-table"
             ],
+            "enumItemLabels": [
+                "None",
+                "CSS Language Features",
+                "HTML Language Features",
+                "JSON Language Features",
+                "Markdown Language Features",
+                "PHP Language Features",
+                "Reference Search View",
+                "Search Result",
+                "TypeScript and JavaScript Language Features",
+                "Configuration Editing",
+                "Node Debug Auto-attach",
+                "Server Ready Action",
+                "Emmet",
+                "Extension Authoring",
+                "Git",
+                "Git UI",
+                "GitHub",
+                "GitHub Authentication",
+                "Grunt support for VS Code",
+                "Gulp support for VSCode",
+                "Image Preview",
+                "Jake support for VS Code",
+                "JavaScript Debugger",
+                "JavaScript Debugger Companion Extension",
+                "Merge Conflict",
+                "Microsoft Account",
+                "Node Debug (legacy)",
+                "Node Debug",
+                "NPM support for VS Code",
+                "Remote - WSL: Recommender",
+                "save-vscode-schemas",
+                "Simple Browser",
+                "Testing Editor Contributions",
+                ""
+            ],
             "markdownEnumDescriptions": [
                 "None",
                 "Provides rich language support for CSS, LESS and SCSS files.",
@@ -8846,6 +9167,12 @@
             "type": "string",
             "markdownDescription": "Controls the font for the input message. Use `default` for the workbench user interface font family, `editor` for the `#editor.fontFamily#`'s value, or a custom font family.",
             "default": "default",
+            "scope": 4
+        },
+        "scm.inputFontSize": {
+            "type": "number",
+            "markdownDescription": "Controls the font size for the input message in pixels.",
+            "default": 13,
             "scope": 4
         },
         "scm.alwaysShowRepositories": {
@@ -9345,7 +9672,7 @@
             "type": "boolean",
             "scope": 4,
             "default": true,
-            "description": "Insert semicolon at end of line when completing CSS properties"
+            "description": "Insert semicolon at end of line when completing CSS properties."
         },
         "css.validate": {
             "type": "boolean",
@@ -9594,7 +9921,7 @@
             "type": "boolean",
             "scope": 4,
             "default": true,
-            "description": "Insert semicolon at end of line when completing CSS properties"
+            "description": "Insert semicolon at end of line when completing CSS properties."
         },
         "scss.validate": {
             "type": "boolean",
@@ -9843,7 +10170,7 @@
             "type": "boolean",
             "scope": 4,
             "default": true,
-            "description": "Insert semicolon at end of line when completing CSS properties"
+            "description": "Insert semicolon at end of line when completing CSS properties."
         },
         "less.validate": {
             "type": "boolean",
@@ -10101,7 +10428,7 @@
                 }
             ],
             "scope": 4,
-            "description": "When set to true, commits will automatically be fetched from the default remote of the current Git repository. Setting to `all` will fetch from all remotes",
+            "description": "When set to true, commits will automatically be fetched from the default remote of the current Git repository. Setting to `all` will fetch from all remotes.",
             "default": false,
             "tags": [
                 "usesOnlineServices"
@@ -10468,7 +10795,7 @@
                 "Wrap each attribute except first and keep aligned.",
                 "Wrap each attribute.",
                 "Wrap when line length is exceeded, align attributes vertically.",
-                "Preserve wrapping of attributes",
+                "Preserve wrapping of attributes.",
                 "Preserve wrapping of attributes but align."
             ],
             "description": "Wrap attributes."
@@ -10550,7 +10877,7 @@
         "json.schemas": {
             "type": "array",
             "scope": 4,
-            "description": "Associate schemas to JSON files in the current project",
+            "description": "Associate schemas to JSON files in the current project.",
             "items": {
                 "type": "object",
                 "default": {
@@ -10589,81 +10916,81 @@
                 "type": "string"
             },
             "default": [],
-            "description": "A list of URLs or local paths to CSS style sheets to use from the markdown preview. Relative paths are interpreted relative to the folder open in the explorer. If there is no open folder, they are interpreted relative to the location of the markdown file. All '\\' need to be written as '\\\\'.",
+            "description": "A list of URLs or local paths to CSS style sheets to use from the Markdown preview. Relative paths are interpreted relative to the folder open in the explorer. If there is no open folder, they are interpreted relative to the location of the Markdown file. All '\\' need to be written as '\\\\'.",
             "scope": 4
         },
         "markdown.preview.breaks": {
             "type": "boolean",
             "default": false,
-            "description": "Sets how line-breaks are rendered in the markdown preview. Setting it to 'true' creates a <br> for newlines inside paragraphs.",
+            "description": "Sets how line-breaks are rendered in the Markdown preview. Setting it to 'true' creates a <br> for newlines inside paragraphs.",
             "scope": 4
         },
         "markdown.preview.linkify": {
             "type": "boolean",
             "default": true,
-            "description": "Enable or disable conversion of URL-like text to links in the markdown preview.",
+            "description": "Enable or disable conversion of URL-like text to links in the Markdown preview.",
             "scope": 4
         },
         "markdown.preview.fontFamily": {
             "type": "string",
             "default": "-apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif",
-            "description": "Controls the font family used in the markdown preview.",
+            "description": "Controls the font family used in the Markdown preview.",
             "scope": 4
         },
         "markdown.preview.fontSize": {
             "type": "number",
             "default": 14,
-            "description": "Controls the font size in pixels used in the markdown preview.",
+            "description": "Controls the font size in pixels used in the Markdown preview.",
             "scope": 4
         },
         "markdown.preview.lineHeight": {
             "type": "number",
             "default": 1.6,
-            "description": "Controls the line height used in the markdown preview. This number is relative to the font size.",
+            "description": "Controls the line height used in the Markdown preview. This number is relative to the font size.",
             "scope": 4
         },
         "markdown.preview.scrollPreviewWithEditor": {
             "type": "boolean",
             "default": true,
-            "description": "When a markdown editor is scrolled, update the view of the preview.",
+            "description": "When a Markdown editor is scrolled, update the view of the preview.",
             "scope": 4
         },
         "markdown.preview.markEditorSelection": {
             "type": "boolean",
             "default": true,
-            "description": "Mark the current editor selection in the markdown preview.",
+            "description": "Mark the current editor selection in the Markdown preview.",
             "scope": 4
         },
         "markdown.preview.scrollEditorWithPreview": {
             "type": "boolean",
             "default": true,
-            "description": "When a markdown preview is scrolled, update the view of the editor.",
+            "description": "When a Markdown preview is scrolled, update the view of the editor.",
             "scope": 4
         },
         "markdown.preview.doubleClickToSwitchToEditor": {
             "type": "boolean",
             "default": true,
-            "description": "Double click in the markdown preview to switch to the editor.",
+            "description": "Double click in the Markdown preview to switch to the editor.",
             "scope": 4
         },
         "markdown.preview.openMarkdownLinks": {
             "type": "string",
             "default": "inPreview",
-            "description": "Controls how links to other markdown files in the markdown preview should be opened.",
+            "description": "Controls how links to other Markdown files in the Markdown preview should be opened.",
             "scope": 4,
             "enum": [
                 "inPreview",
                 "inEditor"
             ],
             "enumDescriptions": [
-                "Try to open links in the markdown preview",
-                "Try to open links in the editor"
+                "Try to open links in the Markdown preview.",
+                "Try to open links in the editor."
             ]
         },
         "markdown.links.openLocation": {
             "type": "string",
             "default": "currentGroup",
-            "description": "Controls where links in markdown files should be opened.",
+            "description": "Controls where links in Markdown files should be opened.",
             "scope": 4,
             "enum": [
                 "currentGroup",
