@@ -482,50 +482,6 @@
             "$ref": "vscode://schemas/settings/resourceLanguage",
             "default": {}
         },
-        "http.proxy": {
-            "type": "string",
-            "pattern": "^https?://([^:]*(:[^@]*)?@)?([^:]+|\\[[:0-9a-fA-F]+\\])(:\\d+)?/?$|^$",
-            "markdownDescription": "使用するプロキシ設定。設定されていない場合は、'http_proxy' および 'https_proxy' の環境変数から継承されます。",
-            "default": "",
-            "scope": 3
-        },
-        "http.proxyStrictSSL": {
-            "type": "boolean",
-            "default": true,
-            "description": "提供された CA の一覧と照らしてプロキシ サーバーの証明書を確認するかどうか制御します。",
-            "scope": 3
-        },
-        "http.proxyAuthorization": {
-            "type": [
-                "null",
-                "string"
-            ],
-            "default": null,
-            "markdownDescription": "すべてのネットワーク要求に対して 'Proxy-Authorization' ヘッダーとして送信する値。",
-            "scope": 3
-        },
-        "http.proxySupport": {
-            "type": "string",
-            "enum": [
-                "off",
-                "on",
-                "override"
-            ],
-            "enumDescriptions": [
-                "拡張機能のプロキシ サポートを無効にします。",
-                "拡張機能のプロキシ サポートを有効にします。",
-                "拡張機能のプロキシ サポートを有効にします。リクエスト オプションを上書きします。"
-            ],
-            "default": "override",
-            "description": "拡張機能プロキシ サポートを使用します。",
-            "scope": 3
-        },
-        "http.systemCertificates": {
-            "type": "boolean",
-            "default": true,
-            "description": "CA 証明書を OS から読み込む必要があるかどうかを制御します (Windows および macOS でオフにするには、ウィンドウを再度読み込まなければなりません)。",
-            "scope": 3
-        },
         "telemetry.enableTelemetry": {
             "type": "boolean",
             "markdownDescription": "使用状況データとエラーを Microsoft のオンライン サービスに送信できるようにします。Microsoft のプライバシーに関する声明を[こちら](https://go.microsoft.com/fwlink/?LinkId=786907)からご確認ください。",

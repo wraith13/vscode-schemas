@@ -1,0 +1,28 @@
+{
+    "id": "vscode://schemas/extensions",
+    "allowComments": true,
+    "allowTrailingCommas": true,
+    "type": "object",
+    "title": "拡張機能",
+    "additionalProperties": false,
+    "properties": {
+        "recommendations": {
+            "type": "array",
+            "description": "このワークスペースのユーザーに推奨する拡張機能のリスト。拡張機能の ID は常に '${publisher}.${name}' です。例: 'vscode.csharp'。",
+            "items": {
+                "type": "string",
+                "pattern": "^([a-z0-9A-Z][a-z0-9-A-Z]*)\\.([a-z0-9A-Z][a-z0-9-A-Z]*)$",
+                "errorMessage": "予期される形式 '${publisher}.${name}'。例: 'vscode.csharp'。"
+            }
+        },
+        "unwantedRecommendations": {
+            "type": "array",
+            "description": "このワークスペースのユーザーに VS Code が推奨しない拡張機能のリスト。拡張機能の ID は常に '${publisher}.${name}' です。例: 'vscode.csharp'。",
+            "items": {
+                "type": "string",
+                "pattern": "^([a-z0-9A-Z][a-z0-9-A-Z]*)\\.([a-z0-9A-Z][a-z0-9-A-Z]*)$",
+                "errorMessage": "予期される形式 '${publisher}.${name}'。例: 'vscode.csharp'。"
+            }
+        }
+    }
+}
