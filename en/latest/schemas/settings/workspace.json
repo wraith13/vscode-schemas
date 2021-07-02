@@ -10587,6 +10587,13 @@
             "scope": 3,
             "restricted": false
         },
+        "workbench.experimental.useCustomHover": {
+            "type": "boolean",
+            "description": "Enable/disable custom hovers on Activity Bar & Panel. Note this configuration is experimental and subjected to be removed at any time.",
+            "default": true,
+            "scope": 3,
+            "restricted": false
+        },
         "terminal.explorerKind": {
             "type": "string",
             "enum": [
@@ -10599,13 +10606,6 @@
             ],
             "description": "Customizes what kind of terminal to launch.",
             "default": "integrated",
-            "scope": 3,
-            "restricted": false
-        },
-        "workbench.experimental.useCustomHover": {
-            "type": "boolean",
-            "description": "Enable/disable custom hovers on Activity Bar & Panel. Note this configuration is experimental and subjected to be removed at any time.",
-            "default": true,
             "scope": 3,
             "restricted": false
         },

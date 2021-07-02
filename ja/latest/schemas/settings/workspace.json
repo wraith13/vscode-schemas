@@ -10587,6 +10587,13 @@
             "scope": 3,
             "restricted": false
         },
+        "workbench.experimental.useCustomHover": {
+            "type": "boolean",
+            "description": "アクティビティ バーとパネルでカスタムのホバーを有効または無効にします。この構成は試験段階であり、いつでも削除されることに注意してください。",
+            "default": true,
+            "scope": 3,
+            "restricted": false
+        },
         "terminal.explorerKind": {
             "type": "string",
             "enum": [
@@ -10599,13 +10606,6 @@
             ],
             "description": "起動するターミナルの種類をカスタマイズします。",
             "default": "integrated",
-            "scope": 3,
-            "restricted": false
-        },
-        "workbench.experimental.useCustomHover": {
-            "type": "boolean",
-            "description": "アクティビティ バーとパネルでカスタムのホバーを有効または無効にします。この構成は試験段階であり、いつでも削除されることに注意してください。",
-            "default": true,
             "scope": 3,
             "restricted": false
         },

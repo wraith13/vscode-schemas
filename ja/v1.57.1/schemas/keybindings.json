@@ -1,7 +1,7 @@
 {
     "id": "vscode://schemas/keybindings",
     "type": "array",
-    "title": "Keybindings configuration",
+    "title": "キー バインドの構成",
     "allowTrailingCommas": true,
     "allowComments": true,
     "definitions": {
@@ -42,7 +42,7 @@
         "properties": {
             "key": {
                 "type": "string",
-                "description": "Key or key sequence (separated by space)"
+                "description": "キーまたはキー シーケンス (スペースで区切る) を押します"
             },
             "command": {
                 "anyOf": [
@@ -3399,8 +3399,8 @@
                             null,
                             null,
                             null,
-                            "A command that returns information about context keys",
-                            "A command that returns information about context keys",
+                            "コンテキスト キーに関する情報を返すコマンド",
+                            "コンテキスト キーに関する情報を返すコマンド",
                             null,
                             null,
                             null,
@@ -4247,20 +4247,20 @@
                             null,
                             null,
                             null,
-                            "Execute Cell",
-                            "Execute Cell",
-                            "Stop Cell Execution",
-                            "Stop Cell Execution",
+                            "セルの実行",
+                            "セルの実行",
+                            "セルの実行を停止する",
+                            "セルの実行を停止する",
                             null,
                             null,
                             null,
                             null,
                             null,
                             null,
-                            "Run All",
-                            "Run All",
-                            "Stop Execution",
-                            "Stop Execution",
+                            "すべてを実行",
+                            "すべてを実行",
+                            "実行を中止する",
+                            "実行を中止する",
                             null,
                             null,
                             null,
@@ -4285,8 +4285,8 @@
                             null,
                             null,
                             null,
-                            "Change Cell Language",
-                            "Change Cell Language",
+                            "セルの言語の変更",
+                            "セルの言語の変更",
                             null,
                             null,
                             null,
@@ -4325,10 +4325,10 @@
                             null,
                             null,
                             null,
-                            "Fold Cell",
-                            "Fold Cell",
-                            "Unfold Cell",
-                            "Unfold Cell",
+                            "セルを折りたたむ",
+                            "セルを折りたたむ",
+                            "セルを展開する",
+                            "セルを展開する",
                             null,
                             null,
                             null,
@@ -4371,12 +4371,12 @@
                             null,
                             null,
                             null,
-                            "Open Local File...",
-                            "Open Local File...",
-                            "Open Local Folder...",
-                            "Open Local Folder...",
-                            "Save Local File...",
-                            "Save Local File...",
+                            "ローカル ファイルを開く...",
+                            "ローカル ファイルを開く...",
+                            "ローカル フォルダーを開く...",
+                            "ローカル フォルダーを開く...",
+                            "ローカル ファイルの保存...",
+                            "ローカル ファイルの保存...",
                             null,
                             null,
                             null,
@@ -4389,8 +4389,8 @@
                             null,
                             null,
                             null,
-                            "Notebook Kernel Args",
-                            "Notebook Kernel Args",
+                            "ノートブックのカーネル引数",
+                            "ノートブックのカーネル引数",
                             null,
                             null,
                             null,
@@ -4451,8 +4451,8 @@
                             null,
                             null,
                             null,
-                            "Manage Trusted Domains",
-                            "Manage Trusted Domains",
+                            "信頼されているドメインの管理",
+                            "信頼されているドメインの管理",
                             null,
                             null,
                             null,
@@ -4887,8 +4887,8 @@
                             null,
                             null,
                             null,
-                            "Move the active editor by tabs or groups",
-                            "Move the active editor by tabs or groups",
+                            "タブまたはグループ別にアクティブ エディターを移動する",
+                            "タブまたはグループ別にアクティブ エディターを移動する",
                             null,
                             null,
                             "Set Editor Layout",
@@ -5191,8 +5191,8 @@
                             null,
                             null,
                             null,
-                            "New Untitled File",
-                            "New Untitled File",
+                            "無題の新規ファイル",
+                            "無題の新規ファイル",
                             null,
                             null,
                             null,
@@ -5281,16 +5281,16 @@
                             null,
                             null,
                             null,
-                            "SCM: Accept Input",
-                            "SCM: Accept Input",
-                            "SCM: View Next Commit",
-                            "SCM: View Next Commit",
-                            "SCM: View Previous Commit",
-                            "SCM: View Previous Commit",
-                            "SCM: View Next Commit",
-                            "SCM: View Next Commit",
-                            "SCM: View Previous Commit",
-                            "SCM: View Previous Commit",
+                            "SCM: 入力を反映",
+                            "SCM: 入力を反映",
+                            "SCM: 次のコミットの表示",
+                            "SCM: 次のコミットの表示",
+                            "SCM: 前のコミットの表示",
+                            "SCM: 前のコミットの表示",
+                            "SCM: 次のコミットの表示",
+                            "SCM: 次のコミットの表示",
+                            "SCM: 前のコミットの表示",
+                            "SCM: 前のコミットの表示",
                             null,
                             null,
                             null,
@@ -5473,8 +5473,8 @@
                             null,
                             null,
                             null,
-                            "Open the search viewlet",
-                            "Open the search viewlet",
+                            "検索ビューレットを開く",
+                            "検索ビューレットを開く",
                             null,
                             null,
                             null,
@@ -5509,12 +5509,12 @@
                             null,
                             null,
                             null,
-                            "Install the given extension",
-                            "Install the given extension",
-                            "Uninstall the given extension",
-                            "Uninstall the given extension",
-                            "Search for a specific extension",
-                            "Search for a specific extension",
+                            "指定された拡張機能をインストールします",
+                            "指定された拡張機能をインストールします",
+                            "指定された拡張機能をアンインストールする",
+                            "指定された拡張機能をアンインストールする",
+                            "特定の拡張機能を検索する",
+                            "特定の拡張機能を検索する",
                             null,
                             null,
                             null,
@@ -5607,10 +5607,10 @@
                             null,
                             null,
                             null,
-                            "Create New Integrated Terminal Starting in a Custom Working Directory",
-                            "Create New Integrated Terminal Starting in a Custom Working Directory",
-                            "Rename the Currently Active Terminal",
-                            "Rename the Currently Active Terminal",
+                            "カスタム作業ディレクトリで新しい統合端末の作成を開始する",
+                            "カスタム作業ディレクトリで新しい統合端末の作成を開始する",
+                            "現在アクティブなターミナルの名前を変更する",
+                            "現在アクティブなターミナルの名前を変更する",
                             null,
                             null,
                             null,
@@ -6740,7 +6740,7 @@
                             null,
                             null
                         ],
-                        "description": "Name of the command to execute"
+                        "description": "実行するコマンドの名前"
                     },
                     {
                         "type": "string"
@@ -6749,10 +6749,10 @@
             },
             "when": {
                 "type": "string",
-                "description": "Condition when the key is active."
+                "description": "キーがアクティブの場合の条件。"
             },
             "args": {
-                "description": "Arguments to pass to the command to execute."
+                "description": "実行するコマンドに渡す引数。"
             }
         },
         "allOf": [
@@ -6832,7 +6832,7 @@
                             "type": "object",
                             "properties": {
                                 "sticky": {
-                                    "description": "Stick to the end even when going to longer lines",
+                                    "description": "長い行に移動しても行末に位置します",
                                     "type": "boolean",
                                     "default": false
                                 }
@@ -6856,7 +6856,7 @@
                             "type": "object",
                             "properties": {
                                 "sticky": {
-                                    "description": "Stick to the end even when going to longer lines",
+                                    "description": "長い行に移動しても行末に位置します",
                                     "type": "boolean",
                                     "default": false
                                 }
@@ -7023,11 +7023,11 @@
                             "properties": {
                                 "kind": {
                                     "type": "string",
-                                    "description": "Kind of the code action to run."
+                                    "description": "実行するコード アクションの種類。"
                                 },
                                 "apply": {
                                     "type": "string",
-                                    "description": "Controls when the returned actions are applied.",
+                                    "description": "返されたアクションが適用されるタイミングを制御します。",
                                     "default": "ifSingle",
                                     "enum": [
                                         "first",
@@ -7035,15 +7035,15 @@
                                         "never"
                                     ],
                                     "enumDescriptions": [
-                                        "Always apply the first returned code action.",
-                                        "Apply the first returned code action if it is the only one.",
-                                        "Do not apply the returned code actions."
+                                        "最初に返されたコード アクションを常に適用します。",
+                                        "最初に返されたコード アクション以外に返されたコード アクションがない場合は、そのアクションを適用します。",
+                                        "返されたコード アクションは適用しないでください。"
                                     ]
                                 },
                                 "preferred": {
                                     "type": "boolean",
                                     "default": false,
-                                    "description": "Controls if only preferred code actions should be returned."
+                                    "description": "優先コード アクションのみを返すかどうかを制御します。"
                                 }
                             }
                         }
@@ -7073,11 +7073,11 @@
                             "properties": {
                                 "kind": {
                                     "type": "string",
-                                    "description": "Kind of the code action to run."
+                                    "description": "実行するコード アクションの種類。"
                                 },
                                 "apply": {
                                     "type": "string",
-                                    "description": "Controls when the returned actions are applied.",
+                                    "description": "返されたアクションが適用されるタイミングを制御します。",
                                     "default": "ifSingle",
                                     "enum": [
                                         "first",
@@ -7085,15 +7085,15 @@
                                         "never"
                                     ],
                                     "enumDescriptions": [
-                                        "Always apply the first returned code action.",
-                                        "Apply the first returned code action if it is the only one.",
-                                        "Do not apply the returned code actions."
+                                        "最初に返されたコード アクションを常に適用します。",
+                                        "最初に返されたコード アクション以外に返されたコード アクションがない場合は、そのアクションを適用します。",
+                                        "返されたコード アクションは適用しないでください。"
                                     ]
                                 },
                                 "preferred": {
                                     "type": "boolean",
                                     "default": false,
-                                    "description": "Controls if only preferred code actions should be returned."
+                                    "description": "優先コード アクションのみを返すかどうかを制御します。"
                                 }
                             }
                         }
@@ -7123,11 +7123,11 @@
                             "properties": {
                                 "kind": {
                                     "type": "string",
-                                    "description": "Kind of the code action to run."
+                                    "description": "実行するコード アクションの種類。"
                                 },
                                 "apply": {
                                     "type": "string",
-                                    "description": "Controls when the returned actions are applied.",
+                                    "description": "返されたアクションが適用されるタイミングを制御します。",
                                     "default": "ifSingle",
                                     "enum": [
                                         "first",
@@ -7135,15 +7135,15 @@
                                         "never"
                                     ],
                                     "enumDescriptions": [
-                                        "Always apply the first returned code action.",
-                                        "Apply the first returned code action if it is the only one.",
-                                        "Do not apply the returned code actions."
+                                        "最初に返されたコード アクションを常に適用します。",
+                                        "最初に返されたコード アクション以外に返されたコード アクションがない場合は、そのアクションを適用します。",
+                                        "返されたコード アクションは適用しないでください。"
                                     ]
                                 },
                                 "preferred": {
                                     "type": "boolean",
                                     "default": false,
-                                    "description": "Controls if only preferred code actions should be returned."
+                                    "description": "優先コード アクションのみを返すかどうかを制御します。"
                                 }
                             }
                         }
@@ -7884,7 +7884,7 @@
                             ],
                             "properties": {
                                 "cwd": {
-                                    "description": "The directory to start the terminal at",
+                                    "description": "ターミナル起動時のディレクトリ",
                                     "type": "string"
                                 }
                             }
@@ -7912,7 +7912,7 @@
                             ],
                             "properties": {
                                 "name": {
-                                    "description": "The new name for the terminal",
+                                    "description": "ターミナルの新しい名前",
                                     "type": "string",
                                     "minLength": 1
                                 }
@@ -7987,17 +7987,17 @@
                                                 "source.organizeImports"
                                             ],
                                             "enumDescriptions": [
-                                                "Extract expression to constant.",
-                                                "Extract expression to method or function.",
-                                                "Extract type to an interface.",
-                                                "Extract type to a type alias.",
-                                                "Convert between named imports and namespace imports.",
-                                                "Convert between default export and named export.",
-                                                "Add or remove braces in an arrow function.",
-                                                "Convert parameters to destructured object",
-                                                "Generate 'get' and 'set' accessors",
-                                                "Move the expression to a new file.",
-                                                "Organize imports"
+                                                "式を定数に抽出します。",
+                                                "式をメソッドまたは関数に抽出します。",
+                                                "型をインターフェイスに抽出します。",
+                                                "型を型のエイリアスに抽出します。",
+                                                "名前付きインポートと名前空間インポートを変換します。",
+                                                "既定のエクスポートと名前付きエクスポートを変換します。",
+                                                "アロー関数内のかっこを追加または削除します。",
+                                                "パラメーターを非構造化オブジェクトに変換する",
+                                                "'get' および 'set' アクセサーの生成",
+                                                "式を新しいファイルに移動します。",
+                                                "インポートを整理"
                                             ]
                                         },
                                         {
@@ -8041,16 +8041,16 @@
                                                 "refactor.move.newFile"
                                             ],
                                             "enumDescriptions": [
-                                                "Extract expression to constant.",
-                                                "Extract expression to method or function.",
-                                                "Extract type to an interface.",
-                                                "Extract type to a type alias.",
-                                                "Convert between named imports and namespace imports.",
-                                                "Convert between default export and named export.",
-                                                "Add or remove braces in an arrow function.",
-                                                "Convert parameters to destructured object",
-                                                "Generate 'get' and 'set' accessors",
-                                                "Move the expression to a new file."
+                                                "式を定数に抽出します。",
+                                                "式をメソッドまたは関数に抽出します。",
+                                                "型をインターフェイスに抽出します。",
+                                                "型を型のエイリアスに抽出します。",
+                                                "名前付きインポートと名前空間インポートを変換します。",
+                                                "既定のエクスポートと名前付きエクスポートを変換します。",
+                                                "アロー関数内のかっこを追加または削除します。",
+                                                "パラメーターを非構造化オブジェクトに変換する",
+                                                "'get' および 'set' アクセサーの生成",
+                                                "式を新しいファイルに移動します。"
                                             ]
                                         },
                                         {
@@ -8085,7 +8085,7 @@
                                                 "source.organizeImports"
                                             ],
                                             "enumDescriptions": [
-                                                "Organize imports"
+                                                "インポートを整理"
                                             ]
                                         },
                                         {
