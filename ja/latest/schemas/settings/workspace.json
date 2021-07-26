@@ -350,6 +350,13 @@
             "$ref": "vscode://schemas/settings/resourceLanguage",
             "default": {}
         },
+        "[markdown-math]": {
+            "type": "object",
+            "description": "言語に対して上書きされるエディター設定を構成します。",
+            "errorMessage": "この設定では、言語ごとの構成はサポートされていません。",
+            "$ref": "vscode://schemas/settings/resourceLanguage",
+            "default": {}
+        },
         "[objective-c]": {
             "type": "object",
             "description": "言語に対して上書きされるエディター設定を構成します。",
@@ -641,16 +648,6 @@
             "scope": 3,
             "restricted": false
         },
-        "workbench.editorAssociations": {
-            "type": "object",
-            "markdownDescription": "glob パターンをエディターに構成します (例: `\"*.hex\": \"hexEditor.hexEdit\"`)。これらは既定の動作よりも優先されます。",
-            "additionalProperties": {
-                "type": "string"
-            },
-            "default": {},
-            "scope": 3,
-            "restricted": false
-        },
         "workbench.editor.titleScrollbarSizing": {
             "type": "string",
             "enum": [
@@ -746,10 +743,9 @@
             "type": "string",
             "enum": [
                 "text",
-                "hidden",
-                "default"
+                "hidden"
             ],
-            "default": "default",
+            "default": "text",
             "markdownDescription": "無題のヒントをエディター内のインライン テキストにするか、フローティング ボタンにするか、非表示にするかを制御します。",
             "scope": 3,
             "restricted": false
@@ -1153,6 +1149,16 @@
             "scope": 3,
             "restricted": false
         },
+        "workbench.editorAssociations": {
+            "type": "object",
+            "markdownDescription": "glob パターンをエディターに構成します (例: `\"*.hex\": \"hexEditor.hexEdit\"`)。これらは既定の動作よりも優先されます。",
+            "additionalProperties": {
+                "type": "string"
+            },
+            "default": {},
+            "scope": 3,
+            "restricted": false
+        },
         "problems.decorations.enabled": {
             "description": "ファイルとフォルダーのエラーと警告を表示します。",
             "type": "boolean",
@@ -1336,7 +1342,7 @@
         },
         "remote.autoForwardPorts": {
             "type": "boolean",
-            "markdownDescription": "有効にすると、新しい実行中のプロセスが検出され、リッスンしているポートが自動的に転送されます。",
+            "markdownDescription": "有効にすると、新しい実行中のプロセスが検出され、リッスンしているポートが自動的に転送されます。この設定を無効にしても、すべてのポートの転送を防ぐわけではありません。無効にした場合でも、拡張機能は引き続きポートの転送が可能であり、一部の URL を開ことにより、ポートが引き続き転送されます。",
             "default": true,
             "scope": 3,
             "restricted": false
@@ -1368,6 +1374,7 @@
                             "enum": [
                                 "notify",
                                 "openBrowser",
+                                "openBrowserOnce",
                                 "openPreview",
                                 "silent",
                                 "ignore"
@@ -1375,6 +1382,7 @@
                             "enumDescriptions": [
                                 "ポートが自動的に転送されたときに通知を表示します。",
                                 "ポートが自動的に転送されたときにブラウザーを開きます。設定によっては、埋め込みブラウザーが開く可能性があります。",
+                                "ポートが自動的に転送されたときにブラウザーを開きます。ただし、セッションにおいて初回のポート転送時に限ります。設定によりますが、自動的に組込みブラウザーを開くことができます。",
                                 "ポートが自動的に転送されるときに、同じウィンドウでプレビューを開きます。",
                                 "このポートが自動的に転送されたときに通知を表示せず、何も実行しません。",
                                 "このポートは自動的に転送されません。"
@@ -3033,6 +3041,413 @@
             "scope": 3,
             "restricted": false
         },
+        "debug.allowBreakpointsEverywhere": {
+            "type": "boolean",
+            "description": "任意のファイルにブレークポイントを設定できるようにします。",
+            "default": false,
+            "scope": 3,
+            "restricted": false
+        },
+        "debug.openExplorerOnEnd": {
+            "type": "boolean",
+            "description": "デバッグ セッションの終了時にエクスプローラー ビューを自動的に開きます。",
+            "default": false,
+            "scope": 3,
+            "restricted": false
+        },
+        "debug.inlineValues": {
+            "type": [
+                "boolean",
+                "string"
+            ],
+            "enum": [
+                true,
+                false,
+                "auto"
+            ],
+            "description": "デバッグ中にエディターの行内に変数値を表示します。",
+            "enumDescriptions": [
+                "デバッグ中に変数値を常にインラインでエディターに表示します。",
+                "デバッグ中に変数値をインラインでエディターに表示しません。",
+                "言語でインライン値の場所がサポートされている場合、デバッグ中に変数値をインラインでエディターに表示します。"
+            ],
+            "default": "auto",
+            "scope": 3,
+            "restricted": false
+        },
+        "debug.toolBarLocation": {
+            "enum": [
+                "floating",
+                "docked",
+                "hidden"
+            ],
+            "markdownDescription": "デバッグ ツールバーの位置を制御します。すべてのビューに表示する場合には `floating`、デバッグ ビューの場合は `docked` に設定します。その他の場合は、`hidden` にします。",
+            "default": "floating",
+            "scope": 3,
+            "restricted": false
+        },
+        "debug.showInStatusBar": {
+            "enum": [
+                "never",
+                "always",
+                "onFirstSessionStart"
+            ],
+            "enumDescriptions": [
+                "今後ステータス バーにデバッグを表示しない",
+                "ステータス バーにデバッグを常に表示する",
+                "初めてデバッグが開始されたときのみステータス バーにデバッグを表示する"
+            ],
+            "description": "いつデバッグ ステータス バーを表示するかを制御します。",
+            "default": "onFirstSessionStart",
+            "scope": 3,
+            "restricted": false
+        },
+        "debug.internalConsoleOptions": {
+            "enum": [
+                "neverOpen",
+                "openOnSessionStart",
+                "openOnFirstSessionStart"
+            ],
+            "default": "openOnFirstSessionStart",
+            "description": "いつ内部デバッグ コンソールを開くかを制御します。",
+            "scope": 3,
+            "restricted": false
+        },
+        "debug.console.closeOnEnd": {
+            "type": "boolean",
+            "description": "デバッグ セッションの終了時にデバッグ コンソールを自動的に閉じるかどうかを制御します。",
+            "default": false,
+            "scope": 3,
+            "restricted": false
+        },
+        "debug.terminal.clearBeforeReusing": {
+            "type": "boolean",
+            "description": "統合または外部ターミナルで新しいデバッグ セッションを開始する前に、ターミナルをクリアします。",
+            "default": false,
+            "scope": 3,
+            "restricted": false
+        },
+        "debug.openDebug": {
+            "enum": [
+                "neverOpen",
+                "openOnSessionStart",
+                "openOnFirstSessionStart",
+                "openOnDebugBreak"
+            ],
+            "default": "openOnDebugBreak",
+            "description": "いつデバッグ ビューを開くかを制御します。",
+            "scope": 3,
+            "restricted": false
+        },
+        "debug.showSubSessionsInToolBar": {
+            "type": "boolean",
+            "description": "デバッグ ツール バーにデバッグのサブセッションを表示するかどうかを制御します。false に設定されている場合、サブセッションに対する停止コマンドによって、親セッションも停止します。",
+            "default": false,
+            "scope": 3,
+            "restricted": false
+        },
+        "debug.console.fontSize": {
+            "type": "number",
+            "description": "デバッグ コンソール内のフォント サイズをピクセル単位で制御します。",
+            "default": 14,
+            "scope": 3,
+            "restricted": false
+        },
+        "debug.console.fontFamily": {
+            "type": "string",
+            "description": "デバッグ コンソールのフォント ファミリを制御します。",
+            "default": "default",
+            "scope": 3,
+            "restricted": false
+        },
+        "debug.console.lineHeight": {
+            "type": "number",
+            "description": "デバッグ コンソール内での行の高さをピクセル単位で制御します。フォント サイズから行の高さを計算するには 0 を使用します。",
+            "default": 0,
+            "scope": 3,
+            "restricted": false
+        },
+        "debug.console.wordWrap": {
+            "type": "boolean",
+            "description": "行をデバッグ コンソールで折り返す必要があるかどうかを制御します。",
+            "default": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "debug.console.historySuggestions": {
+            "type": "boolean",
+            "description": "以前に型指定された入力をデバッグ コンソールが提案する必要があるかどうかを制御します。",
+            "default": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "debug.console.collapseIdenticalLines": {
+            "type": "boolean",
+            "description": "デバッグ コンソールで同一の行を折りたたみ、出現回数をバッジ付きで表示するかどうか制御します。",
+            "default": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "launch": {
+            "type": "object",
+            "description": "グローバル デバッグ起動構成。ワークスペースで共有されている 'launch.json' の代わりに使用する必要があります。",
+            "default": {
+                "configurations": [],
+                "compounds": []
+            },
+            "$ref": "vscode://schemas/launch",
+            "scope": 3,
+            "restricted": false
+        },
+        "debug.focusWindowOnBreak": {
+            "type": "boolean",
+            "description": "デバッガーが中断したときにワークベンチ ウィンドウにフォーカスするかどうかを制御します。",
+            "default": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "debug.onTaskErrors": {
+            "enum": [
+                "debugAnyway",
+                "showErrors",
+                "prompt",
+                "abort"
+            ],
+            "enumDescriptions": [
+                "タスクのエラーを無視し、デバッグを開始します。",
+                "問題ビューを表示し、デバッグを開始しません。",
+                "ユーザーに確認します。",
+                "デバッグを取り消します。"
+            ],
+            "description": "preLaunchTask の実行後にエラーが発生した場合の処理を制御します。",
+            "default": "prompt",
+            "scope": 3,
+            "restricted": false
+        },
+        "debug.showBreakpointsInOverviewRuler": {
+            "type": "boolean",
+            "description": "ブレークポイントを概要ルーラーに表示するかどうかを制御します。",
+            "default": false,
+            "scope": 3,
+            "restricted": false
+        },
+        "debug.showInlineBreakpointCandidates": {
+            "type": "boolean",
+            "description": "デバッグ中にインライン ブレークポイント候補の装飾をエディターに表示するかどうかを制御します。",
+            "default": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "files.associations": {
+            "type": "object",
+            "markdownDescription": "言語に対するファイルの関連付け (例: `\"*.extension\": \"html\") を構成します。これらの関連付けは、インストールされている言語の既定の関連付けより優先されます。",
+            "additionalProperties": {
+                "type": "string"
+            },
+            "default": {},
+            "scope": 3,
+            "restricted": false
+        },
+        "files.enableTrash": {
+            "type": "boolean",
+            "default": true,
+            "description": "ファイル/フォルダーを削除時するときに、 OS のごみ箱に移動します。無効にするとファイル/フォルダーは完全に削除されます。",
+            "scope": 3,
+            "restricted": false
+        },
+        "files.autoSave": {
+            "type": "string",
+            "enum": [
+                "off",
+                "afterDelay",
+                "onFocusChange",
+                "onWindowChange"
+            ],
+            "markdownEnumDescriptions": [
+                "ダーティ エディターは自動的に保存されません。",
+                "ダーティ エディターは、構成された '#files.autoSaveDelay#' の後に自動的に保存されます。",
+                "エディターがフォーカスを失うと、ダーティ エディターが自動的に保存されます。",
+                "ウィンドウがフォーカスを失うと、ダーティ エディターが自動的に保存されます。"
+            ],
+            "default": "off",
+            "markdownDescription": "ダーティ エディターの自動保存を制御します。自動保存の詳細については、[こちら](https://code.visualstudio.com/docs/editor/codebasics#_save-auto-save)をお読みください。",
+            "scope": 3,
+            "restricted": false
+        },
+        "files.autoSaveDelay": {
+            "type": "number",
+            "default": 1000,
+            "markdownDescription": "ダーティ エディターが自動で保存されるまでの遅延をミリ秒単位で制御します。`#files.autoSave#` が `afterDelay` に設定されている場合のみ適用されます。",
+            "scope": 3,
+            "restricted": false
+        },
+        "files.defaultLanguage": {
+            "type": "string",
+            "markdownDescription": "新しいファイルに割り当てられている既定の言語モード。`${activeEditorLanguage}` に構成されている場合は、現在アクティブなテキスト エディターの言語モードを使用します (存在する場合)。",
+            "default": "",
+            "scope": 3,
+            "restricted": false
+        },
+        "files.maxMemoryForLargeFilesMB": {
+            "type": "number",
+            "default": 4096,
+            "markdownDescription": "大きなファイルを開こうとしたとき、VS Code の再起動後に使用できるメモリを制御します。コマンド ラインで `--max-memory=NEWSIZE` を指定するのと同じ効果があります。",
+            "included": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "files.restoreUndoStack": {
+            "type": "boolean",
+            "description": "ファイルを再度開いたときに、元に戻す機能のスタックを復元します。",
+            "default": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "files.simpleDialog.enable": {
+            "type": "boolean",
+            "description": "単純なファイル ダイアログを有効にします。有効な場合、単純なファイル ダイアログはシステム ファイル ダイアログを置き換えます。",
+            "default": false,
+            "scope": 3,
+            "restricted": false
+        },
+        "explorer.openEditors.visible": {
+            "type": "number",
+            "description": "[開いているエディター] ペインに表示されるエディターの数。これを 0 に設定すると、[開いているエディター] ペインが非表示になります。",
+            "default": 9,
+            "scope": 3,
+            "restricted": false
+        },
+        "explorer.openEditors.sortOrder": {
+            "type": "string",
+            "enum": [
+                "editorOrder",
+                "alphabetical"
+            ],
+            "description": "[開いているエディター] ペイン内のエディターの並べ替え順序を制御します。",
+            "enumDescriptions": [
+                "エディターは、エディターのタブが表示されているのと同じ順序で並べ替えられています。",
+                "エディターは、各エディター グループ内でアルファベット順に並べ替えられています。"
+            ],
+            "default": "editorOrder",
+            "scope": 3,
+            "restricted": false
+        },
+        "explorer.autoReveal": {
+            "type": [
+                "boolean",
+                "string"
+            ],
+            "enum": [
+                true,
+                false,
+                "focusNoScroll"
+            ],
+            "default": true,
+            "enumDescriptions": [
+                "ファイルは、表示や選択が行われるようになります。",
+                "ファイルは、表示や選択が行われません。",
+                "ファイルは、スクロールしてビューに表示されることはありませんが、引き続きフォーカスされます。"
+            ],
+            "description": "エクスプローラーでファイルを開くとき、自動的にファイルの内容を表示して選択するかどうかを制御します。",
+            "scope": 3,
+            "restricted": false
+        },
+        "explorer.enableDragAndDrop": {
+            "type": "boolean",
+            "description": "ドラッグ アンド ドロップによるファイルとフォルダーの移動をエクスプローラーで許可するかどうかを制御します。この設定は、エクスプローラー内からのドラッグ アンド ドロップのみに影響します。",
+            "default": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "explorer.confirmDragAndDrop": {
+            "type": "boolean",
+            "description": "ドラッグ アンド ドロップを使用したファイルやフォルダーの移動時にエクスプローラーが確認を求めるかどうかを制御します。",
+            "default": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "explorer.confirmDelete": {
+            "type": "boolean",
+            "description": "ごみ箱を経由したファイル削除時にエクスプローラーが確認を求めるかどうかを制御します。",
+            "default": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "explorer.sortOrder": {
+            "type": "string",
+            "enum": [
+                "default",
+                "mixed",
+                "filesFirst",
+                "type",
+                "modified"
+            ],
+            "default": "default",
+            "enumDescriptions": [
+                "ファイルとフォルダーを名前で並び替えます。フォルダーはファイルの前に表示されます。",
+                "ファイルとフォルダーをアルファベット順に名前で並び替えます。ファイルはフォルダーと混交して表示されます。",
+                "ファイルとフォルダーを名前で並び替えます。ファイルはフォルダーの前に表示されます。",
+                "ファイルとフォルダーを拡張子の種類でグループ化して名前で並び替えます。フォルダーはファイルの前に表示されます。",
+                "ファイルとフォルダーを降順に最終更新日で並び替えます。フォルダーはファイルの前に表示されます。"
+            ],
+            "description": "エクスプローラーでのファイルとフォルダーのプロパティに基づく並べ替えを制御します。",
+            "scope": 3,
+            "restricted": false
+        },
+        "explorer.sortOrderLexicographicOptions": {
+            "type": "string",
+            "enum": [
+                "default",
+                "upper",
+                "lower",
+                "unicode"
+            ],
+            "default": "default",
+            "enumDescriptions": [
+                "大文字の名前と小文字の名前が混在しています。",
+                "大文字の名前は、小文字の名前の前にまとめてグループ化されます。",
+                "小文字の名前は、大文字の名前の前にまとめてグループ化されます。",
+                "名前は、Unicode 順に並べ替えられます。"
+            ],
+            "description": "エクスプローラーでのファイル名とフォルダー名の辞書順並べ替えを制御します。",
+            "scope": 3,
+            "restricted": false
+        },
+        "explorer.decorations.colors": {
+            "type": "boolean",
+            "description": "ファイルの装飾に配色を使用するかどうかを制御します。",
+            "default": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "explorer.decorations.badges": {
+            "type": "boolean",
+            "description": "ファイルの装飾にバッジを使用するかどうかを制御します。",
+            "default": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "explorer.incrementalNaming": {
+            "enum": [
+                "simple",
+                "smart"
+            ],
+            "enumDescriptions": [
+                "後ろに数字が付いている可能性のある、重複している名前の末尾に「copy」という語を追加します",
+                "重複した名前の末端に数字を追加します。名前の一部に既に数字が含まれている場合、その数字を増やしてみます。"
+            ],
+            "description": "貼り付けで重複するエクスプローラー項目に新しい名前を付けるときに使用する名前付け規則を制御します。",
+            "default": "simple",
+            "scope": 3,
+            "restricted": false
+        },
+        "explorer.compactFolders": {
+            "type": "boolean",
+            "description": "エクスプローラーでフォルダーをコンパクト形式でレンダリングするかどうかを制御します。このような形式では、単一の子フォルダーは結合されたツリー要素に圧縮されます。たとえば、Java パッケージ構造に役立ちます。",
+            "default": true,
+            "scope": 3,
+            "restricted": false
+        },
         "problems.autoReveal": {
             "description": "ファイルを開くとき、問題ビューに自動的にそのファイルを表示するかどうかを制御します",
             "type": "boolean",
@@ -3160,7 +3575,7 @@
             "restricted": false
         },
         "notebook.cellFocusIndicator": {
-            "description": "フォーカス インジケーターをセルの境界線として表示するか、または左余白に強調表示バーを表示するかを制御します",
+            "description": "フォーカス インジケーターをセルの境界としてレンダリングするか、または左余白に強調表示バーをレンダリングするか制御します",
             "type": "string",
             "enum": [
                 "border",
@@ -3174,13 +3589,19 @@
             "restricted": false
         },
         "notebook.insertToolbarLocation": {
-            "description": "セルを挿入アクションをレンダリングするかどうかを制御します。",
+            "description": "セルを挿入アクションを表示するかどうかを制御します。",
             "type": "string",
             "enum": [
                 "betweenCells",
                 "notebookToolbar",
                 "both",
                 "hidden"
+            ],
+            "enumDescriptions": [
+                "セル間でカーソルを合わせたときに表示されるツールバー。",
+                "ノートブック エディターの上部にあるツールバー。",
+                "両方のツールバー。",
+                "挿入アクションがどこにも表示されません。"
             ],
             "default": "both",
             "tags": [
@@ -3210,11 +3631,15 @@
             "restricted": false
         },
         "notebook.showFoldingControls": {
-            "description": "折りたたみコントロールを表示するタイミングを制御します。",
+            "description": "マークダウン ヘッダー折りたたみ矢印が表示されるタイミングを制御します。",
             "type": "string",
             "enum": [
                 "always",
                 "mouseover"
+            ],
+            "enumDescriptions": [
+                "折りたたみコントロールは常に表示されています。",
+                "折りたたみコントロールは、カーソルを合わせたときにのみ表示されます。"
             ],
             "default": "mouseover",
             "tags": [
@@ -3430,7 +3855,7 @@
                             "default": 0,
                             "minimum": 0,
                             "maximum": 100,
-                            "description": "CodeLens のフォント サイズをピクセル単位で制御します。'0' に設定すると、'#editor.fontSize#' の 90% が使用されます。",
+                            "markdownDescription": "CodeLens のフォント サイズをピクセル単位で制御します。'0' に設定すると、'#editor.fontSize#' の 90% が使用されます。",
                             "scope": 5,
                             "restricted": false
                         },
@@ -3972,6 +4397,21 @@
                             "scope": 5,
                             "restricted": false
                         },
+                        "editor.inlineSuggest.mode": {
+                            "type": "string",
+                            "enum": [
+                                "prefix",
+                                "subwordDiff"
+                            ],
+                            "enumDescriptions": [
+                                "置換テキストが挿入テキストのプレフィックスである場合にのみインライン候補を表示します。",
+                                "置換テキストが挿入テキストのサブワードである場合にのみインライン候補をレンダリングします。"
+                            ],
+                            "default": "subwordDiff",
+                            "description": "インライン候補をレンダリングするために使用するモードを制御します。",
+                            "scope": 5,
+                            "restricted": false
+                        },
                         "editor.letterSpacing": {
                             "description": "文字間隔 (ピクセル単位) を制御します。",
                             "type": "number",
@@ -3987,11 +4427,9 @@
                             "restricted": false
                         },
                         "editor.lineHeight": {
-                            "description": "行の高さを制御します。フォント サイズに基づいて行の高さを計算する場合には、0 を使用します。",
-                            "type": "integer",
+                            "markdownDescription": "行の高さを制御します。\r\n - 0 を使用してフォント サイズから行の高さを自動的に計算します。\r\n - 0 から 8 までの値は、フォント サイズの乗数として使用されます。\r\n - 8 以上の値は有効値として使用されます。",
+                            "type": "number",
                             "default": 0,
-                            "minimum": 0,
-                            "maximum": 150,
                             "scope": 5,
                             "restricted": false
                         },
@@ -4392,6 +4830,61 @@
                             "scope": 5,
                             "restricted": false
                         },
+                        "editor.scrollbar.vertical": {
+                            "type": "string",
+                            "enum": [
+                                "auto",
+                                "visible",
+                                "hidden"
+                            ],
+                            "enumDescriptions": [
+                                "垂直スクロールバーは、必要な場合にのみ表示されます。",
+                                "垂直スクロールバーは常に表示されます。",
+                                "垂直スクロールバーは常に非表示になります。"
+                            ],
+                            "default": "auto",
+                            "description": "垂直スクロールバーの表示を制御します。",
+                            "scope": 5,
+                            "restricted": false
+                        },
+                        "editor.scrollbar.horizontal": {
+                            "type": "string",
+                            "enum": [
+                                "auto",
+                                "visible",
+                                "hidden"
+                            ],
+                            "enumDescriptions": [
+                                "水平スクロールバーは、必要な場合にのみ表示されます。",
+                                "水平スクロールバーは常に表示されます。",
+                                "水平スクロールバーは常に非表示になります。"
+                            ],
+                            "default": "auto",
+                            "description": "水平スクロールバーの表示を制御します。",
+                            "scope": 5,
+                            "restricted": false
+                        },
+                        "editor.scrollbar.verticalScrollbarSize": {
+                            "type": "number",
+                            "default": 14,
+                            "description": "垂直スクロールバーの幅。",
+                            "scope": 5,
+                            "restricted": false
+                        },
+                        "editor.scrollbar.horizontalScrollbarSize": {
+                            "type": "number",
+                            "default": 12,
+                            "description": "水平スクロールバーの高さ。",
+                            "scope": 5,
+                            "restricted": false
+                        },
+                        "editor.scrollbar.scrollByPage": {
+                            "type": "boolean",
+                            "default": false,
+                            "description": "クリックするとページ単位でスクロールするか、クリック位置にジャンプするかを制御します。",
+                            "scope": 5,
+                            "restricted": false
+                        },
                         "editor.scrollBeyondLastColumn": {
                             "description": "エディターが水平方向に余分にスクロールする文字数を制御します。",
                             "type": "integer",
@@ -4553,6 +5046,21 @@
                             "type": "boolean",
                             "default": false,
                             "description": "提案の結果をエディターでプレビューするかどうかを制御します。",
+                            "scope": 5,
+                            "restricted": false
+                        },
+                        "editor.suggest.previewMode": {
+                            "type": "string",
+                            "enum": [
+                                "prefix",
+                                "subwordDiff"
+                            ],
+                            "enumDescriptions": [
+                                "置換テキストが挿入テキストのプレフィックスである場合にのみプレビューを表示します。",
+                                "置換テキストが挿入テキストのサブワードである場合にのみプレビューを表示します。"
+                            ],
+                            "default": "prefix",
+                            "description": "候補のプレビューをレンダリングするために使用するモードを制御します。",
                             "scope": 5,
                             "restricted": false
                         },
@@ -4949,7 +5457,7 @@
                         "editor.inlayHints.fontSize": {
                             "type": "number",
                             "default": 0,
-                            "description": "エディターでインレー ヒントのフォント サイズを制御します。'0' に設定すると、`#editor.fontSize#` の 90% が使用されます。",
+                            "markdownDescription": "エディターでインレー ヒントのフォント サイズを制御します。'0' に設定すると、`#editor.fontSize#` の 90% が使用されます。",
                             "scope": 5,
                             "restricted": false
                         },
@@ -4963,473 +5471,6 @@
                     }
                 }
             ],
-            "scope": 3,
-            "restricted": false
-        },
-        "output.smartScroll.enabled": {
-            "type": "boolean",
-            "description": "出力ビューでスマート スクロール機能を有効/無効にします。スマート スクロールを使用する場合、出力ビューをクリックすると自動的にスクロールがロックされ、最後の行をクリックするとロックが解除されます。",
-            "default": true,
-            "scope": 3,
-            "tags": [
-                "output"
-            ],
-            "restricted": false
-        },
-        "testing.autoRun.mode": {
-            "description": "どのテストを自動的に実行するかを制御します。",
-            "enum": [
-                "all",
-                "rerun"
-            ],
-            "default": "all",
-            "enumDescriptions": [
-                "自動実行が切り替えられたときに、検出されたすべてのテストを自動的に実行します。変更されたときに、個々のテストを再実行します。",
-                "変更されたときに、個々のテストを再実行します。まだ実行されていないテストは自動的に実行されません。"
-            ],
-            "scope": 3,
-            "restricted": false
-        },
-        "testing.autoRun.delay": {
-            "type": "integer",
-            "minimum": 0,
-            "description": "テストが期限切れとしてマークされ、新しい実行を開始してから待機する時間 (ミリ秒単位)。",
-            "default": 1000,
-            "scope": 3,
-            "restricted": false
-        },
-        "testing.automaticallyOpenPeekView": {
-            "description": "エラーのピーク ビューを自動的に開くタイミングを構成します。",
-            "enum": [
-                "failureAnywhere",
-                "failureInVisibleDocument"
-            ],
-            "default": "failureInVisibleDocument",
-            "enumDescriptions": [
-                "エラーの場所に関係なく、自動的に開きます。",
-                "参照可能なドキュメントでテストが失敗したときに自動的に開きます。"
-            ],
-            "scope": 3,
-            "restricted": false
-        },
-        "testing.automaticallyOpenPeekViewDuringAutoRun": {
-            "description": "自動実行モードでピーク ビューを自動的に開くかどうかを制御します。",
-            "type": "boolean",
-            "default": false,
-            "scope": 3,
-            "restricted": false
-        },
-        "testing.followRunningTest": {
-            "description": "実行中のテストをテスト エクスプローラー ビューでフォローするかどうかを制御します",
-            "type": "boolean",
-            "default": true,
-            "scope": 3,
-            "restricted": false
-        },
-        "debug.allowBreakpointsEverywhere": {
-            "type": "boolean",
-            "description": "任意のファイルにブレークポイントを設定できるようにします。",
-            "default": false,
-            "scope": 3,
-            "restricted": false
-        },
-        "debug.openExplorerOnEnd": {
-            "type": "boolean",
-            "description": "デバッグ セッションの終了時にエクスプローラー ビューを自動的に開きます。",
-            "default": false,
-            "scope": 3,
-            "restricted": false
-        },
-        "debug.inlineValues": {
-            "type": [
-                "boolean",
-                "string"
-            ],
-            "enum": [
-                true,
-                false,
-                "auto"
-            ],
-            "description": "デバッグ中にエディターの行内に変数値を表示します。",
-            "enumDescriptions": [
-                "デバッグ中に変数値を常にインラインでエディターに表示します。",
-                "デバッグ中に変数値をインラインでエディターに表示しません。",
-                "言語でインライン値の場所がサポートされている場合、デバッグ中に変数値をインラインでエディターに表示します。"
-            ],
-            "default": "auto",
-            "scope": 3,
-            "restricted": false
-        },
-        "debug.toolBarLocation": {
-            "enum": [
-                "floating",
-                "docked",
-                "hidden"
-            ],
-            "markdownDescription": "デバッグ ツールバーの位置を制御します。すべてのビューに表示する場合には `floating`、デバッグ ビューの場合は `docked` に設定します。その他の場合は、`hidden` にします。",
-            "default": "floating",
-            "scope": 3,
-            "restricted": false
-        },
-        "debug.showInStatusBar": {
-            "enum": [
-                "never",
-                "always",
-                "onFirstSessionStart"
-            ],
-            "enumDescriptions": [
-                "今後ステータス バーにデバッグを表示しない",
-                "ステータス バーにデバッグを常に表示する",
-                "初めてデバッグが開始されたときのみステータス バーにデバッグを表示する"
-            ],
-            "description": "いつデバッグ ステータス バーを表示するかを制御します。",
-            "default": "onFirstSessionStart",
-            "scope": 3,
-            "restricted": false
-        },
-        "debug.internalConsoleOptions": {
-            "enum": [
-                "neverOpen",
-                "openOnSessionStart",
-                "openOnFirstSessionStart"
-            ],
-            "default": "openOnFirstSessionStart",
-            "description": "いつ内部デバッグ コンソールを開くかを制御します。",
-            "scope": 3,
-            "restricted": false
-        },
-        "debug.console.closeOnEnd": {
-            "type": "boolean",
-            "description": "デバッグ セッションの終了時にデバッグ コンソールを自動的に閉じるかどうかを制御します。",
-            "default": false,
-            "scope": 3,
-            "restricted": false
-        },
-        "debug.terminal.clearBeforeReusing": {
-            "type": "boolean",
-            "description": "統合または外部ターミナルで新しいデバッグ セッションを開始する前に、ターミナルをクリアします。",
-            "default": false,
-            "scope": 3,
-            "restricted": false
-        },
-        "debug.openDebug": {
-            "enum": [
-                "neverOpen",
-                "openOnSessionStart",
-                "openOnFirstSessionStart",
-                "openOnDebugBreak"
-            ],
-            "default": "openOnDebugBreak",
-            "description": "いつデバッグ ビューを開くかを制御します。",
-            "scope": 3,
-            "restricted": false
-        },
-        "debug.showSubSessionsInToolBar": {
-            "type": "boolean",
-            "description": "デバッグ ツール バーにデバッグのサブセッションを表示するかどうかを制御します。false に設定されている場合、サブセッションに対する停止コマンドによって、親セッションも停止します。",
-            "default": false,
-            "scope": 3,
-            "restricted": false
-        },
-        "debug.console.fontSize": {
-            "type": "number",
-            "description": "デバッグ コンソール内のフォント サイズをピクセル単位で制御します。",
-            "default": 14,
-            "scope": 3,
-            "restricted": false
-        },
-        "debug.console.fontFamily": {
-            "type": "string",
-            "description": "デバッグ コンソールのフォント ファミリを制御します。",
-            "default": "default",
-            "scope": 3,
-            "restricted": false
-        },
-        "debug.console.lineHeight": {
-            "type": "number",
-            "description": "デバッグ コンソール内での行の高さをピクセル単位で制御します。フォント サイズから行の高さを計算するには 0 を使用します。",
-            "default": 0,
-            "scope": 3,
-            "restricted": false
-        },
-        "debug.console.wordWrap": {
-            "type": "boolean",
-            "description": "行をデバッグ コンソールで折り返す必要があるかどうかを制御します。",
-            "default": true,
-            "scope": 3,
-            "restricted": false
-        },
-        "debug.console.historySuggestions": {
-            "type": "boolean",
-            "description": "以前に型指定された入力をデバッグ コンソールが提案する必要があるかどうかを制御します。",
-            "default": true,
-            "scope": 3,
-            "restricted": false
-        },
-        "debug.console.collapseIdenticalLines": {
-            "type": "boolean",
-            "description": "デバッグ コンソールで同一の行を折りたたみ、出現回数をバッジ付きで表示するかどうか制御します。",
-            "default": true,
-            "scope": 3,
-            "restricted": false
-        },
-        "launch": {
-            "type": "object",
-            "description": "グローバル デバッグ起動構成。ワークスペースで共有されている 'launch.json' の代わりに使用する必要があります。",
-            "default": {
-                "configurations": [],
-                "compounds": []
-            },
-            "$ref": "vscode://schemas/launch",
-            "scope": 3,
-            "restricted": false
-        },
-        "debug.focusWindowOnBreak": {
-            "type": "boolean",
-            "description": "デバッガーが中断したときにワークベンチ ウィンドウにフォーカスするかどうかを制御します。",
-            "default": true,
-            "scope": 3,
-            "restricted": false
-        },
-        "debug.onTaskErrors": {
-            "enum": [
-                "debugAnyway",
-                "showErrors",
-                "prompt",
-                "abort"
-            ],
-            "enumDescriptions": [
-                "タスクのエラーを無視し、デバッグを開始します。",
-                "問題ビューを表示し、デバッグを開始しません。",
-                "ユーザーに確認します。",
-                "デバッグを取り消します。"
-            ],
-            "description": "preLaunchTask の実行後にエラーが発生した場合の処理を制御します。",
-            "default": "prompt",
-            "scope": 3,
-            "restricted": false
-        },
-        "debug.showBreakpointsInOverviewRuler": {
-            "type": "boolean",
-            "description": "ブレークポイントを概要ルーラーに表示するかどうかを制御します。",
-            "default": false,
-            "scope": 3,
-            "restricted": false
-        },
-        "debug.showInlineBreakpointCandidates": {
-            "type": "boolean",
-            "description": "デバッグ中にインライン ブレークポイント候補の装飾をエディターに表示するかどうかを制御します。",
-            "default": true,
-            "scope": 3,
-            "restricted": false
-        },
-        "files.associations": {
-            "type": "object",
-            "markdownDescription": "言語に対するファイルの関連付け (例: `\"*.extension\": \"html\") を構成します。これらの関連付けは、インストールされている言語の既定の関連付けより優先されます。",
-            "additionalProperties": {
-                "type": "string"
-            },
-            "default": {},
-            "scope": 3,
-            "restricted": false
-        },
-        "files.enableTrash": {
-            "type": "boolean",
-            "default": true,
-            "description": "ファイル/フォルダーを削除時するときに、 OS のごみ箱に移動します。無効にするとファイル/フォルダーは完全に削除されます。",
-            "scope": 3,
-            "restricted": false
-        },
-        "files.autoSave": {
-            "type": "string",
-            "enum": [
-                "off",
-                "afterDelay",
-                "onFocusChange",
-                "onWindowChange"
-            ],
-            "markdownEnumDescriptions": [
-                "ダーティ エディターは自動的に保存されません。",
-                "ダーティ エディターは、構成された '#files.autoSaveDelay#' の後に自動的に保存されます。",
-                "エディターがフォーカスを失うと、ダーティ エディターが自動的に保存されます。",
-                "ウィンドウがフォーカスを失うと、ダーティ エディターが自動的に保存されます。"
-            ],
-            "default": "off",
-            "markdownDescription": "ダーティ エディターの自動保存を制御します。自動保存の詳細については、[こちら](https://code.visualstudio.com/docs/editor/codebasics#_save-auto-save)をお読みください。",
-            "scope": 3,
-            "restricted": false
-        },
-        "files.autoSaveDelay": {
-            "type": "number",
-            "default": 1000,
-            "markdownDescription": "ダーティ エディターが自動で保存されるまでの遅延をミリ秒単位で制御します。`#files.autoSave#` が `afterDelay` に設定されている場合のみ適用されます。",
-            "scope": 3,
-            "restricted": false
-        },
-        "files.defaultLanguage": {
-            "type": "string",
-            "markdownDescription": "新しいファイルに割り当てられている既定の言語モード。`${activeEditorLanguage}` に構成されている場合は、現在アクティブなテキスト エディターの言語モードを使用します (存在する場合)。",
-            "default": "",
-            "scope": 3,
-            "restricted": false
-        },
-        "files.maxMemoryForLargeFilesMB": {
-            "type": "number",
-            "default": 4096,
-            "markdownDescription": "大きなファイルを開こうとしたとき、VS Code の再起動後に使用できるメモリを制御します。コマンド ラインで `--max-memory=NEWSIZE` を指定するのと同じ効果があります。",
-            "included": true,
-            "scope": 3,
-            "restricted": false
-        },
-        "files.restoreUndoStack": {
-            "type": "boolean",
-            "description": "ファイルを再度開いたときに、元に戻す機能のスタックを復元します。",
-            "default": true,
-            "scope": 3,
-            "restricted": false
-        },
-        "files.simpleDialog.enable": {
-            "type": "boolean",
-            "description": "単純なファイル ダイアログを有効にします。有効な場合、単純なファイル ダイアログはシステム ファイル ダイアログを置き換えます。",
-            "default": false,
-            "scope": 3,
-            "restricted": false
-        },
-        "explorer.openEditors.visible": {
-            "type": "number",
-            "description": "[開いているエディター] ペインに表示されるエディターの数。これを 0 に設定すると、[開いているエディター] ペインが非表示になります。",
-            "default": 9,
-            "scope": 3,
-            "restricted": false
-        },
-        "explorer.openEditors.sortOrder": {
-            "type": "string",
-            "enum": [
-                "editorOrder",
-                "alphabetical"
-            ],
-            "description": "[開いているエディター] ペイン内のエディターの並べ替え順序を制御します。",
-            "enumDescriptions": [
-                "エディターは、エディターのタブが表示されているのと同じ順序で並べ替えられています。",
-                "エディターは、各エディター グループ内でアルファベット順に並べ替えられています。"
-            ],
-            "default": "editorOrder",
-            "scope": 3,
-            "restricted": false
-        },
-        "explorer.autoReveal": {
-            "type": [
-                "boolean",
-                "string"
-            ],
-            "enum": [
-                true,
-                false,
-                "focusNoScroll"
-            ],
-            "default": true,
-            "enumDescriptions": [
-                "ファイルは、表示や選択が行われるようになります。",
-                "ファイルは、表示や選択が行われません。",
-                "ファイルは、スクロールしてビューに表示されることはありませんが、引き続きフォーカスされます。"
-            ],
-            "description": "エクスプローラーでファイルを開くとき、自動的にファイルの内容を表示して選択するかどうかを制御します。",
-            "scope": 3,
-            "restricted": false
-        },
-        "explorer.enableDragAndDrop": {
-            "type": "boolean",
-            "description": "ドラッグ アンド ドロップによるファイルとフォルダーの移動をエクスプローラーで許可するかどうかを制御します。この設定は、エクスプローラー内からのドラッグ アンド ドロップのみに影響します。",
-            "default": true,
-            "scope": 3,
-            "restricted": false
-        },
-        "explorer.confirmDragAndDrop": {
-            "type": "boolean",
-            "description": "ドラッグ アンド ドロップを使用したファイルやフォルダーの移動時にエクスプローラーが確認を求めるかどうかを制御します。",
-            "default": true,
-            "scope": 3,
-            "restricted": false
-        },
-        "explorer.confirmDelete": {
-            "type": "boolean",
-            "description": "ごみ箱を経由したファイル削除時にエクスプローラーが確認を求めるかどうかを制御します。",
-            "default": true,
-            "scope": 3,
-            "restricted": false
-        },
-        "explorer.sortOrder": {
-            "type": "string",
-            "enum": [
-                "default",
-                "mixed",
-                "filesFirst",
-                "type",
-                "modified"
-            ],
-            "default": "default",
-            "enumDescriptions": [
-                "ファイルとフォルダーを名前で並び替えます。フォルダーはファイルの前に表示されます。",
-                "ファイルとフォルダーをアルファベット順に名前で並び替えます。ファイルはフォルダーと混交して表示されます。",
-                "ファイルとフォルダーを名前で並び替えます。ファイルはフォルダーの前に表示されます。",
-                "ファイルとフォルダーを拡張子の種類でグループ化して名前で並び替えます。フォルダーはファイルの前に表示されます。",
-                "ファイルとフォルダーを降順に最終更新日で並び替えます。フォルダーはファイルの前に表示されます。"
-            ],
-            "description": "エクスプローラーでのファイルとフォルダーのプロパティに基づく並べ替えを制御します。",
-            "scope": 3,
-            "restricted": false
-        },
-        "explorer.sortOrderLexicographicOptions": {
-            "type": "string",
-            "enum": [
-                "default",
-                "upper",
-                "lower",
-                "unicode"
-            ],
-            "default": "default",
-            "enumDescriptions": [
-                "大文字の名前と小文字の名前が混在しています。",
-                "大文字の名前は、小文字の名前の前にまとめてグループ化されます。",
-                "小文字の名前は、大文字の名前の前にまとめてグループ化されます。",
-                "名前は、Unicode 順に並べ替えられます。"
-            ],
-            "description": "エクスプローラーでのファイル名とフォルダー名の辞書順並べ替えを制御します。",
-            "scope": 3,
-            "restricted": false
-        },
-        "explorer.decorations.colors": {
-            "type": "boolean",
-            "description": "ファイルの装飾に配色を使用するかどうかを制御します。",
-            "default": true,
-            "scope": 3,
-            "restricted": false
-        },
-        "explorer.decorations.badges": {
-            "type": "boolean",
-            "description": "ファイルの装飾にバッジを使用するかどうかを制御します。",
-            "default": true,
-            "scope": 3,
-            "restricted": false
-        },
-        "explorer.incrementalNaming": {
-            "enum": [
-                "simple",
-                "smart"
-            ],
-            "enumDescriptions": [
-                "後ろに数字が付いている可能性のある、重複している名前の末尾に「copy」という語を追加します",
-                "重複した名前の末端に数字を追加します。名前の一部に既に数字が含まれている場合、その数字を増やしてみます。"
-            ],
-            "description": "貼り付けで重複するエクスプローラー項目に新しい名前を付けるときに使用する名前付け規則を制御します。",
-            "default": "simple",
-            "scope": 3,
-            "restricted": false
-        },
-        "explorer.compactFolders": {
-            "type": "boolean",
-            "description": "エクスプローラーでフォルダーをコンパクト形式でレンダリングするかどうかを制御します。このような形式では、単一の子フォルダーは結合されたツリー要素に圧縮されます。たとえば、Java パッケージ構造に役立ちます。",
-            "default": true,
             "scope": 3,
             "restricted": false
         },
@@ -5459,6 +5500,16 @@
             "type": "boolean",
             "default": true,
             "scope": 3,
+            "restricted": false
+        },
+        "output.smartScroll.enabled": {
+            "type": "boolean",
+            "description": "出力ビューでスマート スクロール機能を有効/無効にします。スマート スクロールを使用する場合、出力ビューをクリックすると自動的にスクロールがロックされ、最後の行をクリックするとロックが解除されます。",
+            "default": true,
+            "scope": 3,
+            "tags": [
+                "output"
+            ],
             "restricted": false
         },
         "search.mode": {
@@ -5545,6 +5596,16 @@
             "default": "sidebar",
             "description": "検索をサイドバーのビューとして表示するか、より水平方向の空間をとるためにパネル領域のパネルとして表示するかを制御します。",
             "deprecationMessage": "この設定は非推奨です。代わりに、検索アイコンを新しい場所にドラッグできます。",
+            "scope": 3,
+            "restricted": false
+        },
+        "search.maxResults": {
+            "type": [
+                "number",
+                "null"
+            ],
+            "default": 20000,
+            "markdownDescription": "検索結果の最大数を制御します。これを ' null ' (空) に設定して、無制限の結果を返すことができます。",
             "scope": 3,
             "restricted": false
         },
@@ -5684,6 +5745,72 @@
                 "結果は、ファイルごとのカウントで昇順に並べ替えられます。"
             ],
             "description": "検索結果の並べ替え順序を制御します。",
+            "scope": 3,
+            "restricted": false
+        },
+        "testing.autoRun.mode": {
+            "description": "どのテストを自動的に実行するかを制御します。",
+            "enum": [
+                "all",
+                "rerun"
+            ],
+            "default": "all",
+            "enumDescriptions": [
+                "自動実行が切り替えられたときに、検出されたすべてのテストを自動的に実行します。変更されたときに、個々のテストを再実行します。",
+                "変更されたときに、個々のテストを再実行します。まだ実行されていないテストは自動的に実行されません。"
+            ],
+            "scope": 3,
+            "restricted": false
+        },
+        "testing.autoRun.delay": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "テストが期限切れとしてマークされ、新しい実行を開始してから待機する時間 (ミリ秒単位)。",
+            "default": 1000,
+            "scope": 3,
+            "restricted": false
+        },
+        "testing.automaticallyOpenPeekView": {
+            "description": "エラーのピーク ビューを自動的に開くタイミングを構成します。",
+            "enum": [
+                "failureAnywhere",
+                "failureInVisibleDocument"
+            ],
+            "default": "failureInVisibleDocument",
+            "enumDescriptions": [
+                "エラーの場所に関係なく、自動的に開きます。",
+                "参照可能なドキュメントでテストが失敗したときに自動的に開きます。"
+            ],
+            "scope": 3,
+            "restricted": false
+        },
+        "testing.automaticallyOpenPeekViewDuringAutoRun": {
+            "description": "自動実行モードでピーク ビューを自動的に開くかどうかを制御します。",
+            "type": "boolean",
+            "default": false,
+            "scope": 3,
+            "restricted": false
+        },
+        "testing.followRunningTest": {
+            "description": "実行中のテストをテスト エクスプローラー ビューでフォローするかどうかを制御します",
+            "type": "boolean",
+            "default": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "testing.defaultGutterClickAction": {
+            "description": "とじしろ内のテスト デコレーションをクリックした場合に実行する操作を制御します。",
+            "enum": [
+                "run",
+                "debug",
+                "contextMenu"
+            ],
+            "enumDescriptions": [
+                "テストを実行します。",
+                "テストをデバッグします。",
+                "その他のオプションについては、コンテキスト メニューを開きます。"
+            ],
+            "default": "run",
             "scope": 3,
             "restricted": false
         },
@@ -10070,6 +10197,25 @@
             "scope": 3,
             "restricted": false
         },
+        "terminal.integrated.tabs.showActions": {
+            "description": "新しいターミナル ボタンの横にターミナルの分割ボタンと強制終了ボタンを表示するかどうかを制御します。",
+            "type": "string",
+            "enum": [
+                "always",
+                "singleTerminal",
+                "singleTerminalOrNarrow",
+                "never"
+            ],
+            "enumDescriptions": [
+                "常にアクションを表示する",
+                "唯一のターミナルが開かれている場合にアクションを表示する",
+                "唯一のターミナルが開かれているか、タブ ビューがその狭義のテキストなし状態である場合にアクションを表示する",
+                "アクションを表示しない"
+            ],
+            "default": "singleTerminalOrNarrow",
+            "scope": 3,
+            "restricted": false
+        },
         "terminal.integrated.tabs.location": {
             "type": "string",
             "enum": [
@@ -10082,6 +10228,21 @@
             ],
             "default": "right",
             "description": "ターミナル タブの場所を、実際のターミナルの左または右のいずれかに制御します。",
+            "scope": 3,
+            "restricted": false
+        },
+        "terminal.integrated.defaultLocation": {
+            "type": "string",
+            "enum": [
+                "editor",
+                "view"
+            ],
+            "enumDescriptions": [
+                "エディターでのターミナルの作成",
+                "ターミナル ビューでのターミナルの作成"
+            ],
+            "default": "view",
+            "description": "新規に作成されたターミナルの表示場所を制御します。",
             "scope": 3,
             "restricted": false
         },
@@ -10311,12 +10472,14 @@
             "enum": [
                 "auto",
                 "on",
-                "off"
+                "off",
+                "canvas"
             ],
             "markdownEnumDescriptions": [
                 "最適なエクスペリエンスを提供するレンダラーを VS Code で検出できるようにします。",
                 "ターミナル内の GPU アクセラレーションを有効にします。",
-                "ターミナル内の GPU アクセラレーションを無効にします。"
+                "ターミナル内の GPU アクセラレーションを無効にします。",
+                "ターミナル内のフォールバック キャンバス レンダラーを使用します。これは、webgl の代わりに 2D コンテキストを使用しているため、一部のシステムではこちらの方が適している場合があります。"
             ],
             "default": "auto",
             "description": "ターミナルで GPU を利用してレンダリングを行うかどうかを制御します。",
@@ -10364,7 +10527,7 @@
             "restricted": false
         },
         "terminal.integrated.commandsToSkipShell": {
-            "markdownDescription": "キー バインドがシェルに送信されず、代わりに常に VS Code で処理されるコマンド ID のセット。これにより、シェルによって通常使用されるキー バインドが、ターミナルがフォーカスされていない場合と同じ動作をするようにします。たとえば、'Ctrl+P' で Quick Open を起動します。\r\n\r\n&nbsp;\r\n\r\n既定では、多くのコマンドがスキップされます。既定値をオーバーライドし、代わりにそのコマンドのキー バインドをシェルに渡すには、先頭に '-' 文字が付いているコマンドを追加します。たとえば、'-workbench.action.quickOpen' を追加して、'Ctrl+P' でシェルにアクセスできるようにします。\r\n\r\n&nbsp;\r\n\r\n既定でスキップされる以下のコマンドの一覧は、設定エディターで表示したときには切り詰められます。完全な一覧を表示するには、[既定の設定 (JSON) を開き](command:workbench.action.openRawDefaultSettings 'Open Default Settings (JSON)')、下の一覧から最初のコマンドを検索します。\r\n\r\n&nbsp;\r\n\r\n既定でスキップされるコマンド:\r\n\r\n- editor.action.toggleTabFocusMode\n- workbench.action.debug.continue\n- workbench.action.debug.pause\n- workbench.action.debug.restart\n- workbench.action.debug.run\n- workbench.action.debug.start\n- workbench.action.debug.stepInto\n- workbench.action.debug.stepOut\n- workbench.action.debug.stepOver\n- workbench.action.debug.stop\n- workbench.action.firstEditorInGroup\n- workbench.action.focusActiveEditorGroup\n- workbench.action.focusEighthEditorGroup\n- workbench.action.focusFifthEditorGroup\n- workbench.action.focusFirstEditorGroup\n- workbench.action.focusFourthEditorGroup\n- workbench.action.focusLastEditorGroup\n- workbench.action.focusNextPart\n- workbench.action.focusPreviousPart\n- workbench.action.focusSecondEditorGroup\n- workbench.action.focusSeventhEditorGroup\n- workbench.action.focusSixthEditorGroup\n- workbench.action.focusThirdEditorGroup\n- workbench.action.lastEditorInGroup\n- workbench.action.navigateDown\n- workbench.action.navigateLeft\n- workbench.action.navigateRight\n- workbench.action.navigateUp\n- workbench.action.nextEditor\n- workbench.action.nextEditorInGroup\n- workbench.action.nextPanelView\n- workbench.action.nextSideBarView\n- workbench.action.openNextRecentlyUsedEditor\n- workbench.action.openNextRecentlyUsedEditorInGroup\n- workbench.action.openPreviousRecentlyUsedEditor\n- workbench.action.openPreviousRecentlyUsedEditorInGroup\n- workbench.action.previousEditor\n- workbench.action.previousEditorInGroup\n- workbench.action.previousPanelView\n- workbench.action.previousSideBarView\n- workbench.action.quickOpen\n- workbench.action.quickOpenLeastRecentlyUsedEditor\n- workbench.action.quickOpenLeastRecentlyUsedEditorInGroup\n- workbench.action.quickOpenPreviousEditor\n- workbench.action.quickOpenPreviousRecentlyUsedEditor\n- workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup\n- workbench.action.quickOpenView\n- workbench.action.showCommands\n- workbench.action.tasks.build\n- workbench.action.tasks.reRunTask\n- workbench.action.tasks.restartTask\n- workbench.action.tasks.runTask\n- workbench.action.tasks.showLog\n- workbench.action.tasks.showTasks\n- workbench.action.tasks.terminate\n- workbench.action.tasks.test\n- workbench.action.terminal.clear\n- workbench.action.terminal.clearSelection\n- workbench.action.terminal.copySelection\n- workbench.action.terminal.deleteToLineStart\n- workbench.action.terminal.deleteWordLeft\n- workbench.action.terminal.deleteWordRight\n- workbench.action.terminal.findNext\n- workbench.action.terminal.findPrevious\n- workbench.action.terminal.focus\n- workbench.action.terminal.focusAtIndex1\n- workbench.action.terminal.focusAtIndex2\n- workbench.action.terminal.focusAtIndex3\n- workbench.action.terminal.focusAtIndex4\n- workbench.action.terminal.focusAtIndex5\n- workbench.action.terminal.focusAtIndex6\n- workbench.action.terminal.focusAtIndex7\n- workbench.action.terminal.focusAtIndex8\n- workbench.action.terminal.focusAtIndex9\n- workbench.action.terminal.focusFind\n- workbench.action.terminal.focusNext\n- workbench.action.terminal.focusNextPane\n- workbench.action.terminal.focusPrevious\n- workbench.action.terminal.focusPreviousPane\n- workbench.action.terminal.hideFind\n- workbench.action.terminal.kill\n- workbench.action.terminal.moveToLineEnd\n- workbench.action.terminal.moveToLineStart\n- workbench.action.terminal.navigationModeExit\n- workbench.action.terminal.navigationModeFocusNext\n- workbench.action.terminal.navigationModeFocusPrevious\n- workbench.action.terminal.new\n- workbench.action.terminal.newInActiveWorkspace\n- workbench.action.terminal.paste\n- workbench.action.terminal.pasteSelection\n- workbench.action.terminal.resizePaneDown\n- workbench.action.terminal.resizePaneLeft\n- workbench.action.terminal.resizePaneRight\n- workbench.action.terminal.resizePaneUp\n- workbench.action.terminal.runActiveFile\n- workbench.action.terminal.runSelectedText\n- workbench.action.terminal.scrollDown\n- workbench.action.terminal.scrollDownPage\n- workbench.action.terminal.scrollToBottom\n- workbench.action.terminal.scrollToNextCommand\n- workbench.action.terminal.scrollToPreviousCommand\n- workbench.action.terminal.scrollToTop\n- workbench.action.terminal.scrollUp\n- workbench.action.terminal.scrollUpPage\n- workbench.action.terminal.selectAll\n- workbench.action.terminal.selectToNextCommand\n- workbench.action.terminal.selectToNextLine\n- workbench.action.terminal.selectToPreviousCommand\n- workbench.action.terminal.selectToPreviousLine\n- workbench.action.terminal.sendSequence\n- workbench.action.terminal.split\n- workbench.action.terminal.splitInActiveWorkspace\n- workbench.action.terminal.toggleFindCaseSensitive\n- workbench.action.terminal.toggleFindRegex\n- workbench.action.terminal.toggleFindWholeWord\n- workbench.action.terminal.toggleTerminal\n- workbench.action.toggleFullScreen\n- workbench.action.toggleMaximizedPanel\n- workbench.action.togglePanel",
+            "markdownDescription": "キー バインドがシェルに送信されず、代わりに常に VS Code で処理されるコマンド ID のセット。これにより、シェルによって通常使用されるキー バインドが、ターミナルがフォーカスされていない場合と同じ動作をするようにします。たとえば、'Ctrl+P' で Quick Open を起動します。\r\n\r\n&nbsp;\r\n\r\n既定では、多くのコマンドがスキップされます。既定値をオーバーライドし、代わりにそのコマンドのキー バインドをシェルに渡すには、先頭に '-' 文字が付いているコマンドを追加します。たとえば、'-workbench.action.quickOpen' を追加して、'Ctrl+P' でシェルにアクセスできるようにします。\r\n\r\n&nbsp;\r\n\r\n既定でスキップされる以下のコマンドの一覧は、設定エディターで表示したときには切り詰められます。完全な一覧を表示するには、下の一覧から最初のコマンドを [既定の設定の JSON を開く](command:workbench.action.openRawDefaultSettings '既定の設定 (JSON) を開く') して検索します。\r\n\r\n&nbsp;\r\n\r\n既定でスキップされるコマンド:\r\n\r\n- editor.action.toggleTabFocusMode\n- workbench.action.debug.continue\n- workbench.action.debug.pause\n- workbench.action.debug.restart\n- workbench.action.debug.run\n- workbench.action.debug.start\n- workbench.action.debug.stepInto\n- workbench.action.debug.stepOut\n- workbench.action.debug.stepOver\n- workbench.action.debug.stop\n- workbench.action.firstEditorInGroup\n- workbench.action.focusActiveEditorGroup\n- workbench.action.focusEighthEditorGroup\n- workbench.action.focusFifthEditorGroup\n- workbench.action.focusFirstEditorGroup\n- workbench.action.focusFourthEditorGroup\n- workbench.action.focusLastEditorGroup\n- workbench.action.focusNextPart\n- workbench.action.focusPreviousPart\n- workbench.action.focusSecondEditorGroup\n- workbench.action.focusSeventhEditorGroup\n- workbench.action.focusSixthEditorGroup\n- workbench.action.focusThirdEditorGroup\n- workbench.action.lastEditorInGroup\n- workbench.action.navigateDown\n- workbench.action.navigateLeft\n- workbench.action.navigateRight\n- workbench.action.navigateUp\n- workbench.action.nextEditor\n- workbench.action.nextEditorInGroup\n- workbench.action.nextPanelView\n- workbench.action.nextSideBarView\n- workbench.action.openNextRecentlyUsedEditor\n- workbench.action.openNextRecentlyUsedEditorInGroup\n- workbench.action.openPreviousRecentlyUsedEditor\n- workbench.action.openPreviousRecentlyUsedEditorInGroup\n- workbench.action.previousEditor\n- workbench.action.previousEditorInGroup\n- workbench.action.previousPanelView\n- workbench.action.previousSideBarView\n- workbench.action.quickOpen\n- workbench.action.quickOpenLeastRecentlyUsedEditor\n- workbench.action.quickOpenLeastRecentlyUsedEditorInGroup\n- workbench.action.quickOpenPreviousEditor\n- workbench.action.quickOpenPreviousRecentlyUsedEditor\n- workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup\n- workbench.action.quickOpenView\n- workbench.action.showCommands\n- workbench.action.tasks.build\n- workbench.action.tasks.reRunTask\n- workbench.action.tasks.restartTask\n- workbench.action.tasks.runTask\n- workbench.action.tasks.showLog\n- workbench.action.tasks.showTasks\n- workbench.action.tasks.terminate\n- workbench.action.tasks.test\n- workbench.action.terminal.clear\n- workbench.action.terminal.clearSelection\n- workbench.action.terminal.copySelection\n- workbench.action.terminal.deleteToLineStart\n- workbench.action.terminal.deleteWordLeft\n- workbench.action.terminal.deleteWordRight\n- workbench.action.terminal.findNext\n- workbench.action.terminal.findPrevious\n- workbench.action.terminal.focus\n- workbench.action.terminal.focusAtIndex1\n- workbench.action.terminal.focusAtIndex2\n- workbench.action.terminal.focusAtIndex3\n- workbench.action.terminal.focusAtIndex4\n- workbench.action.terminal.focusAtIndex5\n- workbench.action.terminal.focusAtIndex6\n- workbench.action.terminal.focusAtIndex7\n- workbench.action.terminal.focusAtIndex8\n- workbench.action.terminal.focusAtIndex9\n- workbench.action.terminal.focusFind\n- workbench.action.terminal.focusNext\n- workbench.action.terminal.focusNextPane\n- workbench.action.terminal.focusPrevious\n- workbench.action.terminal.focusPreviousPane\n- workbench.action.terminal.hideFind\n- workbench.action.terminal.kill\n- workbench.action.terminal.killEditor\n- workbench.action.terminal.moveToEditor\n- workbench.action.terminal.moveToLineEnd\n- workbench.action.terminal.moveToLineStart\n- workbench.action.terminal.moveToTerminalPanel\n- workbench.action.terminal.navigationModeExit\n- workbench.action.terminal.navigationModeFocusNext\n- workbench.action.terminal.navigationModeFocusPrevious\n- workbench.action.terminal.new\n- workbench.action.terminal.newInActiveWorkspace\n- workbench.action.terminal.paste\n- workbench.action.terminal.pasteSelection\n- workbench.action.terminal.resizePaneDown\n- workbench.action.terminal.resizePaneLeft\n- workbench.action.terminal.resizePaneRight\n- workbench.action.terminal.resizePaneUp\n- workbench.action.terminal.runActiveFile\n- workbench.action.terminal.runSelectedText\n- workbench.action.terminal.scrollDown\n- workbench.action.terminal.scrollDownPage\n- workbench.action.terminal.scrollToBottom\n- workbench.action.terminal.scrollToNextCommand\n- workbench.action.terminal.scrollToPreviousCommand\n- workbench.action.terminal.scrollToTop\n- workbench.action.terminal.scrollUp\n- workbench.action.terminal.scrollUpPage\n- workbench.action.terminal.selectAll\n- workbench.action.terminal.selectToNextCommand\n- workbench.action.terminal.selectToNextLine\n- workbench.action.terminal.selectToPreviousCommand\n- workbench.action.terminal.selectToPreviousLine\n- workbench.action.terminal.sendSequence\n- workbench.action.terminal.split\n- workbench.action.terminal.splitInActiveWorkspace\n- workbench.action.terminal.toggleFindCaseSensitive\n- workbench.action.terminal.toggleFindRegex\n- workbench.action.terminal.toggleFindWholeWord\n- workbench.action.terminal.toggleTerminal\n- workbench.action.toggleFullScreen\n- workbench.action.toggleMaximizedPanel\n- workbench.action.togglePanel",
             "type": "array",
             "items": {
                 "type": "string"
@@ -10583,13 +10746,6 @@
         "terminal.integrated.enablePersistentSessions": {
             "description": "ウィンドウの再読み込み時にワークスペースのターミナル セッションを保持します。",
             "type": "boolean",
-            "default": true,
-            "scope": 3,
-            "restricted": false
-        },
-        "workbench.experimental.useCustomHover": {
-            "type": "boolean",
-            "description": "アクティビティ バーとパネルでカスタムのホバーを有効または無効にします。この構成は試験段階であり、いつでも削除されることに注意してください。",
             "default": true,
             "scope": 3,
             "restricted": false
@@ -11134,7 +11290,7 @@
         },
         "github-enterprise.uri": {
             "type": "string",
-            "description": "URI of your GitHub Enterprise Instanace",
+            "description": "URI of your GitHub Enterprise Instance",
             "scope": 3,
             "default": "",
             "restricted": false
@@ -11210,6 +11366,13 @@
             ],
             "default": "off",
             "description": "Markdown 拡張機能のデバッグ ログを有効にします。",
+            "scope": 3,
+            "restricted": false
+        },
+        "markdown.math.enabled": {
+            "type": "boolean",
+            "default": true,
+            "description": "組み込みのマークダウン プレビューでの数式のレンダリングを有効/無効にします。",
             "scope": 3,
             "restricted": false
         },
@@ -11355,6 +11518,11 @@
                     "type": "boolean",
                     "description": "Use JavaScript source maps (if they exist).",
                     "default": true
+                },
+                "sourceMapRenames": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Whether to use the \"names\" mapping in sourcemaps. This requires requesting source content, which can be slow with certain debuggers."
                 },
                 "sourceMapPathOverrides": {
                     "type": "object",
@@ -11649,6 +11817,11 @@
                             "description": "Use JavaScript source maps (if they exist).",
                             "default": true
                         },
+                        "sourceMapRenames": {
+                            "type": "boolean",
+                            "default": true,
+                            "description": "Whether to use the \"names\" mapping in sourcemaps. This requires requesting source content, which can be slow with certain debuggers."
+                        },
                         "sourceMapPathOverrides": {
                             "type": "object",
                             "description": "A set of mappings for rewriting the locations of source files from what the sourcemap says, to their locations on disk.",
@@ -11896,6 +12069,11 @@
                                             "type": "boolean",
                                             "description": "Use JavaScript source maps (if they exist).",
                                             "default": true
+                                        },
+                                        "sourceMapRenames": {
+                                            "type": "boolean",
+                                            "default": true,
+                                            "description": "Whether to use the \"names\" mapping in sourcemaps. This requires requesting source content, which can be slow with certain debuggers."
                                         },
                                         "sourceMapPathOverrides": {
                                             "type": "object",
@@ -12261,6 +12439,11 @@
                                             "type": "boolean",
                                             "description": "Use JavaScript source maps (if they exist).",
                                             "default": true
+                                        },
+                                        "sourceMapRenames": {
+                                            "type": "boolean",
+                                            "default": true,
+                                            "description": "Whether to use the \"names\" mapping in sourcemaps. This requires requesting source content, which can be slow with certain debuggers."
                                         },
                                         "sourceMapPathOverrides": {
                                             "type": "object",
@@ -12636,6 +12819,11 @@
                     "type": "boolean",
                     "description": "Use JavaScript source maps (if they exist).",
                     "default": true
+                },
+                "sourceMapRenames": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Whether to use the \"names\" mapping in sourcemaps. This requires requesting source content, which can be slow with certain debuggers."
                 },
                 "sourceMapPathOverrides": {
                     "type": "object",
@@ -13389,7 +13577,7 @@
         },
         "terminal.integrated.defaultProfile.linux": {
             "restricted": true,
-            "markdownDescription": "Linux で使用される既定のプロファイルです。`#terminal.integrated.shell.linux#` または `#terminal.integrated.shellArgs.linux#` のいずれかが設定されている場合、現在この設定は無視されます。",
+            "markdownDescription": "Linux で使用される既定のプロファイルです。`terminal.integrated.shell.linux` または `terminal.integrated.shellArgs.linux` のいずれかが設定されている場合、現在この設定は無視されます。",
             "type": [
                 "string",
                 "null"
@@ -13399,7 +13587,7 @@
         },
         "terminal.integrated.defaultProfile.osx": {
             "restricted": true,
-            "markdownDescription": "MacOS で使用される既定のプロファイルです。`#terminal.integrated.shell.osx#` または `#terminal.integrated.shellArgs.osx#` のいずれかが設定されている場合、現在この設定は無視されます。",
+            "markdownDescription": "MacOS で使用される既定のプロファイルです。`terminal.integrated.shell.osx` または `terminal.integrated.shellArgs.osx` のいずれかが設定されている場合、現在この設定は無視されます。",
             "type": [
                 "string",
                 "null"
@@ -13409,7 +13597,7 @@
         },
         "terminal.integrated.defaultProfile.windows": {
             "restricted": true,
-            "markdownDescription": "Windows で使用される既定のプロファイルです。`#terminal.integrated.shell.windows#` または `#terminal.integrated.shellArgs.windows#` のいずれかが設定されている場合、現在この設定は無視されます。",
+            "markdownDescription": "Windows で使用される既定のプロファイルです。`terminal.integrated.shell.windows` または `terminal.integrated.shellArgs.windows` のいずれかが設定されている場合、現在この設定は無視されます。",
             "type": [
                 "string",
                 "null"
@@ -13748,7 +13936,7 @@
             "default": 0,
             "minimum": 0,
             "maximum": 100,
-            "description": "CodeLens のフォント サイズをピクセル単位で制御します。'0' に設定すると、'#editor.fontSize#' の 90% が使用されます。",
+            "markdownDescription": "CodeLens のフォント サイズをピクセル単位で制御します。'0' に設定すると、'#editor.fontSize#' の 90% が使用されます。",
             "scope": 5,
             "restricted": false
         },
@@ -14282,6 +14470,21 @@
             "scope": 5,
             "restricted": false
         },
+        "editor.inlineSuggest.mode": {
+            "type": "string",
+            "enum": [
+                "prefix",
+                "subwordDiff"
+            ],
+            "enumDescriptions": [
+                "置換テキストが挿入テキストのプレフィックスである場合にのみインライン候補を表示します。",
+                "置換テキストが挿入テキストのサブワードである場合にのみインライン候補をレンダリングします。"
+            ],
+            "default": "subwordDiff",
+            "description": "インライン候補をレンダリングするために使用するモードを制御します。",
+            "scope": 5,
+            "restricted": false
+        },
         "editor.letterSpacing": {
             "description": "文字間隔 (ピクセル単位) を制御します。",
             "type": "number",
@@ -14297,11 +14500,9 @@
             "restricted": false
         },
         "editor.lineHeight": {
-            "description": "行の高さを制御します。フォント サイズに基づいて行の高さを計算する場合には、0 を使用します。",
-            "type": "integer",
+            "markdownDescription": "行の高さを制御します。\r\n - 0 を使用してフォント サイズから行の高さを自動的に計算します。\r\n - 0 から 8 までの値は、フォント サイズの乗数として使用されます。\r\n - 8 以上の値は有効値として使用されます。",
+            "type": "number",
             "default": 0,
-            "minimum": 0,
-            "maximum": 150,
             "scope": 5,
             "restricted": false
         },
@@ -14702,6 +14903,61 @@
             "scope": 5,
             "restricted": false
         },
+        "editor.scrollbar.vertical": {
+            "type": "string",
+            "enum": [
+                "auto",
+                "visible",
+                "hidden"
+            ],
+            "enumDescriptions": [
+                "垂直スクロールバーは、必要な場合にのみ表示されます。",
+                "垂直スクロールバーは常に表示されます。",
+                "垂直スクロールバーは常に非表示になります。"
+            ],
+            "default": "auto",
+            "description": "垂直スクロールバーの表示を制御します。",
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.scrollbar.horizontal": {
+            "type": "string",
+            "enum": [
+                "auto",
+                "visible",
+                "hidden"
+            ],
+            "enumDescriptions": [
+                "水平スクロールバーは、必要な場合にのみ表示されます。",
+                "水平スクロールバーは常に表示されます。",
+                "水平スクロールバーは常に非表示になります。"
+            ],
+            "default": "auto",
+            "description": "水平スクロールバーの表示を制御します。",
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.scrollbar.verticalScrollbarSize": {
+            "type": "number",
+            "default": 14,
+            "description": "垂直スクロールバーの幅。",
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.scrollbar.horizontalScrollbarSize": {
+            "type": "number",
+            "default": 12,
+            "description": "水平スクロールバーの高さ。",
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.scrollbar.scrollByPage": {
+            "type": "boolean",
+            "default": false,
+            "description": "クリックするとページ単位でスクロールするか、クリック位置にジャンプするかを制御します。",
+            "scope": 5,
+            "restricted": false
+        },
         "editor.scrollBeyondLastColumn": {
             "description": "エディターが水平方向に余分にスクロールする文字数を制御します。",
             "type": "integer",
@@ -14855,6 +15111,21 @@
             "type": "boolean",
             "default": false,
             "description": "提案の結果をエディターでプレビューするかどうかを制御します。",
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.suggest.previewMode": {
+            "type": "string",
+            "enum": [
+                "prefix",
+                "subwordDiff"
+            ],
+            "enumDescriptions": [
+                "置換テキストが挿入テキストのプレフィックスである場合にのみプレビューを表示します。",
+                "置換テキストが挿入テキストのサブワードである場合にのみプレビューを表示します。"
+            ],
+            "default": "prefix",
+            "description": "候補のプレビューをレンダリングするために使用するモードを制御します。",
             "scope": 5,
             "restricted": false
         },
@@ -15251,7 +15522,7 @@
         "editor.inlayHints.fontSize": {
             "type": "number",
             "default": 0,
-            "description": "エディターでインレー ヒントのフォント サイズを制御します。'0' に設定すると、`#editor.fontSize#` の 90% が使用されます。",
+            "markdownDescription": "エディターでインレー ヒントのフォント サイズを制御します。'0' に設定すると、`#editor.fontSize#` の 90% が使用されます。",
             "scope": 5,
             "restricted": false
         },
@@ -15506,6 +15777,7 @@
                 "vscode.jake",
                 "ms-vscode.js-debug",
                 "ms-vscode.js-debug-companion",
+                "vscode.markdown-math",
                 "vscode.merge-conflict",
                 "vscode.microsoft-authentication",
                 "ms-vscode.node-debug",
@@ -15541,6 +15813,7 @@
                 "VS Code の Jake サポート",
                 "JavaScript Debugger",
                 "JavaScript Debugger Companion Extension",
+                "Markdown 数式",
                 "マージの競合",
                 "Microsoft アカウント",
                 "Node Debug (legacy)",
@@ -15568,7 +15841,7 @@
                 "VSCode の Emmet サポート",
                 "拡張機能を作成するためのリンティング機能を提供します。",
                 "Git SCM統合",
-                "GitHub",
+                "VS Code 用 GitHub 機能",
                 "GitHub 認証プロバイダー",
                 "Extension to add Grunt capabilities to VS Code.",
                 "VS Code に Gulp 機能を追加する拡張機能。",
@@ -15576,6 +15849,7 @@
                 "VS Code に Jake 機能を追加する拡張機能。",
                 "An extension for debugging Node.js programs and Chrome.",
                 "Companion extension to js-debug that provides capability for remote debugging",
+                "ノートブックのマークダウンに数式サポートを追加します。",
                 "行内マージ競合のハイライト、コマンドを提供します。",
                 "Microsoft 認証プロバイダー",
                 "Node.js デバッグ サポート（バージョン 8.0 未満）",
@@ -15634,177 +15908,17 @@
                 "welcomePage",
                 "readme",
                 "newUntitledFile",
-                "welcomePageInEmptyWorkbench",
-                "gettingStarted",
-                "gettingStartedInEmptyWorkbench"
+                "welcomePageInEmptyWorkbench"
             ],
             "enumDescriptions": [
                 "エディターなしで開始",
-                "レガシのウェルカム ページを開きます。",
-                "README がフォルダーに含まれている場合はそれを開き、それ以外の場合は 'welcomePage' を開きます。",
+                "ウェルカム ページを開き、VS Codeと拡張機能を使って作業を開始するのに役立つコンテンツを表示します。",
+                "README を含むフォルダーを開くときに README を開き、それ以外の場合は 'welcomePage' にフォールバックします。注意: これはグローバル構成として確認されました。これは、ワークスペースまたはフォルダー構成で設定されている場合は無視されます。",
                 "無題の新規ファイルを開きます (空のウィンドウが開かれているときのみ)。",
-                "空のワークベンチを開くとき、レガシのウェルカム ページを開きます。",
-                "新しいウェルカム ページを開き、VS Codeと拡張機能を使って作業を開始するのに役立つコンテンツを表示します。",
-                "空のワークベンチを開くときに、新しいウェルカムページを開いて、VS Code と拡張機能を使用して作業を開始することができます。"
+                "空のワークベンチを開くとき、ウェルカム ページを開きます。"
             ],
-            "default": "gettingStarted",
+            "default": "welcomePage",
             "description": "起動時にどのエディターを表示するかを制御します。無い場合、前のセッションを復元します。",
-            "restricted": false
-        },
-        "scm.diffDecorations": {
-            "type": "string",
-            "enum": [
-                "all",
-                "gutter",
-                "overview",
-                "minimap",
-                "none"
-            ],
-            "enumDescriptions": [
-                "使用可能なすべての場所で差分の装飾を表示します。",
-                "差分の装飾はエディターのとじしろでのみ表示します。",
-                "差分の装飾は、概要ルーラーでのみ表示します。",
-                "差分の装飾はミニマップでのみ表示します。",
-                "差分の装飾を表示しません。"
-            ],
-            "default": "all",
-            "description": "エディターの差分デコレーターを制御します。",
-            "scope": 4,
-            "restricted": false
-        },
-        "scm.diffDecorationsGutterWidth": {
-            "type": "number",
-            "enum": [
-                1,
-                2,
-                3,
-                4,
-                5
-            ],
-            "default": 3,
-            "description": "余白の差分表示 (追加と変更) の幅 (ピクセル) を制御します。",
-            "scope": 4,
-            "restricted": false
-        },
-        "scm.diffDecorationsGutterVisibility": {
-            "type": "string",
-            "enum": [
-                "always",
-                "hover"
-            ],
-            "enumDescriptions": [
-                "常に余白に差分デコレーターを表示します。",
-                "カーソルを置いた時にのみ余白に差分デコレーターを表示します。"
-            ],
-            "description": "余白におけるソース管理の差分デコレーターの表示を制御します。",
-            "default": "always",
-            "scope": 4,
-            "restricted": false
-        },
-        "scm.diffDecorationsGutterAction": {
-            "type": "string",
-            "enum": [
-                "diff",
-                "none"
-            ],
-            "enumDescriptions": [
-                "クリック時にインライン差分ピーク ビューを表示します。",
-                "何もしない。"
-            ],
-            "description": "ソース管理の差分の余白の装飾に関する動作を制御します。",
-            "default": "diff",
-            "scope": 4,
-            "restricted": false
-        },
-        "scm.alwaysShowActions": {
-            "type": "boolean",
-            "description": "ソース管理ビューでインラインのアクションを常に表示するかどうかを制御します。",
-            "default": false,
-            "scope": 4,
-            "restricted": false
-        },
-        "scm.countBadge": {
-            "type": "string",
-            "enum": [
-                "all",
-                "focused",
-                "off"
-            ],
-            "enumDescriptions": [
-                "すべてのソース管理プロバイダー カウント バッジの合計を表示します。",
-                "フォーカスのあるソース管理プロバイダーのカウント バッジを表示します。",
-                "ソース管理のカウント バッジを無効にします。"
-            ],
-            "description": "アクティビティ バーのソース管理アイコンのカウント バッジを制御します。",
-            "default": "all",
-            "scope": 4,
-            "restricted": false
-        },
-        "scm.providerCountBadge": {
-            "type": "string",
-            "enum": [
-                "hidden",
-                "auto",
-                "visible"
-            ],
-            "enumDescriptions": [
-                "ソース管理プロバイダーのカウント バッジを非表示にします。",
-                "0 以外の場合にのみ、ソース管理プロバイダーのカウント バッジを表示します。",
-                "ソース管理プロバイダーのカウント バッジを表示します。"
-            ],
-            "description": "ソース管理プロバイダー ヘッダーのカウント バッジを制御します。これらのヘッダーは、複数のプロバイダーがある場合にのみ表示されます。",
-            "default": "hidden",
-            "scope": 4,
-            "restricted": false
-        },
-        "scm.defaultViewMode": {
-            "type": "string",
-            "enum": [
-                "tree",
-                "list"
-            ],
-            "enumDescriptions": [
-                "リポジトリの変更をツリー形式で表示します。",
-                "リポジトリの変更を一覧で表示します。"
-            ],
-            "description": "既定のソース管理リポジトリ ビュー モードを制御します。",
-            "default": "list",
-            "scope": 4,
-            "restricted": false
-        },
-        "scm.autoReveal": {
-            "type": "boolean",
-            "description": "ファイルを開くときに SCM ビューでそのファイルを自動的に表示および選択するかどうかを制御します。",
-            "default": true,
-            "scope": 4,
-            "restricted": false
-        },
-        "scm.inputFontFamily": {
-            "type": "string",
-            "markdownDescription": "入力メッセージのフォントを制御します。ワークベンチ ユーザー インターフェイスのフォント ファミリーを使う場合は 'default'、'#editor.fontFamily#' の値を使う場合は 'editor' を使用します。カスタム フォント ファミリーを使うこともできます。",
-            "default": "default",
-            "scope": 4,
-            "restricted": false
-        },
-        "scm.inputFontSize": {
-            "type": "number",
-            "markdownDescription": "入力メッセージのフォント サイズをピクセル単位で制御します。",
-            "default": 13,
-            "scope": 4,
-            "restricted": false
-        },
-        "scm.alwaysShowRepositories": {
-            "type": "boolean",
-            "markdownDescription": "リポジトリが SCM ビューに常に表示される必要があるかどうかを制御します。",
-            "default": false,
-            "scope": 4,
-            "restricted": false
-        },
-        "scm.repositories.visible": {
-            "type": "number",
-            "description": "ソース管理リポジトリのセクションに表示するリポジトリの数を制御します。'0' に設定すると、ビューのサイズを手動で変更できるようになります。",
-            "default": 10,
-            "scope": 4,
             "restricted": false
         },
         "debug.saveBeforeStart": {
@@ -16012,7 +16126,7 @@
         "files.autoGuessEncoding": {
             "type": "boolean",
             "default": false,
-            "description": "有効な場合、ファイルを開くときに文字セット エンコードをエディターが推測します。言語ごとに構成することも可能です。",
+            "markdownDescription": "有効な場合、ファイルを開くときに文字セット エンコードをエディターが推測します。言語ごとに構成することも可能です。この設定は、テキスト検索では尊重されないことに注意してください。`#files.encoding#` のみ尊重されます。",
             "scope": 5,
             "restricted": false
         },
@@ -16062,7 +16176,7 @@
                 "**/node_modules/*/**": true,
                 "**/.hg/store/**": true
             },
-            "description": "ファイル監視から除外するファイル パスの glob パターンを設定します。パターンは絶対パスで一致する必要があります (つまり、適切に一致するには、プレフィックス ** を指定するか、完全パスを指定します)。この設定を変更した場合は、再起動が必要になります。始動時に Code が消費する CPU 時間が多い場合は、大きいフォルダーを除外すれば初期の負荷を減らすことができます。",
+            "markdownDescription": "ファイル監視から除外するファイル パスの glob パターンを設定します。パターンは絶対パスで一致する必要があります。つまり、適切に一致するには、プレフィックス `**/` または完全パスを指定し、パス内でファイルを一致させるには、サフィックス `/**` を指定します (例: `**/build/output/**` または `/Users/name/workspaces/project/build/output/**`)。この設定を変更した場合は、再起動が必要になります。始動時に Code が消費する CPU 時間が多い場合は、大きいフォルダーを除外すれば初期の負荷を減らすことができます。",
             "scope": 4,
             "restricted": false
         },
@@ -16283,6 +16397,162 @@
             "default": true,
             "scope": 5,
             "markdownDescription": "有効にすると、アウトラインに `typeParameter` 記号が表示されます。",
+            "restricted": false
+        },
+        "scm.diffDecorations": {
+            "type": "string",
+            "enum": [
+                "all",
+                "gutter",
+                "overview",
+                "minimap",
+                "none"
+            ],
+            "enumDescriptions": [
+                "使用可能なすべての場所で差分の装飾を表示します。",
+                "差分の装飾はエディターのとじしろでのみ表示します。",
+                "差分の装飾は、概要ルーラーでのみ表示します。",
+                "差分の装飾はミニマップでのみ表示します。",
+                "差分の装飾を表示しません。"
+            ],
+            "default": "all",
+            "description": "エディターの差分デコレーターを制御します。",
+            "scope": 4,
+            "restricted": false
+        },
+        "scm.diffDecorationsGutterWidth": {
+            "type": "number",
+            "enum": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ],
+            "default": 3,
+            "description": "余白の差分表示 (追加と変更) の幅 (ピクセル) を制御します。",
+            "scope": 4,
+            "restricted": false
+        },
+        "scm.diffDecorationsGutterVisibility": {
+            "type": "string",
+            "enum": [
+                "always",
+                "hover"
+            ],
+            "enumDescriptions": [
+                "常に余白に差分デコレーターを表示します。",
+                "カーソルを置いた時にのみ余白に差分デコレーターを表示します。"
+            ],
+            "description": "余白におけるソース管理の差分デコレーターの表示を制御します。",
+            "default": "always",
+            "scope": 4,
+            "restricted": false
+        },
+        "scm.diffDecorationsGutterAction": {
+            "type": "string",
+            "enum": [
+                "diff",
+                "none"
+            ],
+            "enumDescriptions": [
+                "クリック時にインライン差分ピーク ビューを表示します。",
+                "何もしない。"
+            ],
+            "description": "ソース管理の差分の余白の装飾に関する動作を制御します。",
+            "default": "diff",
+            "scope": 4,
+            "restricted": false
+        },
+        "scm.alwaysShowActions": {
+            "type": "boolean",
+            "description": "ソース管理ビューでインラインのアクションを常に表示するかどうかを制御します。",
+            "default": false,
+            "scope": 4,
+            "restricted": false
+        },
+        "scm.countBadge": {
+            "type": "string",
+            "enum": [
+                "all",
+                "focused",
+                "off"
+            ],
+            "enumDescriptions": [
+                "すべてのソース管理プロバイダー カウント バッジの合計を表示します。",
+                "フォーカスのあるソース管理プロバイダーのカウント バッジを表示します。",
+                "ソース管理のカウント バッジを無効にします。"
+            ],
+            "description": "アクティビティ バーのソース管理アイコンのカウント バッジを制御します。",
+            "default": "all",
+            "scope": 4,
+            "restricted": false
+        },
+        "scm.providerCountBadge": {
+            "type": "string",
+            "enum": [
+                "hidden",
+                "auto",
+                "visible"
+            ],
+            "enumDescriptions": [
+                "ソース管理プロバイダーのカウント バッジを非表示にします。",
+                "0 以外の場合にのみ、ソース管理プロバイダーのカウント バッジを表示します。",
+                "ソース管理プロバイダーのカウント バッジを表示します。"
+            ],
+            "description": "ソース管理プロバイダー ヘッダーのカウント バッジを制御します。これらのヘッダーは、複数のプロバイダーがある場合にのみ表示されます。",
+            "default": "hidden",
+            "scope": 4,
+            "restricted": false
+        },
+        "scm.defaultViewMode": {
+            "type": "string",
+            "enum": [
+                "tree",
+                "list"
+            ],
+            "enumDescriptions": [
+                "リポジトリの変更をツリー形式で表示します。",
+                "リポジトリの変更を一覧で表示します。"
+            ],
+            "description": "既定のソース管理リポジトリ ビュー モードを制御します。",
+            "default": "list",
+            "scope": 4,
+            "restricted": false
+        },
+        "scm.autoReveal": {
+            "type": "boolean",
+            "description": "ファイルを開くときに SCM ビューでそのファイルを自動的に表示および選択するかどうかを制御します。",
+            "default": true,
+            "scope": 4,
+            "restricted": false
+        },
+        "scm.inputFontFamily": {
+            "type": "string",
+            "markdownDescription": "入力メッセージのフォントを制御します。ワークベンチ ユーザー インターフェイスのフォント ファミリーを使う場合は 'default'、'#editor.fontFamily#' の値を使う場合は 'editor' を使用します。カスタム フォント ファミリーを使うこともできます。",
+            "default": "default",
+            "scope": 4,
+            "restricted": false
+        },
+        "scm.inputFontSize": {
+            "type": "number",
+            "markdownDescription": "入力メッセージのフォント サイズをピクセル単位で制御します。",
+            "default": 13,
+            "scope": 4,
+            "restricted": false
+        },
+        "scm.alwaysShowRepositories": {
+            "type": "boolean",
+            "markdownDescription": "リポジトリが SCM ビューに常に表示される必要があるかどうかを制御します。",
+            "default": false,
+            "scope": 4,
+            "restricted": false
+        },
+        "scm.repositories.visible": {
+            "type": "number",
+            "description": "ソース管理リポジトリのセクションに表示するリポジトリの数を制御します。'0' に設定すると、ビューのサイズを手動で変更できるようになります。",
+            "default": 10,
+            "scope": 4,
             "restricted": false
         },
         "search.exclude": {

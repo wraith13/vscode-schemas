@@ -350,6 +350,13 @@
             "$ref": "vscode://schemas/settings/resourceLanguage",
             "default": {}
         },
+        "[markdown-math]": {
+            "type": "object",
+            "description": "Configure editor settings to be overridden for a language.",
+            "errorMessage": "This setting does not support per-language configuration.",
+            "$ref": "vscode://schemas/settings/resourceLanguage",
+            "default": {}
+        },
         "[objective-c]": {
             "type": "object",
             "description": "Configure editor settings to be overridden for a language.",
@@ -641,16 +648,6 @@
             "scope": 3,
             "restricted": false
         },
-        "workbench.editorAssociations": {
-            "type": "object",
-            "markdownDescription": "Configure glob patterns to editors (e.g. `\"*.hex\": \"hexEditor.hexEdit\"`). These have precedence over the default behavior.",
-            "additionalProperties": {
-                "type": "string"
-            },
-            "default": {},
-            "scope": 3,
-            "restricted": false
-        },
         "workbench.editor.titleScrollbarSizing": {
             "type": "string",
             "enum": [
@@ -746,10 +743,9 @@
             "type": "string",
             "enum": [
                 "text",
-                "hidden",
-                "default"
+                "hidden"
             ],
-            "default": "default",
+            "default": "text",
             "markdownDescription": "Controls if the untitled hint should be inline text in the editor or a floating button or hidden.",
             "scope": 3,
             "restricted": false
@@ -1153,6 +1149,16 @@
             "scope": 3,
             "restricted": false
         },
+        "workbench.editorAssociations": {
+            "type": "object",
+            "markdownDescription": "Configure glob patterns to editors (e.g. `\"*.hex\": \"hexEditor.hexEdit\"`). These have precedence over the default behavior.",
+            "additionalProperties": {
+                "type": "string"
+            },
+            "default": {},
+            "scope": 3,
+            "restricted": false
+        },
         "problems.decorations.enabled": {
             "description": "Show Errors & Warnings on files and folder.",
             "type": "boolean",
@@ -1336,7 +1342,7 @@
         },
         "remote.autoForwardPorts": {
             "type": "boolean",
-            "markdownDescription": "When enabled, new running processes are detected and ports that they listen on are automatically forwarded.",
+            "markdownDescription": "When enabled, new running processes are detected and ports that they listen on are automatically forwarded. Disabling this setting will not prevent all ports from being forwarded. Even when disabled, extensions will still be able to cause ports to be forwarded, and opening some URLs will still cause ports to forwarded.",
             "default": true,
             "scope": 3,
             "restricted": false
@@ -1368,6 +1374,7 @@
                             "enum": [
                                 "notify",
                                 "openBrowser",
+                                "openBrowserOnce",
                                 "openPreview",
                                 "silent",
                                 "ignore"
@@ -1375,6 +1382,7 @@
                             "enumDescriptions": [
                                 "Shows a notification when a port is automatically forwarded.",
                                 "Opens the browser when the port is automatically forwarded. Depending on your settings, this could open an embedded browser.",
+                                "Opens the browser when the port is automatically forwarded, but only the first time the port is forward during a session. Depending on your settings, this could open an embedded browser.",
                                 "Opens a preview in the same window when the port is automatically forwarded.",
                                 "Shows no notification and takes no action when this port is automatically forwarded.",
                                 "This port will not be automatically forwarded."
@@ -3033,6 +3041,413 @@
             "scope": 3,
             "restricted": false
         },
+        "debug.allowBreakpointsEverywhere": {
+            "type": "boolean",
+            "description": "Allow setting breakpoints in any file.",
+            "default": false,
+            "scope": 3,
+            "restricted": false
+        },
+        "debug.openExplorerOnEnd": {
+            "type": "boolean",
+            "description": "Automatically open the explorer view at the end of a debug session.",
+            "default": false,
+            "scope": 3,
+            "restricted": false
+        },
+        "debug.inlineValues": {
+            "type": [
+                "boolean",
+                "string"
+            ],
+            "enum": [
+                true,
+                false,
+                "auto"
+            ],
+            "description": "Show variable values inline in editor while debugging.",
+            "enumDescriptions": [
+                "Always show variable values inline in editor while debugging.",
+                "Never show variable values inline in editor while debugging.",
+                "Show variable values inline in editor while debugging when the language supports inline value locations."
+            ],
+            "default": "auto",
+            "scope": 3,
+            "restricted": false
+        },
+        "debug.toolBarLocation": {
+            "enum": [
+                "floating",
+                "docked",
+                "hidden"
+            ],
+            "markdownDescription": "Controls the location of the debug toolbar. Either `floating` in all views, `docked` in the debug view, or `hidden`.",
+            "default": "floating",
+            "scope": 3,
+            "restricted": false
+        },
+        "debug.showInStatusBar": {
+            "enum": [
+                "never",
+                "always",
+                "onFirstSessionStart"
+            ],
+            "enumDescriptions": [
+                "Never show debug in status bar",
+                "Always show debug in status bar",
+                "Show debug in status bar only after debug was started for the first time"
+            ],
+            "description": "Controls when the debug status bar should be visible.",
+            "default": "onFirstSessionStart",
+            "scope": 3,
+            "restricted": false
+        },
+        "debug.internalConsoleOptions": {
+            "enum": [
+                "neverOpen",
+                "openOnSessionStart",
+                "openOnFirstSessionStart"
+            ],
+            "default": "openOnFirstSessionStart",
+            "description": "Controls when the internal debug console should open.",
+            "scope": 3,
+            "restricted": false
+        },
+        "debug.console.closeOnEnd": {
+            "type": "boolean",
+            "description": "Controls if the debug console should be automatically closed when the debug session ends.",
+            "default": false,
+            "scope": 3,
+            "restricted": false
+        },
+        "debug.terminal.clearBeforeReusing": {
+            "type": "boolean",
+            "description": "Before starting a new debug session in an integrated or external terminal, clear the terminal.",
+            "default": false,
+            "scope": 3,
+            "restricted": false
+        },
+        "debug.openDebug": {
+            "enum": [
+                "neverOpen",
+                "openOnSessionStart",
+                "openOnFirstSessionStart",
+                "openOnDebugBreak"
+            ],
+            "default": "openOnDebugBreak",
+            "description": "Controls when the debug view should open.",
+            "scope": 3,
+            "restricted": false
+        },
+        "debug.showSubSessionsInToolBar": {
+            "type": "boolean",
+            "description": "Controls whether the debug sub-sessions are shown in the debug tool bar. When this setting is false the stop command on a sub-session will also stop the parent session.",
+            "default": false,
+            "scope": 3,
+            "restricted": false
+        },
+        "debug.console.fontSize": {
+            "type": "number",
+            "description": "Controls the font size in pixels in the debug console.",
+            "default": 14,
+            "scope": 3,
+            "restricted": false
+        },
+        "debug.console.fontFamily": {
+            "type": "string",
+            "description": "Controls the font family in the debug console.",
+            "default": "default",
+            "scope": 3,
+            "restricted": false
+        },
+        "debug.console.lineHeight": {
+            "type": "number",
+            "description": "Controls the line height in pixels in the debug console. Use 0 to compute the line height from the font size.",
+            "default": 0,
+            "scope": 3,
+            "restricted": false
+        },
+        "debug.console.wordWrap": {
+            "type": "boolean",
+            "description": "Controls if the lines should wrap in the debug console.",
+            "default": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "debug.console.historySuggestions": {
+            "type": "boolean",
+            "description": "Controls if the debug console should suggest previously typed input.",
+            "default": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "debug.console.collapseIdenticalLines": {
+            "type": "boolean",
+            "description": "Controls if the debug console should collapse identical lines and show a number of occurrences with a badge.",
+            "default": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "launch": {
+            "type": "object",
+            "description": "Global debug launch configuration. Should be used as an alternative to 'launch.json' that is shared across workspaces.",
+            "default": {
+                "configurations": [],
+                "compounds": []
+            },
+            "$ref": "vscode://schemas/launch",
+            "scope": 3,
+            "restricted": false
+        },
+        "debug.focusWindowOnBreak": {
+            "type": "boolean",
+            "description": "Controls whether the workbench window should be focused when the debugger breaks.",
+            "default": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "debug.onTaskErrors": {
+            "enum": [
+                "debugAnyway",
+                "showErrors",
+                "prompt",
+                "abort"
+            ],
+            "enumDescriptions": [
+                "Ignore task errors and start debugging.",
+                "Show the Problems view and do not start debugging.",
+                "Prompt user.",
+                "Cancel debugging."
+            ],
+            "description": "Controls what to do when errors are encountered after running a preLaunchTask.",
+            "default": "prompt",
+            "scope": 3,
+            "restricted": false
+        },
+        "debug.showBreakpointsInOverviewRuler": {
+            "type": "boolean",
+            "description": "Controls whether breakpoints should be shown in the overview ruler.",
+            "default": false,
+            "scope": 3,
+            "restricted": false
+        },
+        "debug.showInlineBreakpointCandidates": {
+            "type": "boolean",
+            "description": "Controls whether inline breakpoints candidate decorations should be shown in the editor while debugging.",
+            "default": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "files.associations": {
+            "type": "object",
+            "markdownDescription": "Configure file associations to languages (e.g. `\"*.extension\": \"html\"`). These have precedence over the default associations of the languages installed.",
+            "additionalProperties": {
+                "type": "string"
+            },
+            "default": {},
+            "scope": 3,
+            "restricted": false
+        },
+        "files.enableTrash": {
+            "type": "boolean",
+            "default": true,
+            "description": "Moves files/folders to the OS trash (recycle bin on Windows) when deleting. Disabling this will delete files/folders permanently.",
+            "scope": 3,
+            "restricted": false
+        },
+        "files.autoSave": {
+            "type": "string",
+            "enum": [
+                "off",
+                "afterDelay",
+                "onFocusChange",
+                "onWindowChange"
+            ],
+            "markdownEnumDescriptions": [
+                "A dirty editor is never automatically saved.",
+                "A dirty editor is automatically saved after the configured `#files.autoSaveDelay#`.",
+                "A dirty editor is automatically saved when the editor loses focus.",
+                "A dirty editor is automatically saved when the window loses focus."
+            ],
+            "default": "off",
+            "markdownDescription": "Controls auto save of dirty editors. Read more about autosave [here](https://code.visualstudio.com/docs/editor/codebasics#_save-auto-save).",
+            "scope": 3,
+            "restricted": false
+        },
+        "files.autoSaveDelay": {
+            "type": "number",
+            "default": 1000,
+            "markdownDescription": "Controls the delay in ms after which a dirty editor is saved automatically. Only applies when `#files.autoSave#` is set to `afterDelay`.",
+            "scope": 3,
+            "restricted": false
+        },
+        "files.defaultLanguage": {
+            "type": "string",
+            "markdownDescription": "The default language mode that is assigned to new files. If configured to `${activeEditorLanguage}`, will use the language mode of the currently active text editor if any.",
+            "default": "",
+            "scope": 3,
+            "restricted": false
+        },
+        "files.maxMemoryForLargeFilesMB": {
+            "type": "number",
+            "default": 4096,
+            "markdownDescription": "Controls the memory available to VS Code after restart when trying to open large files. Same effect as specifying `--max-memory=NEWSIZE` on the command line.",
+            "included": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "files.restoreUndoStack": {
+            "type": "boolean",
+            "description": "Restore the undo stack when a file is reopened.",
+            "default": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "files.simpleDialog.enable": {
+            "type": "boolean",
+            "description": "Enables the simple file dialog. The simple file dialog replaces the system file dialog when enabled.",
+            "default": false,
+            "scope": 3,
+            "restricted": false
+        },
+        "explorer.openEditors.visible": {
+            "type": "number",
+            "description": "Number of editors shown in the Open Editors pane. Setting this to 0 hides the Open Editors pane.",
+            "default": 9,
+            "scope": 3,
+            "restricted": false
+        },
+        "explorer.openEditors.sortOrder": {
+            "type": "string",
+            "enum": [
+                "editorOrder",
+                "alphabetical"
+            ],
+            "description": "Controls the sorting order of editors in the Open Editors pane.",
+            "enumDescriptions": [
+                "Editors are ordered in the same order editor tabs are shown.",
+                "Editors are ordered in alphabetical order inside each editor group."
+            ],
+            "default": "editorOrder",
+            "scope": 3,
+            "restricted": false
+        },
+        "explorer.autoReveal": {
+            "type": [
+                "boolean",
+                "string"
+            ],
+            "enum": [
+                true,
+                false,
+                "focusNoScroll"
+            ],
+            "default": true,
+            "enumDescriptions": [
+                "Files will be revealed and selected.",
+                "Files will not be revealed and selected.",
+                "Files will not be scrolled into view, but will still be focused."
+            ],
+            "description": "Controls whether the explorer should automatically reveal and select files when opening them.",
+            "scope": 3,
+            "restricted": false
+        },
+        "explorer.enableDragAndDrop": {
+            "type": "boolean",
+            "description": "Controls whether the explorer should allow to move files and folders via drag and drop. This setting only effects drag and drop from inside the explorer.",
+            "default": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "explorer.confirmDragAndDrop": {
+            "type": "boolean",
+            "description": "Controls whether the explorer should ask for confirmation to move files and folders via drag and drop.",
+            "default": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "explorer.confirmDelete": {
+            "type": "boolean",
+            "description": "Controls whether the explorer should ask for confirmation when deleting a file via the trash.",
+            "default": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "explorer.sortOrder": {
+            "type": "string",
+            "enum": [
+                "default",
+                "mixed",
+                "filesFirst",
+                "type",
+                "modified"
+            ],
+            "default": "default",
+            "enumDescriptions": [
+                "Files and folders are sorted by their names. Folders are displayed before files.",
+                "Files and folders are sorted by their names. Files are interwoven with folders.",
+                "Files and folders are sorted by their names. Files are displayed before folders.",
+                "Files and folders are grouped by extension type then sorted by their names. Folders are displayed before files.",
+                "Files and folders are sorted by last modified date in descending order. Folders are displayed before files."
+            ],
+            "description": "Controls the property-based sorting of files and folders in the explorer.",
+            "scope": 3,
+            "restricted": false
+        },
+        "explorer.sortOrderLexicographicOptions": {
+            "type": "string",
+            "enum": [
+                "default",
+                "upper",
+                "lower",
+                "unicode"
+            ],
+            "default": "default",
+            "enumDescriptions": [
+                "Uppercase and lowercase names are mixed together.",
+                "Uppercase names are grouped together before lowercase names.",
+                "Lowercase names are grouped together before uppercase names.",
+                "Names are sorted in unicode order."
+            ],
+            "description": "Controls the lexicographic sorting of file and folder names in the explorer.",
+            "scope": 3,
+            "restricted": false
+        },
+        "explorer.decorations.colors": {
+            "type": "boolean",
+            "description": "Controls whether file decorations should use colors.",
+            "default": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "explorer.decorations.badges": {
+            "type": "boolean",
+            "description": "Controls whether file decorations should use badges.",
+            "default": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "explorer.incrementalNaming": {
+            "enum": [
+                "simple",
+                "smart"
+            ],
+            "enumDescriptions": [
+                "Appends the word \"copy\" at the end of the duplicated name potentially followed by a number",
+                "Adds a number at the end of the duplicated name. If some number is already part of the name, tries to increase that number"
+            ],
+            "description": "Controls what naming strategy to use when a giving a new name to a duplicated explorer item on paste.",
+            "default": "simple",
+            "scope": 3,
+            "restricted": false
+        },
+        "explorer.compactFolders": {
+            "type": "boolean",
+            "description": "Controls whether the explorer should render folders in a compact form. In such a form, single child folders will be compressed in a combined tree element. Useful for Java package structures, for example.",
+            "default": true,
+            "scope": 3,
+            "restricted": false
+        },
         "problems.autoReveal": {
             "description": "Controls whether Problems view should automatically reveal files when opening them.",
             "type": "boolean",
@@ -3160,7 +3575,7 @@
             "restricted": false
         },
         "notebook.cellFocusIndicator": {
-            "description": "Control whether to render the focus indicator as cell borders or a highlight bar on the left gutter",
+            "description": "Control whether to render the focus indicator as a cell border or a highlight bar on the left gutter",
             "type": "string",
             "enum": [
                 "border",
@@ -3174,13 +3589,19 @@
             "restricted": false
         },
         "notebook.insertToolbarLocation": {
-            "description": "Control where the insert cell actions should be rendered.",
+            "description": "Control where the insert cell actions should appear.",
             "type": "string",
             "enum": [
                 "betweenCells",
                 "notebookToolbar",
                 "both",
                 "hidden"
+            ],
+            "enumDescriptions": [
+                "A toolbar that appears on hover between cells.",
+                "The toolbar at the top of the notebook editor.",
+                "Both toolbars.",
+                "The insert actions don't appear anywhere."
             ],
             "default": "both",
             "tags": [
@@ -3210,11 +3631,15 @@
             "restricted": false
         },
         "notebook.showFoldingControls": {
-            "description": "Controls when the folding controls are shown.",
+            "description": "Controls when the markdown header folding arrow is shown.",
             "type": "string",
             "enum": [
                 "always",
                 "mouseover"
+            ],
+            "enumDescriptions": [
+                "The folding controls are always visible.",
+                "The folding controls are visible only on mouseover."
             ],
             "default": "mouseover",
             "tags": [
@@ -3430,7 +3855,7 @@
                             "default": 0,
                             "minimum": 0,
                             "maximum": 100,
-                            "description": "Controls the font size in pixels for CodeLens. When set to `0`, the 90% of `#editor.fontSize#` is used.",
+                            "markdownDescription": "Controls the font size in pixels for CodeLens. When set to `0`, the 90% of `#editor.fontSize#` is used.",
                             "scope": 5,
                             "restricted": false
                         },
@@ -3972,6 +4397,21 @@
                             "scope": 5,
                             "restricted": false
                         },
+                        "editor.inlineSuggest.mode": {
+                            "type": "string",
+                            "enum": [
+                                "prefix",
+                                "subwordDiff"
+                            ],
+                            "enumDescriptions": [
+                                "Only render an inline suggestion if the replace text is a prefix of the insert text.",
+                                "Only render an inline suggestion if the replace text is a subword of the insert text."
+                            ],
+                            "default": "subwordDiff",
+                            "description": "Controls which mode to use for rendering inline suggestions.",
+                            "scope": 5,
+                            "restricted": false
+                        },
                         "editor.letterSpacing": {
                             "description": "Controls the letter spacing in pixels.",
                             "type": "number",
@@ -3987,11 +4427,9 @@
                             "restricted": false
                         },
                         "editor.lineHeight": {
-                            "description": "Controls the line height. Use 0 to compute the line height from the font size.",
-                            "type": "integer",
+                            "markdownDescription": "Controls the line height. \n - Use 0 to automatically compute the line height from the font size.\n - Values between 0 and 8 will be used as a multiplier with the font size.\n - Values greater than or equal to 8 will be used as effective values.",
+                            "type": "number",
                             "default": 0,
-                            "minimum": 0,
-                            "maximum": 150,
                             "scope": 5,
                             "restricted": false
                         },
@@ -4392,6 +4830,61 @@
                             "scope": 5,
                             "restricted": false
                         },
+                        "editor.scrollbar.vertical": {
+                            "type": "string",
+                            "enum": [
+                                "auto",
+                                "visible",
+                                "hidden"
+                            ],
+                            "enumDescriptions": [
+                                "The vertical scrollbar will be visible only when necessary.",
+                                "The vertical scrollbar will always be visible.",
+                                "The vertical scrollbar will always be hidden."
+                            ],
+                            "default": "auto",
+                            "description": "Controls the visibility of the vertical scrollbar.",
+                            "scope": 5,
+                            "restricted": false
+                        },
+                        "editor.scrollbar.horizontal": {
+                            "type": "string",
+                            "enum": [
+                                "auto",
+                                "visible",
+                                "hidden"
+                            ],
+                            "enumDescriptions": [
+                                "The horizontal scrollbar will be visible only when necessary.",
+                                "The horizontal scrollbar will always be visible.",
+                                "The horizontal scrollbar will always be hidden."
+                            ],
+                            "default": "auto",
+                            "description": "Controls the visibility of the horizontal scrollbar.",
+                            "scope": 5,
+                            "restricted": false
+                        },
+                        "editor.scrollbar.verticalScrollbarSize": {
+                            "type": "number",
+                            "default": 14,
+                            "description": "The width of the vertical scrollbar.",
+                            "scope": 5,
+                            "restricted": false
+                        },
+                        "editor.scrollbar.horizontalScrollbarSize": {
+                            "type": "number",
+                            "default": 12,
+                            "description": "The height of the horizontal scrollbar.",
+                            "scope": 5,
+                            "restricted": false
+                        },
+                        "editor.scrollbar.scrollByPage": {
+                            "type": "boolean",
+                            "default": false,
+                            "description": "Controls whether clicks scroll by page or jump to click position.",
+                            "scope": 5,
+                            "restricted": false
+                        },
                         "editor.scrollBeyondLastColumn": {
                             "description": "Controls the number of extra characters beyond which the editor will scroll horizontally.",
                             "type": "integer",
@@ -4553,6 +5046,21 @@
                             "type": "boolean",
                             "default": false,
                             "description": "Controls whether to preview the suggestion outcome in the editor.",
+                            "scope": 5,
+                            "restricted": false
+                        },
+                        "editor.suggest.previewMode": {
+                            "type": "string",
+                            "enum": [
+                                "prefix",
+                                "subwordDiff"
+                            ],
+                            "enumDescriptions": [
+                                "Only render a preview if the replace text is a prefix of the insert text.",
+                                "Only render a preview if the replace text is a subword of the insert text."
+                            ],
+                            "default": "prefix",
+                            "description": "Controls which mode to use for rendering the suggest preview.",
                             "scope": 5,
                             "restricted": false
                         },
@@ -4949,7 +5457,7 @@
                         "editor.inlayHints.fontSize": {
                             "type": "number",
                             "default": 0,
-                            "description": "Controls font size of inlay hints in the editor. When set to `0`, the 90% of `#editor.fontSize#` is used.",
+                            "markdownDescription": "Controls font size of inlay hints in the editor. When set to `0`, the 90% of `#editor.fontSize#` is used.",
                             "scope": 5,
                             "restricted": false
                         },
@@ -4963,473 +5471,6 @@
                     }
                 }
             ],
-            "scope": 3,
-            "restricted": false
-        },
-        "output.smartScroll.enabled": {
-            "type": "boolean",
-            "description": "Enable/disable the ability of smart scrolling in the output view. Smart scrolling allows you to lock scrolling automatically when you click in the output view and unlocks when you click in the last line.",
-            "default": true,
-            "scope": 3,
-            "tags": [
-                "output"
-            ],
-            "restricted": false
-        },
-        "testing.autoRun.mode": {
-            "description": "Controls which tests are automatically run.",
-            "enum": [
-                "all",
-                "rerun"
-            ],
-            "default": "all",
-            "enumDescriptions": [
-                "Automatically runs all discovered test when auto-run is toggled. Reruns individual tests when they are changed.",
-                "Reruns individual tests when they are changed. Will not automatically run any tests that have not been already executed."
-            ],
-            "scope": 3,
-            "restricted": false
-        },
-        "testing.autoRun.delay": {
-            "type": "integer",
-            "minimum": 0,
-            "description": "How long to wait, in milliseconds, after a test is marked as outdated and starting a new run.",
-            "default": 1000,
-            "scope": 3,
-            "restricted": false
-        },
-        "testing.automaticallyOpenPeekView": {
-            "description": "Configures when the error peek view is automatically opened.",
-            "enum": [
-                "failureAnywhere",
-                "failureInVisibleDocument"
-            ],
-            "default": "failureInVisibleDocument",
-            "enumDescriptions": [
-                "Open automatically no matter where the failure is.",
-                "Open automatically when a test fails in a visible document."
-            ],
-            "scope": 3,
-            "restricted": false
-        },
-        "testing.automaticallyOpenPeekViewDuringAutoRun": {
-            "description": "Controls whether to automatically open the peek view during auto-run mode.",
-            "type": "boolean",
-            "default": false,
-            "scope": 3,
-            "restricted": false
-        },
-        "testing.followRunningTest": {
-            "description": "Controls whether the running test should be followed in the test explorer view",
-            "type": "boolean",
-            "default": true,
-            "scope": 3,
-            "restricted": false
-        },
-        "debug.allowBreakpointsEverywhere": {
-            "type": "boolean",
-            "description": "Allow setting breakpoints in any file.",
-            "default": false,
-            "scope": 3,
-            "restricted": false
-        },
-        "debug.openExplorerOnEnd": {
-            "type": "boolean",
-            "description": "Automatically open the explorer view at the end of a debug session.",
-            "default": false,
-            "scope": 3,
-            "restricted": false
-        },
-        "debug.inlineValues": {
-            "type": [
-                "boolean",
-                "string"
-            ],
-            "enum": [
-                true,
-                false,
-                "auto"
-            ],
-            "description": "Show variable values inline in editor while debugging.",
-            "enumDescriptions": [
-                "Always show variable values inline in editor while debugging.",
-                "Never show variable values inline in editor while debugging.",
-                "Show variable values inline in editor while debugging when the language supports inline value locations."
-            ],
-            "default": "auto",
-            "scope": 3,
-            "restricted": false
-        },
-        "debug.toolBarLocation": {
-            "enum": [
-                "floating",
-                "docked",
-                "hidden"
-            ],
-            "markdownDescription": "Controls the location of the debug toolbar. Either `floating` in all views, `docked` in the debug view, or `hidden`.",
-            "default": "floating",
-            "scope": 3,
-            "restricted": false
-        },
-        "debug.showInStatusBar": {
-            "enum": [
-                "never",
-                "always",
-                "onFirstSessionStart"
-            ],
-            "enumDescriptions": [
-                "Never show debug in status bar",
-                "Always show debug in status bar",
-                "Show debug in status bar only after debug was started for the first time"
-            ],
-            "description": "Controls when the debug status bar should be visible.",
-            "default": "onFirstSessionStart",
-            "scope": 3,
-            "restricted": false
-        },
-        "debug.internalConsoleOptions": {
-            "enum": [
-                "neverOpen",
-                "openOnSessionStart",
-                "openOnFirstSessionStart"
-            ],
-            "default": "openOnFirstSessionStart",
-            "description": "Controls when the internal debug console should open.",
-            "scope": 3,
-            "restricted": false
-        },
-        "debug.console.closeOnEnd": {
-            "type": "boolean",
-            "description": "Controls if the debug console should be automatically closed when the debug session ends.",
-            "default": false,
-            "scope": 3,
-            "restricted": false
-        },
-        "debug.terminal.clearBeforeReusing": {
-            "type": "boolean",
-            "description": "Before starting a new debug session in an integrated or external terminal, clear the terminal.",
-            "default": false,
-            "scope": 3,
-            "restricted": false
-        },
-        "debug.openDebug": {
-            "enum": [
-                "neverOpen",
-                "openOnSessionStart",
-                "openOnFirstSessionStart",
-                "openOnDebugBreak"
-            ],
-            "default": "openOnDebugBreak",
-            "description": "Controls when the debug view should open.",
-            "scope": 3,
-            "restricted": false
-        },
-        "debug.showSubSessionsInToolBar": {
-            "type": "boolean",
-            "description": "Controls whether the debug sub-sessions are shown in the debug tool bar. When this setting is false the stop command on a sub-session will also stop the parent session.",
-            "default": false,
-            "scope": 3,
-            "restricted": false
-        },
-        "debug.console.fontSize": {
-            "type": "number",
-            "description": "Controls the font size in pixels in the debug console.",
-            "default": 14,
-            "scope": 3,
-            "restricted": false
-        },
-        "debug.console.fontFamily": {
-            "type": "string",
-            "description": "Controls the font family in the debug console.",
-            "default": "default",
-            "scope": 3,
-            "restricted": false
-        },
-        "debug.console.lineHeight": {
-            "type": "number",
-            "description": "Controls the line height in pixels in the debug console. Use 0 to compute the line height from the font size.",
-            "default": 0,
-            "scope": 3,
-            "restricted": false
-        },
-        "debug.console.wordWrap": {
-            "type": "boolean",
-            "description": "Controls if the lines should wrap in the debug console.",
-            "default": true,
-            "scope": 3,
-            "restricted": false
-        },
-        "debug.console.historySuggestions": {
-            "type": "boolean",
-            "description": "Controls if the debug console should suggest previously typed input.",
-            "default": true,
-            "scope": 3,
-            "restricted": false
-        },
-        "debug.console.collapseIdenticalLines": {
-            "type": "boolean",
-            "description": "Controls if the debug console should collapse identical lines and show a number of occurrences with a badge.",
-            "default": true,
-            "scope": 3,
-            "restricted": false
-        },
-        "launch": {
-            "type": "object",
-            "description": "Global debug launch configuration. Should be used as an alternative to 'launch.json' that is shared across workspaces.",
-            "default": {
-                "configurations": [],
-                "compounds": []
-            },
-            "$ref": "vscode://schemas/launch",
-            "scope": 3,
-            "restricted": false
-        },
-        "debug.focusWindowOnBreak": {
-            "type": "boolean",
-            "description": "Controls whether the workbench window should be focused when the debugger breaks.",
-            "default": true,
-            "scope": 3,
-            "restricted": false
-        },
-        "debug.onTaskErrors": {
-            "enum": [
-                "debugAnyway",
-                "showErrors",
-                "prompt",
-                "abort"
-            ],
-            "enumDescriptions": [
-                "Ignore task errors and start debugging.",
-                "Show the Problems view and do not start debugging.",
-                "Prompt user.",
-                "Cancel debugging."
-            ],
-            "description": "Controls what to do when errors are encountered after running a preLaunchTask.",
-            "default": "prompt",
-            "scope": 3,
-            "restricted": false
-        },
-        "debug.showBreakpointsInOverviewRuler": {
-            "type": "boolean",
-            "description": "Controls whether breakpoints should be shown in the overview ruler.",
-            "default": false,
-            "scope": 3,
-            "restricted": false
-        },
-        "debug.showInlineBreakpointCandidates": {
-            "type": "boolean",
-            "description": "Controls whether inline breakpoints candidate decorations should be shown in the editor while debugging.",
-            "default": true,
-            "scope": 3,
-            "restricted": false
-        },
-        "files.associations": {
-            "type": "object",
-            "markdownDescription": "Configure file associations to languages (e.g. `\"*.extension\": \"html\"`). These have precedence over the default associations of the languages installed.",
-            "additionalProperties": {
-                "type": "string"
-            },
-            "default": {},
-            "scope": 3,
-            "restricted": false
-        },
-        "files.enableTrash": {
-            "type": "boolean",
-            "default": true,
-            "description": "Moves files/folders to the OS trash (recycle bin on Windows) when deleting. Disabling this will delete files/folders permanently.",
-            "scope": 3,
-            "restricted": false
-        },
-        "files.autoSave": {
-            "type": "string",
-            "enum": [
-                "off",
-                "afterDelay",
-                "onFocusChange",
-                "onWindowChange"
-            ],
-            "markdownEnumDescriptions": [
-                "A dirty editor is never automatically saved.",
-                "A dirty editor is automatically saved after the configured `#files.autoSaveDelay#`.",
-                "A dirty editor is automatically saved when the editor loses focus.",
-                "A dirty editor is automatically saved when the window loses focus."
-            ],
-            "default": "off",
-            "markdownDescription": "Controls auto save of dirty editors. Read more about autosave [here](https://code.visualstudio.com/docs/editor/codebasics#_save-auto-save).",
-            "scope": 3,
-            "restricted": false
-        },
-        "files.autoSaveDelay": {
-            "type": "number",
-            "default": 1000,
-            "markdownDescription": "Controls the delay in ms after which a dirty editor is saved automatically. Only applies when `#files.autoSave#` is set to `afterDelay`.",
-            "scope": 3,
-            "restricted": false
-        },
-        "files.defaultLanguage": {
-            "type": "string",
-            "markdownDescription": "The default language mode that is assigned to new files. If configured to `${activeEditorLanguage}`, will use the language mode of the currently active text editor if any.",
-            "default": "",
-            "scope": 3,
-            "restricted": false
-        },
-        "files.maxMemoryForLargeFilesMB": {
-            "type": "number",
-            "default": 4096,
-            "markdownDescription": "Controls the memory available to VS Code after restart when trying to open large files. Same effect as specifying `--max-memory=NEWSIZE` on the command line.",
-            "included": true,
-            "scope": 3,
-            "restricted": false
-        },
-        "files.restoreUndoStack": {
-            "type": "boolean",
-            "description": "Restore the undo stack when a file is reopened.",
-            "default": true,
-            "scope": 3,
-            "restricted": false
-        },
-        "files.simpleDialog.enable": {
-            "type": "boolean",
-            "description": "Enables the simple file dialog. The simple file dialog replaces the system file dialog when enabled.",
-            "default": false,
-            "scope": 3,
-            "restricted": false
-        },
-        "explorer.openEditors.visible": {
-            "type": "number",
-            "description": "Number of editors shown in the Open Editors pane. Setting this to 0 hides the Open Editors pane.",
-            "default": 9,
-            "scope": 3,
-            "restricted": false
-        },
-        "explorer.openEditors.sortOrder": {
-            "type": "string",
-            "enum": [
-                "editorOrder",
-                "alphabetical"
-            ],
-            "description": "Controls the sorting order of editors in the Open Editors pane.",
-            "enumDescriptions": [
-                "Editors are ordered in the same order editor tabs are shown.",
-                "Editors are ordered in alphabetical order inside each editor group."
-            ],
-            "default": "editorOrder",
-            "scope": 3,
-            "restricted": false
-        },
-        "explorer.autoReveal": {
-            "type": [
-                "boolean",
-                "string"
-            ],
-            "enum": [
-                true,
-                false,
-                "focusNoScroll"
-            ],
-            "default": true,
-            "enumDescriptions": [
-                "Files will be revealed and selected.",
-                "Files will not be revealed and selected.",
-                "Files will not be scrolled into view, but will still be focused."
-            ],
-            "description": "Controls whether the explorer should automatically reveal and select files when opening them.",
-            "scope": 3,
-            "restricted": false
-        },
-        "explorer.enableDragAndDrop": {
-            "type": "boolean",
-            "description": "Controls whether the explorer should allow to move files and folders via drag and drop. This setting only effects drag and drop from inside the explorer.",
-            "default": true,
-            "scope": 3,
-            "restricted": false
-        },
-        "explorer.confirmDragAndDrop": {
-            "type": "boolean",
-            "description": "Controls whether the explorer should ask for confirmation to move files and folders via drag and drop.",
-            "default": true,
-            "scope": 3,
-            "restricted": false
-        },
-        "explorer.confirmDelete": {
-            "type": "boolean",
-            "description": "Controls whether the explorer should ask for confirmation when deleting a file via the trash.",
-            "default": true,
-            "scope": 3,
-            "restricted": false
-        },
-        "explorer.sortOrder": {
-            "type": "string",
-            "enum": [
-                "default",
-                "mixed",
-                "filesFirst",
-                "type",
-                "modified"
-            ],
-            "default": "default",
-            "enumDescriptions": [
-                "Files and folders are sorted by their names. Folders are displayed before files.",
-                "Files and folders are sorted by their names. Files are interwoven with folders.",
-                "Files and folders are sorted by their names. Files are displayed before folders.",
-                "Files and folders are grouped by extension type then sorted by their names. Folders are displayed before files.",
-                "Files and folders are sorted by last modified date in descending order. Folders are displayed before files."
-            ],
-            "description": "Controls the property-based sorting of files and folders in the explorer.",
-            "scope": 3,
-            "restricted": false
-        },
-        "explorer.sortOrderLexicographicOptions": {
-            "type": "string",
-            "enum": [
-                "default",
-                "upper",
-                "lower",
-                "unicode"
-            ],
-            "default": "default",
-            "enumDescriptions": [
-                "Uppercase and lowercase names are mixed together.",
-                "Uppercase names are grouped together before lowercase names.",
-                "Lowercase names are grouped together before uppercase names.",
-                "Names are sorted in unicode order."
-            ],
-            "description": "Controls the lexicographic sorting of file and folder names in the explorer.",
-            "scope": 3,
-            "restricted": false
-        },
-        "explorer.decorations.colors": {
-            "type": "boolean",
-            "description": "Controls whether file decorations should use colors.",
-            "default": true,
-            "scope": 3,
-            "restricted": false
-        },
-        "explorer.decorations.badges": {
-            "type": "boolean",
-            "description": "Controls whether file decorations should use badges.",
-            "default": true,
-            "scope": 3,
-            "restricted": false
-        },
-        "explorer.incrementalNaming": {
-            "enum": [
-                "simple",
-                "smart"
-            ],
-            "enumDescriptions": [
-                "Appends the word \"copy\" at the end of the duplicated name potentially followed by a number",
-                "Adds a number at the end of the duplicated name. If some number is already part of the name, tries to increase that number"
-            ],
-            "description": "Controls what naming strategy to use when a giving a new name to a duplicated explorer item on paste.",
-            "default": "simple",
-            "scope": 3,
-            "restricted": false
-        },
-        "explorer.compactFolders": {
-            "type": "boolean",
-            "description": "Controls whether the explorer should render folders in a compact form. In such a form, single child folders will be compressed in a combined tree element. Useful for Java package structures, for example.",
-            "default": true,
             "scope": 3,
             "restricted": false
         },
@@ -5459,6 +5500,16 @@
             "type": "boolean",
             "default": true,
             "scope": 3,
+            "restricted": false
+        },
+        "output.smartScroll.enabled": {
+            "type": "boolean",
+            "description": "Enable/disable the ability of smart scrolling in the output view. Smart scrolling allows you to lock scrolling automatically when you click in the output view and unlocks when you click in the last line.",
+            "default": true,
+            "scope": 3,
+            "tags": [
+                "output"
+            ],
             "restricted": false
         },
         "search.mode": {
@@ -5545,6 +5596,16 @@
             "default": "sidebar",
             "description": "Controls whether the search will be shown as a view in the sidebar or as a panel in the panel area for more horizontal space.",
             "deprecationMessage": "This setting is deprecated. You can drag the search icon to a new location instead.",
+            "scope": 3,
+            "restricted": false
+        },
+        "search.maxResults": {
+            "type": [
+                "number",
+                "null"
+            ],
+            "default": 20000,
+            "markdownDescription": "Controls the maximum number of search results, this can be set to `null` (empty) to return unlimited results.",
             "scope": 3,
             "restricted": false
         },
@@ -5684,6 +5745,72 @@
                 "Results are sorted by count per file, in ascending order."
             ],
             "description": "Controls sorting order of search results.",
+            "scope": 3,
+            "restricted": false
+        },
+        "testing.autoRun.mode": {
+            "description": "Controls which tests are automatically run.",
+            "enum": [
+                "all",
+                "rerun"
+            ],
+            "default": "all",
+            "enumDescriptions": [
+                "Automatically runs all discovered test when auto-run is toggled. Reruns individual tests when they are changed.",
+                "Reruns individual tests when they are changed. Will not automatically run any tests that have not been already executed."
+            ],
+            "scope": 3,
+            "restricted": false
+        },
+        "testing.autoRun.delay": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "How long to wait, in milliseconds, after a test is marked as outdated and starting a new run.",
+            "default": 1000,
+            "scope": 3,
+            "restricted": false
+        },
+        "testing.automaticallyOpenPeekView": {
+            "description": "Configures when the error peek view is automatically opened.",
+            "enum": [
+                "failureAnywhere",
+                "failureInVisibleDocument"
+            ],
+            "default": "failureInVisibleDocument",
+            "enumDescriptions": [
+                "Open automatically no matter where the failure is.",
+                "Open automatically when a test fails in a visible document."
+            ],
+            "scope": 3,
+            "restricted": false
+        },
+        "testing.automaticallyOpenPeekViewDuringAutoRun": {
+            "description": "Controls whether to automatically open the peek view during auto-run mode.",
+            "type": "boolean",
+            "default": false,
+            "scope": 3,
+            "restricted": false
+        },
+        "testing.followRunningTest": {
+            "description": "Controls whether the running test should be followed in the test explorer view",
+            "type": "boolean",
+            "default": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "testing.defaultGutterClickAction": {
+            "description": "Controls the action to take when left-clicking on a test decoration in the gutter.",
+            "enum": [
+                "run",
+                "debug",
+                "contextMenu"
+            ],
+            "enumDescriptions": [
+                "Run the test.",
+                "Debug the test.",
+                "Open the context menu for more options."
+            ],
+            "default": "run",
             "scope": 3,
             "restricted": false
         },
@@ -10070,6 +10197,25 @@
             "scope": 3,
             "restricted": false
         },
+        "terminal.integrated.tabs.showActions": {
+            "description": "Controls whether terminal split and kill buttons are displays next to the new terminal button.",
+            "type": "string",
+            "enum": [
+                "always",
+                "singleTerminal",
+                "singleTerminalOrNarrow",
+                "never"
+            ],
+            "enumDescriptions": [
+                "Always show the actions",
+                "Show the actions when it is the only terminal opened",
+                "Show the actions when it is the only terminal opened or when the tabs view is in its narrow textless state",
+                "Never show the actions"
+            ],
+            "default": "singleTerminalOrNarrow",
+            "scope": 3,
+            "restricted": false
+        },
         "terminal.integrated.tabs.location": {
             "type": "string",
             "enum": [
@@ -10082,6 +10228,21 @@
             ],
             "default": "right",
             "description": "Controls the location of the terminal tabs, either to the left or right of the actual terminal(s).",
+            "scope": 3,
+            "restricted": false
+        },
+        "terminal.integrated.defaultLocation": {
+            "type": "string",
+            "enum": [
+                "editor",
+                "view"
+            ],
+            "enumDescriptions": [
+                "Create terminals in the editor",
+                "Create terminals in the terminal view"
+            ],
+            "default": "view",
+            "description": "Controls where newly created terminals will appear.",
             "scope": 3,
             "restricted": false
         },
@@ -10311,12 +10472,14 @@
             "enum": [
                 "auto",
                 "on",
-                "off"
+                "off",
+                "canvas"
             ],
             "markdownEnumDescriptions": [
                 "Let VS Code detect which renderer will give the best experience.",
                 "Enable GPU acceleration within the terminal.",
-                "Disable GPU acceleration within the terminal."
+                "Disable GPU acceleration within the terminal.",
+                "Use the fallback canvas renderer within the terminal. This uses a 2d context instead of webgl and may be better on some systems."
             ],
             "default": "auto",
             "description": "Controls whether the terminal will leverage the GPU to do its rendering.",
@@ -10364,7 +10527,7 @@
             "restricted": false
         },
         "terminal.integrated.commandsToSkipShell": {
-            "markdownDescription": "A set of command IDs whose keybindings will not be sent to the shell but instead always be handled by VS Code. This allows keybindings that would normally be consumed by the shell to act instead the same as when the terminal is not focused, for example `Ctrl+P` to launch Quick Open.\n\n&nbsp;\n\nMany commands are skipped by default. To override a default and pass that command's keybinding to the shell instead, add the command prefixed with the `-` character. For example add `-workbench.action.quickOpen` to allow `Ctrl+P` to reach the shell.\n\n&nbsp;\n\nThe following list of default skipped commands is truncated when viewed in Settings Editor. To see the full list, [open the default settings JSON](command:workbench.action.openRawDefaultSettings 'Open Default Settings (JSON)') and search for the first command from the list below.\n\n&nbsp;\n\nDefault Skipped Commands:\n\n- editor.action.toggleTabFocusMode\n- workbench.action.debug.continue\n- workbench.action.debug.pause\n- workbench.action.debug.restart\n- workbench.action.debug.run\n- workbench.action.debug.start\n- workbench.action.debug.stepInto\n- workbench.action.debug.stepOut\n- workbench.action.debug.stepOver\n- workbench.action.debug.stop\n- workbench.action.firstEditorInGroup\n- workbench.action.focusActiveEditorGroup\n- workbench.action.focusEighthEditorGroup\n- workbench.action.focusFifthEditorGroup\n- workbench.action.focusFirstEditorGroup\n- workbench.action.focusFourthEditorGroup\n- workbench.action.focusLastEditorGroup\n- workbench.action.focusNextPart\n- workbench.action.focusPreviousPart\n- workbench.action.focusSecondEditorGroup\n- workbench.action.focusSeventhEditorGroup\n- workbench.action.focusSixthEditorGroup\n- workbench.action.focusThirdEditorGroup\n- workbench.action.lastEditorInGroup\n- workbench.action.navigateDown\n- workbench.action.navigateLeft\n- workbench.action.navigateRight\n- workbench.action.navigateUp\n- workbench.action.nextEditor\n- workbench.action.nextEditorInGroup\n- workbench.action.nextPanelView\n- workbench.action.nextSideBarView\n- workbench.action.openNextRecentlyUsedEditor\n- workbench.action.openNextRecentlyUsedEditorInGroup\n- workbench.action.openPreviousRecentlyUsedEditor\n- workbench.action.openPreviousRecentlyUsedEditorInGroup\n- workbench.action.previousEditor\n- workbench.action.previousEditorInGroup\n- workbench.action.previousPanelView\n- workbench.action.previousSideBarView\n- workbench.action.quickOpen\n- workbench.action.quickOpenLeastRecentlyUsedEditor\n- workbench.action.quickOpenLeastRecentlyUsedEditorInGroup\n- workbench.action.quickOpenPreviousEditor\n- workbench.action.quickOpenPreviousRecentlyUsedEditor\n- workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup\n- workbench.action.quickOpenView\n- workbench.action.showCommands\n- workbench.action.tasks.build\n- workbench.action.tasks.reRunTask\n- workbench.action.tasks.restartTask\n- workbench.action.tasks.runTask\n- workbench.action.tasks.showLog\n- workbench.action.tasks.showTasks\n- workbench.action.tasks.terminate\n- workbench.action.tasks.test\n- workbench.action.terminal.clear\n- workbench.action.terminal.clearSelection\n- workbench.action.terminal.copySelection\n- workbench.action.terminal.deleteToLineStart\n- workbench.action.terminal.deleteWordLeft\n- workbench.action.terminal.deleteWordRight\n- workbench.action.terminal.findNext\n- workbench.action.terminal.findPrevious\n- workbench.action.terminal.focus\n- workbench.action.terminal.focusAtIndex1\n- workbench.action.terminal.focusAtIndex2\n- workbench.action.terminal.focusAtIndex3\n- workbench.action.terminal.focusAtIndex4\n- workbench.action.terminal.focusAtIndex5\n- workbench.action.terminal.focusAtIndex6\n- workbench.action.terminal.focusAtIndex7\n- workbench.action.terminal.focusAtIndex8\n- workbench.action.terminal.focusAtIndex9\n- workbench.action.terminal.focusFind\n- workbench.action.terminal.focusNext\n- workbench.action.terminal.focusNextPane\n- workbench.action.terminal.focusPrevious\n- workbench.action.terminal.focusPreviousPane\n- workbench.action.terminal.hideFind\n- workbench.action.terminal.kill\n- workbench.action.terminal.moveToLineEnd\n- workbench.action.terminal.moveToLineStart\n- workbench.action.terminal.navigationModeExit\n- workbench.action.terminal.navigationModeFocusNext\n- workbench.action.terminal.navigationModeFocusPrevious\n- workbench.action.terminal.new\n- workbench.action.terminal.newInActiveWorkspace\n- workbench.action.terminal.paste\n- workbench.action.terminal.pasteSelection\n- workbench.action.terminal.resizePaneDown\n- workbench.action.terminal.resizePaneLeft\n- workbench.action.terminal.resizePaneRight\n- workbench.action.terminal.resizePaneUp\n- workbench.action.terminal.runActiveFile\n- workbench.action.terminal.runSelectedText\n- workbench.action.terminal.scrollDown\n- workbench.action.terminal.scrollDownPage\n- workbench.action.terminal.scrollToBottom\n- workbench.action.terminal.scrollToNextCommand\n- workbench.action.terminal.scrollToPreviousCommand\n- workbench.action.terminal.scrollToTop\n- workbench.action.terminal.scrollUp\n- workbench.action.terminal.scrollUpPage\n- workbench.action.terminal.selectAll\n- workbench.action.terminal.selectToNextCommand\n- workbench.action.terminal.selectToNextLine\n- workbench.action.terminal.selectToPreviousCommand\n- workbench.action.terminal.selectToPreviousLine\n- workbench.action.terminal.sendSequence\n- workbench.action.terminal.split\n- workbench.action.terminal.splitInActiveWorkspace\n- workbench.action.terminal.toggleFindCaseSensitive\n- workbench.action.terminal.toggleFindRegex\n- workbench.action.terminal.toggleFindWholeWord\n- workbench.action.terminal.toggleTerminal\n- workbench.action.toggleFullScreen\n- workbench.action.toggleMaximizedPanel\n- workbench.action.togglePanel",
+            "markdownDescription": "A set of command IDs whose keybindings will not be sent to the shell but instead always be handled by VS Code. This allows keybindings that would normally be consumed by the shell to act instead the same as when the terminal is not focused, for example `Ctrl+P` to launch Quick Open.\n\n&nbsp;\n\nMany commands are skipped by default. To override a default and pass that command's keybinding to the shell instead, add the command prefixed with the `-` character. For example add `-workbench.action.quickOpen` to allow `Ctrl+P` to reach the shell.\n\n&nbsp;\n\nThe following list of default skipped commands is truncated when viewed in Settings Editor. To see the full list, [open the default settings JSON](command:workbench.action.openRawDefaultSettings 'Open Default Settings (JSON)') and search for the first command from the list below.\n\n&nbsp;\n\nDefault Skipped Commands:\n\n- editor.action.toggleTabFocusMode\n- workbench.action.debug.continue\n- workbench.action.debug.pause\n- workbench.action.debug.restart\n- workbench.action.debug.run\n- workbench.action.debug.start\n- workbench.action.debug.stepInto\n- workbench.action.debug.stepOut\n- workbench.action.debug.stepOver\n- workbench.action.debug.stop\n- workbench.action.firstEditorInGroup\n- workbench.action.focusActiveEditorGroup\n- workbench.action.focusEighthEditorGroup\n- workbench.action.focusFifthEditorGroup\n- workbench.action.focusFirstEditorGroup\n- workbench.action.focusFourthEditorGroup\n- workbench.action.focusLastEditorGroup\n- workbench.action.focusNextPart\n- workbench.action.focusPreviousPart\n- workbench.action.focusSecondEditorGroup\n- workbench.action.focusSeventhEditorGroup\n- workbench.action.focusSixthEditorGroup\n- workbench.action.focusThirdEditorGroup\n- workbench.action.lastEditorInGroup\n- workbench.action.navigateDown\n- workbench.action.navigateLeft\n- workbench.action.navigateRight\n- workbench.action.navigateUp\n- workbench.action.nextEditor\n- workbench.action.nextEditorInGroup\n- workbench.action.nextPanelView\n- workbench.action.nextSideBarView\n- workbench.action.openNextRecentlyUsedEditor\n- workbench.action.openNextRecentlyUsedEditorInGroup\n- workbench.action.openPreviousRecentlyUsedEditor\n- workbench.action.openPreviousRecentlyUsedEditorInGroup\n- workbench.action.previousEditor\n- workbench.action.previousEditorInGroup\n- workbench.action.previousPanelView\n- workbench.action.previousSideBarView\n- workbench.action.quickOpen\n- workbench.action.quickOpenLeastRecentlyUsedEditor\n- workbench.action.quickOpenLeastRecentlyUsedEditorInGroup\n- workbench.action.quickOpenPreviousEditor\n- workbench.action.quickOpenPreviousRecentlyUsedEditor\n- workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup\n- workbench.action.quickOpenView\n- workbench.action.showCommands\n- workbench.action.tasks.build\n- workbench.action.tasks.reRunTask\n- workbench.action.tasks.restartTask\n- workbench.action.tasks.runTask\n- workbench.action.tasks.showLog\n- workbench.action.tasks.showTasks\n- workbench.action.tasks.terminate\n- workbench.action.tasks.test\n- workbench.action.terminal.clear\n- workbench.action.terminal.clearSelection\n- workbench.action.terminal.copySelection\n- workbench.action.terminal.deleteToLineStart\n- workbench.action.terminal.deleteWordLeft\n- workbench.action.terminal.deleteWordRight\n- workbench.action.terminal.findNext\n- workbench.action.terminal.findPrevious\n- workbench.action.terminal.focus\n- workbench.action.terminal.focusAtIndex1\n- workbench.action.terminal.focusAtIndex2\n- workbench.action.terminal.focusAtIndex3\n- workbench.action.terminal.focusAtIndex4\n- workbench.action.terminal.focusAtIndex5\n- workbench.action.terminal.focusAtIndex6\n- workbench.action.terminal.focusAtIndex7\n- workbench.action.terminal.focusAtIndex8\n- workbench.action.terminal.focusAtIndex9\n- workbench.action.terminal.focusFind\n- workbench.action.terminal.focusNext\n- workbench.action.terminal.focusNextPane\n- workbench.action.terminal.focusPrevious\n- workbench.action.terminal.focusPreviousPane\n- workbench.action.terminal.hideFind\n- workbench.action.terminal.kill\n- workbench.action.terminal.killEditor\n- workbench.action.terminal.moveToEditor\n- workbench.action.terminal.moveToLineEnd\n- workbench.action.terminal.moveToLineStart\n- workbench.action.terminal.moveToTerminalPanel\n- workbench.action.terminal.navigationModeExit\n- workbench.action.terminal.navigationModeFocusNext\n- workbench.action.terminal.navigationModeFocusPrevious\n- workbench.action.terminal.new\n- workbench.action.terminal.newInActiveWorkspace\n- workbench.action.terminal.paste\n- workbench.action.terminal.pasteSelection\n- workbench.action.terminal.resizePaneDown\n- workbench.action.terminal.resizePaneLeft\n- workbench.action.terminal.resizePaneRight\n- workbench.action.terminal.resizePaneUp\n- workbench.action.terminal.runActiveFile\n- workbench.action.terminal.runSelectedText\n- workbench.action.terminal.scrollDown\n- workbench.action.terminal.scrollDownPage\n- workbench.action.terminal.scrollToBottom\n- workbench.action.terminal.scrollToNextCommand\n- workbench.action.terminal.scrollToPreviousCommand\n- workbench.action.terminal.scrollToTop\n- workbench.action.terminal.scrollUp\n- workbench.action.terminal.scrollUpPage\n- workbench.action.terminal.selectAll\n- workbench.action.terminal.selectToNextCommand\n- workbench.action.terminal.selectToNextLine\n- workbench.action.terminal.selectToPreviousCommand\n- workbench.action.terminal.selectToPreviousLine\n- workbench.action.terminal.sendSequence\n- workbench.action.terminal.split\n- workbench.action.terminal.splitInActiveWorkspace\n- workbench.action.terminal.toggleFindCaseSensitive\n- workbench.action.terminal.toggleFindRegex\n- workbench.action.terminal.toggleFindWholeWord\n- workbench.action.terminal.toggleTerminal\n- workbench.action.toggleFullScreen\n- workbench.action.toggleMaximizedPanel\n- workbench.action.togglePanel",
             "type": "array",
             "items": {
                 "type": "string"
@@ -10583,13 +10746,6 @@
         "terminal.integrated.enablePersistentSessions": {
             "description": "Persist terminal sessions for the workspace across window reloads.",
             "type": "boolean",
-            "default": true,
-            "scope": 3,
-            "restricted": false
-        },
-        "workbench.experimental.useCustomHover": {
-            "type": "boolean",
-            "description": "Enable/disable custom hovers on Activity Bar & Panel. Note this configuration is experimental and subjected to be removed at any time.",
             "default": true,
             "scope": 3,
             "restricted": false
@@ -11134,7 +11290,7 @@
         },
         "github-enterprise.uri": {
             "type": "string",
-            "description": "URI of your GitHub Enterprise Instanace",
+            "description": "URI of your GitHub Enterprise Instance",
             "scope": 3,
             "default": "",
             "restricted": false
@@ -11210,6 +11366,13 @@
             ],
             "default": "off",
             "description": "Enable debug logging for the Markdown extension.",
+            "scope": 3,
+            "restricted": false
+        },
+        "markdown.math.enabled": {
+            "type": "boolean",
+            "default": true,
+            "description": "Enable/disable rendering math in the built-in markdown preview.",
             "scope": 3,
             "restricted": false
         },
@@ -11355,6 +11518,11 @@
                     "type": "boolean",
                     "description": "Use JavaScript source maps (if they exist).",
                     "default": true
+                },
+                "sourceMapRenames": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Whether to use the \"names\" mapping in sourcemaps. This requires requesting source content, which can be slow with certain debuggers."
                 },
                 "sourceMapPathOverrides": {
                     "type": "object",
@@ -11649,6 +11817,11 @@
                             "description": "Use JavaScript source maps (if they exist).",
                             "default": true
                         },
+                        "sourceMapRenames": {
+                            "type": "boolean",
+                            "default": true,
+                            "description": "Whether to use the \"names\" mapping in sourcemaps. This requires requesting source content, which can be slow with certain debuggers."
+                        },
                         "sourceMapPathOverrides": {
                             "type": "object",
                             "description": "A set of mappings for rewriting the locations of source files from what the sourcemap says, to their locations on disk.",
@@ -11896,6 +12069,11 @@
                                             "type": "boolean",
                                             "description": "Use JavaScript source maps (if they exist).",
                                             "default": true
+                                        },
+                                        "sourceMapRenames": {
+                                            "type": "boolean",
+                                            "default": true,
+                                            "description": "Whether to use the \"names\" mapping in sourcemaps. This requires requesting source content, which can be slow with certain debuggers."
                                         },
                                         "sourceMapPathOverrides": {
                                             "type": "object",
@@ -12261,6 +12439,11 @@
                                             "type": "boolean",
                                             "description": "Use JavaScript source maps (if they exist).",
                                             "default": true
+                                        },
+                                        "sourceMapRenames": {
+                                            "type": "boolean",
+                                            "default": true,
+                                            "description": "Whether to use the \"names\" mapping in sourcemaps. This requires requesting source content, which can be slow with certain debuggers."
                                         },
                                         "sourceMapPathOverrides": {
                                             "type": "object",
@@ -12636,6 +12819,11 @@
                     "type": "boolean",
                     "description": "Use JavaScript source maps (if they exist).",
                     "default": true
+                },
+                "sourceMapRenames": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Whether to use the \"names\" mapping in sourcemaps. This requires requesting source content, which can be slow with certain debuggers."
                 },
                 "sourceMapPathOverrides": {
                     "type": "object",
@@ -13389,7 +13577,7 @@
         },
         "terminal.integrated.defaultProfile.linux": {
             "restricted": true,
-            "markdownDescription": "The default profile used on Linux. This setting will currently be ignored if either `#terminal.integrated.shell.linux#` or `#terminal.integrated.shellArgs.linux#` are set.",
+            "markdownDescription": "The default profile used on Linux. This setting will currently be ignored if either `terminal.integrated.shell.linux` or `terminal.integrated.shellArgs.linux` are set.",
             "type": [
                 "string",
                 "null"
@@ -13399,7 +13587,7 @@
         },
         "terminal.integrated.defaultProfile.osx": {
             "restricted": true,
-            "markdownDescription": "The default profile used on macOS. This setting will currently be ignored if either `#terminal.integrated.shell.osx#` or `#terminal.integrated.shellArgs.osx#` are set.",
+            "markdownDescription": "The default profile used on macOS. This setting will currently be ignored if either `terminal.integrated.shell.osx` or `terminal.integrated.shellArgs.osx` are set.",
             "type": [
                 "string",
                 "null"
@@ -13409,7 +13597,7 @@
         },
         "terminal.integrated.defaultProfile.windows": {
             "restricted": true,
-            "markdownDescription": "The default profile used on Windows. This setting will currently be ignored if either `#terminal.integrated.shell.windows#` or `#terminal.integrated.shellArgs.windows#` are set.",
+            "markdownDescription": "The default profile used on Windows. This setting will currently be ignored if either `terminal.integrated.shell.windows` or `terminal.integrated.shellArgs.windows` are set.",
             "type": [
                 "string",
                 "null"
@@ -13748,7 +13936,7 @@
             "default": 0,
             "minimum": 0,
             "maximum": 100,
-            "description": "Controls the font size in pixels for CodeLens. When set to `0`, the 90% of `#editor.fontSize#` is used.",
+            "markdownDescription": "Controls the font size in pixels for CodeLens. When set to `0`, the 90% of `#editor.fontSize#` is used.",
             "scope": 5,
             "restricted": false
         },
@@ -14282,6 +14470,21 @@
             "scope": 5,
             "restricted": false
         },
+        "editor.inlineSuggest.mode": {
+            "type": "string",
+            "enum": [
+                "prefix",
+                "subwordDiff"
+            ],
+            "enumDescriptions": [
+                "Only render an inline suggestion if the replace text is a prefix of the insert text.",
+                "Only render an inline suggestion if the replace text is a subword of the insert text."
+            ],
+            "default": "subwordDiff",
+            "description": "Controls which mode to use for rendering inline suggestions.",
+            "scope": 5,
+            "restricted": false
+        },
         "editor.letterSpacing": {
             "description": "Controls the letter spacing in pixels.",
             "type": "number",
@@ -14297,11 +14500,9 @@
             "restricted": false
         },
         "editor.lineHeight": {
-            "description": "Controls the line height. Use 0 to compute the line height from the font size.",
-            "type": "integer",
+            "markdownDescription": "Controls the line height. \n - Use 0 to automatically compute the line height from the font size.\n - Values between 0 and 8 will be used as a multiplier with the font size.\n - Values greater than or equal to 8 will be used as effective values.",
+            "type": "number",
             "default": 0,
-            "minimum": 0,
-            "maximum": 150,
             "scope": 5,
             "restricted": false
         },
@@ -14702,6 +14903,61 @@
             "scope": 5,
             "restricted": false
         },
+        "editor.scrollbar.vertical": {
+            "type": "string",
+            "enum": [
+                "auto",
+                "visible",
+                "hidden"
+            ],
+            "enumDescriptions": [
+                "The vertical scrollbar will be visible only when necessary.",
+                "The vertical scrollbar will always be visible.",
+                "The vertical scrollbar will always be hidden."
+            ],
+            "default": "auto",
+            "description": "Controls the visibility of the vertical scrollbar.",
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.scrollbar.horizontal": {
+            "type": "string",
+            "enum": [
+                "auto",
+                "visible",
+                "hidden"
+            ],
+            "enumDescriptions": [
+                "The horizontal scrollbar will be visible only when necessary.",
+                "The horizontal scrollbar will always be visible.",
+                "The horizontal scrollbar will always be hidden."
+            ],
+            "default": "auto",
+            "description": "Controls the visibility of the horizontal scrollbar.",
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.scrollbar.verticalScrollbarSize": {
+            "type": "number",
+            "default": 14,
+            "description": "The width of the vertical scrollbar.",
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.scrollbar.horizontalScrollbarSize": {
+            "type": "number",
+            "default": 12,
+            "description": "The height of the horizontal scrollbar.",
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.scrollbar.scrollByPage": {
+            "type": "boolean",
+            "default": false,
+            "description": "Controls whether clicks scroll by page or jump to click position.",
+            "scope": 5,
+            "restricted": false
+        },
         "editor.scrollBeyondLastColumn": {
             "description": "Controls the number of extra characters beyond which the editor will scroll horizontally.",
             "type": "integer",
@@ -14855,6 +15111,21 @@
             "type": "boolean",
             "default": false,
             "description": "Controls whether to preview the suggestion outcome in the editor.",
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.suggest.previewMode": {
+            "type": "string",
+            "enum": [
+                "prefix",
+                "subwordDiff"
+            ],
+            "enumDescriptions": [
+                "Only render a preview if the replace text is a prefix of the insert text.",
+                "Only render a preview if the replace text is a subword of the insert text."
+            ],
+            "default": "prefix",
+            "description": "Controls which mode to use for rendering the suggest preview.",
             "scope": 5,
             "restricted": false
         },
@@ -15251,7 +15522,7 @@
         "editor.inlayHints.fontSize": {
             "type": "number",
             "default": 0,
-            "description": "Controls font size of inlay hints in the editor. When set to `0`, the 90% of `#editor.fontSize#` is used.",
+            "markdownDescription": "Controls font size of inlay hints in the editor. When set to `0`, the 90% of `#editor.fontSize#` is used.",
             "scope": 5,
             "restricted": false
         },
@@ -15506,6 +15777,7 @@
                 "vscode.jake",
                 "ms-vscode.js-debug",
                 "ms-vscode.js-debug-companion",
+                "vscode.markdown-math",
                 "vscode.merge-conflict",
                 "vscode.microsoft-authentication",
                 "ms-vscode.node-debug",
@@ -15541,6 +15813,7 @@
                 "Jake support for VS Code",
                 "JavaScript Debugger",
                 "JavaScript Debugger Companion Extension",
+                "Markdown Math",
                 "Merge Conflict",
                 "Microsoft Account",
                 "Node Debug (legacy)",
@@ -15568,7 +15841,7 @@
                 "Emmet support for VS Code",
                 "Provides linting capabilities for authoring extensions.",
                 "Git SCM Integration",
-                "GitHub",
+                "GitHub features for VS Code",
                 "GitHub Authentication Provider",
                 "Extension to add Grunt capabilities to VS Code.",
                 "Extension to add Gulp capabilities to VSCode.",
@@ -15576,6 +15849,7 @@
                 "Extension to add Jake capabilities to VS Code.",
                 "An extension for debugging Node.js programs and Chrome.",
                 "Companion extension to js-debug that provides capability for remote debugging",
+                "Adds math support to markdown in notebooks.",
                 "Highlighting and commands for inline merge conflicts.",
                 "Microsoft authentication provider",
                 "Node.js debugging support (versions < 8.0)",
@@ -15634,177 +15908,17 @@
                 "welcomePage",
                 "readme",
                 "newUntitledFile",
-                "welcomePageInEmptyWorkbench",
-                "gettingStarted",
-                "gettingStartedInEmptyWorkbench"
+                "welcomePageInEmptyWorkbench"
             ],
             "enumDescriptions": [
                 "Start without an editor.",
-                "Open the legacy Welcome page.",
-                "Open the README when opening a folder that contains one, fallback to 'welcomePage' otherwise.",
+                "Open the Welcome page, with content to aid in getting started with VS Code and extensions.",
+                "Open the README when opening a folder that contains one, fallback to 'welcomePage' otherwise. Note: This is only observed as a global ccnfiguration, it will be ignored if set in a workspace or folder configuration.",
                 "Open a new untitled file (only applies when opening an empty window).",
-                "Open the legacy Welcome page when opening an empty workbench.",
-                "Open the new Welcome Page with content to aid in getting started with VS Code and extensions.",
-                "When opening an empty workbench, open the new Welcome Page with content to aid in getting started with VS Code and extensions."
+                "Open the Welcome page when opening an empty workbench."
             ],
-            "default": "gettingStarted",
+            "default": "welcomePage",
             "description": "Controls which editor is shown at startup, if none are restored from the previous session.",
-            "restricted": false
-        },
-        "scm.diffDecorations": {
-            "type": "string",
-            "enum": [
-                "all",
-                "gutter",
-                "overview",
-                "minimap",
-                "none"
-            ],
-            "enumDescriptions": [
-                "Show the diff decorations in all available locations.",
-                "Show the diff decorations only in the editor gutter.",
-                "Show the diff decorations only in the overview ruler.",
-                "Show the diff decorations only in the minimap.",
-                "Do not show the diff decorations."
-            ],
-            "default": "all",
-            "description": "Controls diff decorations in the editor.",
-            "scope": 4,
-            "restricted": false
-        },
-        "scm.diffDecorationsGutterWidth": {
-            "type": "number",
-            "enum": [
-                1,
-                2,
-                3,
-                4,
-                5
-            ],
-            "default": 3,
-            "description": "Controls the width(px) of diff decorations in gutter (added & modified).",
-            "scope": 4,
-            "restricted": false
-        },
-        "scm.diffDecorationsGutterVisibility": {
-            "type": "string",
-            "enum": [
-                "always",
-                "hover"
-            ],
-            "enumDescriptions": [
-                "Show the diff decorator in the gutter at all times.",
-                "Show the diff decorator in the gutter only on hover."
-            ],
-            "description": "Controls the visibility of the Source Control diff decorator in the gutter.",
-            "default": "always",
-            "scope": 4,
-            "restricted": false
-        },
-        "scm.diffDecorationsGutterAction": {
-            "type": "string",
-            "enum": [
-                "diff",
-                "none"
-            ],
-            "enumDescriptions": [
-                "Show the inline diff peek view on click.",
-                "Do nothing."
-            ],
-            "description": "Controls the behavior of Source Control diff gutter decorations.",
-            "default": "diff",
-            "scope": 4,
-            "restricted": false
-        },
-        "scm.alwaysShowActions": {
-            "type": "boolean",
-            "description": "Controls whether inline actions are always visible in the Source Control view.",
-            "default": false,
-            "scope": 4,
-            "restricted": false
-        },
-        "scm.countBadge": {
-            "type": "string",
-            "enum": [
-                "all",
-                "focused",
-                "off"
-            ],
-            "enumDescriptions": [
-                "Show the sum of all Source Control Provider count badges.",
-                "Show the count badge of the focused Source Control Provider.",
-                "Disable the Source Control count badge."
-            ],
-            "description": "Controls the count badge on the Source Control icon on the Activity Bar.",
-            "default": "all",
-            "scope": 4,
-            "restricted": false
-        },
-        "scm.providerCountBadge": {
-            "type": "string",
-            "enum": [
-                "hidden",
-                "auto",
-                "visible"
-            ],
-            "enumDescriptions": [
-                "Hide Source Control Provider count badges.",
-                "Only show count badge for Source Control Provider when non-zero.",
-                "Show Source Control Provider count badges."
-            ],
-            "description": "Controls the count badges on Source Control Provider headers. These headers only appear when there is more than one provider.",
-            "default": "hidden",
-            "scope": 4,
-            "restricted": false
-        },
-        "scm.defaultViewMode": {
-            "type": "string",
-            "enum": [
-                "tree",
-                "list"
-            ],
-            "enumDescriptions": [
-                "Show the repository changes as a tree.",
-                "Show the repository changes as a list."
-            ],
-            "description": "Controls the default Source Control repository view mode.",
-            "default": "list",
-            "scope": 4,
-            "restricted": false
-        },
-        "scm.autoReveal": {
-            "type": "boolean",
-            "description": "Controls whether the SCM view should automatically reveal and select files when opening them.",
-            "default": true,
-            "scope": 4,
-            "restricted": false
-        },
-        "scm.inputFontFamily": {
-            "type": "string",
-            "markdownDescription": "Controls the font for the input message. Use `default` for the workbench user interface font family, `editor` for the `#editor.fontFamily#`'s value, or a custom font family.",
-            "default": "default",
-            "scope": 4,
-            "restricted": false
-        },
-        "scm.inputFontSize": {
-            "type": "number",
-            "markdownDescription": "Controls the font size for the input message in pixels.",
-            "default": 13,
-            "scope": 4,
-            "restricted": false
-        },
-        "scm.alwaysShowRepositories": {
-            "type": "boolean",
-            "markdownDescription": "Controls whether repositories should always be visible in the SCM view.",
-            "default": false,
-            "scope": 4,
-            "restricted": false
-        },
-        "scm.repositories.visible": {
-            "type": "number",
-            "description": "Controls how many repositories are visible in the Source Control Repositories section. Set to `0` to be able to manually resize the view.",
-            "default": 10,
-            "scope": 4,
             "restricted": false
         },
         "debug.saveBeforeStart": {
@@ -16012,7 +16126,7 @@
         "files.autoGuessEncoding": {
             "type": "boolean",
             "default": false,
-            "description": "When enabled, the editor will attempt to guess the character set encoding when opening files. This setting can also be configured per language.",
+            "markdownDescription": "When enabled, the editor will attempt to guess the character set encoding when opening files. This setting can also be configured per language. Note, this setting is not respected by text search. Only `#files.encoding#` is respected.",
             "scope": 5,
             "restricted": false
         },
@@ -16062,7 +16176,7 @@
                 "**/node_modules/*/**": true,
                 "**/.hg/store/**": true
             },
-            "description": "Configure glob patterns of file paths to exclude from file watching. Patterns must match on absolute paths (i.e. prefix with ** or the full path to match properly). Changing this setting requires a restart. When you experience Code consuming lots of CPU time on startup, you can exclude large folders to reduce the initial load.",
+            "markdownDescription": "Configure glob patterns of file paths to exclude from file watching. Patterns must match on absolute paths, i.e. prefix with `**/` or the full path to match properly and suffix with `/**` to match files within a path (for example `**/build/output/**` or `/Users/name/workspaces/project/build/output/**`). Changing this setting requires a restart. When you experience Code consuming lots of CPU time on startup, you can exclude large folders to reduce the initial load.",
             "scope": 4,
             "restricted": false
         },
@@ -16283,6 +16397,162 @@
             "default": true,
             "scope": 5,
             "markdownDescription": "When enabled outline shows `typeParameter`-symbols.",
+            "restricted": false
+        },
+        "scm.diffDecorations": {
+            "type": "string",
+            "enum": [
+                "all",
+                "gutter",
+                "overview",
+                "minimap",
+                "none"
+            ],
+            "enumDescriptions": [
+                "Show the diff decorations in all available locations.",
+                "Show the diff decorations only in the editor gutter.",
+                "Show the diff decorations only in the overview ruler.",
+                "Show the diff decorations only in the minimap.",
+                "Do not show the diff decorations."
+            ],
+            "default": "all",
+            "description": "Controls diff decorations in the editor.",
+            "scope": 4,
+            "restricted": false
+        },
+        "scm.diffDecorationsGutterWidth": {
+            "type": "number",
+            "enum": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ],
+            "default": 3,
+            "description": "Controls the width(px) of diff decorations in gutter (added & modified).",
+            "scope": 4,
+            "restricted": false
+        },
+        "scm.diffDecorationsGutterVisibility": {
+            "type": "string",
+            "enum": [
+                "always",
+                "hover"
+            ],
+            "enumDescriptions": [
+                "Show the diff decorator in the gutter at all times.",
+                "Show the diff decorator in the gutter only on hover."
+            ],
+            "description": "Controls the visibility of the Source Control diff decorator in the gutter.",
+            "default": "always",
+            "scope": 4,
+            "restricted": false
+        },
+        "scm.diffDecorationsGutterAction": {
+            "type": "string",
+            "enum": [
+                "diff",
+                "none"
+            ],
+            "enumDescriptions": [
+                "Show the inline diff peek view on click.",
+                "Do nothing."
+            ],
+            "description": "Controls the behavior of Source Control diff gutter decorations.",
+            "default": "diff",
+            "scope": 4,
+            "restricted": false
+        },
+        "scm.alwaysShowActions": {
+            "type": "boolean",
+            "description": "Controls whether inline actions are always visible in the Source Control view.",
+            "default": false,
+            "scope": 4,
+            "restricted": false
+        },
+        "scm.countBadge": {
+            "type": "string",
+            "enum": [
+                "all",
+                "focused",
+                "off"
+            ],
+            "enumDescriptions": [
+                "Show the sum of all Source Control Provider count badges.",
+                "Show the count badge of the focused Source Control Provider.",
+                "Disable the Source Control count badge."
+            ],
+            "description": "Controls the count badge on the Source Control icon on the Activity Bar.",
+            "default": "all",
+            "scope": 4,
+            "restricted": false
+        },
+        "scm.providerCountBadge": {
+            "type": "string",
+            "enum": [
+                "hidden",
+                "auto",
+                "visible"
+            ],
+            "enumDescriptions": [
+                "Hide Source Control Provider count badges.",
+                "Only show count badge for Source Control Provider when non-zero.",
+                "Show Source Control Provider count badges."
+            ],
+            "description": "Controls the count badges on Source Control Provider headers. These headers only appear when there is more than one provider.",
+            "default": "hidden",
+            "scope": 4,
+            "restricted": false
+        },
+        "scm.defaultViewMode": {
+            "type": "string",
+            "enum": [
+                "tree",
+                "list"
+            ],
+            "enumDescriptions": [
+                "Show the repository changes as a tree.",
+                "Show the repository changes as a list."
+            ],
+            "description": "Controls the default Source Control repository view mode.",
+            "default": "list",
+            "scope": 4,
+            "restricted": false
+        },
+        "scm.autoReveal": {
+            "type": "boolean",
+            "description": "Controls whether the SCM view should automatically reveal and select files when opening them.",
+            "default": true,
+            "scope": 4,
+            "restricted": false
+        },
+        "scm.inputFontFamily": {
+            "type": "string",
+            "markdownDescription": "Controls the font for the input message. Use `default` for the workbench user interface font family, `editor` for the `#editor.fontFamily#`'s value, or a custom font family.",
+            "default": "default",
+            "scope": 4,
+            "restricted": false
+        },
+        "scm.inputFontSize": {
+            "type": "number",
+            "markdownDescription": "Controls the font size for the input message in pixels.",
+            "default": 13,
+            "scope": 4,
+            "restricted": false
+        },
+        "scm.alwaysShowRepositories": {
+            "type": "boolean",
+            "markdownDescription": "Controls whether repositories should always be visible in the SCM view.",
+            "default": false,
+            "scope": 4,
+            "restricted": false
+        },
+        "scm.repositories.visible": {
+            "type": "number",
+            "description": "Controls how many repositories are visible in the Source Control Repositories section. Set to `0` to be able to manually resize the view.",
+            "default": 10,
+            "scope": 4,
             "restricted": false
         },
         "search.exclude": {
