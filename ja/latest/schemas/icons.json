@@ -5,11 +5,11 @@
             "properties": {
                 "fontId": {
                     "type": "string",
-                    "description": "使用するフォントの ID。設定されていない場合は、最初に定義されているフォントが使用されます。"
+                    "description": "The id of the font to use. If not set, the font that is defined first is used."
                 },
                 "fontCharacter": {
                     "type": "string",
-                    "description": "アイコン定義に関連付けられたフォント文字。"
+                    "description": "The font character associated with the icon definition."
                 }
             },
             "additionalProperties": false,
@@ -167,15 +167,15 @@
         },
         "debug-breakpoint": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "ブレークポイントのアイコン。 $(debug-breakpoint)"
+            "markdownDescription": "Icon for breakpoints. $(debug-breakpoint)"
         },
         "debug-breakpoint-disabled": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "無効なブレークポイントのアイコン。 $(debug-breakpoint-disabled)"
+            "markdownDescription": "Icon for disabled breakpoints. $(debug-breakpoint-disabled)"
         },
         "debug-hint": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "エディターのグリフ余白にカーソルを置いたときに表示されるブレークポイント ヒントのアイコン。 $(debug-hint)"
+            "markdownDescription": "Icon for breakpoint hints shown on hover in editor glyph margin. $(debug-hint)"
         },
         "primitive-square": {
             "$ref": "#/definitions/icons"
@@ -458,39 +458,39 @@
         },
         "debug-breakpoint-conditional-unverified": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "未確認の条件付きブレークポイントのアイコン。 $(debug-breakpoint-conditional-unverified)"
+            "markdownDescription": "Icon for unverified conditional breakpoints. $(debug-breakpoint-conditional-unverified)"
         },
         "debug-breakpoint-conditional": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "条件付きブレークポイントのアイコン。 $(debug-breakpoint-conditional)"
+            "markdownDescription": "Icon for conditional breakpoints. $(debug-breakpoint-conditional)"
         },
         "debug-breakpoint-conditional-disabled": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "無効な条件付きブレークポイントのアイコン。 $(debug-breakpoint-conditional-disabled)"
+            "markdownDescription": "Icon for disabled conditional breakpoints. $(debug-breakpoint-conditional-disabled)"
         },
         "debug-breakpoint-data-unverified": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "未確認のデータ ブレークポイントのアイコン。 $(debug-breakpoint-data-unverified)"
+            "markdownDescription": "Icon for unverified data breakpoints. $(debug-breakpoint-data-unverified)"
         },
         "debug-breakpoint-data": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "データ ブレークポイントのアイコン。 $(debug-breakpoint-data)"
+            "markdownDescription": "Icon for data breakpoints. $(debug-breakpoint-data)"
         },
         "debug-breakpoint-data-disabled": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "無効なデータ ブレークポイントのアイコン。 $(debug-breakpoint-data-disabled)"
+            "markdownDescription": "Icon for disabled data breakpoints. $(debug-breakpoint-data-disabled)"
         },
         "debug-breakpoint-log-unverified": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "未確認のログ ブレークポイントのアイコン。 $(debug-breakpoint-log-unverified)"
+            "markdownDescription": "Icon for unverified log breakpoints. $(debug-breakpoint-log-unverified)"
         },
         "debug-breakpoint-log": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "ログ ブレークポイントのアイコン。 $(debug-breakpoint-log)"
+            "markdownDescription": "Icon for log breakpoints. $(debug-breakpoint-log)"
         },
         "debug-breakpoint-log-disabled": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "無効なログ ブレークポイントのアイコン。 $(debug-breakpoint-log-disabled)"
+            "markdownDescription": "Icon for disabled log breakpoint. $(debug-breakpoint-log-disabled)"
         },
         "briefcase": {
             "$ref": "#/definitions/icons"
@@ -545,7 +545,7 @@
         },
         "debug-breakpoint-unverified": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "未確認のブレークポイントのアイコン。 $(debug-breakpoint-unverified)"
+            "markdownDescription": "Icon for unverified breakpoints. $(debug-breakpoint-unverified)"
         },
         "circle-slash": {
             "$ref": "#/definitions/icons"
@@ -597,39 +597,39 @@
         },
         "debug-continue": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "デバッグ続行アクションのアイコン。 $(debug-continue)"
+            "markdownDescription": "Icon for the debug continue action. $(debug-continue)"
         },
         "debug-disconnect": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "デバッグ切断アクションのアイコン。 $(debug-disconnect)"
+            "markdownDescription": "Icon for the debug disconnect action. $(debug-disconnect)"
         },
         "debug-pause": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "デバッグの一時停止アクションのアイコン。 $(debug-pause)"
+            "markdownDescription": "Icon for the debug pause action. $(debug-pause)"
         },
         "debug-restart": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "デバッグの再起動アクションのアイコン。 $(debug-restart)"
+            "markdownDescription": "Icon for the debug restart action. $(debug-restart)"
         },
         "debug-start": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "デバッグの開始アクションのアイコン。 $(debug-start)"
+            "markdownDescription": "Icon for the debug start action. $(debug-start)"
         },
         "debug-step-into": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "デバッグのステップ イン アクションのアイコン。 $(debug-step-into)"
+            "markdownDescription": "Icon for the debug step into action. $(debug-step-into)"
         },
         "debug-step-out": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "デバッグのステップ アウト アクションのアイコン。 $(debug-step-out)"
+            "markdownDescription": "Icon for the debug step out action. $(debug-step-out)"
         },
         "debug-step-over": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "デバッグのステップ オーバー アクションのアイコン。 $(debug-step-over)"
+            "markdownDescription": "Icon for the debug step over action. $(debug-step-over)"
         },
         "debug-stop": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "デバッグの停止アクションのアイコン。 $(debug-stop)"
+            "markdownDescription": "Icon for the debug stop action. $(debug-stop)"
         },
         "debug": {
             "$ref": "#/definitions/icons"
@@ -990,7 +990,7 @@
         },
         "search-stop": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "検索ビュー内の停止のためのアイコン。 $(search-stop)"
+            "markdownDescription": "Icon for stop in the search view. $(search-stop)"
         },
         "server": {
             "$ref": "#/definitions/icons"
@@ -1168,15 +1168,15 @@
         },
         "debug-breakpoint-function-unverified": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "未確認の関数ブレークポイントのアイコン。 $(debug-breakpoint-function-unverified)"
+            "markdownDescription": "Icon for unverified function breakpoints. $(debug-breakpoint-function-unverified)"
         },
         "debug-breakpoint-function": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "関数ブレークポイントのアイコン。 $(debug-breakpoint-function)"
+            "markdownDescription": "Icon for function breakpoints. $(debug-breakpoint-function)"
         },
         "debug-breakpoint-function-disabled": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "無効な関数ブレークポイントのアイコン。 $(debug-breakpoint-function-disabled)"
+            "markdownDescription": "Icon for disabled function breakpoints. $(debug-breakpoint-function-disabled)"
         },
         "debug-stackframe-active": {
             "$ref": "#/definitions/icons"
@@ -1186,30 +1186,30 @@
         },
         "debug-stackframe": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "エディターのグリフ余白に表示されるスタック フレームのアイコン。 $(debug-stackframe)"
+            "markdownDescription": "Icon for a stackframe shown in the editor glyph margin. $(debug-stackframe)"
         },
         "debug-stackframe-focused": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "エディターのグリフ余白に表示されるフォーカスされたスタック フレームのアイコン。 $(debug-stackframe-focused)"
+            "markdownDescription": "Icon for a focused stackframe  shown in the editor glyph margin. $(debug-stackframe-focused)"
         },
         "debug-breakpoint-unsupported": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "サポートされていないブレークポイントのアイコン。 $(debug-breakpoint-unsupported)"
+            "markdownDescription": "Icon for unsupported breakpoints. $(debug-breakpoint-unsupported)"
         },
         "symbol-string": {
             "$ref": "#/definitions/icons"
         },
         "debug-reverse-continue": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "デバッグのリバース続行アクションのアイコン。 $(debug-reverse-continue)"
+            "markdownDescription": "Icon for the debug reverse continue action. $(debug-reverse-continue)"
         },
         "debug-step-back": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "デバッグのステップ バック アクションのアイコン。 $(debug-step-back)"
+            "markdownDescription": "Icon for the debug step back action. $(debug-step-back)"
         },
         "debug-restart-frame": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "デバッグの再起動フレーム アクションのアイコン。 $(debug-restart-frame)"
+            "markdownDescription": "Icon for the debug restart frame action. $(debug-restart-frame)"
         },
         "call-incoming": {
             "$ref": "#/definitions/icons"
@@ -1240,7 +1240,7 @@
         },
         "debug-console": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "デバッグ コンソールを開くアクションのアイコン。 $(debug-console)"
+            "markdownDescription": "Icon for the debug console open action. $(debug-console)"
         },
         "library": {
             "$ref": "#/definitions/icons"
@@ -1410,6 +1410,42 @@
         "inspect": {
             "$ref": "#/definitions/icons"
         },
+        "layers": {
+            "$ref": "#/definitions/icons"
+        },
+        "layers-dot": {
+            "$ref": "#/definitions/icons"
+        },
+        "layers-active": {
+            "$ref": "#/definitions/icons"
+        },
+        "compass": {
+            "$ref": "#/definitions/icons"
+        },
+        "compass-dot": {
+            "$ref": "#/definitions/icons"
+        },
+        "compass-active": {
+            "$ref": "#/definitions/icons"
+        },
+        "azure": {
+            "$ref": "#/definitions/icons"
+        },
+        "issue-draft": {
+            "$ref": "#/definitions/icons"
+        },
+        "git-pull-request-closed": {
+            "$ref": "#/definitions/icons"
+        },
+        "git-pull-request-draft": {
+            "$ref": "#/definitions/icons"
+        },
+        "debug-all": {
+            "$ref": "#/definitions/icons"
+        },
+        "debug-coverage": {
+            "$ref": "#/definitions/icons"
+        },
         "drop-down-button": {
             "$ref": "#/definitions/icons"
         },
@@ -1472,797 +1508,813 @@
         },
         "widget-close": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "ウィジェットにある閉じるアクションのアイコン。: $(widget-close)"
+            "markdownDescription": "Icon for the close action in widgets.: $(widget-close)"
         },
         "goto-previous-location": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "前のエディターの場所に移動するためのアイコン。: $(goto-previous-location)"
+            "markdownDescription": "Icon for goto previous editor location.: $(goto-previous-location)"
         },
         "goto-next-location": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "次のエディターの場所に移動するためのアイコン。: $(goto-next-location)"
+            "markdownDescription": "Icon for goto next editor location.: $(goto-next-location)"
         },
         "diff-review-insert": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "差分レビューでの '挿入' のアイコン。: $(diff-review-insert)"
+            "markdownDescription": "Icon for 'Insert' in diff review.: $(diff-review-insert)"
         },
         "diff-review-remove": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "差分レビューでの '削除' のアイコン。: $(diff-review-remove)"
+            "markdownDescription": "Icon for 'Remove' in diff review.: $(diff-review-remove)"
         },
         "diff-review-close": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "差分レビューでの '閉じる' のアイコン。: $(diff-review-close)"
+            "markdownDescription": "Icon for 'Close' in diff review.: $(diff-review-close)"
         },
         "diff-insert": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "差分エディターで挿入を示す線の装飾。: $(diff-insert)"
+            "markdownDescription": "Line decoration for inserts in the diff editor.: $(diff-insert)"
         },
         "diff-remove": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "差分エディターで削除を示す線の装飾。: $(diff-remove)"
+            "markdownDescription": "Line decoration for removals in the diff editor.: $(diff-remove)"
         },
         "find-selection": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "エディターの検索ウィジェット内の '選択範囲を検索' のアイコン。: $(find-selection)"
+            "markdownDescription": "Icon for 'Find in Selection' in the editor find widget.: $(find-selection)"
         },
         "find-collapsed": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "エディターの検索ウィジェットが折りたたまれていることを示すアイコン。: $(find-collapsed)"
+            "markdownDescription": "Icon to indicate that the editor find widget is collapsed.: $(find-collapsed)"
         },
         "find-expanded": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "エディターの検索ウィジェットが展開されていることを示すアイコン。: $(find-expanded)"
+            "markdownDescription": "Icon to indicate that the editor find widget is expanded.: $(find-expanded)"
         },
         "find-replace": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "エディターの検索ウィジェット内の '置換' のアイコン。: $(find-replace)"
+            "markdownDescription": "Icon for 'Replace' in the editor find widget.: $(find-replace)"
         },
         "find-replace-all": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "エディターの検索ウィジェット内の 'すべて置換' のアイコン。: $(find-replace-all)"
+            "markdownDescription": "Icon for 'Replace All' in the editor find widget.: $(find-replace-all)"
         },
         "find-previous-match": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "エディターの検索ウィジェット内の '前を検索' のアイコン。: $(find-previous-match)"
+            "markdownDescription": "Icon for 'Find Previous' in the editor find widget.: $(find-previous-match)"
         },
         "find-next-match": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "エディターの検索ウィジェット内の '次を検索' のアイコン。: $(find-next-match)"
+            "markdownDescription": "Icon for 'Find Next' in the editor find widget.: $(find-next-match)"
         },
         "folding-expanded": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "エディターのグリフ余白内の展開された範囲のアイコン。: $(folding-expanded)"
+            "markdownDescription": "Icon for expanded ranges in the editor glyph margin.: $(folding-expanded)"
         },
         "folding-collapsed": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "エディターのグリフ余白内の折りたたまれた範囲のアイコン。: $(folding-collapsed)"
+            "markdownDescription": "Icon for collapsed ranges in the editor glyph margin.: $(folding-collapsed)"
         },
         "parameter-hints-next": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "次のパラメーター ヒントを表示するためのアイコン。: $(parameter-hints-next)"
+            "markdownDescription": "Icon for show next parameter hint.: $(parameter-hints-next)"
         },
         "parameter-hints-previous": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "前のパラメーター ヒントを表示するためのアイコン。: $(parameter-hints-previous)"
+            "markdownDescription": "Icon for show previous parameter hint.: $(parameter-hints-previous)"
         },
         "marker-navigation-next": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "次のマーカーへ移動するためのアイコン。: $(marker-navigation-next)"
+            "markdownDescription": "Icon for goto next marker.: $(marker-navigation-next)"
         },
         "marker-navigation-previous": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "前のマーカーへ移動するためのアイコン。: $(marker-navigation-previous)"
+            "markdownDescription": "Icon for goto previous marker.: $(marker-navigation-previous)"
         },
         "suggest-more-info": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "提案ウィジェットの詳細情報のアイコン。: $(suggest-more-info)"
+            "markdownDescription": "Icon for more information in the suggest widget.: $(suggest-more-info)"
         },
         "notifications-clear": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "通知内のクリア アクションのアイコン。: $(notifications-clear)"
+            "markdownDescription": "Icon for the clear action in notifications.: $(notifications-clear)"
         },
         "notifications-clear-all": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "通知内のすべてクリアのアクションのアイコン。: $(notifications-clear-all)"
+            "markdownDescription": "Icon for the clear all action in notifications.: $(notifications-clear-all)"
         },
         "notifications-hide": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "通知内の非表示アクションのアイコン。: $(notifications-hide)"
+            "markdownDescription": "Icon for the hide action in notifications.: $(notifications-hide)"
         },
         "notifications-expand": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "通知内の展開アクションのアイコン。: $(notifications-expand)"
+            "markdownDescription": "Icon for the expand action in notifications.: $(notifications-expand)"
         },
         "notifications-collapse": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "通知内の折りたたみアクションのアイコン。: $(notifications-collapse)"
+            "markdownDescription": "Icon for the collapse action in notifications.: $(notifications-collapse)"
         },
         "notifications-configure": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "通知内の構成アクションのアイコン。: $(notifications-configure)"
+            "markdownDescription": "Icon for the configure action in notifications.: $(notifications-configure)"
         },
         "default-view-icon": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "既定のビューのアイコン。: $(default-view-icon)"
+            "markdownDescription": "Default view icon.: $(default-view-icon)"
         },
         "debug-console-view-icon": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "デバッグ コンソール ビューのアイコンを表示します。: $(debug-console-view-icon)"
+            "markdownDescription": "View icon of the debug console view.: $(debug-console-view-icon)"
         },
         "run-view-icon": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "実行ビューのアイコンを表示します。: $(run-view-icon)"
+            "markdownDescription": "View icon of the run view.: $(run-view-icon)"
         },
         "variables-view-icon": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "変数ビューのアイコンを表示します。: $(variables-view-icon)"
+            "markdownDescription": "View icon of the variables view.: $(variables-view-icon)"
         },
         "watch-view-icon": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "ウォッチ ビューのアイコンを表示します。: $(watch-view-icon)"
+            "markdownDescription": "View icon of the watch view.: $(watch-view-icon)"
         },
         "callstack-view-icon": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "呼び出し履歴ビューのアイコンを表示します。: $(callstack-view-icon)"
+            "markdownDescription": "View icon of the call stack view.: $(callstack-view-icon)"
         },
         "breakpoints-view-icon": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "ブレークポイント ビューのアイコンを表示します。: $(breakpoints-view-icon)"
+            "markdownDescription": "View icon of the breakpoints view.: $(breakpoints-view-icon)"
         },
         "loaded-scripts-view-icon": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "読み込まれたスクリプト ビューのアイコンを表示します。: $(loaded-scripts-view-icon)"
+            "markdownDescription": "View icon of the loaded scripts view.: $(loaded-scripts-view-icon)"
         },
         "debug-gripper": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "デバッグ バー グリッパーのアイコン。: $(debug-gripper)"
+            "markdownDescription": "Icon for the debug bar gripper.: $(debug-gripper)"
         },
         "debug-configure": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "デバッグの構成アクションのアイコン。: $(debug-configure)"
+            "markdownDescription": "Icon for the debug configure action.: $(debug-configure)"
         },
         "debug-collapse-all": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "デバッグ ビューにあるすべて折りたたみアクションのアイコン。: $(debug-collapse-all)"
+            "markdownDescription": "Icon for the collapse all action in the debug views.: $(debug-collapse-all)"
         },
         "callstack-view-session": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "コール スタック ビューにあるセッション アイコンのアイコン。: $(callstack-view-session)"
+            "markdownDescription": "Icon for the session icon in the call stack view.: $(callstack-view-session)"
         },
         "debug-console-clear-all": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "デバッグ コンソールにあるすべてクリア アクションのアイコン。: $(debug-console-clear-all)"
+            "markdownDescription": "Icon for the clear all action in the debug console.: $(debug-console-clear-all)"
         },
         "watch-expressions-remove-all": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "ウォッチ ビューにある、すべてを削除アクションのアイコン。: $(watch-expressions-remove-all)"
+            "markdownDescription": "Icon for the Remove All action in the watch view.: $(watch-expressions-remove-all)"
         },
         "watch-expressions-add": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "ウォッチ ビューの追加アクションのアイコン。: $(watch-expressions-add)"
+            "markdownDescription": "Icon for the add action in the watch view.: $(watch-expressions-add)"
         },
         "watch-expressions-add-function-breakpoint": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "ウォッチ ビューの関数ブレークポイントの追加アクションのアイコン。: $(watch-expressions-add-function-breakpoint)"
+            "markdownDescription": "Icon for the add function breakpoint action in the watch view.: $(watch-expressions-add-function-breakpoint)"
         },
         "breakpoints-remove-all": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "ブレークポイント ビューにある、すべてを削除アクションのアイコン。: $(breakpoints-remove-all)"
+            "markdownDescription": "Icon for the Remove All action in the breakpoints view.: $(breakpoints-remove-all)"
         },
         "breakpoints-activate": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "ブレークポイント ビューにあるアクティブ化アクションのアイコン。: $(breakpoints-activate)"
+            "markdownDescription": "Icon for the activate action in the breakpoints view.: $(breakpoints-activate)"
         },
         "debug-console-evaluation-input": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "デバッグ評価入力マーカーのアイコン。: $(debug-console-evaluation-input)"
+            "markdownDescription": "Icon for the debug evaluation input marker.: $(debug-console-evaluation-input)"
         },
         "debug-console-evaluation-prompt": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "デバッグ評価プロンプトのアイコン。: $(debug-console-evaluation-prompt)"
+            "markdownDescription": "Icon for the debug evaluation prompt.: $(debug-console-evaluation-prompt)"
         },
         "extensions-view-icon": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "拡張機能ビューのアイコンを表示します。: $(extensions-view-icon)"
+            "markdownDescription": "View icon of the extensions view.: $(extensions-view-icon)"
         },
         "extensions-manage": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "拡張機能のビュー内の '管理' アクションのアイコン。: $(extensions-manage)"
+            "markdownDescription": "Icon for the 'Manage' action in the extensions view.: $(extensions-manage)"
         },
         "extensions-clear-search-results": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "拡張機能のビューの '検索結果のクリア' アクションのアイコン。: $(extensions-clear-search-results)"
+            "markdownDescription": "Icon for the 'Clear Search Result' action in the extensions view.: $(extensions-clear-search-results)"
         },
         "extensions-refresh": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "拡張機能のビュー内の '最新の情報に更新' アクションのアイコン。: $(extensions-refresh)"
+            "markdownDescription": "Icon for the 'Refresh' action in the extensions view.: $(extensions-refresh)"
         },
         "extensions-filter": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "拡張機能のビュー内の 'フィルター' アクションのアイコン。: $(extensions-filter)"
+            "markdownDescription": "Icon for the 'Filter' action in the extensions view.: $(extensions-filter)"
         },
         "extensions-install-local-in-remote": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "拡張機能のビュー内の 'リモートでのローカル拡張機能のインストール' アクションのアイコン。: $(extensions-install-local-in-remote)"
+            "markdownDescription": "Icon for the 'Install Local Extension in Remote' action in the extensions view.: $(extensions-install-local-in-remote)"
         },
         "extensions-install-workspace-recommended": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "拡張機能のビュー内の [ワークスペースのおすすめの拡張機能をインストール] アクションのアイコン。: $(extensions-install-workspace-recommended)"
+            "markdownDescription": "Icon for the 'Install Workspace Recommended Extensions' action in the extensions view.: $(extensions-install-workspace-recommended)"
         },
         "extensions-configure-recommended": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "拡張機能のビューの 'お勧めの拡張機能の構成' アクションのアイコン。: $(extensions-configure-recommended)"
+            "markdownDescription": "Icon for the 'Configure Recommended Extensions' action in the extensions view.: $(extensions-configure-recommended)"
         },
         "extensions-sync-enabled": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "拡張機能が同期していることを示すアイコン。: $(extensions-sync-enabled)"
+            "markdownDescription": "Icon to indicate that an extension is synced.: $(extensions-sync-enabled)"
         },
         "extensions-sync-ignored": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "同期時に拡張機能が無視されることを示すアイコン。: $(extensions-sync-ignored)"
+            "markdownDescription": "Icon to indicate that an extension is ignored when syncing.: $(extensions-sync-ignored)"
         },
         "extensions-remote": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "拡張機能のビューおよびエディターで拡張機能がリモートであることを示すアイコン。: $(extensions-remote)"
+            "markdownDescription": "Icon to indicate that an extension is remote in the extensions view and editor.: $(extensions-remote)"
         },
         "extensions-install-count": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "拡張機能のビューおよびエディターにインストール数と共に表示されるアイコン。: $(extensions-install-count)"
+            "markdownDescription": "Icon shown along with the install count in the extensions view and editor.: $(extensions-install-count)"
         },
         "extensions-rating": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "拡張機能のビューおよびエディターに評価と共に表示されるアイコン。: $(extensions-rating)"
+            "markdownDescription": "Icon shown along with the rating in the extensions view and editor.: $(extensions-rating)"
         },
         "extensions-star-full": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "拡張機能のエディターで評価に使用される塗りつぶされた星のアイコン。: $(extensions-star-full)"
+            "markdownDescription": "Full star icon used for the rating in the extensions editor.: $(extensions-star-full)"
         },
         "extensions-star-half": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "拡張機能のエディターで評価に使用される半分塗りつぶされた星のアイコン。: $(extensions-star-half)"
+            "markdownDescription": "Half star icon used for the rating in the extensions editor.: $(extensions-star-half)"
         },
         "extensions-star-empty": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "拡張機能のエディターで評価に使用される白抜きの星のアイコン。: $(extensions-star-empty)"
+            "markdownDescription": "Empty star icon used for the rating in the extensions editor.: $(extensions-star-empty)"
+        },
+        "extensions-error-message": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon shown with a error message in the extensions editor.: $(extensions-error-message)"
         },
         "extensions-warning-message": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "拡張機能のエディターで警告メッセージと共に表示されるアイコン。: $(extensions-warning-message)"
+            "markdownDescription": "Icon shown with a warning message in the extensions editor.: $(extensions-warning-message)"
         },
         "extensions-info-message": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "拡張機能のエディターに情報メッセージと共に表示されるアイコン。: $(extensions-info-message)"
+            "markdownDescription": "Icon shown with an info message in the extensions editor.: $(extensions-info-message)"
         },
         "extension-workspace-trust": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "拡張機能のエディターで警告メッセージと共に表示されるアイコン。: $(extension-workspace-trust)"
+            "markdownDescription": "Icon shown with a workspace trust message in the extension editor.: $(extension-workspace-trust)"
+        },
+        "extension-activation-time": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon shown with a activation time message in the extension editor.: $(extension-activation-time)"
         },
         "markers-view-filter": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "マーカーのビュー内のフィルター構成のアイコン。: $(markers-view-filter)"
+            "markdownDescription": "Icon for the filter configuration in the markers view.: $(markers-view-filter)"
         },
         "notebook-kernel-configure": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "ノートブック エディターのカーネル構成ウィジェットの構成アイコン。: $(notebook-kernel-configure)"
+            "markdownDescription": "Configure icon in kernel configuration widget in notebook editors.: $(notebook-kernel-configure)"
         },
         "notebook-kernel-select": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "ノートブック エディターでカーネルを選択するための構成アイコン。: $(notebook-kernel-select)"
+            "markdownDescription": "Configure icon to select a kernel in notebook editors.: $(notebook-kernel-select)"
         },
         "notebook-execute": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "ノートブック エディターで実行するためのアイコン。: $(notebook-execute)"
+            "markdownDescription": "Icon to execute in notebook editors.: $(notebook-execute)"
         },
         "notebook-execute-above": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "ノートブック エディターで上記のセルを実行するためのアイコン。: $(notebook-execute-above)"
+            "markdownDescription": "Icon to execute above cells in notebook editors.: $(notebook-execute-above)"
         },
         "notebook-execute-below": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "ノートブック エディターで以下のセルを実行するためのアイコン。: $(notebook-execute-below)"
+            "markdownDescription": "Icon to execute below cells in notebook editors.: $(notebook-execute-below)"
         },
         "notebook-stop": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "ノートブック エディターで実行を停止するためのアイコン。: $(notebook-stop)"
+            "markdownDescription": "Icon to stop an execution in notebook editors.: $(notebook-stop)"
         },
         "notebook-delete-cell": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "ノートブック エディターでセルを削除するためのアイコン。: $(notebook-delete-cell)"
+            "markdownDescription": "Icon to delete a cell in notebook editors.: $(notebook-delete-cell)"
         },
         "notebook-execute-all": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "ノートブック エディターですべてのセルを実行するためのアイコン。: $(notebook-execute-all)"
+            "markdownDescription": "Icon to execute all cells in notebook editors.: $(notebook-execute-all)"
         },
         "notebook-edit": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "ノートブック エディターでセルを編集するためのアイコン。: $(notebook-edit)"
+            "markdownDescription": "Icon to edit a cell in notebook editors.: $(notebook-edit)"
         },
         "notebook-stop-edit": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "ノートブック エディターでセルの編集を停止するためのアイコン。: $(notebook-stop-edit)"
+            "markdownDescription": "Icon to stop editing a cell in notebook editors.: $(notebook-stop-edit)"
         },
         "notebook-move-up": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "ノートブック エディターでセルを上に移動するためのアイコン。: $(notebook-move-up)"
+            "markdownDescription": "Icon to move up a cell in notebook editors.: $(notebook-move-up)"
         },
         "notebook-move-down": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "ノートブック エディターでセルを下に移動するためのアイコン。: $(notebook-move-down)"
+            "markdownDescription": "Icon to move down a cell in notebook editors.: $(notebook-move-down)"
         },
         "notebook-clear": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "ノートブック エディターでセル出力をクリアするためのアイコン。: $(notebook-clear)"
+            "markdownDescription": "Icon to clear cell outputs in notebook editors.: $(notebook-clear)"
         },
         "notebook-split-cell": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "ノートブック エディターでセルを分割するためのアイコン。: $(notebook-split-cell)"
+            "markdownDescription": "Icon to split a cell in notebook editors.: $(notebook-split-cell)"
         },
         "notebook-unfold": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "ノートブック エディターでセルを展開するためのアイコン。: $(notebook-unfold)"
+            "markdownDescription": "Icon to unfold a cell in notebook editors.: $(notebook-unfold)"
         },
         "notebook-state-success": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "ノートブック エディターで成功の状態を示すためのアイコン。: $(notebook-state-success)"
+            "markdownDescription": "Icon to indicate a success state in notebook editors.: $(notebook-state-success)"
         },
         "notebook-state-error": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "ノートブック エディターでエラー状態を示すためのアイコン。: $(notebook-state-error)"
+            "markdownDescription": "Icon to indicate an error state in notebook editors.: $(notebook-state-error)"
         },
         "notebook-state-pending": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "ノートブック エディターで保留状態を示すためのアイコン。: $(notebook-state-pending)"
+            "markdownDescription": "Icon to indicate a pending state in notebook editors.: $(notebook-state-pending)"
         },
         "notebook-state-executing": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "ノートブック エディターで実行状態を示すためのアイコン。: $(notebook-state-executing)"
+            "markdownDescription": "Icon to indicate an executing state in notebook editors.: $(notebook-state-executing)"
         },
         "notebook-collapsed": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "ノートブック エディターで折りたたまれたセクションに注釈を付けるためのアイコン。: $(notebook-collapsed)"
+            "markdownDescription": "Icon to annotate a collapsed section in notebook editors.: $(notebook-collapsed)"
         },
         "notebook-expanded": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "ノートブック エディターで展開されたセクションに注釈を付けるためのアイコン。: $(notebook-expanded)"
+            "markdownDescription": "Icon to annotate an expanded section in notebook editors.: $(notebook-expanded)"
         },
         "notebook-open-as-text": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "テキスト エディターでノートブックを開くためのアイコン。: $(notebook-open-as-text)"
+            "markdownDescription": "Icon to open the notebook in a text editor.: $(notebook-open-as-text)"
         },
         "notebook-revert": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "ノートブック エディターで元に戻すためのアイコン。: $(notebook-revert)"
+            "markdownDescription": "Icon to revert in notebook editors.: $(notebook-revert)"
         },
         "notebook-render-output": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "差分エディターで出力をレンダリングするアイコン。: $(notebook-render-output)"
+            "markdownDescription": "Icon to render output in diff editor.: $(notebook-render-output)"
         },
         "notebook-mimetype": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "ノートブックのエディターにおける MIME の種類のアイコン。: $(notebook-mimetype)"
+            "markdownDescription": "Icon for a mime type in notebook editors.: $(notebook-mimetype)"
         },
         "settings-group-expanded": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "分割 JSON 設定エディター内の展開されたセクションのアイコン。: $(settings-group-expanded)"
+            "markdownDescription": "Icon for an expanded section in the split JSON Settings editor.: $(settings-group-expanded)"
         },
         "settings-group-collapsed": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "分割 JSON 設定エディター内の折りたたまれたセクションのアイコン。: $(settings-group-collapsed)"
+            "markdownDescription": "Icon for a collapsed section in the split JSON Settings editor.: $(settings-group-collapsed)"
         },
         "settings-folder-dropdown": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "分割 JSON 設定エディター内のフォルダー ドロップダウン ボタンのアイコン。: $(settings-folder-dropdown)"
+            "markdownDescription": "Icon for the folder dropdown button in the split JSON Settings editor.: $(settings-folder-dropdown)"
         },
         "settings-more-action": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "設定 UI 内の [その他のアクション] アクションのアイコン。: $(settings-more-action)"
+            "markdownDescription": "Icon for the 'more actions' action in the Settings UI.: $(settings-more-action)"
         },
         "keybindings-record-keys": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "キー バインド UI 内の 'キーを記録' アクションのアイコン。: $(keybindings-record-keys)"
+            "markdownDescription": "Icon for the 'record keys' action in the keybinding UI.: $(keybindings-record-keys)"
         },
         "keybindings-sort": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "キー バインド UI 内の '優先順位で並べ替え' の切り替えのアイコン。: $(keybindings-sort)"
+            "markdownDescription": "Icon for the 'sort by precedence' toggle in the keybinding UI.: $(keybindings-sort)"
         },
         "keybindings-edit": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "キー バインド UI 内の編集アクションのアイコン。: $(keybindings-edit)"
+            "markdownDescription": "Icon for the edit action in the keybinding UI.: $(keybindings-edit)"
         },
         "keybindings-add": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "キー バインド UI 内の追加アクションのアイコン。: $(keybindings-add)"
+            "markdownDescription": "Icon for the add action in the keybinding UI.: $(keybindings-add)"
         },
         "settings-edit": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "設定 UI 内の編集アクションのアイコン。: $(settings-edit)"
+            "markdownDescription": "Icon for the edit action in the Settings UI.: $(settings-edit)"
         },
         "settings-add": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "設定 UI 内の追加アクションのアイコン。: $(settings-add)"
+            "markdownDescription": "Icon for the add action in the Settings UI.: $(settings-add)"
         },
         "settings-remove": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "設定 UI 内の削除アクションのアイコン。: $(settings-remove)"
+            "markdownDescription": "Icon for the remove action in the Settings UI.: $(settings-remove)"
         },
         "settings-discard": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "設定 UI 内の破棄アクションのアイコン。: $(settings-discard)"
+            "markdownDescription": "Icon for the discard action in the Settings UI.: $(settings-discard)"
         },
         "preferences-clear-input": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "設定およびキー バインド UI 内での入力のクリアのアイコン。: $(preferences-clear-input)"
+            "markdownDescription": "Icon for clear input in the Settings and keybinding UI.: $(preferences-clear-input)"
         },
         "preferences-open-settings": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "設定を開くコマンドのアイコン。: $(preferences-open-settings)"
+            "markdownDescription": "Icon for open settings commands.: $(preferences-open-settings)"
         },
         "remote-explorer-get-started": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "リモート エクスプローラー ビュー内の概要アイコン。: $(remote-explorer-get-started)"
+            "markdownDescription": "Getting started icon in the remote explorer view.: $(remote-explorer-get-started)"
         },
         "remote-explorer-documentation": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "リモート エクスプローラー ビュー内のドキュメント アイコン。: $(remote-explorer-documentation)"
+            "markdownDescription": "Documentation icon in the remote explorer view.: $(remote-explorer-documentation)"
         },
         "remote-explorer-feedback": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "リモート エクスプローラー ビュー内のフィードバック アイコン。: $(remote-explorer-feedback)"
+            "markdownDescription": "Feedback icon in the remote explorer view.: $(remote-explorer-feedback)"
         },
         "remote-explorer-review-issues": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "リモート エクスプローラー ビュー内の問題の確認アイコン。: $(remote-explorer-review-issues)"
+            "markdownDescription": "Review issue icon in the remote explorer view.: $(remote-explorer-review-issues)"
         },
         "remote-explorer-report-issues": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "リモート エクスプローラー ビュー内の問題の報告アイコン。: $(remote-explorer-report-issues)"
+            "markdownDescription": "Report issue icon in the remote explorer view.: $(remote-explorer-report-issues)"
         },
         "remote-explorer-view-icon": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "リモート エクスプローラー ビューのアイコンを表示します。: $(remote-explorer-view-icon)"
+            "markdownDescription": "View icon of the remote explorer view.: $(remote-explorer-view-icon)"
         },
         "ports-view-icon": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "リモート ポート ビューのアイコンを表示します。: $(ports-view-icon)"
+            "markdownDescription": "View icon of the remote ports view.: $(ports-view-icon)"
         },
         "private-ports-view-icon": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "プライベート リモート ポートを表すアイコン。: $(private-ports-view-icon)"
+            "markdownDescription": "Icon representing a private remote port.: $(private-ports-view-icon)"
         },
         "public-ports-view-icon": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "パブリック リモート ポートを表すアイコン。: $(public-ports-view-icon)"
+            "markdownDescription": "Icon representing a public remote port.: $(public-ports-view-icon)"
         },
         "ports-forward-icon": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "転送アクションのアイコン。: $(ports-forward-icon)"
+            "markdownDescription": "Icon for the forward action.: $(ports-forward-icon)"
         },
         "ports-stop-forward-icon": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "転送の停止アクションのアイコン。: $(ports-stop-forward-icon)"
+            "markdownDescription": "Icon for the stop forwarding action.: $(ports-stop-forward-icon)"
         },
         "ports-open-browser-icon": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "ブラウザーを開くアクションのアイコン。: $(ports-open-browser-icon)"
+            "markdownDescription": "Icon for the open browser action.: $(ports-open-browser-icon)"
         },
         "ports-open-preview-icon": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "プレビューを開くアクションのアイコン。: $(ports-open-preview-icon)"
+            "markdownDescription": "Icon for the open preview action.: $(ports-open-preview-icon)"
         },
         "ports-copy-address-icon": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "ローカル アドレスのコピー アクションのアイコン。: $(ports-copy-address-icon)"
+            "markdownDescription": "Icon for the copy local address action.: $(ports-copy-address-icon)"
         },
         "ports-label-icon": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "ラベル ポート アクションのアイコン。: $(ports-label-icon)"
+            "markdownDescription": "Icon for the label port action.: $(ports-label-icon)"
         },
         "ports-forwarded-without-process-icon": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "実行中のプロセスがない転送されたポートのアイコン。: $(ports-forwarded-without-process-icon)"
+            "markdownDescription": "Icon for forwarded ports that don't have a running process.: $(ports-forwarded-without-process-icon)"
         },
         "ports-forwarded-with-process-icon": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "実行中のプロセスがある転送されたポートのアイコン。: $(ports-forwarded-with-process-icon)"
+            "markdownDescription": "Icon for forwarded ports that do have a running process.: $(ports-forwarded-with-process-icon)"
         },
         "search-details": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "検索の詳細を表示するためのアイコン。: $(search-details)"
+            "markdownDescription": "Icon to make search details visible.: $(search-details)"
         },
         "search-show-context": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "検索エディターでコンテキストを切り替えるためのアイコン。: $(search-show-context)"
+            "markdownDescription": "Icon for toggle the context in the search editor.: $(search-show-context)"
         },
         "search-hide-replace": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "検索ビュー内の置換セクションを折りたたむためのアイコン。: $(search-hide-replace)"
+            "markdownDescription": "Icon to collapse the replace section in the search view.: $(search-hide-replace)"
         },
         "search-show-replace": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "検索ビューの置換セクションを展開するためのアイコン。: $(search-show-replace)"
+            "markdownDescription": "Icon to expand the replace section in the search view.: $(search-show-replace)"
         },
         "search-replace-all": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "検索ビュー内のすべてを置換するためのアイコン。: $(search-replace-all)"
+            "markdownDescription": "Icon for replace all in the search view.: $(search-replace-all)"
         },
         "search-replace": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "検索ビュー内の置換のためのアイコン。: $(search-replace)"
+            "markdownDescription": "Icon for replace in the search view.: $(search-replace)"
         },
         "search-remove": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "検索結果を削除するためのアイコン。: $(search-remove)"
+            "markdownDescription": "Icon to remove a search result.: $(search-remove)"
         },
         "search-refresh": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "検索ビュー内で最新の情報に更新するためのアイコン。: $(search-refresh)"
+            "markdownDescription": "Icon for refresh in the search view.: $(search-refresh)"
         },
         "search-collapse-results": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "検索ビュー内の結果を折りたたむためのアイコン。: $(search-collapse-results)"
+            "markdownDescription": "Icon for collapse results in the search view.: $(search-collapse-results)"
         },
         "search-expand-results": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "検索ビュー内の結果を展開するためのアイコン。: $(search-expand-results)"
+            "markdownDescription": "Icon for expand results in the search view.: $(search-expand-results)"
         },
         "search-clear-results": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "検索ビュー内の結果をクリアするためのアイコン。: $(search-clear-results)"
+            "markdownDescription": "Icon for clear results in the search view.: $(search-clear-results)"
         },
         "search-view-icon": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "検索ビューのアイコンを表示します。: $(search-view-icon)"
+            "markdownDescription": "View icon of the search view.: $(search-view-icon)"
         },
         "search-new-editor": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "新しい検索エディターを開くためのアクションのアイコン。: $(search-new-editor)"
+            "markdownDescription": "Icon for the action to open a new search editor.: $(search-new-editor)"
         },
         "terminal-view-icon": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "ターミナル ビューのアイコンを表示します。: $(terminal-view-icon)"
+            "markdownDescription": "View icon of the terminal view.: $(terminal-view-icon)"
         },
         "terminal-rename": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "ターミナル クイック メニュー内の名前変更のためのアイコン。: $(terminal-rename)"
+            "markdownDescription": "Icon for rename in the terminal quick menu.: $(terminal-rename)"
         },
         "terminal-kill": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "ターミナル インスタンスを強制終了するためのアイコン。: $(terminal-kill)"
+            "markdownDescription": "Icon for killing a terminal instance.: $(terminal-kill)"
         },
         "terminal-new": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "新しいターミナル インスタンスを作成するためのアイコン。: $(terminal-new)"
+            "markdownDescription": "Icon for creating a new terminal instance.: $(terminal-new)"
         },
         "terminal-configure-profile": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "新しいターミナルのプロファイルを作成するためのアイコン。: $(terminal-configure-profile)"
+            "markdownDescription": "Icon for creating a new terminal profile.: $(terminal-configure-profile)"
         },
         "test-view-icon": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "テスト ビューのアイコンを表示します。: $(test-view-icon)"
+            "markdownDescription": "View icon of the test view.: $(test-view-icon)"
         },
         "testing-run-icon": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "\"テストの実行\" アクションのアイコン。: $(testing-run-icon)"
+            "markdownDescription": "Icon of the \"run test\" action.: $(testing-run-icon)"
         },
         "testing-run-all-icon": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "\"すべてのテストを実行する\" アクションのアイコン。: $(testing-run-all-icon)"
+            "markdownDescription": "Icon of the \"run all tests\" action.: $(testing-run-all-icon)"
+        },
+        "testing-debug-all-icon": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon of the \"debug all tests\" action.: $(testing-debug-all-icon)"
         },
         "testing-debug-icon": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "\"テストのデバッグ\" アクションのアイコン。: $(testing-debug-icon)"
+            "markdownDescription": "Icon of the \"debug test\" action.: $(testing-debug-icon)"
         },
         "testing-cancel-icon": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "実行中のテストの実行をキャンセルするアイコン。: $(testing-cancel-icon)"
+            "markdownDescription": "Icon to cancel ongoing test runs.: $(testing-cancel-icon)"
         },
         "testing-filter": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "テスト ビュー内の 'フィルター' アクションのアイコン。: $(testing-filter)"
+            "markdownDescription": "Icon for the 'Filter' action in the testing view.: $(testing-filter)"
         },
         "testing-autorun": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "テスト ビュー内の '自動実行' の切り替えアイコン。: $(testing-autorun)"
+            "markdownDescription": "Icon for the 'Autorun' toggle in the testing view.: $(testing-autorun)"
         },
         "testing-hidden": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "以前は表示されていた非表示のテストの横に表示されるアイコン。: $(testing-hidden)"
+            "markdownDescription": "Icon shown beside hidden tests, when they've been shown.: $(testing-hidden)"
         },
         "testing-show-as-list-icon": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "テスト エクスプローラーがツリーとして無効になったときに表示されるアイコン。: $(testing-show-as-list-icon)"
+            "markdownDescription": "Icon shown when the test explorer is disabled as a tree.: $(testing-show-as-list-icon)"
+        },
+        "testing-update-profiles": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon shown to update test profiles.: $(testing-update-profiles)"
         },
         "testing-error-icon": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "エラーが発生したテストについて表示されるアイコン。: $(testing-error-icon)"
+            "markdownDescription": "Icon shown for tests that have an error.: $(testing-error-icon)"
         },
         "testing-failed-icon": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "失敗したテストについて表示されるアイコン。: $(testing-failed-icon)"
+            "markdownDescription": "Icon shown for tests that failed.: $(testing-failed-icon)"
         },
         "testing-passed-icon": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "成功したテストについて表示されるアイコン。: $(testing-passed-icon)"
+            "markdownDescription": "Icon shown for tests that passed.: $(testing-passed-icon)"
         },
         "testing-queued-icon": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "キューに入っているテストについて表示されるアイコン。: $(testing-queued-icon)"
+            "markdownDescription": "Icon shown for tests that are queued.: $(testing-queued-icon)"
         },
         "testing-skipped-icon": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "スキップされたテストについて表示されるアイコン。: $(testing-skipped-icon)"
+            "markdownDescription": "Icon shown for tests that are skipped.: $(testing-skipped-icon)"
         },
         "testing-unset-icon": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "設定解除状態のテストについて表示されるアイコン。: $(testing-unset-icon)"
+            "markdownDescription": "Icon shown for tests that are in an unset state.: $(testing-unset-icon)"
         },
         "testing-error-message-icon": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "エラーが発生したテストについて表示されるアイコン。: $(testing-error-message-icon)"
+            "markdownDescription": "Icon shown for tests that have an error.: $(testing-error-message-icon)"
         },
         "testing-warning-message-icon": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "エラーが発生したテストについて表示されるアイコン。: $(testing-warning-message-icon)"
+            "markdownDescription": "Icon shown for tests that have an error.: $(testing-warning-message-icon)"
         },
         "testing-info-message-icon": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "エラーが発生したテストについて表示されるアイコン。: $(testing-info-message-icon)"
+            "markdownDescription": "Icon shown for tests that have an error.: $(testing-info-message-icon)"
         },
         "testing-hint-message-icon": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "エラーが発生したテストについて表示されるアイコン。: $(testing-hint-message-icon)"
+            "markdownDescription": "Icon shown for tests that have an error.: $(testing-hint-message-icon)"
         },
         "getting-started-step-unchecked": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "完了していないチュートリアルのステップを表すために使用されます: $(getting-started-step-unchecked)"
+            "markdownDescription": "Used to represent walkthrough steps which have not been completed: $(getting-started-step-unchecked)"
         },
         "getting-started-step-checked": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "完了したチュートリアルのステップを表すために使用されます: $(getting-started-step-checked)"
+            "markdownDescription": "Used to represent walkthrough steps which have been completed: $(getting-started-step-checked)"
         },
         "getting-started-setup": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "ウェルカム ページの設定カテゴリに使用されるアイコン: $(getting-started-setup)"
+            "markdownDescription": "Icon used for the setup category of welcome page: $(getting-started-setup)"
         },
         "getting-started-beginner": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "ウェルカム ページの初心者カテゴリに使用されるアイコン: $(getting-started-beginner)"
+            "markdownDescription": "Icon used for the beginner category of welcome page: $(getting-started-beginner)"
         },
         "getting-started-intermediate": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "ウェルカム ページの中級カテゴリに使用されるアイコン: $(getting-started-intermediate)"
+            "markdownDescription": "Icon used for the intermediate category of welcome page: $(getting-started-intermediate)"
         },
         "callhierarchy-incoming": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "呼び出し階層ビュー内の着信呼び出しのアイコン。: $(callhierarchy-incoming)"
+            "markdownDescription": "Icon for incoming calls in the call hierarchy view.: $(callhierarchy-incoming)"
         },
         "callhierarchy-outgoing": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "呼び出し階層ビュー内の送信呼び出しのアイコン。: $(callhierarchy-outgoing)"
+            "markdownDescription": "Icon for outgoing calls in the call hierarchy view.: $(callhierarchy-outgoing)"
         },
         "loading~spin": {
             "$ref": "#/definitions/icons"
         },
         "tasks-list-configure": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "タスクの選択リスト内の構成アイコン。: $(tasks-list-configure)"
+            "markdownDescription": "Configuration icon in the tasks selection list.: $(tasks-list-configure)"
         },
         "tasks-remove": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "タスクの選択リスト内の削除のアイコン。: $(tasks-remove)"
+            "markdownDescription": "Icon for remove in the tasks selection list.: $(tasks-remove)"
         },
         "banner-close": {
             "$ref": "#/definitions/icons"
         },
         "review-comment-collapse": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "レビュー コメントを折りたたむためのアイコン。: $(review-comment-collapse)"
+            "markdownDescription": "Icon to collapse a review comment.: $(review-comment-collapse)"
         },
         "settings-sync-view-icon": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "設定同期ビューの表示アイコン。: $(settings-sync-view-icon)"
+            "markdownDescription": "View icon of the Settings Sync view.: $(settings-sync-view-icon)"
         },
         "view-pane-container-expanded": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "展開されたビュー ペイン コンテナーのアイコン。: $(view-pane-container-expanded)"
+            "markdownDescription": "Icon for an expanded view pane container.: $(view-pane-container-expanded)"
         },
         "view-pane-container-collapsed": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "折りたたまれたビュー ペイン コンテナーのアイコン。: $(view-pane-container-collapsed)"
+            "markdownDescription": "Icon for a collapsed view pane container.: $(view-pane-container-collapsed)"
         },
         "diff-editor-previous-change": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "差分エディター内の前の変更アクションのアイコン。: $(diff-editor-previous-change)"
+            "markdownDescription": "Icon for the previous change action in the diff editor.: $(diff-editor-previous-change)"
         },
         "diff-editor-next-change": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "差分エディター内の次の変更アクションのアイコン。: $(diff-editor-next-change)"
+            "markdownDescription": "Icon for the next change action in the diff editor.: $(diff-editor-next-change)"
         },
         "diff-editor-toggle-whitespace": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "差分エディター内で空白文字の切り替えアクションのアイコン。: $(diff-editor-toggle-whitespace)"
+            "markdownDescription": "Icon for the toggle whitespace action in the diff editor.: $(diff-editor-toggle-whitespace)"
         },
         "timeline-refresh": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "タイムラインの更新アクションのアイコン。: $(timeline-refresh)"
+            "markdownDescription": "Icon for the refresh timeline action.: $(timeline-refresh)"
         },
         "timeline-pin": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "タイムラインのピン留めアクションのアイコン。: $(timeline-pin)"
+            "markdownDescription": "Icon for the pin timeline action.: $(timeline-pin)"
         },
         "timeline-unpin": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "タイムラインのピン留め解除アクションのアイコン。: $(timeline-unpin)"
+            "markdownDescription": "Icon for the unpin timeline action.: $(timeline-unpin)"
         },
         "settings-view-bar-icon": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "ビューバーの設定アイコン。: $(settings-view-bar-icon)"
+            "markdownDescription": "Settings icon in the view bar.: $(settings-view-bar-icon)"
         },
         "accounts-view-bar-icon": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "ビュー バーのアカウント アイコン。: $(accounts-view-bar-icon)"
+            "markdownDescription": "Accounts icon in the view bar.: $(accounts-view-bar-icon)"
         },
         "panel-maximize": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "パネルを最大化するためのアイコン。: $(panel-maximize)"
+            "markdownDescription": "Icon to maximize a panel.: $(panel-maximize)"
         },
         "panel-restore": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "パネルを復元するためのアイコン。: $(panel-restore)"
+            "markdownDescription": "Icon to restore a panel.: $(panel-restore)"
         },
         "panel-close": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "パネルを閉じるためのアイコン。: $(panel-close)"
+            "markdownDescription": "Icon to close a panel.: $(panel-close)"
         },
         "comments-view-icon": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "コメント ビューのアイコンを表示します。: $(comments-view-icon)"
+            "markdownDescription": "View icon of the comments view.: $(comments-view-icon)"
         },
         "refactor-preview-view-icon": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "リファクター プレビュー ビューのアイコンを表示します。: $(refactor-preview-view-icon)"
+            "markdownDescription": "View icon of the refactor preview view.: $(refactor-preview-view-icon)"
         },
         "explorer-view-icon": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "エクスプローラー ビューのアイコンを表示します。: $(explorer-view-icon)"
+            "markdownDescription": "View icon of the explorer view.: $(explorer-view-icon)"
         },
         "open-editors-view-icon": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "オープン エディター ビューのアイコンを表示します。: $(open-editors-view-icon)"
+            "markdownDescription": "View icon of the open editors view.: $(open-editors-view-icon)"
         },
         "markers-view-multi-line-expanded": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "マーカーのビューで複数の行が表示されていることを示すアイコン。: $(markers-view-multi-line-expanded)"
+            "markdownDescription": "Icon indicating that multiple lines are shown in the markers view.: $(markers-view-multi-line-expanded)"
         },
         "markers-view-multi-line-collapsed": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "マーカーのビューで複数の行が折りたたまれていることを示すアイコン。: $(markers-view-multi-line-collapsed)"
+            "markdownDescription": "Icon indicating that multiple lines are collapsed in the markers view.: $(markers-view-multi-line-collapsed)"
         },
         "markers-view-icon": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "マーカー ビューのアイコンを表示します。: $(markers-view-icon)"
+            "markdownDescription": "View icon of the markers view.: $(markers-view-icon)"
         },
         "outline-view-icon": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "アウトライン ビューのアイコンを表示します。: $(outline-view-icon)"
+            "markdownDescription": "View icon of the outline view.: $(outline-view-icon)"
         },
         "output-view-icon": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "出力ビューのアイコンを表示します。: $(output-view-icon)"
+            "markdownDescription": "View icon of the output view.: $(output-view-icon)"
         },
         "source-control-view-icon": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "ソース管理ビューの表示アイコン。: $(source-control-view-icon)"
+            "markdownDescription": "View icon of the Source Control view.: $(source-control-view-icon)"
         },
         "timeline-view-icon": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "タイムライン ビューのアイコンを表示します。: $(timeline-view-icon)"
+            "markdownDescription": "View icon of the timeline view.: $(timeline-view-icon)"
         },
         "timeline-open": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "タイムラインを開くアクションのアイコン。: $(timeline-open)"
+            "markdownDescription": "Icon for the open timeline action.: $(timeline-open)"
         },
         "workspace-trust-icon": {
             "$ref": "#/definitions/icons"
