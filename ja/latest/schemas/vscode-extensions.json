@@ -119,6 +119,7 @@
                                     "additionalProperties": {
                                         "anyOf": [
                                             {
+                                                "title": "Schema of the configuration property.",
                                                 "$ref": "http://json-schema.org/draft-07/schema#"
                                             },
                                             {
@@ -222,6 +223,7 @@
                                         "additionalProperties": {
                                             "anyOf": [
                                                 {
+                                                    "title": "Schema of the configuration property.",
                                                     "$ref": "http://json-schema.org/draft-07/schema#"
                                                 },
                                                 {
@@ -363,11 +365,11 @@
                                     "type": "string"
                                 },
                                 "shortTitle": {
-                                    "description": "Short title by which the command is represented in the UI",
+                                    "markdownDescription": "(Optional) Short title by which the command is represented in the UI. Menus pick either `title` or `shortTitle` depending on the context in which they show commands.",
                                     "type": "string"
                                 },
                                 "category": {
-                                    "description": "(Optional) Category string by the command is grouped in the UI",
+                                    "description": "(Optional) Category string by which the command is grouped in the UI",
                                     "type": "string"
                                 },
                                 "enablement": {
@@ -415,11 +417,11 @@
                                         "type": "string"
                                     },
                                     "shortTitle": {
-                                        "description": "Short title by which the command is represented in the UI",
+                                        "markdownDescription": "(Optional) Short title by which the command is represented in the UI. Menus pick either `title` or `shortTitle` depending on the context in which they show commands.",
                                         "type": "string"
                                     },
                                     "category": {
-                                        "description": "(Optional) Category string by the command is grouped in the UI",
+                                        "description": "(Optional) Category string by which the command is grouped in the UI",
                                         "type": "string"
                                     },
                                     "enablement": {
@@ -1788,7 +1790,7 @@
                             }
                         },
                         "notebook/toolbar": {
-                            "description": "(Proposed API) The contributed notebook toolbar menu",
+                            "description": "The contributed notebook toolbar menu",
                             "type": "array",
                             "items": {
                                 "oneOf": [
@@ -1840,7 +1842,59 @@
                             }
                         },
                         "notebook/cell/title": {
-                            "description": "(Proposed API) The contributed notebook cell title menu",
+                            "description": "The contributed notebook cell title menu",
+                            "type": "array",
+                            "items": {
+                                "oneOf": [
+                                    {
+                                        "type": "object",
+                                        "required": [
+                                            "command"
+                                        ],
+                                        "properties": {
+                                            "command": {
+                                                "description": "Identifier of the command to execute. The command must be declared in the 'commands'-section",
+                                                "type": "string"
+                                            },
+                                            "alt": {
+                                                "description": "Identifier of an alternative command to execute. The command must be declared in the 'commands'-section",
+                                                "type": "string"
+                                            },
+                                            "when": {
+                                                "description": "Condition which must be true to show this item",
+                                                "type": "string"
+                                            },
+                                            "group": {
+                                                "description": "Group into which this item belongs",
+                                                "type": "string"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "type": "object",
+                                        "required": [
+                                            "submenu"
+                                        ],
+                                        "properties": {
+                                            "submenu": {
+                                                "description": "Identifier of the submenu to display in this item.",
+                                                "type": "string"
+                                            },
+                                            "when": {
+                                                "description": "Condition which must be true to show this item",
+                                                "type": "string"
+                                            },
+                                            "group": {
+                                                "description": "Group into which this item belongs",
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                ]
+                            }
+                        },
+                        "notebook/cell/execute": {
+                            "description": "The contributed notebook cell execution menu",
                             "type": "array",
                             "items": {
                                 "oneOf": [
@@ -2593,6 +2647,11 @@
                                 "description": "JSON schema configurations for validating 'launch.json'.",
                                 "type": "object"
                             },
+                            "when": {
+                                "description": "Condition which must be true to enable this type of debugger. Consider using 'shellExecutionSupported', 'virtualWorkspace', 'resourceScheme' or an extension defined context key as appropriate for this.",
+                                "type": "string",
+                                "default": ""
+                            },
                             "windows": {
                                 "description": "Windows specific settings.",
                                 "type": "object",
@@ -3316,8 +3375,25 @@
                                         "type": "string"
                                     },
                                     "icon": {
-                                        "description": "A codicon to associate with this terminal type.",
-                                        "type": "string"
+                                        "description": "A codicon, URI, or light and dark URIs to associate with this terminal type.",
+                                        "anyOf": [
+                                            {
+                                                "type": "string"
+                                            },
+                                            {
+                                                "type": "object",
+                                                "properties": {
+                                                    "light": {
+                                                        "description": "Icon path when a light theme is used",
+                                                        "type": "string"
+                                                    },
+                                                    "dark": {
+                                                        "description": "Icon path when a dark theme is used",
+                                                        "type": "string"
+                                                    }
+                                                }
+                                            }
+                                        ]
                                     }
                                 }
                             }
@@ -3349,8 +3425,25 @@
                                         "type": "string"
                                     },
                                     "icon": {
-                                        "description": "A codicon to associate with this terminal profile.",
-                                        "type": "string"
+                                        "description": "A codicon, URI, or light and dark URIs to associate with this terminal type.",
+                                        "anyOf": [
+                                            {
+                                                "type": "string"
+                                            },
+                                            {
+                                                "type": "object",
+                                                "properties": {
+                                                    "light": {
+                                                        "description": "Icon path when a light theme is used",
+                                                        "type": "string"
+                                                    },
+                                                    "dark": {
+                                                        "description": "Icon path when a dark theme is used",
+                                                        "type": "string"
+                                                    }
+                                                }
+                                            }
+                                        ]
                                     }
                                 }
                             }
@@ -3391,15 +3484,16 @@
                                 "type": "string",
                                 "description": "Description of walkthrough."
                             },
-                            "primary": {
-                                "deprecationMessage": "Deprecated. The first walkthrough with a satisfied when condition will be opened on install."
+                            "featuredFor": {
+                                "type": "array",
+                                "description": "Walkthroughs that match one of these glob patterns appear as 'featured' in workspaces with the specified files. For example, a walkthrough for TypeScript projects might specify `tsconfig.json` here.",
+                                "items": {
+                                    "type": "string"
+                                }
                             },
                             "when": {
                                 "type": "string",
                                 "description": "Context key expression to control the visibility of this walkthrough."
-                            },
-                            "tasks": {
-                                "deprecationMessage": "Deprecated. Use `steps` instead"
                             },
                             "steps": {
                                 "type": "array",
@@ -3483,6 +3577,23 @@
                                                                     }
                                                                 }
                                                             ]
+                                                        },
+                                                        "altText": {
+                                                            "type": "string",
+                                                            "description": "Alternate text to display when the image cannot be loaded or in screen readers."
+                                                        }
+                                                    }
+                                                },
+                                                {
+                                                    "required": [
+                                                        "svg",
+                                                        "altText"
+                                                    ],
+                                                    "additionalProperties": false,
+                                                    "properties": {
+                                                        "svg": {
+                                                            "description": "Path to an svg, color tokens are supported in variables to support theming to match the workbench.",
+                                                            "type": "string"
                                                         },
                                                         "altText": {
                                                             "type": "string",
@@ -3581,9 +3692,6 @@
                             }
                         }
                     }
-                },
-                "startEntries": {
-                    "deprecationMessage": "Removed, use the menus => file/newFile contribution point instead"
                 },
                 "keybindings": {
                     "description": "Contributes keybindings.",
@@ -3931,6 +4039,84 @@
                         }
                     }
                 },
+                "localizations": {
+                    "description": "Contributes localizations to the editor",
+                    "type": "array",
+                    "default": [],
+                    "items": {
+                        "type": "object",
+                        "required": [
+                            "languageId",
+                            "translations"
+                        ],
+                        "defaultSnippets": [
+                            {
+                                "body": {
+                                    "languageId": "",
+                                    "languageName": "",
+                                    "localizedLanguageName": "",
+                                    "translations": [
+                                        {
+                                            "id": "vscode",
+                                            "path": ""
+                                        }
+                                    ]
+                                }
+                            }
+                        ],
+                        "properties": {
+                            "languageId": {
+                                "description": "Id of the language into which the display strings are translated.",
+                                "type": "string"
+                            },
+                            "languageName": {
+                                "description": "Name of the language in English.",
+                                "type": "string"
+                            },
+                            "localizedLanguageName": {
+                                "description": "Name of the language in contributed language.",
+                                "type": "string"
+                            },
+                            "translations": {
+                                "description": "List of translations associated to the language.",
+                                "type": "array",
+                                "default": [
+                                    {
+                                        "id": "vscode",
+                                        "path": ""
+                                    }
+                                ],
+                                "items": {
+                                    "type": "object",
+                                    "required": [
+                                        "id",
+                                        "path"
+                                    ],
+                                    "properties": {
+                                        "id": {
+                                            "type": "string",
+                                            "description": "Id of VS Code or Extension for which this translation is contributed to. Id of VS Code is always `vscode` and of extension should be in format `publisherId.extensionName`.",
+                                            "pattern": "^((vscode)|([a-z0-9A-Z][a-z0-9-A-Z]*)\\.([a-z0-9A-Z][a-z0-9-A-Z]*))$",
+                                            "patternErrorMessage": "Id should be `vscode` or in format `publisherId.extensionName` for translating VS code or an extension respectively."
+                                        },
+                                        "path": {
+                                            "type": "string",
+                                            "description": "A relative path to a file containing translations for the language."
+                                        }
+                                    },
+                                    "defaultSnippets": [
+                                        {
+                                            "body": {
+                                                "id": "",
+                                                "path": ""
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
                 "authentication": {
                     "description": "Contributes authentication",
                     "type": "array",
@@ -4225,6 +4411,10 @@
                                                     "editorLink.activeForeground",
                                                     "editorInlayHint.foreground",
                                                     "editorInlayHint.background",
+                                                    "editorInlayHint.typeForeground",
+                                                    "editorInlayHint.typeBackground",
+                                                    "editorInlayHint.parameterForeground",
+                                                    "editorInlayHint.parameterBackground",
                                                     "editorLightBulb.foreground",
                                                     "editorLightBulbAutoFix.foreground",
                                                     "diffEditor.insertedTextBackground",
@@ -4296,10 +4486,12 @@
                                                     "editorOverviewRuler.findMatchForeground",
                                                     "editorOverviewRuler.selectionHighlightForeground",
                                                     "minimap.findMatchHighlight",
+                                                    "minimap.selectionOccurrenceHighlight",
                                                     "minimap.selectionHighlight",
                                                     "minimap.errorHighlight",
                                                     "minimap.warningHighlight",
                                                     "minimap.background",
+                                                    "minimap.foregroundOpacity",
                                                     "minimapSlider.background",
                                                     "minimapSlider.hoverBackground",
                                                     "minimapSlider.activeBackground",
@@ -4343,6 +4535,13 @@
                                                     "editorOverviewRuler.errorForeground",
                                                     "editorOverviewRuler.warningForeground",
                                                     "editorOverviewRuler.infoForeground",
+                                                    "editorBracketHighlight.foreground1",
+                                                    "editorBracketHighlight.foreground2",
+                                                    "editorBracketHighlight.foreground3",
+                                                    "editorBracketHighlight.foreground4",
+                                                    "editorBracketHighlight.foreground5",
+                                                    "editorBracketHighlight.foreground6",
+                                                    "editorBracketHighlight.unexpectedBracket.foreground",
                                                     "symbolIcon.arrayForeground",
                                                     "symbolIcon.booleanForeground",
                                                     "symbolIcon.classForeground",
@@ -4401,8 +4600,11 @@
                                                     "peekViewEditor.matchHighlightBackground",
                                                     "peekViewEditor.matchHighlightBorder",
                                                     "editorMarkerNavigationError.background",
+                                                    "editorMarkerNavigationError.headerBackground",
                                                     "editorMarkerNavigationWarning.background",
+                                                    "editorMarkerNavigationWarning.headerBackground",
                                                     "editorMarkerNavigationInfo.background",
+                                                    "editorMarkerNavigationInfo.headerBackground",
                                                     "editorMarkerNavigation.background",
                                                     "editorSuggestWidget.background",
                                                     "editorSuggestWidget.border",
@@ -4437,7 +4639,6 @@
                                                     "tab.unfocusedActiveModifiedBorder",
                                                     "tab.unfocusedInactiveModifiedBorder",
                                                     "editorPane.background",
-                                                    "editorGroup.background",
                                                     "editorGroup.emptyBackground",
                                                     "editorGroup.focusedEmptyBorder",
                                                     "editorGroupHeader.tabsBackground",
@@ -4446,6 +4647,7 @@
                                                     "editorGroupHeader.border",
                                                     "editorGroup.border",
                                                     "editorGroup.dropBackground",
+                                                    "sideBySideEditor.border",
                                                     "panel.background",
                                                     "panel.border",
                                                     "panelTitle.activeForeground",
@@ -4557,14 +4759,11 @@
                                                     "testing.iconUnset",
                                                     "testing.iconSkipped",
                                                     "testing.peekBorder",
+                                                    "testing.peekHeaderBackground",
                                                     "testing.message.error.decorationForeground",
                                                     "testing.message.error.lineBackground",
-                                                    "testing.message.warning.decorationForeground",
-                                                    "testing.message.warning.lineBackground",
                                                     "testing.message.info.decorationForeground",
                                                     "testing.message.info.lineBackground",
-                                                    "testing.message.hint.decorationForeground",
-                                                    "testing.message.hint.lineBackground",
                                                     "welcomePage.buttonBackground",
                                                     "welcomePage.buttonHoverBackground",
                                                     "welcomePage.background",
@@ -4579,6 +4778,7 @@
                                                     "statusBar.debuggingBorder",
                                                     "debugExceptionWidget.border",
                                                     "debugExceptionWidget.background",
+                                                    "ports.iconRunningProcessForeground",
                                                     "editorGutter.modifiedBackground",
                                                     "editorGutter.addedBackground",
                                                     "editorGutter.deletedBackground",
@@ -4597,12 +4797,12 @@
                                                     "debugIcon.breakpointStackframeForeground",
                                                     "editor.inlineValuesForeground",
                                                     "editor.inlineValuesBackground",
-                                                    "ports.iconRunningProcessForeground",
                                                     "notebook.cellBorderColor",
                                                     "notebook.focusedEditorBorder",
                                                     "notebookStatusSuccessIcon.foreground",
                                                     "notebookStatusErrorIcon.foreground",
                                                     "notebookStatusRunningIcon.foreground",
+                                                    "notebook.outputContainerBorderColor",
                                                     "notebook.outputContainerBackgroundColor",
                                                     "notebook.cellToolbarSeparator",
                                                     "notebook.focusedCellBackground",
@@ -4785,6 +4985,10 @@
                                                     "Color of active links.",
                                                     "Foreground color of inline hints",
                                                     "Background color of inline hints",
+                                                    "Foreground color of inline hints for types",
+                                                    "Background color of inline hints for types",
+                                                    "Foreground color of inline hints for parameters",
+                                                    "Background color of inline hints for parameters",
                                                     "The color used for the lightbulb actions icon.",
                                                     "The color used for the lightbulb auto fix actions icon.",
                                                     "Background color for text that got inserted. The color must not be opaque so as not to hide underlying decorations.",
@@ -4856,10 +5060,12 @@
                                                     "Overview ruler marker color for find matches. The color must not be opaque so as not to hide underlying decorations.",
                                                     "Overview ruler marker color for selection highlights. The color must not be opaque so as not to hide underlying decorations.",
                                                     "Minimap marker color for find matches.",
+                                                    "Minimap marker color for repeating editor selections.",
                                                     "Minimap marker color for the editor selection.",
                                                     "Minimap marker color for errors.",
                                                     "Minimap marker color for warnings.",
                                                     "Minimap background color.",
+                                                    "Opacity of foreground elements rendered in the minimap. For example, \"#000000c0\" will render the elements with 75% opacity.",
                                                     "Minimap slider background color.",
                                                     "Minimap slider background color when hovering.",
                                                     "Minimap slider background color when clicked on.",
@@ -4903,6 +5109,13 @@
                                                     "Overview ruler marker color for errors.",
                                                     "Overview ruler marker color for warnings.",
                                                     "Overview ruler marker color for infos.",
+                                                    "Foreground color of brackets (1). Requires enabling bracket pair colorization.",
+                                                    "Foreground color of brackets (2). Requires enabling bracket pair colorization.",
+                                                    "Foreground color of brackets (3). Requires enabling bracket pair colorization.",
+                                                    "Foreground color of brackets (4). Requires enabling bracket pair colorization.",
+                                                    "Foreground color of brackets (5). Requires enabling bracket pair colorization.",
+                                                    "Foreground color of brackets (6). Requires enabling bracket pair colorization.",
+                                                    "Foreground color of unexpected brackets.",
                                                     "The foreground color for array symbols. These symbols appear in the outline, breadcrumb, and suggest widget.",
                                                     "The foreground color for boolean symbols. These symbols appear in the outline, breadcrumb, and suggest widget.",
                                                     "The foreground color for class symbols. These symbols appear in the outline, breadcrumb, and suggest widget.",
@@ -4961,8 +5174,11 @@
                                                     "Match highlight color in the peek view editor.",
                                                     "Match highlight border in the peek view editor.",
                                                     "Editor marker navigation widget error color.",
+                                                    "Editor marker navigation widget error heading background.",
                                                     "Editor marker navigation widget warning color.",
+                                                    "Editor marker navigation widget warning heading background.",
                                                     "Editor marker navigation widget info color.",
+                                                    "Editor marker navigation widget info heading background.",
                                                     "Editor marker navigation widget background.",
                                                     "Background color of the suggest widget.",
                                                     "Border color of the suggest widget.",
@@ -4997,7 +5213,6 @@
                                                     "Border on the top of modified (dirty) active tabs in an unfocused group. Tabs are the containers for editors in the editor area. Multiple tabs can be opened in one editor group. There can be multiple editor groups.",
                                                     "Border on the top of modified (dirty) inactive tabs in an unfocused group. Tabs are the containers for editors in the editor area. Multiple tabs can be opened in one editor group. There can be multiple editor groups.",
                                                     "Background color of the editor pane visible on the left and right side of the centered editor layout.",
-                                                    "Deprecated background color of an editor group.",
                                                     "Background color of an empty editor group. Editor groups are the containers of editors.",
                                                     "Border color of an empty editor group that is focused. Editor groups are the containers of editors.",
                                                     "Background color of the editor group title header when tabs are enabled. Editor groups are the containers of editors.",
@@ -5006,6 +5221,7 @@
                                                     "Border color of the editor group title header. Editor groups are the containers of editors.",
                                                     "Color to separate multiple editor groups from each other. Editor groups are the containers of editors.",
                                                     "Background color when dragging editors around. The color should have transparency so that the editor contents can still shine through.",
+                                                    "Color to separate two editors from each other when shown side by side in an editor group.",
                                                     "Panel background color. Panels are shown below the editor area and contain views like output and integrated terminal.",
                                                     "Panel border color to separate the panel from the editor. Panels are shown below the editor area and contain views like output and integrated terminal.",
                                                     "Title color for the active panel. Panels are shown below the editor area and contain views like output and integrated terminal.",
@@ -5117,14 +5333,11 @@
                                                     "Color for the 'Unset' icon in the test explorer.",
                                                     "Color for the 'Skipped' icon in the test explorer.",
                                                     "Color of the peek view borders and arrow.",
+                                                    "Color of the peek view borders and arrow.",
                                                     "Text color of test error messages shown inline in the editor.",
                                                     "Margin color beside error messages shown inline in the editor.",
-                                                    "Text color of test warning messages shown inline in the editor.",
-                                                    "Margin color beside warning messages shown inline in the editor.",
                                                     "Text color of test info messages shown inline in the editor.",
                                                     "Margin color beside info messages shown inline in the editor.",
-                                                    "Text color of test hint messages shown inline in the editor.",
-                                                    "Margin color beside hint messages shown inline in the editor.",
                                                     "Background color for the buttons on the Welcome page.",
                                                     "Hover background color for the buttons on the Welcome page.",
                                                     "Background color for the Welcome page.",
@@ -5139,6 +5352,7 @@
                                                     "Status bar border color separating to the sidebar and editor when a program is being debugged. The status bar is shown in the bottom of the window",
                                                     "Exception widget border color.",
                                                     "Exception widget background color.",
+                                                    "The color of the icon for a port that has an associated running process.",
                                                     "Editor gutter background color for lines that are modified.",
                                                     "Editor gutter background color for lines that are added.",
                                                     "Editor gutter background color for lines that are deleted.",
@@ -5157,13 +5371,13 @@
                                                     "Icon color for all breakpoint stack frames.",
                                                     "Color for the debug inline value text.",
                                                     "Color for the debug inline value background.",
-                                                    "The color of the icon for a port that has an associated running process.",
                                                     "The border color for notebook cells.",
                                                     "The color of the notebook cell editor border.",
                                                     "The error icon color of notebook cells in the cell status bar.",
                                                     "The error icon color of notebook cells in the cell status bar.",
                                                     "The running icon color of notebook cells in the cell status bar.",
-                                                    "The Color of the notebook output container background.",
+                                                    "The border color of the notebook output container.",
+                                                    "The color of the notebook output container background.",
                                                     "The color of the separator in the cell bottom toolbar",
                                                     "The background color of a cell when the cell is focused.",
                                                     "The background color of a cell when the cell is selected.",
@@ -5358,6 +5572,10 @@
                                                     "editorLink.activeForeground",
                                                     "editorInlayHint.foreground",
                                                     "editorInlayHint.background",
+                                                    "editorInlayHint.typeForeground",
+                                                    "editorInlayHint.typeBackground",
+                                                    "editorInlayHint.parameterForeground",
+                                                    "editorInlayHint.parameterBackground",
                                                     "editorLightBulb.foreground",
                                                     "editorLightBulbAutoFix.foreground",
                                                     "diffEditor.insertedTextBackground",
@@ -5429,10 +5647,12 @@
                                                     "editorOverviewRuler.findMatchForeground",
                                                     "editorOverviewRuler.selectionHighlightForeground",
                                                     "minimap.findMatchHighlight",
+                                                    "minimap.selectionOccurrenceHighlight",
                                                     "minimap.selectionHighlight",
                                                     "minimap.errorHighlight",
                                                     "minimap.warningHighlight",
                                                     "minimap.background",
+                                                    "minimap.foregroundOpacity",
                                                     "minimapSlider.background",
                                                     "minimapSlider.hoverBackground",
                                                     "minimapSlider.activeBackground",
@@ -5476,6 +5696,13 @@
                                                     "editorOverviewRuler.errorForeground",
                                                     "editorOverviewRuler.warningForeground",
                                                     "editorOverviewRuler.infoForeground",
+                                                    "editorBracketHighlight.foreground1",
+                                                    "editorBracketHighlight.foreground2",
+                                                    "editorBracketHighlight.foreground3",
+                                                    "editorBracketHighlight.foreground4",
+                                                    "editorBracketHighlight.foreground5",
+                                                    "editorBracketHighlight.foreground6",
+                                                    "editorBracketHighlight.unexpectedBracket.foreground",
                                                     "symbolIcon.arrayForeground",
                                                     "symbolIcon.booleanForeground",
                                                     "symbolIcon.classForeground",
@@ -5534,8 +5761,11 @@
                                                     "peekViewEditor.matchHighlightBackground",
                                                     "peekViewEditor.matchHighlightBorder",
                                                     "editorMarkerNavigationError.background",
+                                                    "editorMarkerNavigationError.headerBackground",
                                                     "editorMarkerNavigationWarning.background",
+                                                    "editorMarkerNavigationWarning.headerBackground",
                                                     "editorMarkerNavigationInfo.background",
+                                                    "editorMarkerNavigationInfo.headerBackground",
                                                     "editorMarkerNavigation.background",
                                                     "editorSuggestWidget.background",
                                                     "editorSuggestWidget.border",
@@ -5570,7 +5800,6 @@
                                                     "tab.unfocusedActiveModifiedBorder",
                                                     "tab.unfocusedInactiveModifiedBorder",
                                                     "editorPane.background",
-                                                    "editorGroup.background",
                                                     "editorGroup.emptyBackground",
                                                     "editorGroup.focusedEmptyBorder",
                                                     "editorGroupHeader.tabsBackground",
@@ -5579,6 +5808,7 @@
                                                     "editorGroupHeader.border",
                                                     "editorGroup.border",
                                                     "editorGroup.dropBackground",
+                                                    "sideBySideEditor.border",
                                                     "panel.background",
                                                     "panel.border",
                                                     "panelTitle.activeForeground",
@@ -5690,14 +5920,11 @@
                                                     "testing.iconUnset",
                                                     "testing.iconSkipped",
                                                     "testing.peekBorder",
+                                                    "testing.peekHeaderBackground",
                                                     "testing.message.error.decorationForeground",
                                                     "testing.message.error.lineBackground",
-                                                    "testing.message.warning.decorationForeground",
-                                                    "testing.message.warning.lineBackground",
                                                     "testing.message.info.decorationForeground",
                                                     "testing.message.info.lineBackground",
-                                                    "testing.message.hint.decorationForeground",
-                                                    "testing.message.hint.lineBackground",
                                                     "welcomePage.buttonBackground",
                                                     "welcomePage.buttonHoverBackground",
                                                     "welcomePage.background",
@@ -5712,6 +5939,7 @@
                                                     "statusBar.debuggingBorder",
                                                     "debugExceptionWidget.border",
                                                     "debugExceptionWidget.background",
+                                                    "ports.iconRunningProcessForeground",
                                                     "editorGutter.modifiedBackground",
                                                     "editorGutter.addedBackground",
                                                     "editorGutter.deletedBackground",
@@ -5730,12 +5958,12 @@
                                                     "debugIcon.breakpointStackframeForeground",
                                                     "editor.inlineValuesForeground",
                                                     "editor.inlineValuesBackground",
-                                                    "ports.iconRunningProcessForeground",
                                                     "notebook.cellBorderColor",
                                                     "notebook.focusedEditorBorder",
                                                     "notebookStatusSuccessIcon.foreground",
                                                     "notebookStatusErrorIcon.foreground",
                                                     "notebookStatusRunningIcon.foreground",
+                                                    "notebook.outputContainerBorderColor",
                                                     "notebook.outputContainerBackgroundColor",
                                                     "notebook.cellToolbarSeparator",
                                                     "notebook.focusedCellBackground",
@@ -5918,6 +6146,10 @@
                                                     "Color of active links.",
                                                     "Foreground color of inline hints",
                                                     "Background color of inline hints",
+                                                    "Foreground color of inline hints for types",
+                                                    "Background color of inline hints for types",
+                                                    "Foreground color of inline hints for parameters",
+                                                    "Background color of inline hints for parameters",
                                                     "The color used for the lightbulb actions icon.",
                                                     "The color used for the lightbulb auto fix actions icon.",
                                                     "Background color for text that got inserted. The color must not be opaque so as not to hide underlying decorations.",
@@ -5989,10 +6221,12 @@
                                                     "Overview ruler marker color for find matches. The color must not be opaque so as not to hide underlying decorations.",
                                                     "Overview ruler marker color for selection highlights. The color must not be opaque so as not to hide underlying decorations.",
                                                     "Minimap marker color for find matches.",
+                                                    "Minimap marker color for repeating editor selections.",
                                                     "Minimap marker color for the editor selection.",
                                                     "Minimap marker color for errors.",
                                                     "Minimap marker color for warnings.",
                                                     "Minimap background color.",
+                                                    "Opacity of foreground elements rendered in the minimap. For example, \"#000000c0\" will render the elements with 75% opacity.",
                                                     "Minimap slider background color.",
                                                     "Minimap slider background color when hovering.",
                                                     "Minimap slider background color when clicked on.",
@@ -6036,6 +6270,13 @@
                                                     "Overview ruler marker color for errors.",
                                                     "Overview ruler marker color for warnings.",
                                                     "Overview ruler marker color for infos.",
+                                                    "Foreground color of brackets (1). Requires enabling bracket pair colorization.",
+                                                    "Foreground color of brackets (2). Requires enabling bracket pair colorization.",
+                                                    "Foreground color of brackets (3). Requires enabling bracket pair colorization.",
+                                                    "Foreground color of brackets (4). Requires enabling bracket pair colorization.",
+                                                    "Foreground color of brackets (5). Requires enabling bracket pair colorization.",
+                                                    "Foreground color of brackets (6). Requires enabling bracket pair colorization.",
+                                                    "Foreground color of unexpected brackets.",
                                                     "The foreground color for array symbols. These symbols appear in the outline, breadcrumb, and suggest widget.",
                                                     "The foreground color for boolean symbols. These symbols appear in the outline, breadcrumb, and suggest widget.",
                                                     "The foreground color for class symbols. These symbols appear in the outline, breadcrumb, and suggest widget.",
@@ -6094,8 +6335,11 @@
                                                     "Match highlight color in the peek view editor.",
                                                     "Match highlight border in the peek view editor.",
                                                     "Editor marker navigation widget error color.",
+                                                    "Editor marker navigation widget error heading background.",
                                                     "Editor marker navigation widget warning color.",
+                                                    "Editor marker navigation widget warning heading background.",
                                                     "Editor marker navigation widget info color.",
+                                                    "Editor marker navigation widget info heading background.",
                                                     "Editor marker navigation widget background.",
                                                     "Background color of the suggest widget.",
                                                     "Border color of the suggest widget.",
@@ -6130,7 +6374,6 @@
                                                     "Border on the top of modified (dirty) active tabs in an unfocused group. Tabs are the containers for editors in the editor area. Multiple tabs can be opened in one editor group. There can be multiple editor groups.",
                                                     "Border on the top of modified (dirty) inactive tabs in an unfocused group. Tabs are the containers for editors in the editor area. Multiple tabs can be opened in one editor group. There can be multiple editor groups.",
                                                     "Background color of the editor pane visible on the left and right side of the centered editor layout.",
-                                                    "Deprecated background color of an editor group.",
                                                     "Background color of an empty editor group. Editor groups are the containers of editors.",
                                                     "Border color of an empty editor group that is focused. Editor groups are the containers of editors.",
                                                     "Background color of the editor group title header when tabs are enabled. Editor groups are the containers of editors.",
@@ -6139,6 +6382,7 @@
                                                     "Border color of the editor group title header. Editor groups are the containers of editors.",
                                                     "Color to separate multiple editor groups from each other. Editor groups are the containers of editors.",
                                                     "Background color when dragging editors around. The color should have transparency so that the editor contents can still shine through.",
+                                                    "Color to separate two editors from each other when shown side by side in an editor group.",
                                                     "Panel background color. Panels are shown below the editor area and contain views like output and integrated terminal.",
                                                     "Panel border color to separate the panel from the editor. Panels are shown below the editor area and contain views like output and integrated terminal.",
                                                     "Title color for the active panel. Panels are shown below the editor area and contain views like output and integrated terminal.",
@@ -6250,14 +6494,11 @@
                                                     "Color for the 'Unset' icon in the test explorer.",
                                                     "Color for the 'Skipped' icon in the test explorer.",
                                                     "Color of the peek view borders and arrow.",
+                                                    "Color of the peek view borders and arrow.",
                                                     "Text color of test error messages shown inline in the editor.",
                                                     "Margin color beside error messages shown inline in the editor.",
-                                                    "Text color of test warning messages shown inline in the editor.",
-                                                    "Margin color beside warning messages shown inline in the editor.",
                                                     "Text color of test info messages shown inline in the editor.",
                                                     "Margin color beside info messages shown inline in the editor.",
-                                                    "Text color of test hint messages shown inline in the editor.",
-                                                    "Margin color beside hint messages shown inline in the editor.",
                                                     "Background color for the buttons on the Welcome page.",
                                                     "Hover background color for the buttons on the Welcome page.",
                                                     "Background color for the Welcome page.",
@@ -6272,6 +6513,7 @@
                                                     "Status bar border color separating to the sidebar and editor when a program is being debugged. The status bar is shown in the bottom of the window",
                                                     "Exception widget border color.",
                                                     "Exception widget background color.",
+                                                    "The color of the icon for a port that has an associated running process.",
                                                     "Editor gutter background color for lines that are modified.",
                                                     "Editor gutter background color for lines that are added.",
                                                     "Editor gutter background color for lines that are deleted.",
@@ -6290,13 +6532,13 @@
                                                     "Icon color for all breakpoint stack frames.",
                                                     "Color for the debug inline value text.",
                                                     "Color for the debug inline value background.",
-                                                    "The color of the icon for a port that has an associated running process.",
                                                     "The border color for notebook cells.",
                                                     "The color of the notebook cell editor border.",
                                                     "The error icon color of notebook cells in the cell status bar.",
                                                     "The error icon color of notebook cells in the cell status bar.",
                                                     "The running icon color of notebook cells in the cell status bar.",
-                                                    "The Color of the notebook output container background.",
+                                                    "The border color of the notebook output container.",
+                                                    "The color of the notebook output container background.",
                                                     "The color of the separator in the cell bottom toolbar",
                                                     "The background color of a cell when the cell is focused.",
                                                     "The background color of a cell when the cell is selected.",
@@ -6491,6 +6733,10 @@
                                                     "editorLink.activeForeground",
                                                     "editorInlayHint.foreground",
                                                     "editorInlayHint.background",
+                                                    "editorInlayHint.typeForeground",
+                                                    "editorInlayHint.typeBackground",
+                                                    "editorInlayHint.parameterForeground",
+                                                    "editorInlayHint.parameterBackground",
                                                     "editorLightBulb.foreground",
                                                     "editorLightBulbAutoFix.foreground",
                                                     "diffEditor.insertedTextBackground",
@@ -6562,10 +6808,12 @@
                                                     "editorOverviewRuler.findMatchForeground",
                                                     "editorOverviewRuler.selectionHighlightForeground",
                                                     "minimap.findMatchHighlight",
+                                                    "minimap.selectionOccurrenceHighlight",
                                                     "minimap.selectionHighlight",
                                                     "minimap.errorHighlight",
                                                     "minimap.warningHighlight",
                                                     "minimap.background",
+                                                    "minimap.foregroundOpacity",
                                                     "minimapSlider.background",
                                                     "minimapSlider.hoverBackground",
                                                     "minimapSlider.activeBackground",
@@ -6609,6 +6857,13 @@
                                                     "editorOverviewRuler.errorForeground",
                                                     "editorOverviewRuler.warningForeground",
                                                     "editorOverviewRuler.infoForeground",
+                                                    "editorBracketHighlight.foreground1",
+                                                    "editorBracketHighlight.foreground2",
+                                                    "editorBracketHighlight.foreground3",
+                                                    "editorBracketHighlight.foreground4",
+                                                    "editorBracketHighlight.foreground5",
+                                                    "editorBracketHighlight.foreground6",
+                                                    "editorBracketHighlight.unexpectedBracket.foreground",
                                                     "symbolIcon.arrayForeground",
                                                     "symbolIcon.booleanForeground",
                                                     "symbolIcon.classForeground",
@@ -6667,8 +6922,11 @@
                                                     "peekViewEditor.matchHighlightBackground",
                                                     "peekViewEditor.matchHighlightBorder",
                                                     "editorMarkerNavigationError.background",
+                                                    "editorMarkerNavigationError.headerBackground",
                                                     "editorMarkerNavigationWarning.background",
+                                                    "editorMarkerNavigationWarning.headerBackground",
                                                     "editorMarkerNavigationInfo.background",
+                                                    "editorMarkerNavigationInfo.headerBackground",
                                                     "editorMarkerNavigation.background",
                                                     "editorSuggestWidget.background",
                                                     "editorSuggestWidget.border",
@@ -6703,7 +6961,6 @@
                                                     "tab.unfocusedActiveModifiedBorder",
                                                     "tab.unfocusedInactiveModifiedBorder",
                                                     "editorPane.background",
-                                                    "editorGroup.background",
                                                     "editorGroup.emptyBackground",
                                                     "editorGroup.focusedEmptyBorder",
                                                     "editorGroupHeader.tabsBackground",
@@ -6712,6 +6969,7 @@
                                                     "editorGroupHeader.border",
                                                     "editorGroup.border",
                                                     "editorGroup.dropBackground",
+                                                    "sideBySideEditor.border",
                                                     "panel.background",
                                                     "panel.border",
                                                     "panelTitle.activeForeground",
@@ -6823,14 +7081,11 @@
                                                     "testing.iconUnset",
                                                     "testing.iconSkipped",
                                                     "testing.peekBorder",
+                                                    "testing.peekHeaderBackground",
                                                     "testing.message.error.decorationForeground",
                                                     "testing.message.error.lineBackground",
-                                                    "testing.message.warning.decorationForeground",
-                                                    "testing.message.warning.lineBackground",
                                                     "testing.message.info.decorationForeground",
                                                     "testing.message.info.lineBackground",
-                                                    "testing.message.hint.decorationForeground",
-                                                    "testing.message.hint.lineBackground",
                                                     "welcomePage.buttonBackground",
                                                     "welcomePage.buttonHoverBackground",
                                                     "welcomePage.background",
@@ -6845,6 +7100,7 @@
                                                     "statusBar.debuggingBorder",
                                                     "debugExceptionWidget.border",
                                                     "debugExceptionWidget.background",
+                                                    "ports.iconRunningProcessForeground",
                                                     "editorGutter.modifiedBackground",
                                                     "editorGutter.addedBackground",
                                                     "editorGutter.deletedBackground",
@@ -6863,12 +7119,12 @@
                                                     "debugIcon.breakpointStackframeForeground",
                                                     "editor.inlineValuesForeground",
                                                     "editor.inlineValuesBackground",
-                                                    "ports.iconRunningProcessForeground",
                                                     "notebook.cellBorderColor",
                                                     "notebook.focusedEditorBorder",
                                                     "notebookStatusSuccessIcon.foreground",
                                                     "notebookStatusErrorIcon.foreground",
                                                     "notebookStatusRunningIcon.foreground",
+                                                    "notebook.outputContainerBorderColor",
                                                     "notebook.outputContainerBackgroundColor",
                                                     "notebook.cellToolbarSeparator",
                                                     "notebook.focusedCellBackground",
@@ -7051,6 +7307,10 @@
                                                     "Color of active links.",
                                                     "Foreground color of inline hints",
                                                     "Background color of inline hints",
+                                                    "Foreground color of inline hints for types",
+                                                    "Background color of inline hints for types",
+                                                    "Foreground color of inline hints for parameters",
+                                                    "Background color of inline hints for parameters",
                                                     "The color used for the lightbulb actions icon.",
                                                     "The color used for the lightbulb auto fix actions icon.",
                                                     "Background color for text that got inserted. The color must not be opaque so as not to hide underlying decorations.",
@@ -7122,10 +7382,12 @@
                                                     "Overview ruler marker color for find matches. The color must not be opaque so as not to hide underlying decorations.",
                                                     "Overview ruler marker color for selection highlights. The color must not be opaque so as not to hide underlying decorations.",
                                                     "Minimap marker color for find matches.",
+                                                    "Minimap marker color for repeating editor selections.",
                                                     "Minimap marker color for the editor selection.",
                                                     "Minimap marker color for errors.",
                                                     "Minimap marker color for warnings.",
                                                     "Minimap background color.",
+                                                    "Opacity of foreground elements rendered in the minimap. For example, \"#000000c0\" will render the elements with 75% opacity.",
                                                     "Minimap slider background color.",
                                                     "Minimap slider background color when hovering.",
                                                     "Minimap slider background color when clicked on.",
@@ -7169,6 +7431,13 @@
                                                     "Overview ruler marker color for errors.",
                                                     "Overview ruler marker color for warnings.",
                                                     "Overview ruler marker color for infos.",
+                                                    "Foreground color of brackets (1). Requires enabling bracket pair colorization.",
+                                                    "Foreground color of brackets (2). Requires enabling bracket pair colorization.",
+                                                    "Foreground color of brackets (3). Requires enabling bracket pair colorization.",
+                                                    "Foreground color of brackets (4). Requires enabling bracket pair colorization.",
+                                                    "Foreground color of brackets (5). Requires enabling bracket pair colorization.",
+                                                    "Foreground color of brackets (6). Requires enabling bracket pair colorization.",
+                                                    "Foreground color of unexpected brackets.",
                                                     "The foreground color for array symbols. These symbols appear in the outline, breadcrumb, and suggest widget.",
                                                     "The foreground color for boolean symbols. These symbols appear in the outline, breadcrumb, and suggest widget.",
                                                     "The foreground color for class symbols. These symbols appear in the outline, breadcrumb, and suggest widget.",
@@ -7227,8 +7496,11 @@
                                                     "Match highlight color in the peek view editor.",
                                                     "Match highlight border in the peek view editor.",
                                                     "Editor marker navigation widget error color.",
+                                                    "Editor marker navigation widget error heading background.",
                                                     "Editor marker navigation widget warning color.",
+                                                    "Editor marker navigation widget warning heading background.",
                                                     "Editor marker navigation widget info color.",
+                                                    "Editor marker navigation widget info heading background.",
                                                     "Editor marker navigation widget background.",
                                                     "Background color of the suggest widget.",
                                                     "Border color of the suggest widget.",
@@ -7263,7 +7535,6 @@
                                                     "Border on the top of modified (dirty) active tabs in an unfocused group. Tabs are the containers for editors in the editor area. Multiple tabs can be opened in one editor group. There can be multiple editor groups.",
                                                     "Border on the top of modified (dirty) inactive tabs in an unfocused group. Tabs are the containers for editors in the editor area. Multiple tabs can be opened in one editor group. There can be multiple editor groups.",
                                                     "Background color of the editor pane visible on the left and right side of the centered editor layout.",
-                                                    "Deprecated background color of an editor group.",
                                                     "Background color of an empty editor group. Editor groups are the containers of editors.",
                                                     "Border color of an empty editor group that is focused. Editor groups are the containers of editors.",
                                                     "Background color of the editor group title header when tabs are enabled. Editor groups are the containers of editors.",
@@ -7272,6 +7543,7 @@
                                                     "Border color of the editor group title header. Editor groups are the containers of editors.",
                                                     "Color to separate multiple editor groups from each other. Editor groups are the containers of editors.",
                                                     "Background color when dragging editors around. The color should have transparency so that the editor contents can still shine through.",
+                                                    "Color to separate two editors from each other when shown side by side in an editor group.",
                                                     "Panel background color. Panels are shown below the editor area and contain views like output and integrated terminal.",
                                                     "Panel border color to separate the panel from the editor. Panels are shown below the editor area and contain views like output and integrated terminal.",
                                                     "Title color for the active panel. Panels are shown below the editor area and contain views like output and integrated terminal.",
@@ -7383,14 +7655,11 @@
                                                     "Color for the 'Unset' icon in the test explorer.",
                                                     "Color for the 'Skipped' icon in the test explorer.",
                                                     "Color of the peek view borders and arrow.",
+                                                    "Color of the peek view borders and arrow.",
                                                     "Text color of test error messages shown inline in the editor.",
                                                     "Margin color beside error messages shown inline in the editor.",
-                                                    "Text color of test warning messages shown inline in the editor.",
-                                                    "Margin color beside warning messages shown inline in the editor.",
                                                     "Text color of test info messages shown inline in the editor.",
                                                     "Margin color beside info messages shown inline in the editor.",
-                                                    "Text color of test hint messages shown inline in the editor.",
-                                                    "Margin color beside hint messages shown inline in the editor.",
                                                     "Background color for the buttons on the Welcome page.",
                                                     "Hover background color for the buttons on the Welcome page.",
                                                     "Background color for the Welcome page.",
@@ -7405,6 +7674,7 @@
                                                     "Status bar border color separating to the sidebar and editor when a program is being debugged. The status bar is shown in the bottom of the window",
                                                     "Exception widget border color.",
                                                     "Exception widget background color.",
+                                                    "The color of the icon for a port that has an associated running process.",
                                                     "Editor gutter background color for lines that are modified.",
                                                     "Editor gutter background color for lines that are added.",
                                                     "Editor gutter background color for lines that are deleted.",
@@ -7423,13 +7693,13 @@
                                                     "Icon color for all breakpoint stack frames.",
                                                     "Color for the debug inline value text.",
                                                     "Color for the debug inline value background.",
-                                                    "The color of the icon for a port that has an associated running process.",
                                                     "The border color for notebook cells.",
                                                     "The color of the notebook cell editor border.",
                                                     "The error icon color of notebook cells in the cell status bar.",
                                                     "The error icon color of notebook cells in the cell status bar.",
                                                     "The running icon color of notebook cells in the cell status bar.",
-                                                    "The Color of the notebook output container background.",
+                                                    "The border color of the notebook output container.",
+                                                    "The color of the notebook output container background.",
                                                     "The color of the separator in the cell bottom toolbar",
                                                     "The background color of a cell when the cell is focused.",
                                                     "The background color of a cell when the cell is selected.",
@@ -8011,6 +8281,16 @@
                                             "git-pull-request-draft",
                                             "debug-all",
                                             "debug-coverage",
+                                            "run-errors",
+                                            "folder-library",
+                                            "debug-continue-small",
+                                            "beaker-stop",
+                                            "graph-line",
+                                            "graph-scatter",
+                                            "pie-chart",
+                                            "bracket",
+                                            "bracket-dot",
+                                            "bracket-error",
                                             "drop-down-button",
                                             "tree-item-expanded",
                                             "tree-filter-on-type-on",
@@ -8148,7 +8428,6 @@
                                             "remote-explorer-view-icon",
                                             "ports-view-icon",
                                             "private-ports-view-icon",
-                                            "public-ports-view-icon",
                                             "ports-forward-icon",
                                             "ports-stop-forward-icon",
                                             "ports-open-browser-icon",
@@ -8192,10 +8471,6 @@
                                             "testing-queued-icon",
                                             "testing-skipped-icon",
                                             "testing-unset-icon",
-                                            "testing-error-message-icon",
-                                            "testing-warning-message-icon",
-                                            "testing-info-message-icon",
-                                            "testing-hint-message-icon",
                                             "getting-started-step-unchecked",
                                             "getting-started-step-checked",
                                             "getting-started-setup",
@@ -8207,16 +8482,16 @@
                                             "tasks-list-configure",
                                             "tasks-remove",
                                             "banner-close",
-                                            "review-comment-collapse",
-                                            "settings-sync-view-icon",
                                             "view-pane-container-expanded",
                                             "view-pane-container-collapsed",
-                                            "diff-editor-previous-change",
-                                            "diff-editor-next-change",
-                                            "diff-editor-toggle-whitespace",
+                                            "review-comment-collapse",
+                                            "settings-sync-view-icon",
                                             "timeline-refresh",
                                             "timeline-pin",
                                             "timeline-unpin",
+                                            "diff-editor-previous-change",
+                                            "diff-editor-next-change",
+                                            "diff-editor-toggle-whitespace",
                                             "settings-view-bar-icon",
                                             "accounts-view-bar-icon",
                                             "panel-maximize",
@@ -8236,7 +8511,8 @@
                                             "timeline-open",
                                             "workspace-trust-icon",
                                             "workspace-trusted-check-icon",
-                                            "workspace-trusted-x-icon"
+                                            "workspace-trusted-x-icon",
+                                            "folder-picker"
                                         ],
                                         "enumDescriptions": [
                                             "",
@@ -8722,6 +8998,16 @@
                                             "",
                                             "",
                                             "",
+                                            "",
+                                            "",
+                                            "",
+                                            "",
+                                            "",
+                                            "",
+                                            "",
+                                            "",
+                                            "",
+                                            "",
                                             "Icon for the close action in widgets.",
                                             "Icon for goto previous editor location.",
                                             "Icon for goto next editor location.",
@@ -8839,7 +9125,6 @@
                                             "View icon of the remote explorer view.",
                                             "View icon of the remote ports view.",
                                             "Icon representing a private remote port.",
-                                            "Icon representing a public remote port.",
                                             "Icon for the forward action.",
                                             "Icon for the stop forwarding action.",
                                             "Icon for the open browser action.",
@@ -8883,10 +9168,6 @@
                                             "Icon shown for tests that are queued.",
                                             "Icon shown for tests that are skipped.",
                                             "Icon shown for tests that are in an unset state.",
-                                            "Icon shown for tests that have an error.",
-                                            "Icon shown for tests that have an error.",
-                                            "Icon shown for tests that have an error.",
-                                            "Icon shown for tests that have an error.",
                                             "Used to represent walkthrough steps which have not been completed",
                                             "Used to represent walkthrough steps which have been completed",
                                             "Icon used for the setup category of welcome page",
@@ -8898,16 +9179,16 @@
                                             "Configuration icon in the tasks selection list.",
                                             "Icon for remove in the tasks selection list.",
                                             "",
-                                            "Icon to collapse a review comment.",
-                                            "View icon of the Settings Sync view.",
                                             "Icon for an expanded view pane container.",
                                             "Icon for a collapsed view pane container.",
-                                            "Icon for the previous change action in the diff editor.",
-                                            "Icon for the next change action in the diff editor.",
-                                            "Icon for the toggle whitespace action in the diff editor.",
+                                            "Icon to collapse a review comment.",
+                                            "View icon of the Settings Sync view.",
                                             "Icon for the refresh timeline action.",
                                             "Icon for the pin timeline action.",
                                             "Icon for the unpin timeline action.",
+                                            "Icon for the previous change action in the diff editor.",
+                                            "Icon for the next change action in the diff editor.",
+                                            "Icon for the toggle whitespace action in the diff editor.",
                                             "Settings icon in the view bar.",
                                             "Accounts icon in the view bar.",
                                             "Icon to maximize a panel.",
@@ -8925,6 +9206,7 @@
                                             "View icon of the Source Control view.",
                                             "View icon of the timeline view.",
                                             "Icon for the open timeline action.",
+                                            "",
                                             "",
                                             "",
                                             ""
@@ -9180,84 +9462,6 @@
                             "path",
                             "id"
                         ]
-                    }
-                },
-                "localizations": {
-                    "description": "Contributes localizations to the editor",
-                    "type": "array",
-                    "default": [],
-                    "items": {
-                        "type": "object",
-                        "required": [
-                            "languageId",
-                            "translations"
-                        ],
-                        "defaultSnippets": [
-                            {
-                                "body": {
-                                    "languageId": "",
-                                    "languageName": "",
-                                    "localizedLanguageName": "",
-                                    "translations": [
-                                        {
-                                            "id": "vscode",
-                                            "path": ""
-                                        }
-                                    ]
-                                }
-                            }
-                        ],
-                        "properties": {
-                            "languageId": {
-                                "description": "Id of the language into which the display strings are translated.",
-                                "type": "string"
-                            },
-                            "languageName": {
-                                "description": "Name of the language in English.",
-                                "type": "string"
-                            },
-                            "localizedLanguageName": {
-                                "description": "Name of the language in contributed language.",
-                                "type": "string"
-                            },
-                            "translations": {
-                                "description": "List of translations associated to the language.",
-                                "type": "array",
-                                "default": [
-                                    {
-                                        "id": "vscode",
-                                        "path": ""
-                                    }
-                                ],
-                                "items": {
-                                    "type": "object",
-                                    "required": [
-                                        "id",
-                                        "path"
-                                    ],
-                                    "properties": {
-                                        "id": {
-                                            "type": "string",
-                                            "description": "Id of VS Code or Extension for which this translation is contributed to. Id of VS Code is always `vscode` and of extension should be in format `publisherId.extensionName`.",
-                                            "pattern": "^((vscode)|([a-z0-9A-Z][a-z0-9-A-Z]*)\\.([a-z0-9A-Z][a-z0-9-A-Z]*))$",
-                                            "patternErrorMessage": "Id should be `vscode` or in format `publisherId.extensionName` for translating VS code or an extension respectively."
-                                        },
-                                        "path": {
-                                            "type": "string",
-                                            "description": "A relative path to a file containing translations for the language."
-                                        }
-                                    },
-                                    "defaultSnippets": [
-                                        {
-                                            "body": {
-                                                "id": "",
-                                                "path": ""
-                                            }
-                                        }
-                                    ]
-                                }
-                            }
-                        }
                     }
                 },
                 "viewsContainers": {
@@ -9938,13 +10142,11 @@
                 "type": "string",
                 "enum": [
                     "ui",
-                    "workspace",
-                    "web"
+                    "workspace"
                 ],
                 "enumDescriptions": [
                     "UI extension kind. In a remote window, such extensions are enabled only when available on the local machine.",
-                    "Workspace extension kind. In a remote window, such extensions are enabled only when available on the remote.",
-                    "Web worker extension kind. Such an extension can execute in a web worker extension host."
+                    "Workspace extension kind. In a remote window, such extensions are enabled only when available on the remote."
                 ]
             },
             "default": [

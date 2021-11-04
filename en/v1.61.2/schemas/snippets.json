@@ -1,0 +1,52 @@
+{
+    "id": "vscode://schemas/snippets",
+    "allowComments": true,
+    "allowTrailingCommas": true,
+    "defaultSnippets": [
+        {
+            "label": "Empty snippet",
+            "body": {
+                "${1:snippetName}": {
+                    "prefix": "${2:prefix}",
+                    "body": "${3:snippet}",
+                    "description": "${4:description}"
+                }
+            }
+        }
+    ],
+    "type": "object",
+    "description": "User snippet configuration",
+    "additionalProperties": {
+        "type": "object",
+        "required": [
+            "body"
+        ],
+        "properties": {
+            "prefix": {
+                "description": "The prefix to use when selecting the snippet in intellisense",
+                "type": [
+                    "string",
+                    "array"
+                ]
+            },
+            "body": {
+                "markdownDescription": "The snippet content. Use `$1`, `${1:defaultText}` to define cursor positions, use `$0` for the final cursor position. Insert variable values with `${varName}` and `${varName:defaultText}`, e.g. `This is file: $TM_FILENAME`.",
+                "type": [
+                    "string",
+                    "array"
+                ],
+                "items": {
+                    "type": "string"
+                }
+            },
+            "description": {
+                "description": "The snippet description.",
+                "type": [
+                    "string",
+                    "array"
+                ]
+            }
+        },
+        "additionalProperties": false
+    }
+}

@@ -126,6 +126,27 @@
                 "$ref": "#definitions/bracketPair"
             }
         },
+        "colorizedBracketPairs": {
+            "default": [
+                [
+                    "(",
+                    ")"
+                ],
+                [
+                    "[",
+                    "]"
+                ],
+                [
+                    "{",
+                    "}"
+                ]
+            ],
+            "description": "Defines the bracket pairs that are colorized by their nesting level if bracket pair colorization is enabled.",
+            "type": "array",
+            "items": {
+                "$ref": "#definitions/bracketPair"
+            }
+        },
         "autoClosingPairs": {
             "default": [
                 [

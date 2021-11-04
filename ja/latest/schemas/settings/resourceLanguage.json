@@ -96,6 +96,13 @@
             "scope": 5,
             "restricted": false
         },
+        "diffEditor.maxFileSize": {
+            "type": "number",
+            "default": 50,
+            "description": "Maximum file size in MB for which to compute diffs. Use 0 for no limit.",
+            "scope": 5,
+            "restricted": false
+        },
         "diffEditor.renderSideBySide": {
             "type": "boolean",
             "default": true,
@@ -299,6 +306,34 @@
                 "never"
             ],
             "default": "languageDefined",
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.bracketPairColorization.enabled": {
+            "type": "boolean",
+            "default": false,
+            "description": "Controls whether bracket pair colorization is enabled or not. Use 'workbench.colorCustomizations' to override the bracket highlight colors.",
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.guides.bracketPairs": {
+            "type": "boolean",
+            "default": false,
+            "description": "Controls whether bracket pair guides are enabled or not.",
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.guides.indentation": {
+            "type": "boolean",
+            "default": true,
+            "description": "Controls whether the editor should render indent guides.",
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.guides.highlightActiveIndentation": {
+            "type": "boolean",
+            "default": true,
+            "description": "Controls whether the editor should highlight the active indent guide.",
             "scope": 5,
             "restricted": false
         },
@@ -837,13 +872,6 @@
             "scope": 5,
             "restricted": false
         },
-        "editor.highlightActiveIndentGuide": {
-            "description": "Controls whether the editor should highlight the active indent guide.",
-            "type": "boolean",
-            "default": true,
-            "scope": 5,
-            "restricted": false
-        },
         "editor.hover.enabled": {
             "type": "boolean",
             "default": true,
@@ -867,25 +895,8 @@
         },
         "editor.inlineSuggest.enabled": {
             "type": "boolean",
-            "default": false,
+            "default": true,
             "description": "Controls whether to automatically show inline suggestions in the editor.",
-            "scope": 5,
-            "restricted": false
-        },
-        "editor.inlineSuggest.mode": {
-            "type": "string",
-            "enum": [
-                "prefix",
-                "subword",
-                "subwordSmart"
-            ],
-            "enumDescriptions": [
-                "Only render an inline suggestion if the replace text is a prefix of the insert text.",
-                "Only render an inline suggestion if the replace text is a subword of the insert text.",
-                "Only render an inline suggestion if the replace text is a subword of the insert text, but the subword must start after the cursor."
-            ],
-            "default": "subwordSmart",
-            "description": "Controls which mode to use for rendering inline suggestions.",
             "scope": 5,
             "restricted": false
         },
@@ -1208,13 +1219,6 @@
             "scope": 5,
             "restricted": false
         },
-        "editor.renderIndentGuides": {
-            "description": "Controls whether the editor should render indent guides.",
-            "type": "boolean",
-            "default": true,
-            "scope": 5,
-            "restricted": false
-        },
         "editor.renderFinalNewline": {
             "description": "Render last line number when the file ends with a newline.",
             "type": "boolean",
@@ -1515,23 +1519,6 @@
             "type": "boolean",
             "default": false,
             "description": "Controls whether to preview the suggestion outcome in the editor.",
-            "scope": 5,
-            "restricted": false
-        },
-        "editor.suggest.previewMode": {
-            "type": "string",
-            "enum": [
-                "prefix",
-                "subword",
-                "subwordSmart"
-            ],
-            "enumDescriptions": [
-                "Only render a preview if the replace text is a prefix of the insert text.",
-                "Only render a preview if the replace text is a subword of the insert text.",
-                "Render a preview if the replace text is a subword of the insert text, or if it is a prefix of the insert text."
-            ],
-            "default": "subwordSmart",
-            "description": "Controls which mode to use for rendering the suggest preview.",
             "scope": 5,
             "restricted": false
         },
@@ -1928,14 +1915,14 @@
         "editor.inlayHints.fontSize": {
             "type": "number",
             "default": 0,
-            "markdownDescription": "Controls font size of inlay hints in the editor. When set to `0`, the 90% of `#editor.fontSize#` is used.",
+            "markdownDescription": "Controls font size of inlay hints in the editor. A default of 90% of `#editor.fontSize#` is used when the configured value is less than `5` or greater than the editor font size.",
             "scope": 5,
             "restricted": false
         },
         "editor.inlayHints.fontFamily": {
             "type": "string",
             "default": "",
-            "description": "Controls font family of inlay hints in the editor. When set to empty, the `#editor.fontFamily#` is used.",
+            "markdownDescription": "Controls font family of inlay hints in the editor. When set to empty, the `#editor.fontFamily#` is used.",
             "scope": 5,
             "restricted": false
         },
@@ -2145,10 +2132,10 @@
             "markdownDescription": "When enabled breadcrumbs show `typeParameter`-symbols.",
             "restricted": false
         },
-        "workbench.editor.untitled.experimentalLanguageDetection": {
+        "workbench.editor.languageDetection": {
             "type": "boolean",
-            "default": false,
-            "description": "Experimental. Controls whether the language in an untitled text editor is automatically detected unless the language has been explicitly set by the language picker. This can also be scoped by language so you can control which languages you want to trigger language detection on.",
+            "default": true,
+            "description": "Controls whether the language in a text editor is automatically detected unless the language has been explicitly set by the language picker. This can also be scoped by language so you can specify which languages you do not want to be switched off of. This is useful for languages like Markdown that often contain other languages that might trick language detection into thinking it's the embedded language and not Markdown.",
             "scope": 5,
             "restricted": false
         },
@@ -2194,8 +2181,6 @@
                 "vscode.markdown-math",
                 "vscode.merge-conflict",
                 "vscode.microsoft-authentication",
-                "ms-vscode.node-debug",
-                "ms-vscode.node-debug2",
                 "vscode.npm",
                 "ms-vscode-remote.remote-wsl-recommender",
                 "wraith13.save-vscode-schemas",
@@ -2230,8 +2215,6 @@
                 "Markdown Math",
                 "Merge Conflict",
                 "Microsoft Account",
-                "Node Debug (legacy)",
-                "Node Debug",
                 "NPM support for VS Code",
                 "Remote - WSL: Recommender",
                 "save-vscode-schemas",
@@ -2266,8 +2249,6 @@
                 "Adds math support to Markdown in notebooks.",
                 "Highlighting and commands for inline merge conflicts.",
                 "Microsoft authentication provider",
-                "Node.js debugging support (versions < 8.0)",
-                "Node.js debugging support",
                 "Extension to add task support for npm scripts.",
                 "Recommends using the Windows Subsystem for Linux (WSL) and the Remote WSL extension.",
                 "Save VS Code's schemas",

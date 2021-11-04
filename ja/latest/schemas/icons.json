@@ -1446,6 +1446,36 @@
         "debug-coverage": {
             "$ref": "#/definitions/icons"
         },
+        "run-errors": {
+            "$ref": "#/definitions/icons"
+        },
+        "folder-library": {
+            "$ref": "#/definitions/icons"
+        },
+        "debug-continue-small": {
+            "$ref": "#/definitions/icons"
+        },
+        "beaker-stop": {
+            "$ref": "#/definitions/icons"
+        },
+        "graph-line": {
+            "$ref": "#/definitions/icons"
+        },
+        "graph-scatter": {
+            "$ref": "#/definitions/icons"
+        },
+        "pie-chart": {
+            "$ref": "#/definitions/icons"
+        },
+        "bracket": {
+            "$ref": "#/definitions/icons"
+        },
+        "bracket-dot": {
+            "$ref": "#/definitions/icons"
+        },
+        "bracket-error": {
+            "$ref": "#/definitions/icons"
+        },
         "drop-down-button": {
             "$ref": "#/definitions/icons"
         },
@@ -1974,10 +2004,6 @@
             "$ref": "#/definitions/icons",
             "markdownDescription": "Icon representing a private remote port.: $(private-ports-view-icon)"
         },
-        "public-ports-view-icon": {
-            "$ref": "#/definitions/icons",
-            "markdownDescription": "Icon representing a public remote port.: $(public-ports-view-icon)"
-        },
         "ports-forward-icon": {
             "$ref": "#/definitions/icons",
             "markdownDescription": "Icon for the forward action.: $(ports-forward-icon)"
@@ -2150,22 +2176,6 @@
             "$ref": "#/definitions/icons",
             "markdownDescription": "Icon shown for tests that are in an unset state.: $(testing-unset-icon)"
         },
-        "testing-error-message-icon": {
-            "$ref": "#/definitions/icons",
-            "markdownDescription": "Icon shown for tests that have an error.: $(testing-error-message-icon)"
-        },
-        "testing-warning-message-icon": {
-            "$ref": "#/definitions/icons",
-            "markdownDescription": "Icon shown for tests that have an error.: $(testing-warning-message-icon)"
-        },
-        "testing-info-message-icon": {
-            "$ref": "#/definitions/icons",
-            "markdownDescription": "Icon shown for tests that have an error.: $(testing-info-message-icon)"
-        },
-        "testing-hint-message-icon": {
-            "$ref": "#/definitions/icons",
-            "markdownDescription": "Icon shown for tests that have an error.: $(testing-hint-message-icon)"
-        },
         "getting-started-step-unchecked": {
             "$ref": "#/definitions/icons",
             "markdownDescription": "Used to represent walkthrough steps which have not been completed: $(getting-started-step-unchecked)"
@@ -2208,14 +2218,6 @@
         "banner-close": {
             "$ref": "#/definitions/icons"
         },
-        "review-comment-collapse": {
-            "$ref": "#/definitions/icons",
-            "markdownDescription": "Icon to collapse a review comment.: $(review-comment-collapse)"
-        },
-        "settings-sync-view-icon": {
-            "$ref": "#/definitions/icons",
-            "markdownDescription": "View icon of the Settings Sync view.: $(settings-sync-view-icon)"
-        },
         "view-pane-container-expanded": {
             "$ref": "#/definitions/icons",
             "markdownDescription": "Icon for an expanded view pane container.: $(view-pane-container-expanded)"
@@ -2224,17 +2226,13 @@
             "$ref": "#/definitions/icons",
             "markdownDescription": "Icon for a collapsed view pane container.: $(view-pane-container-collapsed)"
         },
-        "diff-editor-previous-change": {
+        "review-comment-collapse": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "Icon for the previous change action in the diff editor.: $(diff-editor-previous-change)"
+            "markdownDescription": "Icon to collapse a review comment.: $(review-comment-collapse)"
         },
-        "diff-editor-next-change": {
+        "settings-sync-view-icon": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "Icon for the next change action in the diff editor.: $(diff-editor-next-change)"
-        },
-        "diff-editor-toggle-whitespace": {
-            "$ref": "#/definitions/icons",
-            "markdownDescription": "Icon for the toggle whitespace action in the diff editor.: $(diff-editor-toggle-whitespace)"
+            "markdownDescription": "View icon of the Settings Sync view.: $(settings-sync-view-icon)"
         },
         "timeline-refresh": {
             "$ref": "#/definitions/icons",
@@ -2247,6 +2245,18 @@
         "timeline-unpin": {
             "$ref": "#/definitions/icons",
             "markdownDescription": "Icon for the unpin timeline action.: $(timeline-unpin)"
+        },
+        "diff-editor-previous-change": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for the previous change action in the diff editor.: $(diff-editor-previous-change)"
+        },
+        "diff-editor-next-change": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for the next change action in the diff editor.: $(diff-editor-next-change)"
+        },
+        "diff-editor-toggle-whitespace": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for the toggle whitespace action in the diff editor.: $(diff-editor-toggle-whitespace)"
         },
         "settings-view-bar-icon": {
             "$ref": "#/definitions/icons",
@@ -2323,6 +2333,9 @@
             "$ref": "#/definitions/icons"
         },
         "workspace-trusted-x-icon": {
+            "$ref": "#/definitions/icons"
+        },
+        "folder-picker": {
             "$ref": "#/definitions/icons"
         }
     }

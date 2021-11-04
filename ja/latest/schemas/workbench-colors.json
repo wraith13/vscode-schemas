@@ -1011,6 +1011,46 @@
                 }
             ]
         },
+        "editorInlayHint.typeForeground": {
+            "type": "string",
+            "description": "Foreground color of inline hints for types",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editorInlayHint.typeBackground": {
+            "type": "string",
+            "description": "Background color of inline hints for types",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editorInlayHint.parameterForeground": {
+            "type": "string",
+            "description": "Foreground color of inline hints for parameters",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editorInlayHint.parameterBackground": {
+            "type": "string",
+            "description": "Background color of inline hints for parameters",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
         "editorLightBulb.foreground": {
             "type": "string",
             "description": "The color used for the lightbulb actions icon.",
@@ -1722,6 +1762,16 @@
                 }
             ]
         },
+        "minimap.selectionOccurrenceHighlight": {
+            "type": "string",
+            "description": "Minimap marker color for repeating editor selections.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
         "minimap.selectionHighlight": {
             "type": "string",
             "description": "Minimap marker color for the editor selection.",
@@ -1755,6 +1805,16 @@
         "minimap.background": {
             "type": "string",
             "description": "Minimap background color.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "minimap.foregroundOpacity": {
+            "type": "string",
+            "description": "Opacity of foreground elements rendered in the minimap. For example, \"#000000c0\" will render the elements with 75% opacity.",
             "format": "color-hex",
             "defaultSnippets": [
                 {
@@ -2186,6 +2246,76 @@
         "editorOverviewRuler.infoForeground": {
             "type": "string",
             "description": "Overview ruler marker color for infos.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editorBracketHighlight.foreground1": {
+            "type": "string",
+            "description": "Foreground color of brackets (1). Requires enabling bracket pair colorization.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editorBracketHighlight.foreground2": {
+            "type": "string",
+            "description": "Foreground color of brackets (2). Requires enabling bracket pair colorization.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editorBracketHighlight.foreground3": {
+            "type": "string",
+            "description": "Foreground color of brackets (3). Requires enabling bracket pair colorization.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editorBracketHighlight.foreground4": {
+            "type": "string",
+            "description": "Foreground color of brackets (4). Requires enabling bracket pair colorization.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editorBracketHighlight.foreground5": {
+            "type": "string",
+            "description": "Foreground color of brackets (5). Requires enabling bracket pair colorization.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editorBracketHighlight.foreground6": {
+            "type": "string",
+            "description": "Foreground color of brackets (6). Requires enabling bracket pair colorization.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editorBracketHighlight.unexpectedBracket.foreground": {
+            "type": "string",
+            "description": "Foreground color of unexpected brackets.",
             "format": "color-hex",
             "defaultSnippets": [
                 {
@@ -2773,6 +2903,16 @@
                 }
             ]
         },
+        "editorMarkerNavigationError.headerBackground": {
+            "type": "string",
+            "description": "Editor marker navigation widget error heading background.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
         "editorMarkerNavigationWarning.background": {
             "type": "string",
             "description": "Editor marker navigation widget warning color.",
@@ -2783,9 +2923,29 @@
                 }
             ]
         },
+        "editorMarkerNavigationWarning.headerBackground": {
+            "type": "string",
+            "description": "Editor marker navigation widget warning heading background.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
         "editorMarkerNavigationInfo.background": {
             "type": "string",
             "description": "Editor marker navigation widget info color.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "editorMarkerNavigationInfo.headerBackground": {
+            "type": "string",
+            "description": "Editor marker navigation widget info heading background.",
             "format": "color-hex",
             "defaultSnippets": [
                 {
@@ -3133,17 +3293,6 @@
                 }
             ]
         },
-        "editorGroup.background": {
-            "type": "string",
-            "description": "Deprecated background color of an editor group.",
-            "format": "color-hex",
-            "defaultSnippets": [
-                {
-                    "body": "${1:#ff0000}"
-                }
-            ],
-            "deprecationMessage": "Deprecated: Background color of an editor group is no longer being supported with the introduction of the grid editor layout. You can use editorGroup.emptyBackground to set the background color of empty editor groups."
-        },
         "editorGroup.emptyBackground": {
             "type": "string",
             "description": "Background color of an empty editor group. Editor groups are the containers of editors.",
@@ -3217,6 +3366,16 @@
         "editorGroup.dropBackground": {
             "type": "string",
             "description": "Background color when dragging editors around. The color should have transparency so that the editor contents can still shine through.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "sideBySideEditor.border": {
+            "type": "string",
+            "description": "Color to separate two editors from each other when shown side by side in an editor group.",
             "format": "color-hex",
             "defaultSnippets": [
                 {
@@ -4334,6 +4493,16 @@
                 }
             ]
         },
+        "testing.peekHeaderBackground": {
+            "type": "string",
+            "description": "Color of the peek view borders and arrow.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
         "testing.message.error.decorationForeground": {
             "type": "string",
             "description": "Text color of test error messages shown inline in the editor.",
@@ -4354,26 +4523,6 @@
                 }
             ]
         },
-        "testing.message.warning.decorationForeground": {
-            "type": "string",
-            "description": "Text color of test warning messages shown inline in the editor.",
-            "format": "color-hex",
-            "defaultSnippets": [
-                {
-                    "body": "${1:#ff0000}"
-                }
-            ]
-        },
-        "testing.message.warning.lineBackground": {
-            "type": "string",
-            "description": "Margin color beside warning messages shown inline in the editor.",
-            "format": "color-hex",
-            "defaultSnippets": [
-                {
-                    "body": "${1:#ff0000}"
-                }
-            ]
-        },
         "testing.message.info.decorationForeground": {
             "type": "string",
             "description": "Text color of test info messages shown inline in the editor.",
@@ -4387,26 +4536,6 @@
         "testing.message.info.lineBackground": {
             "type": "string",
             "description": "Margin color beside info messages shown inline in the editor.",
-            "format": "color-hex",
-            "defaultSnippets": [
-                {
-                    "body": "${1:#ff0000}"
-                }
-            ]
-        },
-        "testing.message.hint.decorationForeground": {
-            "type": "string",
-            "description": "Text color of test hint messages shown inline in the editor.",
-            "format": "color-hex",
-            "defaultSnippets": [
-                {
-                    "body": "${1:#ff0000}"
-                }
-            ]
-        },
-        "testing.message.hint.lineBackground": {
-            "type": "string",
-            "description": "Margin color beside hint messages shown inline in the editor.",
             "format": "color-hex",
             "defaultSnippets": [
                 {
@@ -4547,6 +4676,16 @@
         "debugExceptionWidget.background": {
             "type": "string",
             "description": "Exception widget background color.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "ports.iconRunningProcessForeground": {
+            "type": "string",
+            "description": "The color of the icon for a port that has an associated running process.",
             "format": "color-hex",
             "defaultSnippets": [
                 {
@@ -4734,16 +4873,6 @@
                 }
             ]
         },
-        "ports.iconRunningProcessForeground": {
-            "type": "string",
-            "description": "The color of the icon for a port that has an associated running process.",
-            "format": "color-hex",
-            "defaultSnippets": [
-                {
-                    "body": "${1:#ff0000}"
-                }
-            ]
-        },
         "notebook.cellBorderColor": {
             "type": "string",
             "description": "The border color for notebook cells.",
@@ -4794,9 +4923,19 @@
                 }
             ]
         },
+        "notebook.outputContainerBorderColor": {
+            "type": "string",
+            "description": "The border color of the notebook output container.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
         "notebook.outputContainerBackgroundColor": {
             "type": "string",
-            "description": "The Color of the notebook output container background.",
+            "description": "The color of the notebook output container background.",
             "format": "color-hex",
             "defaultSnippets": [
                 {
