@@ -55,11 +55,11 @@
     "definitions": {
         "openBracket": {
             "type": "string",
-            "description": "左角かっこまたは文字列シーケンス。"
+            "description": "The opening bracket character or string sequence."
         },
         "closeBracket": {
             "type": "string",
-            "description": "右角かっこまたは文字列シーケンス。"
+            "description": "The closing bracket character or string sequence."
         },
         "bracketPair": {
             "type": "array",
@@ -82,26 +82,26 @@
                 ],
                 "lineComment": "//"
             },
-            "description": "コメント記号を定義します。",
+            "description": "Defines the comment symbols",
             "type": "object",
             "properties": {
                 "blockComment": {
                     "type": "array",
-                    "description": "ブロック コメントのマーク方法を定義します。",
+                    "description": "Defines how block comments are marked.",
                     "items": [
                         {
                             "type": "string",
-                            "description": "ブロック コメントを開始する文字シーケンス。"
+                            "description": "The character sequence that starts a block comment."
                         },
                         {
                             "type": "string",
-                            "description": "ブロック コメントを終了する文字シーケンス。"
+                            "description": "The character sequence that ends a block comment."
                         }
                     ]
                 },
                 "lineComment": {
                     "type": "string",
-                    "description": "行コメントを開始する文字シーケンス。"
+                    "description": "The character sequence that starts a line comment."
                 }
             }
         },
@@ -120,7 +120,7 @@
                     "}"
                 ]
             ],
-            "description": "インデントを増減する角かっこを定義します。",
+            "description": "Defines the bracket symbols that increase or decrease the indentation.",
             "type": "array",
             "items": {
                 "$ref": "#definitions/bracketPair"
@@ -141,7 +141,7 @@
                     "}"
                 ]
             ],
-            "description": "角かっこのペアの色付けが有効になっている場合、入れ子のレベルによって色付けされる角かっこのペアを定義します。",
+            "description": "Defines the bracket pairs that are colorized by their nesting level if bracket pair colorization is enabled.",
             "type": "array",
             "items": {
                 "$ref": "#definitions/bracketPair"
@@ -162,7 +162,7 @@
                     "}"
                 ]
             ],
-            "description": "角かっこのペアを定義します。左角かっこが入力されると、右角かっこが自動的に挿入されます。",
+            "description": "Defines the bracket pairs. When a opening bracket is entered, the closing bracket is inserted automatically.",
             "type": "array",
             "items": {
                 "oneOf": [
@@ -180,7 +180,7 @@
                             },
                             "notIn": {
                                 "type": "array",
-                                "description": "自動ペアが無効なスコープの一覧を定義します。",
+                                "description": "Defines a list of scopes where the auto pairs are disabled.",
                                 "items": {
                                     "enum": [
                                         "string",
@@ -195,7 +195,7 @@
         },
         "autoCloseBefore": {
             "default": ";:.,=}])> \n\t",
-            "description": "'languageDefined' 自動閉じ設定を使用しているときに、かっこや引用符の自動閉じを行うためにカーソルの後ろに置かれる文字を定義します。これは通常、式を開始しない文字のセットです。",
+            "description": "Defines what characters must be after the cursor in order for bracket or quote autoclosing to occur when using the 'languageDefined' autoclosing setting. This is typically the set of characters which can not start an expression.",
             "type": "string"
         },
         "surroundingPairs": {
@@ -213,7 +213,7 @@
                     "}"
                 ]
             ],
-            "description": "選択文字列を囲むときに使用できる角かっこのペアを定義します。",
+            "description": "Defines the bracket pairs that can be used to surround a selected string.",
             "type": "array",
             "items": {
                 "oneOf": [
@@ -236,7 +236,7 @@
         },
         "wordPattern": {
             "default": "",
-            "description": "プログラミング言語で単語とみなされるものを定義します。",
+            "description": "Defines what is considered to be a word in the programming language.",
             "type": [
                 "string",
                 "object"
@@ -244,15 +244,15 @@
             "properties": {
                 "pattern": {
                     "type": "string",
-                    "description": "言葉の照合に使用する正規表現パターン。",
+                    "description": "The RegExp pattern used to match words.",
                     "default": ""
                 },
                 "flags": {
                     "type": "string",
-                    "description": "言葉の照合に使用する正規表現フラグ。",
+                    "description": "The RegExp flags used to match words.",
                     "default": "g",
                     "pattern": "^([gimuy]+)$",
-                    "patternErrorMessage": "`/^([gimuy]+)$/` パターンに一致する必要があります。"
+                    "patternErrorMessage": "Must match the pattern `/^([gimuy]+)$/`."
                 }
             }
         },
@@ -261,7 +261,7 @@
                 "increaseIndentPattern": "",
                 "decreaseIndentPattern": ""
             },
-            "description": "言語のインデント設定。",
+            "description": "The language's indentation settings.",
             "type": "object",
             "properties": {
                 "increaseIndentPattern": {
@@ -269,19 +269,19 @@
                         "string",
                         "object"
                     ],
-                    "description": "ある行がこのパターンと一致する場合は、それ以降のすべての行を一度インデントする必要があります (別のルールが一致するまで)。",
+                    "description": "If a line matches this pattern, then all the lines after it should be indented once (until another rule matches).",
                     "properties": {
                         "pattern": {
                             "type": "string",
-                            "description": "increaseIndentPattern に使用する正規表現パターン。",
+                            "description": "The RegExp pattern for increaseIndentPattern.",
                             "default": ""
                         },
                         "flags": {
                             "type": "string",
-                            "description": "increaseIndentPattern に使用する正規表現フラグ。",
+                            "description": "The RegExp flags for increaseIndentPattern.",
                             "default": "",
                             "pattern": "^([gimuy]+)$",
-                            "patternErrorMessage": "`/^([gimuy]+)$/` パターンに一致する必要があります。"
+                            "patternErrorMessage": "Must match the pattern `/^([gimuy]+)$/`."
                         }
                     }
                 },
@@ -290,19 +290,19 @@
                         "string",
                         "object"
                     ],
-                    "description": "行がこのパターンに一致する場合、それ以後のすべての行はいったんインデント解除される必要があります (別のルールが一致するまで)。",
+                    "description": "If a line matches this pattern, then all the lines after it should be unindented once (until another rule matches).",
                     "properties": {
                         "pattern": {
                             "type": "string",
-                            "description": "decreaseIndentPattern に使用する正規表現パターン。",
+                            "description": "The RegExp pattern for decreaseIndentPattern.",
                             "default": ""
                         },
                         "flags": {
                             "type": "string",
-                            "description": "decreaseIndentPattern に使用する正規表現フラグ。",
+                            "description": "The RegExp flags for decreaseIndentPattern.",
                             "default": "",
                             "pattern": "^([gimuy]+)$",
-                            "patternErrorMessage": "`/^([gimuy]+)$/` パターンに一致する必要があります。"
+                            "patternErrorMessage": "Must match the pattern `/^([gimuy]+)$/`."
                         }
                     }
                 },
@@ -311,19 +311,19 @@
                         "string",
                         "object"
                     ],
-                    "description": "ある行がこのパターンと一致する場合は、**次の行のみ** を一度インデントする必要があります。",
+                    "description": "If a line matches this pattern, then **only the next line** after it should be indented once.",
                     "properties": {
                         "pattern": {
                             "type": "string",
-                            "description": "indentNextLinePattern に使用する正規表現パターン。",
+                            "description": "The RegExp pattern for indentNextLinePattern.",
                             "default": ""
                         },
                         "flags": {
                             "type": "string",
-                            "description": "indentNextLinePattern に使用する正規表現フラグ。",
+                            "description": "The RegExp flags for indentNextLinePattern.",
                             "default": "",
                             "pattern": "^([gimuy]+)$",
-                            "patternErrorMessage": "`/^([gimuy]+)$/` パターンに一致する必要があります。"
+                            "patternErrorMessage": "Must match the pattern `/^([gimuy]+)$/`."
                         }
                     }
                 },
@@ -332,19 +332,19 @@
                         "string",
                         "object"
                     ],
-                    "description": "ある行がこのパターンと一致する場合は、そのインデントを変更してはならず、他のルールに対して評価してもなりません。",
+                    "description": "If a line matches this pattern, then its indentation should not be changed and it should not be evaluated against the other rules.",
                     "properties": {
                         "pattern": {
                             "type": "string",
-                            "description": "unIndentedLinePattern に使用する正規表現パターン。",
+                            "description": "The RegExp pattern for unIndentedLinePattern.",
                             "default": ""
                         },
                         "flags": {
                             "type": "string",
-                            "description": "unIndentedLinePattern に使用する正規表現フラグ。",
+                            "description": "The RegExp flags for unIndentedLinePattern.",
                             "default": "",
                             "pattern": "^([gimuy]+)$",
-                            "patternErrorMessage": "`/^([gimuy]+)$/` パターンに一致する必要があります。"
+                            "patternErrorMessage": "Must match the pattern `/^([gimuy]+)$/`."
                         }
                     }
                 }
@@ -352,23 +352,23 @@
         },
         "folding": {
             "type": "object",
-            "description": "言語の折り畳み設定。",
+            "description": "The language's folding settings.",
             "properties": {
                 "offSide": {
                     "type": "boolean",
-                    "description": "その言語のブロックがインデントで表現されている場合、言語はオフサイドルールに従います。 設定されている場合、空行は後続のブロックに属します。"
+                    "description": "A language adheres to the off-side rule if blocks in that language are expressed by their indentation. If set, empty lines belong to the subsequent block."
                 },
                 "markers": {
                     "type": "object",
-                    "description": "'#region'や '#endregion'などの言語固有の折りたたみマーカー。開始と終了の正規表現はすべての行の内容に対してテストし効率的に設計してください。",
+                    "description": "Language specific folding markers such as '#region' and '#endregion'. The start and end regexes will be tested against the contents of all lines and must be designed efficiently",
                     "properties": {
                         "start": {
                             "type": "string",
-                            "description": "開始マーカーの正規表現パターン。 正規表現は '^' で始めてください。"
+                            "description": "The RegExp pattern for the start marker. The regexp must start with '^'."
                         },
                         "end": {
                             "type": "string",
-                            "description": "終了マーカーの正規表現パターン。 正規表現は '^' で始めてください。"
+                            "description": "The RegExp pattern for the end marker. The regexp must start with '^'."
                         }
                     }
                 }
@@ -376,10 +376,10 @@
         },
         "onEnterRules": {
             "type": "array",
-            "description": "Enter キーを押したときに評価される言語ルールです。",
+            "description": "The language's rules to be evaluated when pressing Enter.",
             "items": {
                 "type": "object",
-                "description": "Enter キーを押したときに評価される言語ルールです。",
+                "description": "The language's rules to be evaluated when pressing Enter.",
                 "required": [
                     "beforeText",
                     "action"
@@ -390,19 +390,19 @@
                             "string",
                             "object"
                         ],
-                        "description": "このルールは、カーソルの前のテキストがこの正規表現に一致する場合にのみ実行されます。",
+                        "description": "This rule will only execute if the text before the cursor matches this regular expression.",
                         "properties": {
                             "pattern": {
                                 "type": "string",
-                                "description": "beforeText に使用する正規表現パターン。",
+                                "description": "The RegExp pattern for beforeText.",
                                 "default": ""
                             },
                             "flags": {
                                 "type": "string",
-                                "description": "beforeText に使用する正規表現フラグ。",
+                                "description": "The RegExp flags for beforeText.",
                                 "default": "",
                                 "pattern": "^([gimuy]+)$",
-                                "patternErrorMessage": "`/^([gimuy]+)$/` パターンに一致する必要があります。"
+                                "patternErrorMessage": "Must match the pattern `/^([gimuy]+)$/`."
                             }
                         }
                     },
@@ -411,19 +411,19 @@
                             "string",
                             "object"
                         ],
-                        "description": "このルールは、カーソルの後のテキストがこの正規表現に一致する場合にのみ実行されます。",
+                        "description": "This rule will only execute if the text after the cursor matches this regular expression.",
                         "properties": {
                             "pattern": {
                                 "type": "string",
-                                "description": "afterText に使用する正規表現パターン。",
+                                "description": "The RegExp pattern for afterText.",
                                 "default": ""
                             },
                             "flags": {
                                 "type": "string",
-                                "description": "afterText に使用する正規表現フラグ。",
+                                "description": "The RegExp flags for afterText.",
                                 "default": "",
                                 "pattern": "^([gimuy]+)$",
-                                "patternErrorMessage": "`/^([gimuy]+)$/` パターンに一致する必要があります。"
+                                "patternErrorMessage": "Must match the pattern `/^([gimuy]+)$/`."
                             }
                         }
                     },
@@ -432,19 +432,19 @@
                             "string",
                             "object"
                         ],
-                        "description": "このルールは、行の上のテキストがこの正規表現に一致した場合にのみ実施されます。",
+                        "description": "This rule will only execute if the text above the line matches this regular expression.",
                         "properties": {
                             "pattern": {
                                 "type": "string",
-                                "description": "previousLineText に使用する正規表現パターン。",
+                                "description": "The RegExp pattern for previousLineText.",
                                 "default": ""
                             },
                             "flags": {
                                 "type": "string",
-                                "description": "previousLineText に使用する正規表現フラグ。",
+                                "description": "The RegExp flags for previousLineText.",
                                 "default": "",
                                 "pattern": "^([gimuy]+)$",
-                                "patternErrorMessage": "`/^([gimuy]+)$/` パターンに一致する必要があります。"
+                                "patternErrorMessage": "Must match the pattern `/^([gimuy]+)$/`."
                             }
                         }
                     },
@@ -453,7 +453,7 @@
                             "string",
                             "object"
                         ],
-                        "description": "実行するアクション。",
+                        "description": "The action to execute.",
                         "required": [
                             "indent"
                         ],
@@ -463,7 +463,7 @@
                         "properties": {
                             "indent": {
                                 "type": "string",
-                                "description": "インデントの処理について説明します",
+                                "description": "Describe what to do with the indentation",
                                 "default": "indent",
                                 "enum": [
                                     "none",
@@ -472,20 +472,20 @@
                                     "outdent"
                                 ],
                                 "markdownEnumDescriptions": [
-                                    "新しい行を挿入し、前の行のインデントをコピーします。",
-                                    "1 つの新しい行とインデントを挿入します (前の行のインデントに対して)。",
-                                    "2 つの新しい行を挿入します:\r\n - 最初のものはインデントされ、カーソルが置かれます\r\n - 2 つ目のものは同じインデント レベルになります",
-                                    "新しい行を挿入してインデントを 1 つ戻します (前の行のインデントに対して)。"
+                                    "Insert new line and copy the previous line's indentation.",
+                                    "Insert new line and indent once (relative to the previous line's indentation).",
+                                    "Insert two new lines:\n - the first one indented which will hold the cursor\n - the second one at the same indentation level",
+                                    "Insert new line and outdent once (relative to the previous line's indentation)."
                                 ]
                             },
                             "appendText": {
                                 "type": "string",
-                                "description": "新しい行の後およびインデントの後に追加するテキストを指定します。",
+                                "description": "Describes text to be appended after the new line and after the indentation.",
                                 "default": ""
                             },
                             "removeText": {
                                 "type": "number",
-                                "description": "新しい行のインデントから削除する文字数を指定します。",
+                                "description": "Describes the number of characters to remove from the new line's indentation.",
                                 "default": 0
                             }
                         }

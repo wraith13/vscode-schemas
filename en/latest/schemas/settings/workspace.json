@@ -121,6 +121,15 @@
                 "editor.suggest.insertMode": "replace"
             }
         },
+        "[javascript]": {
+            "type": "object",
+            "description": "Configure editor settings to be overridden for a language.",
+            "errorMessage": "This setting does not support per-language configuration.",
+            "$ref": "vscode://schemas/settings/resourceLanguage",
+            "default": {
+                "editor.maxTokenizationLineLength": 2500
+            }
+        },
         "[json]": {
             "type": "object",
             "description": "Configure editor settings to be overridden for a language.",
@@ -203,6 +212,17 @@
                 "editor.tabSize": 2,
                 "editor.autoIndent": "advanced"
             }
+        },
+        "emmet.extensionsPath": {
+            "type": "array",
+            "items": {
+                "type": "string",
+                "markdownDescription": "A path containing Emmet syntaxProfiles and/or snippets."
+            },
+            "default": [],
+            "scope": 6,
+            "markdownDescription": "An array of paths, where each path can contain Emmet syntaxProfiles and/or snippet files.\nIn case of conflicts, the profiles/snippets of later paths will override those of earlier paths.\nSee https://code.visualstudio.com/docs/editor/emmet for more information and an example snippet file.",
+            "restricted": false
         },
         "php.validate.executablePath": {
             "type": [
@@ -334,13 +354,6 @@
             "default": {}
         },
         "[javascriptreact]": {
-            "type": "object",
-            "description": "Configure editor settings to be overridden for a language.",
-            "errorMessage": "This setting does not support per-language configuration.",
-            "$ref": "vscode://schemas/settings/resourceLanguage",
-            "default": {}
-        },
-        "[javascript]": {
             "type": "object",
             "description": "Configure editor settings to be overridden for a language.",
             "errorMessage": "This setting does not support per-language configuration.",
@@ -718,7 +731,7 @@
         },
         "workbench.editor.highlightModifiedTabs": {
             "type": "boolean",
-            "markdownDescription": "Controls whether a top border is drawn on modified (dirty) editor tabs or not. This value is ignored when `#workbench.editor.showTabs#` is disabled.",
+            "markdownDescription": "Controls whether a top border is drawn on tabs for editors that have unsaved changes. This value is ignored when `#workbench.editor.showTabs#` is disabled.",
             "default": false,
             "scope": 3,
             "restricted": false
@@ -885,7 +898,7 @@
         },
         "workbench.editor.closeOnFileDelete": {
             "type": "boolean",
-            "description": "Controls whether editors showing a file that was opened during the session should close automatically when getting deleted or renamed by some other process. Disabling this will keep the editor open  on such an event. Note that deleting from within the application will always close the editor and that dirty files will never close to preserve your data.",
+            "description": "Controls whether editors showing a file that was opened during the session should close automatically when getting deleted or renamed by some other process. Disabling this will keep the editor open  on such an event. Note that deleting from within the application will always close the editor and that editors with unsaved changes will never close to preserve your data.",
             "default": false,
             "scope": 3,
             "restricted": false
@@ -950,6 +963,10 @@
             ],
             "default": "horizontal",
             "markdownDescription": "Controls the layout for when an editor is split in an editor group to be either vertical or horizontal.",
+            "enumDescriptions": [
+                "Editors are positioned from top to bottom.",
+                "Editors are positioned from left to right."
+            ],
             "scope": 3,
             "restricted": false
         },
@@ -963,7 +980,7 @@
         "workbench.editor.limit.enabled": {
             "type": "boolean",
             "default": false,
-            "description": "Controls if the number of opened editors should be limited or not. When enabled, less recently used editors that are not dirty will close to make space for newly opening editors.",
+            "description": "Controls if the number of opened editors should be limited or not. When enabled, less recently used editors will close to make space for newly opening editors.",
             "scope": 3,
             "restricted": false
         },
@@ -1132,7 +1149,7 @@
         "window.title": {
             "type": "string",
             "default": "${dirty}${activeEditorShort}${separator}${rootName}${separator}${appName}",
-            "markdownDescription": "Controls the window title based on the active editor. Variables are substituted based on the context:\n- `${activeEditorShort}`: the file name (e.g. myFile.txt).\n- `${activeEditorMedium}`: the path of the file relative to the workspace folder (e.g. myFolder/myFileFolder/myFile.txt).\n- `${activeEditorLong}`: the full path of the file (e.g. /Users/Development/myFolder/myFileFolder/myFile.txt).\n- `${activeFolderShort}`: the name of the folder the file is contained in (e.g. myFileFolder).\n- `${activeFolderMedium}`: the path of the folder the file is contained in, relative to the workspace folder (e.g. myFolder/myFileFolder).\n- `${activeFolderLong}`: the full path of the folder the file is contained in (e.g. /Users/Development/myFolder/myFileFolder).\n- `${folderName}`: name of the workspace folder the file is contained in (e.g. myFolder).\n- `${folderPath}`: file path of the workspace folder the file is contained in (e.g. /Users/Development/myFolder).\n- `${rootName}`: name of the opened workspace or folder (e.g. myFolder or myWorkspace).\n- `${rootPath}`: file path of the opened workspace or folder (e.g. /Users/Development/myWorkspace).\n- `${appName}`: e.g. VS Code.\n- `${remoteName}`: e.g. SSH\n- `${dirty}`: a dirty indicator if the active editor is dirty.\n- `${separator}`: a conditional separator (\" - \") that only shows when surrounded by variables with values or static text.",
+            "markdownDescription": "Controls the window title based on the active editor. Variables are substituted based on the context:\n- `${activeEditorShort}`: the file name (e.g. myFile.txt).\n- `${activeEditorMedium}`: the path of the file relative to the workspace folder (e.g. myFolder/myFileFolder/myFile.txt).\n- `${activeEditorLong}`: the full path of the file (e.g. /Users/Development/myFolder/myFileFolder/myFile.txt).\n- `${activeFolderShort}`: the name of the folder the file is contained in (e.g. myFileFolder).\n- `${activeFolderMedium}`: the path of the folder the file is contained in, relative to the workspace folder (e.g. myFolder/myFileFolder).\n- `${activeFolderLong}`: the full path of the folder the file is contained in (e.g. /Users/Development/myFolder/myFileFolder).\n- `${folderName}`: name of the workspace folder the file is contained in (e.g. myFolder).\n- `${folderPath}`: file path of the workspace folder the file is contained in (e.g. /Users/Development/myFolder).\n- `${rootName}`: name of the opened workspace or folder (e.g. myFolder or myWorkspace).\n- `${rootPath}`: file path of the opened workspace or folder (e.g. /Users/Development/myWorkspace).\n- `${appName}`: e.g. VS Code.\n- `${remoteName}`: e.g. SSH\n- `${dirty}`: an indicator for when the active editor has unsaved changes.\n- `${separator}`: a conditional separator (\" - \") that only shows when surrounded by variables with values or static text.",
             "scope": 3,
             "restricted": false
         },
@@ -3320,6 +3337,13 @@
             "scope": 3,
             "restricted": false
         },
+        "debug.disassemblyView.showSourceCode": {
+            "type": "boolean",
+            "default": true,
+            "description": "Show Source Code in Disassembly View.",
+            "scope": 3,
+            "restricted": false
+        },
         "files.associations": {
             "type": "object",
             "markdownDescription": "Configure file associations to languages (e.g. `\"*.extension\": \"html\"`). These have precedence over the default associations of the languages installed.",
@@ -3346,27 +3370,20 @@
                 "onWindowChange"
             ],
             "markdownEnumDescriptions": [
-                "A dirty editor is never automatically saved.",
-                "A dirty editor is automatically saved after the configured `#files.autoSaveDelay#`.",
-                "A dirty editor is automatically saved when the editor loses focus.",
-                "A dirty editor is automatically saved when the window loses focus."
+                "An editor with changes is never automatically saved.",
+                "An editor with changes is automatically saved after the configured `#files.autoSaveDelay#`.",
+                "An editor with changes is automatically saved when the editor loses focus.",
+                "An editor with changes is automatically saved when the window loses focus."
             ],
             "default": "off",
-            "markdownDescription": "Controls auto save of dirty editors. Read more about autosave [here](https://code.visualstudio.com/docs/editor/codebasics#_save-auto-save).",
+            "markdownDescription": "Controls auto save of editors that have unsaved changes. Read more about autosave [here](https://code.visualstudio.com/docs/editor/codebasics#_save-auto-save).",
             "scope": 3,
             "restricted": false
         },
         "files.autoSaveDelay": {
             "type": "number",
             "default": 1000,
-            "markdownDescription": "Controls the delay in ms after which a dirty editor is saved automatically. Only applies when `#files.autoSave#` is set to `afterDelay`.",
-            "scope": 3,
-            "restricted": false
-        },
-        "files.legacyWatcher": {
-            "type": "boolean",
-            "default": false,
-            "description": "Controls the mechanism used for file watching. Only change this when you see issues related to file watching.",
+            "markdownDescription": "Controls the delay in milliseconds after which an editor with unsaved changes is saved automatically. Only applies when `#files.autoSave#` is set to `afterDelay`.",
             "scope": 3,
             "restricted": false
         },
@@ -3458,6 +3475,13 @@
         "explorer.confirmDelete": {
             "type": "boolean",
             "description": "Controls whether the explorer should ask for confirmation when deleting a file via the trash.",
+            "default": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "explorer.expandSingleFolderWorkspaces": {
+            "type": "boolean",
+            "description": "Controls whether the explorer should expand multi-root workspaces containing only one folder during initilization",
             "default": true,
             "scope": 3,
             "restricted": false
@@ -3970,8 +3994,48 @@
                             "restricted": false
                         },
                         "editor.guides.bracketPairs": {
-                            "type": "boolean",
+                            "type": [
+                                "boolean",
+                                "string"
+                            ],
+                            "enum": [
+                                true,
+                                "active",
+                                false
+                            ],
+                            "enumDescriptions": [
+                                "Enables bracket pair guides.",
+                                "Enables bracket pair guides only for the active bracket pair.",
+                                "Disables bracket pair guides."
+                            ],
                             "default": false,
+                            "description": "Controls whether bracket pair guides are enabled or not.",
+                            "scope": 5,
+                            "restricted": false
+                        },
+                        "editor.guides.bracketPairsHorizontal": {
+                            "type": [
+                                "boolean",
+                                "string"
+                            ],
+                            "enum": [
+                                true,
+                                "active",
+                                false
+                            ],
+                            "enumDescriptions": [
+                                "Enables horizontal guides as addition to vertical bracket pair guides.",
+                                "Enables horizontal guides only for the active bracket pair.",
+                                "Disables horizontal bracket pair guides."
+                            ],
+                            "default": "active",
+                            "description": "Controls whether horizontal bracket pair guides are enabled or not.",
+                            "scope": 5,
+                            "restricted": false
+                        },
+                        "editor.guides.highlightActiveBracketPair": {
+                            "type": "boolean",
+                            "default": true,
                             "description": "Controls whether bracket pair guides are enabled or not.",
                             "scope": 5,
                             "restricted": false
@@ -4554,6 +4618,13 @@
                             "scope": 5,
                             "restricted": false
                         },
+                        "editor.hover.above": {
+                            "type": "boolean",
+                            "default": true,
+                            "description": "Prefer showing hovers above the line, if there's space.",
+                            "scope": 5,
+                            "restricted": false
+                        },
                         "editor.inlineSuggest.enabled": {
                             "type": "boolean",
                             "default": true,
@@ -4727,7 +4798,7 @@
                                 "Maps to `Control` on Windows and Linux and to `Command` on macOS.",
                                 "Maps to `Alt` on Windows and Linux and to `Option` on macOS."
                             ],
-                            "markdownDescription": "The modifier to be used to add multiple cursors with the mouse. The Go To Definition and Open Link mouse gestures will adapt such that they do not conflict with the multicursor modifier. [Read more](https://code.visualstudio.com/docs/editor/codebasics#_multicursor-modifier).",
+                            "markdownDescription": "The modifier to be used to add multiple cursors with the mouse. The Go to Definition and Open Link mouse gestures will adapt such that they do not conflict with the multicursor modifier. [Read more](https://code.visualstudio.com/docs/editor/codebasics#_multicursor-modifier).",
                             "type": "string",
                             "enum": [
                                 "ctrlCmd",
@@ -4875,10 +4946,10 @@
                         },
                         "editor.renderControlCharacters": {
                             "description": "Controls whether the editor should render control characters.",
+                            "restricted": true,
                             "type": "boolean",
-                            "default": false,
-                            "scope": 5,
-                            "restricted": false
+                            "default": true,
+                            "scope": 5
                         },
                         "editor.renderFinalNewline": {
                             "description": "Render last line number when the file ends with a newline.",
@@ -6168,7 +6239,7 @@
         },
         "terminal.integrated.profiles.windows": {
             "restricted": true,
-            "markdownDescription": "The Windows profiles to present when creating a new terminal via the terminal dropdown. Set to null to exclude them, use the `source` property to use the default detected configuration. Or, set the `path` and optional `args`.",
+            "markdownDescription": "The Windows profiles to present when creating a new terminal via the terminal dropdown. Use the `source` property to automatically detect the shell's location. Or set the `path` property manually with an optional `args`.\n\nSet an existing profile to `null` to hide the profile from the list, for example: `\"Ubuntu-20.04 (WSL)\": null`.",
             "type": "object",
             "default": {
                 "PowerShell": {
@@ -6378,6 +6449,7 @@
                                     "check",
                                     "checklist",
                                     "chevron-down",
+                                    "drop-down-button",
                                     "chevron-left",
                                     "chevron-right",
                                     "chevron-up",
@@ -6690,7 +6762,9 @@
                                     "bracket",
                                     "bracket-dot",
                                     "bracket-error",
-                                    "drop-down-button",
+                                    "lock-small",
+                                    "azure-devops",
+                                    "verified-filled",
                                     "tree-item-expanded",
                                     "tree-filter-on-type-on",
                                     "tree-filter-on-type-off",
@@ -6873,6 +6947,7 @@
                                     "$(check)",
                                     "$(checklist)",
                                     "$(chevron-down)",
+                                    "$(drop-down-button)",
                                     "$(chevron-left)",
                                     "$(chevron-right)",
                                     "$(chevron-up)",
@@ -7185,7 +7260,9 @@
                                     "$(bracket)",
                                     "$(bracket-dot)",
                                     "$(bracket-error)",
-                                    "$(drop-down-button)",
+                                    "$(lock-small)",
+                                    "$(azure-devops)",
+                                    "$(verified-filled)",
                                     "$(tree-item-expanded)",
                                     "$(tree-filter-on-type-on)",
                                     "$(tree-filter-on-type-off)",
@@ -7434,6 +7511,7 @@
                                     "check",
                                     "checklist",
                                     "chevron-down",
+                                    "drop-down-button",
                                     "chevron-left",
                                     "chevron-right",
                                     "chevron-up",
@@ -7746,7 +7824,9 @@
                                     "bracket",
                                     "bracket-dot",
                                     "bracket-error",
-                                    "drop-down-button",
+                                    "lock-small",
+                                    "azure-devops",
+                                    "verified-filled",
                                     "tree-item-expanded",
                                     "tree-filter-on-type-on",
                                     "tree-filter-on-type-off",
@@ -7929,6 +8009,7 @@
                                     "$(check)",
                                     "$(checklist)",
                                     "$(chevron-down)",
+                                    "$(drop-down-button)",
                                     "$(chevron-left)",
                                     "$(chevron-right)",
                                     "$(chevron-up)",
@@ -8241,7 +8322,9 @@
                                     "$(bracket)",
                                     "$(bracket-dot)",
                                     "$(bracket-error)",
-                                    "$(drop-down-button)",
+                                    "$(lock-small)",
+                                    "$(azure-devops)",
+                                    "$(verified-filled)",
                                     "$(tree-item-expanded)",
                                     "$(tree-filter-on-type-on)",
                                     "$(tree-filter-on-type-off)",
@@ -8489,6 +8572,7 @@
                                     "check",
                                     "checklist",
                                     "chevron-down",
+                                    "drop-down-button",
                                     "chevron-left",
                                     "chevron-right",
                                     "chevron-up",
@@ -8801,7 +8885,9 @@
                                     "bracket",
                                     "bracket-dot",
                                     "bracket-error",
-                                    "drop-down-button",
+                                    "lock-small",
+                                    "azure-devops",
+                                    "verified-filled",
                                     "tree-item-expanded",
                                     "tree-filter-on-type-on",
                                     "tree-filter-on-type-off",
@@ -8984,6 +9070,7 @@
                                     "$(check)",
                                     "$(checklist)",
                                     "$(chevron-down)",
+                                    "$(drop-down-button)",
                                     "$(chevron-left)",
                                     "$(chevron-right)",
                                     "$(chevron-up)",
@@ -9296,7 +9383,9 @@
                                     "$(bracket)",
                                     "$(bracket-dot)",
                                     "$(bracket-error)",
-                                    "$(drop-down-button)",
+                                    "$(lock-small)",
+                                    "$(azure-devops)",
+                                    "$(verified-filled)",
                                     "$(tree-item-expanded)",
                                     "$(tree-filter-on-type-on)",
                                     "$(tree-filter-on-type-off)",
@@ -9355,7 +9444,7 @@
         },
         "terminal.integrated.profiles.osx": {
             "restricted": true,
-            "markdownDescription": "The macOS profiles to present when creating a new terminal via the terminal dropdown. When set, these will override the default detected profiles. They are comprised of a `path` and optional `args`.",
+            "markdownDescription": "The macOS profiles to present when creating a new terminal via the terminal dropdown. Set the `path` property manually with an optional `args`.\n\nSet an existing profile to `null` to hide the profile from the list, for example: `\"bash\": null`.",
             "type": "object",
             "default": {
                 "bash": {
@@ -9584,6 +9673,7 @@
                                     "check",
                                     "checklist",
                                     "chevron-down",
+                                    "drop-down-button",
                                     "chevron-left",
                                     "chevron-right",
                                     "chevron-up",
@@ -9896,7 +9986,9 @@
                                     "bracket",
                                     "bracket-dot",
                                     "bracket-error",
-                                    "drop-down-button",
+                                    "lock-small",
+                                    "azure-devops",
+                                    "verified-filled",
                                     "tree-item-expanded",
                                     "tree-filter-on-type-on",
                                     "tree-filter-on-type-off",
@@ -10079,6 +10171,7 @@
                                     "$(check)",
                                     "$(checklist)",
                                     "$(chevron-down)",
+                                    "$(drop-down-button)",
                                     "$(chevron-left)",
                                     "$(chevron-right)",
                                     "$(chevron-up)",
@@ -10391,7 +10484,9 @@
                                     "$(bracket)",
                                     "$(bracket-dot)",
                                     "$(bracket-error)",
-                                    "$(drop-down-button)",
+                                    "$(lock-small)",
+                                    "$(azure-devops)",
+                                    "$(verified-filled)",
                                     "$(tree-item-expanded)",
                                     "$(tree-filter-on-type-on)",
                                     "$(tree-filter-on-type-off)",
@@ -10639,6 +10734,7 @@
                                     "check",
                                     "checklist",
                                     "chevron-down",
+                                    "drop-down-button",
                                     "chevron-left",
                                     "chevron-right",
                                     "chevron-up",
@@ -10951,7 +11047,9 @@
                                     "bracket",
                                     "bracket-dot",
                                     "bracket-error",
-                                    "drop-down-button",
+                                    "lock-small",
+                                    "azure-devops",
+                                    "verified-filled",
                                     "tree-item-expanded",
                                     "tree-filter-on-type-on",
                                     "tree-filter-on-type-off",
@@ -11134,6 +11232,7 @@
                                     "$(check)",
                                     "$(checklist)",
                                     "$(chevron-down)",
+                                    "$(drop-down-button)",
                                     "$(chevron-left)",
                                     "$(chevron-right)",
                                     "$(chevron-up)",
@@ -11446,7 +11545,9 @@
                                     "$(bracket)",
                                     "$(bracket-dot)",
                                     "$(bracket-error)",
-                                    "$(drop-down-button)",
+                                    "$(lock-small)",
+                                    "$(azure-devops)",
+                                    "$(verified-filled)",
                                     "$(tree-item-expanded)",
                                     "$(tree-filter-on-type-on)",
                                     "$(tree-filter-on-type-off)",
@@ -11505,7 +11606,7 @@
         },
         "terminal.integrated.profiles.linux": {
             "restricted": true,
-            "markdownDescription": "The Linux profiles to present when creating a new terminal via the terminal dropdown. When set, these will override the default detected profiles. They are comprised of a `path` and optional `args`.",
+            "markdownDescription": "The Linux profiles to present when creating a new terminal via the terminal dropdown. Set the `path` property manually with an optional `args`.\n\nSet an existing profile to `null` to hide the profile from the list, for example: `\"bash\": null`.",
             "type": "object",
             "default": {
                 "bash": {
@@ -11725,6 +11826,7 @@
                                     "check",
                                     "checklist",
                                     "chevron-down",
+                                    "drop-down-button",
                                     "chevron-left",
                                     "chevron-right",
                                     "chevron-up",
@@ -12037,7 +12139,9 @@
                                     "bracket",
                                     "bracket-dot",
                                     "bracket-error",
-                                    "drop-down-button",
+                                    "lock-small",
+                                    "azure-devops",
+                                    "verified-filled",
                                     "tree-item-expanded",
                                     "tree-filter-on-type-on",
                                     "tree-filter-on-type-off",
@@ -12220,6 +12324,7 @@
                                     "$(check)",
                                     "$(checklist)",
                                     "$(chevron-down)",
+                                    "$(drop-down-button)",
                                     "$(chevron-left)",
                                     "$(chevron-right)",
                                     "$(chevron-up)",
@@ -12532,7 +12637,9 @@
                                     "$(bracket)",
                                     "$(bracket-dot)",
                                     "$(bracket-error)",
-                                    "$(drop-down-button)",
+                                    "$(lock-small)",
+                                    "$(azure-devops)",
+                                    "$(verified-filled)",
                                     "$(tree-item-expanded)",
                                     "$(tree-filter-on-type-on)",
                                     "$(tree-filter-on-type-off)",
@@ -12780,6 +12887,7 @@
                                     "check",
                                     "checklist",
                                     "chevron-down",
+                                    "drop-down-button",
                                     "chevron-left",
                                     "chevron-right",
                                     "chevron-up",
@@ -13092,7 +13200,9 @@
                                     "bracket",
                                     "bracket-dot",
                                     "bracket-error",
-                                    "drop-down-button",
+                                    "lock-small",
+                                    "azure-devops",
+                                    "verified-filled",
                                     "tree-item-expanded",
                                     "tree-filter-on-type-on",
                                     "tree-filter-on-type-off",
@@ -13275,6 +13385,7 @@
                                     "$(check)",
                                     "$(checklist)",
                                     "$(chevron-down)",
+                                    "$(drop-down-button)",
                                     "$(chevron-left)",
                                     "$(chevron-right)",
                                     "$(chevron-up)",
@@ -13587,7 +13698,9 @@
                                     "$(bracket)",
                                     "$(bracket-dot)",
                                     "$(bracket-error)",
-                                    "$(drop-down-button)",
+                                    "$(lock-small)",
+                                    "$(azure-devops)",
+                                    "$(verified-filled)",
                                     "$(tree-item-expanded)",
                                     "$(tree-filter-on-type-on)",
                                     "$(tree-filter-on-type-off)",
@@ -13648,6 +13761,22 @@
             "description": "Controls whether or not WSL distros are shown in the terminal dropdown",
             "type": "boolean",
             "default": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "terminal.integrated.ignoreProcessNames": {
+            "description": "Configurable to provide a custom setting to ignore processes",
+            "type": "array",
+            "items": {
+                "type": "string",
+                "uniqueItems": true
+            },
+            "default": [
+                "starship",
+                "oh-my-posh",
+                "bash",
+                "zsh"
+            ],
             "scope": 3,
             "restricted": false
         },
@@ -14009,14 +14138,14 @@
         "terminal.integrated.tabs.title": {
             "type": "string",
             "default": "${process}",
-            "markdownDescription": "Controls the terminal title. Variables are substituted based on the context:\n- `${cwd}`: the terminal's current working directory\n- `${cwdFolder}`: the terminal's current working directory, displayed for multi-root workspaces or in a single root workspace when the value differs from the initial working directory. This will not be displayed for Windows.\n- `${workspaceFolder}`: the workpsace in which the terminal was launched\n- `${local}`: indicates a local terminal in a remote workspace\n- `${process}`: the name of the terminal process\n- `${separator}`: a conditional separator (\" - \") that only shows when surrounded by variables with values or static text.\n- `${sequence}`: the name provided to xterm.js by the process\n- `${task}`: indicates this terminal is associated with a task",
+            "markdownDescription": "Controls the terminal title. Variables are substituted based on the context:\n- `${cwd}`: the terminal's current working directory\n- `${cwdFolder}`: the terminal's current working directory, displayed for multi-root workspaces or in a single root workspace when the value differs from the initial working directory. This will not be displayed for Windows.\n- `${workspaceFolder}`: the workspace in which the terminal was launched\n- `${local}`: indicates a local terminal in a remote workspace\n- `${process}`: the name of the terminal process\n- `${separator}`: a conditional separator (\" - \") that only shows when surrounded by variables with values or static text.\n- `${sequence}`: the name provided to xterm.js by the process\n- `${task}`: indicates this terminal is associated with a task",
             "scope": 3,
             "restricted": false
         },
         "terminal.integrated.tabs.description": {
             "type": "string",
             "default": "${task}${separator}${local}${separator}${cwdFolder}",
-            "markdownDescription": "Controls the terminal description, which appears to the right of the title. Variables are substituted based on the context:\n- `${cwd}`: the terminal's current working directory\n- `${cwdFolder}`: the terminal's current working directory, displayed for multi-root workspaces or in a single root workspace when the value differs from the initial working directory. This will not be displayed for Windows.\n- `${workspaceFolder}`: the workpsace in which the terminal was launched\n- `${local}`: indicates a local terminal in a remote workspace\n- `${process}`: the name of the terminal process\n- `${separator}`: a conditional separator (\" - \") that only shows when surrounded by variables with values or static text.\n- `${sequence}`: the name provided to xterm.js by the process\n- `${task}`: indicates this terminal is associated with a task",
+            "markdownDescription": "Controls the terminal description, which appears to the right of the title. Variables are substituted based on the context:\n- `${cwd}`: the terminal's current working directory\n- `${cwdFolder}`: the terminal's current working directory, displayed for multi-root workspaces or in a single root workspace when the value differs from the initial working directory. This will not be displayed for Windows.\n- `${workspaceFolder}`: the workspace in which the terminal was launched\n- `${local}`: indicates a local terminal in a remote workspace\n- `${process}`: the name of the terminal process\n- `${separator}`: a conditional separator (\" - \") that only shows when surrounded by variables with values or static text.\n- `${sequence}`: the name provided to xterm.js by the process\n- `${task}`: indicates this terminal is associated with a task",
             "scope": 3,
             "restricted": false
         },
@@ -14039,13 +14168,6 @@
             "scope": 3,
             "restricted": false
         },
-        "terminal.integrated.cwd": {
-            "restricted": true,
-            "description": "An explicit start path where the terminal will be launched, this is used as the current working directory (cwd) for the shell process. This may be particularly useful in workspace settings if the root directory is not a convenient cwd.",
-            "type": "string",
-            "default": "",
-            "scope": 3
-        },
         "terminal.integrated.confirmOnExit": {
             "description": "Controls whether to confirm when the window closes if there are active terminal sessions.",
             "type": "string",
@@ -14064,7 +14186,7 @@
             "restricted": false
         },
         "terminal.integrated.confirmOnKill": {
-            "description": "Controls whether to confirm killing terminals when they have child processes. When set to editor, terminals in the editor area will be marked as dirty when they have child processes. Note that child process detection may not work well for shells like Git Bash which don't run their processes as child processes of the shell.",
+            "description": "Controls whether to confirm killing terminals when they have child processes. When set to editor, terminals in the editor area will be marked as changed when they have child processes. Note that child process detection may not work well for shells like Git Bash which don't run their processes as child processes of the shell.",
             "type": "string",
             "enum": [
                 "never",
@@ -14210,7 +14332,7 @@
         "terminal.integrated.wordSeparators": {
             "description": "A string containing all characters to be considered word separators by the double click to select word feature.",
             "type": "string",
-            "default": " ()[]{}',\"`─",
+            "default": " ()[]{}',\"`─‘’",
             "scope": 3,
             "restricted": false
         },
@@ -14311,7 +14433,7 @@
                 "Revive the processes after the last window is closed on Windows/Linux or when the `workbench.action.quit` command is triggered (command palette, keybinding, menu), or when the window is closed.",
                 "Never restore the terminal buffers or recreate the process."
             ],
-            "default": "never",
+            "default": "onExit",
             "scope": 3,
             "restricted": false
         },
@@ -14370,216 +14492,10 @@
             "scope": 3,
             "restricted": false
         },
-        "emmet.includeLanguages": {
-            "type": "object",
-            "additionalProperties": {
-                "type": "string"
-            },
-            "default": {},
-            "markdownDescription": "Enable Emmet abbreviations in languages that are not supported by default. Add a mapping here between the language and Emmet supported language.\n For example: `{\"vue-html\": \"html\", \"javascript\": \"javascriptreact\"}`",
-            "scope": 3,
-            "restricted": false
-        },
-        "emmet.variables": {
-            "type": "object",
-            "properties": {
-                "lang": {
-                    "type": "string",
-                    "default": "en"
-                },
-                "charset": {
-                    "type": "string",
-                    "default": "UTF-8"
-                }
-            },
-            "additionalProperties": {
-                "type": "string"
-            },
-            "default": {},
-            "markdownDescription": "Variables to be used in Emmet snippets.",
-            "scope": 3,
-            "restricted": false
-        },
-        "emmet.syntaxProfiles": {
-            "type": "object",
-            "default": {},
-            "markdownDescription": "Define profile for specified syntax or use your own profile with specific rules.",
-            "scope": 3,
-            "restricted": false
-        },
-        "emmet.excludeLanguages": {
-            "type": "array",
-            "items": {
-                "type": "string"
-            },
-            "default": [
-                "markdown"
-            ],
-            "markdownDescription": "An array of languages where Emmet abbreviations should not be expanded.",
-            "scope": 3,
-            "restricted": false
-        },
-        "emmet.extensionsPath": {
-            "type": "array",
-            "items": {
-                "type": "string",
-                "markdownDescription": "A path containing Emmet syntaxProfiles and/or snippets."
-            },
-            "default": [],
-            "markdownDescription": "An array of paths, where each path can contain Emmet syntaxProfiles and/or snippet files.\nIn case of conflicts, the profiles/snippets of later paths will override those of earlier paths.\nSee https://code.visualstudio.com/docs/editor/emmet for more information and an example snippet file.",
-            "scope": 3,
-            "restricted": false
-        },
         "emmet.triggerExpansionOnTab": {
             "type": "boolean",
             "default": false,
             "markdownDescription": "When enabled, Emmet abbreviations are expanded when pressing TAB.",
-            "scope": 3,
-            "restricted": false
-        },
-        "emmet.preferences": {
-            "type": "object",
-            "default": {},
-            "markdownDescription": "Preferences used to modify behavior of some actions and resolvers of Emmet.",
-            "properties": {
-                "css.intUnit": {
-                    "type": "string",
-                    "default": "px",
-                    "markdownDescription": "Default unit for integer values."
-                },
-                "css.floatUnit": {
-                    "type": "string",
-                    "default": "em",
-                    "markdownDescription": "Default unit for float values."
-                },
-                "css.propertyEnd": {
-                    "type": "string",
-                    "default": ";",
-                    "markdownDescription": "Symbol to be placed at the end of CSS property when expanding CSS abbreviations."
-                },
-                "sass.propertyEnd": {
-                    "type": "string",
-                    "default": "",
-                    "markdownDescription": "Symbol to be placed at the end of CSS property when expanding CSS abbreviations in Sass files."
-                },
-                "stylus.propertyEnd": {
-                    "type": "string",
-                    "default": "",
-                    "markdownDescription": "Symbol to be placed at the end of CSS property when expanding CSS abbreviations in Stylus files."
-                },
-                "css.valueSeparator": {
-                    "type": "string",
-                    "default": ": ",
-                    "markdownDescription": "Symbol to be placed at the between CSS property and value when expanding CSS abbreviations."
-                },
-                "sass.valueSeparator": {
-                    "type": "string",
-                    "default": ": ",
-                    "markdownDescription": "Symbol to be placed at the between CSS property and value when expanding CSS abbreviations in Sass files."
-                },
-                "stylus.valueSeparator": {
-                    "type": "string",
-                    "default": " ",
-                    "markdownDescription": "Symbol to be placed at the between CSS property and value when expanding CSS abbreviations in Stylus files."
-                },
-                "bem.elementSeparator": {
-                    "type": "string",
-                    "default": "__",
-                    "markdownDescription": "Element separator used for classes when using the BEM filter."
-                },
-                "bem.modifierSeparator": {
-                    "type": "string",
-                    "default": "_",
-                    "markdownDescription": "Modifier separator used for classes when using the BEM filter."
-                },
-                "filter.commentBefore": {
-                    "type": "string",
-                    "default": "",
-                    "markdownDescription": "A definition of comment that should be placed before matched element when comment filter is applied."
-                },
-                "filter.commentAfter": {
-                    "type": "string",
-                    "default": "\n<!-- /[#ID][.CLASS] -->",
-                    "markdownDescription": "A definition of comment that should be placed after matched element when comment filter is applied."
-                },
-                "filter.commentTrigger": {
-                    "type": "array",
-                    "default": [
-                        "id",
-                        "class"
-                    ],
-                    "markdownDescription": "A comma-separated list of attribute names that should exist in the abbreviation for the comment filter to be applied."
-                },
-                "format.noIndentTags": {
-                    "type": "array",
-                    "default": [
-                        "html"
-                    ],
-                    "markdownDescription": "An array of tag names that should never get inner indentation."
-                },
-                "format.forceIndentationForTags": {
-                    "type": "array",
-                    "default": [
-                        "body"
-                    ],
-                    "markdownDescription": "An array of tag names that should always get inner indentation."
-                },
-                "profile.allowCompactBoolean": {
-                    "type": "boolean",
-                    "default": false,
-                    "markdownDescription": "If `true`, compact notation of boolean attributes are produced."
-                },
-                "css.webkitProperties": {
-                    "type": "string",
-                    "default": null,
-                    "markdownDescription": "Comma separated CSS properties that get the 'webkit' vendor prefix when used in Emmet abbreviation that starts with `-`. Set to empty string to always avoid the 'webkit' prefix."
-                },
-                "css.mozProperties": {
-                    "type": "string",
-                    "default": null,
-                    "markdownDescription": "Comma separated CSS properties that get the 'moz' vendor prefix when used in Emmet abbreviation that starts with `-`. Set to empty string to always avoid the 'moz' prefix."
-                },
-                "css.oProperties": {
-                    "type": "string",
-                    "default": null,
-                    "markdownDescription": "Comma separated CSS properties that get the 'o' vendor prefix when used in Emmet abbreviation that starts with `-`. Set to empty string to always avoid the 'o' prefix."
-                },
-                "css.msProperties": {
-                    "type": "string",
-                    "default": null,
-                    "markdownDescription": "Comma separated CSS properties that get the 'ms' vendor prefix when used in Emmet abbreviation that starts with `-`. Set to empty string to always avoid the 'ms' prefix."
-                },
-                "css.fuzzySearchMinScore": {
-                    "type": "number",
-                    "default": 0.3,
-                    "markdownDescription": "The minimum score (from 0 to 1) that fuzzy-matched abbreviation should achieve. Lower values may produce many false-positive matches, higher values may reduce possible matches."
-                },
-                "output.inlineBreak": {
-                    "type": "number",
-                    "default": 0,
-                    "markdownDescription": "The number of sibling inline elements needed for line breaks to be placed between those elements. If `0`, inline elements are always expanded onto a single line."
-                },
-                "output.reverseAttributes": {
-                    "type": "boolean",
-                    "default": false,
-                    "markdownDescription": "If `true`, reverses attribute merging directions when resolving snippets."
-                },
-                "output.selfClosingStyle": {
-                    "type": "string",
-                    "enum": [
-                        "html",
-                        "xhtml",
-                        "xml"
-                    ],
-                    "default": "html",
-                    "markdownDescription": "Style of self-closing tags: html (`<br>`), xml (`<br/>`) or xhtml (`<br />`)."
-                },
-                "css.color.short": {
-                    "type": "boolean",
-                    "default": true,
-                    "markdownDescription": "If `true`, color values like `#f` will be expanded to `#fff` instead of `#ffffff`."
-                }
-            },
             "scope": 3,
             "restricted": false
         },
@@ -17354,6 +17270,46 @@
             "scope": 5,
             "restricted": false
         },
+        "editor.language.brackets": {
+            "type": "array",
+            "default": false,
+            "description": "Defines the bracket symbols that increase or decrease the indentation.",
+            "items": {
+                "type": "array",
+                "items": [
+                    {
+                        "type": "string",
+                        "description": "The opening bracket character or string sequence."
+                    },
+                    {
+                        "type": "string",
+                        "description": "The closing bracket character or string sequence."
+                    }
+                ]
+            },
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.language.colorizedBracketPairs": {
+            "type": "array",
+            "default": false,
+            "description": "Defines the bracket pairs that are colorized by their nesting level if bracket pair colorization is enabled.",
+            "items": {
+                "type": "array",
+                "items": [
+                    {
+                        "type": "string",
+                        "description": "The opening bracket character or string sequence."
+                    },
+                    {
+                        "type": "string",
+                        "description": "The closing bracket character or string sequence."
+                    }
+                ]
+            },
+            "scope": 5,
+            "restricted": false
+        },
         "diffEditor.maxComputationTime": {
             "type": "number",
             "default": 5000,
@@ -17582,8 +17538,48 @@
             "restricted": false
         },
         "editor.guides.bracketPairs": {
-            "type": "boolean",
+            "type": [
+                "boolean",
+                "string"
+            ],
+            "enum": [
+                true,
+                "active",
+                false
+            ],
+            "enumDescriptions": [
+                "Enables bracket pair guides.",
+                "Enables bracket pair guides only for the active bracket pair.",
+                "Disables bracket pair guides."
+            ],
             "default": false,
+            "description": "Controls whether bracket pair guides are enabled or not.",
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.guides.bracketPairsHorizontal": {
+            "type": [
+                "boolean",
+                "string"
+            ],
+            "enum": [
+                true,
+                "active",
+                false
+            ],
+            "enumDescriptions": [
+                "Enables horizontal guides as addition to vertical bracket pair guides.",
+                "Enables horizontal guides only for the active bracket pair.",
+                "Disables horizontal bracket pair guides."
+            ],
+            "default": "active",
+            "description": "Controls whether horizontal bracket pair guides are enabled or not.",
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.guides.highlightActiveBracketPair": {
+            "type": "boolean",
+            "default": true,
             "description": "Controls whether bracket pair guides are enabled or not.",
             "scope": 5,
             "restricted": false
@@ -18158,6 +18154,13 @@
             "scope": 5,
             "restricted": false
         },
+        "editor.hover.above": {
+            "type": "boolean",
+            "default": true,
+            "description": "Prefer showing hovers above the line, if there's space.",
+            "scope": 5,
+            "restricted": false
+        },
         "editor.inlineSuggest.enabled": {
             "type": "boolean",
             "default": true,
@@ -18331,7 +18334,7 @@
                 "Maps to `Control` on Windows and Linux and to `Command` on macOS.",
                 "Maps to `Alt` on Windows and Linux and to `Option` on macOS."
             ],
-            "markdownDescription": "The modifier to be used to add multiple cursors with the mouse. The Go To Definition and Open Link mouse gestures will adapt such that they do not conflict with the multicursor modifier. [Read more](https://code.visualstudio.com/docs/editor/codebasics#_multicursor-modifier).",
+            "markdownDescription": "The modifier to be used to add multiple cursors with the mouse. The Go to Definition and Open Link mouse gestures will adapt such that they do not conflict with the multicursor modifier. [Read more](https://code.visualstudio.com/docs/editor/codebasics#_multicursor-modifier).",
             "type": "string",
             "enum": [
                 "ctrlCmd",
@@ -18479,10 +18482,10 @@
         },
         "editor.renderControlCharacters": {
             "description": "Controls whether the editor should render control characters.",
+            "restricted": true,
             "type": "boolean",
-            "default": false,
-            "scope": 5,
-            "restricted": false
+            "default": true,
+            "scope": 5
         },
         "editor.renderFinalNewline": {
             "description": "Render last line number when the file ends with a newline.",
@@ -19836,7 +19839,7 @@
                 "**/node_modules/*/**": true,
                 "**/.hg/store/**": true
             },
-            "markdownDescription": "Configure glob patterns of file paths to exclude from file watching. Patterns must match on absolute paths, i.e. prefix with `**/` or the full path to match properly and suffix with `/**` to match files within a path (for example `**/build/output/**` or `/Users/name/workspaces/project/build/output/**`). When you experience Code consuming lots of CPU time on startup, you can exclude large folders to reduce the initial load.",
+            "markdownDescription": "Configure paths or glob patterns to exclude from file watching. Paths that are relative (for example `build/output`) will be resolved to an absolute path using the currently opened workspace. Glob patterns must match on absolute paths (i.e. prefix with `**/` or the full path and suffix with `/**` to match files within a path) to match properly (for example `**/build/output/**` or `/Users/name/workspaces/project/build/output/**`). When you experience the file watcher process consuming a lot of CPU, make sure to exclude large folders that are of less interest (such as build output folders).",
             "scope": 4,
             "restricted": false
         },
@@ -19846,7 +19849,7 @@
                 "type": "string"
             },
             "default": [],
-            "description": "Configure extra paths to watch for changes inside the workspace. By default, all workspace folders will be watched recursively, except for folders that are symbolic links. You can explicitly add absolute or relative paths to support watching folders that are symbolic links. Relative paths will be resolved against the workspace folder to form an absolute path.",
+            "description": "Configure extra paths to watch for changes inside the workspace. By default, all workspace folders will be watched recursively, except for folders that are symbolic links. You can explicitly add absolute or relative paths to support watching folders that are symbolic links. Relative paths will be resolved to an absolute path using the currently opened workspace.",
             "scope": 4,
             "restricted": false
         },
@@ -20273,10 +20276,17 @@
         },
         "search.useGlobalIgnoreFiles": {
             "type": "boolean",
-            "markdownDescription": "Controls whether to use global `.gitignore` and `.ignore` files when searching for files.",
+            "markdownDescription": "Controls whether to use global `.gitignore` and `.ignore` files when searching for files. Requires `#search.useIgnoreFiles#` to be enabled.",
             "default": false,
             "scope": 4,
             "restricted": false
+        },
+        "terminal.integrated.cwd": {
+            "restricted": true,
+            "description": "An explicit start path where the terminal will be launched, this is used as the current working directory (cwd) for the shell process. This may be particularly useful in workspace settings if the root directory is not a convenient cwd.",
+            "type": "string",
+            "default": "",
+            "scope": 4
         },
         "css.customData": {
             "type": "array",
@@ -21110,6 +21120,201 @@
             "description": "Unknown at-rule.",
             "restricted": false
         },
+        "emmet.includeLanguages": {
+            "type": "object",
+            "additionalProperties": {
+                "type": "string"
+            },
+            "default": {},
+            "scope": 4,
+            "markdownDescription": "Enable Emmet abbreviations in languages that are not supported by default. Add a mapping here between the language and Emmet supported language.\n For example: `{\"vue-html\": \"html\", \"javascript\": \"javascriptreact\"}`",
+            "restricted": false
+        },
+        "emmet.variables": {
+            "type": "object",
+            "properties": {
+                "lang": {
+                    "type": "string",
+                    "default": "en"
+                },
+                "charset": {
+                    "type": "string",
+                    "default": "UTF-8"
+                }
+            },
+            "additionalProperties": {
+                "type": "string"
+            },
+            "default": {},
+            "scope": 4,
+            "markdownDescription": "Variables to be used in Emmet snippets.",
+            "restricted": false
+        },
+        "emmet.syntaxProfiles": {
+            "type": "object",
+            "default": {},
+            "scope": 4,
+            "markdownDescription": "Define profile for specified syntax or use your own profile with specific rules.",
+            "restricted": false
+        },
+        "emmet.excludeLanguages": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "default": [
+                "markdown"
+            ],
+            "scope": 4,
+            "markdownDescription": "An array of languages where Emmet abbreviations should not be expanded.",
+            "restricted": false
+        },
+        "emmet.preferences": {
+            "type": "object",
+            "default": {},
+            "scope": 4,
+            "markdownDescription": "Preferences used to modify behavior of some actions and resolvers of Emmet.",
+            "properties": {
+                "css.intUnit": {
+                    "type": "string",
+                    "default": "px",
+                    "markdownDescription": "Default unit for integer values."
+                },
+                "css.floatUnit": {
+                    "type": "string",
+                    "default": "em",
+                    "markdownDescription": "Default unit for float values."
+                },
+                "css.propertyEnd": {
+                    "type": "string",
+                    "default": ";",
+                    "markdownDescription": "Symbol to be placed at the end of CSS property when expanding CSS abbreviations."
+                },
+                "sass.propertyEnd": {
+                    "type": "string",
+                    "default": "",
+                    "markdownDescription": "Symbol to be placed at the end of CSS property when expanding CSS abbreviations in Sass files."
+                },
+                "stylus.propertyEnd": {
+                    "type": "string",
+                    "default": "",
+                    "markdownDescription": "Symbol to be placed at the end of CSS property when expanding CSS abbreviations in Stylus files."
+                },
+                "css.valueSeparator": {
+                    "type": "string",
+                    "default": ": ",
+                    "markdownDescription": "Symbol to be placed at the between CSS property and value when expanding CSS abbreviations."
+                },
+                "sass.valueSeparator": {
+                    "type": "string",
+                    "default": ": ",
+                    "markdownDescription": "Symbol to be placed at the between CSS property and value when expanding CSS abbreviations in Sass files."
+                },
+                "stylus.valueSeparator": {
+                    "type": "string",
+                    "default": " ",
+                    "markdownDescription": "Symbol to be placed at the between CSS property and value when expanding CSS abbreviations in Stylus files."
+                },
+                "bem.elementSeparator": {
+                    "type": "string",
+                    "default": "__",
+                    "markdownDescription": "Element separator used for classes when using the BEM filter."
+                },
+                "bem.modifierSeparator": {
+                    "type": "string",
+                    "default": "_",
+                    "markdownDescription": "Modifier separator used for classes when using the BEM filter."
+                },
+                "filter.commentBefore": {
+                    "type": "string",
+                    "default": "",
+                    "markdownDescription": "A definition of comment that should be placed before matched element when comment filter is applied."
+                },
+                "filter.commentAfter": {
+                    "type": "string",
+                    "default": "\n<!-- /[#ID][.CLASS] -->",
+                    "markdownDescription": "A definition of comment that should be placed after matched element when comment filter is applied."
+                },
+                "filter.commentTrigger": {
+                    "type": "array",
+                    "default": [
+                        "id",
+                        "class"
+                    ],
+                    "markdownDescription": "A comma-separated list of attribute names that should exist in the abbreviation for the comment filter to be applied."
+                },
+                "format.noIndentTags": {
+                    "type": "array",
+                    "default": [
+                        "html"
+                    ],
+                    "markdownDescription": "An array of tag names that should never get inner indentation."
+                },
+                "format.forceIndentationForTags": {
+                    "type": "array",
+                    "default": [
+                        "body"
+                    ],
+                    "markdownDescription": "An array of tag names that should always get inner indentation."
+                },
+                "profile.allowCompactBoolean": {
+                    "type": "boolean",
+                    "default": false,
+                    "markdownDescription": "If `true`, compact notation of boolean attributes are produced."
+                },
+                "css.webkitProperties": {
+                    "type": "string",
+                    "default": null,
+                    "markdownDescription": "Comma separated CSS properties that get the 'webkit' vendor prefix when used in Emmet abbreviation that starts with `-`. Set to empty string to always avoid the 'webkit' prefix."
+                },
+                "css.mozProperties": {
+                    "type": "string",
+                    "default": null,
+                    "markdownDescription": "Comma separated CSS properties that get the 'moz' vendor prefix when used in Emmet abbreviation that starts with `-`. Set to empty string to always avoid the 'moz' prefix."
+                },
+                "css.oProperties": {
+                    "type": "string",
+                    "default": null,
+                    "markdownDescription": "Comma separated CSS properties that get the 'o' vendor prefix when used in Emmet abbreviation that starts with `-`. Set to empty string to always avoid the 'o' prefix."
+                },
+                "css.msProperties": {
+                    "type": "string",
+                    "default": null,
+                    "markdownDescription": "Comma separated CSS properties that get the 'ms' vendor prefix when used in Emmet abbreviation that starts with `-`. Set to empty string to always avoid the 'ms' prefix."
+                },
+                "css.fuzzySearchMinScore": {
+                    "type": "number",
+                    "default": 0.3,
+                    "markdownDescription": "The minimum score (from 0 to 1) that fuzzy-matched abbreviation should achieve. Lower values may produce many false-positive matches, higher values may reduce possible matches."
+                },
+                "output.inlineBreak": {
+                    "type": "number",
+                    "default": 0,
+                    "markdownDescription": "The number of sibling inline elements needed for line breaks to be placed between those elements. If `0`, inline elements are always expanded onto a single line."
+                },
+                "output.reverseAttributes": {
+                    "type": "boolean",
+                    "default": false,
+                    "markdownDescription": "If `true`, reverses attribute merging directions when resolving snippets."
+                },
+                "output.selfClosingStyle": {
+                    "type": "string",
+                    "enum": [
+                        "html",
+                        "xhtml",
+                        "xml"
+                    ],
+                    "default": "html",
+                    "markdownDescription": "Style of self-closing tags: html (`<br>`), xml (`<br/>`) or xhtml (`<br />`)."
+                },
+                "css.color.short": {
+                    "type": "boolean",
+                    "default": true,
+                    "markdownDescription": "If `true`, color values like `#f` will be expanded to `#fff` instead of `#ffffff`."
+                }
+            },
+            "restricted": false
+        },
         "git.enabled": {
             "type": "boolean",
             "scope": 4,
@@ -21437,6 +21642,23 @@
             "description": "Controls whether to enable automatic GitHub authentication for git commands within VS Code.",
             "restricted": false
         },
+        "html.completion.attributeDefaultValue": {
+            "type": "string",
+            "scope": 4,
+            "enum": [
+                "doublequotes",
+                "singlequotes",
+                "empty"
+            ],
+            "enumDescriptions": [
+                "Attribute value is set to \"\".",
+                "Attribute value is set to ''.",
+                "Attribute value is not set."
+            ],
+            "default": "doublequotes",
+            "description": "Controls the default value for attributes when completion is accepted.",
+            "restricted": false
+        },
         "html.customData": {
             "type": "array",
             "markdownDescription": "A list of relative file paths pointing to JSON files following the [custom data format](https://github.com/microsoft/vscode-html-languageservice/blob/master/docs/customData.md).\n\nVS Code loads custom data on startup to enhance its HTML support for the custom HTML tags, attributes and attribute values you specify in the JSON files.\n\nThe file paths are relative to workspace and only workspace folder settings are considered.",
@@ -21554,7 +21776,7 @@
             ],
             "scope": 4,
             "default": null,
-            "description": "Alignment size when using 'force aligned' and 'aligned multiple' in `#html.format.wrapAttributes#` or `null` to use the default indent size.",
+            "markdownDescription": "Alignment size when using 'force aligned' and 'aligned multiple' in `#html.format.wrapAttributes#` or `null` to use the default indent size.",
             "restricted": false
         },
         "html.format.templating": {
@@ -22537,6 +22759,20 @@
             "type": "boolean",
             "default": true,
             "description": "Enabled/disable autocomplete suggestions.",
+            "scope": 4,
+            "restricted": false
+        },
+        "javascript.suggest.includeCompletionsWithClassMemberSnippets": {
+            "type": "boolean",
+            "default": true,
+            "description": "Enable/disable snippet completions for class members. Requires using TypeScript 4.5+ in the workspace",
+            "scope": 4,
+            "restricted": false
+        },
+        "typescript.suggest.includeCompletionsWithClassMemberSnippets": {
+            "type": "boolean",
+            "default": true,
+            "description": "Enable/disable snippet completions for class members. Requires using TypeScript 4.5+ in the workspace",
             "scope": 4,
             "restricted": false
         }
