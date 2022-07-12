@@ -978,7 +978,7 @@
                 "hidden"
             ],
             "default": "text",
-            "markdownDescription": "無題のヒントをエディター内のインライン テキストにするか、フローティング ボタンにするか、非表示にするかを制御します。",
+            "markdownDescription": "無題のテキスト ヒントをエディターに表示するかどうかを制御します。",
             "defaultDefaultValue": "text",
             "scope": 3,
             "restricted": false
@@ -1557,7 +1557,7 @@
             "scope": 3,
             "restricted": false
         },
-        "window.experimental.commandCenter": {
+        "window.commandCenter": {
             "type": "boolean",
             "default": false,
             "markdownDescription": "コマンド ランチャーをウィンドウ タイトルと共に表示します。この設定は、「#window.titleBarStyle#」が「custom」に設定されている場合にのみ反映されます。",
@@ -1624,7 +1624,7 @@
         "zenMode.silentNotifications": {
             "type": "boolean",
             "default": true,
-            "description": "Zen Mode 中に通知を表示するかどうかを制御します。true の場合、エラー通知のみが表示されます。",
+            "description": "Zen Mode の間に通知の応答不可モードを有効にするかどうかを制御します。true の場合は、エラー通知のみが表示されます。",
             "defaultDefaultValue": true,
             "scope": 3,
             "restricted": false
@@ -2103,57 +2103,14 @@
             "scope": 3,
             "restricted": false
         },
-        "comments.openPanel": {
-            "enum": [
-                "neverOpen",
-                "openOnSessionStart",
-                "openOnSessionStartWithComments"
-            ],
-            "default": "openOnSessionStartWithComments",
-            "description": "コメント パネルを開くタイミングを制御します。",
-            "restricted": false,
-            "markdownDeprecationMessage": "この設定は'comments.openView' を優先し、非推奨です。",
-            "defaultDefaultValue": "openOnSessionStartWithComments",
-            "scope": 3,
-            "deprecationMessage": "この設定は'comments.openView' を優先し、非推奨です。"
-        },
-        "comments.openView": {
-            "enum": [
-                "never",
-                "file",
-                "firstFile"
-            ],
-            "enumDescriptions": [
-                "コメント ビューが開くことはありません。",
-                "コメント付きのファイルがアクティブになると、コメント ビューが開きます。",
-                "このセッション中にコメント ビューがまだ開いていない場合は、コメントを含むファイルがアクティブになっているセッション中に初めて開きます。"
-            ],
-            "default": "firstFile",
-            "description": "コメント パネルが開くべきタイミングを制御します。",
-            "restricted": false,
-            "defaultDefaultValue": "firstFile",
-            "scope": 3
-        },
-        "comments.useRelativeTime": {
+        "workbench.experimental.editSessions.enabled": {
             "type": "boolean",
-            "default": true,
-            "description": "コメント タイムスタンプ ('1 日前' など) に相対時間を使用するかどうかを決定します。",
-            "defaultDefaultValue": true,
-            "scope": 3,
-            "restricted": false
-        },
-        "notebook.diff.ignoreMetadata": {
-            "type": "boolean",
+            "tags": [
+                "experimental",
+                "usesOnlineServices"
+            ],
             "default": false,
-            "markdownDescription": "メタデータの違いを非表示にする",
-            "defaultDefaultValue": false,
-            "scope": 3,
-            "restricted": false
-        },
-        "notebook.diff.ignoreOutputs": {
-            "type": "boolean",
-            "default": false,
-            "markdownDescription": "出力の違いを非表示にする",
+            "markdownDescription": "Web、デスクトップ、またはデバイスを切り替えるときに、コミットされていない変更を保存および再開するためのクラウド対応アクションを表示するかどうかを制御します。",
             "defaultDefaultValue": false,
             "scope": 3,
             "restricted": false
@@ -2246,6 +2203,14 @@
             "description": "タスクがプロバイダーによってグループ化されている場合、[タスク: タスクの実行] コマンドで、高速の 2 レベル ピッカーの代わりに低速の [すべて表示] の動作を使用します。",
             "default": false,
             "defaultDefaultValue": false,
+            "scope": 3,
+            "restricted": false
+        },
+        "task.showDecorations": {
+            "type": "boolean",
+            "description": "監視タスクで見つかった最初の問題など、ターミナル バッファーの関心のあるポイントの装飾を表示します。これは今後のタスクに対してのみ有効になります。",
+            "default": true,
+            "defaultDefaultValue": true,
             "scope": 3,
             "restricted": false
         },
@@ -3751,6 +3716,61 @@
             "scope": 3,
             "restricted": false
         },
+        "comments.openPanel": {
+            "enum": [
+                "neverOpen",
+                "openOnSessionStart",
+                "openOnSessionStartWithComments"
+            ],
+            "default": "openOnSessionStartWithComments",
+            "description": "コメント パネルを開くタイミングを制御します。",
+            "restricted": false,
+            "markdownDeprecationMessage": "この設定は'comments.openView' を優先し、非推奨です。",
+            "defaultDefaultValue": "openOnSessionStartWithComments",
+            "scope": 3,
+            "deprecationMessage": "この設定は'comments.openView' を優先し、非推奨です。"
+        },
+        "comments.openView": {
+            "enum": [
+                "never",
+                "file",
+                "firstFile"
+            ],
+            "enumDescriptions": [
+                "コメント ビューが開くことはありません。",
+                "コメント付きのファイルがアクティブになると、コメント ビューが開きます。",
+                "このセッション中にコメント ビューがまだ開いていない場合は、コメントを含むファイルがアクティブになっているセッション中に初めて開きます。"
+            ],
+            "default": "firstFile",
+            "description": "コメント パネルが開くべきタイミングを制御します。",
+            "restricted": false,
+            "defaultDefaultValue": "firstFile",
+            "scope": 3
+        },
+        "comments.useRelativeTime": {
+            "type": "boolean",
+            "default": true,
+            "description": "コメント タイムスタンプ ('1 日前' など) に相対時間を使用するかどうかを決定します。",
+            "defaultDefaultValue": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "notebook.diff.ignoreMetadata": {
+            "type": "boolean",
+            "default": false,
+            "markdownDescription": "メタデータの違いを非表示にする",
+            "defaultDefaultValue": false,
+            "scope": 3,
+            "restricted": false
+        },
+        "notebook.diff.ignoreOutputs": {
+            "type": "boolean",
+            "default": false,
+            "markdownDescription": "出力の違いを非表示にする",
+            "defaultDefaultValue": false,
+            "scope": 3,
+            "restricted": false
+        },
         "screencastMode.verticalOffset": {
             "type": "number",
             "default": 20,
@@ -5110,6 +5130,14 @@
                             "scope": 5,
                             "restricted": false
                         },
+                        "editor.minimap.autohide": {
+                            "type": "boolean",
+                            "default": false,
+                            "description": "ミニマップを自動的に非表示するかどうかを制御します。",
+                            "defaultDefaultValue": false,
+                            "scope": 5,
+                            "restricted": false
+                        },
                         "editor.minimap.size": {
                             "type": "string",
                             "enum": [
@@ -5589,10 +5617,10 @@
                         "editor.scrollBeyondLastColumn": {
                             "description": "エディターが水平方向に余分にスクロールする文字数を制御します。",
                             "type": "integer",
-                            "default": 5,
+                            "default": 4,
                             "minimum": 0,
                             "maximum": 1073741824,
-                            "defaultDefaultValue": 5,
+                            "defaultDefaultValue": 4,
                             "scope": 5,
                             "restricted": false
                         },
@@ -7422,6 +7450,14 @@
             "scope": 3,
             "restricted": false
         },
+        "testing.alwaysRevealTestOnStateChange": {
+            "markdownDescription": "'#testing.followRunningTest#' がオンの場合は、実行されたテストを常に公開します。この設定をオフにすると、失敗したテストのみ公開されます。",
+            "type": "boolean",
+            "default": false,
+            "defaultDefaultValue": false,
+            "scope": 3,
+            "restricted": false
+        },
         "timeline.excludeSources": {
             "type": [
                 "array",
@@ -7580,6 +7616,14 @@
                 }
             ],
             "defaultDefaultValue": {},
+            "scope": 3,
+            "restricted": false
+        },
+        "extensions.experimental.useUtilityProcess": {
+            "type": "boolean",
+            "description": "有効にすると、拡張機能ホストは新しい UtilityProcess Electron API を使用して起動されます。",
+            "default": false,
+            "defaultDefaultValue": false,
             "scope": 3,
             "restricted": false
         },
@@ -8043,6 +8087,7 @@
                                 "debug-breakpoint-function",
                                 "debug-breakpoint-function-disabled",
                                 "debug-stackframe-active",
+                                "circle-small-filled",
                                 "debug-stackframe-dot",
                                 "debug-stackframe",
                                 "debug-stackframe-focused",
@@ -8167,6 +8212,12 @@
                                 "arrow-circle-left",
                                 "arrow-circle-right",
                                 "arrow-circle-up",
+                                "heart-filled",
+                                "map",
+                                "map-filled",
+                                "circle-small",
+                                "bell-slash",
+                                "bell-slash-dot",
                                 "dialog-error",
                                 "dialog-warning",
                                 "dialog-info",
@@ -8566,6 +8617,7 @@
                                 "$(debug-breakpoint-function)",
                                 "$(debug-breakpoint-function-disabled)",
                                 "$(debug-stackframe-active)",
+                                "$(circle-small-filled)",
                                 "$(debug-stackframe-dot)",
                                 "$(debug-stackframe)",
                                 "$(debug-stackframe-focused)",
@@ -8690,6 +8742,12 @@
                                 "$(arrow-circle-left)",
                                 "$(arrow-circle-right)",
                                 "$(arrow-circle-up)",
+                                "$(heart-filled)",
+                                "$(map)",
+                                "$(map-filled)",
+                                "$(circle-small)",
+                                "$(bell-slash)",
+                                "$(bell-slash-dot)",
                                 "$(dialog-error)",
                                 "$(dialog-warning)",
                                 "$(dialog-info)",
@@ -9174,6 +9232,7 @@
                                 "debug-breakpoint-function",
                                 "debug-breakpoint-function-disabled",
                                 "debug-stackframe-active",
+                                "circle-small-filled",
                                 "debug-stackframe-dot",
                                 "debug-stackframe",
                                 "debug-stackframe-focused",
@@ -9298,6 +9357,12 @@
                                 "arrow-circle-left",
                                 "arrow-circle-right",
                                 "arrow-circle-up",
+                                "heart-filled",
+                                "map",
+                                "map-filled",
+                                "circle-small",
+                                "bell-slash",
+                                "bell-slash-dot",
                                 "dialog-error",
                                 "dialog-warning",
                                 "dialog-info",
@@ -9697,6 +9762,7 @@
                                 "$(debug-breakpoint-function)",
                                 "$(debug-breakpoint-function-disabled)",
                                 "$(debug-stackframe-active)",
+                                "$(circle-small-filled)",
                                 "$(debug-stackframe-dot)",
                                 "$(debug-stackframe)",
                                 "$(debug-stackframe-focused)",
@@ -9821,6 +9887,12 @@
                                 "$(arrow-circle-left)",
                                 "$(arrow-circle-right)",
                                 "$(arrow-circle-up)",
+                                "$(heart-filled)",
+                                "$(map)",
+                                "$(map-filled)",
+                                "$(circle-small)",
+                                "$(bell-slash)",
+                                "$(bell-slash-dot)",
                                 "$(dialog-error)",
                                 "$(dialog-warning)",
                                 "$(dialog-info)",
@@ -10305,6 +10377,7 @@
                                 "debug-breakpoint-function",
                                 "debug-breakpoint-function-disabled",
                                 "debug-stackframe-active",
+                                "circle-small-filled",
                                 "debug-stackframe-dot",
                                 "debug-stackframe",
                                 "debug-stackframe-focused",
@@ -10429,6 +10502,12 @@
                                 "arrow-circle-left",
                                 "arrow-circle-right",
                                 "arrow-circle-up",
+                                "heart-filled",
+                                "map",
+                                "map-filled",
+                                "circle-small",
+                                "bell-slash",
+                                "bell-slash-dot",
                                 "dialog-error",
                                 "dialog-warning",
                                 "dialog-info",
@@ -10828,6 +10907,7 @@
                                 "$(debug-breakpoint-function)",
                                 "$(debug-breakpoint-function-disabled)",
                                 "$(debug-stackframe-active)",
+                                "$(circle-small-filled)",
                                 "$(debug-stackframe-dot)",
                                 "$(debug-stackframe)",
                                 "$(debug-stackframe-focused)",
@@ -10952,6 +11032,12 @@
                                 "$(arrow-circle-left)",
                                 "$(arrow-circle-right)",
                                 "$(arrow-circle-up)",
+                                "$(heart-filled)",
+                                "$(map)",
+                                "$(map-filled)",
+                                "$(circle-small)",
+                                "$(bell-slash)",
+                                "$(bell-slash-dot)",
                                 "$(dialog-error)",
                                 "$(dialog-warning)",
                                 "$(dialog-info)",
@@ -11536,6 +11622,7 @@
                                     "debug-breakpoint-function",
                                     "debug-breakpoint-function-disabled",
                                     "debug-stackframe-active",
+                                    "circle-small-filled",
                                     "debug-stackframe-dot",
                                     "debug-stackframe",
                                     "debug-stackframe-focused",
@@ -11660,6 +11747,12 @@
                                     "arrow-circle-left",
                                     "arrow-circle-right",
                                     "arrow-circle-up",
+                                    "heart-filled",
+                                    "map",
+                                    "map-filled",
+                                    "circle-small",
+                                    "bell-slash",
+                                    "bell-slash-dot",
                                     "dialog-error",
                                     "dialog-warning",
                                     "dialog-info",
@@ -12059,6 +12152,7 @@
                                     "$(debug-breakpoint-function)",
                                     "$(debug-breakpoint-function-disabled)",
                                     "$(debug-stackframe-active)",
+                                    "$(circle-small-filled)",
                                     "$(debug-stackframe-dot)",
                                     "$(debug-stackframe)",
                                     "$(debug-stackframe-focused)",
@@ -12183,6 +12277,12 @@
                                     "$(arrow-circle-left)",
                                     "$(arrow-circle-right)",
                                     "$(arrow-circle-up)",
+                                    "$(heart-filled)",
+                                    "$(map)",
+                                    "$(map-filled)",
+                                    "$(circle-small)",
+                                    "$(bell-slash)",
+                                    "$(bell-slash-dot)",
                                     "$(dialog-error)",
                                     "$(dialog-warning)",
                                     "$(dialog-info)",
@@ -12648,6 +12748,7 @@
                                     "debug-breakpoint-function",
                                     "debug-breakpoint-function-disabled",
                                     "debug-stackframe-active",
+                                    "circle-small-filled",
                                     "debug-stackframe-dot",
                                     "debug-stackframe",
                                     "debug-stackframe-focused",
@@ -12772,6 +12873,12 @@
                                     "arrow-circle-left",
                                     "arrow-circle-right",
                                     "arrow-circle-up",
+                                    "heart-filled",
+                                    "map",
+                                    "map-filled",
+                                    "circle-small",
+                                    "bell-slash",
+                                    "bell-slash-dot",
                                     "dialog-error",
                                     "dialog-warning",
                                     "dialog-info",
@@ -13171,6 +13278,7 @@
                                     "$(debug-breakpoint-function)",
                                     "$(debug-breakpoint-function-disabled)",
                                     "$(debug-stackframe-active)",
+                                    "$(circle-small-filled)",
                                     "$(debug-stackframe-dot)",
                                     "$(debug-stackframe)",
                                     "$(debug-stackframe-focused)",
@@ -13295,6 +13403,12 @@
                                     "$(arrow-circle-left)",
                                     "$(arrow-circle-right)",
                                     "$(arrow-circle-up)",
+                                    "$(heart-filled)",
+                                    "$(map)",
+                                    "$(map-filled)",
+                                    "$(circle-small)",
+                                    "$(bell-slash)",
+                                    "$(bell-slash-dot)",
                                     "$(dialog-error)",
                                     "$(dialog-warning)",
                                     "$(dialog-info)",
@@ -13759,6 +13873,7 @@
                                     "debug-breakpoint-function",
                                     "debug-breakpoint-function-disabled",
                                     "debug-stackframe-active",
+                                    "circle-small-filled",
                                     "debug-stackframe-dot",
                                     "debug-stackframe",
                                     "debug-stackframe-focused",
@@ -13883,6 +13998,12 @@
                                     "arrow-circle-left",
                                     "arrow-circle-right",
                                     "arrow-circle-up",
+                                    "heart-filled",
+                                    "map",
+                                    "map-filled",
+                                    "circle-small",
+                                    "bell-slash",
+                                    "bell-slash-dot",
                                     "dialog-error",
                                     "dialog-warning",
                                     "dialog-info",
@@ -14282,6 +14403,7 @@
                                     "$(debug-breakpoint-function)",
                                     "$(debug-breakpoint-function-disabled)",
                                     "$(debug-stackframe-active)",
+                                    "$(circle-small-filled)",
                                     "$(debug-stackframe-dot)",
                                     "$(debug-stackframe)",
                                     "$(debug-stackframe-focused)",
@@ -14406,6 +14528,12 @@
                                     "$(arrow-circle-left)",
                                     "$(arrow-circle-right)",
                                     "$(arrow-circle-up)",
+                                    "$(heart-filled)",
+                                    "$(map)",
+                                    "$(map-filled)",
+                                    "$(circle-small)",
+                                    "$(bell-slash)",
+                                    "$(bell-slash-dot)",
                                     "$(dialog-error)",
                                     "$(dialog-warning)",
                                     "$(dialog-info)",
@@ -14927,6 +15055,7 @@
                                     "debug-breakpoint-function",
                                     "debug-breakpoint-function-disabled",
                                     "debug-stackframe-active",
+                                    "circle-small-filled",
                                     "debug-stackframe-dot",
                                     "debug-stackframe",
                                     "debug-stackframe-focused",
@@ -15051,6 +15180,12 @@
                                     "arrow-circle-left",
                                     "arrow-circle-right",
                                     "arrow-circle-up",
+                                    "heart-filled",
+                                    "map",
+                                    "map-filled",
+                                    "circle-small",
+                                    "bell-slash",
+                                    "bell-slash-dot",
                                     "dialog-error",
                                     "dialog-warning",
                                     "dialog-info",
@@ -15450,6 +15585,7 @@
                                     "$(debug-breakpoint-function)",
                                     "$(debug-breakpoint-function-disabled)",
                                     "$(debug-stackframe-active)",
+                                    "$(circle-small-filled)",
                                     "$(debug-stackframe-dot)",
                                     "$(debug-stackframe)",
                                     "$(debug-stackframe-focused)",
@@ -15574,6 +15710,12 @@
                                     "$(arrow-circle-left)",
                                     "$(arrow-circle-right)",
                                     "$(arrow-circle-up)",
+                                    "$(heart-filled)",
+                                    "$(map)",
+                                    "$(map-filled)",
+                                    "$(circle-small)",
+                                    "$(bell-slash)",
+                                    "$(bell-slash-dot)",
                                     "$(dialog-error)",
                                     "$(dialog-warning)",
                                     "$(dialog-info)",
@@ -16038,6 +16180,7 @@
                                     "debug-breakpoint-function",
                                     "debug-breakpoint-function-disabled",
                                     "debug-stackframe-active",
+                                    "circle-small-filled",
                                     "debug-stackframe-dot",
                                     "debug-stackframe",
                                     "debug-stackframe-focused",
@@ -16162,6 +16305,12 @@
                                     "arrow-circle-left",
                                     "arrow-circle-right",
                                     "arrow-circle-up",
+                                    "heart-filled",
+                                    "map",
+                                    "map-filled",
+                                    "circle-small",
+                                    "bell-slash",
+                                    "bell-slash-dot",
                                     "dialog-error",
                                     "dialog-warning",
                                     "dialog-info",
@@ -16561,6 +16710,7 @@
                                     "$(debug-breakpoint-function)",
                                     "$(debug-breakpoint-function-disabled)",
                                     "$(debug-stackframe-active)",
+                                    "$(circle-small-filled)",
                                     "$(debug-stackframe-dot)",
                                     "$(debug-stackframe)",
                                     "$(debug-stackframe-focused)",
@@ -16685,6 +16835,12 @@
                                     "$(arrow-circle-left)",
                                     "$(arrow-circle-right)",
                                     "$(arrow-circle-up)",
+                                    "$(heart-filled)",
+                                    "$(map)",
+                                    "$(map-filled)",
+                                    "$(circle-small)",
+                                    "$(bell-slash)",
+                                    "$(bell-slash-dot)",
                                     "$(dialog-error)",
                                     "$(dialog-warning)",
                                     "$(dialog-info)",
@@ -17209,6 +17365,7 @@
                                     "debug-breakpoint-function",
                                     "debug-breakpoint-function-disabled",
                                     "debug-stackframe-active",
+                                    "circle-small-filled",
                                     "debug-stackframe-dot",
                                     "debug-stackframe",
                                     "debug-stackframe-focused",
@@ -17333,6 +17490,12 @@
                                     "arrow-circle-left",
                                     "arrow-circle-right",
                                     "arrow-circle-up",
+                                    "heart-filled",
+                                    "map",
+                                    "map-filled",
+                                    "circle-small",
+                                    "bell-slash",
+                                    "bell-slash-dot",
                                     "dialog-error",
                                     "dialog-warning",
                                     "dialog-info",
@@ -17732,6 +17895,7 @@
                                     "$(debug-breakpoint-function)",
                                     "$(debug-breakpoint-function-disabled)",
                                     "$(debug-stackframe-active)",
+                                    "$(circle-small-filled)",
                                     "$(debug-stackframe-dot)",
                                     "$(debug-stackframe)",
                                     "$(debug-stackframe-focused)",
@@ -17856,6 +18020,12 @@
                                     "$(arrow-circle-left)",
                                     "$(arrow-circle-right)",
                                     "$(arrow-circle-up)",
+                                    "$(heart-filled)",
+                                    "$(map)",
+                                    "$(map-filled)",
+                                    "$(circle-small)",
+                                    "$(bell-slash)",
+                                    "$(bell-slash-dot)",
                                     "$(dialog-error)",
                                     "$(dialog-warning)",
                                     "$(dialog-info)",
@@ -18320,6 +18490,7 @@
                                     "debug-breakpoint-function",
                                     "debug-breakpoint-function-disabled",
                                     "debug-stackframe-active",
+                                    "circle-small-filled",
                                     "debug-stackframe-dot",
                                     "debug-stackframe",
                                     "debug-stackframe-focused",
@@ -18444,6 +18615,12 @@
                                     "arrow-circle-left",
                                     "arrow-circle-right",
                                     "arrow-circle-up",
+                                    "heart-filled",
+                                    "map",
+                                    "map-filled",
+                                    "circle-small",
+                                    "bell-slash",
+                                    "bell-slash-dot",
                                     "dialog-error",
                                     "dialog-warning",
                                     "dialog-info",
@@ -18843,6 +19020,7 @@
                                     "$(debug-breakpoint-function)",
                                     "$(debug-breakpoint-function-disabled)",
                                     "$(debug-stackframe-active)",
+                                    "$(circle-small-filled)",
                                     "$(debug-stackframe-dot)",
                                     "$(debug-stackframe)",
                                     "$(debug-stackframe-focused)",
@@ -18967,6 +19145,12 @@
                                     "$(arrow-circle-left)",
                                     "$(arrow-circle-right)",
                                     "$(arrow-circle-up)",
+                                    "$(heart-filled)",
+                                    "$(map)",
+                                    "$(map-filled)",
+                                    "$(circle-small)",
+                                    "$(bell-slash)",
+                                    "$(bell-slash-dot)",
                                     "$(dialog-error)",
                                     "$(dialog-warning)",
                                     "$(dialog-info)",
@@ -19809,7 +19993,7 @@
             "restricted": false
         },
         "terminal.integrated.enablePersistentSessions": {
-            "description": "ウィンドウの再読み込み時にワークスペースのターミナル セッションを保持します。",
+            "description": "ウィンドウの再読み込み時にワークスペースのターミナル セッション/履歴を保持します。",
             "type": "boolean",
             "default": true,
             "defaultDefaultValue": true,
@@ -19817,7 +20001,7 @@
             "restricted": false
         },
         "terminal.integrated.persistentSessionReviveProcess": {
-            "markdownDescription": "ターミナル プロセスをシャットダウンする必要がある場合 (例: ウィンドウまたはアプリケーションが閉じた場合)、これにより、前のターミナル セッションの内容を復元し、ワークスペースを次回開いたときにプロセスを再作成するタイミングが決定されます。\r\n\r\nCaveats:\r\n\r\n- プロセスの現在の作業ディレクトリの復元は、それがシェルでサポートされているかどうかによって異なります。\r\n- シャットダウン中にセッションを保持する時間が制限されるため、待機時間の長いリモート接続を使用している場合に中止される可能性があります。",
+            "markdownDescription": "ターミナル プロセスをシャットダウンする必要がある場合 (例: ウィンドウまたはアプリケーションが閉じた場合)、これにより、前のターミナル セッション/履歴の内容を復元し、ワークスペースを次回開いたときにプロセスを再作成するタイミングが決定されます。\r\n\r\nCaveats:\r\n\r\n- プロセスの現在の作業ディレクトリの復元は、それがシェルでサポートされているかどうかによって異なります。\r\n- シャットダウン中にセッションを保持する時間が制限されるため、待機時間の長いリモート接続を使用している場合に中止される可能性があります。",
             "type": "string",
             "enum": [
                 "onExit",
@@ -19989,6 +20173,18 @@
             "type": "boolean",
             "default": false,
             "markdownDescription": "有効にすると、TAB キーを押したときに Emmet 省略記法が展開されます。",
+            "scope": 3,
+            "source": {
+                "id": "vscode.emmet",
+                "displayName": "Emmet"
+            },
+            "defaultDefaultValue": false,
+            "restricted": false
+        },
+        "emmet.useInlineCompletions": {
+            "type": "boolean",
+            "default": false,
+            "markdownDescription": "'true' の場合、Emmet はインライン補完を使用して拡張を提案します。この設定が 'true' の間にインライン以外の完了項目プロバイダーが頻繁に表示されないようにするには、'#editor.quickSuggestions#' を 'inline' に、あるいは 'other' 項目を 'off' にします。",
             "scope": 3,
             "source": {
                 "id": "vscode.emmet",
@@ -20190,6 +20386,18 @@
             "defaultDefaultValue": false,
             "restricted": false
         },
+        "git.useEditorAsCommitInput": {
+            "type": "boolean",
+            "description": "コミット入力ボックスにメッセージが指定されていない場合に、コミット メッセージの作成にフル テキスト エディターを使用するかどうかを制御します。",
+            "default": true,
+            "scope": 3,
+            "source": {
+                "id": "vscode.git",
+                "displayName": "Git"
+            },
+            "defaultDefaultValue": true,
+            "restricted": false
+        },
         "git.decorations.enabled": {
             "type": "boolean",
             "default": true,
@@ -20385,16 +20593,28 @@
             "defaultDefaultValue": "committerdate",
             "restricted": false
         },
-        "git.requireGitUserConfig": {
+        "git.terminalAuthentication": {
             "type": "boolean",
-            "description": "明示的な Git ユーザーの構成が必要かどうかを制御するか、指定されていない場合は Git による推測を許可します。",
             "default": true,
+            "description": "統合ターミナルで生成される Git プロセスの認証ハンドラーとして VS Code を有効にするかどうかを制御します。注意: この設定の変更を反映させるには、ターミナルを再起動する必要があります。",
             "scope": 3,
             "source": {
                 "id": "vscode.git",
                 "displayName": "Git"
             },
             "defaultDefaultValue": true,
+            "restricted": false
+        },
+        "git.terminalGitEditor": {
+            "type": "boolean",
+            "default": false,
+            "description": "統合ターミナルで生成される Git プロセスの Git エディターとして VS Code を有効にするかどうかを制御します。注意: この設定の変更を反映させるには、ターミナルを再起動する必要があります。",
+            "scope": 3,
+            "source": {
+                "id": "vscode.git",
+                "displayName": "Git"
+            },
+            "defaultDefaultValue": false,
             "restricted": false
         },
         "git.useIntegratedAskPass": {
@@ -20463,6 +20683,21 @@
             "defaultDefaultValue": false,
             "restricted": false
         },
+        "git.commandsToLog": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "default": [],
+            "markdownDescription": "'stdout' のログが[git output](command:git.showOutput) に記録される Git コマンドの一覧 (commit、push など)。Git コマンドでクライアント側フックが構成されている場合、クライアント側フックの 'stdout' のログも[git output](command:git.showOutput) に記録されます。",
+            "scope": 3,
+            "source": {
+                "id": "vscode.git",
+                "displayName": "Git"
+            },
+            "defaultDefaultValue": [],
+            "restricted": false
+        },
         "git.logLevel": {
             "type": "string",
             "default": "Info",
@@ -20493,14 +20728,11 @@
             "defaultDefaultValue": "Info",
             "restricted": false
         },
-        "git.experimental.mergeEditor": {
+        "git.mergeEditor": {
             "type": "boolean",
             "default": false,
-            "markdownDescription": "現在競合しているファイルの _experimental_ マージ エディターを開きます。",
+            "markdownDescription": "現在競合しているファイルのマージ エディターを開きます。",
             "scope": 3,
-            "tags": [
-                "experimental"
-            ],
             "source": {
                 "id": "vscode.git",
                 "displayName": "Git"
@@ -20889,23 +21121,9 @@
                             "type": "object",
                             "additionalProperties": false,
                             "properties": {
-                                "console": {
-                                    "type": "boolean",
-                                    "description": "Whether to return trace data from the launched application or browser."
-                                },
                                 "stdio": {
                                     "type": "boolean",
-                                    "description": "Configures whether logs are also returned to the debug console."
-                                },
-                                "level": {
-                                    "enum": [
-                                        "fatal",
-                                        "error",
-                                        "warn",
-                                        "info",
-                                        "verbose"
-                                    ],
-                                    "description": "Configures the level of logs recorded."
+                                    "description": "Whether to return trace data from the launched application or browser."
                                 },
                                 "logFile": {
                                     "type": [
@@ -20913,17 +21131,6 @@
                                         "null"
                                     ],
                                     "description": "Configures where on disk logs are written."
-                                },
-                                "tags": {
-                                    "type": "array",
-                                    "description": "Configures what types of logs are recorded.",
-                                    "items": {
-                                        "enum": [
-                                            "cdp",
-                                            "dap",
-                                            "runtime"
-                                        ]
-                                    }
                                 }
                             }
                         }
@@ -21032,18 +21239,6 @@
                 "displayName": "JavaScript Debugger"
             },
             "defaultDefaultValue": {},
-            "restricted": false
-        },
-        "debug.javascript.suggestPrettyPrinting": {
-            "type": "boolean",
-            "description": "Whether to suggest pretty printing JavaScript code that looks minified when you step into it.",
-            "default": true,
-            "scope": 3,
-            "source": {
-                "id": "ms-vscode.js-debug",
-                "displayName": "JavaScript Debugger"
-            },
-            "defaultDefaultValue": true,
             "restricted": false
         },
         "debug.javascript.automaticallyTunnelRemoteServer": {
@@ -21207,23 +21402,9 @@
                                     "type": "object",
                                     "additionalProperties": false,
                                     "properties": {
-                                        "console": {
-                                            "type": "boolean",
-                                            "description": "Whether to return trace data from the launched application or browser."
-                                        },
                                         "stdio": {
                                             "type": "boolean",
-                                            "description": "Configures whether logs are also returned to the debug console."
-                                        },
-                                        "level": {
-                                            "enum": [
-                                                "fatal",
-                                                "error",
-                                                "warn",
-                                                "info",
-                                                "verbose"
-                                            ],
-                                            "description": "Configures the level of logs recorded."
+                                            "description": "Whether to return trace data from the launched application or browser."
                                         },
                                         "logFile": {
                                             "type": [
@@ -21231,17 +21412,6 @@
                                                 "null"
                                             ],
                                             "description": "Configures where on disk logs are written."
-                                        },
-                                        "tags": {
-                                            "type": "array",
-                                            "description": "Configures what types of logs are recorded.",
-                                            "items": {
-                                                "enum": [
-                                                    "cdp",
-                                                    "dap",
-                                                    "runtime"
-                                                ]
-                                            }
                                         }
                                     }
                                 }
@@ -21465,23 +21635,9 @@
                                                     "type": "object",
                                                     "additionalProperties": false,
                                                     "properties": {
-                                                        "console": {
-                                                            "type": "boolean",
-                                                            "description": "Whether to return trace data from the launched application or browser."
-                                                        },
                                                         "stdio": {
                                                             "type": "boolean",
-                                                            "description": "Configures whether logs are also returned to the debug console."
-                                                        },
-                                                        "level": {
-                                                            "enum": [
-                                                                "fatal",
-                                                                "error",
-                                                                "warn",
-                                                                "info",
-                                                                "verbose"
-                                                            ],
-                                                            "description": "Configures the level of logs recorded."
+                                                            "description": "Whether to return trace data from the launched application or browser."
                                                         },
                                                         "logFile": {
                                                             "type": [
@@ -21489,17 +21645,6 @@
                                                                 "null"
                                                             ],
                                                             "description": "Configures where on disk logs are written."
-                                                        },
-                                                        "tags": {
-                                                            "type": "array",
-                                                            "description": "Configures what types of logs are recorded.",
-                                                            "items": {
-                                                                "enum": [
-                                                                    "cdp",
-                                                                    "dap",
-                                                                    "runtime"
-                                                                ]
-                                                            }
                                                         }
                                                     }
                                                 }
@@ -21840,23 +21985,9 @@
                                                     "type": "object",
                                                     "additionalProperties": false,
                                                     "properties": {
-                                                        "console": {
-                                                            "type": "boolean",
-                                                            "description": "Whether to return trace data from the launched application or browser."
-                                                        },
                                                         "stdio": {
                                                             "type": "boolean",
-                                                            "description": "Configures whether logs are also returned to the debug console."
-                                                        },
-                                                        "level": {
-                                                            "enum": [
-                                                                "fatal",
-                                                                "error",
-                                                                "warn",
-                                                                "info",
-                                                                "verbose"
-                                                            ],
-                                                            "description": "Configures the level of logs recorded."
+                                                            "description": "Whether to return trace data from the launched application or browser."
                                                         },
                                                         "logFile": {
                                                             "type": [
@@ -21864,17 +21995,6 @@
                                                                 "null"
                                                             ],
                                                             "description": "Configures where on disk logs are written."
-                                                        },
-                                                        "tags": {
-                                                            "type": "array",
-                                                            "description": "Configures what types of logs are recorded.",
-                                                            "items": {
-                                                                "enum": [
-                                                                    "cdp",
-                                                                    "dap",
-                                                                    "runtime"
-                                                                ]
-                                                            }
                                                         }
                                                     }
                                                 }
@@ -22230,23 +22350,9 @@
                             "type": "object",
                             "additionalProperties": false,
                             "properties": {
-                                "console": {
-                                    "type": "boolean",
-                                    "description": "Whether to return trace data from the launched application or browser."
-                                },
                                 "stdio": {
                                     "type": "boolean",
-                                    "description": "Configures whether logs are also returned to the debug console."
-                                },
-                                "level": {
-                                    "enum": [
-                                        "fatal",
-                                        "error",
-                                        "warn",
-                                        "info",
-                                        "verbose"
-                                    ],
-                                    "description": "Configures the level of logs recorded."
+                                    "description": "Whether to return trace data from the launched application or browser."
                                 },
                                 "logFile": {
                                     "type": [
@@ -22254,17 +22360,6 @@
                                         "null"
                                     ],
                                     "description": "Configures where on disk logs are written."
-                                },
-                                "tags": {
-                                    "type": "array",
-                                    "description": "Configures what types of logs are recorded.",
-                                    "items": {
-                                        "enum": [
-                                            "cdp",
-                                            "dap",
-                                            "runtime"
-                                        ]
-                                    }
                                 }
                             }
                         }
@@ -22602,7 +22697,7 @@
             "restricted": false
         },
         "references.preferredLocation": {
-            "description": "Controls whether 'Peek References' or 'Find References' is invoked when selecting code lens references",
+            "description": "コード レンズ参照を選択するときに '参照のクイック表示' または '参照の検索' を呼び出すかどうかを制御します",
             "type": "string",
             "default": "peek",
             "enum": [
@@ -22610,13 +22705,13 @@
                 "view"
             ],
             "enumDescriptions": [
-                "Show references in peek editor.",
-                "Show references in separate view."
+                "参照をピーク エディターで表示します。",
+                "参照を別のビューに表示します。"
             ],
             "scope": 3,
             "source": {
-                "id": "ms-vscode.references-view",
-                "displayName": "Reference Search View"
+                "id": "vscode.references-view",
+                "displayName": "参照検索ビュー"
             },
             "defaultDefaultValue": "peek",
             "restricted": false
@@ -23538,6 +23633,14 @@
             "type": "boolean",
             "default": true,
             "description": "差分エディターが差分を横に並べて表示するか、行内に表示するかを制御します。",
+            "defaultDefaultValue": true,
+            "scope": 5,
+            "restricted": false
+        },
+        "diffEditor.renderMarginRevertIcon": {
+            "type": "boolean",
+            "default": true,
+            "description": "有効にすると、差分エディターでグリフ余白に、変更を元に戻すための矢印が表示されます。",
             "defaultDefaultValue": true,
             "scope": 5,
             "restricted": false
@@ -24563,6 +24666,14 @@
             "scope": 5,
             "restricted": false
         },
+        "editor.minimap.autohide": {
+            "type": "boolean",
+            "default": false,
+            "description": "ミニマップを自動的に非表示するかどうかを制御します。",
+            "defaultDefaultValue": false,
+            "scope": 5,
+            "restricted": false
+        },
         "editor.minimap.size": {
             "type": "string",
             "enum": [
@@ -25042,10 +25153,10 @@
         "editor.scrollBeyondLastColumn": {
             "description": "エディターが水平方向に余分にスクロールする文字数を制御します。",
             "type": "integer",
-            "default": 5,
+            "default": 4,
             "minimum": 0,
             "maximum": 1073741824,
-            "defaultDefaultValue": 5,
+            "defaultDefaultValue": 4,
             "scope": 5,
             "restricted": false
         },
@@ -26126,7 +26237,7 @@
                 "vscode.json-language-features",
                 "vscode.markdown-language-features",
                 "vscode.php-language-features",
-                "ms-vscode.references-view",
+                "vscode.references-view",
                 "vscode.search-result",
                 "vscode.typescript-language-features",
                 "vscode.configuration-editing",
@@ -26161,7 +26272,7 @@
                 "JSON 言語機能",
                 "Markdown 言語機能",
                 "PHP 言語機能",
-                "Reference Search View",
+                "参照検索ビュー",
                 "検索結果",
                 "TypeScript と JavaScript の言語機能",
                 "設定の編集機能",
@@ -26196,7 +26307,7 @@
                 "JSON ファイルに豊富な言語サポートを提供。",
                 "Markdown に豊富な言語サポートを提供。",
                 "PHP ファイルに豊富な言語サポートを提供します。",
-                "Reference Search results as separate, stable view in the sidebar",
+                "サイドバーの独立した安定したビューとして検索結果を参照する",
                 "シンタックスハイライトとタブ付き検索結果向け言語機能を提供します。",
                 "JavaScript と TypeScript ファイルに豊富な言語サポートを提供。",
                 "設定、起動、拡張機能の推奨事項ファイルといった、構成ファイルの機能 (高度な IntelliSense、auto-fixing など) を提供します。",
@@ -26261,6 +26372,14 @@
                 "anyOf": [
                     {
                         "type": "boolean",
+                        "enum": [
+                            true,
+                            false
+                        ],
+                        "enumDescriptions": [
+                            "パターンを有効にします。",
+                            "パターンを無効にします。"
+                        ],
                         "description": "ファイル パスの照合基準となる glob パターン。これを true または false に設定すると、パターンがそれぞれ有効/無効になります。"
                     },
                     {
@@ -28995,6 +29114,18 @@
             "defaultDefaultValue": "all",
             "restricted": false
         },
+        "git.verboseCommit": {
+            "type": "boolean",
+            "scope": 4,
+            "markdownDescription": "「#git.useEditorAsCommitInput#」が有効になっている場合は、冗長出力を有効化してください。",
+            "default": false,
+            "source": {
+                "id": "vscode.git",
+                "displayName": "Git"
+            },
+            "defaultDefaultValue": false,
+            "restricted": false
+        },
         "git.enableSmartCommit": {
             "type": "boolean",
             "scope": 4,
@@ -29358,11 +29489,11 @@
             "defaultDefaultValue": "mixed",
             "restricted": false
         },
-        "git.showCommitInput": {
+        "git.requireGitUserConfig": {
             "type": "boolean",
-            "scope": 4,
+            "description": "明示的な Git ユーザーの構成が必要かどうかを制御するか、指定されていない場合は Git による推測を許可します。",
             "default": true,
-            "description": "Git ソース管理パネルにコミットの入力を表示するかどうかを制御します。",
+            "scope": 4,
             "source": {
                 "id": "vscode.git",
                 "displayName": "Git"
@@ -29370,11 +29501,11 @@
             "defaultDefaultValue": true,
             "restricted": false
         },
-        "git.terminalAuthentication": {
+        "git.showCommitInput": {
             "type": "boolean",
             "scope": 4,
             "default": true,
-            "description": "統合ターミナルで生成される Git プロセスの認証ハンドラーとして VS Code を有効にするかどうかを制御します。注意: この設定の変更を反映させるには、ターミナルを再起動する必要があります。",
+            "description": "Git ソース管理パネルにコミットの入力を表示するかどうかを制御します。",
             "source": {
                 "id": "vscode.git",
                 "displayName": "Git"
@@ -29394,26 +29525,39 @@
             "defaultDefaultValue": false,
             "restricted": false
         },
-        "git.showUnpublishedCommitsButton": {
-            "type": "string",
-            "enum": [
-                "always",
-                "whenEmpty",
-                "never"
-            ],
-            "enumDescriptions": [
-                "未公開のコミットがある場合、常にアクション ボタンを表示します。",
-                "他に変更がなく、未公開のコミットがある場合にのみ、アクション ボタンを表示します。",
-                "アクション ボタンを表示しません。"
-            ],
-            "default": "whenEmpty",
-            "description": "未公開のコミットがある場合に、同期または公開するアクション ボタンを表示するかどうかを制御します。",
+        "git.showActionButton": {
+            "type": "object",
+            "additionalProperties": false,
+            "description": "ソース管理ビューにアクション ボタンを表示するかどうかを制御します。",
+            "properties": {
+                "commit": {
+                    "type": "boolean",
+                    "description": "変更点をコミットするための動作設定ボタンを表示します。"
+                },
+                "publish": {
+                    "type": "boolean",
+                    "description": "ローカル分岐を発行するための動作設定ボタンを表示します。"
+                },
+                "sync": {
+                    "type": "boolean",
+                    "description": "変更点を同期するための動作設定ボタンを表示します。"
+                }
+            },
+            "default": {
+                "commit": true,
+                "publish": true,
+                "sync": true
+            },
             "scope": 4,
             "source": {
                 "id": "vscode.git",
                 "displayName": "Git"
             },
-            "defaultDefaultValue": "whenEmpty",
+            "defaultDefaultValue": {
+                "commit": true,
+                "publish": true,
+                "sync": true
+            },
             "restricted": false
         },
         "git.statusLimit": {
@@ -29457,21 +29601,6 @@
                 "displayName": "Git"
             },
             "defaultDefaultValue": 1,
-            "restricted": false
-        },
-        "git.commandsToLog": {
-            "type": "array",
-            "items": {
-                "type": "string"
-            },
-            "default": [],
-            "scope": 4,
-            "markdownDescription": "'stdout' のログが[git output] (command:git.showOutput) に記録される Git コマンドの一覧 (commit、push など)。Git コマンドでクライアント側フックが構成されている場合、クライアント側フックの 'stdout' のログも[git output] (command:git.showOutput) に記録されます。",
-            "source": {
-                "id": "vscode.git",
-                "displayName": "Git"
-            },
-            "defaultDefaultValue": [],
             "restricted": false
         },
         "github.gitAuthentication": {
@@ -29609,18 +29738,6 @@
             "scope": 4,
             "default": false,
             "markdownDescription": "{{#foo}}` から `{{/foo}}` をフォーマットしてインデントします。",
-            "source": {
-                "id": "vscode.html-language-features",
-                "displayName": "HTML 言語機能"
-            },
-            "defaultDefaultValue": false,
-            "restricted": false
-        },
-        "html.format.endWithNewline": {
-            "type": "boolean",
-            "scope": 4,
-            "default": false,
-            "description": "末尾に改行を入れます。",
             "source": {
                 "id": "vscode.html-language-features",
                 "displayName": "HTML 言語機能"
@@ -30052,8 +30169,8 @@
         "markdown.experimental.editor.pasteLinks.enabled": {
             "type": "boolean",
             "scope": 4,
-            "markdownDescription": "Markdown エディターへのファイルの貼り付け機能を有効化または無効化すると、マークダウン リンクが挿入されます。",
-            "default": false,
+            "markdownDescription": "Markdown エディターへのファイルの貼り付け機能を有効または無効にすると、Markdown リンクが挿入されます。'#editor.experimental.pasteActions.enabled#' を有効にする必要があります。",
+            "default": true,
             "tags": [
                 "experimental"
             ],
@@ -30061,7 +30178,7 @@
                 "id": "vscode.markdown-language-features",
                 "displayName": "Markdown 言語機能"
             },
-            "defaultDefaultValue": false,
+            "defaultDefaultValue": true,
             "restricted": false
         },
         "markdown.experimental.validate.enabled": {
@@ -30099,10 +30216,10 @@
             "defaultDefaultValue": "warning",
             "restricted": false
         },
-        "markdown.experimental.validate.headerLinks.enabled": {
+        "markdown.experimental.validate.fragmentLinks.enabled": {
             "type": "string",
             "scope": 4,
-            "markdownDescription": "Markdown ファイル内のヘッダーへのリンクを検証します (例: `[link](#header)`)。`#markdown.experimental.validate.enabled#` を有効にする必要があります。",
+            "markdownDescription": "現在のマークダウン ファイルで、ヘッダーへのフラグメント リンクを検証します (例: `[link](#header)`)。`#markdown.experimental.validate.enabled#` を有効にする必要があります。",
             "default": "warning",
             "enum": [
                 "ignore",
@@ -30137,6 +30254,25 @@
                 "displayName": "Markdown 言語機能"
             },
             "defaultDefaultValue": "warning",
+            "restricted": false
+        },
+        "markdown.experimental.validate.fileLinks.markdownFragmentLinks": {
+            "type": "string",
+            "scope": 4,
+            "markdownDescription": "マークダウン ファイルで、他のファイルのヘッダーへのリンクのフラグメント部分を検証します。例: '[link](/path/to/file.md#header)'。既定では、'#markdown.experimental.validate.fragmentLinks.enabled#' から設定値を継承します。",
+            "enum": [
+                "ignore",
+                "warning",
+                "error"
+            ],
+            "tags": [
+                "experimental"
+            ],
+            "source": {
+                "id": "vscode.markdown-language-features",
+                "displayName": "Markdown 言語機能"
+            },
+            "default": "",
             "restricted": false
         },
         "markdown.experimental.validate.ignoreLinks": {
@@ -30326,7 +30462,7 @@
                 "リテラル引数およびリテラル引数以外の引数に対してパラメーター名のヒントを有効にします。"
             ],
             "default": "none",
-            "markdownDescription": "パラメーター名へのインレイ ヒントを有効/無効にする:\r\n' ' ' typescript\r\n\r\nparseInt (/* str: */' 123 ', /* radix: */8)\r\n \r\n```\r\nワークスペースで TypeScript 4.4+ を使用する必要があります。",
+            "markdownDescription": "Enable/disable inlay hints for parameter names:\n```typescript\n\nparseInt(/* str: */ '123', /* radix: */ 8)\n \n```\nRequires using TypeScript 4.4+ in the workspace.",
             "scope": 4,
             "source": {
                 "id": "vscode.typescript-language-features",
@@ -30350,7 +30486,7 @@
         "typescript.inlayHints.parameterTypes.enabled": {
             "type": "boolean",
             "default": false,
-            "markdownDescription": "暗黙的なパラメーター型へのインレイ ヒントを有効/無効にする:\r\n' ' ' typescript\r\n\r\naddEventListener ('click', e/*: MouseEvent */=>...)\r\n \r\n```\r\nワークスペースで TypeScript 4.4+ を使用する必要があります。",
+            "markdownDescription": "Enable/disable inlay hints for implicit parameter types:\n```typescript\n\nel.addEventListener('click', e /* :MouseEvent */ => ...)\n \n```\nRequires using TypeScript 4.4+ in the workspace.",
             "scope": 4,
             "source": {
                 "id": "vscode.typescript-language-features",
@@ -30362,7 +30498,7 @@
         "typescript.inlayHints.variableTypes.enabled": {
             "type": "boolean",
             "default": false,
-            "markdownDescription": "暗黙的な変数型のインレイ ヒントを有効/無効にします:\r\n' ' ' typescript\r\n\r\nconst foo/*: number */= Date。 now ();\r\n \r\n```\r\nワークスペースで TypeScript 4.4 + を使用する必要があります。",
+            "markdownDescription": "Enable/disable inlay hints for implicit variable types:\n```typescript\n\nconst foo /* :number */ = Date.now();\n \n```\nRequires using TypeScript 4.4+ in the workspace.",
             "scope": 4,
             "source": {
                 "id": "vscode.typescript-language-features",
@@ -30386,7 +30522,7 @@
         "typescript.inlayHints.propertyDeclarationTypes.enabled": {
             "type": "boolean",
             "default": false,
-            "markdownDescription": "プロパティ宣言の暗黙的な型へのインレイ ヒントを有効/無効にする:\r\n```tTypescript\r\n\r\nclass Foo {\r\n\tprop /* :number */ = Date.now();\r\n}\r\n \r\n```\r\nワークスペースで TypeScript 4.4+ を使用する必要があります。",
+            "markdownDescription": "Enable/disable inlay hints for implicit types on property declarations:\n```typescript\n\nclass Foo {\n\tprop /* :number */ = Date.now();\n}\n \n```\nRequires using TypeScript 4.4+ in the workspace.",
             "scope": 4,
             "source": {
                 "id": "vscode.typescript-language-features",
@@ -30398,7 +30534,7 @@
         "typescript.inlayHints.functionLikeReturnTypes.enabled": {
             "type": "boolean",
             "default": false,
-            "markdownDescription": "関数シグネチャの暗黙的な戻り値の型について、インレイ ヒントを有効化/無効化:\r\n' ' ' typescript\r\n\r\nfunction foo ()/*: number */{\r\n\treturn Date.now();\r\n}\r\n \r\n```\r\nワークスペースで TypeScript 4.4+ を使用する必要があります。",
+            "markdownDescription": "Enable/disable inlay hints for implicit return types on function signatures:\n```typescript\n\nfunction foo() /* :number */ {\n\treturn Date.now();\n} \n \n```\nRequires using TypeScript 4.4+ in the workspace.",
             "scope": 4,
             "source": {
                 "id": "vscode.typescript-language-features",
@@ -30410,7 +30546,7 @@
         "typescript.inlayHints.enumMemberValues.enabled": {
             "type": "boolean",
             "default": false,
-            "markdownDescription": "列挙型宣言内のメンバー値のインレイ ヒントを有効/無効にします:\r\n' ' ' typescript\r\n\r\nenum MyValue {\r\n A/* = 0 */;\r\n\tB/* = 1 */;\r\n}\r\n \r\n```\r\nワークスペースで TypeScript 4.4+ を使用する必要があります。",
+            "markdownDescription": "Enable/disable inlay hints for member values in enum declarations:\n```typescript\n\nenum MyValue {\n\tA /* = 0 */;\n\tB /* = 1 */;\n}\n \n```\nRequires using TypeScript 4.4+ in the workspace.",
             "scope": 4,
             "source": {
                 "id": "vscode.typescript-language-features",
@@ -30432,7 +30568,7 @@
                 "リテラル引数およびリテラル引数以外の引数に対してパラメーター名のヒントを有効にします。"
             ],
             "default": "none",
-            "markdownDescription": "パラメーター名へのインレイ ヒントを有効/無効にする:\r\n' ' ' typescript\r\n\r\nparseInt (/* str: */' 123 ', /* radix: */8)\r\n \r\n```\r\nワークスペースで TypeScript 4.4+ を使用する必要があります。",
+            "markdownDescription": "Enable/disable inlay hints for parameter names:\n```typescript\n\nparseInt(/* str: */ '123', /* radix: */ 8)\n \n```\nRequires using TypeScript 4.4+ in the workspace.",
             "scope": 4,
             "source": {
                 "id": "vscode.typescript-language-features",
@@ -30456,7 +30592,7 @@
         "javascript.inlayHints.parameterTypes.enabled": {
             "type": "boolean",
             "default": false,
-            "markdownDescription": "暗黙的なパラメーター型へのインレイ ヒントを有効/無効にする:\r\n' ' ' typescript\r\n\r\naddEventListener ('click', e/*: MouseEvent */=>...)\r\n \r\n```\r\nワークスペースで TypeScript 4.4+ を使用する必要があります。",
+            "markdownDescription": "Enable/disable inlay hints for implicit parameter types:\n```typescript\n\nel.addEventListener('click', e /* :MouseEvent */ => ...)\n \n```\nRequires using TypeScript 4.4+ in the workspace.",
             "scope": 4,
             "source": {
                 "id": "vscode.typescript-language-features",
@@ -30468,7 +30604,7 @@
         "javascript.inlayHints.variableTypes.enabled": {
             "type": "boolean",
             "default": false,
-            "markdownDescription": "暗黙的な変数型のインレイ ヒントを有効/無効にします:\r\n' ' ' typescript\r\n\r\nconst foo/*: number */= Date。 now ();\r\n \r\n```\r\nワークスペースで TypeScript 4.4 + を使用する必要があります。",
+            "markdownDescription": "Enable/disable inlay hints for implicit variable types:\n```typescript\n\nconst foo /* :number */ = Date.now();\n \n```\nRequires using TypeScript 4.4+ in the workspace.",
             "scope": 4,
             "source": {
                 "id": "vscode.typescript-language-features",
@@ -30492,7 +30628,7 @@
         "javascript.inlayHints.propertyDeclarationTypes.enabled": {
             "type": "boolean",
             "default": false,
-            "markdownDescription": "プロパティ宣言の暗黙的な型へのインレイ ヒントを有効/無効にする:\r\n```tTypescript\r\n\r\nclass Foo {\r\n\tprop /* :number */ = Date.now();\r\n}\r\n \r\n```\r\nワークスペースで TypeScript 4.4+ を使用する必要があります。",
+            "markdownDescription": "Enable/disable inlay hints for implicit types on property declarations:\n```typescript\n\nclass Foo {\n\tprop /* :number */ = Date.now();\n}\n \n```\nRequires using TypeScript 4.4+ in the workspace.",
             "scope": 4,
             "source": {
                 "id": "vscode.typescript-language-features",
@@ -30504,7 +30640,7 @@
         "javascript.inlayHints.functionLikeReturnTypes.enabled": {
             "type": "boolean",
             "default": false,
-            "markdownDescription": "関数シグネチャの暗黙的な戻り値の型について、インレイ ヒントを有効化/無効化:\r\n' ' ' typescript\r\n\r\nfunction foo ()/*: number */{\r\n\treturn Date.now();\r\n}\r\n \r\n```\r\nワークスペースで TypeScript 4.4+ を使用する必要があります。",
+            "markdownDescription": "Enable/disable inlay hints for implicit return types on function signatures:\n```typescript\n\nfunction foo() /* :number */ {\n\treturn Date.now();\n} \n \n```\nRequires using TypeScript 4.4+ in the workspace.",
             "scope": 4,
             "source": {
                 "id": "vscode.typescript-language-features",
@@ -30516,7 +30652,7 @@
         "javascript.inlayHints.enumMemberValues.enabled": {
             "type": "boolean",
             "default": false,
-            "markdownDescription": "列挙型宣言内のメンバー値のインレイ ヒントを有効/無効にします:\r\n' ' ' typescript\r\n\r\nenum MyValue {\r\n A/* = 0 */;\r\n\tB/* = 1 */;\r\n}\r\n \r\n```\r\nワークスペースで TypeScript 4.4+ を使用する必要があります。",
+            "markdownDescription": "Enable/disable inlay hints for member values in enum declarations:\n```typescript\n\nenum MyValue {\n\tA /* = 0 */;\n\tB /* = 1 */;\n}\n \n```\nRequires using TypeScript 4.4+ in the workspace.",
             "scope": 4,
             "source": {
                 "id": "vscode.typescript-language-features",
@@ -31291,6 +31427,34 @@
                 "displayName": "TypeScript と JavaScript の言語機能"
             },
             "defaultDefaultValue": "auto",
+            "restricted": false
+        },
+        "typescript.preferences.autoImportFileExcludePatterns": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "markdownDescription": "自動インポートから除外するファイルの glob パターンを指定します。ワークスペースで TypeScript 4.8 以降を使用する必要があります。",
+            "scope": 4,
+            "source": {
+                "id": "vscode.typescript-language-features",
+                "displayName": "TypeScript と JavaScript の言語機能"
+            },
+            "default": [],
+            "restricted": false
+        },
+        "javascript.preferences.autoImportFileExcludePatterns": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "markdownDescription": "自動インポートから除外するファイルの glob パターンを指定します。ワークスペースで TypeScript 4.8 以降を使用する必要があります。",
+            "scope": 4,
+            "source": {
+                "id": "vscode.typescript-language-features",
+                "displayName": "TypeScript と JavaScript の言語機能"
+            },
+            "default": [],
             "restricted": false
         },
         "javascript.preferences.renameShorthandProperties": {

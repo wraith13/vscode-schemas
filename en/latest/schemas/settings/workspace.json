@@ -978,7 +978,7 @@
                 "hidden"
             ],
             "default": "text",
-            "markdownDescription": "Controls if the untitled hint should be inline text in the editor or a floating button or hidden.",
+            "markdownDescription": "Controls if the untitled text hint should be visible in the editor.",
             "defaultDefaultValue": "text",
             "scope": 3,
             "restricted": false
@@ -1557,7 +1557,7 @@
             "scope": 3,
             "restricted": false
         },
-        "window.experimental.commandCenter": {
+        "window.commandCenter": {
             "type": "boolean",
             "default": false,
             "markdownDescription": "Show command launcher together with the window title. This setting only has an effect when `#window.titleBarStyle#` is set to `custom`.",
@@ -1624,7 +1624,7 @@
         "zenMode.silentNotifications": {
             "type": "boolean",
             "default": true,
-            "description": "Controls whether notifications are shown while in zen mode. If true, only error notifications will pop out.",
+            "description": "Controls whether notifications do not disturb mode should be enabled while in zen mode. If true, only error notifications will pop out.",
             "defaultDefaultValue": true,
             "scope": 3,
             "restricted": false
@@ -2103,57 +2103,14 @@
             "scope": 3,
             "restricted": false
         },
-        "comments.openPanel": {
-            "enum": [
-                "neverOpen",
-                "openOnSessionStart",
-                "openOnSessionStartWithComments"
-            ],
-            "default": "openOnSessionStartWithComments",
-            "description": "Controls when the comments panel should open.",
-            "restricted": false,
-            "markdownDeprecationMessage": "This setting is deprecated in favor of `comments.openView`.",
-            "defaultDefaultValue": "openOnSessionStartWithComments",
-            "scope": 3,
-            "deprecationMessage": "This setting is deprecated in favor of `comments.openView`."
-        },
-        "comments.openView": {
-            "enum": [
-                "never",
-                "file",
-                "firstFile"
-            ],
-            "enumDescriptions": [
-                "The comments view will never be opened.",
-                "The comments view will open when a file with comments is active.",
-                "If the comments view has not been opened yet during this session it will open the first time during a session that a file with comments is active."
-            ],
-            "default": "firstFile",
-            "description": "Controls when the comments view should open.",
-            "restricted": false,
-            "defaultDefaultValue": "firstFile",
-            "scope": 3
-        },
-        "comments.useRelativeTime": {
+        "workbench.experimental.editSessions.enabled": {
             "type": "boolean",
-            "default": true,
-            "description": "Determines if relative time will be used in comment timestamps (ex. '1 day ago').",
-            "defaultDefaultValue": true,
-            "scope": 3,
-            "restricted": false
-        },
-        "notebook.diff.ignoreMetadata": {
-            "type": "boolean",
+            "tags": [
+                "experimental",
+                "usesOnlineServices"
+            ],
             "default": false,
-            "markdownDescription": "Hide Metadata Differences",
-            "defaultDefaultValue": false,
-            "scope": 3,
-            "restricted": false
-        },
-        "notebook.diff.ignoreOutputs": {
-            "type": "boolean",
-            "default": false,
-            "markdownDescription": "Hide Outputs Differences",
+            "markdownDescription": "Controls whether to display cloud-enabled actions to store and resume uncommitted changes when switching between web, desktop, or devices.",
             "defaultDefaultValue": false,
             "scope": 3,
             "restricted": false
@@ -2246,6 +2203,14 @@
             "description": "Causes the Tasks: Run Task command to use the slower \"show all\" behavior instead of the faster two level picker where tasks are grouped by provider.",
             "default": false,
             "defaultDefaultValue": false,
+            "scope": 3,
+            "restricted": false
+        },
+        "task.showDecorations": {
+            "type": "boolean",
+            "description": "Shows decorations at points of interest in the terminal buffer such as the first problem found via a watch task. Note that this will only take effect for future tasks.",
+            "default": true,
+            "defaultDefaultValue": true,
             "scope": 3,
             "restricted": false
         },
@@ -3751,6 +3716,61 @@
             "scope": 3,
             "restricted": false
         },
+        "comments.openPanel": {
+            "enum": [
+                "neverOpen",
+                "openOnSessionStart",
+                "openOnSessionStartWithComments"
+            ],
+            "default": "openOnSessionStartWithComments",
+            "description": "Controls when the comments panel should open.",
+            "restricted": false,
+            "markdownDeprecationMessage": "This setting is deprecated in favor of `comments.openView`.",
+            "defaultDefaultValue": "openOnSessionStartWithComments",
+            "scope": 3,
+            "deprecationMessage": "This setting is deprecated in favor of `comments.openView`."
+        },
+        "comments.openView": {
+            "enum": [
+                "never",
+                "file",
+                "firstFile"
+            ],
+            "enumDescriptions": [
+                "The comments view will never be opened.",
+                "The comments view will open when a file with comments is active.",
+                "If the comments view has not been opened yet during this session it will open the first time during a session that a file with comments is active."
+            ],
+            "default": "firstFile",
+            "description": "Controls when the comments view should open.",
+            "restricted": false,
+            "defaultDefaultValue": "firstFile",
+            "scope": 3
+        },
+        "comments.useRelativeTime": {
+            "type": "boolean",
+            "default": true,
+            "description": "Determines if relative time will be used in comment timestamps (ex. '1 day ago').",
+            "defaultDefaultValue": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "notebook.diff.ignoreMetadata": {
+            "type": "boolean",
+            "default": false,
+            "markdownDescription": "Hide Metadata Differences",
+            "defaultDefaultValue": false,
+            "scope": 3,
+            "restricted": false
+        },
+        "notebook.diff.ignoreOutputs": {
+            "type": "boolean",
+            "default": false,
+            "markdownDescription": "Hide Outputs Differences",
+            "defaultDefaultValue": false,
+            "scope": 3,
+            "restricted": false
+        },
         "screencastMode.verticalOffset": {
             "type": "number",
             "default": 20,
@@ -5110,6 +5130,14 @@
                             "scope": 5,
                             "restricted": false
                         },
+                        "editor.minimap.autohide": {
+                            "type": "boolean",
+                            "default": false,
+                            "description": "Controls whether the minimap is hidden automatically.",
+                            "defaultDefaultValue": false,
+                            "scope": 5,
+                            "restricted": false
+                        },
                         "editor.minimap.size": {
                             "type": "string",
                             "enum": [
@@ -5589,10 +5617,10 @@
                         "editor.scrollBeyondLastColumn": {
                             "description": "Controls the number of extra characters beyond which the editor will scroll horizontally.",
                             "type": "integer",
-                            "default": 5,
+                            "default": 4,
                             "minimum": 0,
                             "maximum": 1073741824,
-                            "defaultDefaultValue": 5,
+                            "defaultDefaultValue": 4,
                             "scope": 5,
                             "restricted": false
                         },
@@ -7422,6 +7450,14 @@
             "scope": 3,
             "restricted": false
         },
+        "testing.alwaysRevealTestOnStateChange": {
+            "markdownDescription": "Always reveal the executed test when `#testing.followRunningTest#` is on. If this setting is turned off, only failed tests will be revealed.",
+            "type": "boolean",
+            "default": false,
+            "defaultDefaultValue": false,
+            "scope": 3,
+            "restricted": false
+        },
         "timeline.excludeSources": {
             "type": [
                 "array",
@@ -7580,6 +7616,14 @@
                 }
             ],
             "defaultDefaultValue": {},
+            "scope": 3,
+            "restricted": false
+        },
+        "extensions.experimental.useUtilityProcess": {
+            "type": "boolean",
+            "description": "When enabled, the extension host will be launched using the new UtilityProcess Electron API.",
+            "default": false,
+            "defaultDefaultValue": false,
             "scope": 3,
             "restricted": false
         },
@@ -8043,6 +8087,7 @@
                                 "debug-breakpoint-function",
                                 "debug-breakpoint-function-disabled",
                                 "debug-stackframe-active",
+                                "circle-small-filled",
                                 "debug-stackframe-dot",
                                 "debug-stackframe",
                                 "debug-stackframe-focused",
@@ -8167,6 +8212,12 @@
                                 "arrow-circle-left",
                                 "arrow-circle-right",
                                 "arrow-circle-up",
+                                "heart-filled",
+                                "map",
+                                "map-filled",
+                                "circle-small",
+                                "bell-slash",
+                                "bell-slash-dot",
                                 "dialog-error",
                                 "dialog-warning",
                                 "dialog-info",
@@ -8566,6 +8617,7 @@
                                 "$(debug-breakpoint-function)",
                                 "$(debug-breakpoint-function-disabled)",
                                 "$(debug-stackframe-active)",
+                                "$(circle-small-filled)",
                                 "$(debug-stackframe-dot)",
                                 "$(debug-stackframe)",
                                 "$(debug-stackframe-focused)",
@@ -8690,6 +8742,12 @@
                                 "$(arrow-circle-left)",
                                 "$(arrow-circle-right)",
                                 "$(arrow-circle-up)",
+                                "$(heart-filled)",
+                                "$(map)",
+                                "$(map-filled)",
+                                "$(circle-small)",
+                                "$(bell-slash)",
+                                "$(bell-slash-dot)",
                                 "$(dialog-error)",
                                 "$(dialog-warning)",
                                 "$(dialog-info)",
@@ -9174,6 +9232,7 @@
                                 "debug-breakpoint-function",
                                 "debug-breakpoint-function-disabled",
                                 "debug-stackframe-active",
+                                "circle-small-filled",
                                 "debug-stackframe-dot",
                                 "debug-stackframe",
                                 "debug-stackframe-focused",
@@ -9298,6 +9357,12 @@
                                 "arrow-circle-left",
                                 "arrow-circle-right",
                                 "arrow-circle-up",
+                                "heart-filled",
+                                "map",
+                                "map-filled",
+                                "circle-small",
+                                "bell-slash",
+                                "bell-slash-dot",
                                 "dialog-error",
                                 "dialog-warning",
                                 "dialog-info",
@@ -9697,6 +9762,7 @@
                                 "$(debug-breakpoint-function)",
                                 "$(debug-breakpoint-function-disabled)",
                                 "$(debug-stackframe-active)",
+                                "$(circle-small-filled)",
                                 "$(debug-stackframe-dot)",
                                 "$(debug-stackframe)",
                                 "$(debug-stackframe-focused)",
@@ -9821,6 +9887,12 @@
                                 "$(arrow-circle-left)",
                                 "$(arrow-circle-right)",
                                 "$(arrow-circle-up)",
+                                "$(heart-filled)",
+                                "$(map)",
+                                "$(map-filled)",
+                                "$(circle-small)",
+                                "$(bell-slash)",
+                                "$(bell-slash-dot)",
                                 "$(dialog-error)",
                                 "$(dialog-warning)",
                                 "$(dialog-info)",
@@ -10305,6 +10377,7 @@
                                 "debug-breakpoint-function",
                                 "debug-breakpoint-function-disabled",
                                 "debug-stackframe-active",
+                                "circle-small-filled",
                                 "debug-stackframe-dot",
                                 "debug-stackframe",
                                 "debug-stackframe-focused",
@@ -10429,6 +10502,12 @@
                                 "arrow-circle-left",
                                 "arrow-circle-right",
                                 "arrow-circle-up",
+                                "heart-filled",
+                                "map",
+                                "map-filled",
+                                "circle-small",
+                                "bell-slash",
+                                "bell-slash-dot",
                                 "dialog-error",
                                 "dialog-warning",
                                 "dialog-info",
@@ -10828,6 +10907,7 @@
                                 "$(debug-breakpoint-function)",
                                 "$(debug-breakpoint-function-disabled)",
                                 "$(debug-stackframe-active)",
+                                "$(circle-small-filled)",
                                 "$(debug-stackframe-dot)",
                                 "$(debug-stackframe)",
                                 "$(debug-stackframe-focused)",
@@ -10952,6 +11032,12 @@
                                 "$(arrow-circle-left)",
                                 "$(arrow-circle-right)",
                                 "$(arrow-circle-up)",
+                                "$(heart-filled)",
+                                "$(map)",
+                                "$(map-filled)",
+                                "$(circle-small)",
+                                "$(bell-slash)",
+                                "$(bell-slash-dot)",
                                 "$(dialog-error)",
                                 "$(dialog-warning)",
                                 "$(dialog-info)",
@@ -11536,6 +11622,7 @@
                                     "debug-breakpoint-function",
                                     "debug-breakpoint-function-disabled",
                                     "debug-stackframe-active",
+                                    "circle-small-filled",
                                     "debug-stackframe-dot",
                                     "debug-stackframe",
                                     "debug-stackframe-focused",
@@ -11660,6 +11747,12 @@
                                     "arrow-circle-left",
                                     "arrow-circle-right",
                                     "arrow-circle-up",
+                                    "heart-filled",
+                                    "map",
+                                    "map-filled",
+                                    "circle-small",
+                                    "bell-slash",
+                                    "bell-slash-dot",
                                     "dialog-error",
                                     "dialog-warning",
                                     "dialog-info",
@@ -12059,6 +12152,7 @@
                                     "$(debug-breakpoint-function)",
                                     "$(debug-breakpoint-function-disabled)",
                                     "$(debug-stackframe-active)",
+                                    "$(circle-small-filled)",
                                     "$(debug-stackframe-dot)",
                                     "$(debug-stackframe)",
                                     "$(debug-stackframe-focused)",
@@ -12183,6 +12277,12 @@
                                     "$(arrow-circle-left)",
                                     "$(arrow-circle-right)",
                                     "$(arrow-circle-up)",
+                                    "$(heart-filled)",
+                                    "$(map)",
+                                    "$(map-filled)",
+                                    "$(circle-small)",
+                                    "$(bell-slash)",
+                                    "$(bell-slash-dot)",
                                     "$(dialog-error)",
                                     "$(dialog-warning)",
                                     "$(dialog-info)",
@@ -12648,6 +12748,7 @@
                                     "debug-breakpoint-function",
                                     "debug-breakpoint-function-disabled",
                                     "debug-stackframe-active",
+                                    "circle-small-filled",
                                     "debug-stackframe-dot",
                                     "debug-stackframe",
                                     "debug-stackframe-focused",
@@ -12772,6 +12873,12 @@
                                     "arrow-circle-left",
                                     "arrow-circle-right",
                                     "arrow-circle-up",
+                                    "heart-filled",
+                                    "map",
+                                    "map-filled",
+                                    "circle-small",
+                                    "bell-slash",
+                                    "bell-slash-dot",
                                     "dialog-error",
                                     "dialog-warning",
                                     "dialog-info",
@@ -13171,6 +13278,7 @@
                                     "$(debug-breakpoint-function)",
                                     "$(debug-breakpoint-function-disabled)",
                                     "$(debug-stackframe-active)",
+                                    "$(circle-small-filled)",
                                     "$(debug-stackframe-dot)",
                                     "$(debug-stackframe)",
                                     "$(debug-stackframe-focused)",
@@ -13295,6 +13403,12 @@
                                     "$(arrow-circle-left)",
                                     "$(arrow-circle-right)",
                                     "$(arrow-circle-up)",
+                                    "$(heart-filled)",
+                                    "$(map)",
+                                    "$(map-filled)",
+                                    "$(circle-small)",
+                                    "$(bell-slash)",
+                                    "$(bell-slash-dot)",
                                     "$(dialog-error)",
                                     "$(dialog-warning)",
                                     "$(dialog-info)",
@@ -13759,6 +13873,7 @@
                                     "debug-breakpoint-function",
                                     "debug-breakpoint-function-disabled",
                                     "debug-stackframe-active",
+                                    "circle-small-filled",
                                     "debug-stackframe-dot",
                                     "debug-stackframe",
                                     "debug-stackframe-focused",
@@ -13883,6 +13998,12 @@
                                     "arrow-circle-left",
                                     "arrow-circle-right",
                                     "arrow-circle-up",
+                                    "heart-filled",
+                                    "map",
+                                    "map-filled",
+                                    "circle-small",
+                                    "bell-slash",
+                                    "bell-slash-dot",
                                     "dialog-error",
                                     "dialog-warning",
                                     "dialog-info",
@@ -14282,6 +14403,7 @@
                                     "$(debug-breakpoint-function)",
                                     "$(debug-breakpoint-function-disabled)",
                                     "$(debug-stackframe-active)",
+                                    "$(circle-small-filled)",
                                     "$(debug-stackframe-dot)",
                                     "$(debug-stackframe)",
                                     "$(debug-stackframe-focused)",
@@ -14406,6 +14528,12 @@
                                     "$(arrow-circle-left)",
                                     "$(arrow-circle-right)",
                                     "$(arrow-circle-up)",
+                                    "$(heart-filled)",
+                                    "$(map)",
+                                    "$(map-filled)",
+                                    "$(circle-small)",
+                                    "$(bell-slash)",
+                                    "$(bell-slash-dot)",
                                     "$(dialog-error)",
                                     "$(dialog-warning)",
                                     "$(dialog-info)",
@@ -14927,6 +15055,7 @@
                                     "debug-breakpoint-function",
                                     "debug-breakpoint-function-disabled",
                                     "debug-stackframe-active",
+                                    "circle-small-filled",
                                     "debug-stackframe-dot",
                                     "debug-stackframe",
                                     "debug-stackframe-focused",
@@ -15051,6 +15180,12 @@
                                     "arrow-circle-left",
                                     "arrow-circle-right",
                                     "arrow-circle-up",
+                                    "heart-filled",
+                                    "map",
+                                    "map-filled",
+                                    "circle-small",
+                                    "bell-slash",
+                                    "bell-slash-dot",
                                     "dialog-error",
                                     "dialog-warning",
                                     "dialog-info",
@@ -15450,6 +15585,7 @@
                                     "$(debug-breakpoint-function)",
                                     "$(debug-breakpoint-function-disabled)",
                                     "$(debug-stackframe-active)",
+                                    "$(circle-small-filled)",
                                     "$(debug-stackframe-dot)",
                                     "$(debug-stackframe)",
                                     "$(debug-stackframe-focused)",
@@ -15574,6 +15710,12 @@
                                     "$(arrow-circle-left)",
                                     "$(arrow-circle-right)",
                                     "$(arrow-circle-up)",
+                                    "$(heart-filled)",
+                                    "$(map)",
+                                    "$(map-filled)",
+                                    "$(circle-small)",
+                                    "$(bell-slash)",
+                                    "$(bell-slash-dot)",
                                     "$(dialog-error)",
                                     "$(dialog-warning)",
                                     "$(dialog-info)",
@@ -16038,6 +16180,7 @@
                                     "debug-breakpoint-function",
                                     "debug-breakpoint-function-disabled",
                                     "debug-stackframe-active",
+                                    "circle-small-filled",
                                     "debug-stackframe-dot",
                                     "debug-stackframe",
                                     "debug-stackframe-focused",
@@ -16162,6 +16305,12 @@
                                     "arrow-circle-left",
                                     "arrow-circle-right",
                                     "arrow-circle-up",
+                                    "heart-filled",
+                                    "map",
+                                    "map-filled",
+                                    "circle-small",
+                                    "bell-slash",
+                                    "bell-slash-dot",
                                     "dialog-error",
                                     "dialog-warning",
                                     "dialog-info",
@@ -16561,6 +16710,7 @@
                                     "$(debug-breakpoint-function)",
                                     "$(debug-breakpoint-function-disabled)",
                                     "$(debug-stackframe-active)",
+                                    "$(circle-small-filled)",
                                     "$(debug-stackframe-dot)",
                                     "$(debug-stackframe)",
                                     "$(debug-stackframe-focused)",
@@ -16685,6 +16835,12 @@
                                     "$(arrow-circle-left)",
                                     "$(arrow-circle-right)",
                                     "$(arrow-circle-up)",
+                                    "$(heart-filled)",
+                                    "$(map)",
+                                    "$(map-filled)",
+                                    "$(circle-small)",
+                                    "$(bell-slash)",
+                                    "$(bell-slash-dot)",
                                     "$(dialog-error)",
                                     "$(dialog-warning)",
                                     "$(dialog-info)",
@@ -17209,6 +17365,7 @@
                                     "debug-breakpoint-function",
                                     "debug-breakpoint-function-disabled",
                                     "debug-stackframe-active",
+                                    "circle-small-filled",
                                     "debug-stackframe-dot",
                                     "debug-stackframe",
                                     "debug-stackframe-focused",
@@ -17333,6 +17490,12 @@
                                     "arrow-circle-left",
                                     "arrow-circle-right",
                                     "arrow-circle-up",
+                                    "heart-filled",
+                                    "map",
+                                    "map-filled",
+                                    "circle-small",
+                                    "bell-slash",
+                                    "bell-slash-dot",
                                     "dialog-error",
                                     "dialog-warning",
                                     "dialog-info",
@@ -17732,6 +17895,7 @@
                                     "$(debug-breakpoint-function)",
                                     "$(debug-breakpoint-function-disabled)",
                                     "$(debug-stackframe-active)",
+                                    "$(circle-small-filled)",
                                     "$(debug-stackframe-dot)",
                                     "$(debug-stackframe)",
                                     "$(debug-stackframe-focused)",
@@ -17856,6 +18020,12 @@
                                     "$(arrow-circle-left)",
                                     "$(arrow-circle-right)",
                                     "$(arrow-circle-up)",
+                                    "$(heart-filled)",
+                                    "$(map)",
+                                    "$(map-filled)",
+                                    "$(circle-small)",
+                                    "$(bell-slash)",
+                                    "$(bell-slash-dot)",
                                     "$(dialog-error)",
                                     "$(dialog-warning)",
                                     "$(dialog-info)",
@@ -18320,6 +18490,7 @@
                                     "debug-breakpoint-function",
                                     "debug-breakpoint-function-disabled",
                                     "debug-stackframe-active",
+                                    "circle-small-filled",
                                     "debug-stackframe-dot",
                                     "debug-stackframe",
                                     "debug-stackframe-focused",
@@ -18444,6 +18615,12 @@
                                     "arrow-circle-left",
                                     "arrow-circle-right",
                                     "arrow-circle-up",
+                                    "heart-filled",
+                                    "map",
+                                    "map-filled",
+                                    "circle-small",
+                                    "bell-slash",
+                                    "bell-slash-dot",
                                     "dialog-error",
                                     "dialog-warning",
                                     "dialog-info",
@@ -18843,6 +19020,7 @@
                                     "$(debug-breakpoint-function)",
                                     "$(debug-breakpoint-function-disabled)",
                                     "$(debug-stackframe-active)",
+                                    "$(circle-small-filled)",
                                     "$(debug-stackframe-dot)",
                                     "$(debug-stackframe)",
                                     "$(debug-stackframe-focused)",
@@ -18967,6 +19145,12 @@
                                     "$(arrow-circle-left)",
                                     "$(arrow-circle-right)",
                                     "$(arrow-circle-up)",
+                                    "$(heart-filled)",
+                                    "$(map)",
+                                    "$(map-filled)",
+                                    "$(circle-small)",
+                                    "$(bell-slash)",
+                                    "$(bell-slash-dot)",
                                     "$(dialog-error)",
                                     "$(dialog-warning)",
                                     "$(dialog-info)",
@@ -19809,7 +19993,7 @@
             "restricted": false
         },
         "terminal.integrated.enablePersistentSessions": {
-            "description": "Persist terminal sessions for the workspace across window reloads.",
+            "description": "Persist terminal sessions/history for the workspace across window reloads.",
             "type": "boolean",
             "default": true,
             "defaultDefaultValue": true,
@@ -19817,7 +20001,7 @@
             "restricted": false
         },
         "terminal.integrated.persistentSessionReviveProcess": {
-            "markdownDescription": "When the terminal process must be shutdown (eg. on window or application close), this determines when the previous terminal session contents should be restored and processes be recreated when the workspace is next opened.\n\nCaveats:\n\n- Restoring of the process current working directory depends on whether it is supported by the shell.\n- Time to persist the session during shutdown is limited, so it may be aborted when using high-latency remote connections.",
+            "markdownDescription": "When the terminal process must be shutdown (eg. on window or application close), this determines when the previous terminal session contents/history should be restored and processes be recreated when the workspace is next opened.\n\nCaveats:\n\n- Restoring of the process current working directory depends on whether it is supported by the shell.\n- Time to persist the session during shutdown is limited, so it may be aborted when using high-latency remote connections.",
             "type": "string",
             "enum": [
                 "onExit",
@@ -19989,6 +20173,18 @@
             "type": "boolean",
             "default": false,
             "markdownDescription": "When enabled, Emmet abbreviations are expanded when pressing TAB.",
+            "scope": 3,
+            "source": {
+                "id": "vscode.emmet",
+                "displayName": "Emmet"
+            },
+            "defaultDefaultValue": false,
+            "restricted": false
+        },
+        "emmet.useInlineCompletions": {
+            "type": "boolean",
+            "default": false,
+            "markdownDescription": "If `true`, Emmet will use inline completions to suggest expansions. To prevent the non-inline completion item provider from showing up as often while this setting is `true`, turn `#editor.quickSuggestions#` to `inline` or `off` for the `other` item.",
             "scope": 3,
             "source": {
                 "id": "vscode.emmet",
@@ -20190,6 +20386,18 @@
             "defaultDefaultValue": false,
             "restricted": false
         },
+        "git.useEditorAsCommitInput": {
+            "type": "boolean",
+            "description": "Controls whether a full text editor will be used to author commit messages, whenever no message is provided in the commit input box.",
+            "default": true,
+            "scope": 3,
+            "source": {
+                "id": "vscode.git",
+                "displayName": "Git"
+            },
+            "defaultDefaultValue": true,
+            "restricted": false
+        },
         "git.decorations.enabled": {
             "type": "boolean",
             "default": true,
@@ -20385,16 +20593,28 @@
             "defaultDefaultValue": "committerdate",
             "restricted": false
         },
-        "git.requireGitUserConfig": {
+        "git.terminalAuthentication": {
             "type": "boolean",
-            "description": "Controls whether to require explicit Git user configuration or allow Git to guess if missing.",
             "default": true,
+            "description": "Controls whether to enable VS Code to be the authentication handler for git processes spawned in the integrated terminal. Note: terminals need to be restarted to pick up a change in this setting.",
             "scope": 3,
             "source": {
                 "id": "vscode.git",
                 "displayName": "Git"
             },
             "defaultDefaultValue": true,
+            "restricted": false
+        },
+        "git.terminalGitEditor": {
+            "type": "boolean",
+            "default": false,
+            "description": "Controls whether to enable VS Code to be git editor for git processes spawned in the integrated terminal. Note: terminals need to be restarted to pick up a change in this setting.",
+            "scope": 3,
+            "source": {
+                "id": "vscode.git",
+                "displayName": "Git"
+            },
+            "defaultDefaultValue": false,
             "restricted": false
         },
         "git.useIntegratedAskPass": {
@@ -20463,6 +20683,21 @@
             "defaultDefaultValue": false,
             "restricted": false
         },
+        "git.commandsToLog": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "default": [],
+            "markdownDescription": "List of git commands (ex: commit, push) that would have their `stdout` logged to the [git output](command:git.showOutput). If the git command has a client-side hook configured, the client-side hook's `stdout` will also be logged to the [git output](command:git.showOutput).",
+            "scope": 3,
+            "source": {
+                "id": "vscode.git",
+                "displayName": "Git"
+            },
+            "defaultDefaultValue": [],
+            "restricted": false
+        },
         "git.logLevel": {
             "type": "string",
             "default": "Info",
@@ -20493,14 +20728,11 @@
             "defaultDefaultValue": "Info",
             "restricted": false
         },
-        "git.experimental.mergeEditor": {
+        "git.mergeEditor": {
             "type": "boolean",
             "default": false,
-            "markdownDescription": "Open the _experimental_ merge editor for files that are currently under conflict.",
+            "markdownDescription": "Open the merge editor for files that are currently under conflict.",
             "scope": 3,
-            "tags": [
-                "experimental"
-            ],
             "source": {
                 "id": "vscode.git",
                 "displayName": "Git"
@@ -20889,23 +21121,9 @@
                             "type": "object",
                             "additionalProperties": false,
                             "properties": {
-                                "console": {
-                                    "type": "boolean",
-                                    "description": "Whether to return trace data from the launched application or browser."
-                                },
                                 "stdio": {
                                     "type": "boolean",
-                                    "description": "Configures whether logs are also returned to the debug console."
-                                },
-                                "level": {
-                                    "enum": [
-                                        "fatal",
-                                        "error",
-                                        "warn",
-                                        "info",
-                                        "verbose"
-                                    ],
-                                    "description": "Configures the level of logs recorded."
+                                    "description": "Whether to return trace data from the launched application or browser."
                                 },
                                 "logFile": {
                                     "type": [
@@ -20913,17 +21131,6 @@
                                         "null"
                                     ],
                                     "description": "Configures where on disk logs are written."
-                                },
-                                "tags": {
-                                    "type": "array",
-                                    "description": "Configures what types of logs are recorded.",
-                                    "items": {
-                                        "enum": [
-                                            "cdp",
-                                            "dap",
-                                            "runtime"
-                                        ]
-                                    }
                                 }
                             }
                         }
@@ -21032,18 +21239,6 @@
                 "displayName": "JavaScript Debugger"
             },
             "defaultDefaultValue": {},
-            "restricted": false
-        },
-        "debug.javascript.suggestPrettyPrinting": {
-            "type": "boolean",
-            "description": "Whether to suggest pretty printing JavaScript code that looks minified when you step into it.",
-            "default": true,
-            "scope": 3,
-            "source": {
-                "id": "ms-vscode.js-debug",
-                "displayName": "JavaScript Debugger"
-            },
-            "defaultDefaultValue": true,
             "restricted": false
         },
         "debug.javascript.automaticallyTunnelRemoteServer": {
@@ -21207,23 +21402,9 @@
                                     "type": "object",
                                     "additionalProperties": false,
                                     "properties": {
-                                        "console": {
-                                            "type": "boolean",
-                                            "description": "Whether to return trace data from the launched application or browser."
-                                        },
                                         "stdio": {
                                             "type": "boolean",
-                                            "description": "Configures whether logs are also returned to the debug console."
-                                        },
-                                        "level": {
-                                            "enum": [
-                                                "fatal",
-                                                "error",
-                                                "warn",
-                                                "info",
-                                                "verbose"
-                                            ],
-                                            "description": "Configures the level of logs recorded."
+                                            "description": "Whether to return trace data from the launched application or browser."
                                         },
                                         "logFile": {
                                             "type": [
@@ -21231,17 +21412,6 @@
                                                 "null"
                                             ],
                                             "description": "Configures where on disk logs are written."
-                                        },
-                                        "tags": {
-                                            "type": "array",
-                                            "description": "Configures what types of logs are recorded.",
-                                            "items": {
-                                                "enum": [
-                                                    "cdp",
-                                                    "dap",
-                                                    "runtime"
-                                                ]
-                                            }
                                         }
                                     }
                                 }
@@ -21465,23 +21635,9 @@
                                                     "type": "object",
                                                     "additionalProperties": false,
                                                     "properties": {
-                                                        "console": {
-                                                            "type": "boolean",
-                                                            "description": "Whether to return trace data from the launched application or browser."
-                                                        },
                                                         "stdio": {
                                                             "type": "boolean",
-                                                            "description": "Configures whether logs are also returned to the debug console."
-                                                        },
-                                                        "level": {
-                                                            "enum": [
-                                                                "fatal",
-                                                                "error",
-                                                                "warn",
-                                                                "info",
-                                                                "verbose"
-                                                            ],
-                                                            "description": "Configures the level of logs recorded."
+                                                            "description": "Whether to return trace data from the launched application or browser."
                                                         },
                                                         "logFile": {
                                                             "type": [
@@ -21489,17 +21645,6 @@
                                                                 "null"
                                                             ],
                                                             "description": "Configures where on disk logs are written."
-                                                        },
-                                                        "tags": {
-                                                            "type": "array",
-                                                            "description": "Configures what types of logs are recorded.",
-                                                            "items": {
-                                                                "enum": [
-                                                                    "cdp",
-                                                                    "dap",
-                                                                    "runtime"
-                                                                ]
-                                                            }
                                                         }
                                                     }
                                                 }
@@ -21840,23 +21985,9 @@
                                                     "type": "object",
                                                     "additionalProperties": false,
                                                     "properties": {
-                                                        "console": {
-                                                            "type": "boolean",
-                                                            "description": "Whether to return trace data from the launched application or browser."
-                                                        },
                                                         "stdio": {
                                                             "type": "boolean",
-                                                            "description": "Configures whether logs are also returned to the debug console."
-                                                        },
-                                                        "level": {
-                                                            "enum": [
-                                                                "fatal",
-                                                                "error",
-                                                                "warn",
-                                                                "info",
-                                                                "verbose"
-                                                            ],
-                                                            "description": "Configures the level of logs recorded."
+                                                            "description": "Whether to return trace data from the launched application or browser."
                                                         },
                                                         "logFile": {
                                                             "type": [
@@ -21864,17 +21995,6 @@
                                                                 "null"
                                                             ],
                                                             "description": "Configures where on disk logs are written."
-                                                        },
-                                                        "tags": {
-                                                            "type": "array",
-                                                            "description": "Configures what types of logs are recorded.",
-                                                            "items": {
-                                                                "enum": [
-                                                                    "cdp",
-                                                                    "dap",
-                                                                    "runtime"
-                                                                ]
-                                                            }
                                                         }
                                                     }
                                                 }
@@ -22230,23 +22350,9 @@
                             "type": "object",
                             "additionalProperties": false,
                             "properties": {
-                                "console": {
-                                    "type": "boolean",
-                                    "description": "Whether to return trace data from the launched application or browser."
-                                },
                                 "stdio": {
                                     "type": "boolean",
-                                    "description": "Configures whether logs are also returned to the debug console."
-                                },
-                                "level": {
-                                    "enum": [
-                                        "fatal",
-                                        "error",
-                                        "warn",
-                                        "info",
-                                        "verbose"
-                                    ],
-                                    "description": "Configures the level of logs recorded."
+                                    "description": "Whether to return trace data from the launched application or browser."
                                 },
                                 "logFile": {
                                     "type": [
@@ -22254,17 +22360,6 @@
                                         "null"
                                     ],
                                     "description": "Configures where on disk logs are written."
-                                },
-                                "tags": {
-                                    "type": "array",
-                                    "description": "Configures what types of logs are recorded.",
-                                    "items": {
-                                        "enum": [
-                                            "cdp",
-                                            "dap",
-                                            "runtime"
-                                        ]
-                                    }
                                 }
                             }
                         }
@@ -22615,7 +22710,7 @@
             ],
             "scope": 3,
             "source": {
-                "id": "ms-vscode.references-view",
+                "id": "vscode.references-view",
                 "displayName": "Reference Search View"
             },
             "defaultDefaultValue": "peek",
@@ -23538,6 +23633,14 @@
             "type": "boolean",
             "default": true,
             "description": "Controls whether the diff editor shows the diff side by side or inline.",
+            "defaultDefaultValue": true,
+            "scope": 5,
+            "restricted": false
+        },
+        "diffEditor.renderMarginRevertIcon": {
+            "type": "boolean",
+            "default": true,
+            "description": "When enabled, the diff editor shows arrows in its glyph margin to revert changes.",
             "defaultDefaultValue": true,
             "scope": 5,
             "restricted": false
@@ -24563,6 +24666,14 @@
             "scope": 5,
             "restricted": false
         },
+        "editor.minimap.autohide": {
+            "type": "boolean",
+            "default": false,
+            "description": "Controls whether the minimap is hidden automatically.",
+            "defaultDefaultValue": false,
+            "scope": 5,
+            "restricted": false
+        },
         "editor.minimap.size": {
             "type": "string",
             "enum": [
@@ -25042,10 +25153,10 @@
         "editor.scrollBeyondLastColumn": {
             "description": "Controls the number of extra characters beyond which the editor will scroll horizontally.",
             "type": "integer",
-            "default": 5,
+            "default": 4,
             "minimum": 0,
             "maximum": 1073741824,
-            "defaultDefaultValue": 5,
+            "defaultDefaultValue": 4,
             "scope": 5,
             "restricted": false
         },
@@ -26126,7 +26237,7 @@
                 "vscode.json-language-features",
                 "vscode.markdown-language-features",
                 "vscode.php-language-features",
-                "ms-vscode.references-view",
+                "vscode.references-view",
                 "vscode.search-result",
                 "vscode.typescript-language-features",
                 "vscode.configuration-editing",
@@ -26261,6 +26372,14 @@
                 "anyOf": [
                     {
                         "type": "boolean",
+                        "enum": [
+                            true,
+                            false
+                        ],
+                        "enumDescriptions": [
+                            "Enable the pattern.",
+                            "Disable the pattern."
+                        ],
                         "description": "The glob pattern to match file paths against. Set to true or false to enable or disable the pattern."
                     },
                     {
@@ -28995,6 +29114,18 @@
             "defaultDefaultValue": "all",
             "restricted": false
         },
+        "git.verboseCommit": {
+            "type": "boolean",
+            "scope": 4,
+            "markdownDescription": "Enable verbose output when `#git.useEditorAsCommitInput#` is enabled.",
+            "default": false,
+            "source": {
+                "id": "vscode.git",
+                "displayName": "Git"
+            },
+            "defaultDefaultValue": false,
+            "restricted": false
+        },
         "git.enableSmartCommit": {
             "type": "boolean",
             "scope": 4,
@@ -29358,11 +29489,11 @@
             "defaultDefaultValue": "mixed",
             "restricted": false
         },
-        "git.showCommitInput": {
+        "git.requireGitUserConfig": {
             "type": "boolean",
-            "scope": 4,
+            "description": "Controls whether to require explicit Git user configuration or allow Git to guess if missing.",
             "default": true,
-            "description": "Controls whether to show the commit input in the Git source control panel.",
+            "scope": 4,
             "source": {
                 "id": "vscode.git",
                 "displayName": "Git"
@@ -29370,11 +29501,11 @@
             "defaultDefaultValue": true,
             "restricted": false
         },
-        "git.terminalAuthentication": {
+        "git.showCommitInput": {
             "type": "boolean",
             "scope": 4,
             "default": true,
-            "description": "Controls whether to enable VS Code to be the authentication handler for git processes spawned in the integrated terminal. Note: terminals need to be restarted to pick up a change in this setting.",
+            "description": "Controls whether to show the commit input in the Git source control panel.",
             "source": {
                 "id": "vscode.git",
                 "displayName": "Git"
@@ -29394,26 +29525,39 @@
             "defaultDefaultValue": false,
             "restricted": false
         },
-        "git.showUnpublishedCommitsButton": {
-            "type": "string",
-            "enum": [
-                "always",
-                "whenEmpty",
-                "never"
-            ],
-            "enumDescriptions": [
-                "Always shows the action button, if there are unpublished commits.",
-                "Only shows the action button if there are no other changes and there are unpublished commits.",
-                "Never shows the action button."
-            ],
-            "default": "whenEmpty",
-            "description": "Controls whether to show an action button to sync or publish, if there are unpublished commits.",
+        "git.showActionButton": {
+            "type": "object",
+            "additionalProperties": false,
+            "description": "Controls whether an action button can be shown in the Source Control view.",
+            "properties": {
+                "commit": {
+                    "type": "boolean",
+                    "description": "Show an action button to commit changes."
+                },
+                "publish": {
+                    "type": "boolean",
+                    "description": "Show an action button to publish a local branch."
+                },
+                "sync": {
+                    "type": "boolean",
+                    "description": "Show an action button to sync changes."
+                }
+            },
+            "default": {
+                "commit": true,
+                "publish": true,
+                "sync": true
+            },
             "scope": 4,
             "source": {
                 "id": "vscode.git",
                 "displayName": "Git"
             },
-            "defaultDefaultValue": "whenEmpty",
+            "defaultDefaultValue": {
+                "commit": true,
+                "publish": true,
+                "sync": true
+            },
             "restricted": false
         },
         "git.statusLimit": {
@@ -29457,21 +29601,6 @@
                 "displayName": "Git"
             },
             "defaultDefaultValue": 1,
-            "restricted": false
-        },
-        "git.commandsToLog": {
-            "type": "array",
-            "items": {
-                "type": "string"
-            },
-            "default": [],
-            "scope": 4,
-            "markdownDescription": "List of git commands (ex: commit, push) that would have their `stdout` logged to the [git output](command:git.showOutput). If the git command has a client-side hook configured, the client-side hook's `stdout` will also be logged to the [git output](command:git.showOutput).",
-            "source": {
-                "id": "vscode.git",
-                "displayName": "Git"
-            },
-            "defaultDefaultValue": [],
             "restricted": false
         },
         "github.gitAuthentication": {
@@ -29609,18 +29738,6 @@
             "scope": 4,
             "default": false,
             "markdownDescription": "Format and indent `{{#foo}}` and `{{/foo}}`.",
-            "source": {
-                "id": "vscode.html-language-features",
-                "displayName": "HTML Language Features"
-            },
-            "defaultDefaultValue": false,
-            "restricted": false
-        },
-        "html.format.endWithNewline": {
-            "type": "boolean",
-            "scope": 4,
-            "default": false,
-            "description": "End with a newline.",
             "source": {
                 "id": "vscode.html-language-features",
                 "displayName": "HTML Language Features"
@@ -30052,8 +30169,8 @@
         "markdown.experimental.editor.pasteLinks.enabled": {
             "type": "boolean",
             "scope": 4,
-            "markdownDescription": "Enable/disable pasting files into a Markdown editor inserts Markdown links.",
-            "default": false,
+            "markdownDescription": "Enable/disable pasting files into a Markdown editor inserts Markdown links. Requires enabling `#editor.experimental.pasteActions.enabled#`.",
+            "default": true,
             "tags": [
                 "experimental"
             ],
@@ -30061,7 +30178,7 @@
                 "id": "vscode.markdown-language-features",
                 "displayName": "Markdown Language Features"
             },
-            "defaultDefaultValue": false,
+            "defaultDefaultValue": true,
             "restricted": false
         },
         "markdown.experimental.validate.enabled": {
@@ -30099,10 +30216,10 @@
             "defaultDefaultValue": "warning",
             "restricted": false
         },
-        "markdown.experimental.validate.headerLinks.enabled": {
+        "markdown.experimental.validate.fragmentLinks.enabled": {
             "type": "string",
             "scope": 4,
-            "markdownDescription": "Validate links to headers in Markdown files, e.g. `[link](#header)`. Requires enabling `#markdown.experimental.validate.enabled#`.",
+            "markdownDescription": "Validate fragment links to headers in the current Markdown file, e.g. `[link](#header)`. Requires enabling `#markdown.experimental.validate.enabled#`.",
             "default": "warning",
             "enum": [
                 "ignore",
@@ -30137,6 +30254,25 @@
                 "displayName": "Markdown Language Features"
             },
             "defaultDefaultValue": "warning",
+            "restricted": false
+        },
+        "markdown.experimental.validate.fileLinks.markdownFragmentLinks": {
+            "type": "string",
+            "scope": 4,
+            "markdownDescription": "Validate the fragment part of links to headers in other files in Markdown files, e.g. `[link](/path/to/file.md#header)`. Inherits the setting value from `#markdown.experimental.validate.fragmentLinks.enabled#` by default.",
+            "enum": [
+                "ignore",
+                "warning",
+                "error"
+            ],
+            "tags": [
+                "experimental"
+            ],
+            "source": {
+                "id": "vscode.markdown-language-features",
+                "displayName": "Markdown Language Features"
+            },
+            "default": "",
             "restricted": false
         },
         "markdown.experimental.validate.ignoreLinks": {
@@ -31291,6 +31427,34 @@
                 "displayName": "TypeScript and JavaScript Language Features"
             },
             "defaultDefaultValue": "auto",
+            "restricted": false
+        },
+        "typescript.preferences.autoImportFileExcludePatterns": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "markdownDescription": "Specify glob patterns of files to exclude from auto imports. Requires using TypeScript 4.8 or newer in the workspace.",
+            "scope": 4,
+            "source": {
+                "id": "vscode.typescript-language-features",
+                "displayName": "TypeScript and JavaScript Language Features"
+            },
+            "default": [],
+            "restricted": false
+        },
+        "javascript.preferences.autoImportFileExcludePatterns": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "markdownDescription": "Specify glob patterns of files to exclude from auto imports. Requires using TypeScript 4.8 or newer in the workspace.",
+            "scope": 4,
+            "source": {
+                "id": "vscode.typescript-language-features",
+                "displayName": "TypeScript and JavaScript Language Features"
+            },
+            "default": [],
             "restricted": false
         },
         "javascript.preferences.renameShorthandProperties": {
