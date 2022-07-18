@@ -1,0 +1,3641 @@
+{
+    "properties": {
+        "editor.tabSize": {
+            "type": "number",
+            "default": 4,
+            "minimum": 1,
+            "markdownDescription": "The number of spaces a tab is equal to. This setting is overridden based on the file contents when `#editor.detectIndentation#` is on.",
+            "defaultDefaultValue": 4,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.insertSpaces": {
+            "type": "boolean",
+            "default": true,
+            "markdownDescription": "Insert spaces when pressing `Tab`. This setting is overridden based on the file contents when `#editor.detectIndentation#` is on.",
+            "defaultDefaultValue": true,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.detectIndentation": {
+            "type": "boolean",
+            "default": true,
+            "markdownDescription": "Controls whether `#editor.tabSize#` and `#editor.insertSpaces#` will be automatically detected when a file is opened based on the file contents.",
+            "defaultDefaultValue": true,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.trimAutoWhitespace": {
+            "type": "boolean",
+            "default": true,
+            "description": "Remove trailing auto inserted whitespace.",
+            "defaultDefaultValue": true,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.largeFileOptimizations": {
+            "type": "boolean",
+            "default": true,
+            "description": "Special handling for large files to disable certain memory intensive features.",
+            "defaultDefaultValue": true,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.wordBasedSuggestions": {
+            "type": "boolean",
+            "default": true,
+            "description": "Controls whether completions should be computed based on words in the document.",
+            "defaultDefaultValue": true,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.wordBasedSuggestionsMode": {
+            "enum": [
+                "currentDocument",
+                "matchingDocuments",
+                "allDocuments"
+            ],
+            "default": "matchingDocuments",
+            "enumDescriptions": [
+                "Only suggest words from the active document.",
+                "Suggest words from all open documents of the same language.",
+                "Suggest words from all open documents."
+            ],
+            "description": "Controls from which documents word based completions are computed.",
+            "defaultDefaultValue": "matchingDocuments",
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.semanticHighlighting.enabled": {
+            "enum": [
+                true,
+                false,
+                "configuredByTheme"
+            ],
+            "enumDescriptions": [
+                "Semantic highlighting enabled for all color themes.",
+                "Semantic highlighting disabled for all color themes.",
+                "Semantic highlighting is configured by the current color theme's `semanticHighlighting` setting."
+            ],
+            "default": "configuredByTheme",
+            "description": "Controls whether the semanticHighlighting is shown for the languages that support it.",
+            "defaultDefaultValue": "configuredByTheme",
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.stablePeek": {
+            "type": "boolean",
+            "default": false,
+            "markdownDescription": "Keep peek editors open even when double clicking their content or when hitting `Escape`.",
+            "defaultDefaultValue": false,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.maxTokenizationLineLength": {
+            "type": "integer",
+            "default": 20000,
+            "description": "Lines above this length will not be tokenized for performance reasons",
+            "defaultDefaultValue": 20000,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.language.brackets": {
+            "type": [
+                "array",
+                "null"
+            ],
+            "default": null,
+            "description": "Defines the bracket symbols that increase or decrease the indentation.",
+            "items": {
+                "type": "array",
+                "items": [
+                    {
+                        "type": "string",
+                        "description": "The opening bracket character or string sequence."
+                    },
+                    {
+                        "type": "string",
+                        "description": "The closing bracket character or string sequence."
+                    }
+                ]
+            },
+            "defaultDefaultValue": null,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.language.colorizedBracketPairs": {
+            "type": [
+                "array",
+                "null"
+            ],
+            "default": null,
+            "description": "Defines the bracket pairs that are colorized by their nesting level if bracket pair colorization is enabled.",
+            "items": {
+                "type": "array",
+                "items": [
+                    {
+                        "type": "string",
+                        "description": "The opening bracket character or string sequence."
+                    },
+                    {
+                        "type": "string",
+                        "description": "The closing bracket character or string sequence."
+                    }
+                ]
+            },
+            "defaultDefaultValue": null,
+            "scope": 5,
+            "restricted": false
+        },
+        "diffEditor.maxComputationTime": {
+            "type": "number",
+            "default": 5000,
+            "description": "Timeout in milliseconds after which diff computation is cancelled. Use 0 for no timeout.",
+            "defaultDefaultValue": 5000,
+            "scope": 5,
+            "restricted": false
+        },
+        "diffEditor.maxFileSize": {
+            "type": "number",
+            "default": 50,
+            "description": "Maximum file size in MB for which to compute diffs. Use 0 for no limit.",
+            "defaultDefaultValue": 50,
+            "scope": 5,
+            "restricted": false
+        },
+        "diffEditor.renderSideBySide": {
+            "type": "boolean",
+            "default": true,
+            "description": "Controls whether the diff editor shows the diff side by side or inline.",
+            "defaultDefaultValue": true,
+            "scope": 5,
+            "restricted": false
+        },
+        "diffEditor.renderMarginRevertIcon": {
+            "type": "boolean",
+            "default": true,
+            "description": "When enabled, the diff editor shows arrows in its glyph margin to revert changes.",
+            "defaultDefaultValue": true,
+            "scope": 5,
+            "restricted": false
+        },
+        "diffEditor.ignoreTrimWhitespace": {
+            "type": "boolean",
+            "default": true,
+            "description": "When enabled, the diff editor ignores changes in leading or trailing whitespace.",
+            "defaultDefaultValue": true,
+            "scope": 5,
+            "restricted": false
+        },
+        "diffEditor.renderIndicators": {
+            "type": "boolean",
+            "default": true,
+            "description": "Controls whether the diff editor shows +/- indicators for added/removed changes.",
+            "defaultDefaultValue": true,
+            "scope": 5,
+            "restricted": false
+        },
+        "diffEditor.codeLens": {
+            "type": "boolean",
+            "default": false,
+            "description": "Controls whether the editor shows CodeLens.",
+            "defaultDefaultValue": false,
+            "scope": 5,
+            "restricted": false
+        },
+        "diffEditor.wordWrap": {
+            "type": "string",
+            "enum": [
+                "off",
+                "on",
+                "inherit"
+            ],
+            "default": "inherit",
+            "markdownEnumDescriptions": [
+                "Lines will never wrap.",
+                "Lines will wrap at the viewport width.",
+                "Lines will wrap according to the `#editor.wordWrap#` setting."
+            ],
+            "defaultDefaultValue": "inherit",
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.acceptSuggestionOnCommitCharacter": {
+            "markdownDescription": "Controls whether suggestions should be accepted on commit characters. For example, in JavaScript, the semi-colon (`;`) can be a commit character that accepts a suggestion and types that character.",
+            "type": "boolean",
+            "default": true,
+            "defaultDefaultValue": true,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.acceptSuggestionOnEnter": {
+            "markdownEnumDescriptions": [
+                "",
+                "Only accept a suggestion with `Enter` when it makes a textual change.",
+                ""
+            ],
+            "markdownDescription": "Controls whether suggestions should be accepted on `Enter`, in addition to `Tab`. Helps to avoid ambiguity between inserting new lines or accepting suggestions.",
+            "type": "string",
+            "enum": [
+                "on",
+                "smart",
+                "off"
+            ],
+            "default": "on",
+            "defaultDefaultValue": "on",
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.accessibilitySupport": {
+            "type": "string",
+            "enum": [
+                "auto",
+                "on",
+                "off"
+            ],
+            "enumDescriptions": [
+                "The editor will use platform APIs to detect when a Screen Reader is attached.",
+                "The editor will be permanently optimized for usage with a Screen Reader. Word wrapping will be disabled.",
+                "The editor will never be optimized for usage with a Screen Reader."
+            ],
+            "default": "auto",
+            "description": "Controls whether the editor should run in a mode where it is optimized for screen readers. Setting to on will disable word wrapping.",
+            "defaultDefaultValue": "auto",
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.accessibilityPageSize": {
+            "description": "Controls the number of lines in the editor that can be read out by a screen reader at once. When we detect a screen reader we automatically set the default to be 500. Warning: this has a performance implication for numbers larger than the default.",
+            "type": "integer",
+            "default": 10,
+            "minimum": 1,
+            "maximum": 1073741824,
+            "defaultDefaultValue": 10,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.autoClosingBrackets": {
+            "enumDescriptions": [
+                "",
+                "Use language configurations to determine when to autoclose brackets.",
+                "Autoclose brackets only when the cursor is to the left of whitespace.",
+                ""
+            ],
+            "description": "Controls whether the editor should automatically close brackets after the user adds an opening bracket.",
+            "type": "string",
+            "enum": [
+                "always",
+                "languageDefined",
+                "beforeWhitespace",
+                "never"
+            ],
+            "default": "languageDefined",
+            "defaultDefaultValue": "languageDefined",
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.autoClosingDelete": {
+            "enumDescriptions": [
+                "",
+                "Remove adjacent closing quotes or brackets only if they were automatically inserted.",
+                ""
+            ],
+            "description": "Controls whether the editor should remove adjacent closing quotes or brackets when deleting.",
+            "type": "string",
+            "enum": [
+                "always",
+                "auto",
+                "never"
+            ],
+            "default": "auto",
+            "defaultDefaultValue": "auto",
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.autoClosingOvertype": {
+            "enumDescriptions": [
+                "",
+                "Type over closing quotes or brackets only if they were automatically inserted.",
+                ""
+            ],
+            "description": "Controls whether the editor should type over closing quotes or brackets.",
+            "type": "string",
+            "enum": [
+                "always",
+                "auto",
+                "never"
+            ],
+            "default": "auto",
+            "defaultDefaultValue": "auto",
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.autoClosingQuotes": {
+            "enumDescriptions": [
+                "",
+                "Use language configurations to determine when to autoclose quotes.",
+                "Autoclose quotes only when the cursor is to the left of whitespace.",
+                ""
+            ],
+            "description": "Controls whether the editor should automatically close quotes after the user adds an opening quote.",
+            "type": "string",
+            "enum": [
+                "always",
+                "languageDefined",
+                "beforeWhitespace",
+                "never"
+            ],
+            "default": "languageDefined",
+            "defaultDefaultValue": "languageDefined",
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.autoIndent": {
+            "enumDescriptions": [
+                "The editor will not insert indentation automatically.",
+                "The editor will keep the current line's indentation.",
+                "The editor will keep the current line's indentation and honor language defined brackets.",
+                "The editor will keep the current line's indentation, honor language defined brackets and invoke special onEnterRules defined by languages.",
+                "The editor will keep the current line's indentation, honor language defined brackets, invoke special onEnterRules defined by languages, and honor indentationRules defined by languages."
+            ],
+            "description": "Controls whether the editor should automatically adjust the indentation when users type, paste, move or indent lines.",
+            "type": "string",
+            "enum": [
+                "none",
+                "keep",
+                "brackets",
+                "advanced",
+                "full"
+            ],
+            "default": "full",
+            "defaultDefaultValue": "full",
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.autoSurround": {
+            "enumDescriptions": [
+                "Use language configurations to determine when to automatically surround selections.",
+                "Surround with quotes but not brackets.",
+                "Surround with brackets but not quotes.",
+                ""
+            ],
+            "description": "Controls whether the editor should automatically surround selections when typing quotes or brackets.",
+            "type": "string",
+            "enum": [
+                "languageDefined",
+                "quotes",
+                "brackets",
+                "never"
+            ],
+            "default": "languageDefined",
+            "defaultDefaultValue": "languageDefined",
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.bracketPairColorization.enabled": {
+            "type": "boolean",
+            "default": true,
+            "markdownDescription": "Controls whether bracket pair colorization is enabled or not. Use `#workbench.colorCustomizations#` to override the bracket highlight colors.",
+            "defaultDefaultValue": true,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.bracketPairColorization.independentColorPoolPerBracketType": {
+            "type": "boolean",
+            "default": false,
+            "description": "Controls whether each bracket type has its own independent color pool.",
+            "defaultDefaultValue": false,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.guides.bracketPairs": {
+            "type": [
+                "boolean",
+                "string"
+            ],
+            "enum": [
+                true,
+                "active",
+                false
+            ],
+            "enumDescriptions": [
+                "Enables bracket pair guides.",
+                "Enables bracket pair guides only for the active bracket pair.",
+                "Disables bracket pair guides."
+            ],
+            "default": false,
+            "description": "Controls whether bracket pair guides are enabled or not.",
+            "defaultDefaultValue": false,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.guides.bracketPairsHorizontal": {
+            "type": [
+                "boolean",
+                "string"
+            ],
+            "enum": [
+                true,
+                "active",
+                false
+            ],
+            "enumDescriptions": [
+                "Enables horizontal guides as addition to vertical bracket pair guides.",
+                "Enables horizontal guides only for the active bracket pair.",
+                "Disables horizontal bracket pair guides."
+            ],
+            "default": "active",
+            "description": "Controls whether horizontal bracket pair guides are enabled or not.",
+            "defaultDefaultValue": "active",
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.guides.highlightActiveBracketPair": {
+            "type": "boolean",
+            "default": true,
+            "description": "Controls whether the editor should highlight the active bracket pair.",
+            "defaultDefaultValue": true,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.guides.indentation": {
+            "type": "boolean",
+            "default": true,
+            "description": "Controls whether the editor should render indent guides.",
+            "defaultDefaultValue": true,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.guides.highlightActiveIndentation": {
+            "type": [
+                "boolean",
+                "string"
+            ],
+            "enum": [
+                true,
+                "always",
+                false
+            ],
+            "enumDescriptions": [
+                "Highlights the active indent guide.",
+                "Highlights the active indent guide even if bracket guides are highlighted.",
+                "Do not highlight the active indent guide."
+            ],
+            "default": true,
+            "description": "Controls whether the editor should highlight the active indent guide.",
+            "defaultDefaultValue": true,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.codeLens": {
+            "description": "Controls whether the editor shows CodeLens.",
+            "type": "boolean",
+            "default": true,
+            "defaultDefaultValue": true,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.codeLensFontFamily": {
+            "description": "Controls the font family for CodeLens.",
+            "type": "string",
+            "default": "",
+            "defaultDefaultValue": "",
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.codeLensFontSize": {
+            "type": "integer",
+            "default": 0,
+            "minimum": 0,
+            "maximum": 100,
+            "markdownDescription": "Controls the font size in pixels for CodeLens. When set to `0`, 90% of `#editor.fontSize#` is used.",
+            "defaultDefaultValue": 0,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.colorDecorators": {
+            "description": "Controls whether the editor should render the inline color decorators and color picker.",
+            "type": "boolean",
+            "default": true,
+            "defaultDefaultValue": true,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.columnSelection": {
+            "description": "Enable that the selection with the mouse and keys is doing column selection.",
+            "type": "boolean",
+            "default": false,
+            "defaultDefaultValue": false,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.comments.insertSpace": {
+            "type": "boolean",
+            "default": true,
+            "description": "Controls whether a space character is inserted when commenting.",
+            "defaultDefaultValue": true,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.comments.ignoreEmptyLines": {
+            "type": "boolean",
+            "default": true,
+            "description": "Controls if empty lines should be ignored with toggle, add or remove actions for line comments.",
+            "defaultDefaultValue": true,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.copyWithSyntaxHighlighting": {
+            "description": "Controls whether syntax highlighting should be copied into the clipboard.",
+            "type": "boolean",
+            "default": true,
+            "defaultDefaultValue": true,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.cursorBlinking": {
+            "description": "Control the cursor animation style.",
+            "type": "string",
+            "enum": [
+                "blink",
+                "smooth",
+                "phase",
+                "expand",
+                "solid"
+            ],
+            "default": "blink",
+            "defaultDefaultValue": "blink",
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.cursorSmoothCaretAnimation": {
+            "description": "Controls whether the smooth caret animation should be enabled.",
+            "type": "boolean",
+            "default": false,
+            "defaultDefaultValue": false,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.cursorStyle": {
+            "description": "Controls the cursor style.",
+            "type": "string",
+            "enum": [
+                "line",
+                "block",
+                "underline",
+                "line-thin",
+                "block-outline",
+                "underline-thin"
+            ],
+            "default": "line",
+            "defaultDefaultValue": "line",
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.cursorSurroundingLines": {
+            "description": "Controls the minimal number of visible leading and trailing lines surrounding the cursor. Known as 'scrollOff' or 'scrollOffset' in some other editors.",
+            "type": "integer",
+            "default": 0,
+            "minimum": 0,
+            "maximum": 1073741824,
+            "defaultDefaultValue": 0,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.cursorSurroundingLinesStyle": {
+            "enumDescriptions": [
+                "`cursorSurroundingLines` is enforced only when triggered via the keyboard or API.",
+                "`cursorSurroundingLines` is enforced always."
+            ],
+            "description": "Controls when `cursorSurroundingLines` should be enforced.",
+            "type": "string",
+            "enum": [
+                "default",
+                "all"
+            ],
+            "default": "default",
+            "defaultDefaultValue": "default",
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.cursorWidth": {
+            "markdownDescription": "Controls the width of the cursor when `#editor.cursorStyle#` is set to `line`.",
+            "type": "integer",
+            "default": 0,
+            "minimum": 0,
+            "maximum": 1073741824,
+            "defaultDefaultValue": 0,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.dragAndDrop": {
+            "description": "Controls whether the editor should allow moving selections via drag and drop.",
+            "type": "boolean",
+            "default": true,
+            "defaultDefaultValue": true,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.emptySelectionClipboard": {
+            "description": "Controls whether copying without a selection copies the current line.",
+            "type": "boolean",
+            "default": true,
+            "defaultDefaultValue": true,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.fastScrollSensitivity": {
+            "markdownDescription": "Scrolling speed multiplier when pressing `Alt`.",
+            "type": "number",
+            "default": 5,
+            "defaultDefaultValue": 5,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.find.cursorMoveOnType": {
+            "type": "boolean",
+            "default": true,
+            "description": "Controls whether the cursor should jump to find matches while typing.",
+            "defaultDefaultValue": true,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.find.seedSearchStringFromSelection": {
+            "type": "string",
+            "enum": [
+                "never",
+                "always",
+                "selection"
+            ],
+            "default": "always",
+            "enumDescriptions": [
+                "Never seed search string from the editor selection.",
+                "Always seed search string from the editor selection, including word at cursor position.",
+                "Only seed search string from the editor selection."
+            ],
+            "description": "Controls whether the search string in the Find Widget is seeded from the editor selection.",
+            "defaultDefaultValue": "always",
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.find.autoFindInSelection": {
+            "type": "string",
+            "enum": [
+                "never",
+                "always",
+                "multiline"
+            ],
+            "default": "never",
+            "enumDescriptions": [
+                "Never turn on Find in Selection automatically (default).",
+                "Always turn on Find in Selection automatically.",
+                "Turn on Find in Selection automatically when multiple lines of content are selected."
+            ],
+            "description": "Controls the condition for turning on Find in Selection automatically.",
+            "defaultDefaultValue": "never",
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.find.addExtraSpaceOnTop": {
+            "type": "boolean",
+            "default": true,
+            "description": "Controls whether the Find Widget should add extra lines on top of the editor. When true, you can scroll beyond the first line when the Find Widget is visible.",
+            "defaultDefaultValue": true,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.find.loop": {
+            "type": "boolean",
+            "default": true,
+            "description": "Controls whether the search automatically restarts from the beginning (or the end) when no further matches can be found.",
+            "defaultDefaultValue": true,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.folding": {
+            "description": "Controls whether the editor has code folding enabled.",
+            "type": "boolean",
+            "default": true,
+            "defaultDefaultValue": true,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.foldingStrategy": {
+            "enumDescriptions": [
+                "Use a language-specific folding strategy if available, else the indentation-based one.",
+                "Use the indentation-based folding strategy."
+            ],
+            "description": "Controls the strategy for computing folding ranges.",
+            "type": "string",
+            "enum": [
+                "auto",
+                "indentation"
+            ],
+            "default": "auto",
+            "defaultDefaultValue": "auto",
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.foldingHighlight": {
+            "description": "Controls whether the editor should highlight folded ranges.",
+            "type": "boolean",
+            "default": true,
+            "defaultDefaultValue": true,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.foldingImportsByDefault": {
+            "description": "Controls whether the editor automatically collapses import ranges.",
+            "type": "boolean",
+            "default": false,
+            "defaultDefaultValue": false,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.foldingMaximumRegions": {
+            "description": "The maximum number of foldable regions. Increasing this value may result in the editor becoming less responsive when the current source has a large number of foldable regions.",
+            "type": "integer",
+            "default": 5000,
+            "minimum": 10,
+            "maximum": 65000,
+            "defaultDefaultValue": 5000,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.unfoldOnClickAfterEndOfLine": {
+            "description": "Controls whether clicking on the empty content after a folded line will unfold the line.",
+            "type": "boolean",
+            "default": false,
+            "defaultDefaultValue": false,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.fontFamily": {
+            "description": "Controls the font family.",
+            "type": "string",
+            "default": "Consolas, 'Courier New', monospace",
+            "defaultDefaultValue": "Consolas, 'Courier New', monospace",
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.fontLigatures": {
+            "anyOf": [
+                {
+                    "type": "boolean",
+                    "description": "Enables/Disables font ligatures ('calt' and 'liga' font features). Change this to a string for fine-grained control of the 'font-feature-settings' CSS property."
+                },
+                {
+                    "type": "string",
+                    "description": "Explicit 'font-feature-settings' CSS property. A boolean can be passed instead if one only needs to turn on/off ligatures."
+                }
+            ],
+            "description": "Configures font ligatures or font features. Can be either a boolean to enable/disable ligatures or a string for the value of the CSS 'font-feature-settings' property.",
+            "default": false,
+            "defaultDefaultValue": false,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.fontSize": {
+            "type": "number",
+            "minimum": 6,
+            "maximum": 100,
+            "default": 14,
+            "description": "Controls the font size in pixels.",
+            "defaultDefaultValue": 14,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.fontWeight": {
+            "anyOf": [
+                {
+                    "type": "number",
+                    "minimum": 1,
+                    "maximum": 1000,
+                    "errorMessage": "Only \"normal\" and \"bold\" keywords or numbers between 1 and 1000 are allowed."
+                },
+                {
+                    "type": "string",
+                    "pattern": "^(normal|bold|1000|[1-9][0-9]{0,2})$"
+                },
+                {
+                    "enum": [
+                        "normal",
+                        "bold",
+                        "100",
+                        "200",
+                        "300",
+                        "400",
+                        "500",
+                        "600",
+                        "700",
+                        "800",
+                        "900"
+                    ]
+                }
+            ],
+            "default": "normal",
+            "description": "Controls the font weight. Accepts \"normal\" and \"bold\" keywords or numbers between 1 and 1000.",
+            "defaultDefaultValue": "normal",
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.formatOnPaste": {
+            "description": "Controls whether the editor should automatically format the pasted content. A formatter must be available and the formatter should be able to format a range in a document.",
+            "type": "boolean",
+            "default": false,
+            "defaultDefaultValue": false,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.formatOnType": {
+            "description": "Controls whether the editor should automatically format the line after typing.",
+            "type": "boolean",
+            "default": false,
+            "defaultDefaultValue": false,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.glyphMargin": {
+            "description": "Controls whether the editor should render the vertical glyph margin. Glyph margin is mostly used for debugging.",
+            "type": "boolean",
+            "default": true,
+            "defaultDefaultValue": true,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.gotoLocation.multiple": {
+            "deprecationMessage": "This setting is deprecated, please use separate settings like 'editor.editor.gotoLocation.multipleDefinitions' or 'editor.editor.gotoLocation.multipleImplementations' instead.",
+            "default": null,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.gotoLocation.multipleDefinitions": {
+            "description": "Controls the behavior the 'Go to Definition'-command when multiple target locations exist.",
+            "type": "string",
+            "enum": [
+                "peek",
+                "gotoAndPeek",
+                "goto"
+            ],
+            "default": "peek",
+            "enumDescriptions": [
+                "Show peek view of the results (default)",
+                "Go to the primary result and show a peek view",
+                "Go to the primary result and enable peek-less navigation to others"
+            ],
+            "defaultDefaultValue": "peek",
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.gotoLocation.multipleTypeDefinitions": {
+            "description": "Controls the behavior the 'Go to Type Definition'-command when multiple target locations exist.",
+            "type": "string",
+            "enum": [
+                "peek",
+                "gotoAndPeek",
+                "goto"
+            ],
+            "default": "peek",
+            "enumDescriptions": [
+                "Show peek view of the results (default)",
+                "Go to the primary result and show a peek view",
+                "Go to the primary result and enable peek-less navigation to others"
+            ],
+            "defaultDefaultValue": "peek",
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.gotoLocation.multipleDeclarations": {
+            "description": "Controls the behavior the 'Go to Declaration'-command when multiple target locations exist.",
+            "type": "string",
+            "enum": [
+                "peek",
+                "gotoAndPeek",
+                "goto"
+            ],
+            "default": "peek",
+            "enumDescriptions": [
+                "Show peek view of the results (default)",
+                "Go to the primary result and show a peek view",
+                "Go to the primary result and enable peek-less navigation to others"
+            ],
+            "defaultDefaultValue": "peek",
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.gotoLocation.multipleImplementations": {
+            "description": "Controls the behavior the 'Go to Implementations'-command when multiple target locations exist.",
+            "type": "string",
+            "enum": [
+                "peek",
+                "gotoAndPeek",
+                "goto"
+            ],
+            "default": "peek",
+            "enumDescriptions": [
+                "Show peek view of the results (default)",
+                "Go to the primary result and show a peek view",
+                "Go to the primary result and enable peek-less navigation to others"
+            ],
+            "defaultDefaultValue": "peek",
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.gotoLocation.multipleReferences": {
+            "description": "Controls the behavior the 'Go to References'-command when multiple target locations exist.",
+            "type": "string",
+            "enum": [
+                "peek",
+                "gotoAndPeek",
+                "goto"
+            ],
+            "default": "peek",
+            "enumDescriptions": [
+                "Show peek view of the results (default)",
+                "Go to the primary result and show a peek view",
+                "Go to the primary result and enable peek-less navigation to others"
+            ],
+            "defaultDefaultValue": "peek",
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.gotoLocation.alternativeDefinitionCommand": {
+            "type": "string",
+            "default": "editor.action.goToReferences",
+            "enum": [
+                "",
+                "editor.action.referenceSearch.trigger",
+                "editor.action.goToReferences",
+                "editor.action.peekImplementation",
+                "editor.action.goToImplementation",
+                "editor.action.peekTypeDefinition",
+                "editor.action.goToTypeDefinition",
+                "editor.action.peekDeclaration",
+                "editor.action.revealDeclaration",
+                "editor.action.peekDefinition",
+                "editor.action.revealDefinitionAside",
+                "editor.action.revealDefinition"
+            ],
+            "description": "Alternative command id that is being executed when the result of 'Go to Definition' is the current location.",
+            "defaultDefaultValue": "editor.action.goToReferences",
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.gotoLocation.alternativeTypeDefinitionCommand": {
+            "type": "string",
+            "default": "editor.action.goToReferences",
+            "enum": [
+                "",
+                "editor.action.referenceSearch.trigger",
+                "editor.action.goToReferences",
+                "editor.action.peekImplementation",
+                "editor.action.goToImplementation",
+                "editor.action.peekTypeDefinition",
+                "editor.action.goToTypeDefinition",
+                "editor.action.peekDeclaration",
+                "editor.action.revealDeclaration",
+                "editor.action.peekDefinition",
+                "editor.action.revealDefinitionAside",
+                "editor.action.revealDefinition"
+            ],
+            "description": "Alternative command id that is being executed when the result of 'Go to Type Definition' is the current location.",
+            "defaultDefaultValue": "editor.action.goToReferences",
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.gotoLocation.alternativeDeclarationCommand": {
+            "type": "string",
+            "default": "editor.action.goToReferences",
+            "enum": [
+                "",
+                "editor.action.referenceSearch.trigger",
+                "editor.action.goToReferences",
+                "editor.action.peekImplementation",
+                "editor.action.goToImplementation",
+                "editor.action.peekTypeDefinition",
+                "editor.action.goToTypeDefinition",
+                "editor.action.peekDeclaration",
+                "editor.action.revealDeclaration",
+                "editor.action.peekDefinition",
+                "editor.action.revealDefinitionAside",
+                "editor.action.revealDefinition"
+            ],
+            "description": "Alternative command id that is being executed when the result of 'Go to Declaration' is the current location.",
+            "defaultDefaultValue": "editor.action.goToReferences",
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.gotoLocation.alternativeImplementationCommand": {
+            "type": "string",
+            "default": "",
+            "enum": [
+                "",
+                "editor.action.referenceSearch.trigger",
+                "editor.action.goToReferences",
+                "editor.action.peekImplementation",
+                "editor.action.goToImplementation",
+                "editor.action.peekTypeDefinition",
+                "editor.action.goToTypeDefinition",
+                "editor.action.peekDeclaration",
+                "editor.action.revealDeclaration",
+                "editor.action.peekDefinition",
+                "editor.action.revealDefinitionAside",
+                "editor.action.revealDefinition"
+            ],
+            "description": "Alternative command id that is being executed when the result of 'Go to Implementation' is the current location.",
+            "defaultDefaultValue": "",
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.gotoLocation.alternativeReferenceCommand": {
+            "type": "string",
+            "default": "",
+            "enum": [
+                "",
+                "editor.action.referenceSearch.trigger",
+                "editor.action.goToReferences",
+                "editor.action.peekImplementation",
+                "editor.action.goToImplementation",
+                "editor.action.peekTypeDefinition",
+                "editor.action.goToTypeDefinition",
+                "editor.action.peekDeclaration",
+                "editor.action.revealDeclaration",
+                "editor.action.peekDefinition",
+                "editor.action.revealDefinitionAside",
+                "editor.action.revealDefinition"
+            ],
+            "description": "Alternative command id that is being executed when the result of 'Go to Reference' is the current location.",
+            "defaultDefaultValue": "",
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.hideCursorInOverviewRuler": {
+            "description": "Controls whether the cursor should be hidden in the overview ruler.",
+            "type": "boolean",
+            "default": false,
+            "defaultDefaultValue": false,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.hover.enabled": {
+            "type": "boolean",
+            "default": true,
+            "description": "Controls whether the hover is shown.",
+            "defaultDefaultValue": true,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.hover.delay": {
+            "type": "number",
+            "default": 300,
+            "minimum": 0,
+            "maximum": 10000,
+            "description": "Controls the delay in milliseconds after which the hover is shown.",
+            "defaultDefaultValue": 300,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.hover.sticky": {
+            "type": "boolean",
+            "default": true,
+            "description": "Controls whether the hover should remain visible when mouse is moved over it.",
+            "defaultDefaultValue": true,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.hover.above": {
+            "type": "boolean",
+            "default": true,
+            "description": "Prefer showing hovers above the line, if there's space.",
+            "defaultDefaultValue": true,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.inlineSuggest.enabled": {
+            "type": "boolean",
+            "default": true,
+            "description": "Controls whether to automatically show inline suggestions in the editor.",
+            "defaultDefaultValue": true,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.letterSpacing": {
+            "description": "Controls the letter spacing in pixels.",
+            "type": "number",
+            "default": 0,
+            "defaultDefaultValue": 0,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.lightbulb.enabled": {
+            "type": "boolean",
+            "default": true,
+            "description": "Enables the code action lightbulb in the editor.",
+            "defaultDefaultValue": true,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.lineHeight": {
+            "markdownDescription": "Controls the line height. \n - Use 0 to automatically compute the line height from the font size.\n - Values between 0 and 8 will be used as a multiplier with the font size.\n - Values greater than or equal to 8 will be used as effective values.",
+            "type": "number",
+            "default": 0,
+            "defaultDefaultValue": 0,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.lineNumbers": {
+            "type": "string",
+            "enum": [
+                "off",
+                "on",
+                "relative",
+                "interval"
+            ],
+            "enumDescriptions": [
+                "Line numbers are not rendered.",
+                "Line numbers are rendered as absolute number.",
+                "Line numbers are rendered as distance in lines to cursor position.",
+                "Line numbers are rendered every 10 lines."
+            ],
+            "default": "on",
+            "description": "Controls the display of line numbers.",
+            "defaultDefaultValue": "on",
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.linkedEditing": {
+            "description": "Controls whether the editor has linked editing enabled. Depending on the language, related symbols, e.g. HTML tags, are updated while editing.",
+            "type": "boolean",
+            "default": false,
+            "defaultDefaultValue": false,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.links": {
+            "description": "Controls whether the editor should detect links and make them clickable.",
+            "type": "boolean",
+            "default": true,
+            "defaultDefaultValue": true,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.matchBrackets": {
+            "description": "Highlight matching brackets.",
+            "type": "string",
+            "enum": [
+                "always",
+                "near",
+                "never"
+            ],
+            "default": "always",
+            "defaultDefaultValue": "always",
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.minimap.enabled": {
+            "type": "boolean",
+            "default": true,
+            "description": "Controls whether the minimap is shown.",
+            "defaultDefaultValue": true,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.minimap.autohide": {
+            "type": "boolean",
+            "default": false,
+            "description": "Controls whether the minimap is hidden automatically.",
+            "defaultDefaultValue": false,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.minimap.size": {
+            "type": "string",
+            "enum": [
+                "proportional",
+                "fill",
+                "fit"
+            ],
+            "enumDescriptions": [
+                "The minimap has the same size as the editor contents (and might scroll).",
+                "The minimap will stretch or shrink as necessary to fill the height of the editor (no scrolling).",
+                "The minimap will shrink as necessary to never be larger than the editor (no scrolling)."
+            ],
+            "default": "proportional",
+            "description": "Controls the size of the minimap.",
+            "defaultDefaultValue": "proportional",
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.minimap.side": {
+            "type": "string",
+            "enum": [
+                "left",
+                "right"
+            ],
+            "default": "right",
+            "description": "Controls the side where to render the minimap.",
+            "defaultDefaultValue": "right",
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.minimap.showSlider": {
+            "type": "string",
+            "enum": [
+                "always",
+                "mouseover"
+            ],
+            "default": "mouseover",
+            "description": "Controls when the minimap slider is shown.",
+            "defaultDefaultValue": "mouseover",
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.minimap.scale": {
+            "type": "number",
+            "default": 1,
+            "minimum": 1,
+            "maximum": 3,
+            "enum": [
+                1,
+                2,
+                3
+            ],
+            "description": "Scale of content drawn in the minimap: 1, 2 or 3.",
+            "defaultDefaultValue": 1,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.minimap.renderCharacters": {
+            "type": "boolean",
+            "default": true,
+            "description": "Render the actual characters on a line as opposed to color blocks.",
+            "defaultDefaultValue": true,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.minimap.maxColumn": {
+            "type": "number",
+            "default": 120,
+            "description": "Limit the width of the minimap to render at most a certain number of columns.",
+            "defaultDefaultValue": 120,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.mouseWheelScrollSensitivity": {
+            "markdownDescription": "A multiplier to be used on the `deltaX` and `deltaY` of mouse wheel scroll events.",
+            "type": "number",
+            "default": 1,
+            "defaultDefaultValue": 1,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.mouseWheelZoom": {
+            "markdownDescription": "Zoom the font of the editor when using mouse wheel and holding `Ctrl`.",
+            "type": "boolean",
+            "default": false,
+            "defaultDefaultValue": false,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.multiCursorMergeOverlapping": {
+            "description": "Merge multiple cursors when they are overlapping.",
+            "type": "boolean",
+            "default": true,
+            "defaultDefaultValue": true,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.multiCursorModifier": {
+            "markdownEnumDescriptions": [
+                "Maps to `Control` on Windows and Linux and to `Command` on macOS.",
+                "Maps to `Alt` on Windows and Linux and to `Option` on macOS."
+            ],
+            "markdownDescription": "The modifier to be used to add multiple cursors with the mouse. The Go to Definition and Open Link mouse gestures will adapt such that they do not conflict with the multicursor modifier. [Read more](https://code.visualstudio.com/docs/editor/codebasics#_multicursor-modifier).",
+            "type": "string",
+            "enum": [
+                "ctrlCmd",
+                "alt"
+            ],
+            "default": "alt",
+            "defaultDefaultValue": "alt",
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.multiCursorPaste": {
+            "markdownEnumDescriptions": [
+                "Each cursor pastes a single line of the text.",
+                "Each cursor pastes the full text."
+            ],
+            "markdownDescription": "Controls pasting when the line count of the pasted text matches the cursor count.",
+            "type": "string",
+            "enum": [
+                "spread",
+                "full"
+            ],
+            "default": "spread",
+            "defaultDefaultValue": "spread",
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.occurrencesHighlight": {
+            "description": "Controls whether the editor should highlight semantic symbol occurrences.",
+            "type": "boolean",
+            "default": true,
+            "defaultDefaultValue": true,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.overviewRulerBorder": {
+            "description": "Controls whether a border should be drawn around the overview ruler.",
+            "type": "boolean",
+            "default": true,
+            "defaultDefaultValue": true,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.padding.top": {
+            "type": "number",
+            "default": 0,
+            "minimum": 0,
+            "maximum": 1000,
+            "description": "Controls the amount of space between the top edge of the editor and the first line.",
+            "defaultDefaultValue": 0,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.padding.bottom": {
+            "type": "number",
+            "default": 0,
+            "minimum": 0,
+            "maximum": 1000,
+            "description": "Controls the amount of space between the bottom edge of the editor and the last line.",
+            "defaultDefaultValue": 0,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.parameterHints.enabled": {
+            "type": "boolean",
+            "default": true,
+            "description": "Enables a pop-up that shows parameter documentation and type information as you type.",
+            "defaultDefaultValue": true,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.parameterHints.cycle": {
+            "type": "boolean",
+            "default": false,
+            "description": "Controls whether the parameter hints menu cycles or closes when reaching the end of the list.",
+            "defaultDefaultValue": false,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.peekWidgetDefaultFocus": {
+            "enumDescriptions": [
+                "Focus the tree when opening peek",
+                "Focus the editor when opening peek"
+            ],
+            "description": "Controls whether to focus the inline editor or the tree in the peek widget.",
+            "type": "string",
+            "enum": [
+                "tree",
+                "editor"
+            ],
+            "default": "tree",
+            "defaultDefaultValue": "tree",
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.definitionLinkOpensInPeek": {
+            "description": "Controls whether the Go to Definition mouse gesture always opens the peek widget.",
+            "type": "boolean",
+            "default": false,
+            "defaultDefaultValue": false,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.quickSuggestions": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "strings": {
+                    "anyOf": [
+                        {
+                            "type": "boolean"
+                        },
+                        {
+                            "type": "string",
+                            "enum": [
+                                "on",
+                                "inline",
+                                "off"
+                            ],
+                            "enumDescriptions": [
+                                "Quick suggestions show inside the suggest widget",
+                                "Quick suggestions show as ghost text",
+                                "Quick suggestions are disabled"
+                            ]
+                        }
+                    ],
+                    "default": "off",
+                    "description": "Enable quick suggestions inside strings."
+                },
+                "comments": {
+                    "anyOf": [
+                        {
+                            "type": "boolean"
+                        },
+                        {
+                            "type": "string",
+                            "enum": [
+                                "on",
+                                "inline",
+                                "off"
+                            ],
+                            "enumDescriptions": [
+                                "Quick suggestions show inside the suggest widget",
+                                "Quick suggestions show as ghost text",
+                                "Quick suggestions are disabled"
+                            ]
+                        }
+                    ],
+                    "default": "off",
+                    "description": "Enable quick suggestions inside comments."
+                },
+                "other": {
+                    "anyOf": [
+                        {
+                            "type": "boolean"
+                        },
+                        {
+                            "type": "string",
+                            "enum": [
+                                "on",
+                                "inline",
+                                "off"
+                            ],
+                            "enumDescriptions": [
+                                "Quick suggestions show inside the suggest widget",
+                                "Quick suggestions show as ghost text",
+                                "Quick suggestions are disabled"
+                            ]
+                        }
+                    ],
+                    "default": "on",
+                    "description": "Enable quick suggestions outside of strings and comments."
+                }
+            },
+            "default": {
+                "other": "on",
+                "comments": "off",
+                "strings": "off"
+            },
+            "markdownDescription": "Controls whether suggestions should automatically show up while typing. This can be controlled for typing in comments, strings, and other code. Quick suggestion can be configured to show as ghost text or with the suggest widget.",
+            "defaultDefaultValue": {
+                "other": "on",
+                "comments": "off",
+                "strings": "off"
+            },
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.quickSuggestionsDelay": {
+            "description": "Controls the delay in milliseconds after which quick suggestions will show up.",
+            "type": "integer",
+            "default": 10,
+            "minimum": 0,
+            "maximum": 1073741824,
+            "defaultDefaultValue": 10,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.renameOnType": {
+            "description": "Controls whether the editor auto renames on type.",
+            "markdownDeprecationMessage": "Deprecated, use `editor.linkedEditing` instead.",
+            "type": "boolean",
+            "default": false,
+            "defaultDefaultValue": false,
+            "scope": 5,
+            "restricted": false,
+            "deprecationMessage": "Deprecated, use `editor.linkedEditing` instead."
+        },
+        "editor.renderControlCharacters": {
+            "description": "Controls whether the editor should render control characters.",
+            "restricted": true,
+            "type": "boolean",
+            "default": true,
+            "defaultDefaultValue": true,
+            "scope": 5
+        },
+        "editor.renderFinalNewline": {
+            "description": "Render last line number when the file ends with a newline.",
+            "type": "boolean",
+            "default": true,
+            "defaultDefaultValue": true,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.renderLineHighlight": {
+            "enumDescriptions": [
+                "",
+                "",
+                "",
+                "Highlights both the gutter and the current line."
+            ],
+            "description": "Controls how the editor should render the current line highlight.",
+            "type": "string",
+            "enum": [
+                "none",
+                "gutter",
+                "line",
+                "all"
+            ],
+            "default": "line",
+            "defaultDefaultValue": "line",
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.renderLineHighlightOnlyWhenFocus": {
+            "description": "Controls if the editor should render the current line highlight only when the editor is focused.",
+            "type": "boolean",
+            "default": false,
+            "defaultDefaultValue": false,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.renderWhitespace": {
+            "enumDescriptions": [
+                "",
+                "Render whitespace characters except for single spaces between words.",
+                "Render whitespace characters only on selected text.",
+                "Render only trailing whitespace characters.",
+                ""
+            ],
+            "description": "Controls how the editor should render whitespace characters.",
+            "type": "string",
+            "enum": [
+                "none",
+                "boundary",
+                "selection",
+                "trailing",
+                "all"
+            ],
+            "default": "selection",
+            "defaultDefaultValue": "selection",
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.roundedSelection": {
+            "description": "Controls whether selections should have rounded corners.",
+            "type": "boolean",
+            "default": true,
+            "defaultDefaultValue": true,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.rulers": {
+            "type": "array",
+            "items": {
+                "anyOf": [
+                    {
+                        "type": "number",
+                        "description": "Number of monospace characters at which this editor ruler will render."
+                    },
+                    {
+                        "type": [
+                            "object"
+                        ],
+                        "properties": {
+                            "column": {
+                                "type": "number",
+                                "description": "Number of monospace characters at which this editor ruler will render."
+                            },
+                            "color": {
+                                "type": "string",
+                                "description": "Color of this editor ruler.",
+                                "format": "color-hex"
+                            }
+                        }
+                    }
+                ]
+            },
+            "default": [],
+            "description": "Render vertical rulers after a certain number of monospace characters. Use multiple values for multiple rulers. No rulers are drawn if array is empty.",
+            "defaultDefaultValue": [],
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.scrollbar.vertical": {
+            "type": "string",
+            "enum": [
+                "auto",
+                "visible",
+                "hidden"
+            ],
+            "enumDescriptions": [
+                "The vertical scrollbar will be visible only when necessary.",
+                "The vertical scrollbar will always be visible.",
+                "The vertical scrollbar will always be hidden."
+            ],
+            "default": "auto",
+            "description": "Controls the visibility of the vertical scrollbar.",
+            "defaultDefaultValue": "auto",
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.scrollbar.horizontal": {
+            "type": "string",
+            "enum": [
+                "auto",
+                "visible",
+                "hidden"
+            ],
+            "enumDescriptions": [
+                "The horizontal scrollbar will be visible only when necessary.",
+                "The horizontal scrollbar will always be visible.",
+                "The horizontal scrollbar will always be hidden."
+            ],
+            "default": "auto",
+            "description": "Controls the visibility of the horizontal scrollbar.",
+            "defaultDefaultValue": "auto",
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.scrollbar.verticalScrollbarSize": {
+            "type": "number",
+            "default": 14,
+            "description": "The width of the vertical scrollbar.",
+            "defaultDefaultValue": 14,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.scrollbar.horizontalScrollbarSize": {
+            "type": "number",
+            "default": 12,
+            "description": "The height of the horizontal scrollbar.",
+            "defaultDefaultValue": 12,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.scrollbar.scrollByPage": {
+            "type": "boolean",
+            "default": false,
+            "description": "Controls whether clicks scroll by page or jump to click position.",
+            "defaultDefaultValue": false,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.scrollBeyondLastColumn": {
+            "description": "Controls the number of extra characters beyond which the editor will scroll horizontally.",
+            "type": "integer",
+            "default": 4,
+            "minimum": 0,
+            "maximum": 1073741824,
+            "defaultDefaultValue": 4,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.scrollBeyondLastLine": {
+            "description": "Controls whether the editor will scroll beyond the last line.",
+            "type": "boolean",
+            "default": true,
+            "defaultDefaultValue": true,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.scrollPredominantAxis": {
+            "description": "Scroll only along the predominant axis when scrolling both vertically and horizontally at the same time. Prevents horizontal drift when scrolling vertically on a trackpad.",
+            "type": "boolean",
+            "default": true,
+            "defaultDefaultValue": true,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.selectionHighlight": {
+            "description": "Controls whether the editor should highlight matches similar to the selection.",
+            "type": "boolean",
+            "default": true,
+            "defaultDefaultValue": true,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.showFoldingControls": {
+            "enumDescriptions": [
+                "Always show the folding controls.",
+                "Only show the folding controls when the mouse is over the gutter."
+            ],
+            "description": "Controls when the folding controls on the gutter are shown.",
+            "type": "string",
+            "enum": [
+                "always",
+                "mouseover"
+            ],
+            "default": "mouseover",
+            "defaultDefaultValue": "mouseover",
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.showUnused": {
+            "description": "Controls fading out of unused code.",
+            "type": "boolean",
+            "default": true,
+            "defaultDefaultValue": true,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.snippetSuggestions": {
+            "enumDescriptions": [
+                "Show snippet suggestions on top of other suggestions.",
+                "Show snippet suggestions below other suggestions.",
+                "Show snippets suggestions with other suggestions.",
+                "Do not show snippet suggestions."
+            ],
+            "description": "Controls whether snippets are shown with other suggestions and how they are sorted.",
+            "type": "string",
+            "enum": [
+                "top",
+                "bottom",
+                "inline",
+                "none"
+            ],
+            "default": "inline",
+            "defaultDefaultValue": "inline",
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.smartSelect.selectLeadingAndTrailingWhitespace": {
+            "description": "Whether leading and trailing whitespace should always be selected.",
+            "default": true,
+            "type": "boolean",
+            "defaultDefaultValue": true,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.smoothScrolling": {
+            "description": "Controls whether the editor will scroll using an animation.",
+            "type": "boolean",
+            "default": false,
+            "defaultDefaultValue": false,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.stickyTabStops": {
+            "description": "Emulate selection behavior of tab characters when using spaces for indentation. Selection will stick to tab stops.",
+            "type": "boolean",
+            "default": false,
+            "defaultDefaultValue": false,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.suggest.insertMode": {
+            "type": "string",
+            "enum": [
+                "insert",
+                "replace"
+            ],
+            "enumDescriptions": [
+                "Insert suggestion without overwriting text right of the cursor.",
+                "Insert suggestion and overwrite text right of the cursor."
+            ],
+            "default": "insert",
+            "description": "Controls whether words are overwritten when accepting completions. Note that this depends on extensions opting into this feature.",
+            "defaultDefaultValue": "insert",
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.suggest.filterGraceful": {
+            "type": "boolean",
+            "default": true,
+            "description": "Controls whether filtering and sorting suggestions accounts for small typos.",
+            "defaultDefaultValue": true,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.suggest.localityBonus": {
+            "type": "boolean",
+            "default": false,
+            "description": "Controls whether sorting favors words that appear close to the cursor.",
+            "defaultDefaultValue": false,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.suggest.shareSuggestSelections": {
+            "type": "boolean",
+            "default": false,
+            "markdownDescription": "Controls whether remembered suggestion selections are shared between multiple workspaces and windows (needs `#editor.suggestSelection#`).",
+            "defaultDefaultValue": false,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.suggest.snippetsPreventQuickSuggestions": {
+            "type": "boolean",
+            "default": true,
+            "description": "Controls whether an active snippet prevents quick suggestions.",
+            "defaultDefaultValue": true,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.suggest.showIcons": {
+            "type": "boolean",
+            "default": true,
+            "description": "Controls whether to show or hide icons in suggestions.",
+            "defaultDefaultValue": true,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.suggest.showStatusBar": {
+            "type": "boolean",
+            "default": false,
+            "description": "Controls the visibility of the status bar at the bottom of the suggest widget.",
+            "defaultDefaultValue": false,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.suggest.preview": {
+            "type": "boolean",
+            "default": false,
+            "description": "Controls whether to preview the suggestion outcome in the editor.",
+            "defaultDefaultValue": false,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.suggest.showInlineDetails": {
+            "type": "boolean",
+            "default": true,
+            "description": "Controls whether suggest details show inline with the label or only in the details widget",
+            "defaultDefaultValue": true,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.suggest.maxVisibleSuggestions": {
+            "type": "number",
+            "deprecationMessage": "This setting is deprecated. The suggest widget can now be resized.",
+            "default": 0,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.suggest.filteredTypes": {
+            "type": "object",
+            "deprecationMessage": "This setting is deprecated, please use separate settings like 'editor.suggest.showKeywords' or 'editor.suggest.showSnippets' instead.",
+            "default": {},
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.suggest.showMethods": {
+            "type": "boolean",
+            "default": true,
+            "markdownDescription": "When enabled IntelliSense shows `method`-suggestions.",
+            "defaultDefaultValue": true,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.suggest.showFunctions": {
+            "type": "boolean",
+            "default": true,
+            "markdownDescription": "When enabled IntelliSense shows `function`-suggestions.",
+            "defaultDefaultValue": true,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.suggest.showConstructors": {
+            "type": "boolean",
+            "default": true,
+            "markdownDescription": "When enabled IntelliSense shows `constructor`-suggestions.",
+            "defaultDefaultValue": true,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.suggest.showDeprecated": {
+            "type": "boolean",
+            "default": true,
+            "markdownDescription": "When enabled IntelliSense shows `deprecated`-suggestions.",
+            "defaultDefaultValue": true,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.suggest.showFields": {
+            "type": "boolean",
+            "default": true,
+            "markdownDescription": "When enabled IntelliSense shows `field`-suggestions.",
+            "defaultDefaultValue": true,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.suggest.showVariables": {
+            "type": "boolean",
+            "default": true,
+            "markdownDescription": "When enabled IntelliSense shows `variable`-suggestions.",
+            "defaultDefaultValue": true,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.suggest.showClasses": {
+            "type": "boolean",
+            "default": true,
+            "markdownDescription": "When enabled IntelliSense shows `class`-suggestions.",
+            "defaultDefaultValue": true,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.suggest.showStructs": {
+            "type": "boolean",
+            "default": true,
+            "markdownDescription": "When enabled IntelliSense shows `struct`-suggestions.",
+            "defaultDefaultValue": true,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.suggest.showInterfaces": {
+            "type": "boolean",
+            "default": true,
+            "markdownDescription": "When enabled IntelliSense shows `interface`-suggestions.",
+            "defaultDefaultValue": true,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.suggest.showModules": {
+            "type": "boolean",
+            "default": true,
+            "markdownDescription": "When enabled IntelliSense shows `module`-suggestions.",
+            "defaultDefaultValue": true,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.suggest.showProperties": {
+            "type": "boolean",
+            "default": true,
+            "markdownDescription": "When enabled IntelliSense shows `property`-suggestions.",
+            "defaultDefaultValue": true,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.suggest.showEvents": {
+            "type": "boolean",
+            "default": true,
+            "markdownDescription": "When enabled IntelliSense shows `event`-suggestions.",
+            "defaultDefaultValue": true,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.suggest.showOperators": {
+            "type": "boolean",
+            "default": true,
+            "markdownDescription": "When enabled IntelliSense shows `operator`-suggestions.",
+            "defaultDefaultValue": true,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.suggest.showUnits": {
+            "type": "boolean",
+            "default": true,
+            "markdownDescription": "When enabled IntelliSense shows `unit`-suggestions.",
+            "defaultDefaultValue": true,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.suggest.showValues": {
+            "type": "boolean",
+            "default": true,
+            "markdownDescription": "When enabled IntelliSense shows `value`-suggestions.",
+            "defaultDefaultValue": true,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.suggest.showConstants": {
+            "type": "boolean",
+            "default": true,
+            "markdownDescription": "When enabled IntelliSense shows `constant`-suggestions.",
+            "defaultDefaultValue": true,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.suggest.showEnums": {
+            "type": "boolean",
+            "default": true,
+            "markdownDescription": "When enabled IntelliSense shows `enum`-suggestions.",
+            "defaultDefaultValue": true,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.suggest.showEnumMembers": {
+            "type": "boolean",
+            "default": true,
+            "markdownDescription": "When enabled IntelliSense shows `enumMember`-suggestions.",
+            "defaultDefaultValue": true,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.suggest.showKeywords": {
+            "type": "boolean",
+            "default": true,
+            "markdownDescription": "When enabled IntelliSense shows `keyword`-suggestions.",
+            "defaultDefaultValue": true,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.suggest.showWords": {
+            "type": "boolean",
+            "default": true,
+            "markdownDescription": "When enabled IntelliSense shows `text`-suggestions.",
+            "defaultDefaultValue": true,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.suggest.showColors": {
+            "type": "boolean",
+            "default": true,
+            "markdownDescription": "When enabled IntelliSense shows `color`-suggestions.",
+            "defaultDefaultValue": true,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.suggest.showFiles": {
+            "type": "boolean",
+            "default": true,
+            "markdownDescription": "When enabled IntelliSense shows `file`-suggestions.",
+            "defaultDefaultValue": true,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.suggest.showReferences": {
+            "type": "boolean",
+            "default": true,
+            "markdownDescription": "When enabled IntelliSense shows `reference`-suggestions.",
+            "defaultDefaultValue": true,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.suggest.showCustomcolors": {
+            "type": "boolean",
+            "default": true,
+            "markdownDescription": "When enabled IntelliSense shows `customcolor`-suggestions.",
+            "defaultDefaultValue": true,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.suggest.showFolders": {
+            "type": "boolean",
+            "default": true,
+            "markdownDescription": "When enabled IntelliSense shows `folder`-suggestions.",
+            "defaultDefaultValue": true,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.suggest.showTypeParameters": {
+            "type": "boolean",
+            "default": true,
+            "markdownDescription": "When enabled IntelliSense shows `typeParameter`-suggestions.",
+            "defaultDefaultValue": true,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.suggest.showSnippets": {
+            "type": "boolean",
+            "default": true,
+            "markdownDescription": "When enabled IntelliSense shows `snippet`-suggestions.",
+            "defaultDefaultValue": true,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.suggest.showUsers": {
+            "type": "boolean",
+            "default": true,
+            "markdownDescription": "When enabled IntelliSense shows `user`-suggestions.",
+            "defaultDefaultValue": true,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.suggest.showIssues": {
+            "type": "boolean",
+            "default": true,
+            "markdownDescription": "When enabled IntelliSense shows `issues`-suggestions.",
+            "defaultDefaultValue": true,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.suggestFontSize": {
+            "markdownDescription": "Font size for the suggest widget. When set to `0`, the value of `#editor.fontSize#` is used.",
+            "type": "integer",
+            "default": 0,
+            "minimum": 0,
+            "maximum": 1000,
+            "defaultDefaultValue": 0,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.suggestLineHeight": {
+            "markdownDescription": "Line height for the suggest widget. When set to `0`, the value of `#editor.lineHeight#` is used. The minimum value is 8.",
+            "type": "integer",
+            "default": 0,
+            "minimum": 0,
+            "maximum": 1000,
+            "defaultDefaultValue": 0,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.suggestOnTriggerCharacters": {
+            "description": "Controls whether suggestions should automatically show up when typing trigger characters.",
+            "type": "boolean",
+            "default": true,
+            "defaultDefaultValue": true,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.suggestSelection": {
+            "markdownEnumDescriptions": [
+                "Always select the first suggestion.",
+                "Select recent suggestions unless further typing selects one, e.g. `console.| -> console.log` because `log` has been completed recently.",
+                "Select suggestions based on previous prefixes that have completed those suggestions, e.g. `co -> console` and `con -> const`."
+            ],
+            "description": "Controls how suggestions are pre-selected when showing the suggest list.",
+            "type": "string",
+            "enum": [
+                "first",
+                "recentlyUsed",
+                "recentlyUsedByPrefix"
+            ],
+            "default": "first",
+            "defaultDefaultValue": "first",
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.tabCompletion": {
+            "enumDescriptions": [
+                "Tab complete will insert the best matching suggestion when pressing tab.",
+                "Disable tab completions.",
+                "Tab complete snippets when their prefix match. Works best when 'quickSuggestions' aren't enabled."
+            ],
+            "description": "Enables tab completions.",
+            "type": "string",
+            "enum": [
+                "on",
+                "off",
+                "onlySnippets"
+            ],
+            "default": "off",
+            "defaultDefaultValue": "off",
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.unicodeHighlight.nonBasicASCII": {
+            "restricted": true,
+            "type": [
+                "boolean",
+                "string"
+            ],
+            "enum": [
+                true,
+                false,
+                "inUntrustedWorkspace"
+            ],
+            "default": "inUntrustedWorkspace",
+            "description": "Controls whether all non-basic ASCII characters are highlighted. Only characters between U+0020 and U+007E, tab, line-feed and carriage-return are considered basic ASCII.",
+            "defaultDefaultValue": "inUntrustedWorkspace",
+            "scope": 5
+        },
+        "editor.unicodeHighlight.invisibleCharacters": {
+            "restricted": true,
+            "type": "boolean",
+            "default": true,
+            "description": "Controls whether characters that just reserve space or have no width at all are highlighted.",
+            "defaultDefaultValue": true,
+            "scope": 5
+        },
+        "editor.unicodeHighlight.ambiguousCharacters": {
+            "restricted": true,
+            "type": "boolean",
+            "default": true,
+            "description": "Controls whether characters are highlighted that can be confused with basic ASCII characters, except those that are common in the current user locale.",
+            "defaultDefaultValue": true,
+            "scope": 5
+        },
+        "editor.unicodeHighlight.includeComments": {
+            "restricted": true,
+            "type": [
+                "boolean",
+                "string"
+            ],
+            "enum": [
+                true,
+                false,
+                "inUntrustedWorkspace"
+            ],
+            "default": "inUntrustedWorkspace",
+            "description": "Controls whether characters in comments should also be subject to unicode highlighting.",
+            "defaultDefaultValue": "inUntrustedWorkspace",
+            "scope": 5
+        },
+        "editor.unicodeHighlight.includeStrings": {
+            "restricted": true,
+            "type": [
+                "boolean",
+                "string"
+            ],
+            "enum": [
+                true,
+                false,
+                "inUntrustedWorkspace"
+            ],
+            "default": true,
+            "description": "Controls whether characters in strings should also be subject to unicode highlighting.",
+            "defaultDefaultValue": true,
+            "scope": 5
+        },
+        "editor.unicodeHighlight.allowedCharacters": {
+            "restricted": true,
+            "type": "object",
+            "default": {},
+            "description": "Defines allowed characters that are not being highlighted.",
+            "additionalProperties": {
+                "type": "boolean"
+            },
+            "defaultDefaultValue": {},
+            "scope": 5
+        },
+        "editor.unicodeHighlight.allowedLocales": {
+            "restricted": true,
+            "type": "object",
+            "additionalProperties": {
+                "type": "boolean"
+            },
+            "default": {
+                "_os": true,
+                "_vscode": true
+            },
+            "description": "Unicode characters that are common in allowed locales are not being highlighted.",
+            "defaultDefaultValue": {
+                "_os": true,
+                "_vscode": true
+            },
+            "scope": 5
+        },
+        "editor.unusualLineTerminators": {
+            "enumDescriptions": [
+                "Unusual line terminators are automatically removed.",
+                "Unusual line terminators are ignored.",
+                "Unusual line terminators prompt to be removed."
+            ],
+            "description": "Remove unusual line terminators that might cause problems.",
+            "type": "string",
+            "enum": [
+                "auto",
+                "off",
+                "prompt"
+            ],
+            "default": "prompt",
+            "defaultDefaultValue": "prompt",
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.useTabStops": {
+            "description": "Inserting and deleting whitespace follows tab stops.",
+            "type": "boolean",
+            "default": true,
+            "defaultDefaultValue": true,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.wordSeparators": {
+            "description": "Characters that will be used as word separators when doing word related navigations or operations.",
+            "type": "string",
+            "default": "`~!@#$%^&*()-=+[{]}\\|;:'\",.<>/?",
+            "defaultDefaultValue": "`~!@#$%^&*()-=+[{]}\\|;:'\",.<>/?",
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.wordWrap": {
+            "markdownEnumDescriptions": [
+                "Lines will never wrap.",
+                "Lines will wrap at the viewport width.",
+                "Lines will wrap at `#editor.wordWrapColumn#`.",
+                "Lines will wrap at the minimum of viewport and `#editor.wordWrapColumn#`."
+            ],
+            "description": "Controls how lines should wrap.",
+            "type": "string",
+            "enum": [
+                "off",
+                "on",
+                "wordWrapColumn",
+                "bounded"
+            ],
+            "default": "off",
+            "defaultDefaultValue": "off",
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.wordWrapColumn": {
+            "markdownDescription": "Controls the wrapping column of the editor when `#editor.wordWrap#` is `wordWrapColumn` or `bounded`.",
+            "type": "integer",
+            "default": 80,
+            "minimum": 1,
+            "maximum": 1073741824,
+            "defaultDefaultValue": 80,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.wrappingIndent": {
+            "enumDescriptions": [
+                "No indentation. Wrapped lines begin at column 1.",
+                "Wrapped lines get the same indentation as the parent.",
+                "Wrapped lines get +1 indentation toward the parent.",
+                "Wrapped lines get +2 indentation toward the parent."
+            ],
+            "description": "Controls the indentation of wrapped lines.",
+            "type": "string",
+            "enum": [
+                "none",
+                "same",
+                "indent",
+                "deepIndent"
+            ],
+            "default": "same",
+            "defaultDefaultValue": "same",
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.wrappingStrategy": {
+            "enumDescriptions": [
+                "Assumes that all characters are of the same width. This is a fast algorithm that works correctly for monospace fonts and certain scripts (like Latin characters) where glyphs are of equal width.",
+                "Delegates wrapping points computation to the browser. This is a slow algorithm, that might cause freezes for large files, but it works correctly in all cases."
+            ],
+            "description": "Controls the algorithm that computes wrapping points.",
+            "type": "string",
+            "enum": [
+                "simple",
+                "advanced"
+            ],
+            "default": "simple",
+            "defaultDefaultValue": "simple",
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.showDeprecated": {
+            "description": "Controls strikethrough deprecated variables.",
+            "type": "boolean",
+            "default": true,
+            "defaultDefaultValue": true,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.inlayHints.enabled": {
+            "type": "string",
+            "default": "on",
+            "description": "Enables the inlay hints in the editor.",
+            "enum": [
+                "on",
+                "onUnlessPressed",
+                "offUnlessPressed",
+                "off"
+            ],
+            "markdownEnumDescriptions": [
+                "Inlay hints are enabled",
+                "Inlay hints are showing by default and hide when holding `Ctrl+Alt`",
+                "Inlay hints are hidden by default and show when holding `Ctrl+Alt`",
+                "Inlay hints are disabled"
+            ],
+            "defaultDefaultValue": "on",
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.inlayHints.fontSize": {
+            "type": "number",
+            "default": 0,
+            "markdownDescription": "Controls font size of inlay hints in the editor. As default the `#editor.fontSize#` is used when the configured value is less than `5` or greater than the editor font size.",
+            "defaultDefaultValue": 0,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.inlayHints.fontFamily": {
+            "type": "string",
+            "default": "",
+            "markdownDescription": "Controls font family of inlay hints in the editor. When set to empty, the `#editor.fontFamily#` is used.",
+            "defaultDefaultValue": "",
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.inlayHints.padding": {
+            "type": "boolean",
+            "default": false,
+            "description": "Enables the padding around the inlay hints in the editor.",
+            "defaultDefaultValue": false,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.rename.enablePreview": {
+            "scope": 5,
+            "description": "Enable/disable the ability to preview changes before renaming",
+            "default": true,
+            "type": "boolean",
+            "defaultDefaultValue": true,
+            "restricted": false
+        },
+        "editor.experimental.pasteActions.enabled": {
+            "type": "boolean",
+            "scope": 5,
+            "description": "Enable/disable running edits from extensions on paste.",
+            "default": false,
+            "defaultDefaultValue": false,
+            "restricted": false
+        },
+        "breadcrumbs.symbolSortOrder": {
+            "description": "Controls how symbols are sorted in the breadcrumbs outline view.",
+            "type": "string",
+            "default": "position",
+            "scope": 5,
+            "enum": [
+                "position",
+                "name",
+                "type"
+            ],
+            "enumDescriptions": [
+                "Show symbol outline in file position order.",
+                "Show symbol outline in alphabetical order.",
+                "Show symbol outline in symbol type order."
+            ],
+            "defaultDefaultValue": "position",
+            "restricted": false
+        },
+        "breadcrumbs.showFiles": {
+            "type": "boolean",
+            "default": true,
+            "scope": 5,
+            "markdownDescription": "When enabled breadcrumbs show `file`-symbols.",
+            "defaultDefaultValue": true,
+            "restricted": false
+        },
+        "breadcrumbs.showModules": {
+            "type": "boolean",
+            "default": true,
+            "scope": 5,
+            "markdownDescription": "When enabled breadcrumbs show `module`-symbols.",
+            "defaultDefaultValue": true,
+            "restricted": false
+        },
+        "breadcrumbs.showNamespaces": {
+            "type": "boolean",
+            "default": true,
+            "scope": 5,
+            "markdownDescription": "When enabled breadcrumbs show `namespace`-symbols.",
+            "defaultDefaultValue": true,
+            "restricted": false
+        },
+        "breadcrumbs.showPackages": {
+            "type": "boolean",
+            "default": true,
+            "scope": 5,
+            "markdownDescription": "When enabled breadcrumbs show `package`-symbols.",
+            "defaultDefaultValue": true,
+            "restricted": false
+        },
+        "breadcrumbs.showClasses": {
+            "type": "boolean",
+            "default": true,
+            "scope": 5,
+            "markdownDescription": "When enabled breadcrumbs show `class`-symbols.",
+            "defaultDefaultValue": true,
+            "restricted": false
+        },
+        "breadcrumbs.showMethods": {
+            "type": "boolean",
+            "default": true,
+            "scope": 5,
+            "markdownDescription": "When enabled breadcrumbs show `method`-symbols.",
+            "defaultDefaultValue": true,
+            "restricted": false
+        },
+        "breadcrumbs.showProperties": {
+            "type": "boolean",
+            "default": true,
+            "scope": 5,
+            "markdownDescription": "When enabled breadcrumbs show `property`-symbols.",
+            "defaultDefaultValue": true,
+            "restricted": false
+        },
+        "breadcrumbs.showFields": {
+            "type": "boolean",
+            "default": true,
+            "scope": 5,
+            "markdownDescription": "When enabled breadcrumbs show `field`-symbols.",
+            "defaultDefaultValue": true,
+            "restricted": false
+        },
+        "breadcrumbs.showConstructors": {
+            "type": "boolean",
+            "default": true,
+            "scope": 5,
+            "markdownDescription": "When enabled breadcrumbs show `constructor`-symbols.",
+            "defaultDefaultValue": true,
+            "restricted": false
+        },
+        "breadcrumbs.showEnums": {
+            "type": "boolean",
+            "default": true,
+            "scope": 5,
+            "markdownDescription": "When enabled breadcrumbs show `enum`-symbols.",
+            "defaultDefaultValue": true,
+            "restricted": false
+        },
+        "breadcrumbs.showInterfaces": {
+            "type": "boolean",
+            "default": true,
+            "scope": 5,
+            "markdownDescription": "When enabled breadcrumbs show `interface`-symbols.",
+            "defaultDefaultValue": true,
+            "restricted": false
+        },
+        "breadcrumbs.showFunctions": {
+            "type": "boolean",
+            "default": true,
+            "scope": 5,
+            "markdownDescription": "When enabled breadcrumbs show `function`-symbols.",
+            "defaultDefaultValue": true,
+            "restricted": false
+        },
+        "breadcrumbs.showVariables": {
+            "type": "boolean",
+            "default": true,
+            "scope": 5,
+            "markdownDescription": "When enabled breadcrumbs show `variable`-symbols.",
+            "defaultDefaultValue": true,
+            "restricted": false
+        },
+        "breadcrumbs.showConstants": {
+            "type": "boolean",
+            "default": true,
+            "scope": 5,
+            "markdownDescription": "When enabled breadcrumbs show `constant`-symbols.",
+            "defaultDefaultValue": true,
+            "restricted": false
+        },
+        "breadcrumbs.showStrings": {
+            "type": "boolean",
+            "default": true,
+            "scope": 5,
+            "markdownDescription": "When enabled breadcrumbs show `string`-symbols.",
+            "defaultDefaultValue": true,
+            "restricted": false
+        },
+        "breadcrumbs.showNumbers": {
+            "type": "boolean",
+            "default": true,
+            "scope": 5,
+            "markdownDescription": "When enabled breadcrumbs show `number`-symbols.",
+            "defaultDefaultValue": true,
+            "restricted": false
+        },
+        "breadcrumbs.showBooleans": {
+            "type": "boolean",
+            "default": true,
+            "scope": 5,
+            "markdownDescription": "When enabled breadcrumbs show `boolean`-symbols.",
+            "defaultDefaultValue": true,
+            "restricted": false
+        },
+        "breadcrumbs.showArrays": {
+            "type": "boolean",
+            "default": true,
+            "scope": 5,
+            "markdownDescription": "When enabled breadcrumbs show `array`-symbols.",
+            "defaultDefaultValue": true,
+            "restricted": false
+        },
+        "breadcrumbs.showObjects": {
+            "type": "boolean",
+            "default": true,
+            "scope": 5,
+            "markdownDescription": "When enabled breadcrumbs show `object`-symbols.",
+            "defaultDefaultValue": true,
+            "restricted": false
+        },
+        "breadcrumbs.showKeys": {
+            "type": "boolean",
+            "default": true,
+            "scope": 5,
+            "markdownDescription": "When enabled breadcrumbs show `key`-symbols.",
+            "defaultDefaultValue": true,
+            "restricted": false
+        },
+        "breadcrumbs.showNull": {
+            "type": "boolean",
+            "default": true,
+            "scope": 5,
+            "markdownDescription": "When enabled breadcrumbs show `null`-symbols.",
+            "defaultDefaultValue": true,
+            "restricted": false
+        },
+        "breadcrumbs.showEnumMembers": {
+            "type": "boolean",
+            "default": true,
+            "scope": 5,
+            "markdownDescription": "When enabled breadcrumbs show `enumMember`-symbols.",
+            "defaultDefaultValue": true,
+            "restricted": false
+        },
+        "breadcrumbs.showStructs": {
+            "type": "boolean",
+            "default": true,
+            "scope": 5,
+            "markdownDescription": "When enabled breadcrumbs show `struct`-symbols.",
+            "defaultDefaultValue": true,
+            "restricted": false
+        },
+        "breadcrumbs.showEvents": {
+            "type": "boolean",
+            "default": true,
+            "scope": 5,
+            "markdownDescription": "When enabled breadcrumbs show `event`-symbols.",
+            "defaultDefaultValue": true,
+            "restricted": false
+        },
+        "breadcrumbs.showOperators": {
+            "type": "boolean",
+            "default": true,
+            "scope": 5,
+            "markdownDescription": "When enabled breadcrumbs show `operator`-symbols.",
+            "defaultDefaultValue": true,
+            "restricted": false
+        },
+        "breadcrumbs.showTypeParameters": {
+            "type": "boolean",
+            "default": true,
+            "scope": 5,
+            "markdownDescription": "When enabled breadcrumbs show `typeParameter`-symbols.",
+            "defaultDefaultValue": true,
+            "restricted": false
+        },
+        "workbench.editor.languageDetection": {
+            "type": "boolean",
+            "default": true,
+            "description": "Controls whether the language in a text editor is automatically detected unless the language has been explicitly set by the language picker. This can also be scoped by language so you can specify which languages you do not want to be switched off of. This is useful for languages like Markdown that often contain other languages that might trick language detection into thinking it's the embedded language and not Markdown.",
+            "scope": 5,
+            "defaultDefaultValue": true,
+            "restricted": false
+        },
+        "workbench.editor.restoreViewState": {
+            "type": "boolean",
+            "markdownDescription": "Restores the last editor view state (e.g. scroll position) when re-opening editors after they have been closed. Editor view state is stored per editor group and discarded when a group closes. Use the `#workbench.editor.sharedViewState#` setting to use the last known view state across all editor groups in case no previous view state was found for a editor group.",
+            "default": true,
+            "scope": 5,
+            "defaultDefaultValue": true,
+            "restricted": false
+        },
+        "editor.codeActionsOnSave": {
+            "oneOf": [
+                {
+                    "type": "object",
+                    "properties": {
+                        "source.fixAll": {
+                            "type": "boolean",
+                            "description": "Controls whether auto fix action should be run on file save."
+                        }
+                    },
+                    "additionalProperties": {
+                        "type": "boolean"
+                    }
+                },
+                {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            ],
+            "default": {},
+            "description": "Code action kinds to be run on save.",
+            "scope": 5,
+            "defaultDefaultValue": {},
+            "restricted": false,
+            "properties": {
+                "source.fixAll": {
+                    "type": "boolean",
+                    "description": "Controls whether auto fix action should be run on file save."
+                },
+                "source.organizeImports": {
+                    "type": "boolean",
+                    "description": "Controls whether 'Organize imports' actions should be run on file save."
+                }
+            }
+        },
+        "editor.defaultFormatter": {
+            "description": "Defines a default formatter which takes precedence over all other formatter settings. Must be the identifier of an extension contributing a formatter.",
+            "type": [
+                "string",
+                "null"
+            ],
+            "default": null,
+            "enum": [
+                null,
+                "vscode.css-language-features",
+                "vscode.html-language-features",
+                "vscode.json-language-features",
+                "vscode.markdown-language-features",
+                "vscode.php-language-features",
+                "vscode.references-view",
+                "vscode.search-result",
+                "vscode.typescript-language-features",
+                "vscode.configuration-editing",
+                "vscode.debug-auto-launch",
+                "vscode.debug-server-ready",
+                "vscode.emmet",
+                "vscode.extension-editing",
+                "vscode.git",
+                "vscode.git-base",
+                "vscode.github",
+                "vscode.github-authentication",
+                "vscode.grunt",
+                "vscode.gulp",
+                "vscode.image-preview",
+                "vscode.ipynb",
+                "vscode.jake",
+                "ms-vscode.js-debug",
+                "ms-vscode.js-debug-companion",
+                "vscode.markdown-math",
+                "vscode.merge-conflict",
+                "vscode.microsoft-authentication",
+                "vscode.npm",
+                "ms-vscode-remote.remote-wsl-recommender",
+                "wraith13.save-vscode-schemas",
+                "vscode.simple-browser",
+                "ms-vscode.vscode-js-profile-table"
+            ],
+            "enumItemLabels": [
+                "None",
+                "CSS Language Features",
+                "HTML Language Features",
+                "JSON Language Features",
+                "Markdown Language Features",
+                "PHP Language Features",
+                "Reference Search View",
+                "Search Result",
+                "TypeScript and JavaScript Language Features",
+                "Configuration Editing",
+                "Node Debug Auto-attach",
+                "Server Ready Action",
+                "Emmet",
+                "Extension Authoring",
+                "Git",
+                "Git Base",
+                "GitHub",
+                "GitHub Authentication",
+                "Grunt support for VS Code",
+                "Gulp support for VSCode",
+                "Image Preview",
+                ".ipynb support",
+                "Jake support for VS Code",
+                "JavaScript Debugger",
+                "JavaScript Debugger Companion Extension",
+                "Markdown Math",
+                "Merge Conflict",
+                "Microsoft Account",
+                "NPM support for VS Code",
+                "Remote - WSL: Recommender",
+                "save-vscode-schemas",
+                "Simple Browser",
+                "Table Visualizer for JavaScript Profiles"
+            ],
+            "markdownEnumDescriptions": [
+                "None",
+                "Provides rich language support for CSS, LESS and SCSS files.",
+                "Provides rich language support for HTML and Handlebar files",
+                "Provides rich language support for JSON files.",
+                "Provides rich language support for Markdown.",
+                "Provides rich language support for PHP files.",
+                "Reference Search results as separate, stable view in the sidebar",
+                "Provides syntax highlighting and language features for tabbed search results.",
+                "Provides rich language support for JavaScript and TypeScript.",
+                "Provides capabilities (advanced IntelliSense, auto-fixing) in configuration files like settings, launch, and extension recommendation files.",
+                "Helper for auto-attach feature when node-debug extensions are not active.",
+                "Open URI in browser if server under debugging is ready.",
+                "Emmet support for VS Code",
+                "Provides linting capabilities for authoring extensions.",
+                "Git SCM Integration",
+                "Git static contributions and pickers.",
+                "GitHub features for VS Code",
+                "GitHub Authentication Provider",
+                "Extension to add Grunt capabilities to VS Code.",
+                "Extension to add Gulp capabilities to VSCode.",
+                "Provides VS Code's built-in image preview",
+                "Provides basic support for opening and reading Jupyter's .ipynb notebook files",
+                "Extension to add Jake capabilities to VS Code.",
+                "An extension for debugging Node.js programs and Chrome.",
+                "Companion extension to js-debug that provides capability for remote debugging",
+                "Adds math support to Markdown in notebooks.",
+                "Highlighting and commands for inline merge conflicts.",
+                "Microsoft authentication provider",
+                "Extension to add task support for npm scripts.",
+                "Recommends using the Windows Subsystem for Linux (WSL) and the Remote WSL extension.",
+                "Save VS Code's schemas",
+                "A very basic built-in webview for displaying web content.",
+                "Text visualizer for profiles taken from the JavaScript debugger"
+            ],
+            "defaultDefaultValue": null,
+            "scope": 5,
+            "restricted": false
+        },
+        "debug.saveBeforeStart": {
+            "description": "Controls what editors to save before starting a debug session.",
+            "enum": [
+                "allEditorsInActiveGroup",
+                "nonUntitledEditorsInActiveGroup",
+                "none"
+            ],
+            "enumDescriptions": [
+                "Save all editors in the active group before starting a debug session.",
+                "Save all editors in the active group except untitled ones before starting a debug session.",
+                "Don't save any editors before starting a debug session."
+            ],
+            "default": "allEditorsInActiveGroup",
+            "scope": 5,
+            "defaultDefaultValue": "allEditorsInActiveGroup",
+            "restricted": false
+        },
+        "files.encoding": {
+            "type": "string",
+            "enum": [
+                "utf8",
+                "utf8bom",
+                "utf16le",
+                "utf16be",
+                "windows1252",
+                "iso88591",
+                "iso88593",
+                "iso885915",
+                "macroman",
+                "cp437",
+                "windows1256",
+                "iso88596",
+                "windows1257",
+                "iso88594",
+                "iso885914",
+                "windows1250",
+                "iso88592",
+                "cp852",
+                "windows1251",
+                "cp866",
+                "iso88595",
+                "koi8r",
+                "koi8u",
+                "iso885913",
+                "windows1253",
+                "iso88597",
+                "windows1255",
+                "iso88598",
+                "iso885910",
+                "iso885916",
+                "windows1254",
+                "iso88599",
+                "windows1258",
+                "gbk",
+                "gb18030",
+                "cp950",
+                "big5hkscs",
+                "shiftjis",
+                "eucjp",
+                "euckr",
+                "windows874",
+                "iso885911",
+                "koi8ru",
+                "koi8t",
+                "gb2312",
+                "cp865",
+                "cp850"
+            ],
+            "default": "utf8",
+            "description": "The default character set encoding to use when reading and writing files. This setting can also be configured per language.",
+            "scope": 5,
+            "enumDescriptions": [
+                "UTF-8",
+                "UTF-8 with BOM",
+                "UTF-16 LE",
+                "UTF-16 BE",
+                "Western (Windows 1252)",
+                "Western (ISO 8859-1)",
+                "Western (ISO 8859-3)",
+                "Western (ISO 8859-15)",
+                "Western (Mac Roman)",
+                "DOS (CP 437)",
+                "Arabic (Windows 1256)",
+                "Arabic (ISO 8859-6)",
+                "Baltic (Windows 1257)",
+                "Baltic (ISO 8859-4)",
+                "Celtic (ISO 8859-14)",
+                "Central European (Windows 1250)",
+                "Central European (ISO 8859-2)",
+                "Central European (CP 852)",
+                "Cyrillic (Windows 1251)",
+                "Cyrillic (CP 866)",
+                "Cyrillic (ISO 8859-5)",
+                "Cyrillic (KOI8-R)",
+                "Cyrillic (KOI8-U)",
+                "Estonian (ISO 8859-13)",
+                "Greek (Windows 1253)",
+                "Greek (ISO 8859-7)",
+                "Hebrew (Windows 1255)",
+                "Hebrew (ISO 8859-8)",
+                "Nordic (ISO 8859-10)",
+                "Romanian (ISO 8859-16)",
+                "Turkish (Windows 1254)",
+                "Turkish (ISO 8859-9)",
+                "Vietnamese (Windows 1258)",
+                "Simplified Chinese (GBK)",
+                "Simplified Chinese (GB18030)",
+                "Traditional Chinese (Big5)",
+                "Traditional Chinese (Big5-HKSCS)",
+                "Japanese (Shift JIS)",
+                "Japanese (EUC-JP)",
+                "Korean (EUC-KR)",
+                "Thai (Windows 874)",
+                "Latin/Thai (ISO 8859-11)",
+                "Cyrillic (KOI8-RU)",
+                "Tajik (KOI8-T)",
+                "Simplified Chinese (GB 2312)",
+                "Nordic DOS (CP 865)",
+                "Western European DOS (CP 850)"
+            ],
+            "enumItemLabels": [
+                "UTF-8",
+                "UTF-8 with BOM",
+                "UTF-16 LE",
+                "UTF-16 BE",
+                "Western (Windows 1252)",
+                "Western (ISO 8859-1)",
+                "Western (ISO 8859-3)",
+                "Western (ISO 8859-15)",
+                "Western (Mac Roman)",
+                "DOS (CP 437)",
+                "Arabic (Windows 1256)",
+                "Arabic (ISO 8859-6)",
+                "Baltic (Windows 1257)",
+                "Baltic (ISO 8859-4)",
+                "Celtic (ISO 8859-14)",
+                "Central European (Windows 1250)",
+                "Central European (ISO 8859-2)",
+                "Central European (CP 852)",
+                "Cyrillic (Windows 1251)",
+                "Cyrillic (CP 866)",
+                "Cyrillic (ISO 8859-5)",
+                "Cyrillic (KOI8-R)",
+                "Cyrillic (KOI8-U)",
+                "Estonian (ISO 8859-13)",
+                "Greek (Windows 1253)",
+                "Greek (ISO 8859-7)",
+                "Hebrew (Windows 1255)",
+                "Hebrew (ISO 8859-8)",
+                "Nordic (ISO 8859-10)",
+                "Romanian (ISO 8859-16)",
+                "Turkish (Windows 1254)",
+                "Turkish (ISO 8859-9)",
+                "Vietnamese (Windows 1258)",
+                "Simplified Chinese (GBK)",
+                "Simplified Chinese (GB18030)",
+                "Traditional Chinese (Big5)",
+                "Traditional Chinese (Big5-HKSCS)",
+                "Japanese (Shift JIS)",
+                "Japanese (EUC-JP)",
+                "Korean (EUC-KR)",
+                "Thai (Windows 874)",
+                "Latin/Thai (ISO 8859-11)",
+                "Cyrillic (KOI8-RU)",
+                "Tajik (KOI8-T)",
+                "Simplified Chinese (GB 2312)",
+                "Nordic DOS (CP 865)",
+                "Western European DOS (CP 850)"
+            ],
+            "defaultDefaultValue": "utf8",
+            "restricted": false
+        },
+        "files.autoGuessEncoding": {
+            "type": "boolean",
+            "default": false,
+            "markdownDescription": "When enabled, the editor will attempt to guess the character set encoding when opening files. This setting can also be configured per language. Note, this setting is not respected by text search. Only `#files.encoding#` is respected.",
+            "scope": 5,
+            "defaultDefaultValue": false,
+            "restricted": false
+        },
+        "files.eol": {
+            "type": "string",
+            "enum": [
+                "\n",
+                "\r\n",
+                "auto"
+            ],
+            "enumDescriptions": [
+                "LF",
+                "CRLF",
+                "Uses operating system specific end of line character."
+            ],
+            "default": "auto",
+            "description": "The default end of line character.",
+            "scope": 5,
+            "defaultDefaultValue": "auto",
+            "restricted": false
+        },
+        "files.trimTrailingWhitespace": {
+            "type": "boolean",
+            "default": false,
+            "description": "When enabled, will trim trailing whitespace when saving a file.",
+            "scope": 5,
+            "defaultDefaultValue": false,
+            "restricted": false
+        },
+        "files.insertFinalNewline": {
+            "type": "boolean",
+            "default": false,
+            "description": "When enabled, insert a final new line at the end of the file when saving it.",
+            "scope": 5,
+            "defaultDefaultValue": false,
+            "restricted": false
+        },
+        "files.trimFinalNewlines": {
+            "type": "boolean",
+            "default": false,
+            "description": "When enabled, will trim all new lines after the final new line at the end of the file when saving it.",
+            "scope": 5,
+            "defaultDefaultValue": false,
+            "restricted": false
+        },
+        "files.saveConflictResolution": {
+            "type": "string",
+            "enum": [
+                "askUser",
+                "overwriteFileOnDisk"
+            ],
+            "enumDescriptions": [
+                "Will refuse to save and ask for resolving the save conflict manually.",
+                "Will resolve the save conflict by overwriting the file on disk with the changes in the editor."
+            ],
+            "description": "A save conflict can occur when a file is saved to disk that was changed by another program in the meantime. To prevent data loss, the user is asked to compare the changes in the editor with the version on disk. This setting should only be changed if you frequently encounter save conflict errors and may result in data loss if used without caution.",
+            "default": "askUser",
+            "scope": 5,
+            "defaultDefaultValue": "askUser",
+            "restricted": false
+        },
+        "editor.formatOnSave": {
+            "type": "boolean",
+            "description": "Format a file on save. A formatter must be available, the file must not be saved after delay, and the editor must not be shutting down.",
+            "scope": 5,
+            "default": false,
+            "restricted": false
+        },
+        "editor.formatOnSaveMode": {
+            "type": "string",
+            "default": "file",
+            "enum": [
+                "file",
+                "modifications",
+                "modificationsIfAvailable"
+            ],
+            "enumDescriptions": [
+                "Format the whole file.",
+                "Format modifications (requires source control).",
+                "Will attempt to format modifications only (requires source control). If source control can't be used, then the whole file will be formatted."
+            ],
+            "markdownDescription": "Controls if format on save formats the whole file or only modifications. Only applies when `#editor.formatOnSave#` is enabled.",
+            "scope": 5,
+            "defaultDefaultValue": "file",
+            "restricted": false
+        },
+        "outline.showFiles": {
+            "type": "boolean",
+            "scope": 5,
+            "default": true,
+            "markdownDescription": "When enabled outline shows `file`-symbols.",
+            "defaultDefaultValue": true,
+            "restricted": false
+        },
+        "outline.showModules": {
+            "type": "boolean",
+            "scope": 5,
+            "default": true,
+            "markdownDescription": "When enabled outline shows `module`-symbols.",
+            "defaultDefaultValue": true,
+            "restricted": false
+        },
+        "outline.showNamespaces": {
+            "type": "boolean",
+            "default": true,
+            "scope": 5,
+            "markdownDescription": "When enabled outline shows `namespace`-symbols.",
+            "defaultDefaultValue": true,
+            "restricted": false
+        },
+        "outline.showPackages": {
+            "type": "boolean",
+            "default": true,
+            "scope": 5,
+            "markdownDescription": "When enabled outline shows `package`-symbols.",
+            "defaultDefaultValue": true,
+            "restricted": false
+        },
+        "outline.showClasses": {
+            "type": "boolean",
+            "default": true,
+            "scope": 5,
+            "markdownDescription": "When enabled outline shows `class`-symbols.",
+            "defaultDefaultValue": true,
+            "restricted": false
+        },
+        "outline.showMethods": {
+            "type": "boolean",
+            "default": true,
+            "scope": 5,
+            "markdownDescription": "When enabled outline shows `method`-symbols.",
+            "defaultDefaultValue": true,
+            "restricted": false
+        },
+        "outline.showProperties": {
+            "type": "boolean",
+            "default": true,
+            "scope": 5,
+            "markdownDescription": "When enabled outline shows `property`-symbols.",
+            "defaultDefaultValue": true,
+            "restricted": false
+        },
+        "outline.showFields": {
+            "type": "boolean",
+            "default": true,
+            "scope": 5,
+            "markdownDescription": "When enabled outline shows `field`-symbols.",
+            "defaultDefaultValue": true,
+            "restricted": false
+        },
+        "outline.showConstructors": {
+            "type": "boolean",
+            "default": true,
+            "scope": 5,
+            "markdownDescription": "When enabled outline shows `constructor`-symbols.",
+            "defaultDefaultValue": true,
+            "restricted": false
+        },
+        "outline.showEnums": {
+            "type": "boolean",
+            "default": true,
+            "scope": 5,
+            "markdownDescription": "When enabled outline shows `enum`-symbols.",
+            "defaultDefaultValue": true,
+            "restricted": false
+        },
+        "outline.showInterfaces": {
+            "type": "boolean",
+            "default": true,
+            "scope": 5,
+            "markdownDescription": "When enabled outline shows `interface`-symbols.",
+            "defaultDefaultValue": true,
+            "restricted": false
+        },
+        "outline.showFunctions": {
+            "type": "boolean",
+            "default": true,
+            "scope": 5,
+            "markdownDescription": "When enabled outline shows `function`-symbols.",
+            "defaultDefaultValue": true,
+            "restricted": false
+        },
+        "outline.showVariables": {
+            "type": "boolean",
+            "default": true,
+            "scope": 5,
+            "markdownDescription": "When enabled outline shows `variable`-symbols.",
+            "defaultDefaultValue": true,
+            "restricted": false
+        },
+        "outline.showConstants": {
+            "type": "boolean",
+            "default": true,
+            "scope": 5,
+            "markdownDescription": "When enabled outline shows `constant`-symbols.",
+            "defaultDefaultValue": true,
+            "restricted": false
+        },
+        "outline.showStrings": {
+            "type": "boolean",
+            "default": true,
+            "scope": 5,
+            "markdownDescription": "When enabled outline shows `string`-symbols.",
+            "defaultDefaultValue": true,
+            "restricted": false
+        },
+        "outline.showNumbers": {
+            "type": "boolean",
+            "default": true,
+            "scope": 5,
+            "markdownDescription": "When enabled outline shows `number`-symbols.",
+            "defaultDefaultValue": true,
+            "restricted": false
+        },
+        "outline.showBooleans": {
+            "type": "boolean",
+            "scope": 5,
+            "default": true,
+            "markdownDescription": "When enabled outline shows `boolean`-symbols.",
+            "defaultDefaultValue": true,
+            "restricted": false
+        },
+        "outline.showArrays": {
+            "type": "boolean",
+            "default": true,
+            "scope": 5,
+            "markdownDescription": "When enabled outline shows `array`-symbols.",
+            "defaultDefaultValue": true,
+            "restricted": false
+        },
+        "outline.showObjects": {
+            "type": "boolean",
+            "default": true,
+            "scope": 5,
+            "markdownDescription": "When enabled outline shows `object`-symbols.",
+            "defaultDefaultValue": true,
+            "restricted": false
+        },
+        "outline.showKeys": {
+            "type": "boolean",
+            "default": true,
+            "scope": 5,
+            "markdownDescription": "When enabled outline shows `key`-symbols.",
+            "defaultDefaultValue": true,
+            "restricted": false
+        },
+        "outline.showNull": {
+            "type": "boolean",
+            "default": true,
+            "scope": 5,
+            "markdownDescription": "When enabled outline shows `null`-symbols.",
+            "defaultDefaultValue": true,
+            "restricted": false
+        },
+        "outline.showEnumMembers": {
+            "type": "boolean",
+            "default": true,
+            "scope": 5,
+            "markdownDescription": "When enabled outline shows `enumMember`-symbols.",
+            "defaultDefaultValue": true,
+            "restricted": false
+        },
+        "outline.showStructs": {
+            "type": "boolean",
+            "default": true,
+            "scope": 5,
+            "markdownDescription": "When enabled outline shows `struct`-symbols.",
+            "defaultDefaultValue": true,
+            "restricted": false
+        },
+        "outline.showEvents": {
+            "type": "boolean",
+            "default": true,
+            "scope": 5,
+            "markdownDescription": "When enabled outline shows `event`-symbols.",
+            "defaultDefaultValue": true,
+            "restricted": false
+        },
+        "outline.showOperators": {
+            "type": "boolean",
+            "default": true,
+            "scope": 5,
+            "markdownDescription": "When enabled outline shows `operator`-symbols.",
+            "defaultDefaultValue": true,
+            "restricted": false
+        },
+        "outline.showTypeParameters": {
+            "type": "boolean",
+            "default": true,
+            "scope": 5,
+            "markdownDescription": "When enabled outline shows `typeParameter`-symbols.",
+            "defaultDefaultValue": true,
+            "restricted": false
+        },
+        "javascript.suggest.completeJSDocs": {
+            "type": "boolean",
+            "default": true,
+            "description": "Enable/disable suggestion to complete JSDoc comments.",
+            "scope": 5,
+            "source": {
+                "id": "vscode.typescript-language-features",
+                "displayName": "TypeScript and JavaScript Language Features"
+            },
+            "defaultDefaultValue": true,
+            "restricted": false
+        },
+        "typescript.suggest.completeJSDocs": {
+            "type": "boolean",
+            "default": true,
+            "description": "Enable/disable suggestion to complete JSDoc comments.",
+            "scope": 5,
+            "source": {
+                "id": "vscode.typescript-language-features",
+                "displayName": "TypeScript and JavaScript Language Features"
+            },
+            "defaultDefaultValue": true,
+            "restricted": false
+        },
+        "javascript.suggest.jsdoc.generateReturns": {
+            "type": "boolean",
+            "default": true,
+            "markdownDescription": "Enable/disable generating `@returns` annotations for JSDoc templates. Requires using TypeScript 4.2+ in the workspace.",
+            "scope": 5,
+            "source": {
+                "id": "vscode.typescript-language-features",
+                "displayName": "TypeScript and JavaScript Language Features"
+            },
+            "defaultDefaultValue": true,
+            "restricted": false
+        },
+        "typescript.suggest.jsdoc.generateReturns": {
+            "type": "boolean",
+            "default": true,
+            "markdownDescription": "Enable/disable generating `@returns` annotations for JSDoc templates. Requires using TypeScript 4.2+ in the workspace.",
+            "scope": 5,
+            "source": {
+                "id": "vscode.typescript-language-features",
+                "displayName": "TypeScript and JavaScript Language Features"
+            },
+            "defaultDefaultValue": true,
+            "restricted": false
+        },
+        "javascript.preferences.quoteStyle": {
+            "type": "string",
+            "enum": [
+                "auto",
+                "single",
+                "double"
+            ],
+            "default": "auto",
+            "markdownDescription": "Preferred quote style to use for quick fixes.",
+            "markdownEnumDescriptions": [
+                "Infer quote type from existing code",
+                "Always use single quotes: `'`",
+                "Always use double quotes: `\"`"
+            ],
+            "scope": 5,
+            "source": {
+                "id": "vscode.typescript-language-features",
+                "displayName": "TypeScript and JavaScript Language Features"
+            },
+            "defaultDefaultValue": "auto",
+            "restricted": false
+        },
+        "typescript.preferences.quoteStyle": {
+            "type": "string",
+            "enum": [
+                "auto",
+                "single",
+                "double"
+            ],
+            "default": "auto",
+            "markdownDescription": "Preferred quote style to use for quick fixes.",
+            "markdownEnumDescriptions": [
+                "Infer quote type from existing code",
+                "Always use single quotes: `'`",
+                "Always use double quotes: `\"`"
+            ],
+            "scope": 5,
+            "source": {
+                "id": "vscode.typescript-language-features",
+                "displayName": "TypeScript and JavaScript Language Features"
+            },
+            "defaultDefaultValue": "auto",
+            "restricted": false
+        },
+        "javascript.preferences.importModuleSpecifier": {
+            "type": "string",
+            "enum": [
+                "shortest",
+                "relative",
+                "non-relative",
+                "project-relative"
+            ],
+            "markdownEnumDescriptions": [
+                "Prefers a non-relative import only if one is available that has fewer path segments than a relative import.",
+                "Prefers a relative path to the imported file location.",
+                "Prefers a non-relative import based on the `baseUrl` or `paths` configured in your `jsconfig.json` / `tsconfig.json`.",
+                "Prefers a non-relative import only if the relative import path would leave the package or project directory. Requires using TypeScript 4.2+ in the workspace."
+            ],
+            "default": "shortest",
+            "description": "Preferred path style for auto imports.",
+            "scope": 5,
+            "source": {
+                "id": "vscode.typescript-language-features",
+                "displayName": "TypeScript and JavaScript Language Features"
+            },
+            "defaultDefaultValue": "shortest",
+            "restricted": false
+        },
+        "typescript.preferences.importModuleSpecifier": {
+            "type": "string",
+            "enum": [
+                "shortest",
+                "relative",
+                "non-relative",
+                "project-relative"
+            ],
+            "markdownEnumDescriptions": [
+                "Prefers a non-relative import only if one is available that has fewer path segments than a relative import.",
+                "Prefers a relative path to the imported file location.",
+                "Prefers a non-relative import based on the `baseUrl` or `paths` configured in your `jsconfig.json` / `tsconfig.json`.",
+                "Prefers a non-relative import only if the relative import path would leave the package or project directory. Requires using TypeScript 4.2+ in the workspace."
+            ],
+            "default": "shortest",
+            "description": "Preferred path style for auto imports.",
+            "scope": 5,
+            "source": {
+                "id": "vscode.typescript-language-features",
+                "displayName": "TypeScript and JavaScript Language Features"
+            },
+            "defaultDefaultValue": "shortest",
+            "restricted": false
+        },
+        "javascript.preferences.importModuleSpecifierEnding": {
+            "type": "string",
+            "enum": [
+                "auto",
+                "minimal",
+                "index",
+                "js"
+            ],
+            "markdownEnumDescriptions": [
+                "Use project settings to select a default.",
+                "Shorten `./component/index.js` to `./component`.",
+                "Shorten `./component/index.js` to `./component/index`.",
+                "Do not shorten path endings; include the `.js` extension."
+            ],
+            "default": "auto",
+            "description": "Preferred path ending for auto imports. Requires using TypeScript 4.5+ in the workspace.",
+            "scope": 5,
+            "source": {
+                "id": "vscode.typescript-language-features",
+                "displayName": "TypeScript and JavaScript Language Features"
+            },
+            "defaultDefaultValue": "auto",
+            "restricted": false
+        },
+        "typescript.preferences.importModuleSpecifierEnding": {
+            "type": "string",
+            "enum": [
+                "auto",
+                "minimal",
+                "index",
+                "js"
+            ],
+            "markdownEnumDescriptions": [
+                "Use project settings to select a default.",
+                "Shorten `./component/index.js` to `./component`.",
+                "Shorten `./component/index.js` to `./component/index`.",
+                "Do not shorten path endings; include the `.js` extension."
+            ],
+            "default": "auto",
+            "description": "Preferred path ending for auto imports. Requires using TypeScript 4.5+ in the workspace.",
+            "scope": 5,
+            "source": {
+                "id": "vscode.typescript-language-features",
+                "displayName": "TypeScript and JavaScript Language Features"
+            },
+            "defaultDefaultValue": "auto",
+            "restricted": false
+        },
+        "javascript.preferences.jsxAttributeCompletionStyle": {
+            "type": "string",
+            "enum": [
+                "auto",
+                "braces",
+                "none"
+            ],
+            "markdownEnumDescriptions": [
+                "Insert `={}` or `=\"\"` after attribute names based on the prop type. See `javascript.preferences.quoteStyle` to control the type of quotes used for string attributes.",
+                "Insert `={}` after attribute names.",
+                "Only insert attribute names."
+            ],
+            "default": "auto",
+            "description": "Preferred style for JSX attribute completions.",
+            "scope": 5,
+            "source": {
+                "id": "vscode.typescript-language-features",
+                "displayName": "TypeScript and JavaScript Language Features"
+            },
+            "defaultDefaultValue": "auto",
+            "restricted": false
+        },
+        "typescript.preferences.jsxAttributeCompletionStyle": {
+            "type": "string",
+            "enum": [
+                "auto",
+                "braces",
+                "none"
+            ],
+            "markdownEnumDescriptions": [
+                "Insert `={}` or `=\"\"` after attribute names based on the prop type. See `typescript.preferences.quoteStyle` to control the type of quotes used for string attributes.",
+                "Insert `={}` after attribute names.",
+                "Only insert attribute names."
+            ],
+            "default": "auto",
+            "description": "Preferred style for JSX attribute completions.",
+            "scope": 5,
+            "source": {
+                "id": "vscode.typescript-language-features",
+                "displayName": "TypeScript and JavaScript Language Features"
+            },
+            "defaultDefaultValue": "auto",
+            "restricted": false
+        },
+        "javascript.preferences.renameShorthandProperties": {
+            "type": "boolean",
+            "default": true,
+            "description": "Enable/disable introducing aliases for object shorthand properties during renames. Requires using TypeScript 3.4 or newer in the workspace.",
+            "deprecationMessage": "The setting 'typescript.preferences.renameShorthandProperties' has been deprecated in favor of 'typescript.preferences.useAliasesForRenames'",
+            "scope": 5,
+            "source": {
+                "id": "vscode.typescript-language-features",
+                "displayName": "TypeScript and JavaScript Language Features"
+            },
+            "defaultDefaultValue": true,
+            "restricted": false
+        },
+        "typescript.preferences.renameShorthandProperties": {
+            "type": "boolean",
+            "default": true,
+            "description": "Enable/disable introducing aliases for object shorthand properties during renames. Requires using TypeScript 3.4 or newer in the workspace.",
+            "deprecationMessage": "The setting 'typescript.preferences.renameShorthandProperties' has been deprecated in favor of 'typescript.preferences.useAliasesForRenames'",
+            "scope": 5,
+            "source": {
+                "id": "vscode.typescript-language-features",
+                "displayName": "TypeScript and JavaScript Language Features"
+            },
+            "defaultDefaultValue": true,
+            "restricted": false
+        },
+        "javascript.preferences.useAliasesForRenames": {
+            "type": "boolean",
+            "default": true,
+            "description": "Enable/disable introducing aliases for object shorthand properties during renames. Requires using TypeScript 3.4 or newer in the workspace.",
+            "scope": 5,
+            "source": {
+                "id": "vscode.typescript-language-features",
+                "displayName": "TypeScript and JavaScript Language Features"
+            },
+            "defaultDefaultValue": true,
+            "restricted": false
+        },
+        "typescript.preferences.useAliasesForRenames": {
+            "type": "boolean",
+            "default": true,
+            "description": "Enable/disable introducing aliases for object shorthand properties during renames. Requires using TypeScript 3.4 or newer in the workspace.",
+            "scope": 5,
+            "source": {
+                "id": "vscode.typescript-language-features",
+                "displayName": "TypeScript and JavaScript Language Features"
+            },
+            "defaultDefaultValue": true,
+            "restricted": false
+        },
+        "typescript.autoClosingTags": {
+            "type": "boolean",
+            "default": true,
+            "description": "Enable/disable automatic closing of JSX tags.",
+            "scope": 5,
+            "source": {
+                "id": "vscode.typescript-language-features",
+                "displayName": "TypeScript and JavaScript Language Features"
+            },
+            "defaultDefaultValue": true,
+            "restricted": false
+        },
+        "javascript.autoClosingTags": {
+            "type": "boolean",
+            "default": true,
+            "description": "Enable/disable automatic closing of JSX tags.",
+            "scope": 5,
+            "source": {
+                "id": "vscode.typescript-language-features",
+                "displayName": "TypeScript and JavaScript Language Features"
+            },
+            "defaultDefaultValue": true,
+            "restricted": false
+        },
+        "javascript.suggest.enabled": {
+            "type": "boolean",
+            "default": true,
+            "description": "Enabled/disable autocomplete suggestions.",
+            "scope": 5,
+            "source": {
+                "id": "vscode.typescript-language-features",
+                "displayName": "TypeScript and JavaScript Language Features"
+            },
+            "defaultDefaultValue": true,
+            "restricted": false
+        },
+        "typescript.suggest.enabled": {
+            "type": "boolean",
+            "default": true,
+            "description": "Enabled/disable autocomplete suggestions.",
+            "scope": 5,
+            "source": {
+                "id": "vscode.typescript-language-features",
+                "displayName": "TypeScript and JavaScript Language Features"
+            },
+            "defaultDefaultValue": true,
+            "restricted": false
+        }
+    },
+    "patternProperties": {},
+    "additionalProperties": false,
+    "errorMessage": "Unknown editor configuration setting",
+    "allowTrailingCommas": true,
+    "allowComments": true
+}

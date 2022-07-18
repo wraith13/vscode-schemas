@@ -1,0 +1,497 @@
+{
+    "allowComments": true,
+    "allowTrailingCommas": true,
+    "default": {
+        "comments": {
+            "blockComment": [
+                "/*",
+                "*/"
+            ],
+            "lineComment": "//"
+        },
+        "brackets": [
+            [
+                "(",
+                ")"
+            ],
+            [
+                "[",
+                "]"
+            ],
+            [
+                "{",
+                "}"
+            ]
+        ],
+        "autoClosingPairs": [
+            [
+                "(",
+                ")"
+            ],
+            [
+                "[",
+                "]"
+            ],
+            [
+                "{",
+                "}"
+            ]
+        ],
+        "surroundingPairs": [
+            [
+                "(",
+                ")"
+            ],
+            [
+                "[",
+                "]"
+            ],
+            [
+                "{",
+                "}"
+            ]
+        ]
+    },
+    "definitions": {
+        "openBracket": {
+            "type": "string",
+            "description": "左角かっこまたは文字列シーケンス。"
+        },
+        "closeBracket": {
+            "type": "string",
+            "description": "右角かっこまたは文字列シーケンス。"
+        },
+        "bracketPair": {
+            "type": "array",
+            "items": [
+                {
+                    "$ref": "#/definitions/openBracket"
+                },
+                {
+                    "$ref": "#/definitions/closeBracket"
+                }
+            ]
+        }
+    },
+    "properties": {
+        "comments": {
+            "default": {
+                "blockComment": [
+                    "/*",
+                    "*/"
+                ],
+                "lineComment": "//"
+            },
+            "description": "コメント記号を定義します。",
+            "type": "object",
+            "properties": {
+                "blockComment": {
+                    "type": "array",
+                    "description": "ブロック コメントのマーク方法を定義します。",
+                    "items": [
+                        {
+                            "type": "string",
+                            "description": "ブロック コメントを開始する文字シーケンス。"
+                        },
+                        {
+                            "type": "string",
+                            "description": "ブロック コメントを終了する文字シーケンス。"
+                        }
+                    ]
+                },
+                "lineComment": {
+                    "type": "string",
+                    "description": "行コメントを開始する文字シーケンス。"
+                }
+            }
+        },
+        "brackets": {
+            "default": [
+                [
+                    "(",
+                    ")"
+                ],
+                [
+                    "[",
+                    "]"
+                ],
+                [
+                    "{",
+                    "}"
+                ]
+            ],
+            "description": "インデントを増減する角かっこを定義します。",
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/bracketPair"
+            }
+        },
+        "colorizedBracketPairs": {
+            "default": [
+                [
+                    "(",
+                    ")"
+                ],
+                [
+                    "[",
+                    "]"
+                ],
+                [
+                    "{",
+                    "}"
+                ]
+            ],
+            "description": "角かっこのペアの色付けが有効になっている場合、入れ子のレベルによって色付けされる角かっこのペアを定義します。",
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/bracketPair"
+            }
+        },
+        "autoClosingPairs": {
+            "default": [
+                [
+                    "(",
+                    ")"
+                ],
+                [
+                    "[",
+                    "]"
+                ],
+                [
+                    "{",
+                    "}"
+                ]
+            ],
+            "description": "角かっこのペアを定義します。左角かっこが入力されると、右角かっこが自動的に挿入されます。",
+            "type": "array",
+            "items": {
+                "oneOf": [
+                    {
+                        "$ref": "#/definitions/bracketPair"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "open": {
+                                "$ref": "#/definitions/openBracket"
+                            },
+                            "close": {
+                                "$ref": "#/definitions/closeBracket"
+                            },
+                            "notIn": {
+                                "type": "array",
+                                "description": "自動ペアが無効なスコープの一覧を定義します。",
+                                "items": {
+                                    "enum": [
+                                        "string",
+                                        "comment"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                ]
+            }
+        },
+        "autoCloseBefore": {
+            "default": ";:.,=}])> \n\t",
+            "description": "'languageDefined' 自動閉じ設定を使用しているときに、かっこや引用符の自動閉じを行うためにカーソルの後ろに置かれる文字を定義します。これは通常、式を開始しない文字のセットです。",
+            "type": "string"
+        },
+        "surroundingPairs": {
+            "default": [
+                [
+                    "(",
+                    ")"
+                ],
+                [
+                    "[",
+                    "]"
+                ],
+                [
+                    "{",
+                    "}"
+                ]
+            ],
+            "description": "選択文字列を囲むときに使用できる角かっこのペアを定義します。",
+            "type": "array",
+            "items": {
+                "oneOf": [
+                    {
+                        "$ref": "#/definitions/bracketPair"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "open": {
+                                "$ref": "#/definitions/openBracket"
+                            },
+                            "close": {
+                                "$ref": "#/definitions/closeBracket"
+                            }
+                        }
+                    }
+                ]
+            }
+        },
+        "wordPattern": {
+            "default": "",
+            "description": "プログラミング言語で単語とみなされるものを定義します。",
+            "type": [
+                "string",
+                "object"
+            ],
+            "properties": {
+                "pattern": {
+                    "type": "string",
+                    "description": "言葉の照合に使用する正規表現パターン。",
+                    "default": ""
+                },
+                "flags": {
+                    "type": "string",
+                    "description": "言葉の照合に使用する正規表現フラグ。",
+                    "default": "g",
+                    "pattern": "^([gimuy]+)$",
+                    "patternErrorMessage": "`/^([gimuy]+)$/` パターンに一致する必要があります。"
+                }
+            }
+        },
+        "indentationRules": {
+            "default": {
+                "increaseIndentPattern": "",
+                "decreaseIndentPattern": ""
+            },
+            "description": "言語のインデント設定。",
+            "type": "object",
+            "properties": {
+                "increaseIndentPattern": {
+                    "type": [
+                        "string",
+                        "object"
+                    ],
+                    "description": "ある行がこのパターンと一致する場合は、それ以降のすべての行を一度インデントする必要があります (別のルールが一致するまで)。",
+                    "properties": {
+                        "pattern": {
+                            "type": "string",
+                            "description": "increaseIndentPattern に使用する正規表現パターン。",
+                            "default": ""
+                        },
+                        "flags": {
+                            "type": "string",
+                            "description": "increaseIndentPattern に使用する正規表現フラグ。",
+                            "default": "",
+                            "pattern": "^([gimuy]+)$",
+                            "patternErrorMessage": "`/^([gimuy]+)$/` パターンに一致する必要があります。"
+                        }
+                    }
+                },
+                "decreaseIndentPattern": {
+                    "type": [
+                        "string",
+                        "object"
+                    ],
+                    "description": "行がこのパターンに一致する場合、それ以後のすべての行はいったんインデント解除される必要があります (別のルールが一致するまで)。",
+                    "properties": {
+                        "pattern": {
+                            "type": "string",
+                            "description": "decreaseIndentPattern に使用する正規表現パターン。",
+                            "default": ""
+                        },
+                        "flags": {
+                            "type": "string",
+                            "description": "decreaseIndentPattern に使用する正規表現フラグ。",
+                            "default": "",
+                            "pattern": "^([gimuy]+)$",
+                            "patternErrorMessage": "`/^([gimuy]+)$/` パターンに一致する必要があります。"
+                        }
+                    }
+                },
+                "indentNextLinePattern": {
+                    "type": [
+                        "string",
+                        "object"
+                    ],
+                    "description": "ある行がこのパターンと一致する場合は、**次の行のみ** を一度インデントする必要があります。",
+                    "properties": {
+                        "pattern": {
+                            "type": "string",
+                            "description": "indentNextLinePattern に使用する正規表現パターン。",
+                            "default": ""
+                        },
+                        "flags": {
+                            "type": "string",
+                            "description": "indentNextLinePattern に使用する正規表現フラグ。",
+                            "default": "",
+                            "pattern": "^([gimuy]+)$",
+                            "patternErrorMessage": "`/^([gimuy]+)$/` パターンに一致する必要があります。"
+                        }
+                    }
+                },
+                "unIndentedLinePattern": {
+                    "type": [
+                        "string",
+                        "object"
+                    ],
+                    "description": "ある行がこのパターンと一致する場合は、そのインデントを変更してはならず、他のルールに対して評価してもなりません。",
+                    "properties": {
+                        "pattern": {
+                            "type": "string",
+                            "description": "unIndentedLinePattern に使用する正規表現パターン。",
+                            "default": ""
+                        },
+                        "flags": {
+                            "type": "string",
+                            "description": "unIndentedLinePattern に使用する正規表現フラグ。",
+                            "default": "",
+                            "pattern": "^([gimuy]+)$",
+                            "patternErrorMessage": "`/^([gimuy]+)$/` パターンに一致する必要があります。"
+                        }
+                    }
+                }
+            }
+        },
+        "folding": {
+            "type": "object",
+            "description": "言語の折り畳み設定。",
+            "properties": {
+                "offSide": {
+                    "type": "boolean",
+                    "description": "その言語のブロックがインデントで表現されている場合、言語はオフサイドルールに従います。 設定されている場合、空行は後続のブロックに属します。"
+                },
+                "markers": {
+                    "type": "object",
+                    "description": "'#region'や '#endregion'などの言語固有の折りたたみマーカー。開始と終了の正規表現はすべての行の内容に対してテストし効率的に設計してください。",
+                    "properties": {
+                        "start": {
+                            "type": "string",
+                            "description": "開始マーカーの正規表現パターン。 正規表現は '^' で始めてください。"
+                        },
+                        "end": {
+                            "type": "string",
+                            "description": "終了マーカーの正規表現パターン。 正規表現は '^' で始めてください。"
+                        }
+                    }
+                }
+            }
+        },
+        "onEnterRules": {
+            "type": "array",
+            "description": "Enter キーを押したときに評価される言語ルールです。",
+            "items": {
+                "type": "object",
+                "description": "Enter キーを押したときに評価される言語ルールです。",
+                "required": [
+                    "beforeText",
+                    "action"
+                ],
+                "properties": {
+                    "beforeText": {
+                        "type": [
+                            "string",
+                            "object"
+                        ],
+                        "description": "このルールは、カーソルの前のテキストがこの正規表現に一致する場合にのみ実行されます。",
+                        "properties": {
+                            "pattern": {
+                                "type": "string",
+                                "description": "beforeText に使用する正規表現パターン。",
+                                "default": ""
+                            },
+                            "flags": {
+                                "type": "string",
+                                "description": "beforeText に使用する正規表現フラグ。",
+                                "default": "",
+                                "pattern": "^([gimuy]+)$",
+                                "patternErrorMessage": "`/^([gimuy]+)$/` パターンに一致する必要があります。"
+                            }
+                        }
+                    },
+                    "afterText": {
+                        "type": [
+                            "string",
+                            "object"
+                        ],
+                        "description": "このルールは、カーソルの後のテキストがこの正規表現に一致する場合にのみ実行されます。",
+                        "properties": {
+                            "pattern": {
+                                "type": "string",
+                                "description": "afterText に使用する正規表現パターン。",
+                                "default": ""
+                            },
+                            "flags": {
+                                "type": "string",
+                                "description": "afterText に使用する正規表現フラグ。",
+                                "default": "",
+                                "pattern": "^([gimuy]+)$",
+                                "patternErrorMessage": "`/^([gimuy]+)$/` パターンに一致する必要があります。"
+                            }
+                        }
+                    },
+                    "previousLineText": {
+                        "type": [
+                            "string",
+                            "object"
+                        ],
+                        "description": "このルールは、行の上のテキストがこの正規表現に一致した場合にのみ実施されます。",
+                        "properties": {
+                            "pattern": {
+                                "type": "string",
+                                "description": "previousLineText に使用する正規表現パターン。",
+                                "default": ""
+                            },
+                            "flags": {
+                                "type": "string",
+                                "description": "previousLineText に使用する正規表現フラグ。",
+                                "default": "",
+                                "pattern": "^([gimuy]+)$",
+                                "patternErrorMessage": "`/^([gimuy]+)$/` パターンに一致する必要があります。"
+                            }
+                        }
+                    },
+                    "action": {
+                        "type": [
+                            "string",
+                            "object"
+                        ],
+                        "description": "実行するアクション。",
+                        "required": [
+                            "indent"
+                        ],
+                        "default": {
+                            "indent": "indent"
+                        },
+                        "properties": {
+                            "indent": {
+                                "type": "string",
+                                "description": "インデントの処理について説明します",
+                                "default": "indent",
+                                "enum": [
+                                    "none",
+                                    "indent",
+                                    "indentOutdent",
+                                    "outdent"
+                                ],
+                                "markdownEnumDescriptions": [
+                                    "新しい行を挿入し、前の行のインデントをコピーします。",
+                                    "1 つの新しい行とインデントを挿入します (前の行のインデントに対して)。",
+                                    "2 つの新しい行を挿入します:\r\n - 最初のものはインデントされ、カーソルが置かれます\r\n - 2 つ目のものは同じインデント レベルになります",
+                                    "新しい行を挿入してインデントを 1 つ戻します (前の行のインデントに対して)。"
+                                ]
+                            },
+                            "appendText": {
+                                "type": "string",
+                                "description": "新しい行の後およびインデントの後に追加するテキストを指定します。",
+                                "default": ""
+                            },
+                            "removeText": {
+                                "type": "number",
+                                "description": "新しい行のインデントから削除する文字数を指定します。",
+                                "default": 0
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
