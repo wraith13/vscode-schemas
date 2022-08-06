@@ -8,38 +8,34 @@
     "properties": {
         "locale": {
             "type": "string",
-            "description": "使用する表示言語。異なる言語を選択するには、関連付けられた言語パックをインストールする必要があります。"
+            "description": "The display Language to use. Picking a different language requires the associated language pack to be installed."
         },
         "disable-hardware-acceleration": {
             "type": "boolean",
-            "description": "ハードウェア アクセラレータを無効にします。グラフィックの問題が発生した場合にのみ、このオプションを変更してください。"
-        },
-        "disable-color-correct-rendering": {
-            "type": "boolean",
-            "description": "カラー プロファイルの選択に関する問題を解決します。グラフィックの問題が発生した場合にのみ、このオプションを変更してください。"
+            "description": "Disables hardware acceleration. ONLY change this option if you encounter graphic issues."
         },
         "force-color-profile": {
             "type": "string",
-            "markdownDescription": "使用するカラー プロファイルをオーバーライドできます。色が正しく表示されない場合は、これを 'srgb' に設定して再起動してみてください。"
+            "markdownDescription": "Allows to override the color profile to use. If you experience colors appear badly, try to set this to `srgb` and restart."
         },
         "enable-crash-reporter": {
             "type": "boolean",
-            "markdownDescription": "クラッシュ レポートを無効にすることを許可します。値が変更された場合は、アプリを再起動する必要があります。"
+            "markdownDescription": "Allows to disable crash reporting, should restart the app if the value is changed."
         },
         "crash-reporter-id": {
             "type": "string",
-            "markdownDescription": "このアプリ インスタンスから送信されるクラッシュ レポートを関連付けるために使用される一意の ID。"
+            "markdownDescription": "Unique id used for correlating crash reports sent from this app instance."
         },
         "enable-proposed-api": {
             "type": "array",
-            "description": "拡張機能 ID のリストに対して提案された API を有効にします ('vscode.git' など)。提案された API は不安定で、警告なしに中断することがあります。これは拡張機能の開発とテストを目的とする場合にのみ設定してください。",
+            "description": "Enable proposed APIs for a list of extension ids (such as `vscode.git`). Proposed APIs are unstable and subject to breaking without warning at any time. This should only be set for extension development and testing purposes.",
             "items": {
                 "type": "string"
             }
         },
         "log-level": {
             "type": "string",
-            "description": "使用するログレベル。既定値は 'info' です。利用可能な値は 'critical', 'error', 'warn', 'info', 'debug', 'trace', 'off' です。"
+            "description": "Log level to use. Default is 'info'. Allowed values are 'critical', 'error', 'warn', 'info', 'debug', 'trace', 'off'."
         }
     }
 }
