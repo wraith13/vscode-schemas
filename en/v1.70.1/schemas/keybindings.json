@@ -1,7 +1,7 @@
 {
     "id": "vscode://schemas/keybindings",
     "type": "array",
-    "title": "キー バインドの構成",
+    "title": "Keybindings configuration",
     "allowTrailingCommas": true,
     "allowComments": true,
     "definitions": {
@@ -42,7 +42,7 @@
         "properties": {
             "key": {
                 "type": "string",
-                "description": "キーまたはキー シーケンス (スペースで区切る) を押します"
+                "description": "Key or key sequence (separated by space)"
             },
             "command": {
                 "anyOf": [
@@ -3965,8 +3965,8 @@
                             null,
                             null,
                             null,
-                            "コンテキスト キーに関する情報を返すコマンド",
-                            "コンテキスト キーに関する情報を返すコマンド",
+                            "A command that returns information about context keys",
+                            "A command that returns information about context keys",
                             null,
                             null,
                             null,
@@ -4483,10 +4483,10 @@
                             null,
                             null,
                             null,
-                            "次のカーソルにフォーカスを合わせる",
-                            "次のカーソルにフォーカスを合わせる",
-                            "前のカーソルにフォーカスを合わせる",
-                            "前のカーソルにフォーカスを合わせる",
+                            "Focuses the next cursor",
+                            "Focuses the next cursor",
+                            "Focuses the previous cursor",
+                            "Focuses the previous cursor",
                             null,
                             null,
                             null,
@@ -4755,8 +4755,8 @@
                             null,
                             null,
                             null,
-                            "出力の切り替え",
-                            "出力の切り替え",
+                            "Toggle Outputs",
+                            "Toggle Outputs",
                             null,
                             null,
                             null,
@@ -4795,32 +4795,32 @@
                             null,
                             null,
                             null,
-                            "すべてを実行",
-                            "すべてを実行",
-                            "セルの実行",
-                            "セルの実行",
+                            "Run All",
+                            "Run All",
+                            "Execute Cell",
+                            "Execute Cell",
                             null,
                             null,
                             null,
                             null,
-                            "セルを実行しコンテナーにフォーカスする",
-                            "セルを実行しコンテナーにフォーカスする",
-                            "セルの実行を停止する",
-                            "セルの実行を停止する",
+                            "Execute Cell and Focus Container",
+                            "Execute Cell and Focus Container",
+                            "Stop Cell Execution",
+                            "Stop Cell Execution",
                             null,
                             null,
                             null,
                             null,
-                            "実行を中止する",
-                            "実行を中止する",
+                            "Stop Execution",
+                            "Stop Execution",
                             null,
                             null,
                             null,
                             null,
-                            "セルを折りたたむ",
-                            "セルを折りたたむ",
-                            "セルを展開する",
-                            "セルを展開する",
+                            "Fold Cell",
+                            "Fold Cell",
+                            "Unfold Cell",
+                            "Unfold Cell",
                             null,
                             null,
                             null,
@@ -4863,8 +4863,8 @@
                             null,
                             null,
                             null,
-                            "セルの言語の変更",
-                            "セルの言語の変更",
+                            "Change Cell Language",
+                            "Change Cell Language",
                             null,
                             null,
                             null,
@@ -5057,12 +5057,12 @@
                             null,
                             null,
                             null,
-                            "ローカル ファイルを開く...",
-                            "ローカル ファイルを開く...",
-                            "ローカル フォルダーを開く...",
-                            "ローカル フォルダーを開く...",
-                            "ローカル ファイルの保存...",
-                            "ローカル ファイルの保存...",
+                            "Open Local File...",
+                            "Open Local File...",
+                            "Open Local Folder...",
+                            "Open Local Folder...",
+                            "Save Local File...",
+                            "Save Local File...",
                             null,
                             null,
                             null,
@@ -5313,8 +5313,8 @@
                             null,
                             null,
                             null,
-                            "信頼されているドメインの管理",
-                            "信頼されているドメインの管理",
+                            "Manage Trusted Domains",
+                            "Manage Trusted Domains",
                             null,
                             null,
                             null,
@@ -5795,10 +5795,10 @@
                             null,
                             null,
                             null,
-                            "タブまたはグループ別にアクティブ エディターを移動する",
-                            "タブまたはグループ別にアクティブ エディターを移動する",
-                            "グループごとにアクティブ エディターをコピーする",
-                            "グループごとにアクティブ エディターをコピーする",
+                            "Move the active editor by tabs or groups",
+                            "Move the active editor by tabs or groups",
+                            "Copy the active editor by groups",
+                            "Copy the active editor by groups",
                             null,
                             null,
                             "Set Editor Layout",
@@ -6115,8 +6115,8 @@
                             null,
                             null,
                             null,
-                            "無題の新規ファイル",
-                            "無題の新規ファイル",
+                            "New Untitled File",
+                            "New Untitled File",
                             null,
                             null,
                             null,
@@ -6229,16 +6229,16 @@
                             null,
                             null,
                             null,
-                            "ソース管理: 入力を受け入れる",
-                            "ソース管理: 入力を受け入れる",
-                            "ソース管理: 次のコミットの表示",
-                            "ソース管理: 次のコミットの表示",
-                            "ソース管理: 以前のコミットの表示",
-                            "ソース管理: 以前のコミットの表示",
-                            "ソース管理: 次のコミットの表示",
-                            "ソース管理: 次のコミットの表示",
-                            "ソース管理: 以前のコミットの表示",
-                            "ソース管理: 以前のコミットの表示",
+                            "Source Control: Accept Input",
+                            "Source Control: Accept Input",
+                            "Source Control: View Next Commit",
+                            "Source Control: View Next Commit",
+                            "Source Control: View Previous Commit",
+                            "Source Control: View Previous Commit",
+                            "Source Control: View Next Commit",
+                            "Source Control: View Next Commit",
+                            "Source Control: View Previous Commit",
+                            "Source Control: View Previous Commit",
                             null,
                             null,
                             null,
@@ -6293,8 +6293,8 @@
                             null,
                             null,
                             null,
-                            "ワークスペース検索を開く",
-                            "ワークスペース検索を開く",
+                            "Open a workspace search",
+                            "Open a workspace search",
                             null,
                             null,
                             null,
@@ -6447,12 +6447,12 @@
                             null,
                             null,
                             null,
-                            "指定された拡張機能をインストールします",
-                            "指定された拡張機能をインストールします",
-                            "指定された拡張機能をアンインストールする",
-                            "指定された拡張機能をアンインストールする",
-                            "特定の拡張機能を検索する",
-                            "特定の拡張機能を検索する",
+                            "Install the given extension",
+                            "Install the given extension",
+                            "Uninstall the given extension",
+                            "Uninstall the given extension",
+                            "Search for a specific extension",
+                            "Search for a specific extension",
                             null,
                             null,
                             null,
@@ -6579,10 +6579,10 @@
                             null,
                             null,
                             null,
-                            "カスタム作業ディレクトリで新しいターミナルの作成を開始する",
-                            "カスタム作業ディレクトリで新しいターミナルの作成を開始する",
-                            "現在アクティブなターミナルの名前を変更する",
-                            "現在アクティブなターミナルの名前を変更する",
+                            "Create New Terminal Starting in a Custom Working Directory",
+                            "Create New Terminal Starting in a Custom Working Directory",
+                            "Rename the Currently Active Terminal",
+                            "Rename the Currently Active Terminal",
                             null,
                             null,
                             null,
@@ -6725,92 +6725,92 @@
                             null,
                             null,
                             null,
-                            "リファクター プレビュー ビューにフォーカスを置く",
-                            "リファクター プレビュー ビューにフォーカスを置く",
+                            "Focus on Refactor Preview View",
+                            "Focus on Refactor Preview View",
                             null,
                             null,
                             null,
                             null,
                             null,
                             null,
-                            "デバッグ コンソール ビューにフォーカスを置く",
-                            "デバッグ コンソール ビューにフォーカスを置く",
+                            "Focus on Debug Console View",
+                            "Focus on Debug Console View",
                             null,
                             null,
                             null,
                             null,
-                            "問題 ビューにフォーカスを置く",
-                            "問題 ビューにフォーカスを置く",
+                            "Focus on Problems View",
+                            "Focus on Problems View",
                             null,
                             null,
                             null,
                             null,
-                            "出力 ビューにフォーカスを置く",
-                            "出力 ビューにフォーカスを置く",
+                            "Focus on Output View",
+                            "Focus on Output View",
                             null,
                             null,
                             null,
                             null,
-                            "ターミナル ビューにフォーカスを置く",
-                            "ターミナル ビューにフォーカスを置く",
+                            "Focus on Terminal View",
+                            "Focus on Terminal View",
                             null,
                             null,
-                            "実行 ビューにフォーカスを置く",
-                            "実行 ビューにフォーカスを置く",
+                            "Focus on Run View",
+                            "Focus on Run View",
                             null,
                             null,
-                            "変数 ビューにフォーカスを置く",
-                            "変数 ビューにフォーカスを置く",
+                            "Focus on Variables View",
+                            "Focus on Variables View",
                             null,
                             null,
-                            "ウォッチ式 ビューにフォーカスを置く",
-                            "ウォッチ式 ビューにフォーカスを置く",
+                            "Focus on Watch View",
+                            "Focus on Watch View",
                             null,
                             null,
-                            "コール スタック ビューにフォーカスを置く",
-                            "コール スタック ビューにフォーカスを置く",
+                            "Focus on Call Stack View",
+                            "Focus on Call Stack View",
                             null,
                             null,
-                            "読み込み済みのスクリプト ビューにフォーカスを置く",
-                            "読み込み済みのスクリプト ビューにフォーカスを置く",
+                            "Focus on Loaded Scripts View",
+                            "Focus on Loaded Scripts View",
                             null,
                             null,
-                            "ブレークポイント ビューにフォーカスを置く",
-                            "ブレークポイント ビューにフォーカスを置く",
+                            "Focus on Breakpoints View",
+                            "Focus on Breakpoints View",
                             null,
                             null,
                             null,
                             null,
-                            "アウトライン ビューにフォーカスを置く",
-                            "アウトライン ビューにフォーカスを置く",
+                            "Focus on Outline View",
+                            "Focus on Outline View",
                             null,
                             null,
-                            "タイムライン ビューにフォーカスを置く",
-                            "タイムライン ビューにフォーカスを置く",
+                            "Focus on Timeline View",
+                            "Focus on Timeline View",
                             null,
                             null,
                             null,
                             null,
                             null,
                             null,
-                            "ソース管理リポジトリ ビューにフォーカスを置く",
-                            "ソース管理リポジトリ ビューにフォーカスを置く",
+                            "Focus on Source Control Repositories View",
+                            "Focus on Source Control Repositories View",
                             null,
                             null,
                             null,
                             null,
-                            "ソース管理 ビューにフォーカスを置く",
-                            "ソース管理 ビューにフォーカスを置く",
+                            "Focus on Source Control View",
+                            "Focus on Source Control View",
                             null,
                             null,
                             null,
                             null,
-                            "検索 ビューにフォーカスを置く",
-                            "検索 ビューにフォーカスを置く",
+                            "Focus on Search View",
+                            "Focus on Search View",
                             null,
                             null,
-                            "テスト エクスプローラー ビューにフォーカスを置く",
-                            "テスト エクスプローラー ビューにフォーカスを置く",
+                            "Focus on Test Explorer View",
+                            "Focus on Test Explorer View",
                             null,
                             null,
                             null,
@@ -7069,92 +7069,92 @@
                             null,
                             null,
                             null,
-                            "インストール済み ビューにフォーカスを置く",
-                            "インストール済み ビューにフォーカスを置く",
+                            "Focus on Installed View",
+                            "Focus on Installed View",
                             null,
                             null,
-                            "人気 ビューにフォーカスを置く",
-                            "人気 ビューにフォーカスを置く",
+                            "Focus on Popular View",
+                            "Focus on Popular View",
                             null,
                             null,
-                            "推奨 ビューにフォーカスを置く",
-                            "推奨 ビューにフォーカスを置く",
+                            "Focus on Recommended View",
+                            "Focus on Recommended View",
                             null,
                             null,
-                            "有効 ビューにフォーカスを置く",
-                            "有効 ビューにフォーカスを置く",
+                            "Focus on Enabled View",
+                            "Focus on Enabled View",
                             null,
                             null,
-                            "無効 ビューにフォーカスを置く",
-                            "無効 ビューにフォーカスを置く",
+                            "Focus on Disabled View",
+                            "Focus on Disabled View",
                             null,
                             null,
-                            "マーケットプレース ビューにフォーカスを置く",
-                            "マーケットプレース ビューにフォーカスを置く",
+                            "Focus on Marketplace View",
+                            "Focus on Marketplace View",
                             null,
                             null,
-                            "インストール済み ビューにフォーカスを置く",
-                            "インストール済み ビューにフォーカスを置く",
+                            "Focus on Installed View",
+                            "Focus on Installed View",
                             null,
                             null,
-                            "有効 ビューにフォーカスを置く",
-                            "有効 ビューにフォーカスを置く",
+                            "Focus on Enabled View",
+                            "Focus on Enabled View",
                             null,
                             null,
-                            "無効 ビューにフォーカスを置く",
-                            "無効 ビューにフォーカスを置く",
+                            "Focus on Disabled View",
+                            "Focus on Disabled View",
                             null,
                             null,
-                            "期限切れ ビューにフォーカスを置く",
-                            "期限切れ ビューにフォーカスを置く",
+                            "Focus on Outdated View",
+                            "Focus on Outdated View",
                             null,
                             null,
-                            "ビルトイン ビューにフォーカスを置く",
-                            "ビルトイン ビューにフォーカスを置く",
+                            "Focus on Builtin View",
+                            "Focus on Builtin View",
                             null,
                             null,
-                            "サポートされていないワークスペース ビューにフォーカスを置く",
-                            "サポートされていないワークスペース ビューにフォーカスを置く",
+                            "Focus on Workspace Unsupported View",
+                            "Focus on Workspace Unsupported View",
                             null,
                             null,
-                            "ワークスペースの推奨事項 ビューにフォーカスを置く",
-                            "ワークスペースの推奨事項 ビューにフォーカスを置く",
+                            "Focus on Workspace Recommendations View",
+                            "Focus on Workspace Recommendations View",
                             null,
                             null,
-                            "その他の推奨事項 ビューにフォーカスを置く",
-                            "その他の推奨事項 ビューにフォーカスを置く",
+                            "Focus on Other Recommendations View",
+                            "Focus on Other Recommendations View",
                             null,
                             null,
-                            "機能 ビューにフォーカスを置く",
-                            "機能 ビューにフォーカスを置く",
+                            "Focus on Features View",
+                            "Focus on Features View",
                             null,
                             null,
-                            "テーマ ビューにフォーカスを置く",
-                            "テーマ ビューにフォーカスを置く",
+                            "Focus on Themes View",
+                            "Focus on Themes View",
                             null,
                             null,
-                            "プログラミング言語 ビューにフォーカスを置く",
-                            "プログラミング言語 ビューにフォーカスを置く",
+                            "Focus on Programming Languages View",
+                            "Focus on Programming Languages View",
                             null,
                             null,
-                            "制限モードで無効になっています ビューにフォーカスを置く",
-                            "制限モードで無効になっています ビューにフォーカスを置く",
+                            "Focus on Disabled in Restricted Mode View",
+                            "Focus on Disabled in Restricted Mode View",
                             null,
                             null,
-                            "制限モードで制限されています ビューにフォーカスを置く",
-                            "制限モードで制限されています ビューにフォーカスを置く",
+                            "Focus on Limited in Restricted Mode View",
+                            "Focus on Limited in Restricted Mode View",
                             null,
                             null,
-                            "仮想ワークスペースで無効になっています ビューにフォーカスを置く",
-                            "仮想ワークスペースで無効になっています ビューにフォーカスを置く",
+                            "Focus on Disabled in Virtual Workspaces View",
+                            "Focus on Disabled in Virtual Workspaces View",
                             null,
                             null,
-                            "仮想ワークスペースで制限されています ビューにフォーカスを置く",
-                            "仮想ワークスペースで制限されています ビューにフォーカスを置く",
+                            "Focus on Limited in Virtual Workspaces View",
+                            "Focus on Limited in Virtual Workspaces View",
                             null,
                             null,
-                            "非推奨 ビューにフォーカスを置く",
-                            "非推奨 ビューにフォーカスを置く",
+                            "Focus on Deprecated View",
+                            "Focus on Deprecated View",
                             null,
                             null,
                             null,
@@ -7209,16 +7209,16 @@
                             null,
                             null,
                             null,
-                            "マージ ビューにフォーカスを置く",
-                            "マージ ビューにフォーカスを置く",
+                            "Focus on Merges View",
+                            "Focus on Merges View",
                             null,
                             null,
                             null,
                             null,
                             null,
                             null,
-                            "同期アクティビティ (リモート) ビューにフォーカスを置く",
-                            "同期アクティビティ (リモート) ビューにフォーカスを置く",
+                            "Focus on Sync Activity (Remote) View",
+                            "Focus on Sync Activity (Remote) View",
                             null,
                             null,
                             null,
@@ -7231,8 +7231,8 @@
                             null,
                             null,
                             null,
-                            "同期されたマシン ビューにフォーカスを置く",
-                            "同期されたマシン ビューにフォーカスを置く",
+                            "Focus on Synced Machines View",
+                            "Focus on Synced Machines View",
                             null,
                             null,
                             null,
@@ -7243,16 +7243,16 @@
                             null,
                             null,
                             null,
-                            "同期アクティビティ (ローカル) ビューにフォーカスを置く",
-                            "同期アクティビティ (ローカル) ビューにフォーカスを置く",
+                            "Focus on Sync Activity (Local) View",
+                            "Focus on Sync Activity (Local) View",
                             null,
                             null,
                             null,
                             null,
                             null,
                             null,
-                            "トラブルシューティング ビューにフォーカスを置く",
-                            "トラブルシューティング ビューにフォーカスを置く",
+                            "Focus on Troubleshoot View",
+                            "Focus on Troubleshoot View",
                             null,
                             null,
                             null,
@@ -7297,12 +7297,12 @@
                             null,
                             null,
                             null,
-                            "開いているエディター ビューにフォーカスを置く",
-                            "開いているエディター ビューにフォーカスを置く",
+                            "Focus on Open Editors View",
+                            "Focus on Open Editors View",
                             null,
                             null,
-                            "フォルダー ビューにフォーカスを置く",
-                            "フォルダー ビューにフォーカスを置く",
+                            "Focus on Folders View",
+                            "Focus on Folders View",
                             null,
                             null,
                             null,
@@ -7375,8 +7375,8 @@
                             null,
                             null,
                             null,
-                            "すべてのセッション ビューにフォーカスを置く",
-                            "すべてのセッション ビューにフォーカスを置く",
+                            "Focus on All Sessions View",
+                            "Focus on All Sessions View",
                             null,
                             null,
                             null,
@@ -7403,20 +7403,20 @@
                             null,
                             null,
                             null,
-                            "Browser breakpoints ビューにフォーカスを置く",
-                            "Browser breakpoints ビューにフォーカスを置く",
+                            "Focus on Browser breakpoints View",
+                            "Focus on Browser breakpoints View",
                             null,
                             null,
-                            "Excluded Callers ビューにフォーカスを置く",
-                            "Excluded Callers ビューにフォーカスを置く",
+                            "Focus on Excluded Callers View",
+                            "Focus on Excluded Callers View",
                             null,
                             null,
-                            "Npm スクリプト ビューにフォーカスを置く",
-                            "Npm スクリプト ビューにフォーカスを置く",
+                            "Focus on NPM Scripts View",
+                            "Focus on NPM Scripts View",
                             null,
                             null,
-                            "結果 ビューにフォーカスを置く",
-                            "結果 ビューにフォーカスを置く",
+                            "Focus on Results View",
+                            "Focus on Results View",
                             null,
                             null,
                             null,
@@ -7872,7 +7872,7 @@
                             null,
                             null
                         ],
-                        "description": "実行するコマンドの名前"
+                        "description": "Name of the command to execute"
                     },
                     {
                         "type": "string"
@@ -7881,10 +7881,10 @@
             },
             "when": {
                 "type": "string",
-                "description": "キーがアクティブの場合の条件。"
+                "description": "Condition when the key is active."
             },
             "args": {
-                "description": "実行するコマンドに渡す引数。"
+                "description": "Arguments to pass to the command to execute."
             }
         },
         "allOf": [
@@ -7964,7 +7964,7 @@
                             "type": "object",
                             "properties": {
                                 "sticky": {
-                                    "description": "長い行に移動しても行末に位置します",
+                                    "description": "Stick to the end even when going to longer lines",
                                     "type": "boolean",
                                     "default": false
                                 }
@@ -7988,7 +7988,7 @@
                             "type": "object",
                             "properties": {
                                 "sticky": {
-                                    "description": "長い行に移動しても行末に位置します",
+                                    "description": "Stick to the end even when going to longer lines",
                                     "type": "boolean",
                                     "default": false
                                 }
@@ -8133,11 +8133,11 @@
                             "properties": {
                                 "kind": {
                                     "type": "string",
-                                    "description": "実行するコード アクションの種類。"
+                                    "description": "Kind of the code action to run."
                                 },
                                 "apply": {
                                     "type": "string",
-                                    "description": "返されたアクションが適用されるタイミングを制御します。",
+                                    "description": "Controls when the returned actions are applied.",
                                     "default": "ifSingle",
                                     "enum": [
                                         "first",
@@ -8145,15 +8145,15 @@
                                         "never"
                                     ],
                                     "enumDescriptions": [
-                                        "最初に返されたコード アクションを常に適用します。",
-                                        "最初に返されたコード アクション以外に返されたコード アクションがない場合は、そのアクションを適用します。",
-                                        "返されたコード アクションは適用しないでください。"
+                                        "Always apply the first returned code action.",
+                                        "Apply the first returned code action if it is the only one.",
+                                        "Do not apply the returned code actions."
                                     ]
                                 },
                                 "preferred": {
                                     "type": "boolean",
                                     "default": false,
-                                    "description": "優先コード アクションのみを返すかどうかを制御します。"
+                                    "description": "Controls if only preferred code actions should be returned."
                                 }
                             }
                         }
@@ -8183,11 +8183,11 @@
                             "properties": {
                                 "kind": {
                                     "type": "string",
-                                    "description": "実行するコード アクションの種類。"
+                                    "description": "Kind of the code action to run."
                                 },
                                 "apply": {
                                     "type": "string",
-                                    "description": "返されたアクションが適用されるタイミングを制御します。",
+                                    "description": "Controls when the returned actions are applied.",
                                     "default": "ifSingle",
                                     "enum": [
                                         "first",
@@ -8195,15 +8195,15 @@
                                         "never"
                                     ],
                                     "enumDescriptions": [
-                                        "最初に返されたコード アクションを常に適用します。",
-                                        "最初に返されたコード アクション以外に返されたコード アクションがない場合は、そのアクションを適用します。",
-                                        "返されたコード アクションは適用しないでください。"
+                                        "Always apply the first returned code action.",
+                                        "Apply the first returned code action if it is the only one.",
+                                        "Do not apply the returned code actions."
                                     ]
                                 },
                                 "preferred": {
                                     "type": "boolean",
                                     "default": false,
-                                    "description": "優先コード アクションのみを返すかどうかを制御します。"
+                                    "description": "Controls if only preferred code actions should be returned."
                                 }
                             }
                         }
@@ -8233,11 +8233,11 @@
                             "properties": {
                                 "kind": {
                                     "type": "string",
-                                    "description": "実行するコード アクションの種類。"
+                                    "description": "Kind of the code action to run."
                                 },
                                 "apply": {
                                     "type": "string",
-                                    "description": "返されたアクションが適用されるタイミングを制御します。",
+                                    "description": "Controls when the returned actions are applied.",
                                     "default": "ifSingle",
                                     "enum": [
                                         "first",
@@ -8245,15 +8245,15 @@
                                         "never"
                                     ],
                                     "enumDescriptions": [
-                                        "最初に返されたコード アクションを常に適用します。",
-                                        "最初に返されたコード アクション以外に返されたコード アクションがない場合は、そのアクションを適用します。",
-                                        "返されたコード アクションは適用しないでください。"
+                                        "Always apply the first returned code action.",
+                                        "Apply the first returned code action if it is the only one.",
+                                        "Do not apply the returned code actions."
                                     ]
                                 },
                                 "preferred": {
                                     "type": "boolean",
                                     "default": false,
-                                    "description": "優先コード アクションのみを返すかどうかを制御します。"
+                                    "description": "Controls if only preferred code actions should be returned."
                                 }
                             }
                         }
@@ -8283,11 +8283,11 @@
                             "properties": {
                                 "kind": {
                                     "type": "string",
-                                    "description": "実行するコード アクションの種類。"
+                                    "description": "Kind of the code action to run."
                                 },
                                 "apply": {
                                     "type": "string",
-                                    "description": "返されたアクションが適用されるタイミングを制御します。",
+                                    "description": "Controls when the returned actions are applied.",
                                     "default": "ifSingle",
                                     "enum": [
                                         "first",
@@ -8295,15 +8295,15 @@
                                         "never"
                                     ],
                                     "enumDescriptions": [
-                                        "最初に返されたコード アクションを常に適用します。",
-                                        "最初に返されたコード アクション以外に返されたコード アクションがない場合は、そのアクションを適用します。",
-                                        "返されたコード アクションは適用しないでください。"
+                                        "Always apply the first returned code action.",
+                                        "Apply the first returned code action if it is the only one.",
+                                        "Do not apply the returned code actions."
                                     ]
                                 },
                                 "preferred": {
                                     "type": "boolean",
                                     "default": false,
-                                    "description": "優先コード アクションのみを返すかどうかを制御します。"
+                                    "description": "Controls if only preferred code actions should be returned."
                                 }
                             }
                         }
@@ -8429,28 +8429,28 @@
                                 },
                                 "regexOverride": {
                                     "type": "number",
-                                    "description": "\"正規表現を使用する\" フラグをオーバーライドします。\r\nフラグは今後保存されません。\r\n0: 何もしない\r\n1: True\r\n2: False"
+                                    "description": "Overrides \"Use Regular Expression\" flag.\nThe flag will not be saved for the future.\n0: Do Nothing\n1: True\n2: False"
                                 },
                                 "wholeWord": {
                                     "type": "boolean"
                                 },
                                 "wholeWordOverride": {
                                     "type": "number",
-                                    "description": "\"単語単位で検索する\" フラグをオーバーライドします。\r\nフラグは今後保存されません。\r\n0: 何もしない\r\n1: True\r\n2: False"
+                                    "description": "Overrides \"Match Whole Word\" flag.\nThe flag will not be saved for the future.\n0: Do Nothing\n1: True\n2: False"
                                 },
                                 "matchCase": {
                                     "type": "boolean"
                                 },
                                 "matchCaseOverride": {
                                     "type": "number",
-                                    "description": "\"数式ケース\" フラグをオーバーライドします。\r\nフラグは今後保存されません。\r\n0: 何もしない\r\n1: True\r\n2: False"
+                                    "description": "Overrides \"Math Case\" flag.\nThe flag will not be saved for the future.\n0: Do Nothing\n1: True\n2: False"
                                 },
                                 "preserveCase": {
                                     "type": "boolean"
                                 },
                                 "preserveCaseOverride": {
                                     "type": "number",
-                                    "description": "\"ケースの保持\" フラグをオーバーライドします。\r\nフラグは今後保存されません。\r\n0: 何もしない\r\n1: True\r\n2: False"
+                                    "description": "Overrides \"Preserve Case\" flag.\nThe flag will not be saved for the future.\n0: Do Nothing\n1: True\n2: False"
                                 },
                                 "findInSelection": {
                                     "type": "boolean"
@@ -9263,7 +9263,7 @@
                             ],
                             "properties": {
                                 "cwd": {
-                                    "description": "ターミナル起動時のディレクトリ",
+                                    "description": "The directory to start the terminal at",
                                     "type": "string"
                                 }
                             }
@@ -9291,7 +9291,7 @@
                             ],
                             "properties": {
                                 "name": {
-                                    "description": "ターミナルの新しい名前",
+                                    "description": "The new name for the terminal",
                                     "type": "string",
                                     "minLength": 1
                                 }
@@ -10407,18 +10407,18 @@
                             "anyOf": [
                                 {
                                     "type": "string",
-                                    "description": "フィルター処理するタスクのラベルまたは用語"
+                                    "description": "The task's label or a term to filter by"
                                 },
                                 {
                                     "type": "object",
                                     "properties": {
                                         "type": {
                                             "type": "string",
-                                            "description": "投稿済みタスクの種類"
+                                            "description": "The contributed task type"
                                         },
                                         "task": {
                                             "type": "string",
-                                            "description": "フィルター処理するタスクのラベルまたは用語"
+                                            "description": "The task's label or a term to filter by"
                                         }
                                     }
                                 }
@@ -10562,7 +10562,7 @@
                             ],
                             "properties": {
                                 "profileName": {
-                                    "description": "作成するプロファイルの名前",
+                                    "description": "The name of the profile to create",
                                     "type": "string",
                                     "enum": [
                                         null,
@@ -10572,7 +10572,7 @@
                                         "Command Prompt"
                                     ],
                                     "markdownEnumDescriptions": [
-                                        "既定値を自動的に検出する",
+                                        "Automatically detect the default",
                                         "$(terminal-powershell) PowerShell\n- path: C:\\WINDOWS\\SysNative\\WindowsPowerShell\\v1.0\\powershell.exe",
                                         "$(terminal-powershell) Windows PowerShell\n- path: C:\\WINDOWS\\Sysnative\\WindowsPowerShell\\v1.0\\powershell.exe",
                                         "$(terminal) Git Bash\n- path: C:\\Program Files\\Git\\bin\\bash.exe\n- args: ['--login']",
@@ -10616,17 +10616,17 @@
                                                 "source.organizeImports"
                                             ],
                                             "enumDescriptions": [
-                                                "式を定数に抽出します。",
-                                                "式をメソッドまたは関数に抽出します。",
-                                                "型をインターフェイスに抽出します。",
-                                                "型を型のエイリアスに抽出します。",
-                                                "名前付きインポートと名前空間インポートを変換します。",
-                                                "既定のエクスポートと名前付きエクスポートを変換します。",
-                                                "アロー関数内のかっこを追加または削除します。",
-                                                "パラメーターを非構造化オブジェクトに変換する",
-                                                "'get' および 'set' アクセサーの生成",
-                                                "式を新しいファイルに移動します。",
-                                                "インポートを整理"
+                                                "Extract expression to constant.",
+                                                "Extract expression to method or function.",
+                                                "Extract type to an interface.",
+                                                "Extract type to a type alias.",
+                                                "Convert between named imports and namespace imports.",
+                                                "Convert between default export and named export.",
+                                                "Add or remove braces in an arrow function.",
+                                                "Convert parameters to destructured object",
+                                                "Generate 'get' and 'set' accessors",
+                                                "Move the expression to a new file.",
+                                                "Organize imports"
                                             ]
                                         },
                                         {
@@ -10670,16 +10670,16 @@
                                                 "refactor.move.newFile"
                                             ],
                                             "enumDescriptions": [
-                                                "式を定数に抽出します。",
-                                                "式をメソッドまたは関数に抽出します。",
-                                                "型をインターフェイスに抽出します。",
-                                                "型を型のエイリアスに抽出します。",
-                                                "名前付きインポートと名前空間インポートを変換します。",
-                                                "既定のエクスポートと名前付きエクスポートを変換します。",
-                                                "アロー関数内のかっこを追加または削除します。",
-                                                "パラメーターを非構造化オブジェクトに変換する",
-                                                "'get' および 'set' アクセサーの生成",
-                                                "式を新しいファイルに移動します。"
+                                                "Extract expression to constant.",
+                                                "Extract expression to method or function.",
+                                                "Extract type to an interface.",
+                                                "Extract type to a type alias.",
+                                                "Convert between named imports and namespace imports.",
+                                                "Convert between default export and named export.",
+                                                "Add or remove braces in an arrow function.",
+                                                "Convert parameters to destructured object",
+                                                "Generate 'get' and 'set' accessors",
+                                                "Move the expression to a new file."
                                             ]
                                         },
                                         {
@@ -10714,7 +10714,7 @@
                                                 "source.organizeImports"
                                             ],
                                             "enumDescriptions": [
-                                                "インポートを整理"
+                                                "Organize imports"
                                             ]
                                         },
                                         {

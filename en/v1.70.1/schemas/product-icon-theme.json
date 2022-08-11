@@ -10,23 +10,23 @@
                 "properties": {
                     "id": {
                         "type": "string",
-                        "description": "フォントの ID。",
+                        "description": "The ID of the font.",
                         "pattern": "^([\\w_-]+)$",
-                        "patternErrorMessage": "ID に使用できるのは、文字、数字、アンダースコア、マイナスのみです。"
+                        "patternErrorMessage": "The ID must only contain letters, numbers, underscore and minus."
                     },
                     "src": {
                         "type": "array",
-                        "description": "フォントの場所。",
+                        "description": "The location of the font.",
                         "items": {
                             "type": "object",
                             "properties": {
                                 "path": {
                                     "type": "string",
-                                    "description": "現在の製品アイコン テーマ ファイルに相対的なフォント パス"
+                                    "description": "The font path, relative to the current product icon theme file."
                                 },
                                 "format": {
                                     "type": "string",
-                                    "description": "フォントの形式。",
+                                    "description": "The format of the font.",
                                     "enum": [
                                         "woff",
                                         "woff2",
@@ -45,7 +45,7 @@
                     },
                     "weight": {
                         "type": "string",
-                        "description": "フォントの太さ。有効な値については、https://developer.mozilla.org/ja/docs/Web/CSS/font-weight を参照してください。",
+                        "description": "The weight of the font. See https://developer.mozilla.org/en-US/docs/Web/CSS/font-weight for valid values.",
                         "anyOf": [
                             {
                                 "enum": [
@@ -63,7 +63,7 @@
                     },
                     "style": {
                         "type": "string",
-                        "description": "フォントのスタイル。有効な値については、https://developer.mozilla.org/ja/docs/Web/CSS/font-style を参照してください。",
+                        "description": "The style of the font. See https://developer.mozilla.org/en-US/docs/Web/CSS/font-style for valid values.",
                         "anyOf": [
                             {
                                 "enum": [
@@ -86,7 +86,7 @@
             }
         },
         "iconDefinitions": {
-            "description": "アイコン名のフォント文字との関連付け。",
+            "description": "Association of icon name to a font character.",
             "$ref": "vscode://schemas/icons"
         }
     }

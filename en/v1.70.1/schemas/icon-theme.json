@@ -5,54 +5,54 @@
     "definitions": {
         "folderExpanded": {
             "type": "string",
-            "description": "折りたたんだフォルダーのフォルダー アイコン。展開したフォルダー アイコンは省略可能です。設定していない場合は、フォルダーに定義したアイコンが表示されます。"
+            "description": "The folder icon for expanded folders. The expanded folder icon is optional. If not set, the icon defined for folder will be shown."
         },
         "folder": {
             "type": "string",
-            "description": "折りたたんだフォルダー、または folderExpanded が設定されていない場合は展開したフォルダーのフォルダー アイコン。"
+            "description": "The folder icon for collapsed folders, and if folderExpanded is not set, also for expanded folders."
         },
         "file": {
             "type": "string",
-            "description": "どの拡張子、ファイル名、または言語 ID とも一致しないファイルすべてに表示される既定のファイル アイコン。"
+            "description": "The default file icon, shown for all files that don't match any extension, filename or language id."
         },
         "folderNames": {
             "type": "object",
-            "description": "フォルダー名をアイコンに関連付けます。オブジェクト キーはフォルダー名ですが、パスの部分は含みません。パターンやワイルドカードは使用できません。フォルダー名の一致では大文字と小文字を区別しません。",
+            "description": "Associates folder names to icons. The object key is the folder name, not including any path segments. No patterns or wildcards are allowed. Folder name matching is case insensitive.",
             "additionalProperties": {
                 "type": "string",
-                "description": "関連付けのためのアイコン定義の ID。"
+                "description": "The ID of the icon definition for the association."
             }
         },
         "folderNamesExpanded": {
             "type": "object",
-            "description": "フォルダー名を展開したフォルダーのアイコンに関連付けます。オブジェクト キーはフォルダー名ですが、パスの部分は含みません。パターンやワイルドカードは使用できません。フォルダー名の一致では大文字と小文字を区別しません。",
+            "description": "Associates folder names to icons for expanded folders. The object key is the folder name, not including any path segments. No patterns or wildcards are allowed. Folder name matching is case insensitive.",
             "additionalProperties": {
                 "type": "string",
-                "description": "関連付けのためのアイコン定義の ID。"
+                "description": "The ID of the icon definition for the association."
             }
         },
         "fileExtensions": {
             "type": "object",
-            "description": "ファイル拡張子をアイコンに関連付けます。オブジェクト キーはファイル拡張子名です。拡張子名は、最後のドットに続くファイル名の最後の部分です (ドットは含みません)。拡張子の比較は大文字と小文字が区別しないで行われます。",
+            "description": "Associates file extensions to icons. The object key is the file extension name. The extension name is the last segment of a file name after the last dot (not including the dot). Extensions are compared case insensitive.",
             "additionalProperties": {
                 "type": "string",
-                "description": "関連付けのためのアイコン定義の ID。"
+                "description": "The ID of the icon definition for the association."
             }
         },
         "fileNames": {
             "type": "object",
-            "description": "ファイル名をアイコンに関連付けます。オブジェクト キーは完全なファイル名ですが、パスの部分は含みません。ファイル名にはドットおよび可能なファイル拡張子が含まれる場合があります。パターンやワイルドカードは使用できません。ファイル名の一致では大文字と小文字を区別しません。",
+            "description": "Associates file names to icons. The object key is the full file name, but not including any path segments. File name can include dots and a possible file extension. No patterns or wildcards are allowed. File name matching is case insensitive.",
             "additionalProperties": {
                 "type": "string",
-                "description": "関連付けのためのアイコン定義の ID。"
+                "description": "The ID of the icon definition for the association."
             }
         },
         "languageIds": {
             "type": "object",
-            "description": "言語をアイコンに関連付けます。オブジェクト キーは言語のコントリビューション ポイントで定義された言語 ID です。",
+            "description": "Associates languages to icons. The object key is the language id as defined in the language contribution point.",
             "additionalProperties": {
                 "type": "string",
-                "description": "関連付けのためのアイコン定義の ID。"
+                "description": "The ID of the icon definition for the association."
             }
         },
         "associations": {
@@ -88,29 +88,29 @@
     "properties": {
         "fonts": {
             "type": "array",
-            "description": "アイコン定義で使用されるフォントです。",
+            "description": "Fonts that are used in the icon definitions.",
             "items": {
                 "type": "object",
                 "properties": {
                     "id": {
                         "type": "string",
-                        "description": "フォントの ID。",
+                        "description": "The ID of the font.",
                         "pattern": "^([\\w_-]+)$",
-                        "patternErrorMessage": "ID に使用できるのは、文字、数字、アンダースコア、マイナスのみです。"
+                        "patternErrorMessage": "The ID must only contain letter, numbers, underscore and minus."
                     },
                     "src": {
                         "type": "array",
-                        "description": "フォントの場所。",
+                        "description": "The location of the font.",
                         "items": {
                             "type": "object",
                             "properties": {
                                 "path": {
                                     "type": "string",
-                                    "description": "現在のファイル アイコン テーマ ファイルに相対的なフォント パス。"
+                                    "description": "The font path, relative to the current file icon theme file."
                                 },
                                 "format": {
                                     "type": "string",
-                                    "description": "フォントの形式。",
+                                    "description": "The format of the font.",
                                     "enum": [
                                         "woff",
                                         "woff2",
@@ -129,17 +129,17 @@
                     },
                     "weight": {
                         "type": "string",
-                        "description": "フォントの太さ。有効な値については、https://developer.mozilla.org/ja/docs/Web/CSS/font-weight を参照してください。",
+                        "description": "The weight of the font. See https://developer.mozilla.org/en-US/docs/Web/CSS/font-weight for valid values.",
                         "pattern": "^(normal|bold|lighter|bolder|(\\d{0-1000}))$"
                     },
                     "style": {
                         "type": "string",
-                        "description": "フォントのスタイル。有効な値については、https://developer.mozilla.org/ja/docs/Web/CSS/font-style を参照してください。",
+                        "description": "The style of the font. See https://developer.mozilla.org/en-US/docs/Web/CSS/font-style for valid values.",
                         "pattern": "^(normal|italic|(oblique[ \\w\\s-]+))$"
                     },
                     "size": {
                         "type": "string",
-                        "description": "フォントの既定のサイズ。有効な値については、https://developer.mozilla.org/ja-jp/docs/Web/CSS/font-size をご覧ください。",
+                        "description": "The default size of the font. See https://developer.mozilla.org/en-US/docs/Web/CSS/font-size for valid values.",
                         "pattern": "^([\\w .%_-]+)$"
                     }
                 },
@@ -151,32 +151,32 @@
         },
         "iconDefinitions": {
             "type": "object",
-            "description": "ファイルをアイコンに関連付けるときに使用できるすべてのアイコンの説明。",
+            "description": "Description of all icons that can be used when associating files to icons.",
             "additionalProperties": {
                 "type": "object",
-                "description": "アイコンの定義です。オブジェクト キーは定義の ID です。",
+                "description": "An icon definition. The object key is the ID of the definition.",
                 "properties": {
                     "iconPath": {
                         "type": "string",
-                        "description": "SVG または PNG を使用する場合: イメージへのパス。アイコン設定ファイルへの相対パスです。"
+                        "description": "When using a SVG or PNG: The path to the image. The path is relative to the icon set file."
                     },
                     "fontCharacter": {
                         "type": "string",
-                        "description": "グリフ フォントを使用する場合: 使用するフォントの文字。"
+                        "description": "When using a glyph font: The character in the font to use."
                     },
                     "fontColor": {
                         "type": "string",
                         "format": "color-hex",
-                        "description": "グリフ フォントを使用する場合: 使用する色。"
+                        "description": "When using a glyph font: The color to use."
                     },
                     "fontSize": {
                         "type": "string",
-                        "description": "フォントを使用する場合: テキスト フォントに対するフォント サイズの割合。設定されていない場合、既定値はフォント定義のサイズになります。",
+                        "description": "When using a font: The font size in percentage to the text font. If not set, defaults to the size in the font definition.",
                         "pattern": "^([\\w .%_-]+)$"
                     },
                     "fontId": {
                         "type": "string",
-                        "description": "フォントを使用する場合: フォントの ID。設定されていない場合、最初のフォント定義が既定で設定されます。"
+                        "description": "When using a font: The id of the font. If not set, defaults to the first font definition."
                     }
                 }
             }
@@ -207,19 +207,19 @@
         },
         "light": {
             "$ref": "#/definitions/associations",
-            "description": "明るい配色テーマでのファイル アイコンの任意の関連付け。"
+            "description": "Optional associations for file icons in light color themes."
         },
         "highContrast": {
             "$ref": "#/definitions/associations",
-            "description": "ハイ コントラスト配色テーマでのファイル アイコンの任意の関連付け。"
+            "description": "Optional associations for file icons in high contrast color themes."
         },
         "hidesExplorerArrows": {
             "type": "boolean",
-            "description": "このテーマがアクティブな時に、エクスプローラーの矢印を非表示にするかどうかを構成します。"
+            "description": "Configures whether the file explorer's arrows should be hidden when this theme is active."
         },
         "showLanguageModeIcons": {
             "type": "boolean",
-            "description": "テーマで言語のアイコンが定義されていない場合に、既定の言語アイコンを使用するかどうかを構成します。"
+            "description": "Configures whether the default language icons should be used if the theme does not define an icon for a language."
         }
     }
 }
