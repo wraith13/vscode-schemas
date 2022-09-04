@@ -844,27 +844,6 @@
             "scope": 3,
             "restricted": false
         },
-        "workbench.editorAssociations": {
-            "type": "object",
-            "markdownDescription": "Configure glob patterns to editors (e.g. `\"*.hex\": \"hexEditor.hexEdit\"`). These have precedence over the default behavior.",
-            "patternProperties": {
-                ".*": {
-                    "type": "string",
-                    "enum": [
-                        "default",
-                        "workbench.editorinputs.searchEditorInput",
-                        "imagePreview.previewEditor",
-                        "vscode.markdown.preview.editor",
-                        "jsProfileVisualizer.cpuprofile.table",
-                        "jsProfileVisualizer.heapprofile.table",
-                        "jupyter-notebook"
-                    ]
-                }
-            },
-            "default": {},
-            "scope": 3,
-            "restricted": false
-        },
         "notebook.navigation.allowNavigateToSurroundingCells": {
             "type": "boolean",
             "default": true,
@@ -1806,6 +1785,42 @@
         },
         "audioCues.noInlayHints": {
             "description": "Plays a sound when trying to read a line with inlay hints that has no inlay hints.",
+            "type": "string",
+            "enum": [
+                "auto",
+                "on",
+                "off"
+            ],
+            "default": "auto",
+            "enumDescriptions": [
+                "Enable audio cue when a screen reader is attached.",
+                "Enable audio cue.",
+                "Disable audio cue."
+            ],
+            "defaultDefaultValue": "auto",
+            "scope": 3,
+            "restricted": false
+        },
+        "audioCues.taskEnded": {
+            "description": "Plays a sound when a task ends.",
+            "type": "string",
+            "enum": [
+                "auto",
+                "on",
+                "off"
+            ],
+            "default": "auto",
+            "enumDescriptions": [
+                "Enable audio cue when a screen reader is attached.",
+                "Enable audio cue.",
+                "Disable audio cue."
+            ],
+            "defaultDefaultValue": "auto",
+            "scope": 3,
+            "restricted": false
+        },
+        "audioCues.terminalQuickFix": {
+            "description": "Plays a sound when a terminal quick fixes are available",
             "type": "string",
             "enum": [
                 "auto",
@@ -6784,17 +6799,78 @@
             "scope": 3,
             "restricted": false
         },
+        "workbench.editSessions.autoResume": {
+            "enum": [
+                "onReload",
+                "off"
+            ],
+            "enumDescriptions": [
+                "Automatically resume available edit session on window reload.",
+                "Never attempt to resume an edit session."
+            ],
+            "type": "string",
+            "tags": [
+                "usesOnlineServices"
+            ],
+            "default": "onReload",
+            "markdownDescription": "Controls whether to automatically resume an available edit session for the current workspace.",
+            "defaultDefaultValue": "onReload",
+            "scope": 3,
+            "restricted": false
+        },
+        "workbench.editSessions.continueOn": {
+            "enum": [
+                "prompt",
+                "off"
+            ],
+            "enumDescriptions": [
+                "Prompt the user to sign in to store edit sessions with Continue Working On.",
+                "Do not use edit sessions with Continue Working On unless the user has already turned on edit sessions."
+            ],
+            "type": "string",
+            "tags": [
+                "usesOnlineServices"
+            ],
+            "default": "prompt",
+            "markdownDescription": "Controls whether to prompt the user to store edit sessions when using Continue Working On.",
+            "defaultDefaultValue": "prompt",
+            "scope": 3,
+            "restricted": false
+        },
+        "workbench.experimental.editSessions.continueOn": {
+            "enum": [
+                "prompt",
+                "off"
+            ],
+            "enumDescriptions": [
+                "Prompt the user to sign in to store edit sessions with Continue Working On.",
+                "Do not use edit sessions with Continue Working On unless the user has already turned on edit sessions."
+            ],
+            "type": "string",
+            "tags": [
+                "experimental",
+                "usesOnlineServices"
+            ],
+            "default": "prompt",
+            "markdownDeprecationMessage": "This setting is deprecated in favor of `#workbench.experimental.continueOn#`.",
+            "markdownDescription": "Controls whether to prompt the user to store edit sessions when using Continue Working On.",
+            "defaultDefaultValue": "prompt",
+            "scope": 3,
+            "restricted": false,
+            "deprecationMessage": "This setting is deprecated in favor of `#workbench.experimental.continueOn#`."
+        },
         "workbench.experimental.editSessions.enabled": {
             "type": "boolean",
             "tags": [
                 "experimental",
                 "usesOnlineServices"
             ],
-            "default": false,
-            "markdownDescription": "Controls whether to display cloud-enabled actions to store and resume uncommitted changes when switching between web, desktop, or devices.",
-            "defaultDefaultValue": false,
+            "default": true,
+            "markdownDeprecationMessage": "This setting is deprecated as Edit Sessions are no longer experimental. Please see `#workbench.editSessions.autoResume#` and `#workbench.editSessions.continueOn#` for configuring behavior related to Edit Sessions.",
+            "defaultDefaultValue": true,
             "scope": 3,
-            "restricted": false
+            "restricted": false,
+            "deprecationMessage": "This setting is deprecated as Edit Sessions are no longer experimental. Please see `#workbench.editSessions.autoResume#` and `#workbench.editSessions.continueOn#` for configuring behavior related to Edit Sessions."
         },
         "workbench.experimental.editSessions.autoResume": {
             "enum": [
@@ -6811,10 +6887,11 @@
                 "usesOnlineServices"
             ],
             "default": "onReload",
-            "markdownDescription": "Controls whether to automatically resume an available edit session for the current workspace.",
+            "markdownDeprecationMessage": "This setting is deprecated in favor of `#workbench.editSessions.autoResume#`.",
             "defaultDefaultValue": "onReload",
             "scope": 3,
-            "restricted": false
+            "restricted": false,
+            "deprecationMessage": "This setting is deprecated in favor of `#workbench.editSessions.autoResume#`."
         },
         "files.associations": {
             "type": "object",
@@ -7083,11 +7160,13 @@
             "type": "string",
             "enum": [
                 "simple",
-                "smart"
+                "smart",
+                "disabled"
             ],
             "enumDescriptions": [
                 "Appends the word \"copy\" at the end of the duplicated name potentially followed by a number",
-                "Adds a number at the end of the duplicated name. If some number is already part of the name, tries to increase that number"
+                "Adds a number at the end of the duplicated name. If some number is already part of the name, tries to increase that number",
+                "Disables incremental naming. If two files with the same name exist you will be prompted to overwrite the existing file"
             ],
             "description": "Controls what naming strategy to use when a giving a new name to a duplicated explorer item on paste.",
             "default": "simple",
@@ -7473,6 +7552,38 @@
             ],
             "description": "Controls sorting order of search results.",
             "defaultDefaultValue": "default",
+            "scope": 3,
+            "restricted": false
+        },
+        "search.decorations.colors": {
+            "type": "boolean",
+            "description": "Controls whether search file decorations should use colors.",
+            "default": true,
+            "defaultDefaultValue": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "search.decorations.badges": {
+            "type": "boolean",
+            "description": "Controls whether search file decorations should use badges.",
+            "default": true,
+            "defaultDefaultValue": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "search.defaultViewMode": {
+            "type": "string",
+            "enum": [
+                "tree",
+                "list"
+            ],
+            "default": "list",
+            "enumDescriptions": [
+                "Shows search results as a tree.",
+                "Shows search results as a list."
+            ],
+            "description": "Controls the default search result view mode.",
+            "defaultDefaultValue": "list",
             "scope": 3,
             "restricted": false
         },
@@ -19979,7 +20090,7 @@
             "restricted": false
         },
         "terminal.integrated.commandsToSkipShell": {
-            "markdownDescription": "A set of command IDs whose keybindings will not be sent to the shell but instead always be handled by VS Code. This allows keybindings that would normally be consumed by the shell to act instead the same as when the terminal is not focused, for example `Ctrl+P` to launch Quick Open.\n\n&nbsp;\n\nMany commands are skipped by default. To override a default and pass that command's keybinding to the shell instead, add the command prefixed with the `-` character. For example add `-workbench.action.quickOpen` to allow `Ctrl+P` to reach the shell.\n\n&nbsp;\n\nThe following list of default skipped commands is truncated when viewed in Settings Editor. To see the full list, [open the default settings JSON](command:workbench.action.openRawDefaultSettings 'Open Default Settings (JSON)') and search for the first command from the list below.\n\n&nbsp;\n\nDefault Skipped Commands:\n\n- editor.action.toggleTabFocusMode\n- notifications.hideList\n- notifications.hideToasts\n- workbench.action.debug.continue\n- workbench.action.debug.pause\n- workbench.action.debug.restart\n- workbench.action.debug.run\n- workbench.action.debug.start\n- workbench.action.debug.stepInto\n- workbench.action.debug.stepOut\n- workbench.action.debug.stepOver\n- workbench.action.debug.stop\n- workbench.action.firstEditorInGroup\n- workbench.action.focusActiveEditorGroup\n- workbench.action.focusEighthEditorGroup\n- workbench.action.focusFifthEditorGroup\n- workbench.action.focusFirstEditorGroup\n- workbench.action.focusFourthEditorGroup\n- workbench.action.focusLastEditorGroup\n- workbench.action.focusNextPart\n- workbench.action.focusPreviousPart\n- workbench.action.focusSecondEditorGroup\n- workbench.action.focusSeventhEditorGroup\n- workbench.action.focusSixthEditorGroup\n- workbench.action.focusThirdEditorGroup\n- workbench.action.lastEditorInGroup\n- workbench.action.navigateDown\n- workbench.action.navigateLeft\n- workbench.action.navigateRight\n- workbench.action.navigateUp\n- workbench.action.nextEditor\n- workbench.action.nextEditorInGroup\n- workbench.action.nextPanelView\n- workbench.action.nextSideBarView\n- workbench.action.openNextRecentlyUsedEditor\n- workbench.action.openNextRecentlyUsedEditorInGroup\n- workbench.action.openPreviousRecentlyUsedEditor\n- workbench.action.openPreviousRecentlyUsedEditorInGroup\n- workbench.action.previousEditor\n- workbench.action.previousEditorInGroup\n- workbench.action.previousPanelView\n- workbench.action.previousSideBarView\n- workbench.action.quickOpen\n- workbench.action.quickOpenLeastRecentlyUsedEditor\n- workbench.action.quickOpenLeastRecentlyUsedEditorInGroup\n- workbench.action.quickOpenPreviousEditor\n- workbench.action.quickOpenPreviousRecentlyUsedEditor\n- workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup\n- workbench.action.quickOpenView\n- workbench.action.showCommands\n- workbench.action.tasks.build\n- workbench.action.tasks.reRunTask\n- workbench.action.tasks.restartTask\n- workbench.action.tasks.runTask\n- workbench.action.tasks.showLog\n- workbench.action.tasks.showTasks\n- workbench.action.tasks.terminate\n- workbench.action.tasks.test\n- workbench.action.terminal.clear\n- workbench.action.terminal.clearSelection\n- workbench.action.terminal.copyLastCommand\n- workbench.action.terminal.copySelection\n- workbench.action.terminal.copySelectionAsHtml\n- workbench.action.terminal.deleteToLineStart\n- workbench.action.terminal.deleteWordLeft\n- workbench.action.terminal.deleteWordRight\n- workbench.action.terminal.findNext\n- workbench.action.terminal.findPrevious\n- workbench.action.terminal.focus\n- workbench.action.terminal.focusAtIndex1\n- workbench.action.terminal.focusAtIndex2\n- workbench.action.terminal.focusAtIndex3\n- workbench.action.terminal.focusAtIndex4\n- workbench.action.terminal.focusAtIndex5\n- workbench.action.terminal.focusAtIndex6\n- workbench.action.terminal.focusAtIndex7\n- workbench.action.terminal.focusAtIndex8\n- workbench.action.terminal.focusAtIndex9\n- workbench.action.terminal.focusFind\n- workbench.action.terminal.focusNext\n- workbench.action.terminal.focusNextPane\n- workbench.action.terminal.focusPrevious\n- workbench.action.terminal.focusPreviousPane\n- workbench.action.terminal.goToRecentDirectory\n- workbench.action.terminal.hideFind\n- workbench.action.terminal.kill\n- workbench.action.terminal.killEditor\n- workbench.action.terminal.moveToEditor\n- workbench.action.terminal.moveToLineEnd\n- workbench.action.terminal.moveToLineStart\n- workbench.action.terminal.moveToTerminalPanel\n- workbench.action.terminal.navigationModeExit\n- workbench.action.terminal.navigationModeFocusNext\n- workbench.action.terminal.navigationModeFocusPrevious\n- workbench.action.terminal.new\n- workbench.action.terminal.newInActiveWorkspace\n- workbench.action.terminal.paste\n- workbench.action.terminal.pasteSelection\n- workbench.action.terminal.resizePaneDown\n- workbench.action.terminal.resizePaneLeft\n- workbench.action.terminal.resizePaneRight\n- workbench.action.terminal.resizePaneUp\n- workbench.action.terminal.runActiveFile\n- workbench.action.terminal.runRecentCommand\n- workbench.action.terminal.runSelectedText\n- workbench.action.terminal.scrollDown\n- workbench.action.terminal.scrollDownPage\n- workbench.action.terminal.scrollToBottom\n- workbench.action.terminal.scrollToNextCommand\n- workbench.action.terminal.scrollToPreviousCommand\n- workbench.action.terminal.scrollToTop\n- workbench.action.terminal.scrollUp\n- workbench.action.terminal.scrollUpPage\n- workbench.action.terminal.selectAll\n- workbench.action.terminal.selectToNextCommand\n- workbench.action.terminal.selectToNextLine\n- workbench.action.terminal.selectToPreviousCommand\n- workbench.action.terminal.selectToPreviousLine\n- workbench.action.terminal.sendSequence\n- workbench.action.terminal.sizeToContentWidth\n- workbench.action.terminal.split\n- workbench.action.terminal.splitInActiveWorkspace\n- workbench.action.terminal.toggleFindCaseSensitive\n- workbench.action.terminal.toggleFindRegex\n- workbench.action.terminal.toggleFindWholeWord\n- workbench.action.terminal.toggleTerminal\n- workbench.action.toggleFullScreen\n- workbench.action.toggleMaximizedPanel\n- workbench.action.togglePanel",
+            "markdownDescription": "A set of command IDs whose keybindings will not be sent to the shell but instead always be handled by VS Code. This allows keybindings that would normally be consumed by the shell to act instead the same as when the terminal is not focused, for example `Ctrl+P` to launch Quick Open.\n\n&nbsp;\n\nMany commands are skipped by default. To override a default and pass that command's keybinding to the shell instead, add the command prefixed with the `-` character. For example add `-workbench.action.quickOpen` to allow `Ctrl+P` to reach the shell.\n\n&nbsp;\n\nThe following list of default skipped commands is truncated when viewed in Settings Editor. To see the full list, [open the default settings JSON](command:workbench.action.openRawDefaultSettings 'Open Default Settings (JSON)') and search for the first command from the list below.\n\n&nbsp;\n\nDefault Skipped Commands:\n\n- editor.action.toggleTabFocusMode\n- notifications.hideList\n- notifications.hideToasts\n- workbench.action.closeQuickOpen\n- workbench.action.debug.continue\n- workbench.action.debug.pause\n- workbench.action.debug.restart\n- workbench.action.debug.run\n- workbench.action.debug.start\n- workbench.action.debug.stepInto\n- workbench.action.debug.stepOut\n- workbench.action.debug.stepOver\n- workbench.action.debug.stop\n- workbench.action.firstEditorInGroup\n- workbench.action.focusActiveEditorGroup\n- workbench.action.focusEighthEditorGroup\n- workbench.action.focusFifthEditorGroup\n- workbench.action.focusFirstEditorGroup\n- workbench.action.focusFourthEditorGroup\n- workbench.action.focusLastEditorGroup\n- workbench.action.focusNextPart\n- workbench.action.focusPreviousPart\n- workbench.action.focusSecondEditorGroup\n- workbench.action.focusSeventhEditorGroup\n- workbench.action.focusSixthEditorGroup\n- workbench.action.focusThirdEditorGroup\n- workbench.action.lastEditorInGroup\n- workbench.action.navigateDown\n- workbench.action.navigateLeft\n- workbench.action.navigateRight\n- workbench.action.navigateUp\n- workbench.action.nextEditor\n- workbench.action.nextEditorInGroup\n- workbench.action.nextPanelView\n- workbench.action.nextSideBarView\n- workbench.action.openNextRecentlyUsedEditor\n- workbench.action.openNextRecentlyUsedEditorInGroup\n- workbench.action.openPreviousRecentlyUsedEditor\n- workbench.action.openPreviousRecentlyUsedEditorInGroup\n- workbench.action.previousEditor\n- workbench.action.previousEditorInGroup\n- workbench.action.previousPanelView\n- workbench.action.previousSideBarView\n- workbench.action.quickOpen\n- workbench.action.quickOpenLeastRecentlyUsedEditor\n- workbench.action.quickOpenLeastRecentlyUsedEditorInGroup\n- workbench.action.quickOpenPreviousEditor\n- workbench.action.quickOpenPreviousRecentlyUsedEditor\n- workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup\n- workbench.action.quickOpenView\n- workbench.action.showCommands\n- workbench.action.tasks.build\n- workbench.action.tasks.reRunTask\n- workbench.action.tasks.restartTask\n- workbench.action.tasks.runTask\n- workbench.action.tasks.showLog\n- workbench.action.tasks.showTasks\n- workbench.action.tasks.terminate\n- workbench.action.tasks.test\n- workbench.action.terminal.clear\n- workbench.action.terminal.clearSelection\n- workbench.action.terminal.copyLastCommand\n- workbench.action.terminal.copySelection\n- workbench.action.terminal.copySelectionAsHtml\n- workbench.action.terminal.deleteToLineStart\n- workbench.action.terminal.deleteWordLeft\n- workbench.action.terminal.deleteWordRight\n- workbench.action.terminal.findNext\n- workbench.action.terminal.findPrevious\n- workbench.action.terminal.focus\n- workbench.action.terminal.focusAtIndex1\n- workbench.action.terminal.focusAtIndex2\n- workbench.action.terminal.focusAtIndex3\n- workbench.action.terminal.focusAtIndex4\n- workbench.action.terminal.focusAtIndex5\n- workbench.action.terminal.focusAtIndex6\n- workbench.action.terminal.focusAtIndex7\n- workbench.action.terminal.focusAtIndex8\n- workbench.action.terminal.focusAtIndex9\n- workbench.action.terminal.focusFind\n- workbench.action.terminal.focusNext\n- workbench.action.terminal.focusNextPane\n- workbench.action.terminal.focusPrevious\n- workbench.action.terminal.focusPreviousPane\n- workbench.action.terminal.goToRecentDirectory\n- workbench.action.terminal.hideFind\n- workbench.action.terminal.kill\n- workbench.action.terminal.killEditor\n- workbench.action.terminal.moveToEditor\n- workbench.action.terminal.moveToLineEnd\n- workbench.action.terminal.moveToLineStart\n- workbench.action.terminal.moveToTerminalPanel\n- workbench.action.terminal.navigationModeExit\n- workbench.action.terminal.navigationModeFocusNext\n- workbench.action.terminal.navigationModeFocusPrevious\n- workbench.action.terminal.new\n- workbench.action.terminal.newInActiveWorkspace\n- workbench.action.terminal.paste\n- workbench.action.terminal.pasteSelection\n- workbench.action.terminal.quickFix\n- workbench.action.terminal.resizePaneDown\n- workbench.action.terminal.resizePaneLeft\n- workbench.action.terminal.resizePaneRight\n- workbench.action.terminal.resizePaneUp\n- workbench.action.terminal.runActiveFile\n- workbench.action.terminal.runRecentCommand\n- workbench.action.terminal.runSelectedText\n- workbench.action.terminal.scrollDown\n- workbench.action.terminal.scrollDownPage\n- workbench.action.terminal.scrollToBottom\n- workbench.action.terminal.scrollToNextCommand\n- workbench.action.terminal.scrollToPreviousCommand\n- workbench.action.terminal.scrollToTop\n- workbench.action.terminal.scrollUp\n- workbench.action.terminal.scrollUpPage\n- workbench.action.terminal.selectAll\n- workbench.action.terminal.selectToNextCommand\n- workbench.action.terminal.selectToNextLine\n- workbench.action.terminal.selectToPreviousCommand\n- workbench.action.terminal.selectToPreviousLine\n- workbench.action.terminal.sendSequence\n- workbench.action.terminal.sizeToContentWidth\n- workbench.action.terminal.split\n- workbench.action.terminal.splitInActiveWorkspace\n- workbench.action.terminal.toggleFindCaseSensitive\n- workbench.action.terminal.toggleFindRegex\n- workbench.action.terminal.toggleFindWholeWord\n- workbench.action.terminal.toggleTerminal\n- workbench.action.toggleFullScreen\n- workbench.action.toggleMaximizedPanel\n- workbench.action.togglePanel",
             "type": "array",
             "items": {
                 "type": "string"
@@ -20947,14 +21058,14 @@
         },
         "git.mergeEditor": {
             "type": "boolean",
-            "default": true,
+            "default": false,
             "markdownDescription": "Open the merge editor for files that are currently under conflict.",
             "scope": 3,
             "source": {
                 "id": "vscode.git",
                 "displayName": "Git"
             },
-            "defaultDefaultValue": true,
+            "defaultDefaultValue": false,
             "restricted": false
         },
         "github.gitProtocol": {
@@ -23570,114 +23681,6 @@
             "defaultDefaultValue": "allOpenProjects",
             "restricted": false
         },
-        "workbench.editor.autoLockGroups": {
-            "type": "object",
-            "description": "If an editor matching one of the listed types is opened as the first in an editor group and more than one group is open, the group is automatically locked. Locked groups will only be used for opening editors when explicitly chosen by user gesture (e.g. drag and drop), but not by default. Consequently the active editor in a locked group is less likely to be replaced accidentally with a different editor.",
-            "properties": {
-                "default": {
-                    "type": "boolean",
-                    "default": false,
-                    "description": "Text Editor"
-                },
-                "vscode-interactive-input": {
-                    "type": "boolean",
-                    "default": false,
-                    "description": "Interactive Editor"
-                },
-                "interactive": {
-                    "type": "boolean",
-                    "default": false,
-                    "description": "Interactive Editor"
-                },
-                "workbench.editorinputs.searchEditorInput": {
-                    "type": "boolean",
-                    "default": false,
-                    "description": "Search Editor"
-                },
-                "imagePreview.previewEditor": {
-                    "type": "boolean",
-                    "default": false,
-                    "description": "Image Preview"
-                },
-                "vscode.markdown.preview.editor": {
-                    "type": "boolean",
-                    "default": false,
-                    "description": "Markdown Preview"
-                },
-                "jsProfileVisualizer.cpuprofile.table": {
-                    "type": "boolean",
-                    "default": false,
-                    "description": "CPU Profile Table Visualizer"
-                },
-                "jsProfileVisualizer.heapprofile.table": {
-                    "type": "boolean",
-                    "default": false,
-                    "description": "Heap Profile Table Visualizer"
-                },
-                "terminalEditor": {
-                    "type": "boolean",
-                    "default": true,
-                    "description": "Terminal"
-                },
-                "jupyter-notebook": {
-                    "type": "boolean",
-                    "default": false,
-                    "description": "Jupyter Notebook"
-                },
-                "mainThreadWebview-markdown.preview": {
-                    "type": "boolean",
-                    "default": false,
-                    "description": "Markdown Preview"
-                }
-            },
-            "default": {
-                "default": false,
-                "vscode-interactive-input": false,
-                "interactive": false,
-                "workbench.editorinputs.searchEditorInput": false,
-                "imagePreview.previewEditor": false,
-                "vscode.markdown.preview.editor": false,
-                "jsProfileVisualizer.cpuprofile.table": false,
-                "jsProfileVisualizer.heapprofile.table": false,
-                "terminalEditor": true,
-                "jupyter-notebook": false,
-                "mainThreadWebview-markdown.preview": false
-            },
-            "additionalProperties": false,
-            "defaultDefaultValue": {
-                "default": false,
-                "vscode-interactive-input": false,
-                "interactive": false,
-                "workbench.editorinputs.searchEditorInput": false,
-                "imagePreview.previewEditor": false,
-                "vscode.markdown.preview.editor": false,
-                "jsProfileVisualizer.cpuprofile.table": false,
-                "jsProfileVisualizer.heapprofile.table": false,
-                "terminalEditor": true,
-                "jupyter-notebook": false,
-                "mainThreadWebview-markdown.preview": false
-            },
-            "scope": 3,
-            "restricted": false
-        },
-        "workbench.editor.defaultBinaryEditor": {
-            "type": "string",
-            "default": "",
-            "enum": [
-                "default",
-                "workbench.editorinputs.searchEditorInput",
-                "imagePreview.previewEditor",
-                "vscode.markdown.preview.editor",
-                "jsProfileVisualizer.cpuprofile.table",
-                "jsProfileVisualizer.heapprofile.table",
-                "jupyter-notebook",
-                ""
-            ],
-            "description": "The default editor for files detected as binary. If undefined the user will be presented with a picker.",
-            "defaultDefaultValue": "",
-            "scope": 3,
-            "restricted": false
-        },
         "terminal.integrated.defaultProfile.linux": {
             "restricted": true,
             "markdownDescription": "The default profile used on Linux. This setting will currently be ignored if either `terminal.integrated.shell.linux` or `terminal.integrated.shellArgs.linux` are set.",
@@ -23726,6 +23729,153 @@
             ],
             "defaultDefaultValue": null,
             "scope": 3
+        },
+        "workbench.editor.autoLockGroups": {
+            "type": "object",
+            "description": "If an editor matching one of the listed types is opened as the first in an editor group and more than one group is open, the group is automatically locked. Locked groups will only be used for opening editors when explicitly chosen by user gesture (e.g. drag and drop), but not by default. Consequently the active editor in a locked group is less likely to be replaced accidentally with a different editor.",
+            "properties": {
+                "default": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Text Editor"
+                },
+                "workbench.editorinputs.searchEditorInput": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Search Editor"
+                },
+                "vscode-interactive-input": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Interactive Editor"
+                },
+                "interactive": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Interactive Editor"
+                },
+                "terminalEditor": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Terminal"
+                },
+                "jupyter-notebook": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Jupyter Notebook"
+                },
+                "vscode.markdown.preview.editor": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Markdown Preview"
+                },
+                "imagePreview.previewEditor": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Image Preview"
+                },
+                "vscode.audioPreview": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Audio Preview"
+                },
+                "vscode.videoPreview": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Video Preview"
+                },
+                "jsProfileVisualizer.cpuprofile.table": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "CPU Profile Table Visualizer"
+                },
+                "jsProfileVisualizer.heapprofile.table": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Heap Profile Table Visualizer"
+                },
+                "mainThreadWebview-markdown.preview": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Markdown Preview"
+                }
+            },
+            "default": {
+                "default": false,
+                "workbench.editorinputs.searchEditorInput": false,
+                "vscode-interactive-input": false,
+                "interactive": false,
+                "terminalEditor": true,
+                "jupyter-notebook": false,
+                "vscode.markdown.preview.editor": false,
+                "imagePreview.previewEditor": false,
+                "vscode.audioPreview": false,
+                "vscode.videoPreview": false,
+                "jsProfileVisualizer.cpuprofile.table": false,
+                "jsProfileVisualizer.heapprofile.table": false,
+                "mainThreadWebview-markdown.preview": false
+            },
+            "additionalProperties": false,
+            "defaultDefaultValue": {
+                "default": false,
+                "workbench.editorinputs.searchEditorInput": false,
+                "vscode-interactive-input": false,
+                "interactive": false,
+                "terminalEditor": true,
+                "jupyter-notebook": false,
+                "vscode.markdown.preview.editor": false,
+                "imagePreview.previewEditor": false,
+                "vscode.audioPreview": false,
+                "vscode.videoPreview": false,
+                "jsProfileVisualizer.cpuprofile.table": false,
+                "jsProfileVisualizer.heapprofile.table": false,
+                "mainThreadWebview-markdown.preview": false
+            },
+            "scope": 3,
+            "restricted": false
+        },
+        "workbench.editor.defaultBinaryEditor": {
+            "type": "string",
+            "default": "",
+            "enum": [
+                "default",
+                "workbench.editorinputs.searchEditorInput",
+                "jupyter-notebook",
+                "vscode.markdown.preview.editor",
+                "imagePreview.previewEditor",
+                "vscode.audioPreview",
+                "vscode.videoPreview",
+                "jsProfileVisualizer.cpuprofile.table",
+                "jsProfileVisualizer.heapprofile.table",
+                ""
+            ],
+            "description": "The default editor for files detected as binary. If undefined the user will be presented with a picker.",
+            "defaultDefaultValue": "",
+            "scope": 3,
+            "restricted": false
+        },
+        "workbench.editorAssociations": {
+            "type": "object",
+            "markdownDescription": "Configure glob patterns to editors (e.g. `\"*.hex\": \"hexEditor.hexEdit\"`). These have precedence over the default behavior.",
+            "patternProperties": {
+                ".*": {
+                    "type": "string",
+                    "enum": [
+                        "default",
+                        "workbench.editorinputs.searchEditorInput",
+                        "jupyter-notebook",
+                        "vscode.markdown.preview.editor",
+                        "imagePreview.previewEditor",
+                        "vscode.audioPreview",
+                        "vscode.videoPreview",
+                        "jsProfileVisualizer.cpuprofile.table",
+                        "jsProfileVisualizer.heapprofile.table"
+                    ]
+                }
+            },
+            "default": {},
+            "scope": 3,
+            "restricted": false
         },
         "editor.tabSize": {
             "type": "number",
@@ -26198,18 +26348,18 @@
             "scope": 5,
             "restricted": false
         },
-        "editor.useCustomCodeActionMenu": {
+        "editor.experimental.pasteActions.enabled": {
             "type": "boolean",
             "scope": 5,
-            "description": "Enabling this adjusts how the code action menu is rendered.",
-            "default": true,
-            "defaultDefaultValue": true,
+            "description": "Enable/disable running edits from extensions on paste.",
+            "default": false,
+            "defaultDefaultValue": false,
             "restricted": false
         },
-        "editor.customCodeActionMenu.showHeaders": {
+        "editor.codeActionWidget.showHeaders": {
             "type": "boolean",
             "scope": 5,
-            "description": "Enabling this will show the code action menu with group headers, if the custom code action menu is enabled.",
+            "description": "Enable/disable showing group headers in the code action menu.",
             "default": true,
             "defaultDefaultValue": true,
             "restricted": false
@@ -26220,14 +26370,6 @@
             "default": true,
             "type": "boolean",
             "defaultDefaultValue": true,
-            "restricted": false
-        },
-        "editor.experimental.pasteActions.enabled": {
-            "type": "boolean",
-            "scope": 5,
-            "description": "Enable/disable running edits from extensions on paste.",
-            "default": false,
-            "defaultDefaultValue": false,
             "restricted": false
         },
         "breadcrumbs.symbolSortOrder": {
@@ -26579,12 +26721,12 @@
                 "vscode.github-authentication",
                 "vscode.grunt",
                 "vscode.gulp",
-                "vscode.image-preview",
                 "vscode.ipynb",
                 "vscode.jake",
                 "ms-vscode.js-debug",
                 "ms-vscode.js-debug-companion",
                 "vscode.markdown-math",
+                "vscode.media-preview",
                 "vscode.merge-conflict",
                 "vscode.microsoft-authentication",
                 "vscode.npm",
@@ -26614,16 +26756,16 @@
                 "GitHub Authentication",
                 "Grunt support for VS Code",
                 "Gulp support for VSCode",
-                "Image Preview",
                 ".ipynb support",
                 "Jake support for VS Code",
                 "JavaScript Debugger",
                 "JavaScript Debugger Companion Extension",
                 "Markdown Math",
+                "Media Preview",
                 "Merge Conflict",
                 "Microsoft Account",
                 "NPM support for VS Code",
-                "Remote - WSL: Recommender",
+                "WSL: Recommender",
                 "save-vscode-schemas",
                 "Simple Browser",
                 "Table Visualizer for JavaScript Profiles"
@@ -26649,16 +26791,16 @@
                 "GitHub Authentication Provider",
                 "Extension to add Grunt capabilities to VS Code.",
                 "Extension to add Gulp capabilities to VSCode.",
-                "Provides VS Code's built-in image preview",
                 "Provides basic support for opening and reading Jupyter's .ipynb notebook files",
                 "Extension to add Jake capabilities to VS Code.",
                 "An extension for debugging Node.js programs and Chrome.",
                 "Companion extension to js-debug that provides capability for remote debugging",
                 "Adds math support to Markdown in notebooks.",
+                "Provides VS Code's built-in previews for images, audio, and video",
                 "Highlighting and commands for inline merge conflicts.",
                 "Microsoft authentication provider",
                 "Extension to add task support for npm scripts.",
-                "Recommends using the Windows Subsystem for Linux (WSL) and the Remote WSL extension.",
+                "Recommends using the Windows Subsystem for Linux (WSL) and the WSL extension.",
                 "Save VS Code's schemas",
                 "A very basic built-in webview for displaying web content.",
                 "Text visualizer for profiles taken from the JavaScript debugger"
@@ -27035,7 +27177,7 @@
         "explorer.fileNesting.patterns": {
             "type": "object",
             "scope": 4,
-            "markdownDescription": "Controls nesting of files in the explorer. Each __Item__ represents a parent pattern and may contain a single `*` character that matches any string. Each __Value__ represents a comma separated list of the child patterns that should be shown nested under a given parent. Child patterns may contain several special tokens:\n- `${capture}`: Matches the resolved value of the `*` from the parent pattern\n- `${basename}`: Matches the parent file's basename, the `file` in `file.ts`\n- `${extname}`: Matches the parent file's extension, the `ts` in `file.ts`\n- `${dirname}`: Matches the parent file's directory name, the `src` in `src/file.ts`\n- `*`:  Matches any string, may only be used once per child pattern",
+            "markdownDescription": "Controls nesting of files in the explorer. `#explorer.fileNesting.enabled#` must be set for this to take effect. Each __Item__ represents a parent pattern and may contain a single `*` character that matches any string. Each __Value__ represents a comma separated list of the child patterns that should be shown nested under a given parent. Child patterns may contain several special tokens:\n- `${capture}`: Matches the resolved value of the `*` from the parent pattern\n- `${basename}`: Matches the parent file's basename, the `file` in `file.ts`\n- `${extname}`: Matches the parent file's extension, the `ts` in `file.ts`\n- `${dirname}`: Matches the parent file's directory name, the `src` in `src/file.ts`\n- `*`:  Matches any string, may only be used once per child pattern",
             "patternProperties": {
                 "^[^*]*\\*?[^*]*$": {
                     "markdownDescription": "Each key pattern may contain a single `*` character which will match any string.",
@@ -30167,7 +30309,7 @@
         "emmet.showAbbreviationSuggestions": {
             "type": "boolean",
             "default": true,
-            "scope": 4,
+            "scope": 5,
             "markdownDescription": "Shows possible Emmet abbreviations as suggestions. Not applicable in stylesheets or when emmet.showExpandedAbbreviation is set to `\"never\"`.",
             "source": {
                 "id": "vscode.emmet",
@@ -30849,6 +30991,18 @@
             "scope": 4,
             "default": false,
             "description": "Force git to use rebase when running the sync command.",
+            "source": {
+                "id": "vscode.git",
+                "displayName": "Git"
+            },
+            "defaultDefaultValue": false,
+            "restricted": false
+        },
+        "git.pullBeforeCheckout": {
+            "type": "boolean",
+            "scope": 4,
+            "default": false,
+            "description": "Controls whether a branch that does not have outgoing commits is fast-forwarded before it is checked out.",
             "source": {
                 "id": "vscode.git",
                 "displayName": "Git"
@@ -31669,14 +31823,11 @@
             "defaultDefaultValue": true,
             "restricted": false
         },
-        "markdown.experimental.validate.enabled": {
+        "markdown.validate.enabled": {
             "type": "boolean",
             "scope": 4,
             "description": "Enable/disable all error reporting in Markdown files.",
             "default": false,
-            "tags": [
-                "experimental"
-            ],
             "source": {
                 "id": "vscode.markdown-language-features",
                 "displayName": "Markdown Language Features"
@@ -31684,18 +31835,15 @@
             "defaultDefaultValue": false,
             "restricted": false
         },
-        "markdown.experimental.validate.referenceLinks.enabled": {
+        "markdown.validate.referenceLinks.enabled": {
             "type": "string",
             "scope": 4,
-            "markdownDescription": "Validate reference links in Markdown files, e.g. `[link][ref]`.  Requires enabling `#markdown.experimental.validate.enabled#`.",
+            "markdownDescription": "Validate reference links in Markdown files, e.g. `[link][ref]`.  Requires enabling `#markdown.validate.enabled#`.",
             "default": "warning",
             "enum": [
                 "ignore",
                 "warning",
                 "error"
-            ],
-            "tags": [
-                "experimental"
             ],
             "source": {
                 "id": "vscode.markdown-language-features",
@@ -31704,18 +31852,15 @@
             "defaultDefaultValue": "warning",
             "restricted": false
         },
-        "markdown.experimental.validate.fragmentLinks.enabled": {
+        "markdown.validate.fragmentLinks.enabled": {
             "type": "string",
             "scope": 4,
-            "markdownDescription": "Validate fragment links to headers in the current Markdown file, e.g. `[link](#header)`. Requires enabling `#markdown.experimental.validate.enabled#`.",
+            "markdownDescription": "Validate fragment links to headers in the current Markdown file, e.g. `[link](#header)`. Requires enabling `#markdown.validate.enabled#`.",
             "default": "warning",
             "enum": [
                 "ignore",
                 "warning",
                 "error"
-            ],
-            "tags": [
-                "experimental"
             ],
             "source": {
                 "id": "vscode.markdown-language-features",
@@ -31724,18 +31869,15 @@
             "defaultDefaultValue": "warning",
             "restricted": false
         },
-        "markdown.experimental.validate.fileLinks.enabled": {
+        "markdown.validate.fileLinks.enabled": {
             "type": "string",
             "scope": 4,
-            "markdownDescription": "Validate links to other files in Markdown files, e.g. `[link](/path/to/file.md)`. This checks that the target files exists. Requires enabling `#markdown.experimental.validate.enabled#`.",
+            "markdownDescription": "Validate links to other files in Markdown files, e.g. `[link](/path/to/file.md)`. This checks that the target files exists. Requires enabling `#markdown.validate.enabled#`.",
             "default": "warning",
             "enum": [
                 "ignore",
                 "warning",
                 "error"
-            ],
-            "tags": [
-                "experimental"
             ],
             "source": {
                 "id": "vscode.markdown-language-features",
@@ -31744,36 +31886,31 @@
             "defaultDefaultValue": "warning",
             "restricted": false
         },
-        "markdown.experimental.validate.fileLinks.markdownFragmentLinks": {
+        "markdown.validate.fileLinks.markdownFragmentLinks": {
             "type": "string",
             "scope": 4,
-            "markdownDescription": "Validate the fragment part of links to headers in other files in Markdown files, e.g. `[link](/path/to/file.md#header)`. Inherits the setting value from `#markdown.experimental.validate.fragmentLinks.enabled#` by default.",
-            "default": "ignore",
+            "markdownDescription": "Validate the fragment part of links to headers in other files in Markdown files, e.g. `[link](/path/to/file.md#header)`. Inherits the setting value from `#markdown.validate.fragmentLinks.enabled#` by default.",
+            "default": "inherit",
             "enum": [
+                "inherit",
                 "ignore",
                 "warning",
                 "error"
-            ],
-            "tags": [
-                "experimental"
             ],
             "source": {
                 "id": "vscode.markdown-language-features",
                 "displayName": "Markdown Language Features"
             },
-            "defaultDefaultValue": "ignore",
+            "defaultDefaultValue": "inherit",
             "restricted": false
         },
-        "markdown.experimental.validate.ignoreLinks": {
+        "markdown.validate.ignoredLinks": {
             "type": "array",
             "scope": 4,
-            "markdownDescription": "Configure links that should not be validated. For example `/about` would not validate the link `[about](/about)`, while the glob `/assets/**/*.svg` would let you skip validation for any link to `.svg` files under the `assets` directory.",
+            "markdownDescription": "Configure links that should not be validated. For example adding `/about` would not validate the link `[about](/about)`, while the glob `/assets/**/*.svg` would let you skip validation for any link to `.svg` files under the `assets` directory.",
             "items": {
                 "type": "string"
             },
-            "tags": [
-                "experimental"
-            ],
             "source": {
                 "id": "vscode.markdown-language-features",
                 "displayName": "Markdown Language Features"

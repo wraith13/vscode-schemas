@@ -844,27 +844,6 @@
             "scope": 3,
             "restricted": false
         },
-        "workbench.editorAssociations": {
-            "type": "object",
-            "markdownDescription": "glob パターンをエディターに構成します (例: `\"*.hex\": \"hexEditor.hexEdit\"`)。これらは既定の動作よりも優先されます。",
-            "patternProperties": {
-                ".*": {
-                    "type": "string",
-                    "enum": [
-                        "default",
-                        "workbench.editorinputs.searchEditorInput",
-                        "imagePreview.previewEditor",
-                        "vscode.markdown.preview.editor",
-                        "jsProfileVisualizer.cpuprofile.table",
-                        "jsProfileVisualizer.heapprofile.table",
-                        "jupyter-notebook"
-                    ]
-                }
-            },
-            "default": {},
-            "scope": 3,
-            "restricted": false
-        },
         "notebook.navigation.allowNavigateToSurroundingCells": {
             "type": "boolean",
             "default": true,
@@ -1806,6 +1785,42 @@
         },
         "audioCues.noInlayHints": {
             "description": "インレイ ヒントのないインレイ ヒントを含む行を読み上げようとすると、サウンドが再生されます。",
+            "type": "string",
+            "enum": [
+                "auto",
+                "on",
+                "off"
+            ],
+            "default": "auto",
+            "enumDescriptions": [
+                "スクリーン リーダーが接続されたときにオーディオ キューを有効にします。",
+                "オーディオ キューを有効にします。",
+                "オーディオ キューを無効にします。"
+            ],
+            "defaultDefaultValue": "auto",
+            "scope": 3,
+            "restricted": false
+        },
+        "audioCues.taskEnded": {
+            "description": "Plays a sound when a task ends.",
+            "type": "string",
+            "enum": [
+                "auto",
+                "on",
+                "off"
+            ],
+            "default": "auto",
+            "enumDescriptions": [
+                "スクリーン リーダーが接続されたときにオーディオ キューを有効にします。",
+                "オーディオ キューを有効にします。",
+                "オーディオ キューを無効にします。"
+            ],
+            "defaultDefaultValue": "auto",
+            "scope": 3,
+            "restricted": false
+        },
+        "audioCues.terminalQuickFix": {
+            "description": "Plays a sound when a terminal quick fixes are available",
             "type": "string",
             "enum": [
                 "auto",
@@ -6784,17 +6799,78 @@
             "scope": 3,
             "restricted": false
         },
+        "workbench.editSessions.autoResume": {
+            "enum": [
+                "onReload",
+                "off"
+            ],
+            "enumDescriptions": [
+                "ウィンドウの再読み込み時に使用可能な編集セッションを自動的に再開します。",
+                "編集セッションを再開をしようとしない。"
+            ],
+            "type": "string",
+            "tags": [
+                "usesOnlineServices"
+            ],
+            "default": "onReload",
+            "markdownDescription": "現在のワークスペースで使用可能な編集セッションを自動的に再開するかどうかを制御します。",
+            "defaultDefaultValue": "onReload",
+            "scope": 3,
+            "restricted": false
+        },
+        "workbench.editSessions.continueOn": {
+            "enum": [
+                "prompt",
+                "off"
+            ],
+            "enumDescriptions": [
+                "Prompt the user to sign in to store edit sessions with Continue Working On.",
+                "Do not use edit sessions with Continue Working On unless the user has already turned on edit sessions."
+            ],
+            "type": "string",
+            "tags": [
+                "usesOnlineServices"
+            ],
+            "default": "prompt",
+            "markdownDescription": "Controls whether to prompt the user to store edit sessions when using Continue Working On.",
+            "defaultDefaultValue": "prompt",
+            "scope": 3,
+            "restricted": false
+        },
+        "workbench.experimental.editSessions.continueOn": {
+            "enum": [
+                "prompt",
+                "off"
+            ],
+            "enumDescriptions": [
+                "Prompt the user to sign in to store edit sessions with Continue Working On.",
+                "Do not use edit sessions with Continue Working On unless the user has already turned on edit sessions."
+            ],
+            "type": "string",
+            "tags": [
+                "experimental",
+                "usesOnlineServices"
+            ],
+            "default": "prompt",
+            "markdownDeprecationMessage": "This setting is deprecated in favor of `#workbench.experimental.continueOn#`.",
+            "markdownDescription": "Controls whether to prompt the user to store edit sessions when using Continue Working On.",
+            "defaultDefaultValue": "prompt",
+            "scope": 3,
+            "restricted": false,
+            "deprecationMessage": "This setting is deprecated in favor of `#workbench.experimental.continueOn#`."
+        },
         "workbench.experimental.editSessions.enabled": {
             "type": "boolean",
             "tags": [
                 "experimental",
                 "usesOnlineServices"
             ],
-            "default": false,
-            "markdownDescription": "Web、デスクトップ、またはデバイスを切り替えるときに、コミットされていない変更を保存および再開するためのクラウド対応アクションを表示するかどうかを制御します。",
-            "defaultDefaultValue": false,
+            "default": true,
+            "markdownDeprecationMessage": "This setting is deprecated as Edit Sessions are no longer experimental. Please see `#workbench.editSessions.autoResume#` and `#workbench.editSessions.continueOn#` for configuring behavior related to Edit Sessions.",
+            "defaultDefaultValue": true,
             "scope": 3,
-            "restricted": false
+            "restricted": false,
+            "deprecationMessage": "This setting is deprecated as Edit Sessions are no longer experimental. Please see `#workbench.editSessions.autoResume#` and `#workbench.editSessions.continueOn#` for configuring behavior related to Edit Sessions."
         },
         "workbench.experimental.editSessions.autoResume": {
             "enum": [
@@ -6811,10 +6887,11 @@
                 "usesOnlineServices"
             ],
             "default": "onReload",
-            "markdownDescription": "現在のワークスペースで使用可能な編集セッションを自動的に再開するかどうかを制御します。",
+            "markdownDeprecationMessage": "This setting is deprecated in favor of `#workbench.editSessions.autoResume#`.",
             "defaultDefaultValue": "onReload",
             "scope": 3,
-            "restricted": false
+            "restricted": false,
+            "deprecationMessage": "This setting is deprecated in favor of `#workbench.editSessions.autoResume#`."
         },
         "files.associations": {
             "type": "object",
@@ -7083,11 +7160,13 @@
             "type": "string",
             "enum": [
                 "simple",
-                "smart"
+                "smart",
+                "disabled"
             ],
             "enumDescriptions": [
                 "後ろに数字が付いている可能性のある、重複している名前の末尾に「copy」という語を追加します",
-                "重複した名前の末端に数字を追加します。名前の一部に既に数字が含まれている場合、その数字を増やしてみます。"
+                "重複した名前の末端に数字を追加します。名前の一部に既に数字が含まれている場合、その数字を増やしてみます。",
+                "Disables incremental naming. If two files with the same name exist you will be prompted to overwrite the existing file"
             ],
             "description": "貼り付けで重複するエクスプローラー項目に新しい名前を付けるときに使用する名前付け規則を制御します。",
             "default": "simple",
@@ -7473,6 +7552,38 @@
             ],
             "description": "検索結果の並べ替え順序を制御します。",
             "defaultDefaultValue": "default",
+            "scope": 3,
+            "restricted": false
+        },
+        "search.decorations.colors": {
+            "type": "boolean",
+            "description": "Controls whether search file decorations should use colors.",
+            "default": true,
+            "defaultDefaultValue": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "search.decorations.badges": {
+            "type": "boolean",
+            "description": "Controls whether search file decorations should use badges.",
+            "default": true,
+            "defaultDefaultValue": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "search.defaultViewMode": {
+            "type": "string",
+            "enum": [
+                "tree",
+                "list"
+            ],
+            "default": "list",
+            "enumDescriptions": [
+                "Shows search results as a tree.",
+                "Shows search results as a list."
+            ],
+            "description": "Controls the default search result view mode.",
+            "defaultDefaultValue": "list",
             "scope": 3,
             "restricted": false
         },
@@ -19979,7 +20090,7 @@
             "restricted": false
         },
         "terminal.integrated.commandsToSkipShell": {
-            "markdownDescription": "キー バインドがシェルに送信されず、代わりに常に VS Code で処理されるコマンド ID のセット。これにより、シェルによって通常使用されるキー バインドが、ターミナルがフォーカスされていない場合と同じ動作をするようにします。たとえば、'Ctrl+P' で Quick Open を起動します。\r\n\r\n&nbsp;\r\n\r\n既定では、多くのコマンドがスキップされます。既定値をオーバーライドし、代わりにそのコマンドのキー バインドをシェルに渡すには、先頭に '-' 文字が付いているコマンドを追加します。たとえば、'-workbench.action.quickOpen' を追加して、'Ctrl+P' でシェルにアクセスできるようにします。\r\n\r\n&nbsp;\r\n\r\n既定でスキップされる以下のコマンドの一覧は、設定エディターで表示したときには切り詰められます。完全な一覧を表示するには、下の一覧から最初のコマンドを [既定の設定の JSON を開く](command:workbench.action.openRawDefaultSettings '既定の設定 (JSON) を開く') して検索します。\r\n\r\n&nbsp;\r\n\r\n既定でスキップされるコマンド:\r\n\r\n- editor.action.toggleTabFocusMode\n- notifications.hideList\n- notifications.hideToasts\n- workbench.action.debug.continue\n- workbench.action.debug.pause\n- workbench.action.debug.restart\n- workbench.action.debug.run\n- workbench.action.debug.start\n- workbench.action.debug.stepInto\n- workbench.action.debug.stepOut\n- workbench.action.debug.stepOver\n- workbench.action.debug.stop\n- workbench.action.firstEditorInGroup\n- workbench.action.focusActiveEditorGroup\n- workbench.action.focusEighthEditorGroup\n- workbench.action.focusFifthEditorGroup\n- workbench.action.focusFirstEditorGroup\n- workbench.action.focusFourthEditorGroup\n- workbench.action.focusLastEditorGroup\n- workbench.action.focusNextPart\n- workbench.action.focusPreviousPart\n- workbench.action.focusSecondEditorGroup\n- workbench.action.focusSeventhEditorGroup\n- workbench.action.focusSixthEditorGroup\n- workbench.action.focusThirdEditorGroup\n- workbench.action.lastEditorInGroup\n- workbench.action.navigateDown\n- workbench.action.navigateLeft\n- workbench.action.navigateRight\n- workbench.action.navigateUp\n- workbench.action.nextEditor\n- workbench.action.nextEditorInGroup\n- workbench.action.nextPanelView\n- workbench.action.nextSideBarView\n- workbench.action.openNextRecentlyUsedEditor\n- workbench.action.openNextRecentlyUsedEditorInGroup\n- workbench.action.openPreviousRecentlyUsedEditor\n- workbench.action.openPreviousRecentlyUsedEditorInGroup\n- workbench.action.previousEditor\n- workbench.action.previousEditorInGroup\n- workbench.action.previousPanelView\n- workbench.action.previousSideBarView\n- workbench.action.quickOpen\n- workbench.action.quickOpenLeastRecentlyUsedEditor\n- workbench.action.quickOpenLeastRecentlyUsedEditorInGroup\n- workbench.action.quickOpenPreviousEditor\n- workbench.action.quickOpenPreviousRecentlyUsedEditor\n- workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup\n- workbench.action.quickOpenView\n- workbench.action.showCommands\n- workbench.action.tasks.build\n- workbench.action.tasks.reRunTask\n- workbench.action.tasks.restartTask\n- workbench.action.tasks.runTask\n- workbench.action.tasks.showLog\n- workbench.action.tasks.showTasks\n- workbench.action.tasks.terminate\n- workbench.action.tasks.test\n- workbench.action.terminal.clear\n- workbench.action.terminal.clearSelection\n- workbench.action.terminal.copyLastCommand\n- workbench.action.terminal.copySelection\n- workbench.action.terminal.copySelectionAsHtml\n- workbench.action.terminal.deleteToLineStart\n- workbench.action.terminal.deleteWordLeft\n- workbench.action.terminal.deleteWordRight\n- workbench.action.terminal.findNext\n- workbench.action.terminal.findPrevious\n- workbench.action.terminal.focus\n- workbench.action.terminal.focusAtIndex1\n- workbench.action.terminal.focusAtIndex2\n- workbench.action.terminal.focusAtIndex3\n- workbench.action.terminal.focusAtIndex4\n- workbench.action.terminal.focusAtIndex5\n- workbench.action.terminal.focusAtIndex6\n- workbench.action.terminal.focusAtIndex7\n- workbench.action.terminal.focusAtIndex8\n- workbench.action.terminal.focusAtIndex9\n- workbench.action.terminal.focusFind\n- workbench.action.terminal.focusNext\n- workbench.action.terminal.focusNextPane\n- workbench.action.terminal.focusPrevious\n- workbench.action.terminal.focusPreviousPane\n- workbench.action.terminal.goToRecentDirectory\n- workbench.action.terminal.hideFind\n- workbench.action.terminal.kill\n- workbench.action.terminal.killEditor\n- workbench.action.terminal.moveToEditor\n- workbench.action.terminal.moveToLineEnd\n- workbench.action.terminal.moveToLineStart\n- workbench.action.terminal.moveToTerminalPanel\n- workbench.action.terminal.navigationModeExit\n- workbench.action.terminal.navigationModeFocusNext\n- workbench.action.terminal.navigationModeFocusPrevious\n- workbench.action.terminal.new\n- workbench.action.terminal.newInActiveWorkspace\n- workbench.action.terminal.paste\n- workbench.action.terminal.pasteSelection\n- workbench.action.terminal.resizePaneDown\n- workbench.action.terminal.resizePaneLeft\n- workbench.action.terminal.resizePaneRight\n- workbench.action.terminal.resizePaneUp\n- workbench.action.terminal.runActiveFile\n- workbench.action.terminal.runRecentCommand\n- workbench.action.terminal.runSelectedText\n- workbench.action.terminal.scrollDown\n- workbench.action.terminal.scrollDownPage\n- workbench.action.terminal.scrollToBottom\n- workbench.action.terminal.scrollToNextCommand\n- workbench.action.terminal.scrollToPreviousCommand\n- workbench.action.terminal.scrollToTop\n- workbench.action.terminal.scrollUp\n- workbench.action.terminal.scrollUpPage\n- workbench.action.terminal.selectAll\n- workbench.action.terminal.selectToNextCommand\n- workbench.action.terminal.selectToNextLine\n- workbench.action.terminal.selectToPreviousCommand\n- workbench.action.terminal.selectToPreviousLine\n- workbench.action.terminal.sendSequence\n- workbench.action.terminal.sizeToContentWidth\n- workbench.action.terminal.split\n- workbench.action.terminal.splitInActiveWorkspace\n- workbench.action.terminal.toggleFindCaseSensitive\n- workbench.action.terminal.toggleFindRegex\n- workbench.action.terminal.toggleFindWholeWord\n- workbench.action.terminal.toggleTerminal\n- workbench.action.toggleFullScreen\n- workbench.action.toggleMaximizedPanel\n- workbench.action.togglePanel",
+            "markdownDescription": "キー バインドがシェルに送信されず、代わりに常に VS Code で処理されるコマンド ID のセット。これにより、シェルによって通常使用されるキー バインドが、ターミナルがフォーカスされていない場合と同じ動作をするようにします。たとえば、'Ctrl+P' で Quick Open を起動します。\r\n\r\n&nbsp;\r\n\r\n既定では、多くのコマンドがスキップされます。既定値をオーバーライドし、代わりにそのコマンドのキー バインドをシェルに渡すには、先頭に '-' 文字が付いているコマンドを追加します。たとえば、'-workbench.action.quickOpen' を追加して、'Ctrl+P' でシェルにアクセスできるようにします。\r\n\r\n&nbsp;\r\n\r\n既定でスキップされる以下のコマンドの一覧は、設定エディターで表示したときには切り詰められます。完全な一覧を表示するには、下の一覧から最初のコマンドを [既定の設定の JSON を開く](command:workbench.action.openRawDefaultSettings '既定の設定 (JSON) を開く') して検索します。\r\n\r\n&nbsp;\r\n\r\n既定でスキップされるコマンド:\r\n\r\n- editor.action.toggleTabFocusMode\n- notifications.hideList\n- notifications.hideToasts\n- workbench.action.closeQuickOpen\n- workbench.action.debug.continue\n- workbench.action.debug.pause\n- workbench.action.debug.restart\n- workbench.action.debug.run\n- workbench.action.debug.start\n- workbench.action.debug.stepInto\n- workbench.action.debug.stepOut\n- workbench.action.debug.stepOver\n- workbench.action.debug.stop\n- workbench.action.firstEditorInGroup\n- workbench.action.focusActiveEditorGroup\n- workbench.action.focusEighthEditorGroup\n- workbench.action.focusFifthEditorGroup\n- workbench.action.focusFirstEditorGroup\n- workbench.action.focusFourthEditorGroup\n- workbench.action.focusLastEditorGroup\n- workbench.action.focusNextPart\n- workbench.action.focusPreviousPart\n- workbench.action.focusSecondEditorGroup\n- workbench.action.focusSeventhEditorGroup\n- workbench.action.focusSixthEditorGroup\n- workbench.action.focusThirdEditorGroup\n- workbench.action.lastEditorInGroup\n- workbench.action.navigateDown\n- workbench.action.navigateLeft\n- workbench.action.navigateRight\n- workbench.action.navigateUp\n- workbench.action.nextEditor\n- workbench.action.nextEditorInGroup\n- workbench.action.nextPanelView\n- workbench.action.nextSideBarView\n- workbench.action.openNextRecentlyUsedEditor\n- workbench.action.openNextRecentlyUsedEditorInGroup\n- workbench.action.openPreviousRecentlyUsedEditor\n- workbench.action.openPreviousRecentlyUsedEditorInGroup\n- workbench.action.previousEditor\n- workbench.action.previousEditorInGroup\n- workbench.action.previousPanelView\n- workbench.action.previousSideBarView\n- workbench.action.quickOpen\n- workbench.action.quickOpenLeastRecentlyUsedEditor\n- workbench.action.quickOpenLeastRecentlyUsedEditorInGroup\n- workbench.action.quickOpenPreviousEditor\n- workbench.action.quickOpenPreviousRecentlyUsedEditor\n- workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup\n- workbench.action.quickOpenView\n- workbench.action.showCommands\n- workbench.action.tasks.build\n- workbench.action.tasks.reRunTask\n- workbench.action.tasks.restartTask\n- workbench.action.tasks.runTask\n- workbench.action.tasks.showLog\n- workbench.action.tasks.showTasks\n- workbench.action.tasks.terminate\n- workbench.action.tasks.test\n- workbench.action.terminal.clear\n- workbench.action.terminal.clearSelection\n- workbench.action.terminal.copyLastCommand\n- workbench.action.terminal.copySelection\n- workbench.action.terminal.copySelectionAsHtml\n- workbench.action.terminal.deleteToLineStart\n- workbench.action.terminal.deleteWordLeft\n- workbench.action.terminal.deleteWordRight\n- workbench.action.terminal.findNext\n- workbench.action.terminal.findPrevious\n- workbench.action.terminal.focus\n- workbench.action.terminal.focusAtIndex1\n- workbench.action.terminal.focusAtIndex2\n- workbench.action.terminal.focusAtIndex3\n- workbench.action.terminal.focusAtIndex4\n- workbench.action.terminal.focusAtIndex5\n- workbench.action.terminal.focusAtIndex6\n- workbench.action.terminal.focusAtIndex7\n- workbench.action.terminal.focusAtIndex8\n- workbench.action.terminal.focusAtIndex9\n- workbench.action.terminal.focusFind\n- workbench.action.terminal.focusNext\n- workbench.action.terminal.focusNextPane\n- workbench.action.terminal.focusPrevious\n- workbench.action.terminal.focusPreviousPane\n- workbench.action.terminal.goToRecentDirectory\n- workbench.action.terminal.hideFind\n- workbench.action.terminal.kill\n- workbench.action.terminal.killEditor\n- workbench.action.terminal.moveToEditor\n- workbench.action.terminal.moveToLineEnd\n- workbench.action.terminal.moveToLineStart\n- workbench.action.terminal.moveToTerminalPanel\n- workbench.action.terminal.navigationModeExit\n- workbench.action.terminal.navigationModeFocusNext\n- workbench.action.terminal.navigationModeFocusPrevious\n- workbench.action.terminal.new\n- workbench.action.terminal.newInActiveWorkspace\n- workbench.action.terminal.paste\n- workbench.action.terminal.pasteSelection\n- workbench.action.terminal.quickFix\n- workbench.action.terminal.resizePaneDown\n- workbench.action.terminal.resizePaneLeft\n- workbench.action.terminal.resizePaneRight\n- workbench.action.terminal.resizePaneUp\n- workbench.action.terminal.runActiveFile\n- workbench.action.terminal.runRecentCommand\n- workbench.action.terminal.runSelectedText\n- workbench.action.terminal.scrollDown\n- workbench.action.terminal.scrollDownPage\n- workbench.action.terminal.scrollToBottom\n- workbench.action.terminal.scrollToNextCommand\n- workbench.action.terminal.scrollToPreviousCommand\n- workbench.action.terminal.scrollToTop\n- workbench.action.terminal.scrollUp\n- workbench.action.terminal.scrollUpPage\n- workbench.action.terminal.selectAll\n- workbench.action.terminal.selectToNextCommand\n- workbench.action.terminal.selectToNextLine\n- workbench.action.terminal.selectToPreviousCommand\n- workbench.action.terminal.selectToPreviousLine\n- workbench.action.terminal.sendSequence\n- workbench.action.terminal.sizeToContentWidth\n- workbench.action.terminal.split\n- workbench.action.terminal.splitInActiveWorkspace\n- workbench.action.terminal.toggleFindCaseSensitive\n- workbench.action.terminal.toggleFindRegex\n- workbench.action.terminal.toggleFindWholeWord\n- workbench.action.terminal.toggleTerminal\n- workbench.action.toggleFullScreen\n- workbench.action.toggleMaximizedPanel\n- workbench.action.togglePanel",
             "type": "array",
             "items": {
                 "type": "string"
@@ -20947,14 +21058,14 @@
         },
         "git.mergeEditor": {
             "type": "boolean",
-            "default": true,
+            "default": false,
             "markdownDescription": "現在競合しているファイルのマージ エディターを開きます。",
             "scope": 3,
             "source": {
                 "id": "vscode.git",
                 "displayName": "Git"
             },
-            "defaultDefaultValue": true,
+            "defaultDefaultValue": false,
             "restricted": false
         },
         "github.gitProtocol": {
@@ -23570,114 +23681,6 @@
             "defaultDefaultValue": "allOpenProjects",
             "restricted": false
         },
-        "workbench.editor.autoLockGroups": {
-            "type": "object",
-            "description": "リストのいずれかの種類と一致するエディターがエディター グループの最初のものとして開いており、複数のグループが開いている場合、グループは自動的にロックされます。ロックされたグループは、ユーザーのジェスチャ (例: ドラッグ アンド ドロップ) で明示的に選択された場合に、エディターを開くときにのみ使用されますが、既定では使用されません。その結果、ロックされたグループ内のアクティブなエディターが、誤って別のエディターで置き換えられる可能性は低くなります。",
-            "properties": {
-                "default": {
-                    "type": "boolean",
-                    "default": false,
-                    "description": "テキスト エディター"
-                },
-                "vscode-interactive-input": {
-                    "type": "boolean",
-                    "default": false,
-                    "description": "Interactive Editor"
-                },
-                "interactive": {
-                    "type": "boolean",
-                    "default": false,
-                    "description": "Interactive Editor"
-                },
-                "workbench.editorinputs.searchEditorInput": {
-                    "type": "boolean",
-                    "default": false,
-                    "description": "検索エディター"
-                },
-                "imagePreview.previewEditor": {
-                    "type": "boolean",
-                    "default": false,
-                    "description": "イメージ プレビュー"
-                },
-                "vscode.markdown.preview.editor": {
-                    "type": "boolean",
-                    "default": false,
-                    "description": "Markdown Preview"
-                },
-                "jsProfileVisualizer.cpuprofile.table": {
-                    "type": "boolean",
-                    "default": false,
-                    "description": "CPU Profile Table Visualizer"
-                },
-                "jsProfileVisualizer.heapprofile.table": {
-                    "type": "boolean",
-                    "default": false,
-                    "description": "Heap Profile Table Visualizer"
-                },
-                "terminalEditor": {
-                    "type": "boolean",
-                    "default": true,
-                    "description": "ターミナル"
-                },
-                "jupyter-notebook": {
-                    "type": "boolean",
-                    "default": false,
-                    "description": "Jupyter Notebook"
-                },
-                "mainThreadWebview-markdown.preview": {
-                    "type": "boolean",
-                    "default": false,
-                    "description": "マークダウンのプレビュー"
-                }
-            },
-            "default": {
-                "default": false,
-                "vscode-interactive-input": false,
-                "interactive": false,
-                "workbench.editorinputs.searchEditorInput": false,
-                "imagePreview.previewEditor": false,
-                "vscode.markdown.preview.editor": false,
-                "jsProfileVisualizer.cpuprofile.table": false,
-                "jsProfileVisualizer.heapprofile.table": false,
-                "terminalEditor": true,
-                "jupyter-notebook": false,
-                "mainThreadWebview-markdown.preview": false
-            },
-            "additionalProperties": false,
-            "defaultDefaultValue": {
-                "default": false,
-                "vscode-interactive-input": false,
-                "interactive": false,
-                "workbench.editorinputs.searchEditorInput": false,
-                "imagePreview.previewEditor": false,
-                "vscode.markdown.preview.editor": false,
-                "jsProfileVisualizer.cpuprofile.table": false,
-                "jsProfileVisualizer.heapprofile.table": false,
-                "terminalEditor": true,
-                "jupyter-notebook": false,
-                "mainThreadWebview-markdown.preview": false
-            },
-            "scope": 3,
-            "restricted": false
-        },
-        "workbench.editor.defaultBinaryEditor": {
-            "type": "string",
-            "default": "",
-            "enum": [
-                "default",
-                "workbench.editorinputs.searchEditorInput",
-                "imagePreview.previewEditor",
-                "vscode.markdown.preview.editor",
-                "jsProfileVisualizer.cpuprofile.table",
-                "jsProfileVisualizer.heapprofile.table",
-                "jupyter-notebook",
-                ""
-            ],
-            "description": "バイナリとして検出されたファイルの既定のエディター。未定義の場合、ユーザーにはピッカーが掲示されます。",
-            "defaultDefaultValue": "",
-            "scope": 3,
-            "restricted": false
-        },
         "terminal.integrated.defaultProfile.linux": {
             "restricted": true,
             "markdownDescription": "Linux で使用される既定のプロファイルです。`terminal.integrated.shell.linux` または `terminal.integrated.shellArgs.linux` のいずれかが設定されている場合、現在この設定は無視されます。",
@@ -23726,6 +23729,153 @@
             ],
             "defaultDefaultValue": null,
             "scope": 3
+        },
+        "workbench.editor.autoLockGroups": {
+            "type": "object",
+            "description": "リストのいずれかの種類と一致するエディターがエディター グループの最初のものとして開いており、複数のグループが開いている場合、グループは自動的にロックされます。ロックされたグループは、ユーザーのジェスチャ (例: ドラッグ アンド ドロップ) で明示的に選択された場合に、エディターを開くときにのみ使用されますが、既定では使用されません。その結果、ロックされたグループ内のアクティブなエディターが、誤って別のエディターで置き換えられる可能性は低くなります。",
+            "properties": {
+                "default": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "テキスト エディター"
+                },
+                "workbench.editorinputs.searchEditorInput": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "検索エディター"
+                },
+                "vscode-interactive-input": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Interactive Editor"
+                },
+                "interactive": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Interactive Editor"
+                },
+                "terminalEditor": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "ターミナル"
+                },
+                "jupyter-notebook": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Jupyter Notebook"
+                },
+                "vscode.markdown.preview.editor": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Markdown Preview"
+                },
+                "imagePreview.previewEditor": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Image Preview"
+                },
+                "vscode.audioPreview": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Audio Preview"
+                },
+                "vscode.videoPreview": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Video Preview"
+                },
+                "jsProfileVisualizer.cpuprofile.table": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "CPU Profile Table Visualizer"
+                },
+                "jsProfileVisualizer.heapprofile.table": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Heap Profile Table Visualizer"
+                },
+                "mainThreadWebview-markdown.preview": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "マークダウンのプレビュー"
+                }
+            },
+            "default": {
+                "default": false,
+                "workbench.editorinputs.searchEditorInput": false,
+                "vscode-interactive-input": false,
+                "interactive": false,
+                "terminalEditor": true,
+                "jupyter-notebook": false,
+                "vscode.markdown.preview.editor": false,
+                "imagePreview.previewEditor": false,
+                "vscode.audioPreview": false,
+                "vscode.videoPreview": false,
+                "jsProfileVisualizer.cpuprofile.table": false,
+                "jsProfileVisualizer.heapprofile.table": false,
+                "mainThreadWebview-markdown.preview": false
+            },
+            "additionalProperties": false,
+            "defaultDefaultValue": {
+                "default": false,
+                "workbench.editorinputs.searchEditorInput": false,
+                "vscode-interactive-input": false,
+                "interactive": false,
+                "terminalEditor": true,
+                "jupyter-notebook": false,
+                "vscode.markdown.preview.editor": false,
+                "imagePreview.previewEditor": false,
+                "vscode.audioPreview": false,
+                "vscode.videoPreview": false,
+                "jsProfileVisualizer.cpuprofile.table": false,
+                "jsProfileVisualizer.heapprofile.table": false,
+                "mainThreadWebview-markdown.preview": false
+            },
+            "scope": 3,
+            "restricted": false
+        },
+        "workbench.editor.defaultBinaryEditor": {
+            "type": "string",
+            "default": "",
+            "enum": [
+                "default",
+                "workbench.editorinputs.searchEditorInput",
+                "jupyter-notebook",
+                "vscode.markdown.preview.editor",
+                "imagePreview.previewEditor",
+                "vscode.audioPreview",
+                "vscode.videoPreview",
+                "jsProfileVisualizer.cpuprofile.table",
+                "jsProfileVisualizer.heapprofile.table",
+                ""
+            ],
+            "description": "バイナリとして検出されたファイルの既定のエディター。未定義の場合、ユーザーにはピッカーが掲示されます。",
+            "defaultDefaultValue": "",
+            "scope": 3,
+            "restricted": false
+        },
+        "workbench.editorAssociations": {
+            "type": "object",
+            "markdownDescription": "glob パターンをエディターに構成します (例: `\"*.hex\": \"hexEditor.hexEdit\"`)。これらは既定の動作よりも優先されます。",
+            "patternProperties": {
+                ".*": {
+                    "type": "string",
+                    "enum": [
+                        "default",
+                        "workbench.editorinputs.searchEditorInput",
+                        "jupyter-notebook",
+                        "vscode.markdown.preview.editor",
+                        "imagePreview.previewEditor",
+                        "vscode.audioPreview",
+                        "vscode.videoPreview",
+                        "jsProfileVisualizer.cpuprofile.table",
+                        "jsProfileVisualizer.heapprofile.table"
+                    ]
+                }
+            },
+            "default": {},
+            "scope": 3,
+            "restricted": false
         },
         "editor.tabSize": {
             "type": "number",
@@ -26198,18 +26348,18 @@
             "scope": 5,
             "restricted": false
         },
-        "editor.useCustomCodeActionMenu": {
+        "editor.experimental.pasteActions.enabled": {
             "type": "boolean",
             "scope": 5,
-            "description": "これを有効にすると、コード アクション メニューのレンダリング方法が調整されます。",
-            "default": true,
-            "defaultDefaultValue": true,
+            "description": "貼り付け時に拡張機能からの編集の実行を有効化/無効化してください。",
+            "default": false,
+            "defaultDefaultValue": false,
             "restricted": false
         },
-        "editor.customCodeActionMenu.showHeaders": {
+        "editor.codeActionWidget.showHeaders": {
             "type": "boolean",
             "scope": 5,
-            "description": "これを有効にすると、カスタム コード アクション メニューが有効になっている場合、コード アクション メニューにグループ ヘッダーが表示されます。",
+            "description": "Enable/disable showing group headers in the code action menu.",
             "default": true,
             "defaultDefaultValue": true,
             "restricted": false
@@ -26220,14 +26370,6 @@
             "default": true,
             "type": "boolean",
             "defaultDefaultValue": true,
-            "restricted": false
-        },
-        "editor.experimental.pasteActions.enabled": {
-            "type": "boolean",
-            "scope": 5,
-            "description": "貼り付け時に拡張機能からの編集の実行を有効化/無効化してください。",
-            "default": false,
-            "defaultDefaultValue": false,
             "restricted": false
         },
         "breadcrumbs.symbolSortOrder": {
@@ -26579,12 +26721,12 @@
                 "vscode.github-authentication",
                 "vscode.grunt",
                 "vscode.gulp",
-                "vscode.image-preview",
                 "vscode.ipynb",
                 "vscode.jake",
                 "ms-vscode.js-debug",
                 "ms-vscode.js-debug-companion",
                 "vscode.markdown-math",
+                "vscode.media-preview",
                 "vscode.merge-conflict",
                 "vscode.microsoft-authentication",
                 "vscode.npm",
@@ -26614,16 +26756,16 @@
                 "GitHub 認証",
                 "Grunt support for VS Code",
                 "VSCode の Gulp サポート",
-                "画像プレビュー",
                 ".ipynb のサポート",
                 "VS Code の Jake サポート",
                 "JavaScript Debugger",
                 "JavaScript Debugger Companion Extension",
                 "Markdown 数式",
+                "Media Preview",
                 "マージの競合",
                 "Microsoft アカウント",
                 "VS Code の npm サポート",
-                "Remote - WSL: Recommender",
+                "WSL: Recommender",
                 "save-vscode-schemas",
                 "シンプル ブラウザー",
                 "Table Visualizer for JavaScript Profiles"
@@ -26649,16 +26791,16 @@
                 "GitHub 認証プロバイダー",
                 "Extension to add Grunt capabilities to VS Code.",
                 "VS Code に Gulp 機能を追加する拡張機能。",
-                "VS Code の組み込みイメージ プレビューを提供します",
                 "Jupyter の .ipynb ノートブック ファイルを開いて読み取るための基本サポートを提供します",
                 "VS Code に Jake 機能を追加する拡張機能。",
                 "An extension for debugging Node.js programs and Chrome.",
                 "Companion extension to js-debug that provides capability for remote debugging",
                 "ノートブックのマークダウンに数式サポートを追加します。",
+                "Provides VS Code's built-in previews for images, audio, and video",
                 "行内マージ競合のハイライト、コマンドを提供します。",
                 "Microsoft 認証プロバイダー",
                 "npm スクリプトのタスクサポートを追加する拡張",
-                "Recommends using the Windows Subsystem for Linux (WSL) and the Remote WSL extension.",
+                "Recommends using the Windows Subsystem for Linux (WSL) and the WSL extension.",
                 "Save VS Code's schemas",
                 "Web コンテンツを表示するための非常に基本的な組み込みの Web ビューです。",
                 "Text visualizer for profiles taken from the JavaScript debugger"
@@ -30167,7 +30309,7 @@
         "emmet.showAbbreviationSuggestions": {
             "type": "boolean",
             "default": true,
-            "scope": 4,
+            "scope": 5,
             "markdownDescription": "利用できる Emmet 省略記法を候補として表示します。スタイルシートや emmet.showExpandedAbbreviation を `\"never\"` に設定していると適用されません。",
             "source": {
                 "id": "vscode.emmet",
@@ -30849,6 +30991,18 @@
             "scope": 4,
             "default": false,
             "description": "同期コマンドを実行するときに、Git リベースを強制します。",
+            "source": {
+                "id": "vscode.git",
+                "displayName": "Git"
+            },
+            "defaultDefaultValue": false,
+            "restricted": false
+        },
+        "git.pullBeforeCheckout": {
+            "type": "boolean",
+            "scope": 4,
+            "default": false,
+            "description": "Controls whether a branch that does not have outgoing commits is fast-forwarded before it is checked out.",
             "source": {
                 "id": "vscode.git",
                 "displayName": "Git"
@@ -31669,14 +31823,11 @@
             "defaultDefaultValue": true,
             "restricted": false
         },
-        "markdown.experimental.validate.enabled": {
+        "markdown.validate.enabled": {
             "type": "boolean",
             "scope": 4,
-            "description": "Markdown ファイル内のすべてのエラー報告を有効または無効にします。",
+            "description": "Enable/disable all error reporting in Markdown files.",
             "default": false,
-            "tags": [
-                "experimental"
-            ],
             "source": {
                 "id": "vscode.markdown-language-features",
                 "displayName": "Markdown 言語機能"
@@ -31684,18 +31835,15 @@
             "defaultDefaultValue": false,
             "restricted": false
         },
-        "markdown.experimental.validate.referenceLinks.enabled": {
+        "markdown.validate.referenceLinks.enabled": {
             "type": "string",
             "scope": 4,
-            "markdownDescription": "Markdown ファイルの参照リンクを検証します (例: `[link][ref]`)。 `#markdown.experimental.validate.enabled#` を有効にする必要があります。",
+            "markdownDescription": "Validate reference links in Markdown files, e.g. `[link][ref]`.  Requires enabling `#markdown.validate.enabled#`.",
             "default": "warning",
             "enum": [
                 "ignore",
                 "warning",
                 "error"
-            ],
-            "tags": [
-                "experimental"
             ],
             "source": {
                 "id": "vscode.markdown-language-features",
@@ -31704,18 +31852,15 @@
             "defaultDefaultValue": "warning",
             "restricted": false
         },
-        "markdown.experimental.validate.fragmentLinks.enabled": {
+        "markdown.validate.fragmentLinks.enabled": {
             "type": "string",
             "scope": 4,
-            "markdownDescription": "現在のマークダウン ファイルで、ヘッダーへのフラグメント リンクを検証します (例: `[link](#header)`)。`#markdown.experimental.validate.enabled#` を有効にする必要があります。",
+            "markdownDescription": "Validate fragment links to headers in the current Markdown file, e.g. `[link](#header)`. Requires enabling `#markdown.validate.enabled#`.",
             "default": "warning",
             "enum": [
                 "ignore",
                 "warning",
                 "error"
-            ],
-            "tags": [
-                "experimental"
             ],
             "source": {
                 "id": "vscode.markdown-language-features",
@@ -31724,18 +31869,15 @@
             "defaultDefaultValue": "warning",
             "restricted": false
         },
-        "markdown.experimental.validate.fileLinks.enabled": {
+        "markdown.validate.fileLinks.enabled": {
             "type": "string",
             "scope": 4,
-            "markdownDescription": "Markdown ファイル内の他のファイルへのリンク (例: `[link](/path/to/file.md)`) を検証します。これにより、ターゲット ファイルが存在するかどうかが確認されます。`#markdown.experimental.validate.enabled#` を有効にする必要があります。",
+            "markdownDescription": "Validate links to other files in Markdown files, e.g. `[link](/path/to/file.md)`. This checks that the target files exists. Requires enabling `#markdown.validate.enabled#`.",
             "default": "warning",
             "enum": [
                 "ignore",
                 "warning",
                 "error"
-            ],
-            "tags": [
-                "experimental"
             ],
             "source": {
                 "id": "vscode.markdown-language-features",
@@ -31744,36 +31886,31 @@
             "defaultDefaultValue": "warning",
             "restricted": false
         },
-        "markdown.experimental.validate.fileLinks.markdownFragmentLinks": {
+        "markdown.validate.fileLinks.markdownFragmentLinks": {
             "type": "string",
             "scope": 4,
-            "markdownDescription": "マークダウン ファイルで、他のファイルのヘッダーへのリンクのフラグメント部分を検証します。例: '[link](/path/to/file.md#header)'。既定では、'#markdown.experimental.validate.fragmentLinks.enabled#' から設定値を継承します。",
-            "default": "ignore",
+            "markdownDescription": "Validate the fragment part of links to headers in other files in Markdown files, e.g. `[link](/path/to/file.md#header)`. Inherits the setting value from `#markdown.validate.fragmentLinks.enabled#` by default.",
+            "default": "inherit",
             "enum": [
+                "inherit",
                 "ignore",
                 "warning",
                 "error"
-            ],
-            "tags": [
-                "experimental"
             ],
             "source": {
                 "id": "vscode.markdown-language-features",
                 "displayName": "Markdown 言語機能"
             },
-            "defaultDefaultValue": "ignore",
+            "defaultDefaultValue": "inherit",
             "restricted": false
         },
-        "markdown.experimental.validate.ignoreLinks": {
+        "markdown.validate.ignoredLinks": {
             "type": "array",
             "scope": 4,
-            "markdownDescription": "検証しないリンクを校正します。たとえば、`/about` を指定すると、リンク `[about](/about)` が検証されません。glob `/assets/**/*.svg` を指定すると、`assets` ディレクトリ下の `.svg` ファイルへのリンクの検証をスキップできます。",
+            "markdownDescription": "Configure links that should not be validated. For example adding `/about` would not validate the link `[about](/about)`, while the glob `/assets/**/*.svg` would let you skip validation for any link to `.svg` files under the `assets` directory.",
             "items": {
                 "type": "string"
             },
-            "tags": [
-                "experimental"
-            ],
             "source": {
                 "id": "vscode.markdown-language-features",
                 "displayName": "Markdown 言語機能"
