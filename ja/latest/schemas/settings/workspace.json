@@ -1802,7 +1802,7 @@
             "restricted": false
         },
         "audioCues.taskEnded": {
-            "description": "Plays a sound when a task ends.",
+            "description": "タスクの終了時に音を鳴らします。",
             "type": "string",
             "enum": [
                 "auto",
@@ -1820,7 +1820,7 @@
             "restricted": false
         },
         "audioCues.terminalQuickFix": {
-            "description": "Plays a sound when a terminal quick fixes are available",
+            "description": "ターミナルのクイック修正が利用可能になったときに音を鳴らす",
             "type": "string",
             "enum": [
                 "auto",
@@ -2223,11 +2223,11 @@
                 "off"
             ],
             "enumDescriptions": [
-                "Always",
+                "常に",
                 "各フォルダーのアクセス許可ダイアログを表示する",
                 "なし"
             ],
-            "description": "Enable automatic tasks in the folder - note that tasks won't run in an untrusted workspace.",
+            "description": "フォルダー内の自動タスクを有効にする - 信頼されていないワークスペースではタスクは実行されません。",
             "default": "auto",
             "restricted": true,
             "defaultDefaultValue": "auto",
@@ -6223,7 +6223,7 @@
                                 "inUntrustedWorkspace"
                             ],
                             "default": "inUntrustedWorkspace",
-                            "description": "基本以外のすべての ASCII 文字を強調表示するかどうかを制御します。U+0020 から U+007Eの間の文字、Tab、改行コード、行頭復帰のみが基本 ASCII と見なされます。",
+                            "description": "基本 ASCII 以外のすべての文字を強調表示するかどうかを制御します。U+0020 から U+007E の間の文字、タブ、改行 (LF)、行頭復帰のみが基本 ASCII と見なされます。",
                             "defaultDefaultValue": "inUntrustedWorkspace",
                             "scope": 5
                         },
@@ -6231,7 +6231,7 @@
                             "restricted": true,
                             "type": "boolean",
                             "default": true,
-                            "description": "スペースを予約するだけの文字または幅がまったくない文字を強調表示するかどうかを制御します。",
+                            "description": "空白を占めるだけの文字や幅がまったくない文字を強調表示するかどうかを制御します。",
                             "defaultDefaultValue": true,
                             "scope": 5
                         },
@@ -6279,7 +6279,7 @@
                             "restricted": true,
                             "type": "object",
                             "default": {},
-                            "description": "強調表示されていない許可される文字を定義します。",
+                            "description": "強調表示せず許可される文字を定義します。",
                             "additionalProperties": {
                                 "type": "boolean"
                             },
@@ -6296,7 +6296,7 @@
                                 "_os": true,
                                 "_vscode": true
                             },
-                            "description": "許可されているロケールで一般的な Unicode 文字が強調表示されていません。",
+                            "description": "許可されているロケールで一般的な Unicode 文字は強調表示されません。",
                             "defaultDefaultValue": {
                                 "_os": true,
                                 "_vscode": true
@@ -6824,15 +6824,15 @@
                 "off"
             ],
             "enumDescriptions": [
-                "Prompt the user to sign in to store edit sessions with Continue Working On.",
-                "Do not use edit sessions with Continue Working On unless the user has already turned on edit sessions."
+                "[作業を続行] の使用中に、編集セッションを保存するには、サインインするようユーザーに確認します。",
+                "ユーザーが編集セッションを既に有効にしていない限り、[作業を続行] で編集セッションを使用しないでください。"
             ],
             "type": "string",
             "tags": [
                 "usesOnlineServices"
             ],
             "default": "prompt",
-            "markdownDescription": "Controls whether to prompt the user to store edit sessions when using Continue Working On.",
+            "markdownDescription": "[作業の続行] を使用するときに、編集セッションを保存するようユーザーに確認するかどうかを制御します。",
             "defaultDefaultValue": "prompt",
             "scope": 3,
             "restricted": false
@@ -6843,8 +6843,8 @@
                 "off"
             ],
             "enumDescriptions": [
-                "Prompt the user to sign in to store edit sessions with Continue Working On.",
-                "Do not use edit sessions with Continue Working On unless the user has already turned on edit sessions."
+                "[作業を続行] の使用中に、編集セッションを保存するには、サインインするようユーザーに確認します。",
+                "ユーザーが編集セッションを既に有効にしていない限り、[作業を続行] で編集セッションを使用しないでください。"
             ],
             "type": "string",
             "tags": [
@@ -6852,12 +6852,12 @@
                 "usesOnlineServices"
             ],
             "default": "prompt",
-            "markdownDeprecationMessage": "This setting is deprecated in favor of `#workbench.experimental.continueOn#`.",
-            "markdownDescription": "Controls whether to prompt the user to store edit sessions when using Continue Working On.",
+            "markdownDeprecationMessage": "この設定は非推奨とされ、`#workbench.experimental.continueOn#` が優先されます。",
+            "markdownDescription": "[作業の続行] を使用するときに、編集セッションを保存するようユーザーに確認するかどうかを制御します。",
             "defaultDefaultValue": "prompt",
             "scope": 3,
             "restricted": false,
-            "deprecationMessage": "This setting is deprecated in favor of `#workbench.experimental.continueOn#`."
+            "deprecationMessage": "この設定は非推奨とされ、`#workbench.experimental.continueOn#` が優先されます。"
         },
         "workbench.experimental.editSessions.enabled": {
             "type": "boolean",
@@ -6866,11 +6866,11 @@
                 "usesOnlineServices"
             ],
             "default": true,
-            "markdownDeprecationMessage": "This setting is deprecated as Edit Sessions are no longer experimental. Please see `#workbench.editSessions.autoResume#` and `#workbench.editSessions.continueOn#` for configuring behavior related to Edit Sessions.",
+            "markdownDeprecationMessage": "セッションの編集は試験段階ではなくなったため、この設定は非推奨になります。セッションの編集に関連する動作の構成については、`#workbench.editSessions.autoResume#` と `#workbench.editSessions.continueOn#` を参照してください。",
             "defaultDefaultValue": true,
             "scope": 3,
             "restricted": false,
-            "deprecationMessage": "This setting is deprecated as Edit Sessions are no longer experimental. Please see `#workbench.editSessions.autoResume#` and `#workbench.editSessions.continueOn#` for configuring behavior related to Edit Sessions."
+            "deprecationMessage": "セッションの編集は試験段階ではなくなったため、この設定は非推奨になります。セッションの編集に関連する動作の構成については、`#workbench.editSessions.autoResume#` と `#workbench.editSessions.continueOn#` を参照してください。"
         },
         "workbench.experimental.editSessions.autoResume": {
             "enum": [
@@ -6887,11 +6887,11 @@
                 "usesOnlineServices"
             ],
             "default": "onReload",
-            "markdownDeprecationMessage": "This setting is deprecated in favor of `#workbench.editSessions.autoResume#`.",
+            "markdownDeprecationMessage": "この設定は非推奨とされ、`#workbench.editSessions.autoResume#` が優先されます。",
             "defaultDefaultValue": "onReload",
             "scope": 3,
             "restricted": false,
-            "deprecationMessage": "This setting is deprecated in favor of `#workbench.editSessions.autoResume#`."
+            "deprecationMessage": "この設定は非推奨とされ、`#workbench.editSessions.autoResume#` が優先されます。"
         },
         "files.associations": {
             "type": "object",
@@ -6923,7 +6923,7 @@
                 "変更のあったエディターは自動的に保存されません。",
                 "変更のあったエディターは、構成された '#files.autoSaveDelay#' の後に自動的に保存されます。",
                 "エディターがフォーカスを失うと、変更のあったエディターが自動的に保存されます。",
-                "エディターがフォーカスを失うと、変更のあったエディターが自動的に保存されます。"
+                "エディターがフォーカスを失うと、変更のあったウィンドウが自動的に保存されます。"
             ],
             "default": "off",
             "markdownDescription": "変更が保存されていないエディターの [自動保存](https://code.visualstudio.com/docs/editor/codebasics#_save 自動保存) を制御します。",
@@ -7166,7 +7166,7 @@
             "enumDescriptions": [
                 "後ろに数字が付いている可能性のある、重複している名前の末尾に「copy」という語を追加します",
                 "重複した名前の末端に数字を追加します。名前の一部に既に数字が含まれている場合、その数字を増やしてみます。",
-                "Disables incremental naming. If two files with the same name exist you will be prompted to overwrite the existing file"
+                "名前の増分作成を無効にします。同じ名前のファイルが 2 つ存在する場合は、既存のファイルを上書きするよう要求されます"
             ],
             "description": "貼り付けで重複するエクスプローラー項目に新しい名前を付けるときに使用する名前付け規則を制御します。",
             "default": "simple",
@@ -7557,7 +7557,7 @@
         },
         "search.decorations.colors": {
             "type": "boolean",
-            "description": "Controls whether search file decorations should use colors.",
+            "description": "検索ファイルの装飾に色を使用するかどうかを制御します。",
             "default": true,
             "defaultDefaultValue": true,
             "scope": 3,
@@ -7565,7 +7565,7 @@
         },
         "search.decorations.badges": {
             "type": "boolean",
-            "description": "Controls whether search file decorations should use badges.",
+            "description": "検索ファイルの装飾にバッジを使用するかどうかを制御します。",
             "default": true,
             "defaultDefaultValue": true,
             "scope": 3,
@@ -7579,10 +7579,10 @@
             ],
             "default": "list",
             "enumDescriptions": [
-                "Shows search results as a tree.",
-                "Shows search results as a list."
+                "検索結果をツリーとして表示します。",
+                "検索結果をリストとして表示します。"
             ],
-            "description": "Controls the default search result view mode.",
+            "description": "既定の検索結果ビュー モードを制御します。",
             "defaultDefaultValue": "list",
             "scope": 3,
             "restricted": false
@@ -23772,17 +23772,17 @@
                 "imagePreview.previewEditor": {
                     "type": "boolean",
                     "default": false,
-                    "description": "Image Preview"
+                    "description": "画像プレビュー"
                 },
                 "vscode.audioPreview": {
                     "type": "boolean",
                     "default": false,
-                    "description": "Audio Preview"
+                    "description": "オーディオ プレビュー"
                 },
                 "vscode.videoPreview": {
                     "type": "boolean",
                     "default": false,
-                    "description": "Video Preview"
+                    "description": "ビデオ プレビュー"
                 },
                 "jsProfileVisualizer.cpuprofile.table": {
                     "type": "boolean",
@@ -26116,7 +26116,7 @@
                 "inUntrustedWorkspace"
             ],
             "default": "inUntrustedWorkspace",
-            "description": "基本以外のすべての ASCII 文字を強調表示するかどうかを制御します。U+0020 から U+007Eの間の文字、Tab、改行コード、行頭復帰のみが基本 ASCII と見なされます。",
+            "description": "基本 ASCII 以外のすべての文字を強調表示するかどうかを制御します。U+0020 から U+007E の間の文字、タブ、改行 (LF)、行頭復帰のみが基本 ASCII と見なされます。",
             "defaultDefaultValue": "inUntrustedWorkspace",
             "scope": 5
         },
@@ -26124,7 +26124,7 @@
             "restricted": true,
             "type": "boolean",
             "default": true,
-            "description": "スペースを予約するだけの文字または幅がまったくない文字を強調表示するかどうかを制御します。",
+            "description": "空白を占めるだけの文字や幅がまったくない文字を強調表示するかどうかを制御します。",
             "defaultDefaultValue": true,
             "scope": 5
         },
@@ -26172,7 +26172,7 @@
             "restricted": true,
             "type": "object",
             "default": {},
-            "description": "強調表示されていない許可される文字を定義します。",
+            "description": "強調表示せず許可される文字を定義します。",
             "additionalProperties": {
                 "type": "boolean"
             },
@@ -26189,7 +26189,7 @@
                 "_os": true,
                 "_vscode": true
             },
-            "description": "許可されているロケールで一般的な Unicode 文字が強調表示されていません。",
+            "description": "許可されているロケールで一般的な Unicode 文字は強調表示されません。",
             "defaultDefaultValue": {
                 "_os": true,
                 "_vscode": true
@@ -26359,7 +26359,7 @@
         "editor.codeActionWidget.showHeaders": {
             "type": "boolean",
             "scope": 5,
-            "description": "Enable/disable showing group headers in the code action menu.",
+            "description": "コード アクション メニューでのグループ ヘッダーの表示の有効/無効を切り替えます。",
             "default": true,
             "defaultDefaultValue": true,
             "restricted": false
@@ -26761,7 +26761,7 @@
                 "JavaScript Debugger",
                 "JavaScript Debugger Companion Extension",
                 "Markdown 数式",
-                "Media Preview",
+                "メディア プレビュー",
                 "マージの競合",
                 "Microsoft アカウント",
                 "VS Code の npm サポート",
@@ -26796,7 +26796,7 @@
                 "An extension for debugging Node.js programs and Chrome.",
                 "Companion extension to js-debug that provides capability for remote debugging",
                 "ノートブックのマークダウンに数式サポートを追加します。",
-                "Provides VS Code's built-in previews for images, audio, and video",
+                "画像、オーディオ、ビデオの VS Code の組み込みプレビューを提供します",
                 "行内マージ競合のハイライト、コマンドを提供します。",
                 "Microsoft 認証プロバイダー",
                 "npm スクリプトのタスクサポートを追加する拡張",
@@ -27177,7 +27177,7 @@
         "explorer.fileNesting.patterns": {
             "type": "object",
             "scope": 4,
-            "markdownDescription": "エクスプローラー内のファイルの入れ子を制御します。各__Item__は親パターンを表し、任意の文字列に一致する 1 つの '*' 文字を含む場合があります。各__Value__は、指定された親の下に入れ子になっている子パターンのコンマ区切りの一覧を表します。子パターンには、いくつかの特別なトークンが含まれている可能性があります:\r\n- '$(capture)': 親パターンの '*' の解決された値と一致します\r\n- '${basename}': 親ファイルのベース名 、'file.ts' の 'file' と一致します\r\n- `${extname}': 親ファイルの拡張子 、'file.ts' の 'ts' と一致します\r\n- `${dirname}': 親ファイルのディレクトリ名 、'src/file.ts' の 'src' と一致します\r\n- '*': 任意の文字列に一致します。子パターンごとに 1 回のみ使用できます",
+            "markdownDescription": "エクスプローラー内のファイルの入れ子を制御します。この機能を有効にするには、`#explorer.fileNesting.enabled#` を設定する必要があります。各__Item__は親パターンを表し、任意の文字列に一致する 1 つの '*' 文字を含む場合があります。各__Value__は、指定された親の下に入れ子になっている子パターンのコンマ区切りの一覧を表します。子パターンには、いくつかの特別なトークンが含まれている可能性があります:\r\n- '$(capture)': 親パターンの '*' の解決された値と一致します\r\n- '${basename}': 親ファイルのベース名 、'file.ts' の 'file' と一致します\r\n- `${extname}': 親ファイルの拡張子 、'file.ts' の 'ts' と一致します\r\n- `${dirname}': 親ファイルのディレクトリ名 、'src/file.ts' の 'src' と一致します\r\n- '*': 任意の文字列に一致します。子パターンごとに 1 回のみ使用できます",
             "patternProperties": {
                 "^[^*]*\\*?[^*]*$": {
                     "markdownDescription": "各キー パターンには、任意の文字列と一致する 1 つの '*' 文字を含む場合があります。",
@@ -30835,7 +30835,7 @@
             ],
             "scope": 4,
             "default": "always",
-            "description": "変更を一時退避する前に Git で保存していないファイルを確認すべきかどうかを制御します。",
+            "description": "変更をスタッシュする前に Git で保存していないファイルを確認すべきかどうかを制御します。",
             "source": {
                 "id": "vscode.git",
                 "displayName": "Git"
@@ -31002,7 +31002,7 @@
             "type": "boolean",
             "scope": 4,
             "default": false,
-            "description": "Controls whether a branch that does not have outgoing commits is fast-forwarded before it is checked out.",
+            "description": "出力方向のコミットがないブランチを、チェックアウト前に早送りするかどうかを制御します。",
             "source": {
                 "id": "vscode.git",
                 "displayName": "Git"
@@ -31050,7 +31050,7 @@
             "type": "boolean",
             "scope": 4,
             "default": false,
-            "description": "プルする前にすべての変更を一時退避し、プル成功後に復元します。",
+            "description": "プルする前にすべての変更をスタッシュし、プル成功後に復元します。",
             "source": {
                 "id": "vscode.git",
                 "displayName": "Git"
@@ -31062,7 +31062,7 @@
             "type": "boolean",
             "scope": 4,
             "default": false,
-            "description": "変更を一時退避、コミット、破棄、ステージング、またはステージング解除する場合に差分エディターを自動的に閉じるかどうかを制御します。",
+            "description": "変更をスタッシュ、コミット、破棄、ステージング、またはステージング解除する場合に差分エディターを自動的に閉じるかどうかを制御します。",
             "source": {
                 "id": "vscode.git",
                 "displayName": "Git"
@@ -31144,7 +31144,7 @@
             "type": "boolean",
             "scope": 4,
             "default": false,
-            "description": "コミット入力ボックスからのメッセージを既定の stash メッセージとして使用するかどうかを制御します。",
+            "description": "コミット入力ボックスからのメッセージを既定のスタッシュ メッセージとして使用するかどうかを制御します。",
             "source": {
                 "id": "vscode.git",
                 "displayName": "Git"
@@ -31826,7 +31826,7 @@
         "markdown.validate.enabled": {
             "type": "boolean",
             "scope": 4,
-            "description": "Enable/disable all error reporting in Markdown files.",
+            "description": "Markdown ファイル内のすべてのエラー報告を有効または無効にします。",
             "default": false,
             "source": {
                 "id": "vscode.markdown-language-features",
@@ -31838,7 +31838,7 @@
         "markdown.validate.referenceLinks.enabled": {
             "type": "string",
             "scope": 4,
-            "markdownDescription": "Validate reference links in Markdown files, e.g. `[link][ref]`.  Requires enabling `#markdown.validate.enabled#`.",
+            "markdownDescription": "Markdown ファイル内の参照リンクを検証します (例: '[link][ref]')。'#markdown.validate.enabled#' を有効にする必要があります。",
             "default": "warning",
             "enum": [
                 "ignore",
@@ -31855,7 +31855,7 @@
         "markdown.validate.fragmentLinks.enabled": {
             "type": "string",
             "scope": 4,
-            "markdownDescription": "Validate fragment links to headers in the current Markdown file, e.g. `[link](#header)`. Requires enabling `#markdown.validate.enabled#`.",
+            "markdownDescription": "現在の Markdown ファイルに含まれるヘッダーへのフラグメント リンクを検証します (例: '[link](#header)')。'#markdown.validate.enabled#' を有効にする必要があります。",
             "default": "warning",
             "enum": [
                 "ignore",
@@ -31872,7 +31872,7 @@
         "markdown.validate.fileLinks.enabled": {
             "type": "string",
             "scope": 4,
-            "markdownDescription": "Validate links to other files in Markdown files, e.g. `[link](/path/to/file.md)`. This checks that the target files exists. Requires enabling `#markdown.validate.enabled#`.",
+            "markdownDescription": "Markdown ファイルに含まれる、他のファイルへのリンクを検証します (例: '[link](/path/to/file.md)')。これを指定すると、ターゲット ファイルが存在するかどうかが確認されます。'#markdown.validate.enabled#' を有効にする必要があります。",
             "default": "warning",
             "enum": [
                 "ignore",
@@ -31889,7 +31889,7 @@
         "markdown.validate.fileLinks.markdownFragmentLinks": {
             "type": "string",
             "scope": 4,
-            "markdownDescription": "Validate the fragment part of links to headers in other files in Markdown files, e.g. `[link](/path/to/file.md#header)`. Inherits the setting value from `#markdown.validate.fragmentLinks.enabled#` by default.",
+            "markdownDescription": "Markdown ファイルに含まれる、他のファイルのヘッダーへのリンクのフラグメント部分を検証します。例: '[link](/path/to/file.md#header)'。既定では、'#markdown.validate.fragmentLinks.enabled#' から設定値を継承します。",
             "default": "inherit",
             "enum": [
                 "inherit",
@@ -31907,7 +31907,7 @@
         "markdown.validate.ignoredLinks": {
             "type": "array",
             "scope": 4,
-            "markdownDescription": "Configure links that should not be validated. For example adding `/about` would not validate the link `[about](/about)`, while the glob `/assets/**/*.svg` would let you skip validation for any link to `.svg` files under the `assets` directory.",
+            "markdownDescription": "検証しないリンクを構成します。たとえば、'/about' を追加すると、リンク '[about](/about)' は検証されなくなります。glob '/assets/**/*.svg' を指定すると、'assets' ディレクトリの下にある '.svg' ファイルへのリンクの検証をスキップできます。",
             "items": {
                 "type": "string"
             },
