@@ -4,15 +4,34 @@
             "type": "number",
             "default": 4,
             "minimum": 1,
-            "markdownDescription": "1 つのタブに相当するスペースの数。`#editor.detectIndentation#` がオンの場合、この設定はファイル コンテンツに基づいて上書きされます。",
+            "markdownDescription": "The number of spaces a tab is equal to. This setting is overridden based on the file contents when `#editor.detectIndentation#` is on.",
             "defaultDefaultValue": 4,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.indentSize": {
+            "anyOf": [
+                {
+                    "type": "string",
+                    "enum": [
+                        "tabSize"
+                    ]
+                },
+                {
+                    "type": "number",
+                    "minimum": 1
+                }
+            ],
+            "default": "tabSize",
+            "markdownDescription": "The number of spaces used for indentation or `\"tabSize\"` to use the value from `#editor.tabSize#`. This setting is overridden based on the file contents when `#editor.detectIndentation#` is on.",
+            "defaultDefaultValue": "tabSize",
             "scope": 5,
             "restricted": false
         },
         "editor.insertSpaces": {
             "type": "boolean",
             "default": true,
-            "markdownDescription": "`Tab` キーを押すとスペースが挿入されます。`#editor.detectIndentation#` がオンの場合、この設定はファイル コンテンツに基づいて上書きされます。",
+            "markdownDescription": "Insert spaces when pressing `Tab`. This setting is overridden based on the file contents when `#editor.detectIndentation#` is on.",
             "defaultDefaultValue": true,
             "scope": 5,
             "restricted": false
@@ -20,7 +39,7 @@
         "editor.detectIndentation": {
             "type": "boolean",
             "default": true,
-            "markdownDescription": "ファイルがファイルの内容に基づいて開かれる場合、`#editor.tabSize#` と `#editor.insertSpaces#` を自動的に検出するかどうかを制御します。",
+            "markdownDescription": "Controls whether `#editor.tabSize#` and `#editor.insertSpaces#` will be automatically detected when a file is opened based on the file contents.",
             "defaultDefaultValue": true,
             "scope": 5,
             "restricted": false
@@ -28,7 +47,7 @@
         "editor.trimAutoWhitespace": {
             "type": "boolean",
             "default": true,
-            "description": "自動挿入された末尾の空白を削除します。",
+            "description": "Remove trailing auto inserted whitespace.",
             "defaultDefaultValue": true,
             "scope": 5,
             "restricted": false
@@ -36,7 +55,7 @@
         "editor.largeFileOptimizations": {
             "type": "boolean",
             "default": true,
-            "description": "大きなファイルでメモリが集中する特定の機能を無効にするための特別な処理。",
+            "description": "Special handling for large files to disable certain memory intensive features.",
             "defaultDefaultValue": true,
             "scope": 5,
             "restricted": false
@@ -44,7 +63,7 @@
         "editor.wordBasedSuggestions": {
             "type": "boolean",
             "default": true,
-            "description": "ドキュメント内の単語に基づいて入力候補を計算するかどうかを制御します。",
+            "description": "Controls whether completions should be computed based on words in the document.",
             "defaultDefaultValue": true,
             "scope": 5,
             "restricted": false
@@ -57,11 +76,11 @@
             ],
             "default": "matchingDocuments",
             "enumDescriptions": [
-                "アクティブなドキュメントからのみ単語の候補を表示します。",
-                "同じ言語の開いているすべてのドキュメントから単語の候補を表示します。",
-                "開いているすべてのドキュメントから単語の候補を表示します。"
+                "Only suggest words from the active document.",
+                "Suggest words from all open documents of the same language.",
+                "Suggest words from all open documents."
             ],
-            "description": "単語ベースの入力候補が計算されるドキュメントを制御します。",
+            "description": "Controls from which documents word based completions are computed.",
             "defaultDefaultValue": "matchingDocuments",
             "scope": 5,
             "restricted": false
@@ -73,12 +92,12 @@
                 "configuredByTheme"
             ],
             "enumDescriptions": [
-                "セマンティックの強調表示がすべての配色テーマについて有効になりました。",
-                "セマンティックの強調表示がすべての配色テーマについて無効になりました。",
-                "セマンティックの強調表示は、現在の配色テーマの 'semanticHighlighting' 設定によって構成されています。"
+                "Semantic highlighting enabled for all color themes.",
+                "Semantic highlighting disabled for all color themes.",
+                "Semantic highlighting is configured by the current color theme's `semanticHighlighting` setting."
             ],
             "default": "configuredByTheme",
-            "description": "semanticHighlighting をサポートされる言語で表示するかどうかを制御します。",
+            "description": "Controls whether the semanticHighlighting is shown for the languages that support it.",
             "defaultDefaultValue": "configuredByTheme",
             "scope": 5,
             "restricted": false
@@ -86,7 +105,7 @@
         "editor.stablePeek": {
             "type": "boolean",
             "default": false,
-            "markdownDescription": "エディターのコンテンツをダブルクリックするか、`Escape` キーを押しても、ピーク エディターを開いたままにします。",
+            "markdownDescription": "Keep peek editors open even when double clicking their content or when hitting `Escape`.",
             "defaultDefaultValue": false,
             "scope": 5,
             "restricted": false
@@ -94,7 +113,7 @@
         "editor.maxTokenizationLineLength": {
             "type": "integer",
             "default": 20000,
-            "description": "この長さを越える行は、パフォーマンス上の理由によりトークン化されません。",
+            "description": "Lines above this length will not be tokenized for performance reasons",
             "defaultDefaultValue": 20000,
             "scope": 5,
             "restricted": false
@@ -105,17 +124,17 @@
                 "null"
             ],
             "default": null,
-            "description": "インデントを増減する角かっこを定義します。",
+            "description": "Defines the bracket symbols that increase or decrease the indentation.",
             "items": {
                 "type": "array",
                 "items": [
                     {
                         "type": "string",
-                        "description": "左角かっこまたは文字列シーケンス。"
+                        "description": "The opening bracket character or string sequence."
                     },
                     {
                         "type": "string",
-                        "description": "右角かっこまたは文字列シーケンス。"
+                        "description": "The closing bracket character or string sequence."
                     }
                 ]
             },
@@ -129,17 +148,17 @@
                 "null"
             ],
             "default": null,
-            "description": "角かっこのペアの色付けが有効になっている場合、入れ子のレベルによって色付けされる角かっこのペアを定義します。",
+            "description": "Defines the bracket pairs that are colorized by their nesting level if bracket pair colorization is enabled.",
             "items": {
                 "type": "array",
                 "items": [
                     {
                         "type": "string",
-                        "description": "左角かっこまたは文字列シーケンス。"
+                        "description": "The opening bracket character or string sequence."
                     },
                     {
                         "type": "string",
-                        "description": "右角かっこまたは文字列シーケンス。"
+                        "description": "The closing bracket character or string sequence."
                     }
                 ]
             },
@@ -150,7 +169,7 @@
         "diffEditor.maxComputationTime": {
             "type": "number",
             "default": 5000,
-            "description": "差分計算が取り消された後のタイムアウト (ミリ秒単位)。タイムアウトなしには 0 を使用します。",
+            "description": "Timeout in milliseconds after which diff computation is cancelled. Use 0 for no timeout.",
             "defaultDefaultValue": 5000,
             "scope": 5,
             "restricted": false
@@ -158,7 +177,7 @@
         "diffEditor.maxFileSize": {
             "type": "number",
             "default": 50,
-            "description": "差分を計算する場合の最大ファイル サイズ (MB)。制限なしの場合は 0 を使用します。",
+            "description": "Maximum file size in MB for which to compute diffs. Use 0 for no limit.",
             "defaultDefaultValue": 50,
             "scope": 5,
             "restricted": false
@@ -166,7 +185,7 @@
         "diffEditor.renderSideBySide": {
             "type": "boolean",
             "default": true,
-            "description": "差分エディターが差分を横に並べて表示するか、行内に表示するかを制御します。",
+            "description": "Controls whether the diff editor shows the diff side by side or inline.",
             "defaultDefaultValue": true,
             "scope": 5,
             "restricted": false
@@ -174,7 +193,7 @@
         "diffEditor.renderMarginRevertIcon": {
             "type": "boolean",
             "default": true,
-            "description": "有効にすると、差分エディターでグリフ余白に、変更を元に戻すための矢印が表示されます。",
+            "description": "When enabled, the diff editor shows arrows in its glyph margin to revert changes.",
             "defaultDefaultValue": true,
             "scope": 5,
             "restricted": false
@@ -182,7 +201,7 @@
         "diffEditor.ignoreTrimWhitespace": {
             "type": "boolean",
             "default": true,
-            "description": "有効にすると、差分エディターは先頭または末尾の空白文字の変更を無視します。",
+            "description": "When enabled, the diff editor ignores changes in leading or trailing whitespace.",
             "defaultDefaultValue": true,
             "scope": 5,
             "restricted": false
@@ -190,7 +209,7 @@
         "diffEditor.renderIndicators": {
             "type": "boolean",
             "default": true,
-            "description": "差分エディターが追加/削除された変更に +/- インジケーターを示すかどうかを制御します。",
+            "description": "Controls whether the diff editor shows +/- indicators for added/removed changes.",
             "defaultDefaultValue": true,
             "scope": 5,
             "restricted": false
@@ -198,7 +217,7 @@
         "diffEditor.codeLens": {
             "type": "boolean",
             "default": false,
-            "description": "エディターで CodeLens を表示するかどうかを制御します。",
+            "description": "Controls whether the editor shows CodeLens.",
             "defaultDefaultValue": false,
             "scope": 5,
             "restricted": false
@@ -212,9 +231,9 @@
             ],
             "default": "inherit",
             "markdownEnumDescriptions": [
-                "行を折り返しません。",
-                "行をビューポートの幅で折り返します。",
-                "行は、`#editor.wordWrap#` の設定に従って折り返されます。"
+                "Lines will never wrap.",
+                "Lines will wrap at the viewport width.",
+                "Lines will wrap according to the `#editor.wordWrap#` setting."
             ],
             "defaultDefaultValue": "inherit",
             "scope": 5,
@@ -228,15 +247,15 @@
             ],
             "default": "smart",
             "markdownEnumDescriptions": [
-                "既定の差分アルゴリズムを使用します。",
-                "試験的な差分アルゴリズムを使用します。"
+                "Uses the default diffing algorithm.",
+                "Uses an experimental diffing algorithm."
             ],
             "defaultDefaultValue": "smart",
             "scope": 5,
             "restricted": false
         },
         "editor.acceptSuggestionOnCommitCharacter": {
-            "markdownDescription": "コミット文字で候補を受け入れるかどうかを制御します。たとえば、JavaScript ではセミコロン (`;`) をコミット文字にして、候補を受け入れてその文字を入力することができます。",
+            "markdownDescription": "Controls whether suggestions should be accepted on commit characters. For example, in JavaScript, the semi-colon (`; `) can be a commit character that accepts a suggestion and types that character.",
             "type": "boolean",
             "default": true,
             "defaultDefaultValue": true,
@@ -246,10 +265,10 @@
         "editor.acceptSuggestionOnEnter": {
             "markdownEnumDescriptions": [
                 "",
-                "テキストの変更を行うとき、`Enter` を使用する場合にのみ候補を受け付けます。",
+                "Only accept a suggestion with `Enter` when it makes a textual change.",
                 ""
             ],
-            "markdownDescription": "`Tab` キーに加えて `Enter` キーで候補を受け入れるかどうかを制御します。改行の挿入や候補の反映の間であいまいさを解消するのに役立ちます。",
+            "markdownDescription": "Controls whether suggestions should be accepted on `Enter`, in addition to `Tab`. Helps to avoid ambiguity between inserting new lines or accepting suggestions.",
             "type": "string",
             "enum": [
                 "on",
@@ -269,18 +288,24 @@
                 "off"
             ],
             "enumDescriptions": [
-                "エディターはスクリーン リーダーがいつ接続されたかを検出するためにプラットフォーム API を使用します。",
-                "エディターは永続的にスクリーン リーダーでの使用向けに最適化されます。単語の折り返しは無効になります。",
-                "エディターはスクリーン リーダー向けに最適化されません。"
+                "The editor will use platform APIs to detect when a Screen Reader is attached.",
+                "The editor will be permanently optimized for usage with a Screen Reader. Word wrapping will be disabled.",
+                "The editor will never be optimized for usage with a Screen Reader."
             ],
             "default": "auto",
-            "description": "エディターをスクリーン リーダーに最適化されたモードで実行するかどうかを制御します。オンに設定すると単語の折り返しが無効になります。",
+            "tags": [
+                "accessibility"
+            ],
+            "description": "Controls whether the editor should run in a mode where it is optimized for screen readers.",
             "defaultDefaultValue": "auto",
             "scope": 5,
             "restricted": false
         },
         "editor.accessibilityPageSize": {
-            "description": "一度にスクリーン リーダーによって読み上げることができるエディターの行数を制御します。スクリーン リーダーが検出されると、既定値が 500 に自動的に設定されます。警告: 既定値より大きい数値の場合は、パフォーマンスに影響があります。",
+            "description": "Controls the number of lines in the editor that can be read out by a screen reader at once. When we detect a screen reader we automatically set the default to be 500. Warning: this has a performance implication for numbers larger than the default.",
+            "tags": [
+                "accessibility"
+            ],
             "type": "integer",
             "default": 10,
             "minimum": 1,
@@ -292,11 +317,11 @@
         "editor.autoClosingBrackets": {
             "enumDescriptions": [
                 "",
-                "言語設定を使用して、いつかっこを自動クローズするか決定します。",
-                "カーソルが空白文字の左にあるときだけ、かっこを自動クローズします。",
+                "Use language configurations to determine when to autoclose brackets.",
+                "Autoclose brackets only when the cursor is to the left of whitespace.",
                 ""
             ],
-            "description": "エディターで左角かっこを追加した後に自動的に右角かっこを挿入するかどうかを制御します。",
+            "description": "Controls whether the editor should automatically close brackets after the user adds an opening bracket.",
             "type": "string",
             "enum": [
                 "always",
@@ -312,10 +337,10 @@
         "editor.autoClosingDelete": {
             "enumDescriptions": [
                 "",
-                "隣接する終わり引用符または括弧が自動的に挿入された場合にのみ、それらを削除します。",
+                "Remove adjacent closing quotes or brackets only if they were automatically inserted.",
                 ""
             ],
-            "description": "削除時にエディターで隣接する終わり引用符または括弧を削除するかどうかを制御します。",
+            "description": "Controls whether the editor should remove adjacent closing quotes or brackets when deleting.",
             "type": "string",
             "enum": [
                 "always",
@@ -330,10 +355,10 @@
         "editor.autoClosingOvertype": {
             "enumDescriptions": [
                 "",
-                "終わり引用符または括弧が自動的に挿入された場合にのみ、それらを上書きします。",
+                "Type over closing quotes or brackets only if they were automatically inserted.",
                 ""
             ],
-            "description": "エディターで終わり引用符または括弧を上書きするかどうかを制御します。",
+            "description": "Controls whether the editor should type over closing quotes or brackets.",
             "type": "string",
             "enum": [
                 "always",
@@ -348,11 +373,11 @@
         "editor.autoClosingQuotes": {
             "enumDescriptions": [
                 "",
-                "言語設定を使用して、いつ引用符を自動クローズするか決定します。",
-                "カーソルが空白文字の左にあるときだけ、引用符を自動クローズします。",
+                "Use language configurations to determine when to autoclose quotes.",
+                "Autoclose quotes only when the cursor is to the left of whitespace.",
                 ""
             ],
-            "description": "ユーザーが開始引用符を追加した後、エディター自動的に引用符を閉じるかどうかを制御します。",
+            "description": "Controls whether the editor should automatically close quotes after the user adds an opening quote.",
             "type": "string",
             "enum": [
                 "always",
@@ -367,13 +392,13 @@
         },
         "editor.autoIndent": {
             "enumDescriptions": [
-                "エディターはインデントを自動的に挿入しません。",
-                "エディターは、現在の行のインデントを保持します。",
-                "エディターは、現在の行のインデントを保持し、言語が定義されたかっこを優先します。",
-                "エディターは、現在の行のインデントを保持し、言語が定義されたかっこを優先し、言語で定義された特別な onEnterRules を呼び出します。",
-                "エディターは、現在の行のインデントを保持し、言語が定義されたかっこを優先し、言語で定義された特別な onEnterRules を呼び出し、言語で定義された indentationRules を優先します。"
+                "The editor will not insert indentation automatically.",
+                "The editor will keep the current line's indentation.",
+                "The editor will keep the current line's indentation and honor language defined brackets.",
+                "The editor will keep the current line's indentation, honor language defined brackets and invoke special onEnterRules defined by languages.",
+                "The editor will keep the current line's indentation, honor language defined brackets, invoke special onEnterRules defined by languages, and honor indentationRules defined by languages."
             ],
-            "description": "ユーザーが行を入力、貼り付け、移動、またはインデントするときに、エディターでインデントを自動的に調整するかどうかを制御します。",
+            "description": "Controls whether the editor should automatically adjust the indentation when users type, paste, move or indent lines.",
             "type": "string",
             "enum": [
                 "none",
@@ -389,12 +414,12 @@
         },
         "editor.autoSurround": {
             "enumDescriptions": [
-                "言語構成を使用して、選択範囲をいつ自動的に囲むかを判断します。",
-                "角かっこではなく、引用符で囲みます。",
-                "引用符ではなく、角かっこで囲みます。",
+                "Use language configurations to determine when to automatically surround selections.",
+                "Surround with quotes but not brackets.",
+                "Surround with brackets but not quotes.",
                 ""
             ],
-            "description": "引用符または角かっこを入力するときに、エディターが選択範囲を自動的に囲むかどうかを制御します。",
+            "description": "Controls whether the editor should automatically surround selections when typing quotes or brackets.",
             "type": "string",
             "enum": [
                 "languageDefined",
@@ -410,7 +435,7 @@
         "editor.bracketPairColorization.enabled": {
             "type": "boolean",
             "default": true,
-            "markdownDescription": "ブラケットのペアの色付けが有効かどうかを制御します。 `#workbench.colorCustomizations#` を使用して、ブラケットの強調表示の色をオーバーライドします。",
+            "markdownDescription": "Controls whether bracket pair colorization is enabled or not. Use `#workbench.colorCustomizations#` to override the bracket highlight colors.",
             "defaultDefaultValue": true,
             "scope": 5,
             "restricted": false
@@ -418,7 +443,7 @@
         "editor.bracketPairColorization.independentColorPoolPerBracketType": {
             "type": "boolean",
             "default": false,
-            "description": "括弧の各種別が、個別のカラー プールを保持するかどうかを制御します。",
+            "description": "Controls whether each bracket type has its own independent color pool.",
             "defaultDefaultValue": false,
             "scope": 5,
             "restricted": false
@@ -434,12 +459,12 @@
                 false
             ],
             "enumDescriptions": [
-                "ブラケット ペア ガイドを有効にする。",
-                "アクティブなブラケット ペアに対してのみブラケット ペア ガイドを有効にします。",
-                "ブラケット ペア ガイドを無効にします。"
+                "Enables bracket pair guides.",
+                "Enables bracket pair guides only for the active bracket pair.",
+                "Disables bracket pair guides."
             ],
             "default": false,
-            "description": "ブラケット ペアのガイドを有効にするかどうかを制御します。",
+            "description": "Controls whether bracket pair guides are enabled or not.",
             "defaultDefaultValue": false,
             "scope": 5,
             "restricted": false
@@ -455,12 +480,12 @@
                 false
             ],
             "enumDescriptions": [
-                "縦のブラケット ペアのガイドに加えて、同じく水平のガイドを有効にします。",
-                "アクティブなブラケット ペアに対してのみ、水平のガイドを有効にします。",
-                "水平ブラケット ペア ガイドを無効にします。"
+                "Enables horizontal guides as addition to vertical bracket pair guides.",
+                "Enables horizontal guides only for the active bracket pair.",
+                "Disables horizontal bracket pair guides."
             ],
             "default": "active",
-            "description": "水平方向のブラケット ペアのガイドを有効にするかどうかを制御します。",
+            "description": "Controls whether horizontal bracket pair guides are enabled or not.",
             "defaultDefaultValue": "active",
             "scope": 5,
             "restricted": false
@@ -468,7 +493,7 @@
         "editor.guides.highlightActiveBracketPair": {
             "type": "boolean",
             "default": true,
-            "description": "エディターでアクティブな角かっこのペアを強調表示するかどうかを制御します。",
+            "description": "Controls whether the editor should highlight the active bracket pair.",
             "defaultDefaultValue": true,
             "scope": 5,
             "restricted": false
@@ -476,7 +501,7 @@
         "editor.guides.indentation": {
             "type": "boolean",
             "default": true,
-            "description": "エディターでインデント ガイドを表示するかどうかを制御します。",
+            "description": "Controls whether the editor should render indent guides.",
             "defaultDefaultValue": true,
             "scope": 5,
             "restricted": false
@@ -492,18 +517,18 @@
                 false
             ],
             "enumDescriptions": [
-                "アクティブなインデント ガイドを強調表示します。",
-                "角かっこガイドが強調表示されている場合でも、アクティブなインデント ガイドを強調表示します。",
-                "アクティブなインデント ガイドを強調表示しないでください。"
+                "Highlights the active indent guide.",
+                "Highlights the active indent guide even if bracket guides are highlighted.",
+                "Do not highlight the active indent guide."
             ],
             "default": true,
-            "description": "エディターでアクティブなインデントのガイドを強調表示するかどうかを制御します。",
+            "description": "Controls whether the editor should highlight the active indent guide.",
             "defaultDefaultValue": true,
             "scope": 5,
             "restricted": false
         },
         "editor.codeLens": {
-            "description": "エディターで CodeLens を表示するかどうかを制御します。",
+            "description": "Controls whether the editor shows CodeLens.",
             "type": "boolean",
             "default": true,
             "defaultDefaultValue": true,
@@ -511,7 +536,7 @@
             "restricted": false
         },
         "editor.codeLensFontFamily": {
-            "description": "CodeLens のフォント ファミリを制御します。",
+            "description": "Controls the font family for CodeLens.",
             "type": "string",
             "default": "",
             "defaultDefaultValue": "",
@@ -523,13 +548,13 @@
             "default": 0,
             "minimum": 0,
             "maximum": 100,
-            "markdownDescription": "CodeLens のフォント サイズをピクセル単位で制御します。'0' に設定すると、'#editor.fontSize#' の 90% が使用されます。",
+            "markdownDescription": "Controls the font size in pixels for CodeLens. When set to 0, 90% of `#editor.fontSize#` is used.",
             "defaultDefaultValue": 0,
             "scope": 5,
             "restricted": false
         },
         "editor.colorDecorators": {
-            "description": "エディターでインライン カラー デコレーターと色の選択を表示する必要があるかどうかを制御します。",
+            "description": "Controls whether the editor should render the inline color decorators and color picker.",
             "type": "boolean",
             "default": true,
             "defaultDefaultValue": true,
@@ -537,7 +562,7 @@
             "restricted": false
         },
         "editor.columnSelection": {
-            "description": "マウスとキーでの選択により列の選択を実行できるようにします。",
+            "description": "Enable that the selection with the mouse and keys is doing column selection.",
             "type": "boolean",
             "default": false,
             "defaultDefaultValue": false,
@@ -547,7 +572,7 @@
         "editor.comments.insertSpace": {
             "type": "boolean",
             "default": true,
-            "description": "コメント時に空白文字を挿入するかどうかを制御します。",
+            "description": "Controls whether a space character is inserted when commenting.",
             "defaultDefaultValue": true,
             "scope": 5,
             "restricted": false
@@ -555,13 +580,13 @@
         "editor.comments.ignoreEmptyLines": {
             "type": "boolean",
             "default": true,
-            "description": "行コメントの追加または削除アクションの切り替えで、空の行を無視するかどうかを制御します。",
+            "description": "Controls if empty lines should be ignored with toggle, add or remove actions for line comments.",
             "defaultDefaultValue": true,
             "scope": 5,
             "restricted": false
         },
         "editor.copyWithSyntaxHighlighting": {
-            "description": "構文ハイライトをクリップボードにコピーするかどうかを制御します。",
+            "description": "Controls whether syntax highlighting should be copied into the clipboard.",
             "type": "boolean",
             "default": true,
             "defaultDefaultValue": true,
@@ -569,7 +594,7 @@
             "restricted": false
         },
         "editor.cursorBlinking": {
-            "description": "カーソルのアニメーション方式を制御します。",
+            "description": "Control the cursor animation style.",
             "type": "string",
             "enum": [
                 "blink",
@@ -584,7 +609,7 @@
             "restricted": false
         },
         "editor.cursorSmoothCaretAnimation": {
-            "description": "滑らかなキャレットアニメーションを有効にするかどうかを制御します。",
+            "description": "Controls whether the smooth caret animation should be enabled.",
             "type": "boolean",
             "default": false,
             "defaultDefaultValue": false,
@@ -592,7 +617,7 @@
             "restricted": false
         },
         "editor.cursorStyle": {
-            "description": "カーソルのスタイルを制御します。",
+            "description": "Controls the cursor style.",
             "type": "string",
             "enum": [
                 "line",
@@ -608,7 +633,7 @@
             "restricted": false
         },
         "editor.cursorSurroundingLines": {
-            "description": "カーソル前後の表示可能な先頭と末尾の行の最小数を制御します。他の一部のエディターでは 'scrollOff' または `scrollOffset` と呼ばれます。",
+            "description": "Controls the minimal number of visible leading and trailing lines surrounding the cursor. Known as 'scrollOff' or 'scrollOffset' in some other editors.",
             "type": "integer",
             "default": 0,
             "minimum": 0,
@@ -619,10 +644,10 @@
         },
         "editor.cursorSurroundingLinesStyle": {
             "enumDescriptions": [
-                "`cursorSurroundingLines` は、キーボードまたは API でトリガーされた場合にのみ強制されます。",
-                "`cursorSurroundingLines` は常に適用されます。"
+                "`cursorSurroundingLines` is enforced only when triggered via the keyboard or API.",
+                "`cursorSurroundingLines` is enforced always."
             ],
-            "description": "'カーソルの周囲の行' を適用するタイミングを制御します。",
+            "description": "Controls when `cursorSurroundingLines` should be enforced.",
             "type": "string",
             "enum": [
                 "default",
@@ -634,7 +659,7 @@
             "restricted": false
         },
         "editor.cursorWidth": {
-            "markdownDescription": "`#editor.cursorStyle#` が `line` に設定されている場合、カーソルの幅を制御します。",
+            "markdownDescription": "Controls the width of the cursor when `#editor.cursorStyle#` is set to `line`.",
             "type": "integer",
             "default": 0,
             "minimum": 0,
@@ -644,7 +669,7 @@
             "restricted": false
         },
         "editor.dragAndDrop": {
-            "description": "ドラッグ アンド ドロップによる選択範囲の移動をエディターが許可するかどうかを制御します。",
+            "description": "Controls whether the editor should allow moving selections via drag and drop.",
             "type": "boolean",
             "default": true,
             "defaultDefaultValue": true,
@@ -654,13 +679,13 @@
         "editor.dropIntoEditor.enabled": {
             "type": "boolean",
             "default": true,
-            "markdownDescription": "(エディターでファイルを開く代わりに) 'shift' を押しながらテキスト エディターにファイルをドラッグ アンド ドロップできるかどうかを制御します。",
+            "markdownDescription": "Controls whether you can drag and drop a file into a text editor by holding down `shift` (instead of opening the file in an editor).",
             "defaultDefaultValue": true,
             "scope": 5,
             "restricted": false
         },
         "editor.emptySelectionClipboard": {
-            "description": "選択範囲を指定しないでコピーする場合に現在の行をコピーするかどうかを制御します。",
+            "description": "Controls whether copying without a selection copies the current line.",
             "type": "boolean",
             "default": true,
             "defaultDefaultValue": true,
@@ -668,7 +693,7 @@
             "restricted": false
         },
         "editor.fastScrollSensitivity": {
-            "markdownDescription": "`Alt` を押すと、スクロール速度が倍増します。",
+            "markdownDescription": "Scrolling speed multiplier when pressing `Alt`.",
             "type": "number",
             "default": 5,
             "defaultDefaultValue": 5,
@@ -678,7 +703,7 @@
         "editor.find.cursorMoveOnType": {
             "type": "boolean",
             "default": true,
-            "description": "入力中に一致を検索するためにカーソルをジャンプさせるかどうかを制御します。",
+            "description": "Controls whether the cursor should jump to find matches while typing.",
             "defaultDefaultValue": true,
             "scope": 5,
             "restricted": false
@@ -692,11 +717,11 @@
             ],
             "default": "always",
             "enumDescriptions": [
-                "エディターの選択範囲から検索文字列をシードしません。",
-                "カーソル位置にある単語を含め、エディターの選択範囲から検索文字列を常にシードします。",
-                "エディターの選択範囲から検索文字列のみをシードします。"
+                "Never seed search string from the editor selection.",
+                "Always seed search string from the editor selection, including word at cursor position.",
+                "Only seed search string from the editor selection."
             ],
-            "description": "エディターの選択範囲から検索ウィジェット内の検索文字列を与えるかどうかを制御します。",
+            "description": "Controls whether the search string in the Find Widget is seeded from the editor selection.",
             "defaultDefaultValue": "always",
             "scope": 5,
             "restricted": false
@@ -710,11 +735,11 @@
             ],
             "default": "never",
             "enumDescriptions": [
-                "[選択範囲を検索] を自動的にオンにしません (既定)。",
-                "[選択範囲を検索] を常に自動的にオンにします。",
-                "複数行のコンテンツが選択されている場合は、[選択範囲を検索] を自動的にオンにします。"
+                "Never turn on Find in Selection automatically (default).",
+                "Always turn on Find in Selection automatically.",
+                "Turn on Find in Selection automatically when multiple lines of content are selected."
             ],
-            "description": "[選択範囲を検索] を自動的にオンにする条件を制御します。",
+            "description": "Controls the condition for turning on Find in Selection automatically.",
             "defaultDefaultValue": "never",
             "scope": 5,
             "restricted": false
@@ -722,7 +747,7 @@
         "editor.find.addExtraSpaceOnTop": {
             "type": "boolean",
             "default": true,
-            "description": "検索ウィジェットがエディターの上に行をさらに追加するかどうかを制御します。true の場合、検索ウィジェットが表示されているときに最初の行を超えてスクロールできます。",
+            "description": "Controls whether the Find Widget should add extra lines on top of the editor. When true, you can scroll beyond the first line when the Find Widget is visible.",
             "defaultDefaultValue": true,
             "scope": 5,
             "restricted": false
@@ -730,13 +755,13 @@
         "editor.find.loop": {
             "type": "boolean",
             "default": true,
-            "description": "以降で一致が見つからない場合に、検索を先頭から (または末尾から) 自動的に再実行するかどうか制御します。",
+            "description": "Controls whether the search automatically restarts from the beginning (or the end) when no further matches can be found.",
             "defaultDefaultValue": true,
             "scope": 5,
             "restricted": false
         },
         "editor.folding": {
-            "description": "エディターでコードの折りたたみを有効にするかどうかを制御します。",
+            "description": "Controls whether the editor has code folding enabled.",
             "type": "boolean",
             "default": true,
             "defaultDefaultValue": true,
@@ -745,10 +770,10 @@
         },
         "editor.foldingStrategy": {
             "enumDescriptions": [
-                "利用可能な場合は言語固有の折りたたみ方法を使用し、利用可能ではない場合はインデントベースの方法を使用します。",
-                "インデントベースの折りたたみ方法を使用します。"
+                "Use a language-specific folding strategy if available, else the indentation-based one.",
+                "Use the indentation-based folding strategy."
             ],
-            "description": "折りたたみ範囲の計算方法を制御します。",
+            "description": "Controls the strategy for computing folding ranges.",
             "type": "string",
             "enum": [
                 "auto",
@@ -760,7 +785,7 @@
             "restricted": false
         },
         "editor.foldingHighlight": {
-            "description": "エディターで折りたたまれた範囲を強調表示するかどうかをコントロールします。",
+            "description": "Controls whether the editor should highlight folded ranges.",
             "type": "boolean",
             "default": true,
             "defaultDefaultValue": true,
@@ -768,7 +793,7 @@
             "restricted": false
         },
         "editor.foldingImportsByDefault": {
-            "description": "エディターがインポート範囲を自動的に折りたたむかどうかを制御します。",
+            "description": "Controls whether the editor automatically collapses import ranges.",
             "type": "boolean",
             "default": false,
             "defaultDefaultValue": false,
@@ -776,7 +801,7 @@
             "restricted": false
         },
         "editor.foldingMaximumRegions": {
-            "description": "折りたたみ可能な領域の最大数です。この値を大きくすると、現在のソースに多数の折りたたみ可能な領域がある場合にエディターの応答性が低下する可能性があります。",
+            "description": "The maximum number of foldable regions. Increasing this value may result in the editor becoming less responsive when the current source has a large number of foldable regions.",
             "type": "integer",
             "default": 5000,
             "minimum": 10,
@@ -786,7 +811,7 @@
             "restricted": false
         },
         "editor.unfoldOnClickAfterEndOfLine": {
-            "description": "折りたたまれた行の後の空のコンテンツをクリックすると行が展開されるかどうかを制御します。",
+            "description": "Controls whether clicking on the empty content after a folded line will unfold the line.",
             "type": "boolean",
             "default": false,
             "defaultDefaultValue": false,
@@ -794,7 +819,7 @@
             "restricted": false
         },
         "editor.fontFamily": {
-            "description": "フォント ファミリを制御します。",
+            "description": "Controls the font family.",
             "type": "string",
             "default": "Consolas, 'Courier New', monospace",
             "defaultDefaultValue": "Consolas, 'Courier New', monospace",
@@ -805,14 +830,14 @@
             "anyOf": [
                 {
                     "type": "boolean",
-                    "description": "フォントの合字 ('calt' および 'liga' フォントの機能) を有効または無効にします。'font-feature-settings' CSS プロパティを詳細に制御するには、これを文字列に変更します。"
+                    "description": "Enables/Disables font ligatures ('calt' and 'liga' font features). Change this to a string for fine-grained control of the 'font-feature-settings' CSS property."
                 },
                 {
                     "type": "string",
-                    "description": "明示的な 'font-feature-settings' CSS プロパティ。合字を有効または無効にする必要があるのが 1 つだけである場合は、代わりにブール値を渡すことができます。"
+                    "description": "Explicit 'font-feature-settings' CSS property. A boolean can be passed instead if one only needs to turn on/off ligatures."
                 }
             ],
-            "description": "フォントの合字やフォントの機能を構成します。合字を有効または無効にするブール値または CSS 'font-feature-settings' プロパティの値の文字列を指定できます。",
+            "description": "Configures font ligatures or font features. Can be either a boolean to enable/disable ligatures or a string for the value of the CSS 'font-feature-settings' property.",
             "default": false,
             "defaultDefaultValue": false,
             "scope": 5,
@@ -823,7 +848,7 @@
             "minimum": 6,
             "maximum": 100,
             "default": 14,
-            "description": "フォント サイズ (ピクセル単位) を制御します。",
+            "description": "Controls the font size in pixels.",
             "defaultDefaultValue": 14,
             "scope": 5,
             "restricted": false
@@ -834,7 +859,7 @@
                     "type": "number",
                     "minimum": 1,
                     "maximum": 1000,
-                    "errorMessage": "使用できるのは \"標準\" および \"太字\" のキーワードまたは 1 ～ 1000 の数字のみです。"
+                    "errorMessage": "Only \"normal\" and \"bold\" keywords or numbers between 1 and 1000 are allowed."
                 },
                 {
                     "type": "string",
@@ -857,13 +882,30 @@
                 }
             ],
             "default": "normal",
-            "description": "フォントの太さを制御します。\"標準\" および \"太字\" のキーワードまたは 1 ～ 1000 の数字を受け入れます。",
+            "description": "Controls the font weight. Accepts \"normal\" and \"bold\" keywords or numbers between 1 and 1000.",
             "defaultDefaultValue": "normal",
             "scope": 5,
             "restricted": false
         },
+        "editor.fontVariations": {
+            "anyOf": [
+                {
+                    "type": "boolean",
+                    "description": "Enables/Disables the translation from font-weight to font-variation-settings. Change this to a string for fine-grained control of the 'font-variation-settings' CSS property."
+                },
+                {
+                    "type": "string",
+                    "description": "Explicit 'font-variation-settings' CSS property. A boolean can be passed instead if one only needs to translate font-weight to font-variation-settings."
+                }
+            ],
+            "description": "Configures font variations. Can be either a boolean to enable/disable the translation from font-weight to font-variation-settings or a string for the value of the CSS 'font-variation-settings' property.",
+            "default": false,
+            "defaultDefaultValue": false,
+            "scope": 5,
+            "restricted": false
+        },
         "editor.formatOnPaste": {
-            "description": "貼り付けた内容がエディターにより自動的にフォーマットされるかどうかを制御します。フォーマッタを使用可能にする必要があります。また、フォーマッタがドキュメント内の範囲をフォーマットできなければなりません。",
+            "description": "Controls whether the editor should automatically format the pasted content. A formatter must be available and the formatter should be able to format a range in a document.",
             "type": "boolean",
             "default": false,
             "defaultDefaultValue": false,
@@ -871,7 +913,7 @@
             "restricted": false
         },
         "editor.formatOnType": {
-            "description": "エディターで入力後に自動的に行のフォーマットを行うかどうかを制御します。",
+            "description": "Controls whether the editor should automatically format the line after typing.",
             "type": "boolean",
             "default": false,
             "defaultDefaultValue": false,
@@ -879,7 +921,7 @@
             "restricted": false
         },
         "editor.glyphMargin": {
-            "description": "エディターで縦のグリフ余白が表示されるかどうかを制御します。ほとんどの場合、グリフ余白はデバッグに使用されます。",
+            "description": "Controls whether the editor should render the vertical glyph margin. Glyph margin is mostly used for debugging.",
             "type": "boolean",
             "default": true,
             "defaultDefaultValue": true,
@@ -887,13 +929,13 @@
             "restricted": false
         },
         "editor.gotoLocation.multiple": {
-            "deprecationMessage": "この設定は非推奨です。代わりに、'editor.editor.gotoLocation.multipleDefinitions' や 'editor.editor.gotoLocation.multipleImplementations' などの個別の設定を使用してください。",
+            "deprecationMessage": "This setting is deprecated, please use separate settings like 'editor.editor.gotoLocation.multipleDefinitions' or 'editor.editor.gotoLocation.multipleImplementations' instead.",
             "default": null,
             "scope": 5,
             "restricted": false
         },
         "editor.gotoLocation.multipleDefinitions": {
-            "description": "複数のターゲットの場所があるときの '定義へ移動' コマンドの動作を制御します。",
+            "description": "Controls the behavior the 'Go to Definition'-command when multiple target locations exist.",
             "type": "string",
             "enum": [
                 "peek",
@@ -902,16 +944,16 @@
             ],
             "default": "peek",
             "enumDescriptions": [
-                "結果のピーク ビューを表示 (既定)",
-                "主な結果に移動し、ピーク ビューを表示します",
-                "プライマリ結果に移動し、他のユーザーへのピークレス ナビゲーションを有効にします"
+                "Show Peek view of the results (default)",
+                "Go to the primary result and show a Peek view",
+                "Go to the primary result and enable Peek-less navigation to others"
             ],
             "defaultDefaultValue": "peek",
             "scope": 5,
             "restricted": false
         },
         "editor.gotoLocation.multipleTypeDefinitions": {
-            "description": "複数のターゲットの場所があるときの '型定義へ移動' コマンドの動作を制御します。",
+            "description": "Controls the behavior the 'Go to Type Definition'-command when multiple target locations exist.",
             "type": "string",
             "enum": [
                 "peek",
@@ -920,16 +962,16 @@
             ],
             "default": "peek",
             "enumDescriptions": [
-                "結果のピーク ビューを表示 (既定)",
-                "主な結果に移動し、ピーク ビューを表示します",
-                "プライマリ結果に移動し、他のユーザーへのピークレス ナビゲーションを有効にします"
+                "Show Peek view of the results (default)",
+                "Go to the primary result and show a Peek view",
+                "Go to the primary result and enable Peek-less navigation to others"
             ],
             "defaultDefaultValue": "peek",
             "scope": 5,
             "restricted": false
         },
         "editor.gotoLocation.multipleDeclarations": {
-            "description": "複数のターゲットの場所があるときの '宣言へ移動' コマンドの動作を制御します。",
+            "description": "Controls the behavior the 'Go to Declaration'-command when multiple target locations exist.",
             "type": "string",
             "enum": [
                 "peek",
@@ -938,16 +980,16 @@
             ],
             "default": "peek",
             "enumDescriptions": [
-                "結果のピーク ビューを表示 (既定)",
-                "主な結果に移動し、ピーク ビューを表示します",
-                "プライマリ結果に移動し、他のユーザーへのピークレス ナビゲーションを有効にします"
+                "Show Peek view of the results (default)",
+                "Go to the primary result and show a Peek view",
+                "Go to the primary result and enable Peek-less navigation to others"
             ],
             "defaultDefaultValue": "peek",
             "scope": 5,
             "restricted": false
         },
         "editor.gotoLocation.multipleImplementations": {
-            "description": "複数のターゲットの場所があるときの '実装に移動' コマンドの動作を制御します。",
+            "description": "Controls the behavior the 'Go to Implementations'-command when multiple target locations exist.",
             "type": "string",
             "enum": [
                 "peek",
@@ -956,16 +998,16 @@
             ],
             "default": "peek",
             "enumDescriptions": [
-                "結果のピーク ビューを表示 (既定)",
-                "主な結果に移動し、ピーク ビューを表示します",
-                "プライマリ結果に移動し、他のユーザーへのピークレス ナビゲーションを有効にします"
+                "Show Peek view of the results (default)",
+                "Go to the primary result and show a Peek view",
+                "Go to the primary result and enable Peek-less navigation to others"
             ],
             "defaultDefaultValue": "peek",
             "scope": 5,
             "restricted": false
         },
         "editor.gotoLocation.multipleReferences": {
-            "description": "ターゲットの場所が複数存在する場合の '参照へ移動' コマンドの動作を制御します。",
+            "description": "Controls the behavior the 'Go to References'-command when multiple target locations exist.",
             "type": "string",
             "enum": [
                 "peek",
@@ -974,9 +1016,9 @@
             ],
             "default": "peek",
             "enumDescriptions": [
-                "結果のピーク ビューを表示 (既定)",
-                "主な結果に移動し、ピーク ビューを表示します",
-                "プライマリ結果に移動し、他のユーザーへのピークレス ナビゲーションを有効にします"
+                "Show Peek view of the results (default)",
+                "Go to the primary result and show a Peek view",
+                "Go to the primary result and enable Peek-less navigation to others"
             ],
             "defaultDefaultValue": "peek",
             "scope": 5,
@@ -999,7 +1041,7 @@
                 "editor.action.revealDefinitionAside",
                 "editor.action.revealDefinition"
             ],
-            "description": "'定義へ移動' の結果が現在の場所である場合に実行される代替コマンド ID。",
+            "description": "Alternative command id that is being executed when the result of 'Go to Definition' is the current location.",
             "defaultDefaultValue": "editor.action.goToReferences",
             "scope": 5,
             "restricted": false
@@ -1021,7 +1063,7 @@
                 "editor.action.revealDefinitionAside",
                 "editor.action.revealDefinition"
             ],
-            "description": "'型定義へ移動' の結果が現在の場所である場合に実行される代替コマンド ID。",
+            "description": "Alternative command id that is being executed when the result of 'Go to Type Definition' is the current location.",
             "defaultDefaultValue": "editor.action.goToReferences",
             "scope": 5,
             "restricted": false
@@ -1043,7 +1085,7 @@
                 "editor.action.revealDefinitionAside",
                 "editor.action.revealDefinition"
             ],
-            "description": "'宣言へ移動' の結果が現在の場所である場合に実行される代替コマンド ID。",
+            "description": "Alternative command id that is being executed when the result of 'Go to Declaration' is the current location.",
             "defaultDefaultValue": "editor.action.goToReferences",
             "scope": 5,
             "restricted": false
@@ -1065,7 +1107,7 @@
                 "editor.action.revealDefinitionAside",
                 "editor.action.revealDefinition"
             ],
-            "description": "'実装へ移動' の結果が現在の場所である場合に実行される代替コマンド ID。",
+            "description": "Alternative command id that is being executed when the result of 'Go to Implementation' is the current location.",
             "defaultDefaultValue": "",
             "scope": 5,
             "restricted": false
@@ -1087,13 +1129,13 @@
                 "editor.action.revealDefinitionAside",
                 "editor.action.revealDefinition"
             ],
-            "description": "'参照へ移動' の結果が現在の場所である場合に実行される代替コマンド ID。",
+            "description": "Alternative command id that is being executed when the result of 'Go to Reference' is the current location.",
             "defaultDefaultValue": "",
             "scope": 5,
             "restricted": false
         },
         "editor.hideCursorInOverviewRuler": {
-            "description": "概要ルーラーでカーソルを非表示にするかどうかを制御します。",
+            "description": "Controls whether the cursor should be hidden in the overview ruler.",
             "type": "boolean",
             "default": false,
             "defaultDefaultValue": false,
@@ -1103,7 +1145,7 @@
         "editor.hover.enabled": {
             "type": "boolean",
             "default": true,
-            "description": "ホバーを表示するかどうかを制御します。",
+            "description": "Controls whether the hover is shown.",
             "defaultDefaultValue": true,
             "scope": 5,
             "restricted": false
@@ -1113,7 +1155,7 @@
             "default": 300,
             "minimum": 0,
             "maximum": 10000,
-            "description": "ホバーを表示後の待ち時間 (ミリ秒) を制御します。",
+            "description": "Controls the delay in milliseconds after which the hover is shown.",
             "defaultDefaultValue": 300,
             "scope": 5,
             "restricted": false
@@ -1121,7 +1163,7 @@
         "editor.hover.sticky": {
             "type": "boolean",
             "default": true,
-            "description": "ホバーにマウスを移動したときに、ホバーを表示し続けるかどうかを制御します。",
+            "description": "Controls whether the hover should remain visible when mouse is moved over it.",
             "defaultDefaultValue": true,
             "scope": 5,
             "restricted": false
@@ -1129,7 +1171,7 @@
         "editor.hover.above": {
             "type": "boolean",
             "default": true,
-            "description": "スペースがある場合は、行の上にマウス カーソルを被せて表示する。",
+            "description": "Prefer showing hovers above the line, if there's space.",
             "defaultDefaultValue": true,
             "scope": 5,
             "restricted": false
@@ -1137,13 +1179,13 @@
         "editor.inlineSuggest.enabled": {
             "type": "boolean",
             "default": true,
-            "description": "エディターにインライン候補を自動的に表示するかどうかを制御します。",
+            "description": "Controls whether to automatically show inline suggestions in the editor.",
             "defaultDefaultValue": true,
             "scope": 5,
             "restricted": false
         },
         "editor.letterSpacing": {
-            "description": "文字間隔 (ピクセル単位) を制御します。",
+            "description": "Controls the letter spacing in pixels.",
             "type": "number",
             "default": 0,
             "defaultDefaultValue": 0,
@@ -1153,13 +1195,13 @@
         "editor.lightbulb.enabled": {
             "type": "boolean",
             "default": true,
-            "description": "エディターでコード アクションの電球を有効にします。",
+            "description": "Enables the Code Action lightbulb in the editor.",
             "defaultDefaultValue": true,
             "scope": 5,
             "restricted": false
         },
         "editor.lineHeight": {
-            "markdownDescription": "行の高さを制御します。\r\n - 0 を使用してフォント サイズから行の高さを自動的に計算します。\r\n - 0 から 8 までの値は、フォント サイズの乗数として使用されます。\r\n - 8 以上の値は有効値として使用されます。",
+            "markdownDescription": "Controls the line height. \n - Use 0 to automatically compute the line height from the font size.\n - Values between 0 and 8 will be used as a multiplier with the font size.\n - Values greater than or equal to 8 will be used as effective values.",
             "type": "number",
             "default": 0,
             "defaultDefaultValue": 0,
@@ -1175,19 +1217,19 @@
                 "interval"
             ],
             "enumDescriptions": [
-                "行番号は表示されません。",
-                "行番号は、絶対値として表示されます。",
-                "行番号は、カーソル位置までの行数として表示されます。",
-                "行番号は 10 行ごとに表示されます。"
+                "Line numbers are not rendered.",
+                "Line numbers are rendered as absolute number.",
+                "Line numbers are rendered as distance in lines to cursor position.",
+                "Line numbers are rendered every 10 lines."
             ],
             "default": "on",
-            "description": "行番号の表示を制御します。",
+            "description": "Controls the display of line numbers.",
             "defaultDefaultValue": "on",
             "scope": 5,
             "restricted": false
         },
         "editor.linkedEditing": {
-            "description": "リンクされた編集がエディターで有効にされるかどうかを制御します。言語によっては、編集中に HTML タグなどの関連する記号が更新されます。",
+            "description": "Controls whether the editor has linked editing enabled. Depending on the language, related symbols such as HTML tags, are updated while editing.",
             "type": "boolean",
             "default": false,
             "defaultDefaultValue": false,
@@ -1195,7 +1237,7 @@
             "restricted": false
         },
         "editor.links": {
-            "description": "エディターがリンクを検出してクリック可能な状態にするかどうかを制御します。",
+            "description": "Controls whether the editor should detect links and make them clickable.",
             "type": "boolean",
             "default": true,
             "defaultDefaultValue": true,
@@ -1203,7 +1245,7 @@
             "restricted": false
         },
         "editor.matchBrackets": {
-            "description": "対応するかっこを強調表示します。",
+            "description": "Highlight matching brackets.",
             "type": "string",
             "enum": [
                 "always",
@@ -1218,7 +1260,7 @@
         "editor.minimap.enabled": {
             "type": "boolean",
             "default": true,
-            "description": "ミニマップを表示するかどうかを制御します。",
+            "description": "Controls whether the minimap is shown.",
             "defaultDefaultValue": true,
             "scope": 5,
             "restricted": false
@@ -1226,7 +1268,7 @@
         "editor.minimap.autohide": {
             "type": "boolean",
             "default": false,
-            "description": "ミニマップを自動的に非表示するかどうかを制御します。",
+            "description": "Controls whether the minimap is hidden automatically.",
             "defaultDefaultValue": false,
             "scope": 5,
             "restricted": false
@@ -1239,12 +1281,12 @@
                 "fit"
             ],
             "enumDescriptions": [
-                "ミニマップのサイズは、エディターのコンテンツと同じです (スクロールする場合があります)。",
-                "ミニマップは、必要に応じて、エディターの高さを埋めるため、拡大または縮小します (スクロールしません)。",
-                "ミニマップは必要に応じて縮小し、エディターより大きくなることはありません (スクロールしません)。"
+                "The minimap has the same size as the editor contents (and might scroll).",
+                "The minimap will stretch or shrink as necessary to fill the height of the editor (no scrolling).",
+                "The minimap will shrink as necessary to never be larger than the editor (no scrolling)."
             ],
             "default": "proportional",
-            "description": "ミニマップのサイズを制御します。",
+            "description": "Controls the size of the minimap.",
             "defaultDefaultValue": "proportional",
             "scope": 5,
             "restricted": false
@@ -1256,7 +1298,7 @@
                 "right"
             ],
             "default": "right",
-            "description": "ミニマップを表示する場所を制御します。",
+            "description": "Controls the side where to render the minimap.",
             "defaultDefaultValue": "right",
             "scope": 5,
             "restricted": false
@@ -1268,7 +1310,7 @@
                 "mouseover"
             ],
             "default": "mouseover",
-            "description": "ミニマップ スライダーを表示するタイミングを制御します。",
+            "description": "Controls when the minimap slider is shown.",
             "defaultDefaultValue": "mouseover",
             "scope": 5,
             "restricted": false
@@ -1283,7 +1325,7 @@
                 2,
                 3
             ],
-            "description": "ミニマップに描画されるコンテンツのスケール: 1、2、または 3。",
+            "description": "Scale of content drawn in the minimap: 1, 2 or 3.",
             "defaultDefaultValue": 1,
             "scope": 5,
             "restricted": false
@@ -1291,7 +1333,7 @@
         "editor.minimap.renderCharacters": {
             "type": "boolean",
             "default": true,
-            "description": "行にカラー ブロックではなく実際の文字を表示します。",
+            "description": "Render the actual characters on a line as opposed to color blocks.",
             "defaultDefaultValue": true,
             "scope": 5,
             "restricted": false
@@ -1299,13 +1341,13 @@
         "editor.minimap.maxColumn": {
             "type": "number",
             "default": 120,
-            "description": "表示するミニマップの最大幅を特定の列数に制限します。",
+            "description": "Limit the width of the minimap to render at most a certain number of columns.",
             "defaultDefaultValue": 120,
             "scope": 5,
             "restricted": false
         },
         "editor.mouseWheelScrollSensitivity": {
-            "markdownDescription": "マウス ホイール スクロール イベントの `deltaX` と `deltaY` で使用される乗数。",
+            "markdownDescription": "A multiplier to be used on the `deltaX` and `deltaY` of mouse wheel scroll events.",
             "type": "number",
             "default": 1,
             "defaultDefaultValue": 1,
@@ -1313,7 +1355,7 @@
             "restricted": false
         },
         "editor.mouseWheelZoom": {
-            "markdownDescription": "`Ctrl` キーを押しながらマウス ホイールを使用してエディターのフォントをズームします。",
+            "markdownDescription": "Zoom the font of the editor when using mouse wheel and holding `Ctrl`.",
             "type": "boolean",
             "default": false,
             "defaultDefaultValue": false,
@@ -1321,7 +1363,7 @@
             "restricted": false
         },
         "editor.multiCursorMergeOverlapping": {
-            "description": "複数のカーソルが重なっているときは、マージします。",
+            "description": "Merge multiple cursors when they are overlapping.",
             "type": "boolean",
             "default": true,
             "defaultDefaultValue": true,
@@ -1330,10 +1372,10 @@
         },
         "editor.multiCursorModifier": {
             "markdownEnumDescriptions": [
-                "Windows および Linux 上の `Control` キーと macOS 上の `Command` キーに割り当てます。",
-                "Windows および Linux 上の `Alt` キーと macOS 上の `Option` キーに割り当てます。"
+                "Maps to `Control` on Windows and Linux and to `Command` on macOS.",
+                "Maps to `Alt` on Windows and Linux and to `Option` on macOS."
             ],
-            "markdownDescription": "マウスを使用して複数のカーソルを追加するために使用する修飾子。[定義に移動] および [リンクを開く] マウス ジェスチャは、[multicursor 修飾子](https://code.visualstudio.com/docs/editor/codebasics#_multicursor-modifier) と競合しないように調整されます。",
+            "markdownDescription": "The modifier to be used to add multiple cursors with the mouse. The Go to Definition and Open Link mouse gestures will adapt such that they do not conflict with the [multicursor modifier](https://code.visualstudio.com/docs/editor/codebasics#_multicursor-modifier).",
             "type": "string",
             "enum": [
                 "ctrlCmd",
@@ -1346,10 +1388,10 @@
         },
         "editor.multiCursorPaste": {
             "markdownEnumDescriptions": [
-                "カーソルごとにテキストを 1 行ずつ貼り付けます。",
-                "各カーソルは全文を貼り付けます。"
+                "Each cursor pastes a single line of the text.",
+                "Each cursor pastes the full text."
             ],
-            "markdownDescription": "貼り付けたテキストの行数がカーソル数と一致する場合の貼り付けを制御します。",
+            "markdownDescription": "Controls pasting when the line count of the pasted text matches the cursor count.",
             "type": "string",
             "enum": [
                 "spread",
@@ -1360,8 +1402,18 @@
             "scope": 5,
             "restricted": false
         },
+        "editor.multiCursorLimit": {
+            "markdownDescription": "Controls the max number of cursors that can be in an active editor at once.",
+            "type": "integer",
+            "default": 10000,
+            "minimum": 1,
+            "maximum": 100000,
+            "defaultDefaultValue": 10000,
+            "scope": 5,
+            "restricted": false
+        },
         "editor.occurrencesHighlight": {
-            "description": "エディターでセマンティック シンボルの出現箇所を強調表示するかどうかを制御します。",
+            "description": "Controls whether the editor should highlight semantic symbol occurrences.",
             "type": "boolean",
             "default": true,
             "defaultDefaultValue": true,
@@ -1369,7 +1421,7 @@
             "restricted": false
         },
         "editor.overviewRulerBorder": {
-            "description": "概要ルーラーの周囲に境界線が描画されるかどうかを制御します。",
+            "description": "Controls whether a border should be drawn around the overview ruler.",
             "type": "boolean",
             "default": true,
             "defaultDefaultValue": true,
@@ -1381,7 +1433,7 @@
             "default": 0,
             "minimum": 0,
             "maximum": 1000,
-            "description": "エディターの上端と最初の行の間の余白の大きさを制御します。",
+            "description": "Controls the amount of space between the top edge of the editor and the first line.",
             "defaultDefaultValue": 0,
             "scope": 5,
             "restricted": false
@@ -1391,7 +1443,7 @@
             "default": 0,
             "minimum": 0,
             "maximum": 1000,
-            "description": "エディターの下端と最後の行の間の余白の大きさを制御します。",
+            "description": "Controls the amount of space between the bottom edge of the editor and the last line.",
             "defaultDefaultValue": 0,
             "scope": 5,
             "restricted": false
@@ -1399,7 +1451,7 @@
         "editor.parameterHints.enabled": {
             "type": "boolean",
             "default": true,
-            "description": "入力時にパラメーター ドキュメントと型情報を表示するポップアップを有効にします。",
+            "description": "Enables a pop-up that shows parameter documentation and type information as you type.",
             "defaultDefaultValue": true,
             "scope": 5,
             "restricted": false
@@ -1407,17 +1459,17 @@
         "editor.parameterHints.cycle": {
             "type": "boolean",
             "default": false,
-            "description": "パラメーター ヒント メニューを周回するか、リストの最後で閉じるかどうかを制御します。",
+            "description": "Controls whether the parameter hints menu cycles or closes when reaching the end of the list.",
             "defaultDefaultValue": false,
             "scope": 5,
             "restricted": false
         },
         "editor.peekWidgetDefaultFocus": {
             "enumDescriptions": [
-                "ピークを開くときにツリーにフォーカスする",
-                "ピークを開くときにエディターにフォーカスする"
+                "Focus the tree when opening peek",
+                "Focus the editor when opening peek"
             ],
-            "description": "ピーク ウィジェットのインライン エディターまたはツリーをフォーカスするかどうかを制御します。",
+            "description": "Controls whether to focus the inline editor or the tree in the peek widget.",
             "type": "string",
             "enum": [
                 "tree",
@@ -1429,7 +1481,7 @@
             "restricted": false
         },
         "editor.definitionLinkOpensInPeek": {
-            "description": "[定義へ移動] マウス ジェスチャーで、常にピーク ウィジェットを開くかどうかを制御します。",
+            "description": "Controls whether the Go to Definition mouse gesture always opens the peek widget.",
             "type": "boolean",
             "default": false,
             "defaultDefaultValue": false,
@@ -1453,14 +1505,14 @@
                                 "off"
                             ],
                             "enumDescriptions": [
-                                "提案ウィジェット内にクイック候補が表示される",
-                                "クイック候補がゴースト テキストとして表示される",
-                                "クイック候補が無効になっています"
+                                "Quick suggestions show inside the suggest widget",
+                                "Quick suggestions show as ghost text",
+                                "Quick suggestions are disabled"
                             ]
                         }
                     ],
                     "default": "off",
-                    "description": "文字列内でクイック候補を有効にします。"
+                    "description": "Enable quick suggestions inside strings."
                 },
                 "comments": {
                     "anyOf": [
@@ -1475,14 +1527,14 @@
                                 "off"
                             ],
                             "enumDescriptions": [
-                                "提案ウィジェット内にクイック候補が表示される",
-                                "クイック候補がゴースト テキストとして表示される",
-                                "クイック候補が無効になっています"
+                                "Quick suggestions show inside the suggest widget",
+                                "Quick suggestions show as ghost text",
+                                "Quick suggestions are disabled"
                             ]
                         }
                     ],
                     "default": "off",
-                    "description": "コメント内でクイック候補を有効にします。"
+                    "description": "Enable quick suggestions inside comments."
                 },
                 "other": {
                     "anyOf": [
@@ -1497,14 +1549,14 @@
                                 "off"
                             ],
                             "enumDescriptions": [
-                                "提案ウィジェット内にクイック候補が表示される",
-                                "クイック候補がゴースト テキストとして表示される",
-                                "クイック候補が無効になっています"
+                                "Quick suggestions show inside the suggest widget",
+                                "Quick suggestions show as ghost text",
+                                "Quick suggestions are disabled"
                             ]
                         }
                     ],
                     "default": "on",
-                    "description": "文字列およびコメント外でクイック候補を有効にします。"
+                    "description": "Enable quick suggestions outside of strings and comments."
                 }
             },
             "default": {
@@ -1512,7 +1564,7 @@
                 "comments": "off",
                 "strings": "off"
             },
-            "markdownDescription": "入力中に候補を自動的に表示するかどうかを制御します。これは、コメント、文字列、その他コードの入力用に設定できます。クイック提案は、ゴースト テキストとして表示するか、提案ウィジェットで表示するように構成できます。また、'#editor.suggestOnTriggerCharacters#' に注意してください。これは、提案が特殊文字によってトリガーされるかどうかを制御する設定です。",
+            "markdownDescription": "Controls whether suggestions should automatically show up while typing. This can be controlled for typing in comments, strings, and other code. Quick suggestion can be configured to show as ghost text or with the suggest widget. Also be aware of the '#editor.suggestOnTriggerCharacters#'-setting which controls if suggestions are triggered by special characters.",
             "defaultDefaultValue": {
                 "other": "on",
                 "comments": "off",
@@ -1522,7 +1574,7 @@
             "restricted": false
         },
         "editor.quickSuggestionsDelay": {
-            "description": "クイック候補が表示されるまでのミリ秒を制御します。",
+            "description": "Controls the delay in milliseconds after which quick suggestions will show up.",
             "type": "integer",
             "default": 10,
             "minimum": 0,
@@ -1532,17 +1584,17 @@
             "restricted": false
         },
         "editor.renameOnType": {
-            "description": "エディターでの型の自動名前変更を制御します。",
-            "markdownDeprecationMessage": "非推奨です。代わりに、`editor.linkedEditing` を使用してください。",
+            "description": "Controls whether the editor auto renames on type.",
+            "markdownDeprecationMessage": "Deprecated, use `editor.linkedEditing` instead.",
             "type": "boolean",
             "default": false,
             "defaultDefaultValue": false,
             "scope": 5,
             "restricted": false,
-            "deprecationMessage": "非推奨です。代わりに、`editor.linkedEditing` を使用してください。"
+            "deprecationMessage": "Deprecated, use `editor.linkedEditing` instead."
         },
         "editor.renderControlCharacters": {
-            "description": "エディターで制御文字を表示するかどうかを制御します。",
+            "description": "Controls whether the editor should render control characters.",
             "restricted": true,
             "type": "boolean",
             "default": true,
@@ -1550,7 +1602,7 @@
             "scope": 5
         },
         "editor.renderFinalNewline": {
-            "description": "ファイルの末尾が改行の場合は、最後の行番号を表示します。",
+            "description": "Render last line number when the file ends with a newline.",
             "type": "boolean",
             "default": true,
             "defaultDefaultValue": true,
@@ -1562,9 +1614,9 @@
                 "",
                 "",
                 "",
-                "余白と現在の行を強調表示します。"
+                "Highlights both the gutter and the current line."
             ],
-            "description": "エディターが現在の行をどのように強調表示するかを制御します。",
+            "description": "Controls how the editor should render the current line highlight.",
             "type": "string",
             "enum": [
                 "none",
@@ -1578,7 +1630,7 @@
             "restricted": false
         },
         "editor.renderLineHighlightOnlyWhenFocus": {
-            "description": "エディターにフォーカスがある場合にのみ現在の行をエディターで強調表示する必要があるかどうかを制御します。",
+            "description": "Controls if the editor should render the current line highlight only when the editor is focused.",
             "type": "boolean",
             "default": false,
             "defaultDefaultValue": false,
@@ -1588,12 +1640,12 @@
         "editor.renderWhitespace": {
             "enumDescriptions": [
                 "",
-                "単語間の単一スペース以外の空白文字を表示します。",
-                "選択したテキストにのみ空白文字を表示します。",
-                "末尾の空白文字のみを表示します。",
+                "Render whitespace characters except for single spaces between words.",
+                "Render whitespace characters only on selected text.",
+                "Render only trailing whitespace characters.",
                 ""
             ],
-            "description": "エディターで空白文字を表示するかどうかを制御します。",
+            "description": "Controls how the editor should render whitespace characters.",
             "type": "string",
             "enum": [
                 "none",
@@ -1608,7 +1660,7 @@
             "restricted": false
         },
         "editor.roundedSelection": {
-            "description": "選択範囲の角を丸くするかどうかを制御します。",
+            "description": "Controls whether selections should have rounded corners.",
             "type": "boolean",
             "default": true,
             "defaultDefaultValue": true,
@@ -1621,7 +1673,7 @@
                 "anyOf": [
                     {
                         "type": "number",
-                        "description": "このエディターのルーラーがレンダリングする単一領域の文字数。"
+                        "description": "Number of monospace characters at which this editor ruler will render."
                     },
                     {
                         "type": [
@@ -1630,11 +1682,11 @@
                         "properties": {
                             "column": {
                                 "type": "number",
-                                "description": "このエディターのルーラーがレンダリングする単一領域の文字数。"
+                                "description": "Number of monospace characters at which this editor ruler will render."
                             },
                             "color": {
                                 "type": "string",
-                                "description": "このエディターのルーラーの色です。",
+                                "description": "Color of this editor ruler.",
                                 "format": "color-hex"
                             }
                         }
@@ -1642,7 +1694,7 @@
                 ]
             },
             "default": [],
-            "description": "特定の等幅文字数の後に垂直ルーラーを表示します。複数のルーラーには複数の値を使用します。配列が空の場合はルーラーを表示しません。",
+            "description": "Render vertical rulers after a certain number of monospace characters. Use multiple values for multiple rulers. No rulers are drawn if array is empty.",
             "defaultDefaultValue": [],
             "scope": 5,
             "restricted": false
@@ -1655,12 +1707,12 @@
                 "hidden"
             ],
             "enumDescriptions": [
-                "垂直スクロールバーは、必要な場合にのみ表示されます。",
-                "垂直スクロールバーは常に表示されます。",
-                "垂直スクロールバーは常に非表示になります。"
+                "The vertical scrollbar will be visible only when necessary.",
+                "The vertical scrollbar will always be visible.",
+                "The vertical scrollbar will always be hidden."
             ],
             "default": "auto",
-            "description": "垂直スクロールバーの表示を制御します。",
+            "description": "Controls the visibility of the vertical scrollbar.",
             "defaultDefaultValue": "auto",
             "scope": 5,
             "restricted": false
@@ -1673,12 +1725,12 @@
                 "hidden"
             ],
             "enumDescriptions": [
-                "水平スクロールバーは、必要な場合にのみ表示されます。",
-                "水平スクロールバーは常に表示されます。",
-                "水平スクロールバーは常に非表示になります。"
+                "The horizontal scrollbar will be visible only when necessary.",
+                "The horizontal scrollbar will always be visible.",
+                "The horizontal scrollbar will always be hidden."
             ],
             "default": "auto",
-            "description": "水平スクロールバーの表示を制御します。",
+            "description": "Controls the visibility of the horizontal scrollbar.",
             "defaultDefaultValue": "auto",
             "scope": 5,
             "restricted": false
@@ -1686,7 +1738,7 @@
         "editor.scrollbar.verticalScrollbarSize": {
             "type": "number",
             "default": 14,
-            "description": "垂直スクロールバーの幅。",
+            "description": "The width of the vertical scrollbar.",
             "defaultDefaultValue": 14,
             "scope": 5,
             "restricted": false
@@ -1694,7 +1746,7 @@
         "editor.scrollbar.horizontalScrollbarSize": {
             "type": "number",
             "default": 12,
-            "description": "水平スクロールバーの高さ。",
+            "description": "The height of the horizontal scrollbar.",
             "defaultDefaultValue": 12,
             "scope": 5,
             "restricted": false
@@ -1702,13 +1754,13 @@
         "editor.scrollbar.scrollByPage": {
             "type": "boolean",
             "default": false,
-            "description": "クリックするとページ単位でスクロールするか、クリック位置にジャンプするかを制御します。",
+            "description": "Controls whether clicks scroll by page or jump to click position.",
             "defaultDefaultValue": false,
             "scope": 5,
             "restricted": false
         },
         "editor.scrollBeyondLastColumn": {
-            "description": "エディターが水平方向に余分にスクロールする文字数を制御します。",
+            "description": "Controls the number of extra characters beyond which the editor will scroll horizontally.",
             "type": "integer",
             "default": 4,
             "minimum": 0,
@@ -1718,7 +1770,7 @@
             "restricted": false
         },
         "editor.scrollBeyondLastLine": {
-            "description": "エディターが最後の行を越えてスクロールするかどうかを制御します。",
+            "description": "Controls whether the editor will scroll beyond the last line.",
             "type": "boolean",
             "default": true,
             "defaultDefaultValue": true,
@@ -1726,7 +1778,7 @@
             "restricted": false
         },
         "editor.scrollPredominantAxis": {
-            "description": "垂直および水平方向の両方に同時にスクロールする場合は、主要な軸に沿ってスクロールします。トラックパッド上で垂直方向にスクロールする場合は、水平ドリフトを防止します。",
+            "description": "Scroll only along the predominant axis when scrolling both vertically and horizontally at the same time. Prevents horizontal drift when scrolling vertically on a trackpad.",
             "type": "boolean",
             "default": true,
             "defaultDefaultValue": true,
@@ -1734,7 +1786,7 @@
             "restricted": false
         },
         "editor.selectionHighlight": {
-            "description": "エディターが選択項目と類似の一致項目を強調表示するかどうかを制御します。",
+            "description": "Controls whether the editor should highlight matches similar to the selection.",
             "type": "boolean",
             "default": true,
             "defaultDefaultValue": true,
@@ -1743,11 +1795,11 @@
         },
         "editor.showFoldingControls": {
             "enumDescriptions": [
-                "常に折りたたみコントロールを表示します。",
-                "折りたたみコントロールを表示せず、余白のサイズを小さくします。",
-                "マウスがとじしろの上にあるときにのみ、折りたたみコントロールを表示します。"
+                "Always show the folding controls.",
+                "Never show the folding controls and reduce the gutter size.",
+                "Only show the folding controls when the mouse is over the gutter."
             ],
-            "description": "とじしろのの折りたたみコントロールを表示するタイミングを制御します。",
+            "description": "Controls when the folding controls on the gutter are shown.",
             "type": "string",
             "enum": [
                 "always",
@@ -1760,7 +1812,7 @@
             "restricted": false
         },
         "editor.showUnused": {
-            "description": "使用されていないコードのフェードアウトを制御します。",
+            "description": "Controls fading out of unused code.",
             "type": "boolean",
             "default": true,
             "defaultDefaultValue": true,
@@ -1769,12 +1821,12 @@
         },
         "editor.snippetSuggestions": {
             "enumDescriptions": [
-                "他の候補の上にスニペットの候補を表示します。",
-                "他の候補の下にスニペットの候補を表示します。",
-                "他の候補と一緒にスニペットの候補を表示します。",
-                "スニペットの候補を表示しません。"
+                "Show snippet suggestions on top of other suggestions.",
+                "Show snippet suggestions below other suggestions.",
+                "Show snippets suggestions with other suggestions.",
+                "Do not show snippet suggestions."
             ],
-            "description": "他の修正候補と一緒にスニペットを表示するかどうか、およびその並び替えの方法を制御します。",
+            "description": "Controls whether snippets are shown with other suggestions and how they are sorted.",
             "type": "string",
             "enum": [
                 "top",
@@ -1788,7 +1840,7 @@
             "restricted": false
         },
         "editor.smartSelect.selectLeadingAndTrailingWhitespace": {
-            "description": "先頭と末尾の空白を常に選択するかどうか。",
+            "description": "Whether leading and trailing whitespace should always be selected.",
             "default": true,
             "type": "boolean",
             "defaultDefaultValue": true,
@@ -1796,7 +1848,7 @@
             "restricted": false
         },
         "editor.smoothScrolling": {
-            "description": "アニメーションでエディターをスクロールするかどうかを制御します。",
+            "description": "Controls whether the editor will scroll using an animation.",
             "type": "boolean",
             "default": false,
             "defaultDefaultValue": false,
@@ -1806,7 +1858,7 @@
         "editor.stickyScroll.enabled": {
             "type": "boolean",
             "default": false,
-            "description": "スクロール中にエディターの上部に入れ子になった現在のスコープを表示します。",
+            "description": "Shows the nested current scopes during the scroll at the top of the editor.",
             "defaultDefaultValue": false,
             "scope": 5,
             "restricted": false
@@ -1816,13 +1868,13 @@
             "default": 5,
             "minimum": 1,
             "maximum": 10,
-            "description": "表示する追従行の最大数を定義します。",
+            "description": "Defines the maximum number of sticky lines to show.",
             "defaultDefaultValue": 5,
             "scope": 5,
             "restricted": false
         },
         "editor.stickyTabStops": {
-            "description": "インデントにスペースを使用するときは、タブ文字の選択動作をエミュレートします。選択範囲はタブ位置に留まります。",
+            "description": "Emulate selection behavior of tab characters when using spaces for indentation. Selection will stick to tab stops.",
             "type": "boolean",
             "default": false,
             "defaultDefaultValue": false,
@@ -1836,11 +1888,11 @@
                 "replace"
             ],
             "enumDescriptions": [
-                "カーソルの右のテキストを上書きせずに候補を挿入します。",
-                "候補を挿入し、カーソルの右のテキストを上書きします。"
+                "Insert suggestion without overwriting text right of the cursor.",
+                "Insert suggestion and overwrite text right of the cursor."
             ],
             "default": "insert",
-            "description": "入力候補を受け入れるときに単語を上書きするかどうかを制御します。これは、この機能の利用を選択する拡張機能に依存することにご注意ください。",
+            "description": "Controls whether words are overwritten when accepting completions. Note that this depends on extensions opting into this feature.",
             "defaultDefaultValue": "insert",
             "scope": 5,
             "restricted": false
@@ -1848,7 +1900,7 @@
         "editor.suggest.filterGraceful": {
             "type": "boolean",
             "default": true,
-            "description": "候補のフィルター処理と並び替えでささいな入力ミスを考慮するかどうかを制御します。",
+            "description": "Controls whether filtering and sorting suggestions accounts for small typos.",
             "defaultDefaultValue": true,
             "scope": 5,
             "restricted": false
@@ -1856,7 +1908,7 @@
         "editor.suggest.localityBonus": {
             "type": "boolean",
             "default": false,
-            "description": "並べ替えがカーソル付近に表示される単語を優先するかどうかを制御します。",
+            "description": "Controls whether sorting favors words that appear close to the cursor.",
             "defaultDefaultValue": false,
             "scope": 5,
             "restricted": false
@@ -1864,7 +1916,7 @@
         "editor.suggest.shareSuggestSelections": {
             "type": "boolean",
             "default": false,
-            "markdownDescription": "保存された候補セクションを複数のワークプレースとウィンドウで共有するかどうかを制御します (`#editor.suggestSelection#` が必要)。",
+            "markdownDescription": "Controls whether remembered suggestion selections are shared between multiple workspaces and windows (needs `#editor.suggestSelection#`).",
             "defaultDefaultValue": false,
             "scope": 5,
             "restricted": false
@@ -1872,7 +1924,7 @@
         "editor.suggest.snippetsPreventQuickSuggestions": {
             "type": "boolean",
             "default": true,
-            "description": "アクティブ スニペットがクイック候補を防止するかどうかを制御します。",
+            "description": "Controls whether an active snippet prevents quick suggestions.",
             "defaultDefaultValue": true,
             "scope": 5,
             "restricted": false
@@ -1880,7 +1932,7 @@
         "editor.suggest.showIcons": {
             "type": "boolean",
             "default": true,
-            "description": "提案のアイコンを表示するか、非表示にするかを制御します。",
+            "description": "Controls whether to show or hide icons in suggestions.",
             "defaultDefaultValue": true,
             "scope": 5,
             "restricted": false
@@ -1888,7 +1940,7 @@
         "editor.suggest.showStatusBar": {
             "type": "boolean",
             "default": false,
-            "description": "候補ウィジェットの下部にあるステータス バーの表示を制御します。",
+            "description": "Controls the visibility of the status bar at the bottom of the suggest widget.",
             "defaultDefaultValue": false,
             "scope": 5,
             "restricted": false
@@ -1896,7 +1948,7 @@
         "editor.suggest.preview": {
             "type": "boolean",
             "default": false,
-            "description": "提案の結果をエディターでプレビューするかどうかを制御します。",
+            "description": "Controls whether to preview the suggestion outcome in the editor.",
             "defaultDefaultValue": false,
             "scope": 5,
             "restricted": false
@@ -1904,21 +1956,21 @@
         "editor.suggest.showInlineDetails": {
             "type": "boolean",
             "default": true,
-            "description": "候補の詳細をラベル付きのインラインで表示するか、詳細ウィジェットにのみ表示するかを制御します",
+            "description": "Controls whether suggest details show inline with the label or only in the details widget.",
             "defaultDefaultValue": true,
             "scope": 5,
             "restricted": false
         },
         "editor.suggest.maxVisibleSuggestions": {
             "type": "number",
-            "deprecationMessage": "この設定は非推奨です。候補ウィジェットのサイズ変更ができるようになりました。",
+            "deprecationMessage": "This setting is deprecated. The suggest widget can now be resized.",
             "default": 0,
             "scope": 5,
             "restricted": false
         },
         "editor.suggest.filteredTypes": {
             "type": "object",
-            "deprecationMessage": "この設定は非推奨です。代わりに、'editor.suggest.showKeywords' や 'editor.suggest.showSnippets' などの個別の設定を使用してください。",
+            "deprecationMessage": "This setting is deprecated, please use separate settings like 'editor.suggest.showKeywords' or 'editor.suggest.showSnippets' instead.",
             "default": {},
             "scope": 5,
             "restricted": false
@@ -1926,7 +1978,7 @@
         "editor.suggest.showMethods": {
             "type": "boolean",
             "default": true,
-            "markdownDescription": "有効にすると、IntelliSense に `メソッド` 候補が表示されます。",
+            "markdownDescription": "When enabled IntelliSense shows `method`-suggestions.",
             "defaultDefaultValue": true,
             "scope": 5,
             "restricted": false
@@ -1934,7 +1986,7 @@
         "editor.suggest.showFunctions": {
             "type": "boolean",
             "default": true,
-            "markdownDescription": "有効にすると、IntelliSense に `関数` 候補が表示されます。",
+            "markdownDescription": "When enabled IntelliSense shows `function`-suggestions.",
             "defaultDefaultValue": true,
             "scope": 5,
             "restricted": false
@@ -1942,7 +1994,7 @@
         "editor.suggest.showConstructors": {
             "type": "boolean",
             "default": true,
-            "markdownDescription": "有効にすると、IntelliSense に `コンストラクター` 候補が表示されます。",
+            "markdownDescription": "When enabled IntelliSense shows `constructor`-suggestions.",
             "defaultDefaultValue": true,
             "scope": 5,
             "restricted": false
@@ -1950,7 +2002,7 @@
         "editor.suggest.showDeprecated": {
             "type": "boolean",
             "default": true,
-            "markdownDescription": "有効にすると、IntelliSense に `非推奨` 候補が表示されます。",
+            "markdownDescription": "When enabled IntelliSense shows `deprecated`-suggestions.",
             "defaultDefaultValue": true,
             "scope": 5,
             "restricted": false
@@ -1958,7 +2010,7 @@
         "editor.suggest.matchOnWordStartOnly": {
             "type": "boolean",
             "default": true,
-            "markdownDescription": "有効にすると、IntelliSense のフィルター処理では、単語の先頭で最初の文字が一致する必要があります。たとえば、`Console` や `WebContext` の場合は `c`、`description` の場合は _not_ です。無効にすると、IntelliSense はより多くの結果を表示しますが、一致品質で並べ替えられます。",
+            "markdownDescription": "When enabled IntelliSense filtering requires that the first character matches on a word start. For example, `c` on `Console` or `WebContext` but _not_ on `description`. When disabled IntelliSense will show more results but still sorts them by match quality.",
             "defaultDefaultValue": true,
             "scope": 5,
             "restricted": false
@@ -1966,7 +2018,7 @@
         "editor.suggest.showFields": {
             "type": "boolean",
             "default": true,
-            "markdownDescription": "有効にすると、IntelliSense に `フィールド` 候補が表示されます。",
+            "markdownDescription": "When enabled IntelliSense shows `field`-suggestions.",
             "defaultDefaultValue": true,
             "scope": 5,
             "restricted": false
@@ -1974,7 +2026,7 @@
         "editor.suggest.showVariables": {
             "type": "boolean",
             "default": true,
-            "markdownDescription": "有効にすると、IntelliSense に `変数` 候補が表示されます。",
+            "markdownDescription": "When enabled IntelliSense shows `variable`-suggestions.",
             "defaultDefaultValue": true,
             "scope": 5,
             "restricted": false
@@ -1982,7 +2034,7 @@
         "editor.suggest.showClasses": {
             "type": "boolean",
             "default": true,
-            "markdownDescription": "有効にすると、IntelliSense に 'クラス' 候補が表示されます。",
+            "markdownDescription": "When enabled IntelliSense shows `class`-suggestions.",
             "defaultDefaultValue": true,
             "scope": 5,
             "restricted": false
@@ -1990,7 +2042,7 @@
         "editor.suggest.showStructs": {
             "type": "boolean",
             "default": true,
-            "markdownDescription": "有効にすると、IntelliSense に `構造体` 候補が表示されます。",
+            "markdownDescription": "When enabled IntelliSense shows `struct`-suggestions.",
             "defaultDefaultValue": true,
             "scope": 5,
             "restricted": false
@@ -1998,7 +2050,7 @@
         "editor.suggest.showInterfaces": {
             "type": "boolean",
             "default": true,
-            "markdownDescription": "有効にすると、IntelliSense に `インターフェイス` 候補が表示されます。",
+            "markdownDescription": "When enabled IntelliSense shows `interface`-suggestions.",
             "defaultDefaultValue": true,
             "scope": 5,
             "restricted": false
@@ -2006,7 +2058,7 @@
         "editor.suggest.showModules": {
             "type": "boolean",
             "default": true,
-            "markdownDescription": "有効にすると、IntelliSense に `モジュール` 候補が表示されます。",
+            "markdownDescription": "When enabled IntelliSense shows `module`-suggestions.",
             "defaultDefaultValue": true,
             "scope": 5,
             "restricted": false
@@ -2014,7 +2066,7 @@
         "editor.suggest.showProperties": {
             "type": "boolean",
             "default": true,
-            "markdownDescription": "有効にすると、IntelliSense に `プロパティ` 候補が表示されます。",
+            "markdownDescription": "When enabled IntelliSense shows `property`-suggestions.",
             "defaultDefaultValue": true,
             "scope": 5,
             "restricted": false
@@ -2022,7 +2074,7 @@
         "editor.suggest.showEvents": {
             "type": "boolean",
             "default": true,
-            "markdownDescription": "有効にすると、IntelliSense に `イベント` 候補が表示されます。",
+            "markdownDescription": "When enabled IntelliSense shows `event`-suggestions.",
             "defaultDefaultValue": true,
             "scope": 5,
             "restricted": false
@@ -2030,7 +2082,7 @@
         "editor.suggest.showOperators": {
             "type": "boolean",
             "default": true,
-            "markdownDescription": "有効にすると、IntelliSense に `演算子` 候補が表示されます。",
+            "markdownDescription": "When enabled IntelliSense shows `operator`-suggestions.",
             "defaultDefaultValue": true,
             "scope": 5,
             "restricted": false
@@ -2038,7 +2090,7 @@
         "editor.suggest.showUnits": {
             "type": "boolean",
             "default": true,
-            "markdownDescription": "有効にすると、IntelliSense に `ユニット` 候補が表示されます。",
+            "markdownDescription": "When enabled IntelliSense shows `unit`-suggestions.",
             "defaultDefaultValue": true,
             "scope": 5,
             "restricted": false
@@ -2046,7 +2098,7 @@
         "editor.suggest.showValues": {
             "type": "boolean",
             "default": true,
-            "markdownDescription": "有効にすると、IntelliSense に `値` 候補が表示されます。",
+            "markdownDescription": "When enabled IntelliSense shows `value`-suggestions.",
             "defaultDefaultValue": true,
             "scope": 5,
             "restricted": false
@@ -2054,7 +2106,7 @@
         "editor.suggest.showConstants": {
             "type": "boolean",
             "default": true,
-            "markdownDescription": "有効にすると、IntelliSense に `定数` 候補が表示されます。",
+            "markdownDescription": "When enabled IntelliSense shows `constant`-suggestions.",
             "defaultDefaultValue": true,
             "scope": 5,
             "restricted": false
@@ -2062,7 +2114,7 @@
         "editor.suggest.showEnums": {
             "type": "boolean",
             "default": true,
-            "markdownDescription": "有効にすると、IntelliSense に `列挙型` 候補が表示されます。",
+            "markdownDescription": "When enabled IntelliSense shows `enum`-suggestions.",
             "defaultDefaultValue": true,
             "scope": 5,
             "restricted": false
@@ -2070,7 +2122,7 @@
         "editor.suggest.showEnumMembers": {
             "type": "boolean",
             "default": true,
-            "markdownDescription": "有効にすると、IntelliSense に `enumMember` 候補が表示されます。",
+            "markdownDescription": "When enabled IntelliSense shows `enumMember`-suggestions.",
             "defaultDefaultValue": true,
             "scope": 5,
             "restricted": false
@@ -2078,7 +2130,7 @@
         "editor.suggest.showKeywords": {
             "type": "boolean",
             "default": true,
-            "markdownDescription": "有効にすると、IntelliSense に `キーワード` 候補が表示されます。",
+            "markdownDescription": "When enabled IntelliSense shows `keyword`-suggestions.",
             "defaultDefaultValue": true,
             "scope": 5,
             "restricted": false
@@ -2086,7 +2138,7 @@
         "editor.suggest.showWords": {
             "type": "boolean",
             "default": true,
-            "markdownDescription": "有効にすると、IntelliSense に 'テキスト' -候補が表示されます。",
+            "markdownDescription": "When enabled IntelliSense shows `text`-suggestions.",
             "defaultDefaultValue": true,
             "scope": 5,
             "restricted": false
@@ -2094,7 +2146,7 @@
         "editor.suggest.showColors": {
             "type": "boolean",
             "default": true,
-            "markdownDescription": "有効にすると、IntelliSense に `色` 候補が表示されます。",
+            "markdownDescription": "When enabled IntelliSense shows `color`-suggestions.",
             "defaultDefaultValue": true,
             "scope": 5,
             "restricted": false
@@ -2102,7 +2154,7 @@
         "editor.suggest.showFiles": {
             "type": "boolean",
             "default": true,
-            "markdownDescription": "有効にすると、IntelliSense に 'ファイル' 候補が表示されます。",
+            "markdownDescription": "When enabled IntelliSense shows `file`-suggestions.",
             "defaultDefaultValue": true,
             "scope": 5,
             "restricted": false
@@ -2110,7 +2162,7 @@
         "editor.suggest.showReferences": {
             "type": "boolean",
             "default": true,
-            "markdownDescription": "有効にすると、IntelliSense に `参照` 候補が表示されます。",
+            "markdownDescription": "When enabled IntelliSense shows `reference`-suggestions.",
             "defaultDefaultValue": true,
             "scope": 5,
             "restricted": false
@@ -2118,7 +2170,7 @@
         "editor.suggest.showCustomcolors": {
             "type": "boolean",
             "default": true,
-            "markdownDescription": "有効にすると、IntelliSense に `customcolor` 候補が表示されます。",
+            "markdownDescription": "When enabled IntelliSense shows `customcolor`-suggestions.",
             "defaultDefaultValue": true,
             "scope": 5,
             "restricted": false
@@ -2126,7 +2178,7 @@
         "editor.suggest.showFolders": {
             "type": "boolean",
             "default": true,
-            "markdownDescription": "有効にすると、IntelliSense に `フォルダー` 候補が表示されます。",
+            "markdownDescription": "When enabled IntelliSense shows `folder`-suggestions.",
             "defaultDefaultValue": true,
             "scope": 5,
             "restricted": false
@@ -2134,7 +2186,7 @@
         "editor.suggest.showTypeParameters": {
             "type": "boolean",
             "default": true,
-            "markdownDescription": "有効にすると、IntelliSense に `typeParameter` 候補が表示されます。",
+            "markdownDescription": "When enabled IntelliSense shows `typeParameter`-suggestions.",
             "defaultDefaultValue": true,
             "scope": 5,
             "restricted": false
@@ -2142,7 +2194,7 @@
         "editor.suggest.showSnippets": {
             "type": "boolean",
             "default": true,
-            "markdownDescription": "有効にすると、IntelliSense に `スニペット` 候補が表示されます。",
+            "markdownDescription": "When enabled IntelliSense shows `snippet`-suggestions.",
             "defaultDefaultValue": true,
             "scope": 5,
             "restricted": false
@@ -2150,7 +2202,7 @@
         "editor.suggest.showUsers": {
             "type": "boolean",
             "default": true,
-            "markdownDescription": "有効な場合、IntelliSense によって 'ユーザー' 候補が示されます。",
+            "markdownDescription": "When enabled IntelliSense shows `user`-suggestions.",
             "defaultDefaultValue": true,
             "scope": 5,
             "restricted": false
@@ -2158,13 +2210,13 @@
         "editor.suggest.showIssues": {
             "type": "boolean",
             "default": true,
-            "markdownDescription": "有効にすると、IntelliSense によって '問題' 候補が示されます。",
+            "markdownDescription": "When enabled IntelliSense shows `issues`-suggestions.",
             "defaultDefaultValue": true,
             "scope": 5,
             "restricted": false
         },
         "editor.suggestFontSize": {
-            "markdownDescription": "候補ウィジェットのフォント サイズ。`0` に設定すると、値 `#editor.fontSize#` が使用されます。",
+            "markdownDescription": "Font size for the suggest widget. When set to `0`, the value of `#editor.fontSize#` is used.",
             "type": "integer",
             "default": 0,
             "minimum": 0,
@@ -2174,7 +2226,7 @@
             "restricted": false
         },
         "editor.suggestLineHeight": {
-            "markdownDescription": "候補ウィジェットの行の高さ。`0` に設定すると、`#editor.lineHeight#` の値が使用されます。最小値は 8 です。",
+            "markdownDescription": "Line height for the suggest widget. When set to `0`, the value of `#editor.lineHeight#` is used. The minimum value is 8.",
             "type": "integer",
             "default": 0,
             "minimum": 0,
@@ -2184,7 +2236,7 @@
             "restricted": false
         },
         "editor.suggestOnTriggerCharacters": {
-            "description": "トリガー文字の入力時に候補が自動的に表示されるようにするかどうかを制御します。",
+            "description": "Controls whether suggestions should automatically show up when typing trigger characters.",
             "type": "boolean",
             "default": true,
             "defaultDefaultValue": true,
@@ -2193,11 +2245,11 @@
         },
         "editor.suggestSelection": {
             "markdownEnumDescriptions": [
-                "常に最初の候補を選択します。",
-                "`console.| -> console.log` などと選択対象に関して入力しない限りは、最近の候補を選択します。`log` は最近完了したためです。",
-                "これらの候補を完了した以前のプレフィックスに基づいて候補を選択します。例: `co -> console` および `con -> const`。"
+                "Always select the first suggestion.",
+                "Select recent suggestions unless further typing selects one, e.g. `console.| -> console.log` because `log` has been completed recently.",
+                "Select suggestions based on previous prefixes that have completed those suggestions, e.g. `co -> console` and `con -> const`."
             ],
-            "description": "候補リストを表示するときに候補を事前に選択する方法を制御します。",
+            "description": "Controls how suggestions are pre-selected when showing the suggest list.",
             "type": "string",
             "enum": [
                 "first",
@@ -2211,11 +2263,11 @@
         },
         "editor.tabCompletion": {
             "enumDescriptions": [
-                "タブ補完は、tab キーを押したときに最適な候補を挿入します。",
-                "タブ補完を無効にします。",
-                "プレフィックスが一致する場合に、タブでスニペットを補完します。'quickSuggestions' が無効な場合に最適です。"
+                "Tab complete will insert the best matching suggestion when pressing tab.",
+                "Disable tab completions.",
+                "Tab complete snippets when their prefix match. Works best when 'quickSuggestions' aren't enabled."
             ],
-            "description": "タブ補完を有効にします。",
+            "description": "Enables tab completions.",
             "type": "string",
             "enum": [
                 "on",
@@ -2239,7 +2291,7 @@
                 "inUntrustedWorkspace"
             ],
             "default": "inUntrustedWorkspace",
-            "description": "基本 ASCII 以外のすべての文字を強調表示するかどうかを制御します。U+0020 から U+007E の間の文字、タブ、改行 (LF)、行頭復帰のみが基本 ASCII と見なされます。",
+            "description": "Controls whether all non-basic ASCII characters are highlighted. Only characters between U+0020 and U+007E, tab, line-feed and carriage-return are considered basic ASCII.",
             "defaultDefaultValue": "inUntrustedWorkspace",
             "scope": 5
         },
@@ -2247,7 +2299,7 @@
             "restricted": true,
             "type": "boolean",
             "default": true,
-            "description": "空白を占めるだけの文字や幅がまったくない文字を強調表示するかどうかを制御します。",
+            "description": "Controls whether characters that just reserve space or have no width at all are highlighted.",
             "defaultDefaultValue": true,
             "scope": 5
         },
@@ -2255,7 +2307,7 @@
             "restricted": true,
             "type": "boolean",
             "default": true,
-            "description": "現在のユーザー ロケールで一般的な文字を除き、基本的な ASCII 文字と混同される可能性のある文字を強調表示するかどうかを制御します。",
+            "description": "Controls whether characters are highlighted that can be confused with basic ASCII characters, except those that are common in the current user locale.",
             "defaultDefaultValue": true,
             "scope": 5
         },
@@ -2271,7 +2323,7 @@
                 "inUntrustedWorkspace"
             ],
             "default": "inUntrustedWorkspace",
-            "description": "コメント内の文字を Unicode 強調表示の対象にするかどうかを制御します。",
+            "description": "Controls whether characters in comments should also be subject to Unicode highlighting.",
             "defaultDefaultValue": "inUntrustedWorkspace",
             "scope": 5
         },
@@ -2287,7 +2339,7 @@
                 "inUntrustedWorkspace"
             ],
             "default": true,
-            "description": "文字列内の文字を Unicode 強調表示の対象にするかどうかを制御します。",
+            "description": "Controls whether characters in strings should also be subject to Unicode highlighting.",
             "defaultDefaultValue": true,
             "scope": 5
         },
@@ -2295,7 +2347,7 @@
             "restricted": true,
             "type": "object",
             "default": {},
-            "description": "強調表示せず許可される文字を定義します。",
+            "description": "Defines allowed characters that are not being highlighted.",
             "additionalProperties": {
                 "type": "boolean"
             },
@@ -2312,7 +2364,7 @@
                 "_os": true,
                 "_vscode": true
             },
-            "description": "許可されているロケールで一般的な Unicode 文字は強調表示されません。",
+            "description": "Unicode characters that are common in allowed locales are not being highlighted.",
             "defaultDefaultValue": {
                 "_os": true,
                 "_vscode": true
@@ -2321,11 +2373,11 @@
         },
         "editor.unusualLineTerminators": {
             "enumDescriptions": [
-                "通常とは異なる行の終端文字は自動的に削除される。",
-                "通常とは異なる行の終端文字は無視される。",
-                "通常とは異なる行の終端文字の削除プロンプトが表示される。"
+                "Unusual line terminators are automatically removed.",
+                "Unusual line terminators are ignored.",
+                "Unusual line terminators prompt to be removed."
             ],
-            "description": "問題を起こす可能性がある、普通ではない行終端記号は削除してください。",
+            "description": "Remove unusual line terminators that might cause problems.",
             "type": "string",
             "enum": [
                 "auto",
@@ -2338,15 +2390,31 @@
             "restricted": false
         },
         "editor.useTabStops": {
-            "description": "空白の挿入や削除はタブ位置に従って行われます。",
+            "description": "Inserting and deleting whitespace follows tab stops.",
             "type": "boolean",
             "default": true,
             "defaultDefaultValue": true,
             "scope": 5,
             "restricted": false
         },
+        "editor.wordBreak": {
+            "markdownEnumDescriptions": [
+                "Use the default line break rule.",
+                "Word breaks should not be used for Chinese/Japanese/Korean (CJK) text. Non-CJK text behavior is the same as for normal."
+            ],
+            "description": "Controls the word break rules used for Chinese/Japanese/Korean (CJK) text.",
+            "type": "string",
+            "enum": [
+                "normal",
+                "keepAll"
+            ],
+            "default": "normal",
+            "defaultDefaultValue": "normal",
+            "scope": 5,
+            "restricted": false
+        },
         "editor.wordSeparators": {
-            "description": "単語に関連したナビゲーションまたは操作を実行するときに、単語の区切り文字として使用される文字。",
+            "description": "Characters that will be used as word separators when doing word related navigations or operations.",
             "type": "string",
             "default": "`~!@#$%^&*()-=+[{]}\\|;:'\",.<>/?",
             "defaultDefaultValue": "`~!@#$%^&*()-=+[{]}\\|;:'\",.<>/?",
@@ -2355,12 +2423,12 @@
         },
         "editor.wordWrap": {
             "markdownEnumDescriptions": [
-                "行を折り返しません。",
-                "行をビューポートの幅で折り返します。",
-                "`#editor.wordWrapColumn#` で行を折り返します。",
-                "ビューポートと `#editor.wordWrapColumn#` の最小値で行を折り返します。"
+                "Lines will never wrap.",
+                "Lines will wrap at the viewport width.",
+                "Lines will wrap at `#editor.wordWrapColumn#`.",
+                "Lines will wrap at the minimum of viewport and `#editor.wordWrapColumn#`."
             ],
-            "description": "行の折り返し方法を制御します。",
+            "description": "Controls how lines should wrap.",
             "type": "string",
             "enum": [
                 "off",
@@ -2374,7 +2442,7 @@
             "restricted": false
         },
         "editor.wordWrapColumn": {
-            "markdownDescription": "`#editor.wordWrap#` が `wordWrapColumn` または `bounded` の場合に、エディターの折り返し桁を制御します。",
+            "markdownDescription": "Controls the wrapping column of the editor when `#editor.wordWrap#` is `wordWrapColumn` or `bounded`.",
             "type": "integer",
             "default": 80,
             "minimum": 1,
@@ -2384,13 +2452,6 @@
             "restricted": false
         },
         "editor.wrappingIndent": {
-            "enumDescriptions": [
-                "インデントしません。 折り返し行は列 1 から始まります。",
-                "折り返し行は、親と同じインデントになります。",
-                "折り返し行は、親 +1 のインデントになります。",
-                "折り返し行は、親 +2 のインデントになります。"
-            ],
-            "description": "折り返し行のインデントを制御します。",
             "type": "string",
             "enum": [
                 "none",
@@ -2398,6 +2459,13 @@
                 "indent",
                 "deepIndent"
             ],
+            "enumDescriptions": [
+                "No indentation. Wrapped lines begin at column 1.",
+                "Wrapped lines get the same indentation as the parent.",
+                "Wrapped lines get +1 indentation toward the parent.",
+                "Wrapped lines get +2 indentation toward the parent."
+            ],
+            "description": "Controls the indentation of wrapped lines.",
             "default": "same",
             "defaultDefaultValue": "same",
             "scope": 5,
@@ -2405,22 +2473,22 @@
         },
         "editor.wrappingStrategy": {
             "enumDescriptions": [
-                "すべての文字の幅が同じであると仮定します。これは、モノスペース フォントや、グリフの幅が等しい特定のスクリプト (ラテン文字など) で正しく動作する高速アルゴリズムです。",
-                "折り返しポイントの計算をブラウザーにデリゲートします。これは、大きなファイルのフリーズを引き起こす可能性があるものの、すべてのケースで正しく動作する低速なアルゴリズムです。"
+                "Assumes that all characters are of the same width. This is a fast algorithm that works correctly for monospace fonts and certain scripts (like Latin characters) where glyphs are of equal width.",
+                "Delegates wrapping points computation to the browser. This is a slow algorithm, that might cause freezes for large files, but it works correctly in all cases."
             ],
-            "description": "折り返しポイントを計算するアルゴリズムを制御します。",
             "type": "string",
             "enum": [
                 "simple",
                 "advanced"
             ],
             "default": "simple",
+            "description": "Controls the algorithm that computes wrapping points. Note that when in accessibility mode, advanced will be used for the best experience.",
             "defaultDefaultValue": "simple",
             "scope": 5,
             "restricted": false
         },
         "editor.showDeprecated": {
-            "description": "非推奨の変数の取り消し線を制御します。",
+            "description": "Controls strikethrough deprecated variables.",
             "type": "boolean",
             "default": true,
             "defaultDefaultValue": true,
@@ -2430,7 +2498,7 @@
         "editor.inlayHints.enabled": {
             "type": "string",
             "default": "on",
-            "description": "エディターでインレー ヒントを有効にします。",
+            "description": "Enables the inlay hints in the editor.",
             "enum": [
                 "on",
                 "onUnlessPressed",
@@ -2438,10 +2506,10 @@
                 "off"
             ],
             "markdownEnumDescriptions": [
-                "インレイ ヒントが有効になっています",
-                "インレイ ヒントは既定で表示され、Ctrl+Alt を押したままにすると非表示になります",
-                "インレイ ヒントは既定では非表示になり、Ctrl+Alt を押したままにすると表示されます",
-                "インレイ ヒントが無効になっています"
+                "Inlay hints are enabled",
+                "Inlay hints are showing by default and hide when holding Ctrl+Alt",
+                "Inlay hints are hidden by default and show when holding Ctrl+Alt",
+                "Inlay hints are disabled"
             ],
             "defaultDefaultValue": "on",
             "scope": 5,
@@ -2450,7 +2518,7 @@
         "editor.inlayHints.fontSize": {
             "type": "number",
             "default": 0,
-            "markdownDescription": "エディターでの解説ヒントのフォント サイズを制御します。既定では、`#editor.fontSize#` は、構成された値が `5` より小さいか、エディターのフォント サイズより大きい場合に使用されます。",
+            "markdownDescription": "Controls font size of inlay hints in the editor. As default the `#editor.fontSize#` is used when the configured value is less than `5` or greater than the editor font size.",
             "defaultDefaultValue": 0,
             "scope": 5,
             "restricted": false
@@ -2458,7 +2526,7 @@
         "editor.inlayHints.fontFamily": {
             "type": "string",
             "default": "",
-            "markdownDescription": "エディターで解説ヒントのフォント ファミリを制御します。空に設定すると、 `#editor.fontFamily#` が使用されます。",
+            "markdownDescription": "Controls font family of inlay hints in the editor. When set to empty, the `#editor.fontFamily#` is used.",
             "defaultDefaultValue": "",
             "scope": 5,
             "restricted": false
@@ -2466,7 +2534,7 @@
         "editor.inlayHints.padding": {
             "type": "boolean",
             "default": false,
-            "description": "エディターでのインレイ ヒントに関するパディングを有効にします。",
+            "description": "Enables the padding around the inlay hints in the editor.",
             "defaultDefaultValue": false,
             "scope": 5,
             "restricted": false
@@ -2474,29 +2542,29 @@
         "editor.experimental.pasteActions.enabled": {
             "type": "boolean",
             "scope": 5,
-            "description": "貼り付け時に拡張機能からの編集の実行を有効化/無効化してください。",
+            "description": "Enable/disable running edits from extensions on paste.",
             "default": false,
             "defaultDefaultValue": false,
+            "restricted": false
+        },
+        "editor.rename.enablePreview": {
+            "scope": 5,
+            "description": "Enable/disable the ability to preview changes before renaming",
+            "default": true,
+            "type": "boolean",
+            "defaultDefaultValue": true,
             "restricted": false
         },
         "editor.codeActionWidget.showHeaders": {
             "type": "boolean",
             "scope": 5,
-            "description": "コード アクション メニューでのグループ ヘッダーの表示の有効/無効を切り替えます。",
+            "description": "Enable/disable showing group headers in the Code Action menu.",
             "default": true,
-            "defaultDefaultValue": true,
-            "restricted": false
-        },
-        "editor.rename.enablePreview": {
-            "scope": 5,
-            "description": "名前を変更する前に変更をプレビューする機能を有効または無効にする",
-            "default": true,
-            "type": "boolean",
             "defaultDefaultValue": true,
             "restricted": false
         },
         "breadcrumbs.symbolSortOrder": {
-            "description": "階層リンクのアウトライン ビューでシンボルを並び替える方法を制御します。",
+            "description": "Controls how symbols are sorted in the breadcrumbs outline view.",
             "type": "string",
             "default": "position",
             "scope": 5,
@@ -2506,9 +2574,9 @@
                 "type"
             ],
             "enumDescriptions": [
-                "ファイル内での位置順にシンボルのアウトラインを表示します。",
-                "アルファベット順でシンボル アウトラインを表示します。",
-                "シンボルの種類の順番でシンボル アウトラインを表示します。"
+                "Show symbol outline in file position order.",
+                "Show symbol outline in alphabetical order.",
+                "Show symbol outline in symbol type order."
             ],
             "defaultDefaultValue": "position",
             "restricted": false
@@ -2517,7 +2585,7 @@
             "type": "boolean",
             "default": true,
             "scope": 5,
-            "markdownDescription": "有効にすると、階層リンクに `ファイル` 記号が表示されます。",
+            "markdownDescription": "When enabled breadcrumbs show `file`-symbols.",
             "defaultDefaultValue": true,
             "restricted": false
         },
@@ -2525,7 +2593,7 @@
             "type": "boolean",
             "default": true,
             "scope": 5,
-            "markdownDescription": "有効にすると、階層リンクに `モジュール` 記号が表示されます。",
+            "markdownDescription": "When enabled breadcrumbs show `module`-symbols.",
             "defaultDefaultValue": true,
             "restricted": false
         },
@@ -2533,7 +2601,7 @@
             "type": "boolean",
             "default": true,
             "scope": 5,
-            "markdownDescription": "有効にすると、階層リンクに `名前空間` 記号が表示されます。",
+            "markdownDescription": "When enabled breadcrumbs show `namespace`-symbols.",
             "defaultDefaultValue": true,
             "restricted": false
         },
@@ -2541,7 +2609,7 @@
             "type": "boolean",
             "default": true,
             "scope": 5,
-            "markdownDescription": "有効にすると、階層リンクに 'パッケージ' 記号が表示されます。",
+            "markdownDescription": "When enabled breadcrumbs show `package`-symbols.",
             "defaultDefaultValue": true,
             "restricted": false
         },
@@ -2549,7 +2617,7 @@
             "type": "boolean",
             "default": true,
             "scope": 5,
-            "markdownDescription": "有効にすると、階層リンクに `クラス` 記号が表示されます。",
+            "markdownDescription": "When enabled breadcrumbs show `class`-symbols.",
             "defaultDefaultValue": true,
             "restricted": false
         },
@@ -2557,7 +2625,7 @@
             "type": "boolean",
             "default": true,
             "scope": 5,
-            "markdownDescription": "有効にすると、階層リンクに `メソッド` 記号が表示されます。",
+            "markdownDescription": "When enabled breadcrumbs show `method`-symbols.",
             "defaultDefaultValue": true,
             "restricted": false
         },
@@ -2565,7 +2633,7 @@
             "type": "boolean",
             "default": true,
             "scope": 5,
-            "markdownDescription": "有効にすると、階層リンクに 'プロパティ' 記号が表示されます。",
+            "markdownDescription": "When enabled breadcrumbs show `property`-symbols.",
             "defaultDefaultValue": true,
             "restricted": false
         },
@@ -2573,7 +2641,7 @@
             "type": "boolean",
             "default": true,
             "scope": 5,
-            "markdownDescription": "有効にすると、階層リンクに `フィールド` 記号が表示されます。",
+            "markdownDescription": "When enabled breadcrumbs show `field`-symbols.",
             "defaultDefaultValue": true,
             "restricted": false
         },
@@ -2581,7 +2649,7 @@
             "type": "boolean",
             "default": true,
             "scope": 5,
-            "markdownDescription": "有効にすると、階層リンクに 'コンストラクター' 記号が表示されます。",
+            "markdownDescription": "When enabled breadcrumbs show `constructor`-symbols.",
             "defaultDefaultValue": true,
             "restricted": false
         },
@@ -2589,7 +2657,7 @@
             "type": "boolean",
             "default": true,
             "scope": 5,
-            "markdownDescription": "有効にすると、階層リンクに '列挙型' 記号が表示されます。",
+            "markdownDescription": "When enabled breadcrumbs show `enum`-symbols.",
             "defaultDefaultValue": true,
             "restricted": false
         },
@@ -2597,7 +2665,7 @@
             "type": "boolean",
             "default": true,
             "scope": 5,
-            "markdownDescription": "有効にすると、階層リンクに `インターフェイス` 記号が表示されます。",
+            "markdownDescription": "When enabled breadcrumbs show `interface`-symbols.",
             "defaultDefaultValue": true,
             "restricted": false
         },
@@ -2605,7 +2673,7 @@
             "type": "boolean",
             "default": true,
             "scope": 5,
-            "markdownDescription": "有効にすると、階層リンクに '関数' 記号が表示されます。",
+            "markdownDescription": "When enabled breadcrumbs show `function`-symbols.",
             "defaultDefaultValue": true,
             "restricted": false
         },
@@ -2613,7 +2681,7 @@
             "type": "boolean",
             "default": true,
             "scope": 5,
-            "markdownDescription": "有効にすると、階層リンクに `変数` 記号が表示されます。",
+            "markdownDescription": "When enabled breadcrumbs show `variable`-symbols.",
             "defaultDefaultValue": true,
             "restricted": false
         },
@@ -2621,7 +2689,7 @@
             "type": "boolean",
             "default": true,
             "scope": 5,
-            "markdownDescription": "有効にすると、階層リンクに `定数` の記号が表示されます。",
+            "markdownDescription": "When enabled breadcrumbs show `constant`-symbols.",
             "defaultDefaultValue": true,
             "restricted": false
         },
@@ -2629,7 +2697,7 @@
             "type": "boolean",
             "default": true,
             "scope": 5,
-            "markdownDescription": "有効にすると、階層リンクに `文字列` 記号が表示されます。",
+            "markdownDescription": "When enabled breadcrumbs show `string`-symbols.",
             "defaultDefaultValue": true,
             "restricted": false
         },
@@ -2637,7 +2705,7 @@
             "type": "boolean",
             "default": true,
             "scope": 5,
-            "markdownDescription": "有効にすると、階層リンクに `数値` 記号が表示されます。",
+            "markdownDescription": "When enabled breadcrumbs show `number`-symbols.",
             "defaultDefaultValue": true,
             "restricted": false
         },
@@ -2645,7 +2713,7 @@
             "type": "boolean",
             "default": true,
             "scope": 5,
-            "markdownDescription": "有効にすると、階層リンクに `ブール型` 記号が表示されます。",
+            "markdownDescription": "When enabled breadcrumbs show `boolean`-symbols.",
             "defaultDefaultValue": true,
             "restricted": false
         },
@@ -2653,7 +2721,7 @@
             "type": "boolean",
             "default": true,
             "scope": 5,
-            "markdownDescription": "有効にすると、階層リンクに '配列' 記号が表示されます。",
+            "markdownDescription": "When enabled breadcrumbs show `array`-symbols.",
             "defaultDefaultValue": true,
             "restricted": false
         },
@@ -2661,7 +2729,7 @@
             "type": "boolean",
             "default": true,
             "scope": 5,
-            "markdownDescription": "有効にすると、階層リンクに `オブジェクト` 記号が表示されます。",
+            "markdownDescription": "When enabled breadcrumbs show `object`-symbols.",
             "defaultDefaultValue": true,
             "restricted": false
         },
@@ -2669,7 +2737,7 @@
             "type": "boolean",
             "default": true,
             "scope": 5,
-            "markdownDescription": "有効にすると、階層リンクに `キー` 記号が表示されます。",
+            "markdownDescription": "When enabled breadcrumbs show `key`-symbols.",
             "defaultDefaultValue": true,
             "restricted": false
         },
@@ -2677,7 +2745,7 @@
             "type": "boolean",
             "default": true,
             "scope": 5,
-            "markdownDescription": "有効にすると、階層リンクに `null` 記号が表示されます。",
+            "markdownDescription": "When enabled breadcrumbs show `null`-symbols.",
             "defaultDefaultValue": true,
             "restricted": false
         },
@@ -2685,7 +2753,7 @@
             "type": "boolean",
             "default": true,
             "scope": 5,
-            "markdownDescription": "有効にすると、階層リンクに `enumMember` 記号が表示されます。",
+            "markdownDescription": "When enabled breadcrumbs show `enumMember`-symbols.",
             "defaultDefaultValue": true,
             "restricted": false
         },
@@ -2693,7 +2761,7 @@
             "type": "boolean",
             "default": true,
             "scope": 5,
-            "markdownDescription": "有効にすると、階層リンクに `構造体` 記号が表示されます。",
+            "markdownDescription": "When enabled breadcrumbs show `struct`-symbols.",
             "defaultDefaultValue": true,
             "restricted": false
         },
@@ -2701,7 +2769,7 @@
             "type": "boolean",
             "default": true,
             "scope": 5,
-            "markdownDescription": "有効にすると、階層リンクに 'イベント' 記号が表示されます。",
+            "markdownDescription": "When enabled breadcrumbs show `event`-symbols.",
             "defaultDefaultValue": true,
             "restricted": false
         },
@@ -2709,7 +2777,7 @@
             "type": "boolean",
             "default": true,
             "scope": 5,
-            "markdownDescription": "有効にすると、階層リンクに `演算子` 記号が表示されます。",
+            "markdownDescription": "When enabled breadcrumbs show `operator`-symbols.",
             "defaultDefaultValue": true,
             "restricted": false
         },
@@ -2717,21 +2785,21 @@
             "type": "boolean",
             "default": true,
             "scope": 5,
-            "markdownDescription": "有効にすると、階層リンクに 'typeParameter' 記号が表示されます。",
+            "markdownDescription": "When enabled breadcrumbs show `typeParameter`-symbols.",
             "defaultDefaultValue": true,
             "restricted": false
         },
         "workbench.editor.languageDetection": {
             "type": "boolean",
             "default": true,
-            "description": "言語の選択で言語が明示的に設定されている場合を除き、テキスト エディターの言語を自動的に検出するかどうかを制御します。これは、オフにしたくない言語を指定できるように、言語でスコープを設定することもできます。これは、Markdown のような言語 (多くの場合、言語検出で Markdown ではなく埋め込み言語であると認識させる可能性のある他の言語が含まれている) で便利です。",
+            "description": "Controls whether the language in a text editor is automatically detected unless the language has been explicitly set by the language picker. This can also be scoped by language so you can specify which languages you do not want to be switched off of. This is useful for languages like Markdown that often contain other languages that might trick language detection into thinking it's the embedded language and not Markdown.",
             "scope": 5,
             "defaultDefaultValue": true,
             "restricted": false
         },
         "workbench.editor.restoreViewState": {
             "type": "boolean",
-            "markdownDescription": "エディターを閉じた後に再び開いたときに、最後のエディター ビューの状態 (スクロール位置など) を回復します。エディター ビューの状態は、エディター グループごとに保存され、グループが閉じられると破棄されます。エディター グループに以前のビュー状態が見つからなかった場合に、すべてのエディター グループにわたって最後に確認されたビュー状態を使用するには、`#workbench.editor.sharedViewState#` 設定を使用します。",
+            "markdownDescription": "Restores the last editor view state (such as scroll position) when re-opening editors after they have been closed. Editor view state is stored per editor group and discarded when a group closes. Use the `#workbench.editor.sharedViewState#` setting to use the last known view state across all editor groups in case no previous view state was found for a editor group.",
             "default": true,
             "scope": 5,
             "defaultDefaultValue": true,
@@ -2744,7 +2812,7 @@
                     "properties": {
                         "source.fixAll": {
                             "type": "boolean",
-                            "description": "ファイルの保存時に自動修正アクションを実行するかどうかを制御します。"
+                            "description": "Controls whether auto fix action should be run on file save."
                         }
                     },
                     "additionalProperties": {
@@ -2759,23 +2827,23 @@
                 }
             ],
             "default": {},
-            "description": "保存時に実行されるコードアクションの種類。",
+            "description": "Code Action kinds to be run on save.",
             "scope": 5,
             "defaultDefaultValue": {},
             "restricted": false,
             "properties": {
                 "source.fixAll": {
                     "type": "boolean",
-                    "description": "ファイルの保存時に自動修正アクションを実行するかどうかを制御します。"
+                    "description": "Controls whether auto fix action should be run on file save."
                 },
                 "source.organizeImports": {
                     "type": "boolean",
-                    "description": "ファイルの保存時に 'インポートを整理' アクションを実行するかどうかを制御します。"
+                    "description": "Controls whether 'Organize Imports' actions should be run on file save."
                 }
             }
         },
-        "editor.defaultFormatter": {
-            "description": "他のすべてのフォーマッタ設定よりも優先される、既定のフォーマッタを定義します。フォーマッタを提供している拡張機能の識別子にする必要があります。",
+        "editor.defaultFoldingRangeProvider": {
+            "description": "Defines a default folding range provider that takes precedence over all other folding range providers. Must be the identifier of an extension contributing a folding range provider.",
             "type": [
                 "string",
                 "null"
@@ -2817,73 +2885,189 @@
                 "ms-vscode.vscode-js-profile-table"
             ],
             "enumItemLabels": [
-                "なし",
-                "CSS 言語機能",
-                "HTML 言語機能",
-                "JSON 言語機能",
-                "Markdown 言語機能",
-                "PHP 言語機能",
-                "参照検索ビュー",
-                "検索結果",
-                "TypeScript と JavaScript の言語機能",
-                "設定の編集機能",
-                "Node デバッグの自動アタッチ",
-                "サーバーの準備完了アクション",
+                "All",
+                "CSS Language Features",
+                "HTML Language Features",
+                "JSON Language Features",
+                "Markdown Language Features",
+                "PHP Language Features",
+                "Reference Search View",
+                "Search Result",
+                "TypeScript and JavaScript Language Features",
+                "Configuration Editing",
+                "Node Debug Auto-attach",
+                "Server Ready Action",
                 "Emmet",
-                "拡張機能の作成",
+                "Extension Authoring",
                 "Git",
-                "Git ベース",
+                "Git Base",
                 "GitHub",
-                "GitHub 認証",
+                "GitHub Authentication",
                 "Grunt support for VS Code",
-                "VSCode の Gulp サポート",
-                ".ipynb のサポート",
-                "VS Code の Jake サポート",
+                "Gulp support for VSCode",
+                ".ipynb Support",
+                "Jake support for VS Code",
                 "JavaScript Debugger",
                 "JavaScript Debugger Companion Extension",
-                "Markdown 数式",
-                "メディア プレビュー",
-                "マージの競合",
-                "Microsoft アカウント",
-                "VS Code の npm サポート",
+                "Markdown Math",
+                "Media Preview",
+                "Merge Conflict",
+                "Microsoft Account",
+                "NPM support for VS Code",
                 "WSL: Recommender",
                 "save-vscode-schemas",
-                "シンプル ブラウザー",
+                "Simple Browser",
                 "Table Visualizer for JavaScript Profiles"
             ],
             "markdownEnumDescriptions": [
-                "なし",
-                "CSS、LESS、SCSS ファイルに豊富な言語サポートを提供。",
-                "HTML と Handlebar ファイルに豊富な言語サポートを提供します",
-                "JSON ファイルに豊富な言語サポートを提供。",
-                "Markdown に豊富な言語サポートを提供。",
-                "PHP ファイルに豊富な言語サポートを提供します。",
-                "サイドバーの独立した安定したビューとして検索結果を参照する",
-                "シンタックスハイライトとタブ付き検索結果向け言語機能を提供します。",
-                "JavaScript と TypeScript ファイルに豊富な言語サポートを提供。",
-                "設定、起動、拡張機能の推奨事項ファイルといった、構成ファイルの機能 (高度な IntelliSense、auto-fixing など) を提供します。",
-                "node-debug 拡張がアクティブではないときに自動的にアタッチする機能を補助します。",
-                "デバッグ対象のサーバーが準備完了になったら、URI をブラウザーで開きます。",
-                "VSCode の Emmet サポート",
-                "拡張機能を作成するためのリンティング機能を提供します。",
-                "Git SCM統合",
-                "Git の静的コントリビューションとピッカー。",
-                "VS Code 用 GitHub 機能",
-                "GitHub 認証プロバイダー",
+                "All active folding range providers",
+                "Provides rich language support for CSS, LESS and SCSS files.",
+                "Provides rich language support for HTML and Handlebar files",
+                "Provides rich language support for JSON files.",
+                "Provides rich language support for Markdown.",
+                "Provides rich language support for PHP files.",
+                "Reference Search results as separate, stable view in the sidebar",
+                "Provides syntax highlighting and language features for tabbed search results.",
+                "Provides rich language support for JavaScript and TypeScript.",
+                "Provides capabilities (advanced IntelliSense, auto-fixing) in configuration files like settings, launch, and extension recommendation files.",
+                "Helper for auto-attach feature when node-debug extensions are not active.",
+                "Open URI in browser if server under debugging is ready.",
+                "Emmet support for VS Code",
+                "Provides linting capabilities for authoring extensions.",
+                "Git SCM Integration",
+                "Git static contributions and pickers.",
+                "GitHub features for VS Code",
+                "GitHub Authentication Provider",
                 "Extension to add Grunt capabilities to VS Code.",
-                "VS Code に Gulp 機能を追加する拡張機能。",
-                "Jupyter の .ipynb ノートブック ファイルを開いて読み取るための基本サポートを提供します",
-                "VS Code に Jake 機能を追加する拡張機能。",
+                "Extension to add Gulp capabilities to VSCode.",
+                "Provides basic support for opening and reading Jupyter's .ipynb notebook files",
+                "Extension to add Jake capabilities to VS Code.",
                 "An extension for debugging Node.js programs and Chrome.",
                 "Companion extension to js-debug that provides capability for remote debugging",
-                "ノートブックのマークダウンに数式サポートを追加します。",
-                "画像、オーディオ、ビデオの VS Code の組み込みプレビューを提供します",
-                "行内マージ競合のハイライト、コマンドを提供します。",
-                "Microsoft 認証プロバイダー",
-                "npm スクリプトのタスクサポートを追加する拡張",
+                "Adds math support to Markdown in notebooks.",
+                "Provides VS Code's built-in previews for images, audio, and video",
+                "Highlighting and commands for inline merge conflicts.",
+                "Microsoft authentication provider",
+                "Extension to add task support for npm scripts.",
                 "Recommends using the Windows Subsystem for Linux (WSL) and the WSL extension.",
                 "Save VS Code's schemas",
-                "Web コンテンツを表示するための非常に基本的な組み込みの Web ビューです。",
+                "A very basic built-in webview for displaying web content.",
+                "Text visualizer for profiles taken from the JavaScript debugger"
+            ],
+            "defaultDefaultValue": null,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.defaultFormatter": {
+            "description": "Defines a default formatter which takes precedence over all other formatter settings. Must be the identifier of an extension contributing a formatter.",
+            "type": [
+                "string",
+                "null"
+            ],
+            "default": null,
+            "enum": [
+                null,
+                "vscode.css-language-features",
+                "vscode.html-language-features",
+                "vscode.json-language-features",
+                "vscode.markdown-language-features",
+                "vscode.php-language-features",
+                "vscode.references-view",
+                "vscode.search-result",
+                "vscode.typescript-language-features",
+                "vscode.configuration-editing",
+                "vscode.debug-auto-launch",
+                "vscode.debug-server-ready",
+                "vscode.emmet",
+                "vscode.extension-editing",
+                "vscode.git",
+                "vscode.git-base",
+                "vscode.github",
+                "vscode.github-authentication",
+                "vscode.grunt",
+                "vscode.gulp",
+                "vscode.ipynb",
+                "vscode.jake",
+                "ms-vscode.js-debug",
+                "ms-vscode.js-debug-companion",
+                "vscode.markdown-math",
+                "vscode.media-preview",
+                "vscode.merge-conflict",
+                "vscode.microsoft-authentication",
+                "vscode.npm",
+                "ms-vscode-remote.remote-wsl-recommender",
+                "wraith13.save-vscode-schemas",
+                "vscode.simple-browser",
+                "ms-vscode.vscode-js-profile-table"
+            ],
+            "enumItemLabels": [
+                "None",
+                "CSS Language Features",
+                "HTML Language Features",
+                "JSON Language Features",
+                "Markdown Language Features",
+                "PHP Language Features",
+                "Reference Search View",
+                "Search Result",
+                "TypeScript and JavaScript Language Features",
+                "Configuration Editing",
+                "Node Debug Auto-attach",
+                "Server Ready Action",
+                "Emmet",
+                "Extension Authoring",
+                "Git",
+                "Git Base",
+                "GitHub",
+                "GitHub Authentication",
+                "Grunt support for VS Code",
+                "Gulp support for VSCode",
+                ".ipynb Support",
+                "Jake support for VS Code",
+                "JavaScript Debugger",
+                "JavaScript Debugger Companion Extension",
+                "Markdown Math",
+                "Media Preview",
+                "Merge Conflict",
+                "Microsoft Account",
+                "NPM support for VS Code",
+                "WSL: Recommender",
+                "save-vscode-schemas",
+                "Simple Browser",
+                "Table Visualizer for JavaScript Profiles"
+            ],
+            "markdownEnumDescriptions": [
+                "None",
+                "Provides rich language support for CSS, LESS and SCSS files.",
+                "Provides rich language support for HTML and Handlebar files",
+                "Provides rich language support for JSON files.",
+                "Provides rich language support for Markdown.",
+                "Provides rich language support for PHP files.",
+                "Reference Search results as separate, stable view in the sidebar",
+                "Provides syntax highlighting and language features for tabbed search results.",
+                "Provides rich language support for JavaScript and TypeScript.",
+                "Provides capabilities (advanced IntelliSense, auto-fixing) in configuration files like settings, launch, and extension recommendation files.",
+                "Helper for auto-attach feature when node-debug extensions are not active.",
+                "Open URI in browser if server under debugging is ready.",
+                "Emmet support for VS Code",
+                "Provides linting capabilities for authoring extensions.",
+                "Git SCM Integration",
+                "Git static contributions and pickers.",
+                "GitHub features for VS Code",
+                "GitHub Authentication Provider",
+                "Extension to add Grunt capabilities to VS Code.",
+                "Extension to add Gulp capabilities to VSCode.",
+                "Provides basic support for opening and reading Jupyter's .ipynb notebook files",
+                "Extension to add Jake capabilities to VS Code.",
+                "An extension for debugging Node.js programs and Chrome.",
+                "Companion extension to js-debug that provides capability for remote debugging",
+                "Adds math support to Markdown in notebooks.",
+                "Provides VS Code's built-in previews for images, audio, and video",
+                "Highlighting and commands for inline merge conflicts.",
+                "Microsoft authentication provider",
+                "Extension to add task support for npm scripts.",
+                "Recommends using the Windows Subsystem for Linux (WSL) and the WSL extension.",
+                "Save VS Code's schemas",
+                "A very basic built-in webview for displaying web content.",
                 "Text visualizer for profiles taken from the JavaScript debugger"
             ],
             "defaultDefaultValue": null,
@@ -2891,7 +3075,7 @@
             "restricted": false
         },
         "editor.snippets.codeActions.enabled": {
-            "description": "ブロック付きスニペットまたはファイル テンプレート スニペットがコード アクションとして表示されるかどうかを制御します。",
+            "description": "Controls if surround-with-snippets or file template snippets show as Code Actions.",
             "type": "boolean",
             "default": true,
             "defaultDefaultValue": true,
@@ -2899,16 +3083,16 @@
             "restricted": false
         },
         "debug.saveBeforeStart": {
-            "description": "デバッグ セッションを開始する前にどのエディターを保存するかを制御します。",
+            "description": "Controls what editors to save before starting a debug session.",
             "enum": [
                 "allEditorsInActiveGroup",
                 "nonUntitledEditorsInActiveGroup",
                 "none"
             ],
             "enumDescriptions": [
-                "デバッグ セッションを開始する前に、アクティブなグループ内のすべてのエディターを保存します。",
-                "デバッグ セッションを開始する前に、アクティブなグループ内のすべてのエディターを、無題のものを除いて保存します。",
-                "デバッグ セッションを開始する前にエディターを保存しません。"
+                "Save all editors in the active group before starting a debug session.",
+                "Save all editors in the active group except untitled ones before starting a debug session.",
+                "Don't save any editors before starting a debug session."
             ],
             "default": "allEditorsInActiveGroup",
             "scope": 5,
@@ -2967,7 +3151,7 @@
                 "cp850"
             ],
             "default": "utf8",
-            "description": "ファイルの読み取り/書き込みで使用する既定の文字セット エンコーディング。言語ごとに構成することも可能です。",
+            "description": "The default character set encoding to use when reading and writing files. This setting can also be configured per language.",
             "scope": 5,
             "enumDescriptions": [
                 "UTF-8",
@@ -3073,7 +3257,7 @@
         "files.autoGuessEncoding": {
             "type": "boolean",
             "default": false,
-            "markdownDescription": "有効にすると、エディターはファイルを開くときに文字セットのエンコードを推測しようとします。この設定は、言語ごとに構成することもできます。この設定はテキスト検索では考慮されません。`#files.encoding#` のみが考慮されます。",
+            "markdownDescription": "When enabled, the editor will attempt to guess the character set encoding when opening files. This setting can also be configured per language. Note, this setting is not respected by text search. Only `#files.encoding#` is respected.",
             "scope": 5,
             "defaultDefaultValue": false,
             "restricted": false
@@ -3088,10 +3272,10 @@
             "enumDescriptions": [
                 "LF",
                 "CRLF",
-                "OS 固有の改行文字を使用します。"
+                "Uses operating system specific end of line character."
             ],
             "default": "auto",
-            "description": "既定の改行文字。",
+            "description": "The default end of line character.",
             "scope": 5,
             "defaultDefaultValue": "auto",
             "restricted": false
@@ -3099,7 +3283,7 @@
         "files.trimTrailingWhitespace": {
             "type": "boolean",
             "default": false,
-            "description": "有効にすると、ファイルの保存時に末尾の空白をトリミングします。",
+            "description": "When enabled, will trim trailing whitespace when saving a file.",
             "scope": 5,
             "defaultDefaultValue": false,
             "restricted": false
@@ -3107,7 +3291,7 @@
         "files.insertFinalNewline": {
             "type": "boolean",
             "default": false,
-            "description": "有効にすると、ファイルの保存時に最新の行を末尾に挿入します。",
+            "description": "When enabled, insert a final new line at the end of the file when saving it.",
             "scope": 5,
             "defaultDefaultValue": false,
             "restricted": false
@@ -3115,7 +3299,7 @@
         "files.trimFinalNewlines": {
             "type": "boolean",
             "default": false,
-            "description": "有効にすると、ファイルの保存時に最終行以降の新しい行をトリミングします。",
+            "description": "When enabled, will trim all new lines after the final new line at the end of the file when saving it.",
             "scope": 5,
             "defaultDefaultValue": false,
             "restricted": false
@@ -3127,10 +3311,10 @@
                 "overwriteFileOnDisk"
             ],
             "enumDescriptions": [
-                "保存を拒否し、保存の競合を手動で解決するように要求します。",
-                "エディターでの変更を使用してディスク上のファイルを上書きすることで、保存の競合を解決します。"
+                "Will refuse to save and ask for resolving the save conflict manually.",
+                "Will resolve the save conflict by overwriting the file on disk with the changes in the editor."
             ],
-            "description": "保存の競合は、ファイルを保存している間に別のプログラムによって変更されたときに発生する可能性があります。データ損失を防ぐために、ユーザーは、エディターの変更とディスク上のバージョンを比較するように求められます。この設定は、保存の競合エラーが頻繁に発生する場合にのみ変更し、データが失われる可能性があるため注意してください。",
+            "description": "A save conflict can occur when a file is saved to disk that was changed by another program in the meantime. To prevent data loss, the user is asked to compare the changes in the editor with the version on disk. This setting should only be changed if you frequently encounter save conflict errors and may result in data loss if used without caution.",
             "default": "askUser",
             "scope": 5,
             "defaultDefaultValue": "askUser",
@@ -3138,7 +3322,7 @@
         },
         "editor.formatOnSave": {
             "type": "boolean",
-            "description": "ファイルを保存するときにフォーマットします。フォーマッタが有効でなければなりません。ファイルの遅延保存やエディターを閉じることは許可されていません。",
+            "description": "Format a file on save. A formatter must be available, the file must not be saved after delay, and the editor must not be shutting down.",
             "scope": 5,
             "default": false,
             "restricted": false
@@ -3152,20 +3336,36 @@
                 "modificationsIfAvailable"
             ],
             "enumDescriptions": [
-                "ファイル全体をフォーマットします。",
-                "変更をフォーマットします (ソース管理が必要)。",
-                "変更部分のみのフォーマットを試みます (ソース管理が必要)。ソース管理が使用できない場合は、ファイル全体がフォーマットされます。"
+                "Format the whole file.",
+                "Format modifications (requires source control).",
+                "Will attempt to format modifications only (requires source control). If source control can't be used, then the whole file will be formatted."
             ],
-            "markdownDescription": "保存の形式でファイル全体をフォーマット指定するか、変更のみをフォーマットするかを制御します。`#editor.formatOnSave#` が有効な場合にのみ適用されます。",
+            "markdownDescription": "Controls if format on save formats the whole file or only modifications. Only applies when `#editor.formatOnSave#` is enabled.",
             "scope": 5,
             "defaultDefaultValue": "file",
+            "restricted": false
+        },
+        "outline.collapseItems": {
+            "description": "Controls whether Outline items are collapsed or expanded.",
+            "type": "string",
+            "scope": 5,
+            "enum": [
+                "alwaysCollapse",
+                "alwaysExpand"
+            ],
+            "enumDescriptions": [
+                "Collapse all items.",
+                "Expand all items."
+            ],
+            "default": "alwaysExpand",
+            "defaultDefaultValue": "alwaysExpand",
             "restricted": false
         },
         "outline.showFiles": {
             "type": "boolean",
             "scope": 5,
             "default": true,
-            "markdownDescription": "有効にすると、アウトラインに `ファイル` 記号が表示されます。",
+            "markdownDescription": "When enabled, Outline shows `file`-symbols.",
             "defaultDefaultValue": true,
             "restricted": false
         },
@@ -3173,7 +3373,7 @@
             "type": "boolean",
             "scope": 5,
             "default": true,
-            "markdownDescription": "有効にすると、アウトラインに `モジュール` 記号が表示されます。",
+            "markdownDescription": "When enabled, Outline shows `module`-symbols.",
             "defaultDefaultValue": true,
             "restricted": false
         },
@@ -3181,7 +3381,7 @@
             "type": "boolean",
             "default": true,
             "scope": 5,
-            "markdownDescription": "有効にすると、アウトラインに `名前空間` 記号が表示されます。",
+            "markdownDescription": "When enabled, Outline shows `namespace`-symbols.",
             "defaultDefaultValue": true,
             "restricted": false
         },
@@ -3189,7 +3389,7 @@
             "type": "boolean",
             "default": true,
             "scope": 5,
-            "markdownDescription": "有効にすると、アウトラインに `パッケージ` 記号が表示されます。",
+            "markdownDescription": "When enabled, Outline shows `package`-symbols.",
             "defaultDefaultValue": true,
             "restricted": false
         },
@@ -3197,7 +3397,7 @@
             "type": "boolean",
             "default": true,
             "scope": 5,
-            "markdownDescription": "有効にすると、アウトラインに `クラス` 記号が表示されます。",
+            "markdownDescription": "When enabled, Outline shows `class`-symbols.",
             "defaultDefaultValue": true,
             "restricted": false
         },
@@ -3205,7 +3405,7 @@
             "type": "boolean",
             "default": true,
             "scope": 5,
-            "markdownDescription": "有効にすると、アウトラインに 'メソッド' 記号が表示されます。",
+            "markdownDescription": "When enabled, Outline shows `method`-symbols.",
             "defaultDefaultValue": true,
             "restricted": false
         },
@@ -3213,7 +3413,7 @@
             "type": "boolean",
             "default": true,
             "scope": 5,
-            "markdownDescription": "有効にすると、アウトラインに `プロパティ` 記号が表示されます。",
+            "markdownDescription": "When enabled, Outline shows `property`-symbols.",
             "defaultDefaultValue": true,
             "restricted": false
         },
@@ -3221,7 +3421,7 @@
             "type": "boolean",
             "default": true,
             "scope": 5,
-            "markdownDescription": "有効にすると、アウトラインに `フィールド` 記号が表示されます。",
+            "markdownDescription": "When enabled, Outline shows `field`-symbols.",
             "defaultDefaultValue": true,
             "restricted": false
         },
@@ -3229,7 +3429,7 @@
             "type": "boolean",
             "default": true,
             "scope": 5,
-            "markdownDescription": "有効にすると、アウトラインに `コンストラクター` 記号が表示されます。",
+            "markdownDescription": "When enabled, Outline shows `constructor`-symbols.",
             "defaultDefaultValue": true,
             "restricted": false
         },
@@ -3237,7 +3437,7 @@
             "type": "boolean",
             "default": true,
             "scope": 5,
-            "markdownDescription": "有効にすると、アウトラインに '列挙型' 記号が表示されます。",
+            "markdownDescription": "When enabled, Outline shows `enum`-symbols.",
             "defaultDefaultValue": true,
             "restricted": false
         },
@@ -3245,7 +3445,7 @@
             "type": "boolean",
             "default": true,
             "scope": 5,
-            "markdownDescription": "有効にすると、アウトラインに `インターフェイス` 記号が表示されます。",
+            "markdownDescription": "When enabled, Outline shows `interface`-symbols.",
             "defaultDefaultValue": true,
             "restricted": false
         },
@@ -3253,7 +3453,7 @@
             "type": "boolean",
             "default": true,
             "scope": 5,
-            "markdownDescription": "有効にすると、アウトラインに `関数` 記号が表示されます。",
+            "markdownDescription": "When enabled, Outline shows `function`-symbols.",
             "defaultDefaultValue": true,
             "restricted": false
         },
@@ -3261,7 +3461,7 @@
             "type": "boolean",
             "default": true,
             "scope": 5,
-            "markdownDescription": "有効にすると、アウトラインに `変数` 記号が表示されます。",
+            "markdownDescription": "When enabled, Outline shows `variable`-symbols.",
             "defaultDefaultValue": true,
             "restricted": false
         },
@@ -3269,7 +3469,7 @@
             "type": "boolean",
             "default": true,
             "scope": 5,
-            "markdownDescription": "有効にすると、アウトラインに `定数` 記号が表示されます。",
+            "markdownDescription": "When enabled, Outline shows `constant`-symbols.",
             "defaultDefaultValue": true,
             "restricted": false
         },
@@ -3277,7 +3477,7 @@
             "type": "boolean",
             "default": true,
             "scope": 5,
-            "markdownDescription": "有効にすると、アウトラインに `文字列` 記号が表示されます。",
+            "markdownDescription": "When enabled, Outline shows `string`-symbols.",
             "defaultDefaultValue": true,
             "restricted": false
         },
@@ -3285,7 +3485,7 @@
             "type": "boolean",
             "default": true,
             "scope": 5,
-            "markdownDescription": "有効にすると、アウトラインに '数値' 記号が表示されます。",
+            "markdownDescription": "When enabled, Outline shows `number`-symbols.",
             "defaultDefaultValue": true,
             "restricted": false
         },
@@ -3293,7 +3493,7 @@
             "type": "boolean",
             "scope": 5,
             "default": true,
-            "markdownDescription": "有効にすると、アウトラインに 'ブール型' 記号が表示されます。",
+            "markdownDescription": "When enabled, Outline shows `boolean`-symbols.",
             "defaultDefaultValue": true,
             "restricted": false
         },
@@ -3301,7 +3501,7 @@
             "type": "boolean",
             "default": true,
             "scope": 5,
-            "markdownDescription": "有効にすると、アウトラインに `配列` 記号が表示されます。",
+            "markdownDescription": "When enabled, Outline shows `array`-symbols.",
             "defaultDefaultValue": true,
             "restricted": false
         },
@@ -3309,7 +3509,7 @@
             "type": "boolean",
             "default": true,
             "scope": 5,
-            "markdownDescription": "有効にすると、アウトラインに `オブジェクト` 記号が表示されます。",
+            "markdownDescription": "When enabled, Outline shows `object`-symbols.",
             "defaultDefaultValue": true,
             "restricted": false
         },
@@ -3317,7 +3517,7 @@
             "type": "boolean",
             "default": true,
             "scope": 5,
-            "markdownDescription": "有効にすると、アウトラインに 'キー' 記号が表示されます。",
+            "markdownDescription": "When enabled, Outline shows `key`-symbols.",
             "defaultDefaultValue": true,
             "restricted": false
         },
@@ -3325,7 +3525,7 @@
             "type": "boolean",
             "default": true,
             "scope": 5,
-            "markdownDescription": "有効にすると、アウトラインに 'null' -記号が表示されます。",
+            "markdownDescription": "When enabled, Outline shows `null`-symbols.",
             "defaultDefaultValue": true,
             "restricted": false
         },
@@ -3333,7 +3533,7 @@
             "type": "boolean",
             "default": true,
             "scope": 5,
-            "markdownDescription": "有効にすると、アウトラインに `enumMember` 記号が表示されます。",
+            "markdownDescription": "When enabled, Outline shows `enumMember`-symbols.",
             "defaultDefaultValue": true,
             "restricted": false
         },
@@ -3341,7 +3541,7 @@
             "type": "boolean",
             "default": true,
             "scope": 5,
-            "markdownDescription": "有効にすると、アウトラインに `構造体` 記号が表示されます。",
+            "markdownDescription": "When enabled, Outline shows `struct`-symbols.",
             "defaultDefaultValue": true,
             "restricted": false
         },
@@ -3349,7 +3549,7 @@
             "type": "boolean",
             "default": true,
             "scope": 5,
-            "markdownDescription": "有効にすると、アウトラインに 'イベント' 記号が表示されます。",
+            "markdownDescription": "When enabled, Outline shows `event`-symbols.",
             "defaultDefaultValue": true,
             "restricted": false
         },
@@ -3357,7 +3557,7 @@
             "type": "boolean",
             "default": true,
             "scope": 5,
-            "markdownDescription": "有効にすると、アウトラインに `演算子` 記号が表示されます。",
+            "markdownDescription": "When enabled, Outline shows `operator`-symbols.",
             "defaultDefaultValue": true,
             "restricted": false
         },
@@ -3365,7 +3565,7 @@
             "type": "boolean",
             "default": true,
             "scope": 5,
-            "markdownDescription": "有効にすると、アウトラインに `typeParameter` 記号が表示されます。",
+            "markdownDescription": "When enabled, Outline shows `typeParameter`-symbols.",
             "defaultDefaultValue": true,
             "restricted": false
         },
@@ -3373,7 +3573,7 @@
             "type": "boolean",
             "default": true,
             "scope": 5,
-            "markdownDescription": "利用できる Emmet 省略記法を候補として表示します。スタイルシートや emmet.showExpandedAbbreviation を `\"never\"` に設定していると適用されません。",
+            "markdownDescription": "Shows possible Emmet abbreviations as suggestions. Not applicable in stylesheets or when emmet.showExpandedAbbreviation is set to `\"never\"`.",
             "source": {
                 "id": "vscode.emmet",
                 "displayName": "Emmet"
@@ -3385,7 +3585,7 @@
             "type": "boolean",
             "default": false,
             "scope": 5,
-            "markdownDescription": "有効にすると、TAB キーを押したときに Emmet 省略記法が展開されます。",
+            "markdownDescription": "When enabled, Emmet abbreviations are expanded when pressing TAB, even when completions do not show up. When disabled, completions that show up can still be accepted by pressing TAB.",
             "source": {
                 "id": "vscode.emmet",
                 "displayName": "Emmet"
@@ -3396,11 +3596,11 @@
         "javascript.suggest.completeJSDocs": {
             "type": "boolean",
             "default": true,
-            "description": "JSDoc のコメントを完成させるための提案を有効/無効にします。",
+            "description": "Enable/disable suggestion to complete JSDoc comments.",
             "scope": 5,
             "source": {
                 "id": "vscode.typescript-language-features",
-                "displayName": "TypeScript と JavaScript の言語機能"
+                "displayName": "TypeScript and JavaScript Language Features"
             },
             "defaultDefaultValue": true,
             "restricted": false
@@ -3408,11 +3608,11 @@
         "typescript.suggest.completeJSDocs": {
             "type": "boolean",
             "default": true,
-            "description": "JSDoc のコメントを完成させるための提案を有効/無効にします。",
+            "description": "Enable/disable suggestion to complete JSDoc comments.",
             "scope": 5,
             "source": {
                 "id": "vscode.typescript-language-features",
-                "displayName": "TypeScript と JavaScript の言語機能"
+                "displayName": "TypeScript and JavaScript Language Features"
             },
             "defaultDefaultValue": true,
             "restricted": false
@@ -3420,11 +3620,11 @@
         "javascript.suggest.jsdoc.generateReturns": {
             "type": "boolean",
             "default": true,
-            "markdownDescription": "JSDoc テンプレートの `@return` 注釈の生成を有効または無効にします。ワークスペースで TypeScript 4.2+ を使用する必要があります。",
+            "markdownDescription": "Enable/disable generating `@returns` annotations for JSDoc templates.",
             "scope": 5,
             "source": {
                 "id": "vscode.typescript-language-features",
-                "displayName": "TypeScript と JavaScript の言語機能"
+                "displayName": "TypeScript and JavaScript Language Features"
             },
             "defaultDefaultValue": true,
             "restricted": false
@@ -3432,11 +3632,11 @@
         "typescript.suggest.jsdoc.generateReturns": {
             "type": "boolean",
             "default": true,
-            "markdownDescription": "JSDoc テンプレートの `@return` 注釈の生成を有効または無効にします。ワークスペースで TypeScript 4.2+ を使用する必要があります。",
+            "markdownDescription": "Enable/disable generating `@returns` annotations for JSDoc templates.",
             "scope": 5,
             "source": {
                 "id": "vscode.typescript-language-features",
-                "displayName": "TypeScript と JavaScript の言語機能"
+                "displayName": "TypeScript and JavaScript Language Features"
             },
             "defaultDefaultValue": true,
             "restricted": false
@@ -3449,16 +3649,16 @@
                 "double"
             ],
             "default": "auto",
-            "markdownDescription": "迅速な修正の使用で優先される引用符のスタイル。",
+            "markdownDescription": "Preferred quote style to use for Quick Fixes.",
             "markdownEnumDescriptions": [
-                "既存のコードから引用符の種類を推測する",
-                "常に単一引用符 `'` を使用します。",
-                "常に二重引用符 `\"` を使用します。"
+                "Infer quote type from existing code",
+                "Always use single quotes: `'`",
+                "Always use double quotes: `\"`"
             ],
             "scope": 5,
             "source": {
                 "id": "vscode.typescript-language-features",
-                "displayName": "TypeScript と JavaScript の言語機能"
+                "displayName": "TypeScript and JavaScript Language Features"
             },
             "defaultDefaultValue": "auto",
             "restricted": false
@@ -3471,16 +3671,16 @@
                 "double"
             ],
             "default": "auto",
-            "markdownDescription": "迅速な修正の使用で優先される引用符のスタイル。",
+            "markdownDescription": "Preferred quote style to use for Quick Fixes.",
             "markdownEnumDescriptions": [
-                "既存のコードから引用符の種類を推測する",
-                "常に単一引用符 `'` を使用します。",
-                "常に二重引用符 `\"` を使用します。"
+                "Infer quote type from existing code",
+                "Always use single quotes: `'`",
+                "Always use double quotes: `\"`"
             ],
             "scope": 5,
             "source": {
                 "id": "vscode.typescript-language-features",
-                "displayName": "TypeScript と JavaScript の言語機能"
+                "displayName": "TypeScript and JavaScript Language Features"
             },
             "defaultDefaultValue": "auto",
             "restricted": false
@@ -3494,17 +3694,17 @@
                 "project-relative"
             ],
             "markdownEnumDescriptions": [
-                "相対インポートよりもパス セグメント数が少なくなる場合にのみ、非相対インポートを優先します。",
-                "インポートされたファイルの場所への相対パスを優先します。",
-                "`jsconfig.json` または `tsconfig.json` に構成されている `baseUrl` または `paths` に基づいて非相対インポートを優先します。",
-                "相対インポート パスでパッケージまたはプロジェクト ディレクトリが提供される場合にのみ、非相対インポートを優先します。ワークスペースで TypeScript 4.2+ を使用する必要があります。"
+                "Prefers a non-relative import only if one is available that has fewer path segments than a relative import.",
+                "Prefers a relative path to the imported file location.",
+                "Prefers a non-relative import based on the `baseUrl` or `paths` configured in your `jsconfig.json` / `tsconfig.json`.",
+                "Prefers a non-relative import only if the relative import path would leave the package or project directory."
             ],
             "default": "shortest",
-            "description": "自動 import の優先パス スタイル。",
+            "description": "Preferred path style for auto imports.",
             "scope": 5,
             "source": {
                 "id": "vscode.typescript-language-features",
-                "displayName": "TypeScript と JavaScript の言語機能"
+                "displayName": "TypeScript and JavaScript Language Features"
             },
             "defaultDefaultValue": "shortest",
             "restricted": false
@@ -3518,17 +3718,17 @@
                 "project-relative"
             ],
             "markdownEnumDescriptions": [
-                "相対インポートよりもパス セグメント数が少なくなる場合にのみ、非相対インポートを優先します。",
-                "インポートされたファイルの場所への相対パスを優先します。",
-                "`jsconfig.json` または `tsconfig.json` に構成されている `baseUrl` または `paths` に基づいて非相対インポートを優先します。",
-                "相対インポート パスでパッケージまたはプロジェクト ディレクトリが提供される場合にのみ、非相対インポートを優先します。ワークスペースで TypeScript 4.2+ を使用する必要があります。"
+                "Prefers a non-relative import only if one is available that has fewer path segments than a relative import.",
+                "Prefers a relative path to the imported file location.",
+                "Prefers a non-relative import based on the `baseUrl` or `paths` configured in your `jsconfig.json` / `tsconfig.json`.",
+                "Prefers a non-relative import only if the relative import path would leave the package or project directory."
             ],
             "default": "shortest",
-            "description": "自動 import の優先パス スタイル。",
+            "description": "Preferred path style for auto imports.",
             "scope": 5,
             "source": {
                 "id": "vscode.typescript-language-features",
-                "displayName": "TypeScript と JavaScript の言語機能"
+                "displayName": "TypeScript and JavaScript Language Features"
             },
             "defaultDefaultValue": "shortest",
             "restricted": false
@@ -3542,17 +3742,17 @@
                 "js"
             ],
             "markdownEnumDescriptions": [
-                "プロジェクト設定を使用してデフォルトを選択します。",
-                "'./component/index.js' を './component' に短縮します。",
-                "./component/index.js' を './component/index' に短縮します。",
-                "パスの末尾を短くしないでください。拡張子 '.js' を含めます。"
+                "Use project settings to select a default.",
+                "Shorten `./component/index.js` to `./component`.",
+                "Shorten `./component/index.js` to `./component/index`.",
+                "Do not shorten path endings; include the `.js` extension."
             ],
             "default": "auto",
-            "description": "自動インポート用に終了する優先パス。ワークスペースで TypeScript 4.5 以降を使用する必要があります。",
+            "description": "Preferred path ending for auto imports.",
             "scope": 5,
             "source": {
                 "id": "vscode.typescript-language-features",
-                "displayName": "TypeScript と JavaScript の言語機能"
+                "displayName": "TypeScript and JavaScript Language Features"
             },
             "defaultDefaultValue": "auto",
             "restricted": false
@@ -3566,17 +3766,17 @@
                 "js"
             ],
             "markdownEnumDescriptions": [
-                "プロジェクト設定を使用してデフォルトを選択します。",
-                "'./component/index.js' を './component' に短縮します。",
-                "./component/index.js' を './component/index' に短縮します。",
-                "パスの末尾を短くしないでください。拡張子 '.js' を含めます。"
+                "Use project settings to select a default.",
+                "Shorten `./component/index.js` to `./component`.",
+                "Shorten `./component/index.js` to `./component/index`.",
+                "Do not shorten path endings; include the `.js` extension."
             ],
             "default": "auto",
-            "description": "自動インポート用に終了する優先パス。ワークスペースで TypeScript 4.5 以降を使用する必要があります。",
+            "description": "Preferred path ending for auto imports.",
             "scope": 5,
             "source": {
                 "id": "vscode.typescript-language-features",
-                "displayName": "TypeScript と JavaScript の言語機能"
+                "displayName": "TypeScript and JavaScript Language Features"
             },
             "defaultDefaultValue": "auto",
             "restricted": false
@@ -3589,16 +3789,16 @@
                 "none"
             ],
             "markdownEnumDescriptions": [
-                "プロパティの種類に基づいて属性名の後に '={}' または '=\"\"' を挿入します。文字列属性に使用される引用符の種類を制御するには、`javascript.preferences.quoteStyle` を参照してください。",
-                "属性名の後に `={}` を挿入します。",
-                "属性名の挿入のみ。"
+                "Insert `={}` or `=\"\"` after attribute names based on the prop type. See `javascript.preferences.quoteStyle` to control the type of quotes used for string attributes.",
+                "Insert `={}` after attribute names.",
+                "Only insert attribute names."
             ],
             "default": "auto",
-            "description": "JSX 属性補完向けに優先されるスタイル。",
+            "description": "Preferred style for JSX attribute completions.",
             "scope": 5,
             "source": {
                 "id": "vscode.typescript-language-features",
-                "displayName": "TypeScript と JavaScript の言語機能"
+                "displayName": "TypeScript and JavaScript Language Features"
             },
             "defaultDefaultValue": "auto",
             "restricted": false
@@ -3611,16 +3811,16 @@
                 "none"
             ],
             "markdownEnumDescriptions": [
-                "プロパティの種類に基づいて属性名の後に '={}' または '=\"\"' を挿入します。文字列属性に使用される引用符の種類を制御するには、`typescript.preferences.quoteStyle` を参照してください。",
-                "属性名の後に `={}` を挿入します。",
-                "属性名の挿入のみ。"
+                "Insert `={}` or `=\"\"` after attribute names based on the prop type. See `typescript.preferences.quoteStyle` to control the type of quotes used for string attributes.",
+                "Insert `={}` after attribute names.",
+                "Only insert attribute names."
             ],
             "default": "auto",
-            "description": "JSX 属性補完向けに優先されるスタイル。",
+            "description": "Preferred style for JSX attribute completions.",
             "scope": 5,
             "source": {
                 "id": "vscode.typescript-language-features",
-                "displayName": "TypeScript と JavaScript の言語機能"
+                "displayName": "TypeScript and JavaScript Language Features"
             },
             "defaultDefaultValue": "auto",
             "restricted": false
@@ -3628,12 +3828,12 @@
         "javascript.preferences.renameShorthandProperties": {
             "type": "boolean",
             "default": true,
-            "description": "名前の変更時にオブジェクトの省略形のプロパティのエイリアスの導入を有効または無効にします。ワークスペースで TypeScript 3.4 以降を使用する必要があります。",
-            "deprecationMessage": "設定 'typescript.preferences.renameShorthandProperties' は非推奨になりました。'typescript.preferences.useAliasesForRenames' をお勧めします",
+            "description": "Enable/disable introducing aliases for object shorthand properties during renames.",
+            "deprecationMessage": "The setting 'typescript.preferences.renameShorthandProperties' has been deprecated in favor of 'typescript.preferences.useAliasesForRenames'",
             "scope": 5,
             "source": {
                 "id": "vscode.typescript-language-features",
-                "displayName": "TypeScript と JavaScript の言語機能"
+                "displayName": "TypeScript and JavaScript Language Features"
             },
             "defaultDefaultValue": true,
             "restricted": false
@@ -3641,12 +3841,12 @@
         "typescript.preferences.renameShorthandProperties": {
             "type": "boolean",
             "default": true,
-            "description": "名前の変更時にオブジェクトの省略形のプロパティのエイリアスの導入を有効または無効にします。ワークスペースで TypeScript 3.4 以降を使用する必要があります。",
-            "deprecationMessage": "設定 'typescript.preferences.renameShorthandProperties' は非推奨になりました。'typescript.preferences.useAliasesForRenames' をお勧めします",
+            "description": "Enable/disable introducing aliases for object shorthand properties during renames.",
+            "deprecationMessage": "The setting 'typescript.preferences.renameShorthandProperties' has been deprecated in favor of 'typescript.preferences.useAliasesForRenames'",
             "scope": 5,
             "source": {
                 "id": "vscode.typescript-language-features",
-                "displayName": "TypeScript と JavaScript の言語機能"
+                "displayName": "TypeScript and JavaScript Language Features"
             },
             "defaultDefaultValue": true,
             "restricted": false
@@ -3654,11 +3854,11 @@
         "javascript.preferences.useAliasesForRenames": {
             "type": "boolean",
             "default": true,
-            "description": "名前の変更時にオブジェクトの省略形のプロパティのエイリアスの導入を有効または無効にします。ワークスペースで TypeScript 3.4 以降を使用する必要があります。",
+            "description": "Enable/disable introducing aliases for object shorthand properties during renames.",
             "scope": 5,
             "source": {
                 "id": "vscode.typescript-language-features",
-                "displayName": "TypeScript と JavaScript の言語機能"
+                "displayName": "TypeScript and JavaScript Language Features"
             },
             "defaultDefaultValue": true,
             "restricted": false
@@ -3666,11 +3866,11 @@
         "typescript.preferences.useAliasesForRenames": {
             "type": "boolean",
             "default": true,
-            "description": "名前の変更時にオブジェクトの省略形のプロパティのエイリアスの導入を有効または無効にします。ワークスペースで TypeScript 3.4 以降を使用する必要があります。",
+            "description": "Enable/disable introducing aliases for object shorthand properties during renames.",
             "scope": 5,
             "source": {
                 "id": "vscode.typescript-language-features",
-                "displayName": "TypeScript と JavaScript の言語機能"
+                "displayName": "TypeScript and JavaScript Language Features"
             },
             "defaultDefaultValue": true,
             "restricted": false
@@ -3678,11 +3878,11 @@
         "typescript.autoClosingTags": {
             "type": "boolean",
             "default": true,
-            "description": "JSX タグの自動終了を有効または無効にします。",
+            "description": "Enable/disable automatic closing of JSX tags.",
             "scope": 5,
             "source": {
                 "id": "vscode.typescript-language-features",
-                "displayName": "TypeScript と JavaScript の言語機能"
+                "displayName": "TypeScript and JavaScript Language Features"
             },
             "defaultDefaultValue": true,
             "restricted": false
@@ -3690,11 +3890,11 @@
         "javascript.autoClosingTags": {
             "type": "boolean",
             "default": true,
-            "description": "JSX タグの自動終了を有効または無効にします。",
+            "description": "Enable/disable automatic closing of JSX tags.",
             "scope": 5,
             "source": {
                 "id": "vscode.typescript-language-features",
-                "displayName": "TypeScript と JavaScript の言語機能"
+                "displayName": "TypeScript and JavaScript Language Features"
             },
             "defaultDefaultValue": true,
             "restricted": false
@@ -3702,11 +3902,11 @@
         "javascript.suggest.enabled": {
             "type": "boolean",
             "default": true,
-            "description": "オートコンプリートの提案を有効/無効にします。",
+            "description": "Enabled/disable autocomplete suggestions.",
             "scope": 5,
             "source": {
                 "id": "vscode.typescript-language-features",
-                "displayName": "TypeScript と JavaScript の言語機能"
+                "displayName": "TypeScript and JavaScript Language Features"
             },
             "defaultDefaultValue": true,
             "restricted": false
@@ -3714,11 +3914,11 @@
         "typescript.suggest.enabled": {
             "type": "boolean",
             "default": true,
-            "description": "オートコンプリートの提案を有効/無効にします。",
+            "description": "Enabled/disable autocomplete suggestions.",
             "scope": 5,
             "source": {
                 "id": "vscode.typescript-language-features",
-                "displayName": "TypeScript と JavaScript の言語機能"
+                "displayName": "TypeScript and JavaScript Language Features"
             },
             "defaultDefaultValue": true,
             "restricted": false
