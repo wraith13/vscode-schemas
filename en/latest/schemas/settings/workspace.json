@@ -38,6 +38,32 @@
             "$ref": "vscode://schemas/settings/resourceLanguage",
             "default": {}
         },
+        "[clojure]": {
+            "type": "object",
+            "description": "Configure editor settings to be overridden for a language.",
+            "errorMessage": "This setting does not support per-language configuration.",
+            "$ref": "vscode://schemas/settings/resourceLanguage",
+            "default": {
+                "diffEditor.ignoreTrimWhitespace": false
+            },
+            "defaultValueSource": {
+                "id": "vscode.clojure",
+                "displayName": "Clojure Language Basics"
+            }
+        },
+        "[coffeescript]": {
+            "type": "object",
+            "description": "Configure editor settings to be overridden for a language.",
+            "errorMessage": "This setting does not support per-language configuration.",
+            "$ref": "vscode://schemas/settings/resourceLanguage",
+            "default": {
+                "diffEditor.ignoreTrimWhitespace": false
+            },
+            "defaultValueSource": {
+                "id": "vscode.coffeescript",
+                "displayName": "CoffeeScript Language Basics"
+            }
+        },
         "[csharp]": {
             "type": "object",
             "description": "Configure editor settings to be overridden for a language.",
@@ -103,6 +129,19 @@
             "defaultValueSource": {
                 "id": "vscode.docker",
                 "displayName": "Docker Language Basics"
+            }
+        },
+        "[fsharp]": {
+            "type": "object",
+            "description": "Configure editor settings to be overridden for a language.",
+            "errorMessage": "This setting does not support per-language configuration.",
+            "$ref": "vscode://schemas/settings/resourceLanguage",
+            "default": {
+                "diffEditor.ignoreTrimWhitespace": false
+            },
+            "defaultValueSource": {
+                "id": "vscode.fsharp",
+                "displayName": "F# Language Basics"
             }
         },
         "[git-commit]": {
@@ -239,6 +278,7 @@
             "default": {
                 "editor.unicodeHighlight.ambiguousCharacters": false,
                 "editor.unicodeHighlight.invisibleCharacters": false,
+                "diffEditor.ignoreTrimWhitespace": false,
                 "editor.wordWrap": "on",
                 "editor.quickSuggestions": {
                     "comments": "off",
@@ -249,6 +289,32 @@
             "defaultValueSource": {
                 "id": "vscode.markdown-language-features",
                 "displayName": "Markdown Language Features"
+            }
+        },
+        "[jade]": {
+            "type": "object",
+            "description": "Configure editor settings to be overridden for a language.",
+            "errorMessage": "This setting does not support per-language configuration.",
+            "$ref": "vscode://schemas/settings/resourceLanguage",
+            "default": {
+                "diffEditor.ignoreTrimWhitespace": false
+            },
+            "defaultValueSource": {
+                "id": "vscode.pug",
+                "displayName": "Pug Language Basics"
+            }
+        },
+        "[python]": {
+            "type": "object",
+            "description": "Configure editor settings to be overridden for a language.",
+            "errorMessage": "This setting does not support per-language configuration.",
+            "$ref": "vscode://schemas/settings/resourceLanguage",
+            "default": {
+                "diffEditor.ignoreTrimWhitespace": false
+            },
+            "defaultValueSource": {
+                "id": "vscode.python",
+                "displayName": "Python Language Basics"
             }
         },
         "[search-result]": {
@@ -285,7 +351,8 @@
             "default": {
                 "editor.insertSpaces": true,
                 "editor.tabSize": 2,
-                "editor.autoIndent": "advanced"
+                "editor.autoIndent": "advanced",
+                "diffEditor.ignoreTrimWhitespace": false
             },
             "defaultValueSource": {
                 "id": "vscode.yaml",
@@ -345,20 +412,6 @@
             "$ref": "vscode://schemas/settings/resourceLanguage",
             "default": {}
         },
-        "[clojure]": {
-            "type": "object",
-            "description": "Configure editor settings to be overridden for a language.",
-            "errorMessage": "This setting does not support per-language configuration.",
-            "$ref": "vscode://schemas/settings/resourceLanguage",
-            "default": {}
-        },
-        "[coffeescript]": {
-            "type": "object",
-            "description": "Configure editor settings to be overridden for a language.",
-            "errorMessage": "This setting does not support per-language configuration.",
-            "$ref": "vscode://schemas/settings/resourceLanguage",
-            "default": {}
-        },
         "[c]": {
             "type": "object",
             "description": "Configure editor settings to be overridden for a language.",
@@ -395,13 +448,6 @@
             "default": {}
         },
         "[ignore]": {
-            "type": "object",
-            "description": "Configure editor settings to be overridden for a language.",
-            "errorMessage": "This setting does not support per-language configuration.",
-            "$ref": "vscode://schemas/settings/resourceLanguage",
-            "default": {}
-        },
-        "[fsharp]": {
             "type": "object",
             "description": "Configure editor settings to be overridden for a language.",
             "errorMessage": "This setting does not support per-language configuration.",
@@ -562,20 +608,6 @@
             "$ref": "vscode://schemas/settings/resourceLanguage",
             "default": {}
         },
-        "[jade]": {
-            "type": "object",
-            "description": "Configure editor settings to be overridden for a language.",
-            "errorMessage": "This setting does not support per-language configuration.",
-            "$ref": "vscode://schemas/settings/resourceLanguage",
-            "default": {}
-        },
-        "[python]": {
-            "type": "object",
-            "description": "Configure editor settings to be overridden for a language.",
-            "errorMessage": "This setting does not support per-language configuration.",
-            "$ref": "vscode://schemas/settings/resourceLanguage",
-            "default": {}
-        },
         "[r]": {
             "type": "object",
             "description": "Configure editor settings to be overridden for a language.",
@@ -703,6 +735,14 @@
             "scope": 3,
             "restricted": false
         },
+        "workbench.list.scrollByPage": {
+            "type": "boolean",
+            "default": false,
+            "description": "Controls whether clicks in the scrollbar scroll page by page.",
+            "defaultDefaultValue": false,
+            "scope": 3,
+            "restricted": false
+        },
         "workbench.tree.indent": {
             "type": "number",
             "default": 8,
@@ -781,8 +821,24 @@
             "default": "highlight",
             "description": "Controls the keyboard navigation style for lists and trees in the workbench. Can be simple, highlight and filter.",
             "deprecated": true,
-            "deprecationMessage": "Please use 'workbench.list.defaultFindMode' instead.",
+            "deprecationMessage": "Please use 'workbench.list.defaultFindMode' and\t'workbench.list.typeNavigationMode' instead.",
             "defaultDefaultValue": "highlight",
+            "scope": 3,
+            "restricted": false
+        },
+        "workbench.list.defaultFindMatchType": {
+            "type": "string",
+            "enum": [
+                "fuzzy",
+                "contiguous"
+            ],
+            "enumDescriptions": [
+                "Use fuzzy matching when searching.",
+                "Use contiguous matching when searching."
+            ],
+            "default": "fuzzy",
+            "description": "Controls the type of matching used when searching lists and trees in the workbench.",
+            "defaultDefaultValue": "fuzzy",
             "scope": 3,
             "restricted": false
         },
@@ -795,6 +851,18 @@
             "default": "singleClick",
             "description": "Controls how tree folders are expanded when clicking the folder names. Note that some trees and lists might choose to ignore this setting if it is not applicable.",
             "defaultDefaultValue": "singleClick",
+            "scope": 3,
+            "restricted": false
+        },
+        "workbench.list.typeNavigationMode": {
+            "type": "string",
+            "enum": [
+                "automatic",
+                "trigger"
+            ],
+            "default": "automatic",
+            "description": "Controls the how type navigation works in lists and trees in the workbench. When set to 'trigger', type navigation begins once the 'list.triggerTypeNavigation' command is run.",
+            "defaultDefaultValue": "automatic",
             "scope": 3,
             "restricted": false
         },
@@ -1121,7 +1189,7 @@
         },
         "workbench.editor.enablePreview": {
             "type": "boolean",
-            "description": "Controls whether opened editors show as preview editors. Preview editors do not stay open, are reused until explicitly set to be kept open (via double click or editing), and show file names in italics.",
+            "description": "Controls whether opened editors show as preview editors. Preview editors do not stay open, are reused until explicitly set to be kept open (via double-click or editing), and show file names in italics.",
             "default": true,
             "defaultDefaultValue": true,
             "scope": 3,
@@ -1129,7 +1197,7 @@
         },
         "workbench.editor.enablePreviewFromQuickOpen": {
             "type": "boolean",
-            "markdownDescription": "Controls whether editors opened from Quick Open show as preview editors. Preview editors do not stay open, and are reused until explicitly set to be kept open (via double click or editing). This value is ignored when `#workbench.editor.enablePreview#` is disabled.",
+            "markdownDescription": "Controls whether editors opened from Quick Open show as preview editors. Preview editors do not stay open, and are reused until explicitly set to be kept open (via double-click or editing). When enabled, hold Ctrl before selection to open an editor as a non-preview. This value is ignored when `#workbench.editor.enablePreview#` is disabled.",
             "default": false,
             "defaultDefaultValue": false,
             "scope": 3,
@@ -1137,7 +1205,7 @@
         },
         "workbench.editor.enablePreviewFromCodeNavigation": {
             "type": "boolean",
-            "markdownDescription": "Controls whether editors remain in preview when a code navigation is started from them. Preview editors do not stay open, and are reused until explicitly set to be kept open (via double click or editing). This value is ignored when `#workbench.editor.enablePreview#` is disabled.",
+            "markdownDescription": "Controls whether editors remain in preview when a code navigation is started from them. Preview editors do not stay open, and are reused until explicitly set to be kept open (via double-click or editing). This value is ignored when `#workbench.editor.enablePreview#` is disabled.",
             "default": false,
             "defaultDefaultValue": false,
             "scope": 3,
@@ -1296,6 +1364,14 @@
         "workbench.commandPalette.preserveInput": {
             "type": "boolean",
             "description": "Controls whether the last typed input to the command palette should be restored when opening it the next time.",
+            "default": false,
+            "defaultDefaultValue": false,
+            "scope": 3,
+            "restricted": false
+        },
+        "workbench.commandPalette.experimental.suggestCommands": {
+            "type": "boolean",
+            "description": "Controls whether the command palette should have a list of commonly used commands.",
             "default": false,
             "defaultDefaultValue": false,
             "scope": 3,
@@ -1496,11 +1572,19 @@
             "scope": 3,
             "restricted": false
         },
+        "workbench.tips.enabled": {
+            "type": "boolean",
+            "default": true,
+            "description": "When enabled, will show the watermark tips when no editor is open.",
+            "defaultDefaultValue": true,
+            "scope": 3,
+            "restricted": false
+        },
         "window.title": {
             "type": "string",
-            "default": "${dirty}${activeEditorShort}${separator}${rootName}${separator}${appName}",
-            "markdownDescription": "Controls the window title based on the active editor. Variables are substituted based on the context:\n- `${activeEditorShort}`: the file name (e.g. myFile.txt).\n- `${activeEditorMedium}`: the path of the file relative to the workspace folder (e.g. myFolder/myFileFolder/myFile.txt).\n- `${activeEditorLong}`: the full path of the file (e.g. /Users/Development/myFolder/myFileFolder/myFile.txt).\n- `${activeFolderShort}`: the name of the folder the file is contained in (e.g. myFileFolder).\n- `${activeFolderMedium}`: the path of the folder the file is contained in, relative to the workspace folder (e.g. myFolder/myFileFolder).\n- `${activeFolderLong}`: the full path of the folder the file is contained in (e.g. /Users/Development/myFolder/myFileFolder).\n- `${folderName}`: name of the workspace folder the file is contained in (e.g. myFolder).\n- `${folderPath}`: file path of the workspace folder the file is contained in (e.g. /Users/Development/myFolder).\n- `${rootName}`: name of the opened workspace or folder (e.g. myFolder or myWorkspace).\n- `${rootPath}`: file path of the opened workspace or folder (e.g. /Users/Development/myWorkspace).\n- `${appName}`: e.g. VS Code.\n- `${remoteName}`: e.g. SSH\n- `${dirty}`: an indicator for when the active editor has unsaved changes.\n- `${separator}`: a conditional separator (\" - \") that only shows when surrounded by variables with values or static text.",
-            "defaultDefaultValue": "${dirty}${activeEditorShort}${separator}${rootName}${separator}${appName}",
+            "default": "${dirty}${activeEditorShort}${separator}${rootName}${separator}${profileName}${separator}${appName}",
+            "markdownDescription": "Controls the window title based on the active editor. Variables are substituted based on the context:\n- `${activeEditorShort}`: the file name (e.g. myFile.txt).\n- `${activeEditorMedium}`: the path of the file relative to the workspace folder (e.g. myFolder/myFileFolder/myFile.txt).\n- `${activeEditorLong}`: the full path of the file (e.g. /Users/Development/myFolder/myFileFolder/myFile.txt).\n- `${activeFolderShort}`: the name of the folder the file is contained in (e.g. myFileFolder).\n- `${activeFolderMedium}`: the path of the folder the file is contained in, relative to the workspace folder (e.g. myFolder/myFileFolder).\n- `${activeFolderLong}`: the full path of the folder the file is contained in (e.g. /Users/Development/myFolder/myFileFolder).\n- `${folderName}`: name of the workspace folder the file is contained in (e.g. myFolder).\n- `${folderPath}`: file path of the workspace folder the file is contained in (e.g. /Users/Development/myFolder).\n- `${rootName}`: name of the workspace with optional remote name and workspace indicator if applicable (e.g. myFolder, myRemoteFolder [SSH] or myWorkspace (Workspace)).\n- `${rootNameShort}`: shortened name of the workspace without suffixes (e.g. myFolder, myRemoteFolder or myWorkspace).\n- `${rootPath}`: file path of the opened workspace or folder (e.g. /Users/Development/myWorkspace).\n- `${profileName}`: name of the profile in which the workspace is opened (e.g. Data Science (Profile)). Ignored if default profile is used.\n- `${appName}`: e.g. VS Code.\n- `${remoteName}`: e.g. SSH\n- `${dirty}`: an indicator for when the active editor has unsaved changes.\n- `${separator}`: a conditional separator (\" - \") that only shows when surrounded by variables with values or static text.",
+            "defaultDefaultValue": "${dirty}${activeEditorShort}${separator}${rootName}${separator}${profileName}${separator}${appName}",
             "scope": 3,
             "restricted": false
         },
@@ -1865,7 +1949,7 @@
             "restricted": false
         },
         "audioCues.diffLineInserted": {
-            "description": "Plays a sound when the focus moves to an inserted line in diff review mode",
+            "description": "Plays a sound when the focus moves to an inserted line in diff review mode or to the next/previous change",
             "type": "string",
             "enum": [
                 "auto",
@@ -1886,7 +1970,28 @@
             "restricted": false
         },
         "audioCues.diffLineDeleted": {
-            "description": "Plays a sound when the focus moves to a deleted line in diff review mode",
+            "description": "Plays a sound when the focus moves to a deleted line in diff review mode or to the next/previous change",
+            "type": "string",
+            "enum": [
+                "auto",
+                "on",
+                "off"
+            ],
+            "default": "auto",
+            "enumDescriptions": [
+                "Enable audio cue when a screen reader is attached.",
+                "Enable audio cue.",
+                "Disable audio cue."
+            ],
+            "tags": [
+                "accessibility"
+            ],
+            "defaultDefaultValue": "auto",
+            "scope": 3,
+            "restricted": false
+        },
+        "audioCues.diffLineModified": {
+            "description": "Plays a sound when the focus moves to a modified line in diff review mode or to the next/previous change",
             "type": "string",
             "enum": [
                 "auto",
@@ -2063,6 +2168,14 @@
             ],
             "default": "process",
             "defaultDefaultValue": "process",
+            "scope": 3,
+            "restricted": false
+        },
+        "remote.forwardOnOpen": {
+            "type": "boolean",
+            "description": "Controls whether local URLs with a port will be forwarded when opened from the terminal and the debug console.",
+            "default": true,
+            "defaultDefaultValue": true,
             "scope": 3,
             "restricted": false
         },
@@ -2342,14 +2455,6 @@
             "defaultDefaultValue": "on",
             "scope": 3
         },
-        "task.showDecorations": {
-            "type": "boolean",
-            "markdownDescription": "Shows decorations at points of interest in the terminal buffer such as the first problem found via a watch task. Note that this will only take effect for future tasks. `#terminal.integrated.shellIntegration.decorationsEnabled#` will take precedence over this setting",
-            "default": true,
-            "defaultDefaultValue": true,
-            "scope": 3,
-            "restricted": false
-        },
         "task.reconnection": {
             "type": "boolean",
             "description": "On window reload, reconnect to tasks that have problem matchers.",
@@ -2385,10 +2490,12 @@
                 "Visual Studio Dark",
                 "Default High Contrast",
                 "Default Dark+",
+                "Default Dark+ Experimental",
                 "Kimbie Dark",
                 "Visual Studio Light",
                 "Default High Contrast Light",
                 "Default Light+",
+                "Default Light+ Experimental",
                 "Monokai",
                 "Monokai Dimmed",
                 "Quiet Light",
@@ -2412,6 +2519,8 @@
                 "",
                 "",
                 "",
+                "",
+                "",
                 ""
             ],
             "enumItemLabels": [
@@ -2419,10 +2528,12 @@
                 "Dark (Visual Studio)",
                 "Dark High Contrast",
                 "Dark+ (default dark)",
+                "Dark+ V2 (Experimental)",
                 "Kimbie Dark",
                 "Light (Visual Studio)",
                 "Light High Contrast",
                 "Light+ (default light)",
+                "Light+ V2 (Experimental)",
                 "Monokai",
                 "Monokai Dimmed",
                 "Quiet Light",
@@ -2445,10 +2556,12 @@
                 "Visual Studio Dark",
                 "Default High Contrast",
                 "Default Dark+",
+                "Default Dark+ Experimental",
                 "Kimbie Dark",
                 "Visual Studio Light",
                 "Default High Contrast Light",
                 "Default Light+",
+                "Default Light+ Experimental",
                 "Monokai",
                 "Monokai Dimmed",
                 "Quiet Light",
@@ -2472,6 +2585,8 @@
                 "",
                 "",
                 "",
+                "",
+                "",
                 ""
             ],
             "enumItemLabels": [
@@ -2479,10 +2594,12 @@
                 "Dark (Visual Studio)",
                 "Dark High Contrast",
                 "Dark+ (default dark)",
+                "Dark+ V2 (Experimental)",
                 "Kimbie Dark",
                 "Light (Visual Studio)",
                 "Light High Contrast",
                 "Light+ (default light)",
+                "Light+ V2 (Experimental)",
                 "Monokai",
                 "Monokai Dimmed",
                 "Quiet Light",
@@ -2505,10 +2622,12 @@
                 "Visual Studio Dark",
                 "Default High Contrast",
                 "Default Dark+",
+                "Default Dark+ Experimental",
                 "Kimbie Dark",
                 "Visual Studio Light",
                 "Default High Contrast Light",
                 "Default Light+",
+                "Default Light+ Experimental",
                 "Monokai",
                 "Monokai Dimmed",
                 "Quiet Light",
@@ -2532,6 +2651,8 @@
                 "",
                 "",
                 "",
+                "",
+                "",
                 ""
             ],
             "enumItemLabels": [
@@ -2539,10 +2660,12 @@
                 "Dark (Visual Studio)",
                 "Dark High Contrast",
                 "Dark+ (default dark)",
+                "Dark+ V2 (Experimental)",
                 "Kimbie Dark",
                 "Light (Visual Studio)",
                 "Light High Contrast",
                 "Light+ (default light)",
+                "Light+ V2 (Experimental)",
                 "Monokai",
                 "Monokai Dimmed",
                 "Quiet Light",
@@ -2565,10 +2688,12 @@
                 "Visual Studio Dark",
                 "Default High Contrast",
                 "Default Dark+",
+                "Default Dark+ Experimental",
                 "Kimbie Dark",
                 "Visual Studio Light",
                 "Default High Contrast Light",
                 "Default Light+",
+                "Default Light+ Experimental",
                 "Monokai",
                 "Monokai Dimmed",
                 "Quiet Light",
@@ -2592,6 +2717,8 @@
                 "",
                 "",
                 "",
+                "",
+                "",
                 ""
             ],
             "enumItemLabels": [
@@ -2599,10 +2726,12 @@
                 "Dark (Visual Studio)",
                 "Dark High Contrast",
                 "Dark+ (default dark)",
+                "Dark+ V2 (Experimental)",
                 "Kimbie Dark",
                 "Light (Visual Studio)",
                 "Light High Contrast",
                 "Light+ (default light)",
+                "Light+ V2 (Experimental)",
                 "Monokai",
                 "Monokai Dimmed",
                 "Quiet Light",
@@ -2625,10 +2754,12 @@
                 "Visual Studio Dark",
                 "Default High Contrast",
                 "Default Dark+",
+                "Default Dark+ Experimental",
                 "Kimbie Dark",
                 "Visual Studio Light",
                 "Default High Contrast Light",
                 "Default Light+",
+                "Default Light+ Experimental",
                 "Monokai",
                 "Monokai Dimmed",
                 "Quiet Light",
@@ -2652,6 +2783,8 @@
                 "",
                 "",
                 "",
+                "",
+                "",
                 ""
             ],
             "enumItemLabels": [
@@ -2659,10 +2792,12 @@
                 "Dark (Visual Studio)",
                 "Dark High Contrast",
                 "Dark+ (default dark)",
+                "Dark+ V2 (Experimental)",
                 "Kimbie Dark",
                 "Light (Visual Studio)",
                 "Light High Contrast",
                 "Light+ (default light)",
+                "Light+ V2 (Experimental)",
                 "Monokai",
                 "Monokai Dimmed",
                 "Quiet Light",
@@ -2728,6 +2863,10 @@
                             "$ref": "vscode://schemas/workbench-colors",
                             "additionalProperties": false
                         },
+                        "[Default Dark+ Experimental]": {
+                            "$ref": "vscode://schemas/workbench-colors",
+                            "additionalProperties": false
+                        },
                         "[Kimbie Dark]": {
                             "$ref": "vscode://schemas/workbench-colors",
                             "additionalProperties": false
@@ -2741,6 +2880,10 @@
                             "additionalProperties": false
                         },
                         "[Default Light+]": {
+                            "$ref": "vscode://schemas/workbench-colors",
+                            "additionalProperties": false
+                        },
+                        "[Default Light+ Experimental]": {
                             "$ref": "vscode://schemas/workbench-colors",
                             "additionalProperties": false
                         },
@@ -3045,6 +3188,49 @@
                             },
                             "additionalProperties": false
                         },
+                        "[Default Dark+ Experimental]": {
+                            "properties": {
+                                "comments": {
+                                    "description": "Sets the colors and styles for comments",
+                                    "$ref": "vscode://schemas/textmate-colors#/definitions/colorGroup"
+                                },
+                                "strings": {
+                                    "description": "Sets the colors and styles for strings literals.",
+                                    "$ref": "vscode://schemas/textmate-colors#/definitions/colorGroup"
+                                },
+                                "keywords": {
+                                    "description": "Sets the colors and styles for keywords.",
+                                    "$ref": "vscode://schemas/textmate-colors#/definitions/colorGroup"
+                                },
+                                "numbers": {
+                                    "description": "Sets the colors and styles for number literals.",
+                                    "$ref": "vscode://schemas/textmate-colors#/definitions/colorGroup"
+                                },
+                                "types": {
+                                    "description": "Sets the colors and styles for type declarations and references.",
+                                    "$ref": "vscode://schemas/textmate-colors#/definitions/colorGroup"
+                                },
+                                "functions": {
+                                    "description": "Sets the colors and styles for functions declarations and references.",
+                                    "$ref": "vscode://schemas/textmate-colors#/definitions/colorGroup"
+                                },
+                                "variables": {
+                                    "description": "Sets the colors and styles for variables declarations and references.",
+                                    "$ref": "vscode://schemas/textmate-colors#/definitions/colorGroup"
+                                },
+                                "textMateRules": {
+                                    "description": "Sets colors and styles using textmate theming rules (advanced).",
+                                    "$ref": "vscode://schemas/textmate-colors"
+                                },
+                                "semanticHighlighting": {
+                                    "description": "Whether semantic highlighting should be enabled for this theme.",
+                                    "deprecationMessage": "Use `enabled` in `editor.semanticTokenColorCustomizations` setting instead.",
+                                    "markdownDeprecationMessage": "Use `enabled` in `#editor.semanticTokenColorCustomizations#` setting instead.",
+                                    "type": "boolean"
+                                }
+                            },
+                            "additionalProperties": false
+                        },
                         "[Kimbie Dark]": {
                             "properties": {
                                 "comments": {
@@ -3175,6 +3361,49 @@
                             "additionalProperties": false
                         },
                         "[Default Light+]": {
+                            "properties": {
+                                "comments": {
+                                    "description": "Sets the colors and styles for comments",
+                                    "$ref": "vscode://schemas/textmate-colors#/definitions/colorGroup"
+                                },
+                                "strings": {
+                                    "description": "Sets the colors and styles for strings literals.",
+                                    "$ref": "vscode://schemas/textmate-colors#/definitions/colorGroup"
+                                },
+                                "keywords": {
+                                    "description": "Sets the colors and styles for keywords.",
+                                    "$ref": "vscode://schemas/textmate-colors#/definitions/colorGroup"
+                                },
+                                "numbers": {
+                                    "description": "Sets the colors and styles for number literals.",
+                                    "$ref": "vscode://schemas/textmate-colors#/definitions/colorGroup"
+                                },
+                                "types": {
+                                    "description": "Sets the colors and styles for type declarations and references.",
+                                    "$ref": "vscode://schemas/textmate-colors#/definitions/colorGroup"
+                                },
+                                "functions": {
+                                    "description": "Sets the colors and styles for functions declarations and references.",
+                                    "$ref": "vscode://schemas/textmate-colors#/definitions/colorGroup"
+                                },
+                                "variables": {
+                                    "description": "Sets the colors and styles for variables declarations and references.",
+                                    "$ref": "vscode://schemas/textmate-colors#/definitions/colorGroup"
+                                },
+                                "textMateRules": {
+                                    "description": "Sets colors and styles using textmate theming rules (advanced).",
+                                    "$ref": "vscode://schemas/textmate-colors"
+                                },
+                                "semanticHighlighting": {
+                                    "description": "Whether semantic highlighting should be enabled for this theme.",
+                                    "deprecationMessage": "Use `enabled` in `editor.semanticTokenColorCustomizations` setting instead.",
+                                    "markdownDeprecationMessage": "Use `enabled` in `#editor.semanticTokenColorCustomizations#` setting instead.",
+                                    "type": "boolean"
+                                }
+                            },
+                            "additionalProperties": false
+                        },
+                        "[Default Light+ Experimental]": {
                             "properties": {
                                 "comments": {
                                     "description": "Sets the colors and styles for comments",
@@ -3659,6 +3888,22 @@
                             },
                             "additionalProperties": false
                         },
+                        "[Default Dark+ Experimental]": {
+                            "type": "object",
+                            "properties": {
+                                "enabled": {
+                                    "type": "boolean",
+                                    "description": "Whether semantic highlighting is enabled or disabled for this theme",
+                                    "suggestSortText": "0_enabled"
+                                },
+                                "rules": {
+                                    "$ref": "vscode://schemas/token-styling",
+                                    "description": "Semantic token styling rules for this theme.",
+                                    "suggestSortText": "0_rules"
+                                }
+                            },
+                            "additionalProperties": false
+                        },
                         "[Kimbie Dark]": {
                             "type": "object",
                             "properties": {
@@ -3708,6 +3953,22 @@
                             "additionalProperties": false
                         },
                         "[Default Light+]": {
+                            "type": "object",
+                            "properties": {
+                                "enabled": {
+                                    "type": "boolean",
+                                    "description": "Whether semantic highlighting is enabled or disabled for this theme",
+                                    "suggestSortText": "0_enabled"
+                                },
+                                "rules": {
+                                    "$ref": "vscode://schemas/token-styling",
+                                    "description": "Semantic token styling rules for this theme.",
+                                    "suggestSortText": "0_rules"
+                                }
+                            },
+                            "additionalProperties": false
+                        },
+                        "[Default Light+ Experimental]": {
                             "type": "object",
                             "properties": {
                                 "enabled": {
@@ -3977,7 +4238,7 @@
         },
         "screencastMode.onlyKeyboardShortcuts": {
             "type": "boolean",
-            "description": "Only show keyboard shortcuts in screencast mode.",
+            "description": "Show only keyboard shortcuts in screencast mode (do not include action names).",
             "default": false,
             "defaultDefaultValue": false,
             "scope": 3,
@@ -4338,7 +4599,7 @@
                 {
                     "properties": {
                         "editor.acceptSuggestionOnCommitCharacter": {
-                            "markdownDescription": "Controls whether suggestions should be accepted on commit characters. For example, in JavaScript, the semi-colon (`; `) can be a commit character that accepts a suggestion and types that character.",
+                            "markdownDescription": "Controls whether suggestions should be accepted on commit characters. For example, in JavaScript, the semi-colon (`;`) can be a commit character that accepts a suggestion and types that character.",
                             "type": "boolean",
                             "default": true,
                             "defaultDefaultValue": true,
@@ -4371,15 +4632,15 @@
                                 "off"
                             ],
                             "enumDescriptions": [
-                                "The editor will use platform APIs to detect when a Screen Reader is attached.",
-                                "The editor will be permanently optimized for usage with a Screen Reader. Word wrapping will be disabled.",
-                                "The editor will never be optimized for usage with a Screen Reader."
+                                "Use platform APIs to detect when a Screen Reader is attached",
+                                "Optimize for usage with a Screen Reader",
+                                "Assume a screen reader is not attached"
                             ],
                             "default": "auto",
                             "tags": [
                                 "accessibility"
                             ],
-                            "description": "Controls whether the editor should run in a mode where it is optimized for screen readers.",
+                            "description": "Controls if the UI should run in a mode where it is optimized for screen readers.",
                             "defaultDefaultValue": "auto",
                             "scope": 5,
                             "restricted": false
@@ -4644,6 +4905,16 @@
                             "scope": 5,
                             "restricted": false
                         },
+                        "editor.colorDecoratorsLimit": {
+                            "markdownDescription": "Controls the max number of color decorators that can be rendered in an editor at once.",
+                            "type": "integer",
+                            "default": 500,
+                            "minimum": 1,
+                            "maximum": 1000000,
+                            "defaultDefaultValue": 500,
+                            "scope": 5,
+                            "restricted": false
+                        },
                         "editor.columnSelection": {
                             "description": "Enable that the selection with the mouse and keys is doing column selection.",
                             "type": "boolean",
@@ -4692,10 +4963,20 @@
                             "restricted": false
                         },
                         "editor.cursorSmoothCaretAnimation": {
+                            "enumDescriptions": [
+                                "Smooth caret animation is disabled.",
+                                "Smooth caret animation is enabled only when the user moves the cursor with an explicit gesture.",
+                                "Smooth caret animation is always enabled."
+                            ],
                             "description": "Controls whether the smooth caret animation should be enabled.",
-                            "type": "boolean",
-                            "default": false,
-                            "defaultDefaultValue": false,
+                            "type": "string",
+                            "enum": [
+                                "off",
+                                "explicit",
+                                "on"
+                            ],
+                            "default": "off",
+                            "defaultDefaultValue": "off",
                             "scope": 5,
                             "restricted": false
                         },
@@ -4716,7 +4997,7 @@
                             "restricted": false
                         },
                         "editor.cursorSurroundingLines": {
-                            "description": "Controls the minimal number of visible leading and trailing lines surrounding the cursor. Known as 'scrollOff' or 'scrollOffset' in some other editors.",
+                            "description": "Controls the minimal number of visible leading lines (minimum 0) and trailing lines (minimum 1) surrounding the cursor. Known as 'scrollOff' or 'scrollOffset' in some other editors.",
                             "type": "integer",
                             "default": 0,
                             "minimum": 0,
@@ -4772,6 +5053,24 @@
                             "type": "boolean",
                             "default": true,
                             "defaultDefaultValue": true,
+                            "scope": 5,
+                            "restricted": false
+                        },
+                        "editor.experimentalWhitespaceRendering": {
+                            "enumDescriptions": [
+                                "Use a new rendering method with svgs.",
+                                "Use a new rendering method with font characters.",
+                                "Use the stable rendering method."
+                            ],
+                            "description": "Controls whether whitespace is rendered with a new, experimental method.",
+                            "type": "string",
+                            "enum": [
+                                "svg",
+                                "font",
+                                "off"
+                            ],
+                            "default": "svg",
+                            "defaultDefaultValue": "svg",
                             "scope": 5,
                             "restricted": false
                         },
@@ -5276,6 +5575,22 @@
                             "scope": 5,
                             "restricted": false
                         },
+                        "editor.inlineSuggest.showToolbar": {
+                            "type": "string",
+                            "default": "onHover",
+                            "enum": [
+                                "always",
+                                "onHover"
+                            ],
+                            "enumDescriptions": [
+                                "Show the inline suggestion toolbar whenever an inline suggestion is shown.",
+                                "Show the inline suggestion toolbar when hovering over an inline suggestion."
+                            ],
+                            "description": "Controls when to show the inline suggestion toolbar.",
+                            "defaultDefaultValue": "onHover",
+                            "scope": 5,
+                            "restricted": false
+                        },
                         "editor.letterSpacing": {
                             "description": "Controls the letter spacing in pixels.",
                             "type": "number",
@@ -5550,9 +5865,9 @@
                         },
                         "editor.parameterHints.cycle": {
                             "type": "boolean",
-                            "default": false,
+                            "default": true,
                             "description": "Controls whether the parameter hints menu cycles or closes when reaching the end of the list.",
-                            "defaultDefaultValue": false,
+                            "defaultDefaultValue": true,
                             "scope": 5,
                             "restricted": false
                         },
@@ -5695,9 +6010,14 @@
                         },
                         "editor.renderFinalNewline": {
                             "description": "Render last line number when the file ends with a newline.",
-                            "type": "boolean",
-                            "default": true,
-                            "defaultDefaultValue": true,
+                            "type": "string",
+                            "enum": [
+                                "off",
+                                "on",
+                                "dimmed"
+                            ],
+                            "default": "on",
+                            "defaultDefaultValue": "on",
                             "scope": 5,
                             "restricted": false
                         },
@@ -6019,6 +6339,26 @@
                             "default": false,
                             "markdownDescription": "Controls whether remembered suggestion selections are shared between multiple workspaces and windows (needs `#editor.suggestSelection#`).",
                             "defaultDefaultValue": false,
+                            "scope": 5,
+                            "restricted": false
+                        },
+                        "editor.suggest.selectionMode": {
+                            "type": "string",
+                            "enum": [
+                                "always",
+                                "never",
+                                "whenTriggerCharacter",
+                                "whenQuickSuggestion"
+                            ],
+                            "enumDescriptions": [
+                                "Always select a suggestion when automatically triggering IntelliSense.",
+                                "Never select a suggestion when automatically triggering IntelliSense.",
+                                "Select a suggestion only when triggering IntelliSense from a trigger character.",
+                                "Select a suggestion only when triggering IntelliSense as you type."
+                            ],
+                            "default": "always",
+                            "markdownDescription": "Controls whether a suggestion is selected when the widget shows. Note that this only applies to automatically triggered suggestions (`#editor.quickSuggestions#` and `#editor.suggestOnTriggerCharacters#`) and that a suggestion is always selected when explicitly invoked, e.g via `Ctrl+Space`.",
+                            "defaultDefaultValue": "always",
                             "scope": 5,
                             "restricted": false
                         },
@@ -6666,11 +7006,11 @@
         "notebook.outputLineHeight": {
             "markdownDescription": "Line height of the output text for notebook cells.\n - Values between 0 and 8 will be used as a multiplier with the font size.\n - Values greater than or equal to 8 will be used as effective values.",
             "type": "number",
-            "default": 22,
+            "default": 19,
             "tags": [
                 "notebookLayout"
             ],
-            "defaultDefaultValue": 22,
+            "defaultDefaultValue": 19,
             "scope": 3,
             "restricted": false
         },
@@ -6711,6 +7051,28 @@
             ],
             "default": "all",
             "defaultDefaultValue": "all",
+            "scope": 3,
+            "restricted": false
+        },
+        "notebook.experimental.outputScrolling": {
+            "markdownDescription": "Use a scrollable region for notebook output when longer than the limit",
+            "type": "boolean",
+            "tags": [
+                "notebookLayout"
+            ],
+            "default": false,
+            "defaultDefaultValue": false,
+            "scope": 3,
+            "restricted": false
+        },
+        "notebook.logging": {
+            "markdownDescription": "Enable logging for notebook support.",
+            "type": "boolean",
+            "tags": [
+                "notebookLayout"
+            ],
+            "default": false,
+            "defaultDefaultValue": false,
             "scope": 3,
             "restricted": false
         },
@@ -6980,6 +7342,14 @@
             "default": false,
             "description": "Automatically show values for variables that are lazily resolved by the debugger, such as getters.",
             "defaultDefaultValue": false,
+            "scope": 3,
+            "restricted": false
+        },
+        "debug.enableStatusBarColor": {
+            "type": "boolean",
+            "description": "Color status bar when debugger is active",
+            "default": true,
+            "defaultDefaultValue": true,
             "scope": 3,
             "restricted": false
         },
@@ -7724,11 +8094,11 @@
             ],
             "default": "goToLocation",
             "enumDescriptions": [
-                "Double clicking selects the word under the cursor.",
-                "Double clicking opens the result in the active editor group.",
-                "Double clicking opens the result in the editor group to the side, creating one if it does not yet exist."
+                "Double-clicking selects the word under the cursor.",
+                "Double-clicking opens the result in the active editor group.",
+                "Double-clicking opens the result in the editor group to the side, creating one if it does not yet exist."
             ],
-            "markdownDescription": "Configure effect of double clicking a result in a search editor.",
+            "markdownDescription": "Configure effect of double-clicking a result in a search editor.",
             "defaultDefaultValue": "goToLocation",
             "scope": 3,
             "restricted": false
@@ -7808,21 +8178,6 @@
             "scope": 3,
             "restricted": false
         },
-        "testing.autoRun.mode": {
-            "description": "Controls which tests are automatically run.",
-            "enum": [
-                "all",
-                "rerun"
-            ],
-            "default": "all",
-            "enumDescriptions": [
-                "Automatically runs all discovered test when auto-run is toggled. Reruns individual tests when they are changed.",
-                "Reruns individual tests when they are changed. Will not automatically run any tests that have not been already executed."
-            ],
-            "defaultDefaultValue": "all",
-            "scope": 3,
-            "restricted": false
-        },
         "testing.autoRun.delay": {
             "type": "integer",
             "minimum": 0,
@@ -7850,7 +8205,7 @@
             "restricted": false
         },
         "testing.automaticallyOpenPeekViewDuringAutoRun": {
-            "description": "Controls whether to automatically open the Peek view during auto-run mode.",
+            "description": "Controls whether to automatically open the Peek view during continuous run mode.",
             "type": "boolean",
             "default": false,
             "defaultDefaultValue": false,
@@ -7942,17 +8297,10 @@
             "scope": 3,
             "restricted": false
         },
-        "workbench.tips.enabled": {
-            "type": "boolean",
-            "default": true,
-            "description": "When enabled, will show the watermark tips when no editor is open.",
-            "defaultDefaultValue": true,
-            "scope": 3,
-            "restricted": false
-        },
         "window.zoomLevel": {
             "type": "number",
             "default": 0,
+            "minimum": -5,
             "description": "Adjust the zoom level of the window. The original size is 0 and each increment above (e.g. 1) or below (e.g. -1) represents zooming 20% larger or smaller. You can also enter decimals to adjust the zoom level with a finer granularity.",
             "ignoreSync": true,
             "tags": [
@@ -8078,12 +8426,9 @@
         },
         "extensions.experimental.useUtilityProcess": {
             "type": "boolean",
-            "tags": [
-                "experimental"
-            ],
             "description": "When enabled, the extension host will be launched using the new UtilityProcess Electron API.",
-            "default": false,
-            "defaultDefaultValue": false,
+            "default": true,
+            "defaultDefaultValue": true,
             "scope": 3,
             "restricted": false
         },
@@ -8421,6 +8766,7 @@
                                 "italic",
                                 "jersey",
                                 "json",
+                                "bracket",
                                 "kebab-vertical",
                                 "key",
                                 "law",
@@ -8643,7 +8989,6 @@
                                 "graph-line",
                                 "graph-scatter",
                                 "pie-chart",
-                                "bracket",
                                 "bracket-dot",
                                 "bracket-error",
                                 "lock-small",
@@ -8958,6 +9303,7 @@
                                 "$(italic)",
                                 "$(jersey)",
                                 "$(json)",
+                                "$(bracket)",
                                 "$(kebab-vertical)",
                                 "$(key)",
                                 "$(law)",
@@ -9180,7 +9526,6 @@
                                 "$(graph-line)",
                                 "$(graph-scatter)",
                                 "$(pie-chart)",
-                                "$(bracket)",
                                 "$(bracket-dot)",
                                 "$(bracket-error)",
                                 "$(lock-small)",
@@ -9580,6 +9925,7 @@
                                 "italic",
                                 "jersey",
                                 "json",
+                                "bracket",
                                 "kebab-vertical",
                                 "key",
                                 "law",
@@ -9802,7 +10148,6 @@
                                 "graph-line",
                                 "graph-scatter",
                                 "pie-chart",
-                                "bracket",
                                 "bracket-dot",
                                 "bracket-error",
                                 "lock-small",
@@ -10117,6 +10462,7 @@
                                 "$(italic)",
                                 "$(jersey)",
                                 "$(json)",
+                                "$(bracket)",
                                 "$(kebab-vertical)",
                                 "$(key)",
                                 "$(law)",
@@ -10339,7 +10685,6 @@
                                 "$(graph-line)",
                                 "$(graph-scatter)",
                                 "$(pie-chart)",
-                                "$(bracket)",
                                 "$(bracket-dot)",
                                 "$(bracket-error)",
                                 "$(lock-small)",
@@ -10739,6 +11084,7 @@
                                 "italic",
                                 "jersey",
                                 "json",
+                                "bracket",
                                 "kebab-vertical",
                                 "key",
                                 "law",
@@ -10961,7 +11307,6 @@
                                 "graph-line",
                                 "graph-scatter",
                                 "pie-chart",
-                                "bracket",
                                 "bracket-dot",
                                 "bracket-error",
                                 "lock-small",
@@ -11276,6 +11621,7 @@
                                 "$(italic)",
                                 "$(jersey)",
                                 "$(json)",
+                                "$(bracket)",
                                 "$(kebab-vertical)",
                                 "$(key)",
                                 "$(law)",
@@ -11498,7 +11844,6 @@
                                 "$(graph-line)",
                                 "$(graph-scatter)",
                                 "$(pie-chart)",
-                                "$(bracket)",
                                 "$(bracket-dot)",
                                 "$(bracket-error)",
                                 "$(lock-small)",
@@ -11998,6 +12343,7 @@
                                     "italic",
                                     "jersey",
                                     "json",
+                                    "bracket",
                                     "kebab-vertical",
                                     "key",
                                     "law",
@@ -12220,7 +12566,6 @@
                                     "graph-line",
                                     "graph-scatter",
                                     "pie-chart",
-                                    "bracket",
                                     "bracket-dot",
                                     "bracket-error",
                                     "lock-small",
@@ -12535,6 +12880,7 @@
                                     "$(italic)",
                                     "$(jersey)",
                                     "$(json)",
+                                    "$(bracket)",
                                     "$(kebab-vertical)",
                                     "$(key)",
                                     "$(law)",
@@ -12757,7 +13103,6 @@
                                     "$(graph-line)",
                                     "$(graph-scatter)",
                                     "$(pie-chart)",
-                                    "$(bracket)",
                                     "$(bracket-dot)",
                                     "$(bracket-error)",
                                     "$(lock-small)",
@@ -13138,6 +13483,7 @@
                                     "italic",
                                     "jersey",
                                     "json",
+                                    "bracket",
                                     "kebab-vertical",
                                     "key",
                                     "law",
@@ -13360,7 +13706,6 @@
                                     "graph-line",
                                     "graph-scatter",
                                     "pie-chart",
-                                    "bracket",
                                     "bracket-dot",
                                     "bracket-error",
                                     "lock-small",
@@ -13675,6 +14020,7 @@
                                     "$(italic)",
                                     "$(jersey)",
                                     "$(json)",
+                                    "$(bracket)",
                                     "$(kebab-vertical)",
                                     "$(key)",
                                     "$(law)",
@@ -13897,7 +14243,6 @@
                                     "$(graph-line)",
                                     "$(graph-scatter)",
                                     "$(pie-chart)",
-                                    "$(bracket)",
                                     "$(bracket-dot)",
                                     "$(bracket-error)",
                                     "$(lock-small)",
@@ -14277,6 +14622,7 @@
                                     "italic",
                                     "jersey",
                                     "json",
+                                    "bracket",
                                     "kebab-vertical",
                                     "key",
                                     "law",
@@ -14499,7 +14845,6 @@
                                     "graph-line",
                                     "graph-scatter",
                                     "pie-chart",
-                                    "bracket",
                                     "bracket-dot",
                                     "bracket-error",
                                     "lock-small",
@@ -14814,6 +15159,7 @@
                                     "$(italic)",
                                     "$(jersey)",
                                     "$(json)",
+                                    "$(bracket)",
                                     "$(kebab-vertical)",
                                     "$(key)",
                                     "$(law)",
@@ -15036,7 +15382,6 @@
                                     "$(graph-line)",
                                     "$(graph-scatter)",
                                     "$(pie-chart)",
-                                    "$(bracket)",
                                     "$(bracket-dot)",
                                     "$(bracket-error)",
                                     "$(lock-small)",
@@ -15473,6 +15818,7 @@
                                     "italic",
                                     "jersey",
                                     "json",
+                                    "bracket",
                                     "kebab-vertical",
                                     "key",
                                     "law",
@@ -15695,7 +16041,6 @@
                                     "graph-line",
                                     "graph-scatter",
                                     "pie-chart",
-                                    "bracket",
                                     "bracket-dot",
                                     "bracket-error",
                                     "lock-small",
@@ -16010,6 +16355,7 @@
                                     "$(italic)",
                                     "$(jersey)",
                                     "$(json)",
+                                    "$(bracket)",
                                     "$(kebab-vertical)",
                                     "$(key)",
                                     "$(law)",
@@ -16232,7 +16578,6 @@
                                     "$(graph-line)",
                                     "$(graph-scatter)",
                                     "$(pie-chart)",
-                                    "$(bracket)",
                                     "$(bracket-dot)",
                                     "$(bracket-error)",
                                     "$(lock-small)",
@@ -16612,6 +16957,7 @@
                                     "italic",
                                     "jersey",
                                     "json",
+                                    "bracket",
                                     "kebab-vertical",
                                     "key",
                                     "law",
@@ -16834,7 +17180,6 @@
                                     "graph-line",
                                     "graph-scatter",
                                     "pie-chart",
-                                    "bracket",
                                     "bracket-dot",
                                     "bracket-error",
                                     "lock-small",
@@ -17149,6 +17494,7 @@
                                     "$(italic)",
                                     "$(jersey)",
                                     "$(json)",
+                                    "$(bracket)",
                                     "$(kebab-vertical)",
                                     "$(key)",
                                     "$(law)",
@@ -17371,7 +17717,6 @@
                                     "$(graph-line)",
                                     "$(graph-scatter)",
                                     "$(pie-chart)",
-                                    "$(bracket)",
                                     "$(bracket-dot)",
                                     "$(bracket-error)",
                                     "$(lock-small)",
@@ -17811,6 +18156,7 @@
                                     "italic",
                                     "jersey",
                                     "json",
+                                    "bracket",
                                     "kebab-vertical",
                                     "key",
                                     "law",
@@ -18033,7 +18379,6 @@
                                     "graph-line",
                                     "graph-scatter",
                                     "pie-chart",
-                                    "bracket",
                                     "bracket-dot",
                                     "bracket-error",
                                     "lock-small",
@@ -18348,6 +18693,7 @@
                                     "$(italic)",
                                     "$(jersey)",
                                     "$(json)",
+                                    "$(bracket)",
                                     "$(kebab-vertical)",
                                     "$(key)",
                                     "$(law)",
@@ -18570,7 +18916,6 @@
                                     "$(graph-line)",
                                     "$(graph-scatter)",
                                     "$(pie-chart)",
-                                    "$(bracket)",
                                     "$(bracket-dot)",
                                     "$(bracket-error)",
                                     "$(lock-small)",
@@ -18950,6 +19295,7 @@
                                     "italic",
                                     "jersey",
                                     "json",
+                                    "bracket",
                                     "kebab-vertical",
                                     "key",
                                     "law",
@@ -19172,7 +19518,6 @@
                                     "graph-line",
                                     "graph-scatter",
                                     "pie-chart",
-                                    "bracket",
                                     "bracket-dot",
                                     "bracket-error",
                                     "lock-small",
@@ -19487,6 +19832,7 @@
                                     "$(italic)",
                                     "$(jersey)",
                                     "$(json)",
+                                    "$(bracket)",
                                     "$(kebab-vertical)",
                                     "$(key)",
                                     "$(law)",
@@ -19709,7 +20055,6 @@
                                     "$(graph-line)",
                                     "$(graph-scatter)",
                                     "$(pie-chart)",
-                                    "$(bracket)",
                                     "$(bracket-dot)",
                                     "$(bracket-error)",
                                     "$(lock-small)",
@@ -19978,7 +20323,7 @@
             ],
             "enumDescriptions": [
                 "Focus the terminal when clicking a terminal tab",
-                "Focus the terminal when double clicking a terminal tab"
+                "Focus the terminal when double-clicking a terminal tab"
             ],
             "default": "doubleClick",
             "description": "Controls whether focusing the terminal of a tab happens on double or single click.",
@@ -20075,6 +20420,15 @@
                 "accessibility"
             ],
             "defaultDefaultValue": 4.5,
+            "scope": 3,
+            "restricted": false
+        },
+        "terminal.integrated.tabStopWidth": {
+            "markdownDescription": "The number of cells in a tab stop.",
+            "type": "number",
+            "minimum": 1,
+            "default": 8,
+            "defaultDefaultValue": 8,
             "scope": 3,
             "restricted": false
         },
@@ -20255,7 +20609,7 @@
         "terminal.integrated.tabs.title": {
             "type": "string",
             "default": "${process}",
-            "markdownDescription": "Controls the terminal title. Variables are substituted based on the context:\n- `${cwd}`: the terminal's current working directory\n- `${cwdFolder}`: the terminal's current working directory, displayed for multi-root workspaces or in a single root workspace when the value differs from the initial working directory. On Windows, this will only be displayed when shell integration is enabled.\n- `${workspaceFolder}`: the workspace in which the terminal was launched\n- `${local}`: indicates a local terminal in a remote workspace\n- `${process}`: the name of the terminal process\n- `${separator}`: a conditional separator (\" - \") that only shows when surrounded by variables with values or static text.\n- `${sequence}`: the name provided to the terminal by the process\n- `${task}`: indicates this terminal is associated with a task",
+            "markdownDescription": "Controls the terminal title. Variables are substituted based on the context:\n- `${cwd}`: the terminal's current working directory\n- `${cwdFolder}`: the terminal's current working directory, displayed for multi-root workspaces or in a single root workspace when the value differs from the initial working directory. On Windows, this will only be displayed when shell integration is enabled.\n- `${workspaceFolder}`: the workspace in which the terminal was launched\n- `${local}`: indicates a local terminal in a remote workspace\n- `${process}`: the name of the terminal process\n- `${separator}`: a conditional separator (` - `) that only shows when surrounded by variables with values or static text.\n- `${sequence}`: the name provided to the terminal by the process\n- `${task}`: indicates this terminal is associated with a task",
             "defaultDefaultValue": "${process}",
             "scope": 3,
             "restricted": false
@@ -20263,7 +20617,7 @@
         "terminal.integrated.tabs.description": {
             "type": "string",
             "default": "${task}${separator}${local}${separator}${cwdFolder}",
-            "markdownDescription": "Controls the terminal description, which appears to the right of the title. Variables are substituted based on the context:\n- `${cwd}`: the terminal's current working directory\n- `${cwdFolder}`: the terminal's current working directory, displayed for multi-root workspaces or in a single root workspace when the value differs from the initial working directory. On Windows, this will only be displayed when shell integration is enabled.\n- `${workspaceFolder}`: the workspace in which the terminal was launched\n- `${local}`: indicates a local terminal in a remote workspace\n- `${process}`: the name of the terminal process\n- `${separator}`: a conditional separator (\" - \") that only shows when surrounded by variables with values or static text.\n- `${sequence}`: the name provided to the terminal by the process\n- `${task}`: indicates this terminal is associated with a task",
+            "markdownDescription": "Controls the terminal description, which appears to the right of the title. Variables are substituted based on the context:\n- `${cwd}`: the terminal's current working directory\n- `${cwdFolder}`: the terminal's current working directory, displayed for multi-root workspaces or in a single root workspace when the value differs from the initial working directory. On Windows, this will only be displayed when shell integration is enabled.\n- `${workspaceFolder}`: the workspace in which the terminal was launched\n- `${local}`: indicates a local terminal in a remote workspace\n- `${process}`: the name of the terminal process\n- `${separator}`: a conditional separator (` - `) that only shows when surrounded by variables with values or static text.\n- `${sequence}`: the name provided to the terminal by the process\n- `${task}`: indicates this terminal is associated with a task",
             "defaultDefaultValue": "${task}${separator}${local}${separator}${cwdFolder}",
             "scope": 3,
             "restricted": false
@@ -20337,7 +20691,7 @@
             "restricted": false
         },
         "terminal.integrated.commandsToSkipShell": {
-            "markdownDescription": "A set of command IDs whose keybindings will not be sent to the shell but instead always be handled by VS Code. This allows keybindings that would normally be consumed by the shell to act instead the same as when the terminal is not focused, for example `Ctrl+P` to launch Quick Open.\n\n&nbsp;\n\nMany commands are skipped by default. To override a default and pass that command's keybinding to the shell instead, add the command prefixed with the `-` character. For example add `-workbench.action.quickOpen` to allow `Ctrl+P` to reach the shell.\n\n&nbsp;\n\nThe following list of default skipped commands is truncated when viewed in Settings Editor. To see the full list, [open the default settings JSON](command:workbench.action.openRawDefaultSettings 'Open Default Settings (JSON)') and search for the first command from the list below.\n\n&nbsp;\n\nDefault Skipped Commands:\n\n- editor.action.toggleTabFocusMode\n- notifications.hideList\n- notifications.hideToasts\n- workbench.action.closeQuickOpen\n- workbench.action.debug.continue\n- workbench.action.debug.pause\n- workbench.action.debug.restart\n- workbench.action.debug.run\n- workbench.action.debug.start\n- workbench.action.debug.stepInto\n- workbench.action.debug.stepOut\n- workbench.action.debug.stepOver\n- workbench.action.debug.stop\n- workbench.action.firstEditorInGroup\n- workbench.action.focusActiveEditorGroup\n- workbench.action.focusEighthEditorGroup\n- workbench.action.focusFifthEditorGroup\n- workbench.action.focusFirstEditorGroup\n- workbench.action.focusFourthEditorGroup\n- workbench.action.focusLastEditorGroup\n- workbench.action.focusNextPart\n- workbench.action.focusPreviousPart\n- workbench.action.focusSecondEditorGroup\n- workbench.action.focusSeventhEditorGroup\n- workbench.action.focusSixthEditorGroup\n- workbench.action.focusThirdEditorGroup\n- workbench.action.lastEditorInGroup\n- workbench.action.navigateDown\n- workbench.action.navigateLeft\n- workbench.action.navigateRight\n- workbench.action.navigateUp\n- workbench.action.nextEditor\n- workbench.action.nextEditorInGroup\n- workbench.action.nextPanelView\n- workbench.action.nextSideBarView\n- workbench.action.openNextRecentlyUsedEditor\n- workbench.action.openNextRecentlyUsedEditorInGroup\n- workbench.action.openPreviousRecentlyUsedEditor\n- workbench.action.openPreviousRecentlyUsedEditorInGroup\n- workbench.action.previousEditor\n- workbench.action.previousEditorInGroup\n- workbench.action.previousPanelView\n- workbench.action.previousSideBarView\n- workbench.action.quickOpen\n- workbench.action.quickOpenLeastRecentlyUsedEditor\n- workbench.action.quickOpenLeastRecentlyUsedEditorInGroup\n- workbench.action.quickOpenPreviousEditor\n- workbench.action.quickOpenPreviousRecentlyUsedEditor\n- workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup\n- workbench.action.quickOpenView\n- workbench.action.showCommands\n- workbench.action.tasks.build\n- workbench.action.tasks.reRunTask\n- workbench.action.tasks.restartTask\n- workbench.action.tasks.runTask\n- workbench.action.tasks.showLog\n- workbench.action.tasks.showTasks\n- workbench.action.tasks.terminate\n- workbench.action.tasks.test\n- workbench.action.terminal.clear\n- workbench.action.terminal.clearSelection\n- workbench.action.terminal.copyLastCommand\n- workbench.action.terminal.copySelection\n- workbench.action.terminal.copySelectionAsHtml\n- workbench.action.terminal.deleteToLineStart\n- workbench.action.terminal.deleteWordLeft\n- workbench.action.terminal.deleteWordRight\n- workbench.action.terminal.findNext\n- workbench.action.terminal.findPrevious\n- workbench.action.terminal.focus\n- workbench.action.terminal.focusAtIndex1\n- workbench.action.terminal.focusAtIndex2\n- workbench.action.terminal.focusAtIndex3\n- workbench.action.terminal.focusAtIndex4\n- workbench.action.terminal.focusAtIndex5\n- workbench.action.terminal.focusAtIndex6\n- workbench.action.terminal.focusAtIndex7\n- workbench.action.terminal.focusAtIndex8\n- workbench.action.terminal.focusAtIndex9\n- workbench.action.terminal.focusFind\n- workbench.action.terminal.focusNext\n- workbench.action.terminal.focusNextPane\n- workbench.action.terminal.focusPrevious\n- workbench.action.terminal.focusPreviousPane\n- workbench.action.terminal.goToRecentDirectory\n- workbench.action.terminal.hideFind\n- workbench.action.terminal.kill\n- workbench.action.terminal.killEditor\n- workbench.action.terminal.moveToEditor\n- workbench.action.terminal.moveToLineEnd\n- workbench.action.terminal.moveToLineStart\n- workbench.action.terminal.moveToTerminalPanel\n- workbench.action.terminal.navigationModeExit\n- workbench.action.terminal.navigationModeFocusNext\n- workbench.action.terminal.navigationModeFocusPrevious\n- workbench.action.terminal.new\n- workbench.action.terminal.newInActiveWorkspace\n- workbench.action.terminal.paste\n- workbench.action.terminal.pasteSelection\n- workbench.action.terminal.quickFix\n- workbench.action.terminal.resizePaneDown\n- workbench.action.terminal.resizePaneLeft\n- workbench.action.terminal.resizePaneRight\n- workbench.action.terminal.resizePaneUp\n- workbench.action.terminal.runActiveFile\n- workbench.action.terminal.runRecentCommand\n- workbench.action.terminal.runSelectedText\n- workbench.action.terminal.scrollDown\n- workbench.action.terminal.scrollDownPage\n- workbench.action.terminal.scrollToBottom\n- workbench.action.terminal.scrollToNextCommand\n- workbench.action.terminal.scrollToPreviousCommand\n- workbench.action.terminal.scrollToTop\n- workbench.action.terminal.scrollUp\n- workbench.action.terminal.scrollUpPage\n- workbench.action.terminal.selectAll\n- workbench.action.terminal.selectToNextCommand\n- workbench.action.terminal.selectToNextLine\n- workbench.action.terminal.selectToPreviousCommand\n- workbench.action.terminal.selectToPreviousLine\n- workbench.action.terminal.sendSequence\n- workbench.action.terminal.sizeToContentWidth\n- workbench.action.terminal.split\n- workbench.action.terminal.splitInActiveWorkspace\n- workbench.action.terminal.toggleFindCaseSensitive\n- workbench.action.terminal.toggleFindRegex\n- workbench.action.terminal.toggleFindWholeWord\n- workbench.action.terminal.toggleTerminal\n- workbench.action.toggleFullScreen\n- workbench.action.toggleMaximizedPanel\n- workbench.action.togglePanel",
+            "markdownDescription": "A set of command IDs whose keybindings will not be sent to the shell but instead always be handled by VS Code. This allows keybindings that would normally be consumed by the shell to act instead the same as when the terminal is not focused, for example `Ctrl+P` to launch Quick Open.\n\n&nbsp;\n\nMany commands are skipped by default. To override a default and pass that command's keybinding to the shell instead, add the command prefixed with the `-` character. For example add `-workbench.action.quickOpen` to allow `Ctrl+P` to reach the shell.\n\n&nbsp;\n\nThe following list of default skipped commands is truncated when viewed in Settings Editor. To see the full list, [open the default settings JSON](command:workbench.action.openRawDefaultSettings 'Open Default Settings (JSON)') and search for the first command from the list below.\n\n&nbsp;\n\nDefault Skipped Commands:\n\n- editor.action.toggleTabFocusMode\n- notifications.hideList\n- notifications.hideToasts\n- workbench.action.closeQuickOpen\n- workbench.action.debug.continue\n- workbench.action.debug.pause\n- workbench.action.debug.restart\n- workbench.action.debug.run\n- workbench.action.debug.start\n- workbench.action.debug.stepInto\n- workbench.action.debug.stepOut\n- workbench.action.debug.stepOver\n- workbench.action.debug.stop\n- workbench.action.firstEditorInGroup\n- workbench.action.focusActiveEditorGroup\n- workbench.action.focusEighthEditorGroup\n- workbench.action.focusFifthEditorGroup\n- workbench.action.focusFirstEditorGroup\n- workbench.action.focusFourthEditorGroup\n- workbench.action.focusLastEditorGroup\n- workbench.action.focusNextPart\n- workbench.action.focusPreviousPart\n- workbench.action.focusSecondEditorGroup\n- workbench.action.focusSeventhEditorGroup\n- workbench.action.focusSixthEditorGroup\n- workbench.action.focusThirdEditorGroup\n- workbench.action.lastEditorInGroup\n- workbench.action.navigateDown\n- workbench.action.navigateLeft\n- workbench.action.navigateRight\n- workbench.action.navigateUp\n- workbench.action.nextEditor\n- workbench.action.nextEditorInGroup\n- workbench.action.nextPanelView\n- workbench.action.nextSideBarView\n- workbench.action.openNextRecentlyUsedEditor\n- workbench.action.openNextRecentlyUsedEditorInGroup\n- workbench.action.openPreviousRecentlyUsedEditor\n- workbench.action.openPreviousRecentlyUsedEditorInGroup\n- workbench.action.previousEditor\n- workbench.action.previousEditorInGroup\n- workbench.action.previousPanelView\n- workbench.action.previousSideBarView\n- workbench.action.quickOpen\n- workbench.action.quickOpenLeastRecentlyUsedEditor\n- workbench.action.quickOpenLeastRecentlyUsedEditorInGroup\n- workbench.action.quickOpenPreviousEditor\n- workbench.action.quickOpenPreviousRecentlyUsedEditor\n- workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup\n- workbench.action.quickOpenView\n- workbench.action.showCommands\n- workbench.action.tasks.build\n- workbench.action.tasks.reRunTask\n- workbench.action.tasks.restartTask\n- workbench.action.tasks.runTask\n- workbench.action.tasks.showLog\n- workbench.action.tasks.showTasks\n- workbench.action.tasks.terminate\n- workbench.action.tasks.test\n- workbench.action.terminal.acceptSelectedSuggestion\n- workbench.action.terminal.clear\n- workbench.action.terminal.clearSelection\n- workbench.action.terminal.copyAndClearSelection\n- workbench.action.terminal.copyLastCommandOutput\n- workbench.action.terminal.copySelection\n- workbench.action.terminal.copySelectionAsHtml\n- workbench.action.terminal.deleteToLineStart\n- workbench.action.terminal.deleteWordLeft\n- workbench.action.terminal.deleteWordRight\n- workbench.action.terminal.findNext\n- workbench.action.terminal.findPrevious\n- workbench.action.terminal.focus\n- workbench.action.terminal.focusAtIndex1\n- workbench.action.terminal.focusAtIndex2\n- workbench.action.terminal.focusAtIndex3\n- workbench.action.terminal.focusAtIndex4\n- workbench.action.terminal.focusAtIndex5\n- workbench.action.terminal.focusAtIndex6\n- workbench.action.terminal.focusAtIndex7\n- workbench.action.terminal.focusAtIndex8\n- workbench.action.terminal.focusAtIndex9\n- workbench.action.terminal.focusFind\n- workbench.action.terminal.focusNext\n- workbench.action.terminal.focusNextPane\n- workbench.action.terminal.focusPrevious\n- workbench.action.terminal.focusPreviousPane\n- workbench.action.terminal.goToRecentDirectory\n- workbench.action.terminal.hideFind\n- workbench.action.terminal.hideSuggestWidget\n- workbench.action.terminal.kill\n- workbench.action.terminal.killEditor\n- workbench.action.terminal.moveToEditor\n- workbench.action.terminal.moveToLineEnd\n- workbench.action.terminal.moveToLineStart\n- workbench.action.terminal.moveToTerminalPanel\n- workbench.action.terminal.navigationModeExit\n- workbench.action.terminal.navigationModeFocusNext\n- workbench.action.terminal.navigationModeFocusPrevious\n- workbench.action.terminal.new\n- workbench.action.terminal.newInActiveWorkspace\n- workbench.action.terminal.paste\n- workbench.action.terminal.pasteSelection\n- workbench.action.terminal.quickFix\n- workbench.action.terminal.resizePaneDown\n- workbench.action.terminal.resizePaneLeft\n- workbench.action.terminal.resizePaneRight\n- workbench.action.terminal.resizePaneUp\n- workbench.action.terminal.runActiveFile\n- workbench.action.terminal.runRecentCommand\n- workbench.action.terminal.runSelectedText\n- workbench.action.terminal.scrollDown\n- workbench.action.terminal.scrollDownPage\n- workbench.action.terminal.scrollToBottom\n- workbench.action.terminal.scrollToNextCommand\n- workbench.action.terminal.scrollToPreviousCommand\n- workbench.action.terminal.scrollToTop\n- workbench.action.terminal.scrollUp\n- workbench.action.terminal.scrollUpPage\n- workbench.action.terminal.selectAll\n- workbench.action.terminal.selectNextPageSuggestion\n- workbench.action.terminal.selectNextSuggestion\n- workbench.action.terminal.selectPrevPageSuggestion\n- workbench.action.terminal.selectPrevSuggestion\n- workbench.action.terminal.selectToNextCommand\n- workbench.action.terminal.selectToNextLine\n- workbench.action.terminal.selectToPreviousCommand\n- workbench.action.terminal.selectToPreviousLine\n- workbench.action.terminal.sendSequence\n- workbench.action.terminal.showAccessibilityHelp\n- workbench.action.terminal.sizeToContentWidth\n- workbench.action.terminal.split\n- workbench.action.terminal.splitInActiveWorkspace\n- workbench.action.terminal.toggleFindCaseSensitive\n- workbench.action.terminal.toggleFindRegex\n- workbench.action.terminal.toggleFindWholeWord\n- workbench.action.terminal.toggleTerminal\n- workbench.action.toggleFullScreen\n- workbench.action.toggleMaximizedPanel\n- workbench.action.togglePanel",
             "type": "array",
             "items": {
                 "type": "string"
@@ -20466,7 +20820,7 @@
             "restricted": false
         },
         "terminal.integrated.wordSeparators": {
-            "description": "A string containing all characters to be considered word separators by the double click to select word feature.",
+            "description": "A string containing all characters to be considered word separators by the double-click to select word feature.",
             "type": "string",
             "default": " ()[]{}',\"`─‘’",
             "defaultDefaultValue": " ()[]{}',\"`─‘’",
@@ -20474,10 +20828,20 @@
             "restricted": false
         },
         "terminal.integrated.enableFileLinks": {
-            "description": "Whether to enable file links in the terminal. Links can be slow when working on a network drive in particular because each file link is verified against the file system. Changing this will take effect only in new terminals.",
-            "type": "boolean",
-            "default": true,
-            "defaultDefaultValue": true,
+            "description": "Whether to enable file links in terminals. Links can be slow when working on a network drive in particular because each file link is verified against the file system. Changing this will take effect only in new terminals.",
+            "type": "string",
+            "enum": [
+                "off",
+                "on",
+                "notRemote"
+            ],
+            "enumDescriptions": [
+                "Always off.",
+                "Enable only when not in a remote workspace.",
+                "Always on."
+            ],
+            "default": "on",
+            "defaultDefaultValue": "on",
             "scope": 3,
             "restricted": false
         },
@@ -20626,7 +20990,7 @@
         },
         "terminal.integrated.shellIntegration.enabled": {
             "restricted": true,
-            "markdownDescription": "Determines whether or not shell integration is auto-injected to support features like enhanced command tracking and current working directory detection. \n\nShell integration works by injecting the shell with a startup script. The script gives VS Code insight into what is happening within the terminal.\n\nSupported shells:\n\n- Linux/macOS: bash, pwsh, zsh\n - Windows: pwsh\n\nThis setting applies only when terminals are created, so you will need to restart your terminals for it to take effect.\n\n Note that the script injection may not work if you have custom arguments defined in the terminal profile, a [complex bash `PROMPT_COMMAND`](https://code.visualstudio.com/docs/editor/integrated-terminal#_complex-bash-promptcommand), or other unsupported setup. To disable decorations, see `#terminal.integrated.shellIntegrations.decorationsEnabled#`",
+            "markdownDescription": "Determines whether or not shell integration is auto-injected to support features like enhanced command tracking and current working directory detection. \n\nShell integration works by injecting the shell with a startup script. The script gives VS Code insight into what is happening within the terminal.\n\nSupported shells:\n\n- Linux/macOS: bash, fish, pwsh, zsh\n - Windows: pwsh\n\nThis setting applies only when terminals are created, so you will need to restart your terminals for it to take effect.\n\n Note that the script injection may not work if you have custom arguments defined in the terminal profile, have enabled `#editor.accessibilitySupport#`, have a [complex bash `PROMPT_COMMAND`](https://code.visualstudio.com/docs/editor/integrated-terminal#_complex-bash-promptcommand), or other unsupported setup. To disable decorations, see `#terminal.integrated.shellIntegrations.decorationsEnabled#`",
             "type": "boolean",
             "default": true,
             "defaultDefaultValue": true,
@@ -20660,27 +21024,19 @@
             "defaultDefaultValue": 100,
             "scope": 3
         },
+        "terminal.integrated.shellIntegration.suggestEnabled": {
+            "restricted": true,
+            "markdownDescription": "Enables experimental terminal Intellisense suggestions for supported shells when `#terminal.integrated.shellIntegration.enabled#` is set to `true`. If shell integration is installed manually, `VSCODE_SUGGEST` needs to be set to `1` before calling the script.",
+            "type": "boolean",
+            "default": false,
+            "defaultDefaultValue": false,
+            "scope": 3
+        },
         "terminal.integrated.smoothScrolling": {
             "markdownDescription": "Controls whether the terminal will scroll using an animation.",
             "type": "boolean",
             "default": false,
             "defaultDefaultValue": false,
-            "scope": 3,
-            "restricted": false
-        },
-        "terminal.explorerKind": {
-            "type": "string",
-            "enum": [
-                "integrated",
-                "external"
-            ],
-            "enumDescriptions": [
-                "Use VS Code's integrated terminal.",
-                "Use the configured external terminal."
-            ],
-            "description": "When opening a file from the Explorer in a terminal, determines what kind of terminal will be launched",
-            "default": "integrated",
-            "defaultDefaultValue": "integrated",
             "scope": 3,
             "restricted": false
         },
@@ -21745,6 +22101,20 @@
             "defaultDefaultValue": true,
             "restricted": false
         },
+        "markdown.experimental.copyFiles.destination": {
+            "type": "object",
+            "markdownDescription": "Defines where files copied into a Markdown document should be created. This is a map from globs that match on the Markdown document to destinations.\n\nThe destinations may use the following variables:\n\n- `${documentFileName}` — The full filename of the Markdown document, for example `readme.md`.\n- `${documentBaseName}` — The basename of Markdown document, for example `readme`.\n- `${documentExtName}` — The extension of the Markdown document, for example `md`.\n- `${documentDirName}` — The name of the Markdown document's parent directory.\n- `${documentWorkspaceFolder}` — The workspace folder for the Markdown document, for examples, `/Users/me/myProject`. This is the same as `${documentDirName}` if the file is not part of in a workspace.\n- `${fileName}` — The file name of the dropped file, for example `image.png`.",
+            "additionalProperties": {
+                "type": "string"
+            },
+            "scope": 3,
+            "source": {
+                "id": "vscode.markdown-language-features",
+                "displayName": "Markdown Language Features"
+            },
+            "default": {},
+            "restricted": false
+        },
         "markdown.math.enabled": {
             "type": "boolean",
             "default": true,
@@ -22075,6 +22445,11 @@
                     "minimum": 8,
                     "description": "Allows you to explicitly specify the Node version that's running, which can be used to disable or enable certain behaviors in cases where the automatic version detection does not work.",
                     "default": 12
+                },
+                "enableTurboSourcemaps": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Configures whether to use a new, faster mechanism for sourcemap discovery"
                 },
                 "command": {
                     "type": [
@@ -22589,6 +22964,11 @@
                                             "description": "Allows you to explicitly specify the Node version that's running, which can be used to disable or enable certain behaviors in cases where the automatic version detection does not work.",
                                             "default": 12
                                         },
+                                        "enableTurboSourcemaps": {
+                                            "type": "boolean",
+                                            "default": true,
+                                            "description": "Configures whether to use a new, faster mechanism for sourcemap discovery"
+                                        },
                                         "program": {
                                             "type": "string",
                                             "description": "Absolute path to the program. Generated value is guessed by looking at package.json and opened files. Edit this attribute.",
@@ -22942,6 +23322,11 @@
                                             "minimum": 8,
                                             "description": "Allows you to explicitly specify the Node version that's running, which can be used to disable or enable certain behaviors in cases where the automatic version detection does not work.",
                                             "default": 12
+                                        },
+                                        "enableTurboSourcemaps": {
+                                            "type": "boolean",
+                                            "default": true,
+                                            "description": "Configures whether to use a new, faster mechanism for sourcemap discovery"
                                         },
                                         "command": {
                                             "type": [
@@ -23312,6 +23697,11 @@
                     "minimum": 8,
                     "description": "Allows you to explicitly specify the Node version that's running, which can be used to disable or enable certain behaviors in cases where the automatic version detection does not work.",
                     "default": 12
+                },
+                "enableTurboSourcemaps": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Configures whether to use a new, faster mechanism for sourcemap discovery"
                 },
                 "address": {
                     "type": "string",
@@ -24181,136 +24571,34 @@
             "defaultDefaultValue": "allOpenProjects",
             "restricted": false
         },
-        "workbench.editor.autoLockGroups": {
-            "type": "object",
-            "description": "If an editor matching one of the listed types is opened as the first in an editor group and more than one group is open, the group is automatically locked. Locked groups will only be used for opening editors when explicitly chosen by a user gesture (for example drag and drop), but not by default. Consequently, the active editor in a locked group is less likely to be replaced accidentally with a different editor.",
-            "properties": {
-                "default": {
-                    "type": "boolean",
-                    "default": false,
-                    "description": "Text Editor"
-                },
-                "workbench.editorinputs.searchEditorInput": {
-                    "type": "boolean",
-                    "default": false,
-                    "description": "Search Editor"
-                },
-                "terminalEditor": {
-                    "type": "boolean",
-                    "default": true,
-                    "description": "Terminal"
-                },
-                "jupyter-notebook": {
-                    "type": "boolean",
-                    "default": false,
-                    "description": "Jupyter Notebook"
-                },
-                "imagePreview.previewEditor": {
-                    "type": "boolean",
-                    "default": false,
-                    "description": "Image Preview"
-                },
-                "vscode.audioPreview": {
-                    "type": "boolean",
-                    "default": false,
-                    "description": "Audio Preview"
-                },
-                "vscode.videoPreview": {
-                    "type": "boolean",
-                    "default": false,
-                    "description": "Video Preview"
-                },
-                "jsProfileVisualizer.cpuprofile.table": {
-                    "type": "boolean",
-                    "default": false,
-                    "description": "CPU Profile Table Visualizer"
-                },
-                "jsProfileVisualizer.heapprofile.table": {
-                    "type": "boolean",
-                    "default": false,
-                    "description": "Heap Profile Table Visualizer"
-                },
-                "workbench.input.interactive": {
-                    "type": "boolean",
-                    "default": false,
-                    "description": "Interactive Window"
-                },
-                "mainThreadWebview-markdown.preview": {
-                    "type": "boolean",
-                    "default": false,
-                    "description": "Markdown Preview"
-                }
-            },
-            "default": {
-                "default": false,
-                "workbench.editorinputs.searchEditorInput": false,
-                "terminalEditor": true,
-                "jupyter-notebook": false,
-                "imagePreview.previewEditor": false,
-                "vscode.audioPreview": false,
-                "vscode.videoPreview": false,
-                "jsProfileVisualizer.cpuprofile.table": false,
-                "jsProfileVisualizer.heapprofile.table": false,
-                "workbench.input.interactive": false,
-                "mainThreadWebview-markdown.preview": false
-            },
-            "additionalProperties": false,
-            "defaultDefaultValue": {
-                "default": false,
-                "workbench.editorinputs.searchEditorInput": false,
-                "terminalEditor": true,
-                "jupyter-notebook": false,
-                "imagePreview.previewEditor": false,
-                "vscode.audioPreview": false,
-                "vscode.videoPreview": false,
-                "jsProfileVisualizer.cpuprofile.table": false,
-                "jsProfileVisualizer.heapprofile.table": false,
-                "workbench.input.interactive": false,
-                "mainThreadWebview-markdown.preview": false
-            },
+        "typescript.experimental.tsserver.web.enableProjectWideIntellisense": {
+            "type": "boolean",
+            "default": false,
+            "description": "Enable/disable project-wide IntelliSense on web. Requires that VS Code is running in a trusted context.",
             "scope": 3,
-            "restricted": false
-        },
-        "workbench.editor.defaultBinaryEditor": {
-            "type": "string",
-            "default": "",
-            "enum": [
-                "default",
-                "workbench.editorinputs.searchEditorInput",
-                "jupyter-notebook",
-                "vscode.markdown.preview.editor",
-                "imagePreview.previewEditor",
-                "vscode.audioPreview",
-                "vscode.videoPreview",
-                "jsProfileVisualizer.cpuprofile.table",
-                "jsProfileVisualizer.heapprofile.table",
-                ""
+            "tags": [
+                "experimental"
             ],
-            "description": "The default editor for files detected as binary. If undefined, the user will be presented with a picker.",
-            "defaultDefaultValue": "",
-            "scope": 3,
+            "source": {
+                "id": "vscode.typescript-language-features",
+                "displayName": "TypeScript and JavaScript Language Features"
+            },
+            "defaultDefaultValue": false,
             "restricted": false
         },
-        "workbench.editorAssociations": {
-            "type": "object",
-            "markdownDescription": "Configure glob patterns to editors (for example `\"*.hex\": \"hexEditor.hexEdit\"`). These have precedence over the default behavior.",
-            "patternProperties": {
-                ".*": {
-                    "type": "string",
-                    "enum": [
-                        "default",
-                        "workbench.editorinputs.searchEditorInput",
-                        "jupyter-notebook",
-                        "vscode.markdown.preview.editor",
-                        "imagePreview.previewEditor",
-                        "vscode.audioPreview",
-                        "vscode.videoPreview",
-                        "jsProfileVisualizer.cpuprofile.table",
-                        "jsProfileVisualizer.heapprofile.table"
-                    ]
-                }
-            },
-            "default": {},
+        "terminal.explorerKind": {
+            "type": "string",
+            "enum": [
+                "integrated",
+                "external"
+            ],
+            "enumDescriptions": [
+                "Use VS Code's integrated terminal.",
+                "Use the configured external terminal."
+            ],
+            "description": "When opening a file from the Explorer in a terminal, determines what kind of terminal will be launched",
+            "default": "integrated",
+            "defaultDefaultValue": "integrated",
             "scope": 3,
             "restricted": false
         },
@@ -24362,6 +24650,139 @@
             ],
             "defaultDefaultValue": null,
             "scope": 3
+        },
+        "workbench.editor.autoLockGroups": {
+            "type": "object",
+            "description": "If an editor matching one of the listed types is opened as the first in an editor group and more than one group is open, the group is automatically locked. Locked groups will only be used for opening editors when explicitly chosen by a user gesture (for example drag and drop), but not by default. Consequently, the active editor in a locked group is less likely to be replaced accidentally with a different editor.",
+            "properties": {
+                "default": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Text Editor"
+                },
+                "workbench.editorinputs.searchEditorInput": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Search Editor"
+                },
+                "jupyter-notebook": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Jupyter Notebook"
+                },
+                "imagePreview.previewEditor": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Image Preview"
+                },
+                "vscode.audioPreview": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Audio Preview"
+                },
+                "vscode.videoPreview": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Video Preview"
+                },
+                "jsProfileVisualizer.cpuprofile.table": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "CPU Profile Table Visualizer"
+                },
+                "jsProfileVisualizer.heapprofile.table": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Heap Profile Table Visualizer"
+                },
+                "terminalEditor": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Terminal"
+                },
+                "workbench.input.interactive": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Interactive Window"
+                },
+                "mainThreadWebview-markdown.preview": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Markdown Preview"
+                }
+            },
+            "default": {
+                "default": false,
+                "workbench.editorinputs.searchEditorInput": false,
+                "jupyter-notebook": false,
+                "imagePreview.previewEditor": false,
+                "vscode.audioPreview": false,
+                "vscode.videoPreview": false,
+                "jsProfileVisualizer.cpuprofile.table": false,
+                "jsProfileVisualizer.heapprofile.table": false,
+                "terminalEditor": true,
+                "workbench.input.interactive": false,
+                "mainThreadWebview-markdown.preview": false
+            },
+            "additionalProperties": false,
+            "defaultDefaultValue": {
+                "default": false,
+                "workbench.editorinputs.searchEditorInput": false,
+                "jupyter-notebook": false,
+                "imagePreview.previewEditor": false,
+                "vscode.audioPreview": false,
+                "vscode.videoPreview": false,
+                "jsProfileVisualizer.cpuprofile.table": false,
+                "jsProfileVisualizer.heapprofile.table": false,
+                "terminalEditor": true,
+                "workbench.input.interactive": false,
+                "mainThreadWebview-markdown.preview": false
+            },
+            "scope": 3,
+            "restricted": false
+        },
+        "workbench.editor.defaultBinaryEditor": {
+            "type": "string",
+            "default": "",
+            "enum": [
+                "default",
+                "workbench.editorinputs.searchEditorInput",
+                "jupyter-notebook",
+                "vscode.markdown.preview.editor",
+                "imagePreview.previewEditor",
+                "vscode.audioPreview",
+                "vscode.videoPreview",
+                "jsProfileVisualizer.cpuprofile.table",
+                "jsProfileVisualizer.heapprofile.table",
+                ""
+            ],
+            "description": "The default editor for files detected as binary. If undefined, the user will be presented with a picker.",
+            "defaultDefaultValue": "",
+            "scope": 3,
+            "restricted": false
+        },
+        "workbench.editorAssociations": {
+            "type": "object",
+            "markdownDescription": "Configure glob patterns to editors (for example `\"*.hex\": \"hexEditor.hexedit\"`). These have precedence over the default behavior.",
+            "patternProperties": {
+                ".*": {
+                    "type": "string",
+                    "enum": [
+                        "default",
+                        "workbench.editorinputs.searchEditorInput",
+                        "jupyter-notebook",
+                        "vscode.markdown.preview.editor",
+                        "imagePreview.previewEditor",
+                        "vscode.audioPreview",
+                        "vscode.videoPreview",
+                        "jsProfileVisualizer.cpuprofile.table",
+                        "jsProfileVisualizer.heapprofile.table"
+                    ]
+                }
+            },
+            "default": {},
+            "scope": 3,
+            "restricted": false
         },
         "editor.tabSize": {
             "type": "number",
@@ -24468,7 +24889,7 @@
         "editor.stablePeek": {
             "type": "boolean",
             "default": false,
-            "markdownDescription": "Keep peek editors open even when double clicking their content or when hitting `Escape`.",
+            "markdownDescription": "Keep peek editors open even when double-clicking their content or when hitting `Escape`.",
             "defaultDefaultValue": false,
             "scope": 5,
             "restricted": false
@@ -24618,7 +25039,7 @@
             "restricted": false
         },
         "editor.acceptSuggestionOnCommitCharacter": {
-            "markdownDescription": "Controls whether suggestions should be accepted on commit characters. For example, in JavaScript, the semi-colon (`; `) can be a commit character that accepts a suggestion and types that character.",
+            "markdownDescription": "Controls whether suggestions should be accepted on commit characters. For example, in JavaScript, the semi-colon (`;`) can be a commit character that accepts a suggestion and types that character.",
             "type": "boolean",
             "default": true,
             "defaultDefaultValue": true,
@@ -24651,15 +25072,15 @@
                 "off"
             ],
             "enumDescriptions": [
-                "The editor will use platform APIs to detect when a Screen Reader is attached.",
-                "The editor will be permanently optimized for usage with a Screen Reader. Word wrapping will be disabled.",
-                "The editor will never be optimized for usage with a Screen Reader."
+                "Use platform APIs to detect when a Screen Reader is attached",
+                "Optimize for usage with a Screen Reader",
+                "Assume a screen reader is not attached"
             ],
             "default": "auto",
             "tags": [
                 "accessibility"
             ],
-            "description": "Controls whether the editor should run in a mode where it is optimized for screen readers.",
+            "description": "Controls if the UI should run in a mode where it is optimized for screen readers.",
             "defaultDefaultValue": "auto",
             "scope": 5,
             "restricted": false
@@ -24924,6 +25345,16 @@
             "scope": 5,
             "restricted": false
         },
+        "editor.colorDecoratorsLimit": {
+            "markdownDescription": "Controls the max number of color decorators that can be rendered in an editor at once.",
+            "type": "integer",
+            "default": 500,
+            "minimum": 1,
+            "maximum": 1000000,
+            "defaultDefaultValue": 500,
+            "scope": 5,
+            "restricted": false
+        },
         "editor.columnSelection": {
             "description": "Enable that the selection with the mouse and keys is doing column selection.",
             "type": "boolean",
@@ -24972,10 +25403,20 @@
             "restricted": false
         },
         "editor.cursorSmoothCaretAnimation": {
+            "enumDescriptions": [
+                "Smooth caret animation is disabled.",
+                "Smooth caret animation is enabled only when the user moves the cursor with an explicit gesture.",
+                "Smooth caret animation is always enabled."
+            ],
             "description": "Controls whether the smooth caret animation should be enabled.",
-            "type": "boolean",
-            "default": false,
-            "defaultDefaultValue": false,
+            "type": "string",
+            "enum": [
+                "off",
+                "explicit",
+                "on"
+            ],
+            "default": "off",
+            "defaultDefaultValue": "off",
             "scope": 5,
             "restricted": false
         },
@@ -24996,7 +25437,7 @@
             "restricted": false
         },
         "editor.cursorSurroundingLines": {
-            "description": "Controls the minimal number of visible leading and trailing lines surrounding the cursor. Known as 'scrollOff' or 'scrollOffset' in some other editors.",
+            "description": "Controls the minimal number of visible leading lines (minimum 0) and trailing lines (minimum 1) surrounding the cursor. Known as 'scrollOff' or 'scrollOffset' in some other editors.",
             "type": "integer",
             "default": 0,
             "minimum": 0,
@@ -25052,6 +25493,24 @@
             "type": "boolean",
             "default": true,
             "defaultDefaultValue": true,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.experimentalWhitespaceRendering": {
+            "enumDescriptions": [
+                "Use a new rendering method with svgs.",
+                "Use a new rendering method with font characters.",
+                "Use the stable rendering method."
+            ],
+            "description": "Controls whether whitespace is rendered with a new, experimental method.",
+            "type": "string",
+            "enum": [
+                "svg",
+                "font",
+                "off"
+            ],
+            "default": "svg",
+            "defaultDefaultValue": "svg",
             "scope": 5,
             "restricted": false
         },
@@ -25547,6 +26006,22 @@
             "scope": 5,
             "restricted": false
         },
+        "editor.inlineSuggest.showToolbar": {
+            "type": "string",
+            "default": "onHover",
+            "enum": [
+                "always",
+                "onHover"
+            ],
+            "enumDescriptions": [
+                "Show the inline suggestion toolbar whenever an inline suggestion is shown.",
+                "Show the inline suggestion toolbar when hovering over an inline suggestion."
+            ],
+            "description": "Controls when to show the inline suggestion toolbar.",
+            "defaultDefaultValue": "onHover",
+            "scope": 5,
+            "restricted": false
+        },
         "editor.letterSpacing": {
             "description": "Controls the letter spacing in pixels.",
             "type": "number",
@@ -25821,9 +26296,9 @@
         },
         "editor.parameterHints.cycle": {
             "type": "boolean",
-            "default": false,
+            "default": true,
             "description": "Controls whether the parameter hints menu cycles or closes when reaching the end of the list.",
-            "defaultDefaultValue": false,
+            "defaultDefaultValue": true,
             "scope": 5,
             "restricted": false
         },
@@ -25966,9 +26441,14 @@
         },
         "editor.renderFinalNewline": {
             "description": "Render last line number when the file ends with a newline.",
-            "type": "boolean",
-            "default": true,
-            "defaultDefaultValue": true,
+            "type": "string",
+            "enum": [
+                "off",
+                "on",
+                "dimmed"
+            ],
+            "default": "on",
+            "defaultDefaultValue": "on",
             "scope": 5,
             "restricted": false
         },
@@ -26281,6 +26761,26 @@
             "default": false,
             "markdownDescription": "Controls whether remembered suggestion selections are shared between multiple workspaces and windows (needs `#editor.suggestSelection#`).",
             "defaultDefaultValue": false,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.suggest.selectionMode": {
+            "type": "string",
+            "enum": [
+                "always",
+                "never",
+                "whenTriggerCharacter",
+                "whenQuickSuggestion"
+            ],
+            "enumDescriptions": [
+                "Always select a suggestion when automatically triggering IntelliSense.",
+                "Never select a suggestion when automatically triggering IntelliSense.",
+                "Select a suggestion only when triggering IntelliSense from a trigger character.",
+                "Select a suggestion only when triggering IntelliSense as you type."
+            ],
+            "default": "always",
+            "markdownDescription": "Controls whether a suggestion is selected when the widget shows. Note that this only applies to automatically triggered suggestions (`#editor.quickSuggestions#` and `#editor.suggestOnTriggerCharacters#`) and that a suggestion is always selected when explicitly invoked, e.g via `Ctrl+Space`.",
+            "defaultDefaultValue": "always",
             "scope": 5,
             "restricted": false
         },
@@ -26910,19 +27410,19 @@
             "defaultDefaultValue": false,
             "restricted": false
         },
-        "editor.rename.enablePreview": {
-            "scope": 5,
-            "description": "Enable/disable the ability to preview changes before renaming",
-            "default": true,
-            "type": "boolean",
-            "defaultDefaultValue": true,
-            "restricted": false
-        },
         "editor.codeActionWidget.showHeaders": {
             "type": "boolean",
             "scope": 5,
             "description": "Enable/disable showing group headers in the Code Action menu.",
             "default": true,
+            "defaultDefaultValue": true,
+            "restricted": false
+        },
+        "editor.rename.enablePreview": {
+            "scope": 5,
+            "description": "Enable/disable the ability to preview changes before renaming",
+            "default": true,
+            "type": "boolean",
             "defaultDefaultValue": true,
             "restricted": false
         },
@@ -27506,7 +28006,7 @@
         },
         "files.exclude": {
             "type": "object",
-            "markdownDescription": "Configure [glob patterns](https://code.visualstudio.com/docs/editor/codebasics#_advanced-search-options) for excluding files and folders. For example, the File Explorer decides which files and folders to show or hide based on this setting. Refer to the `#search.exclude#` setting to define search-specific excludes. Refer to the `#explorer.excludeGitIgnore#` setting for ignorings files based on your `.gitignore`.",
+            "markdownDescription": "Configure [glob patterns](https://code.visualstudio.com/docs/editor/codebasics#_advanced-search-options) for excluding files and folders. For example, the File Explorer decides which files and folders to show or hide based on this setting. Refer to the `#search.exclude#` setting to define search-specific excludes. Refer to the `#explorer.excludeGitIgnore#` setting for ignoring files based on your `.gitignore`.",
             "default": {
                 "**/.git": true,
                 "**/.svn": true,
@@ -27766,7 +28266,7 @@
                 "**/node_modules/*/**": true,
                 "**/.hg/store/**": true
             },
-            "markdownDescription": "Configure paths or glob patterns to exclude from file watching. Paths or basic glob patterns that are relative (for example `build/output` or `*.js`) will be resolved to an absolute path using the currently opened workspace. Complex glob patterns must match on absolute paths (i.e. prefix with `**/` or the full path and suffix with `/**` to match files within a path) to match properly (for example `**/build/output/**` or `/Users/name/workspaces/project/build/output/**`). When you experience the file watcher process consuming a lot of CPU, make sure to exclude large folders that are of less interest (such as build output folders).",
+            "markdownDescription": "Configure paths or glob patterns to exclude from file watching. Paths can either be relative to the watched folder or absolute. Glob patterns are matched relative from the watched folder. When you experience the file watcher process consuming a lot of CPU, make sure to exclude large folders that are of less interest (such as build output folders).",
             "scope": 4,
             "defaultDefaultValue": {
                 "**/.git/objects/**": true,
@@ -28399,7 +28899,7 @@
         },
         "search.useGlobalIgnoreFiles": {
             "type": "boolean",
-            "markdownDescription": "Controls whether to use global `.gitignore` and `.ignore` files when searching for files. Requires `#search.useIgnoreFiles#` to be enabled.",
+            "markdownDescription": "Controls whether to use your global gitignore file (e.g., from `$HOME/.config/git/ignore`) when searching for files. Requires `#search.useIgnoreFiles#` to be enabled.",
             "default": false,
             "scope": 4,
             "defaultDefaultValue": false,
@@ -28427,7 +28927,7 @@
                 "Start without an editor.",
                 "Open the Welcome page, with content to aid in getting started with VS Code and extensions.",
                 "Open the README when opening a folder that contains one, fallback to 'welcomePage' otherwise. Note: This is only observed as a global configuration, it will be ignored if set in a workspace or folder configuration.",
-                "Open a new untitled file (only applies when opening an empty window).",
+                "Open a new untitled text file (only applies when opening an empty window).",
                 "Open the Welcome page when opening an empty workbench."
             ],
             "default": "welcomePage",
@@ -28713,6 +29213,7 @@
                 "italic",
                 "jersey",
                 "json",
+                "bracket",
                 "kebab-vertical",
                 "key",
                 "law",
@@ -28935,7 +29436,6 @@
                 "graph-line",
                 "graph-scatter",
                 "pie-chart",
-                "bracket",
                 "bracket-dot",
                 "bracket-error",
                 "lock-small",
@@ -29250,6 +29750,7 @@
                 "$(italic)",
                 "$(jersey)",
                 "$(json)",
+                "$(bracket)",
                 "$(kebab-vertical)",
                 "$(key)",
                 "$(law)",
@@ -29472,7 +29973,6 @@
                 "$(graph-line)",
                 "$(graph-scatter)",
                 "$(pie-chart)",
-                "$(bracket)",
                 "$(bracket-dot)",
                 "$(bracket-error)",
                 "$(lock-small)",
@@ -31279,7 +31779,7 @@
             "type": "boolean",
             "scope": 4,
             "default": false,
-            "description": "Follow push all tags when running the sync command.",
+            "description": "Push all annotated tags when running the sync command.",
             "source": {
                 "id": "vscode.git",
                 "displayName": "Git"
@@ -31709,6 +32209,28 @@
                 "displayName": "Git"
             },
             "defaultDefaultValue": true,
+            "restricted": false
+        },
+        "git.openRepositoryInParentFolders": {
+            "type": "string",
+            "enum": [
+                "always",
+                "never",
+                "prompt"
+            ],
+            "enumDescriptions": [
+                "Always open a repository in parent folders of workspaces or open files.",
+                "Never open a repository in parent folders of workspaces or open files.",
+                "Prompt before opening a repository the parent folders of workspaces or open files."
+            ],
+            "default": "prompt",
+            "markdownDescription": "Control whether a repository in parent folders of workspaces or open files should be opened.",
+            "scope": 4,
+            "source": {
+                "id": "vscode.git",
+                "displayName": "Git"
+            },
+            "defaultDefaultValue": "prompt",
             "restricted": false
         },
         "github.gitAuthentication": {
@@ -32213,7 +32735,7 @@
         "markdown.preview.doubleClickToSwitchToEditor": {
             "type": "boolean",
             "default": true,
-            "description": "Double click in the Markdown preview to switch to the editor.",
+            "description": "Double-click in the Markdown preview to switch to the editor.",
             "scope": 4,
             "source": {
                 "id": "vscode.markdown-language-features",
@@ -32828,18 +33350,6 @@
             "type": "boolean",
             "default": true,
             "description": "Enable/disable auto-import-style completions on partially-typed import statements.",
-            "scope": 4,
-            "source": {
-                "id": "vscode.typescript-language-features",
-                "displayName": "TypeScript and JavaScript Language Features"
-            },
-            "defaultDefaultValue": true,
-            "restricted": false
-        },
-        "typescript.suggest.includeCompletionsWithSnippetText": {
-            "type": "boolean",
-            "default": true,
-            "description": "Enable/disable snippet completions from TS Server.",
             "scope": 4,
             "source": {
                 "id": "vscode.typescript-language-features",
@@ -33784,6 +34294,15 @@
                 "displayName": "TypeScript and JavaScript Language Features"
             },
             "defaultDefaultValue": true,
+            "restricted": false
+        },
+        "workbench.editorLargeFileConfirmation": {
+            "type": "number",
+            "default": 1024,
+            "minimum": 1,
+            "scope": 4,
+            "markdownDescription": "Controls the minimum size of a file in MB before asking for confirmation when opening in the editor. Note that this setting may not apply to all editor types and environments.",
+            "defaultDefaultValue": 1024,
             "restricted": false
         }
     },

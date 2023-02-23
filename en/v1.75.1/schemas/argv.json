@@ -1,0 +1,41 @@
+{
+    "id": "vscode://schemas/argv",
+    "allowComments": true,
+    "allowTrailingCommas": true,
+    "description": "VSCode static command line definition file",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "locale": {
+            "type": "string",
+            "description": "The display Language to use. Picking a different language requires the associated language pack to be installed."
+        },
+        "disable-hardware-acceleration": {
+            "type": "boolean",
+            "description": "Disables hardware acceleration. ONLY change this option if you encounter graphic issues."
+        },
+        "force-color-profile": {
+            "type": "string",
+            "markdownDescription": "Allows to override the color profile to use. If you experience colors appear badly, try to set this to `srgb` and restart."
+        },
+        "enable-crash-reporter": {
+            "type": "boolean",
+            "markdownDescription": "Allows to disable crash reporting, should restart the app if the value is changed."
+        },
+        "crash-reporter-id": {
+            "type": "string",
+            "markdownDescription": "Unique id used for correlating crash reports sent from this app instance."
+        },
+        "enable-proposed-api": {
+            "type": "array",
+            "description": "Enable proposed APIs for a list of extension ids (such as `vscode.git`). Proposed APIs are unstable and subject to breaking without warning at any time. This should only be set for extension development and testing purposes.",
+            "items": {
+                "type": "string"
+            }
+        },
+        "log-level": {
+            "type": "string",
+            "description": "Log level to use. Default is 'info'. Allowed values are 'error', 'warn', 'info', 'debug', 'trace', 'off'."
+        }
+    }
+}

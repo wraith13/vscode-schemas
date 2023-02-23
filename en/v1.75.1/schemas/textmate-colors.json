@@ -15,26 +15,26 @@
         },
         "settings": {
             "type": "object",
-            "description": "トークンの色とスタイル。",
+            "description": "Colors and styles for the token.",
             "properties": {
                 "foreground": {
                     "type": "string",
-                    "description": "トークンの前景色。",
+                    "description": "Foreground color for the token.",
                     "format": "color-hex",
                     "default": "#ff0000"
                 },
                 "background": {
                     "type": "string",
-                    "deprecationMessage": "トークンの背景色は、現在サポートされていません。"
+                    "deprecationMessage": "Token background colors are currently not supported."
                 },
                 "fontStyle": {
                     "type": "string",
-                    "description": "ルールのフォント スタイル: '斜体'、'太字'、'下線'、'取り消し線' のいずれかまたはこれらの組み合わせです。空の文字列は継承された設定を解除します。",
+                    "description": "Font style of the rule: 'italic', 'bold', 'underline', 'strikethrough' or a combination. The empty string unsets inherited settings.",
                     "pattern": "^(\\s*\\b(italic|bold|underline|strikethrough))*\\s*$",
-                    "patternErrorMessage": "フォント スタイルは '斜体'、'太字'、'下線'、'取り消し線'、もしくはこれらの組み合わせ、または空の文字列である必要があります。",
+                    "patternErrorMessage": "Font style must be 'italic', 'bold', 'underline', 'strikethrough' or a combination or the empty string.",
                     "defaultSnippets": [
                         {
-                            "label": "なし (継承したスタイルを解除)",
+                            "label": "None (clear inherited style)",
                             "bodyText": "\"\""
                         },
                         {
@@ -111,10 +111,10 @@
         "properties": {
             "name": {
                 "type": "string",
-                "description": "ルールの説明。"
+                "description": "Description of the rule."
             },
             "scope": {
-                "description": "このルールに一致するスコープ セレクター。",
+                "description": "Scope selector against which this rule matches.",
                 "anyOf": [
                     {
                         "enum": [
