@@ -785,7 +785,7 @@
         "workbench.list.fastScrollSensitivity": {
             "type": "number",
             "default": 5,
-            "description": "Scrolling speed multiplier when pressing `Alt`.",
+            "markdownDescription": "Scrolling speed multiplier when pressing `Alt`.",
             "defaultDefaultValue": 5,
             "scope": 3,
             "restricted": false
@@ -1319,6 +1319,14 @@
             "scope": 3,
             "restricted": false
         },
+        "workbench.editor.centeredLayoutFixedWidth": {
+            "type": "boolean",
+            "default": false,
+            "description": "Controls whether the centered layout tries to maintain constant width when the window is resized.",
+            "defaultDefaultValue": false,
+            "scope": 3,
+            "restricted": false
+        },
         "workbench.editor.limit.enabled": {
             "type": "boolean",
             "default": false,
@@ -1738,6 +1746,17 @@
             "scope": 3,
             "restricted": false
         },
+        "audioCues.debouncePositionChanges": {
+            "description": "Whether or not position changes should be debounced",
+            "type": "boolean",
+            "default": false,
+            "tags": [
+                "accessibility"
+            ],
+            "defaultDefaultValue": false,
+            "scope": 3,
+            "restricted": false
+        },
         "audioCues.lineHasBreakpoint": {
             "description": "Plays a sound when the active line has a breakpoint.",
             "type": "string",
@@ -1908,6 +1927,27 @@
         },
         "audioCues.taskFailed": {
             "description": "Plays a sound when a task fails (non-zero exit code).",
+            "type": "string",
+            "enum": [
+                "auto",
+                "on",
+                "off"
+            ],
+            "default": "auto",
+            "enumDescriptions": [
+                "Enable audio cue when a screen reader is attached.",
+                "Enable audio cue.",
+                "Disable audio cue."
+            ],
+            "tags": [
+                "accessibility"
+            ],
+            "defaultDefaultValue": "auto",
+            "scope": 3,
+            "restricted": false
+        },
+        "audioCues.terminalCommandFailed": {
+            "description": "Plays a sound when a terminal command fails (non-zero exit code).",
             "type": "string",
             "enum": [
                 "auto",
@@ -6979,6 +7019,14 @@
                             "defaultDefaultValue": false,
                             "scope": 5,
                             "restricted": false
+                        },
+                        "editor.tabFocusMode": {
+                            "markdownDescription": "Controls whether the editor receives tabs or defers them to the workbench for navigation.",
+                            "type": "boolean",
+                            "default": false,
+                            "defaultDefaultValue": false,
+                            "scope": 5,
+                            "restricted": false
                         }
                     }
                 }
@@ -7004,13 +7052,13 @@
             "restricted": false
         },
         "notebook.outputLineHeight": {
-            "markdownDescription": "Line height of the output text for notebook cells.\n - Values between 0 and 8 will be used as a multiplier with the font size.\n - Values greater than or equal to 8 will be used as effective values.",
+            "markdownDescription": "Line height of the output text for notebook cells.\n - When set to 0, editor line height is used.\n - Values between 0 and 8 will be used as a multiplier with the font size.\n - Values greater than or equal to 8 will be used as effective values.",
             "type": "number",
-            "default": 19,
+            "default": 0,
             "tags": [
                 "notebookLayout"
             ],
-            "defaultDefaultValue": 19,
+            "defaultDefaultValue": 0,
             "scope": 3,
             "restricted": false
         },
@@ -7049,8 +7097,8 @@
             "tags": [
                 "notebookLayout"
             ],
-            "default": "all",
-            "defaultDefaultValue": "all",
+            "default": "mru",
+            "defaultDefaultValue": "mru",
             "scope": 3,
             "restricted": false
         },
@@ -7065,8 +7113,8 @@
             "scope": 3,
             "restricted": false
         },
-        "notebook.logging": {
-            "markdownDescription": "Enable logging for notebook support.",
+        "notebook.output.wordWrap": {
+            "markdownDescription": "Controls whether the lines in output should wrap.",
             "type": "boolean",
             "tags": [
                 "notebookLayout"
@@ -7368,7 +7416,7 @@
                 "usesOnlineServices"
             ],
             "default": "off",
-            "markdownDescription": "Controls whether to automatically store available working changes in the cloud for the current workspace.",
+            "markdownDescription": "Controls whether to automatically store available working changes in the cloud for the current workspace. This setting has no effect in the web.",
             "defaultDefaultValue": "off",
             "scope": 3,
             "restricted": false
@@ -8178,6 +8226,14 @@
             "scope": 3,
             "restricted": false
         },
+        "search.experimental.notebookSearch": {
+            "type": "boolean",
+            "description": "Controls whether to use the experimental notebook search in the global search. Please refresh your search for changes to this setting to take effect.",
+            "default": false,
+            "defaultDefaultValue": false,
+            "scope": 3,
+            "restricted": false
+        },
         "testing.autoRun.delay": {
             "type": "integer",
             "minimum": 0,
@@ -8424,11 +8480,11 @@
             "scope": 3,
             "restricted": false
         },
-        "extensions.experimental.useUtilityProcess": {
+        "extensions.experimental.deferredStartupFinishedActivation": {
             "type": "boolean",
-            "description": "When enabled, the extension host will be launched using the new UtilityProcess Electron API.",
-            "default": true,
-            "defaultDefaultValue": true,
+            "description": "When enabled, extensions which declare the `onStartupFinished` activation event will be activated after a timeout.",
+            "default": false,
+            "defaultDefaultValue": false,
             "scope": 3,
             "restricted": false
         },
@@ -20299,6 +20355,14 @@
             "scope": 3,
             "restricted": false
         },
+        "terminal.integrated.tabFocusMode": {
+            "markdownDescription": "Controls whether the terminal receives tabs or defers them to the workbench for navigation.",
+            "type": "boolean",
+            "default": false,
+            "defaultDefaultValue": false,
+            "scope": 3,
+            "restricted": false
+        },
         "terminal.integrated.defaultLocation": {
             "type": "string",
             "enum": [
@@ -20691,7 +20755,7 @@
             "restricted": false
         },
         "terminal.integrated.commandsToSkipShell": {
-            "markdownDescription": "A set of command IDs whose keybindings will not be sent to the shell but instead always be handled by VS Code. This allows keybindings that would normally be consumed by the shell to act instead the same as when the terminal is not focused, for example `Ctrl+P` to launch Quick Open.\n\n&nbsp;\n\nMany commands are skipped by default. To override a default and pass that command's keybinding to the shell instead, add the command prefixed with the `-` character. For example add `-workbench.action.quickOpen` to allow `Ctrl+P` to reach the shell.\n\n&nbsp;\n\nThe following list of default skipped commands is truncated when viewed in Settings Editor. To see the full list, [open the default settings JSON](command:workbench.action.openRawDefaultSettings 'Open Default Settings (JSON)') and search for the first command from the list below.\n\n&nbsp;\n\nDefault Skipped Commands:\n\n- editor.action.toggleTabFocusMode\n- notifications.hideList\n- notifications.hideToasts\n- workbench.action.closeQuickOpen\n- workbench.action.debug.continue\n- workbench.action.debug.pause\n- workbench.action.debug.restart\n- workbench.action.debug.run\n- workbench.action.debug.start\n- workbench.action.debug.stepInto\n- workbench.action.debug.stepOut\n- workbench.action.debug.stepOver\n- workbench.action.debug.stop\n- workbench.action.firstEditorInGroup\n- workbench.action.focusActiveEditorGroup\n- workbench.action.focusEighthEditorGroup\n- workbench.action.focusFifthEditorGroup\n- workbench.action.focusFirstEditorGroup\n- workbench.action.focusFourthEditorGroup\n- workbench.action.focusLastEditorGroup\n- workbench.action.focusNextPart\n- workbench.action.focusPreviousPart\n- workbench.action.focusSecondEditorGroup\n- workbench.action.focusSeventhEditorGroup\n- workbench.action.focusSixthEditorGroup\n- workbench.action.focusThirdEditorGroup\n- workbench.action.lastEditorInGroup\n- workbench.action.navigateDown\n- workbench.action.navigateLeft\n- workbench.action.navigateRight\n- workbench.action.navigateUp\n- workbench.action.nextEditor\n- workbench.action.nextEditorInGroup\n- workbench.action.nextPanelView\n- workbench.action.nextSideBarView\n- workbench.action.openNextRecentlyUsedEditor\n- workbench.action.openNextRecentlyUsedEditorInGroup\n- workbench.action.openPreviousRecentlyUsedEditor\n- workbench.action.openPreviousRecentlyUsedEditorInGroup\n- workbench.action.previousEditor\n- workbench.action.previousEditorInGroup\n- workbench.action.previousPanelView\n- workbench.action.previousSideBarView\n- workbench.action.quickOpen\n- workbench.action.quickOpenLeastRecentlyUsedEditor\n- workbench.action.quickOpenLeastRecentlyUsedEditorInGroup\n- workbench.action.quickOpenPreviousEditor\n- workbench.action.quickOpenPreviousRecentlyUsedEditor\n- workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup\n- workbench.action.quickOpenView\n- workbench.action.showCommands\n- workbench.action.tasks.build\n- workbench.action.tasks.reRunTask\n- workbench.action.tasks.restartTask\n- workbench.action.tasks.runTask\n- workbench.action.tasks.showLog\n- workbench.action.tasks.showTasks\n- workbench.action.tasks.terminate\n- workbench.action.tasks.test\n- workbench.action.terminal.acceptSelectedSuggestion\n- workbench.action.terminal.clear\n- workbench.action.terminal.clearSelection\n- workbench.action.terminal.copyAndClearSelection\n- workbench.action.terminal.copyLastCommandOutput\n- workbench.action.terminal.copySelection\n- workbench.action.terminal.copySelectionAsHtml\n- workbench.action.terminal.deleteToLineStart\n- workbench.action.terminal.deleteWordLeft\n- workbench.action.terminal.deleteWordRight\n- workbench.action.terminal.findNext\n- workbench.action.terminal.findPrevious\n- workbench.action.terminal.focus\n- workbench.action.terminal.focusAtIndex1\n- workbench.action.terminal.focusAtIndex2\n- workbench.action.terminal.focusAtIndex3\n- workbench.action.terminal.focusAtIndex4\n- workbench.action.terminal.focusAtIndex5\n- workbench.action.terminal.focusAtIndex6\n- workbench.action.terminal.focusAtIndex7\n- workbench.action.terminal.focusAtIndex8\n- workbench.action.terminal.focusAtIndex9\n- workbench.action.terminal.focusFind\n- workbench.action.terminal.focusNext\n- workbench.action.terminal.focusNextPane\n- workbench.action.terminal.focusPrevious\n- workbench.action.terminal.focusPreviousPane\n- workbench.action.terminal.goToRecentDirectory\n- workbench.action.terminal.hideFind\n- workbench.action.terminal.hideSuggestWidget\n- workbench.action.terminal.kill\n- workbench.action.terminal.killEditor\n- workbench.action.terminal.moveToEditor\n- workbench.action.terminal.moveToLineEnd\n- workbench.action.terminal.moveToLineStart\n- workbench.action.terminal.moveToTerminalPanel\n- workbench.action.terminal.navigationModeExit\n- workbench.action.terminal.navigationModeFocusNext\n- workbench.action.terminal.navigationModeFocusPrevious\n- workbench.action.terminal.new\n- workbench.action.terminal.newInActiveWorkspace\n- workbench.action.terminal.paste\n- workbench.action.terminal.pasteSelection\n- workbench.action.terminal.quickFix\n- workbench.action.terminal.resizePaneDown\n- workbench.action.terminal.resizePaneLeft\n- workbench.action.terminal.resizePaneRight\n- workbench.action.terminal.resizePaneUp\n- workbench.action.terminal.runActiveFile\n- workbench.action.terminal.runRecentCommand\n- workbench.action.terminal.runSelectedText\n- workbench.action.terminal.scrollDown\n- workbench.action.terminal.scrollDownPage\n- workbench.action.terminal.scrollToBottom\n- workbench.action.terminal.scrollToNextCommand\n- workbench.action.terminal.scrollToPreviousCommand\n- workbench.action.terminal.scrollToTop\n- workbench.action.terminal.scrollUp\n- workbench.action.terminal.scrollUpPage\n- workbench.action.terminal.selectAll\n- workbench.action.terminal.selectNextPageSuggestion\n- workbench.action.terminal.selectNextSuggestion\n- workbench.action.terminal.selectPrevPageSuggestion\n- workbench.action.terminal.selectPrevSuggestion\n- workbench.action.terminal.selectToNextCommand\n- workbench.action.terminal.selectToNextLine\n- workbench.action.terminal.selectToPreviousCommand\n- workbench.action.terminal.selectToPreviousLine\n- workbench.action.terminal.sendSequence\n- workbench.action.terminal.showAccessibilityHelp\n- workbench.action.terminal.sizeToContentWidth\n- workbench.action.terminal.split\n- workbench.action.terminal.splitInActiveWorkspace\n- workbench.action.terminal.toggleFindCaseSensitive\n- workbench.action.terminal.toggleFindRegex\n- workbench.action.terminal.toggleFindWholeWord\n- workbench.action.terminal.toggleTerminal\n- workbench.action.toggleFullScreen\n- workbench.action.toggleMaximizedPanel\n- workbench.action.togglePanel",
+            "markdownDescription": "A set of command IDs whose keybindings will not be sent to the shell but instead always be handled by VS Code. This allows keybindings that would normally be consumed by the shell to act instead the same as when the terminal is not focused, for example `Ctrl+P` to launch Quick Open.\n\n&nbsp;\n\nMany commands are skipped by default. To override a default and pass that command's keybinding to the shell instead, add the command prefixed with the `-` character. For example add `-workbench.action.quickOpen` to allow `Ctrl+P` to reach the shell.\n\n&nbsp;\n\nThe following list of default skipped commands is truncated when viewed in Settings Editor. To see the full list, [open the default settings JSON](command:workbench.action.openRawDefaultSettings 'Open Default Settings (JSON)') and search for the first command from the list below.\n\n&nbsp;\n\nDefault Skipped Commands:\n\n- editor.action.toggleTabFocusMode\n- notifications.hideList\n- notifications.hideToasts\n- workbench.action.closeQuickOpen\n- workbench.action.debug.continue\n- workbench.action.debug.pause\n- workbench.action.debug.restart\n- workbench.action.debug.run\n- workbench.action.debug.start\n- workbench.action.debug.stepInto\n- workbench.action.debug.stepOut\n- workbench.action.debug.stepOver\n- workbench.action.debug.stop\n- workbench.action.firstEditorInGroup\n- workbench.action.focusActiveEditorGroup\n- workbench.action.focusEighthEditorGroup\n- workbench.action.focusFifthEditorGroup\n- workbench.action.focusFirstEditorGroup\n- workbench.action.focusFourthEditorGroup\n- workbench.action.focusLastEditorGroup\n- workbench.action.focusNextPart\n- workbench.action.focusPreviousPart\n- workbench.action.focusSecondEditorGroup\n- workbench.action.focusSeventhEditorGroup\n- workbench.action.focusSixthEditorGroup\n- workbench.action.focusThirdEditorGroup\n- workbench.action.lastEditorInGroup\n- workbench.action.navigateDown\n- workbench.action.navigateLeft\n- workbench.action.navigateRight\n- workbench.action.navigateUp\n- workbench.action.nextEditor\n- workbench.action.nextEditorInGroup\n- workbench.action.nextPanelView\n- workbench.action.nextSideBarView\n- workbench.action.openNextRecentlyUsedEditor\n- workbench.action.openNextRecentlyUsedEditorInGroup\n- workbench.action.openPreviousRecentlyUsedEditor\n- workbench.action.openPreviousRecentlyUsedEditorInGroup\n- workbench.action.previousEditor\n- workbench.action.previousEditorInGroup\n- workbench.action.previousPanelView\n- workbench.action.previousSideBarView\n- workbench.action.quickOpen\n- workbench.action.quickOpenLeastRecentlyUsedEditor\n- workbench.action.quickOpenLeastRecentlyUsedEditorInGroup\n- workbench.action.quickOpenPreviousEditor\n- workbench.action.quickOpenPreviousRecentlyUsedEditor\n- workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup\n- workbench.action.quickOpenView\n- workbench.action.showCommands\n- workbench.action.tasks.build\n- workbench.action.tasks.reRunTask\n- workbench.action.tasks.restartTask\n- workbench.action.tasks.runTask\n- workbench.action.tasks.showLog\n- workbench.action.tasks.showTasks\n- workbench.action.tasks.terminate\n- workbench.action.tasks.test\n- workbench.action.terminal.acceptSelectedSuggestion\n- workbench.action.terminal.clear\n- workbench.action.terminal.clearSelection\n- workbench.action.terminal.copyAndClearSelection\n- workbench.action.terminal.copyLastCommandOutput\n- workbench.action.terminal.copySelection\n- workbench.action.terminal.copySelectionAsHtml\n- workbench.action.terminal.deleteToLineStart\n- workbench.action.terminal.deleteWordLeft\n- workbench.action.terminal.deleteWordRight\n- workbench.action.terminal.findNext\n- workbench.action.terminal.findPrevious\n- workbench.action.terminal.focus\n- workbench.action.terminal.focusAtIndex1\n- workbench.action.terminal.focusAtIndex2\n- workbench.action.terminal.focusAtIndex3\n- workbench.action.terminal.focusAtIndex4\n- workbench.action.terminal.focusAtIndex5\n- workbench.action.terminal.focusAtIndex6\n- workbench.action.terminal.focusAtIndex7\n- workbench.action.terminal.focusAtIndex8\n- workbench.action.terminal.focusAtIndex9\n- workbench.action.terminal.focusFind\n- workbench.action.terminal.focusNext\n- workbench.action.terminal.focusNextPane\n- workbench.action.terminal.focusPrevious\n- workbench.action.terminal.focusPreviousPane\n- workbench.action.terminal.goToRecentDirectory\n- workbench.action.terminal.hideFind\n- workbench.action.terminal.hideSuggestWidget\n- workbench.action.terminal.kill\n- workbench.action.terminal.killEditor\n- workbench.action.terminal.moveToEditor\n- workbench.action.terminal.moveToLineEnd\n- workbench.action.terminal.moveToLineStart\n- workbench.action.terminal.moveToTerminalPanel\n- workbench.action.terminal.new\n- workbench.action.terminal.newInActiveWorkspace\n- workbench.action.terminal.paste\n- workbench.action.terminal.pasteSelection\n- workbench.action.terminal.quickFix\n- workbench.action.terminal.resizePaneDown\n- workbench.action.terminal.resizePaneLeft\n- workbench.action.terminal.resizePaneRight\n- workbench.action.terminal.resizePaneUp\n- workbench.action.terminal.runActiveFile\n- workbench.action.terminal.runRecentCommand\n- workbench.action.terminal.runSelectedText\n- workbench.action.terminal.scrollDown\n- workbench.action.terminal.scrollDownPage\n- workbench.action.terminal.scrollToBottom\n- workbench.action.terminal.scrollToNextCommand\n- workbench.action.terminal.scrollToPreviousCommand\n- workbench.action.terminal.scrollToTop\n- workbench.action.terminal.scrollUp\n- workbench.action.terminal.scrollUpPage\n- workbench.action.terminal.selectAll\n- workbench.action.terminal.selectNextPageSuggestion\n- workbench.action.terminal.selectNextSuggestion\n- workbench.action.terminal.selectPrevPageSuggestion\n- workbench.action.terminal.selectPrevSuggestion\n- workbench.action.terminal.selectToNextCommand\n- workbench.action.terminal.selectToNextLine\n- workbench.action.terminal.selectToPreviousCommand\n- workbench.action.terminal.selectToPreviousLine\n- workbench.action.terminal.sendSequence\n- workbench.action.terminal.showAccessibilityHelp\n- workbench.action.terminal.sizeToContentWidth\n- workbench.action.terminal.split\n- workbench.action.terminal.splitInActiveWorkspace\n- workbench.action.terminal.toggleFindCaseSensitive\n- workbench.action.terminal.toggleFindRegex\n- workbench.action.terminal.toggleFindWholeWord\n- workbench.action.terminal.toggleTerminal\n- workbench.action.toggleFullScreen\n- workbench.action.toggleMaximizedPanel\n- workbench.action.togglePanel",
             "type": "array",
             "items": {
                 "type": "string"
@@ -20837,8 +20901,8 @@
             ],
             "enumDescriptions": [
                 "Always off.",
-                "Enable only when not in a remote workspace.",
-                "Always on."
+                "Always on.",
+                "Enable only when not in a remote workspace."
             ],
             "default": "on",
             "defaultDefaultValue": "on",
@@ -22113,6 +22177,28 @@
                 "displayName": "Markdown Language Features"
             },
             "default": {},
+            "restricted": false
+        },
+        "markdown.preferredMdPathExtensionStyle": {
+            "type": "string",
+            "default": "auto",
+            "markdownDescription": "Controls if file extensions (e.g. `.md`) are added or not for links to Markdown files. This setting is used when file paths are added by tooling such as path completions or file renames.",
+            "enum": [
+                "auto",
+                "includeExtension",
+                "removeExtension"
+            ],
+            "markdownEnumDescriptions": [
+                "For existing paths, try to maintain the file extension style. For new paths, add file extensions.",
+                "Prefer including the file extension. For example, path completions to a file named `file.md` will insert `file.md`.",
+                "Prefer removing the file extension. For example, path completions to a file named `file.md` will insert `file` without the `.md`."
+            ],
+            "scope": 3,
+            "source": {
+                "id": "vscode.markdown-language-features",
+                "displayName": "Markdown Language Features"
+            },
+            "defaultDefaultValue": "auto",
             "restricted": false
         },
         "markdown.math.enabled": {
@@ -24902,6 +24988,17 @@
             "scope": 5,
             "restricted": false
         },
+        "editor.experimental.asyncTokenization": {
+            "type": "boolean",
+            "default": false,
+            "description": "Controls whether the tokenization should happen asynchronously on a web worker.",
+            "tags": [
+                "experimental"
+            ],
+            "defaultDefaultValue": false,
+            "scope": 5,
+            "restricted": false
+        },
         "editor.language.brackets": {
             "type": [
                 "array",
@@ -27398,6 +27495,14 @@
             "type": "boolean",
             "default": false,
             "description": "Enables the padding around the inlay hints in the editor.",
+            "defaultDefaultValue": false,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.tabFocusMode": {
+            "markdownDescription": "Controls whether the editor receives tabs or defers them to the workbench for navigation.",
+            "type": "boolean",
+            "default": false,
             "defaultDefaultValue": false,
             "scope": 5,
             "restricted": false
@@ -32794,6 +32899,28 @@
                 "displayName": "Markdown Language Features"
             },
             "defaultDefaultValue": true,
+            "restricted": false
+        },
+        "markdown.suggest.paths.includeWorkspaceHeaderCompletions": {
+            "type": "string",
+            "default": "onDoubleHash",
+            "scope": 4,
+            "markdownDescription": "Enable suggestions for headers in other Markdown files in the current workspace. Accepting one of these suggestions inserts the full path to header in that file, for example `[link text](/path/to/file.md#header)`.",
+            "enum": [
+                "never",
+                "onDoubleHash",
+                "onSingleOrDoubleHash"
+            ],
+            "markdownEnumDescriptions": [
+                "Disable workspace header suggestions.",
+                "Enable workspace header suggestions after typing `##` in a path, for example `[link text](##`.",
+                "Enable workspace header suggestions after typing either `##` or `#` in a path, for example `[link text](#` or `[link text](##`."
+            ],
+            "source": {
+                "id": "vscode.markdown-language-features",
+                "displayName": "Markdown Language Features"
+            },
+            "defaultDefaultValue": "onDoubleHash",
             "restricted": false
         },
         "markdown.editor.drop.enabled": {
