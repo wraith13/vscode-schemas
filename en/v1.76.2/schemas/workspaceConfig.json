@@ -1,0 +1,105 @@
+{
+    "allowComments": true,
+    "allowTrailingCommas": true,
+    "default": {
+        "folders": [
+            {
+                "path": ""
+            }
+        ],
+        "settings": {}
+    },
+    "required": [
+        "folders"
+    ],
+    "properties": {
+        "folders": {
+            "minItems": 0,
+            "uniqueItems": true,
+            "description": "List of folders to be loaded in the workspace.",
+            "items": {
+                "type": "object",
+                "defaultSnippets": [
+                    {
+                        "body": {
+                            "path": "$1"
+                        }
+                    }
+                ],
+                "oneOf": [
+                    {
+                        "properties": {
+                            "path": {
+                                "type": "string",
+                                "description": "A file path. e.g. `/root/folderA` or `./folderA` for a relative path that will be resolved against the location of the workspace file."
+                            },
+                            "name": {
+                                "type": "string",
+                                "description": "An optional name for the folder. "
+                            }
+                        },
+                        "required": [
+                            "path"
+                        ]
+                    },
+                    {
+                        "properties": {
+                            "uri": {
+                                "type": "string",
+                                "description": "URI of the folder"
+                            },
+                            "name": {
+                                "type": "string",
+                                "description": "An optional name for the folder. "
+                            }
+                        },
+                        "required": [
+                            "uri"
+                        ]
+                    }
+                ]
+            }
+        },
+        "settings": {
+            "type": "object",
+            "default": {},
+            "description": "Workspace settings",
+            "$ref": "vscode://schemas/settings/workspace"
+        },
+        "launch": {
+            "type": "object",
+            "default": {
+                "configurations": [],
+                "compounds": []
+            },
+            "description": "Workspace launch configurations",
+            "$ref": "vscode://schemas/launch"
+        },
+        "tasks": {
+            "type": "object",
+            "default": {
+                "version": "2.0.0",
+                "tasks": []
+            },
+            "description": "Workspace task configurations",
+            "$ref": "vscode://schemas/tasks"
+        },
+        "extensions": {
+            "type": "object",
+            "default": {},
+            "description": "Workspace extensions",
+            "$ref": "vscode://schemas/extensions"
+        },
+        "remoteAuthority": {
+            "type": "string",
+            "doNotSuggest": true,
+            "description": "The remote server where the workspace is located."
+        },
+        "transient": {
+            "type": "boolean",
+            "doNotSuggest": true,
+            "description": "A transient workspace will disappear when restarting or reloading."
+        }
+    },
+    "errorMessage": "Unknown workspace configuration property"
+}
