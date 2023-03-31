@@ -4284,6 +4284,14 @@
             "scope": 3,
             "restricted": false
         },
+        "screencastMode.hideSingleEditorCursorMoves": {
+            "type": "boolean",
+            "description": "スクリーンキャスト モードの単一エディター カーソル移動コマンドを非表示にします。",
+            "default": false,
+            "defaultDefaultValue": false,
+            "scope": 3,
+            "restricted": false
+        },
         "screencastMode.keyboardOverlayTimeout": {
             "type": "number",
             "default": 800,
@@ -4611,7 +4619,7 @@
             "restricted": false
         },
         "notebook.output.textLineLimit": {
-            "description": "テキスト出力のテキスト行数を制御します。",
+            "markdownDescription": "テキスト出力に表示されるテキストの行数を制御します。`#notebook.output.scrolling#` が有効な場合、この設定は出力のスクロールの高さを決定するために使用されます。",
             "type": "number",
             "default": 30,
             "tags": [
@@ -4715,6 +4723,17 @@
                             ],
                             "default": "languageDefined",
                             "defaultDefaultValue": "languageDefined",
+                            "scope": 5,
+                            "restricted": false
+                        },
+                        "editor.screenReaderAnnounceInlineSuggestion": {
+                            "description": "スクリーン リーダーでインライン候補が通知されるかどうかを制御します。VoiceOver を使用した macOS では動作しないことに注意してください。",
+                            "tags": [
+                                "accessibility"
+                            ],
+                            "type": "boolean",
+                            "default": false,
+                            "defaultDefaultValue": false,
                             "scope": 5,
                             "restricted": false
                         },
@@ -5631,6 +5650,14 @@
                             "scope": 5,
                             "restricted": false
                         },
+                        "editor.inlineSuggest.suppressSuggestions": {
+                            "type": "boolean",
+                            "default": true,
+                            "description": "インライン提案と提案ウィジェットの相互作用の方法を制御します。有効すると、インライン候補が使用可能な場合は、提案ウィジェットが自動的に表示されません。",
+                            "defaultDefaultValue": true,
+                            "scope": 5,
+                            "restricted": false
+                        },
                         "editor.letterSpacing": {
                             "description": "文字間隔 (ピクセル単位) を制御します。",
                             "type": "number",
@@ -6331,6 +6358,19 @@
                             "maximum": 10,
                             "description": "表示する追従行の最大数を定義します。",
                             "defaultDefaultValue": 5,
+                            "scope": 5,
+                            "restricted": false
+                        },
+                        "editor.stickyScroll.defaultModel": {
+                            "type": "string",
+                            "enum": [
+                                "outlineModel",
+                                "foldingProviderModel",
+                                "indentationModel"
+                            ],
+                            "default": "outlineModel",
+                            "description": "固定する行を決定するために使用するモデルを定義します。アウトライン モデルが存在しない場合、インデント モデルにフォールバックする折りたたみプロバイダー モデルにフォールバックします。この順序は、3 つのケースすべてで優先されます。",
+                            "defaultDefaultValue": "outlineModel",
                             "scope": 5,
                             "restricted": false
                         },
@@ -7051,8 +7091,8 @@
             "scope": 3,
             "restricted": false
         },
-        "notebook.outputLineHeight": {
-            "markdownDescription": "ノートブック セルの出力テキストの行の高さ。\r\n - 0 に設定すると、エディターの行の高さが使用されます。\r\n - 0 から 8 の値は、フォント サイズの乗数として使用されます。\r\n - 8 以上の値が有効な値として使用されます。",
+        "notebook.output.lineHeight": {
+            "markdownDescription": "ノートブック セル内の出力テキストの行の高さ。\r\n - 0 に設定すると、エディターの行の高さが使用されます。\r\n - 0 から 8 の値は、フォント サイズの乗数として使用されます。\r\n - 8 以上の値が有効な値として使用されます。",
             "type": "number",
             "default": 0,
             "tags": [
@@ -7062,8 +7102,8 @@
             "scope": 3,
             "restricted": false
         },
-        "notebook.outputFontSize": {
-            "markdownDescription": "ノートブック セルの出力テキストのフォント サイズ。`#editor.fontSize#` に設定すると、`#editor.fontSize#` が使用されます。",
+        "notebook.output.fontSize": {
+            "markdownDescription": "ノートブック セル内の出力テキストのフォント サイズ。0 に設定すると、`#editor.fontSize#` が使用されます。",
             "type": "number",
             "default": 0,
             "tags": [
@@ -7073,8 +7113,8 @@
             "scope": 3,
             "restricted": false
         },
-        "notebook.outputFontFamily": {
-            "markdownDescription": "ノートブック セルの出力テキストのフォント ファミリ。空に設定すると、`#editor.fontFamily#` が使用されます。",
+        "notebook.output.fontFamily": {
+            "markdownDescription": "ノートブック セル内の出力テキストのフォント ファミリ。空に設定すると、`#editor.fontFamily#` が使用されます。",
             "type": "string",
             "tags": [
                 "notebookLayout"
@@ -7083,26 +7123,7 @@
             "scope": 3,
             "restricted": false
         },
-        "notebook.kernelPicker.type": {
-            "markdownDescription": "使用するカーネル ピッカーの種類を制御します。",
-            "type": "string",
-            "enum": [
-                "all",
-                "mru"
-            ],
-            "enumDescriptions": [
-                "すべてのカーネルを表示します。",
-                "実験: 最近使用したカーネルを表示します。"
-            ],
-            "tags": [
-                "notebookLayout"
-            ],
-            "default": "mru",
-            "defaultDefaultValue": "mru",
-            "scope": 3,
-            "restricted": false
-        },
-        "notebook.experimental.outputScrolling": {
+        "notebook.output.scrolling": {
             "markdownDescription": "制限を超える場合にノートブック出力にスクロール可能な領域を使用する",
             "type": "boolean",
             "tags": [
@@ -7115,6 +7136,17 @@
         },
         "notebook.output.wordWrap": {
             "markdownDescription": "出力内の行を折り返すかどうかを制御します。",
+            "type": "boolean",
+            "tags": [
+                "notebookLayout"
+            ],
+            "default": false,
+            "defaultDefaultValue": false,
+            "scope": 3,
+            "restricted": false
+        },
+        "notebook.formatOnSave.enabled": {
+            "markdownDescription": "ノートブックを保存するときにフォーマットします。フォーマッタが有効でなければなりません。ファイルの遅延保存やエディターを閉じることは許可されていません。",
             "type": "boolean",
             "tags": [
                 "notebookLayout"
@@ -7847,6 +7879,50 @@
             "scope": 3,
             "restricted": false
         },
+        "interactiveSession.editor.fontSize": {
+            "type": "number",
+            "description": "対話型セッション内のフォント サイズをピクセル単位で制御します。",
+            "default": 14,
+            "defaultDefaultValue": 14,
+            "scope": 3,
+            "restricted": false
+        },
+        "interactiveSession.editor.fontFamily": {
+            "type": "string",
+            "description": "対話型セッションでのフォント ファミリを制御します。",
+            "default": "default",
+            "defaultDefaultValue": "default",
+            "scope": 3,
+            "restricted": false
+        },
+        "interactiveSession.editor.fontWeight": {
+            "type": "string",
+            "description": "対話型セッションでのフォントの太さを制御します。",
+            "default": "default",
+            "defaultDefaultValue": "default",
+            "scope": 3,
+            "restricted": false
+        },
+        "interactiveSession.editor.wordWrap": {
+            "type": "string",
+            "description": "対話型セッションで行を折り返すかどうかを制御します。",
+            "default": "off",
+            "enum": [
+                "on",
+                "off"
+            ],
+            "defaultDefaultValue": "off",
+            "scope": 3,
+            "restricted": false
+        },
+        "interactiveSession.editor.lineHeight": {
+            "type": "number",
+            "description": "対話型セッション内での行の高さをピクセル単位で制御します。フォント サイズから行の高さを計算するには 0 を使用します。",
+            "default": 0,
+            "defaultDefaultValue": 0,
+            "scope": 3,
+            "restricted": false
+        },
         "problems.autoReveal": {
             "description": "ファイルを開くとき、問題ビューに自動的にそのファイルを表示するかどうかを制御します",
             "type": "boolean",
@@ -8228,7 +8304,7 @@
         },
         "search.experimental.notebookSearch": {
             "type": "boolean",
-            "description": "グローバル検索で試験的なノートブック検索を使用するかどうかを制御します。この設定に対する変更を有効にするには、検索を更新してください。",
+            "description": "グローバル検索で試験的なノートブック検索を使用するかどうかを制御します。この設定に対する変更を有効にするには、VS Code インスタンスを読み込んでください。",
             "default": false,
             "defaultDefaultValue": false,
             "scope": 3,
@@ -9086,6 +9162,9 @@
                                 "git-pull-request-new-changes",
                                 "search-fuzzy",
                                 "comment-draft",
+                                "send",
+                                "sparkle",
+                                "insert",
                                 "dialog-error",
                                 "dialog-warning",
                                 "dialog-info",
@@ -9623,6 +9702,9 @@
                                 "$(git-pull-request-new-changes)",
                                 "$(search-fuzzy)",
                                 "$(comment-draft)",
+                                "$(send)",
+                                "$(sparkle)",
+                                "$(insert)",
                                 "$(dialog-error)",
                                 "$(dialog-warning)",
                                 "$(dialog-info)",
@@ -10245,6 +10327,9 @@
                                 "git-pull-request-new-changes",
                                 "search-fuzzy",
                                 "comment-draft",
+                                "send",
+                                "sparkle",
+                                "insert",
                                 "dialog-error",
                                 "dialog-warning",
                                 "dialog-info",
@@ -10782,6 +10867,9 @@
                                 "$(git-pull-request-new-changes)",
                                 "$(search-fuzzy)",
                                 "$(comment-draft)",
+                                "$(send)",
+                                "$(sparkle)",
+                                "$(insert)",
                                 "$(dialog-error)",
                                 "$(dialog-warning)",
                                 "$(dialog-info)",
@@ -11404,6 +11492,9 @@
                                 "git-pull-request-new-changes",
                                 "search-fuzzy",
                                 "comment-draft",
+                                "send",
+                                "sparkle",
+                                "insert",
                                 "dialog-error",
                                 "dialog-warning",
                                 "dialog-info",
@@ -11941,6 +12032,9 @@
                                 "$(git-pull-request-new-changes)",
                                 "$(search-fuzzy)",
                                 "$(comment-draft)",
+                                "$(send)",
+                                "$(sparkle)",
+                                "$(insert)",
                                 "$(dialog-error)",
                                 "$(dialog-warning)",
                                 "$(dialog-info)",
@@ -12663,6 +12757,9 @@
                                     "git-pull-request-new-changes",
                                     "search-fuzzy",
                                     "comment-draft",
+                                    "send",
+                                    "sparkle",
+                                    "insert",
                                     "dialog-error",
                                     "dialog-warning",
                                     "dialog-info",
@@ -13200,6 +13297,9 @@
                                     "$(git-pull-request-new-changes)",
                                     "$(search-fuzzy)",
                                     "$(comment-draft)",
+                                    "$(send)",
+                                    "$(sparkle)",
+                                    "$(insert)",
                                     "$(dialog-error)",
                                     "$(dialog-warning)",
                                     "$(dialog-info)",
@@ -13803,6 +13903,9 @@
                                     "git-pull-request-new-changes",
                                     "search-fuzzy",
                                     "comment-draft",
+                                    "send",
+                                    "sparkle",
+                                    "insert",
                                     "dialog-error",
                                     "dialog-warning",
                                     "dialog-info",
@@ -14340,6 +14443,9 @@
                                     "$(git-pull-request-new-changes)",
                                     "$(search-fuzzy)",
                                     "$(comment-draft)",
+                                    "$(send)",
+                                    "$(sparkle)",
+                                    "$(insert)",
                                     "$(dialog-error)",
                                     "$(dialog-warning)",
                                     "$(dialog-info)",
@@ -14942,6 +15048,9 @@
                                     "git-pull-request-new-changes",
                                     "search-fuzzy",
                                     "comment-draft",
+                                    "send",
+                                    "sparkle",
+                                    "insert",
                                     "dialog-error",
                                     "dialog-warning",
                                     "dialog-info",
@@ -15479,6 +15588,9 @@
                                     "$(git-pull-request-new-changes)",
                                     "$(search-fuzzy)",
                                     "$(comment-draft)",
+                                    "$(send)",
+                                    "$(sparkle)",
+                                    "$(insert)",
                                     "$(dialog-error)",
                                     "$(dialog-warning)",
                                     "$(dialog-info)",
@@ -16138,6 +16250,9 @@
                                     "git-pull-request-new-changes",
                                     "search-fuzzy",
                                     "comment-draft",
+                                    "send",
+                                    "sparkle",
+                                    "insert",
                                     "dialog-error",
                                     "dialog-warning",
                                     "dialog-info",
@@ -16675,6 +16790,9 @@
                                     "$(git-pull-request-new-changes)",
                                     "$(search-fuzzy)",
                                     "$(comment-draft)",
+                                    "$(send)",
+                                    "$(sparkle)",
+                                    "$(insert)",
                                     "$(dialog-error)",
                                     "$(dialog-warning)",
                                     "$(dialog-info)",
@@ -17277,6 +17395,9 @@
                                     "git-pull-request-new-changes",
                                     "search-fuzzy",
                                     "comment-draft",
+                                    "send",
+                                    "sparkle",
+                                    "insert",
                                     "dialog-error",
                                     "dialog-warning",
                                     "dialog-info",
@@ -17814,6 +17935,9 @@
                                     "$(git-pull-request-new-changes)",
                                     "$(search-fuzzy)",
                                     "$(comment-draft)",
+                                    "$(send)",
+                                    "$(sparkle)",
+                                    "$(insert)",
                                     "$(dialog-error)",
                                     "$(dialog-warning)",
                                     "$(dialog-info)",
@@ -18476,6 +18600,9 @@
                                     "git-pull-request-new-changes",
                                     "search-fuzzy",
                                     "comment-draft",
+                                    "send",
+                                    "sparkle",
+                                    "insert",
                                     "dialog-error",
                                     "dialog-warning",
                                     "dialog-info",
@@ -19013,6 +19140,9 @@
                                     "$(git-pull-request-new-changes)",
                                     "$(search-fuzzy)",
                                     "$(comment-draft)",
+                                    "$(send)",
+                                    "$(sparkle)",
+                                    "$(insert)",
                                     "$(dialog-error)",
                                     "$(dialog-warning)",
                                     "$(dialog-info)",
@@ -19615,6 +19745,9 @@
                                     "git-pull-request-new-changes",
                                     "search-fuzzy",
                                     "comment-draft",
+                                    "send",
+                                    "sparkle",
+                                    "insert",
                                     "dialog-error",
                                     "dialog-warning",
                                     "dialog-info",
@@ -20152,6 +20285,9 @@
                                     "$(git-pull-request-new-changes)",
                                     "$(search-fuzzy)",
                                     "$(comment-draft)",
+                                    "$(send)",
+                                    "$(sparkle)",
+                                    "$(insert)",
                                     "$(dialog-error)",
                                     "$(dialog-warning)",
                                     "$(dialog-info)",
@@ -20356,10 +20492,13 @@
             "restricted": false
         },
         "terminal.integrated.tabFocusMode": {
-            "markdownDescription": "ターミナルがタブを受け取るか、ナビゲーションのためにワークベンチに延期するかを制御します。",
-            "type": "boolean",
-            "default": false,
-            "defaultDefaultValue": false,
+            "markdownDescription": "ターミナルがタブを受け取るか、ワークベンチンい委ねてナビゲーションするかを制御します。設定した場合、ターミナルにフォーカスがある場合は、これは `#editor.tabFocusMode#` をオーバーライドします。",
+            "type": [
+                "boolean",
+                "null"
+            ],
+            "default": null,
+            "defaultDefaultValue": null,
             "scope": 3,
             "restricted": false
         },
@@ -20755,7 +20894,7 @@
             "restricted": false
         },
         "terminal.integrated.commandsToSkipShell": {
-            "markdownDescription": "キー バインドがシェルに送信されず、代わりに常に VS Code で処理されるコマンド ID のセット。これにより、シェルによって通常使用されるキー バインドが、ターミナルがフォーカスされていない場合と同じ動作をするようにします。たとえば、'Ctrl+P' で Quick Open を起動します。\r\n\r\n&nbsp;\r\n\r\n既定では、多くのコマンドがスキップされます。既定値をオーバーライドし、代わりにそのコマンドのキー バインドをシェルに渡すには、先頭に '-' 文字が付いているコマンドを追加します。たとえば、'-workbench.action.quickOpen' を追加して、'Ctrl+P' でシェルにアクセスできるようにします。\r\n\r\n&nbsp;\r\n\r\n既定でスキップされる以下のコマンドの一覧は、設定エディターで表示したときには切り詰められます。完全な一覧を表示するには、下の一覧から最初のコマンドを [既定の設定の JSON を開く](command:workbench.action.openRawDefaultSettings '既定の設定 (JSON) を開く') して検索します。\r\n\r\n&nbsp;\r\n\r\n既定でスキップされるコマンド:\r\n\r\n- editor.action.toggleTabFocusMode\n- notifications.hideList\n- notifications.hideToasts\n- workbench.action.closeQuickOpen\n- workbench.action.debug.continue\n- workbench.action.debug.pause\n- workbench.action.debug.restart\n- workbench.action.debug.run\n- workbench.action.debug.start\n- workbench.action.debug.stepInto\n- workbench.action.debug.stepOut\n- workbench.action.debug.stepOver\n- workbench.action.debug.stop\n- workbench.action.firstEditorInGroup\n- workbench.action.focusActiveEditorGroup\n- workbench.action.focusEighthEditorGroup\n- workbench.action.focusFifthEditorGroup\n- workbench.action.focusFirstEditorGroup\n- workbench.action.focusFourthEditorGroup\n- workbench.action.focusLastEditorGroup\n- workbench.action.focusNextPart\n- workbench.action.focusPreviousPart\n- workbench.action.focusSecondEditorGroup\n- workbench.action.focusSeventhEditorGroup\n- workbench.action.focusSixthEditorGroup\n- workbench.action.focusThirdEditorGroup\n- workbench.action.lastEditorInGroup\n- workbench.action.navigateDown\n- workbench.action.navigateLeft\n- workbench.action.navigateRight\n- workbench.action.navigateUp\n- workbench.action.nextEditor\n- workbench.action.nextEditorInGroup\n- workbench.action.nextPanelView\n- workbench.action.nextSideBarView\n- workbench.action.openNextRecentlyUsedEditor\n- workbench.action.openNextRecentlyUsedEditorInGroup\n- workbench.action.openPreviousRecentlyUsedEditor\n- workbench.action.openPreviousRecentlyUsedEditorInGroup\n- workbench.action.previousEditor\n- workbench.action.previousEditorInGroup\n- workbench.action.previousPanelView\n- workbench.action.previousSideBarView\n- workbench.action.quickOpen\n- workbench.action.quickOpenLeastRecentlyUsedEditor\n- workbench.action.quickOpenLeastRecentlyUsedEditorInGroup\n- workbench.action.quickOpenPreviousEditor\n- workbench.action.quickOpenPreviousRecentlyUsedEditor\n- workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup\n- workbench.action.quickOpenView\n- workbench.action.showCommands\n- workbench.action.tasks.build\n- workbench.action.tasks.reRunTask\n- workbench.action.tasks.restartTask\n- workbench.action.tasks.runTask\n- workbench.action.tasks.showLog\n- workbench.action.tasks.showTasks\n- workbench.action.tasks.terminate\n- workbench.action.tasks.test\n- workbench.action.terminal.acceptSelectedSuggestion\n- workbench.action.terminal.clear\n- workbench.action.terminal.clearSelection\n- workbench.action.terminal.copyAndClearSelection\n- workbench.action.terminal.copyLastCommandOutput\n- workbench.action.terminal.copySelection\n- workbench.action.terminal.copySelectionAsHtml\n- workbench.action.terminal.deleteToLineStart\n- workbench.action.terminal.deleteWordLeft\n- workbench.action.terminal.deleteWordRight\n- workbench.action.terminal.findNext\n- workbench.action.terminal.findPrevious\n- workbench.action.terminal.focus\n- workbench.action.terminal.focusAtIndex1\n- workbench.action.terminal.focusAtIndex2\n- workbench.action.terminal.focusAtIndex3\n- workbench.action.terminal.focusAtIndex4\n- workbench.action.terminal.focusAtIndex5\n- workbench.action.terminal.focusAtIndex6\n- workbench.action.terminal.focusAtIndex7\n- workbench.action.terminal.focusAtIndex8\n- workbench.action.terminal.focusAtIndex9\n- workbench.action.terminal.focusFind\n- workbench.action.terminal.focusNext\n- workbench.action.terminal.focusNextPane\n- workbench.action.terminal.focusPrevious\n- workbench.action.terminal.focusPreviousPane\n- workbench.action.terminal.goToRecentDirectory\n- workbench.action.terminal.hideFind\n- workbench.action.terminal.hideSuggestWidget\n- workbench.action.terminal.kill\n- workbench.action.terminal.killEditor\n- workbench.action.terminal.moveToEditor\n- workbench.action.terminal.moveToLineEnd\n- workbench.action.terminal.moveToLineStart\n- workbench.action.terminal.moveToTerminalPanel\n- workbench.action.terminal.new\n- workbench.action.terminal.newInActiveWorkspace\n- workbench.action.terminal.paste\n- workbench.action.terminal.pasteSelection\n- workbench.action.terminal.quickFix\n- workbench.action.terminal.resizePaneDown\n- workbench.action.terminal.resizePaneLeft\n- workbench.action.terminal.resizePaneRight\n- workbench.action.terminal.resizePaneUp\n- workbench.action.terminal.runActiveFile\n- workbench.action.terminal.runRecentCommand\n- workbench.action.terminal.runSelectedText\n- workbench.action.terminal.scrollDown\n- workbench.action.terminal.scrollDownPage\n- workbench.action.terminal.scrollToBottom\n- workbench.action.terminal.scrollToNextCommand\n- workbench.action.terminal.scrollToPreviousCommand\n- workbench.action.terminal.scrollToTop\n- workbench.action.terminal.scrollUp\n- workbench.action.terminal.scrollUpPage\n- workbench.action.terminal.selectAll\n- workbench.action.terminal.selectNextPageSuggestion\n- workbench.action.terminal.selectNextSuggestion\n- workbench.action.terminal.selectPrevPageSuggestion\n- workbench.action.terminal.selectPrevSuggestion\n- workbench.action.terminal.selectToNextCommand\n- workbench.action.terminal.selectToNextLine\n- workbench.action.terminal.selectToPreviousCommand\n- workbench.action.terminal.selectToPreviousLine\n- workbench.action.terminal.sendSequence\n- workbench.action.terminal.showAccessibilityHelp\n- workbench.action.terminal.sizeToContentWidth\n- workbench.action.terminal.split\n- workbench.action.terminal.splitInActiveWorkspace\n- workbench.action.terminal.toggleFindCaseSensitive\n- workbench.action.terminal.toggleFindRegex\n- workbench.action.terminal.toggleFindWholeWord\n- workbench.action.terminal.toggleTerminal\n- workbench.action.toggleFullScreen\n- workbench.action.toggleMaximizedPanel\n- workbench.action.togglePanel",
+            "markdownDescription": "キー バインドがシェルに送信されず、代わりに常に VS Code で処理されるコマンド ID のセット。これにより、シェルによって通常使用されるキー バインドが、ターミナルがフォーカスされていない場合と同じ動作をするようにします。たとえば、'Ctrl+P' で Quick Open を起動します。\r\n\r\n&nbsp;\r\n\r\n既定では、多くのコマンドがスキップされます。既定値をオーバーライドし、代わりにそのコマンドのキー バインドをシェルに渡すには、先頭に '-' 文字が付いているコマンドを追加します。たとえば、'-workbench.action.quickOpen' を追加して、'Ctrl+P' でシェルにアクセスできるようにします。\r\n\r\n&nbsp;\r\n\r\n既定でスキップされる以下のコマンドの一覧は、設定エディターで表示したときには切り詰められます。完全な一覧を表示するには、下の一覧から最初のコマンドを [既定の設定の JSON を開く](command:workbench.action.openRawDefaultSettings '既定の設定 (JSON) を開く') して検索します。\r\n\r\n&nbsp;\r\n\r\n既定でスキップされるコマンド:\r\n\r\n- editor.action.toggleTabFocusMode\n- notification.acceptPrimaryAction\n- notifications.hideList\n- notifications.hideToasts\n- workbench.action.closeQuickOpen\n- workbench.action.debug.continue\n- workbench.action.debug.pause\n- workbench.action.debug.restart\n- workbench.action.debug.run\n- workbench.action.debug.start\n- workbench.action.debug.stepInto\n- workbench.action.debug.stepOut\n- workbench.action.debug.stepOver\n- workbench.action.debug.stop\n- workbench.action.firstEditorInGroup\n- workbench.action.focusActiveEditorGroup\n- workbench.action.focusEighthEditorGroup\n- workbench.action.focusFifthEditorGroup\n- workbench.action.focusFirstEditorGroup\n- workbench.action.focusFourthEditorGroup\n- workbench.action.focusLastEditorGroup\n- workbench.action.focusNextPart\n- workbench.action.focusPreviousPart\n- workbench.action.focusSecondEditorGroup\n- workbench.action.focusSeventhEditorGroup\n- workbench.action.focusSixthEditorGroup\n- workbench.action.focusThirdEditorGroup\n- workbench.action.lastEditorInGroup\n- workbench.action.navigateDown\n- workbench.action.navigateLeft\n- workbench.action.navigateRight\n- workbench.action.navigateUp\n- workbench.action.nextEditor\n- workbench.action.nextEditorInGroup\n- workbench.action.nextPanelView\n- workbench.action.nextSideBarView\n- workbench.action.openNextRecentlyUsedEditor\n- workbench.action.openNextRecentlyUsedEditorInGroup\n- workbench.action.openPreviousRecentlyUsedEditor\n- workbench.action.openPreviousRecentlyUsedEditorInGroup\n- workbench.action.previousEditor\n- workbench.action.previousEditorInGroup\n- workbench.action.previousPanelView\n- workbench.action.previousSideBarView\n- workbench.action.quickOpen\n- workbench.action.quickOpenLeastRecentlyUsedEditor\n- workbench.action.quickOpenLeastRecentlyUsedEditorInGroup\n- workbench.action.quickOpenPreviousEditor\n- workbench.action.quickOpenPreviousRecentlyUsedEditor\n- workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup\n- workbench.action.quickOpenView\n- workbench.action.showCommands\n- workbench.action.tasks.build\n- workbench.action.tasks.reRunTask\n- workbench.action.tasks.restartTask\n- workbench.action.tasks.runTask\n- workbench.action.tasks.showLog\n- workbench.action.tasks.showTasks\n- workbench.action.tasks.terminate\n- workbench.action.tasks.test\n- workbench.action.terminal.acceptSelectedSuggestion\n- workbench.action.terminal.clear\n- workbench.action.terminal.clearSelection\n- workbench.action.terminal.copyAndClearSelection\n- workbench.action.terminal.copyLastCommandOutput\n- workbench.action.terminal.copySelection\n- workbench.action.terminal.copySelectionAsHtml\n- workbench.action.terminal.deleteToLineStart\n- workbench.action.terminal.deleteWordLeft\n- workbench.action.terminal.deleteWordRight\n- workbench.action.terminal.findNext\n- workbench.action.terminal.findPrevious\n- workbench.action.terminal.focus\n- workbench.action.terminal.focusAtIndex1\n- workbench.action.terminal.focusAtIndex2\n- workbench.action.terminal.focusAtIndex3\n- workbench.action.terminal.focusAtIndex4\n- workbench.action.terminal.focusAtIndex5\n- workbench.action.terminal.focusAtIndex6\n- workbench.action.terminal.focusAtIndex7\n- workbench.action.terminal.focusAtIndex8\n- workbench.action.terminal.focusAtIndex9\n- workbench.action.terminal.focusFind\n- workbench.action.terminal.focusHover\n- workbench.action.terminal.focusNext\n- workbench.action.terminal.focusNextPane\n- workbench.action.terminal.focusPrevious\n- workbench.action.terminal.focusPreviousPane\n- workbench.action.terminal.goToRecentDirectory\n- workbench.action.terminal.hideFind\n- workbench.action.terminal.hideSuggestWidget\n- workbench.action.terminal.kill\n- workbench.action.terminal.killEditor\n- workbench.action.terminal.moveToEditor\n- workbench.action.terminal.moveToLineEnd\n- workbench.action.terminal.moveToLineStart\n- workbench.action.terminal.moveToTerminalPanel\n- workbench.action.terminal.new\n- workbench.action.terminal.newInActiveWorkspace\n- workbench.action.terminal.paste\n- workbench.action.terminal.pasteSelection\n- workbench.action.terminal.quickFix\n- workbench.action.terminal.resizePaneDown\n- workbench.action.terminal.resizePaneLeft\n- workbench.action.terminal.resizePaneRight\n- workbench.action.terminal.resizePaneUp\n- workbench.action.terminal.runActiveFile\n- workbench.action.terminal.runRecentCommand\n- workbench.action.terminal.runSelectedText\n- workbench.action.terminal.scrollDown\n- workbench.action.terminal.scrollDownPage\n- workbench.action.terminal.scrollToBottom\n- workbench.action.terminal.scrollToNextCommand\n- workbench.action.terminal.scrollToPreviousCommand\n- workbench.action.terminal.scrollToTop\n- workbench.action.terminal.scrollUp\n- workbench.action.terminal.scrollUpPage\n- workbench.action.terminal.selectAll\n- workbench.action.terminal.selectNextPageSuggestion\n- workbench.action.terminal.selectNextSuggestion\n- workbench.action.terminal.selectPrevPageSuggestion\n- workbench.action.terminal.selectPrevSuggestion\n- workbench.action.terminal.selectToNextCommand\n- workbench.action.terminal.selectToNextLine\n- workbench.action.terminal.selectToPreviousCommand\n- workbench.action.terminal.selectToPreviousLine\n- workbench.action.terminal.sendSequence\n- workbench.action.terminal.showAccessibilityHelp\n- workbench.action.terminal.sizeToContentWidth\n- workbench.action.terminal.split\n- workbench.action.terminal.splitInActiveWorkspace\n- workbench.action.terminal.toggleFindCaseSensitive\n- workbench.action.terminal.toggleFindRegex\n- workbench.action.terminal.toggleFindWholeWord\n- workbench.action.terminal.toggleTerminal\n- workbench.action.toggleFullScreen\n- workbench.action.toggleMaximizedPanel\n- workbench.action.togglePanel",
             "type": "array",
             "items": {
                 "type": "string"
@@ -20886,8 +21025,8 @@
         "terminal.integrated.wordSeparators": {
             "description": "ダブルクリックによる単語選択機能で単語区切り記号として扱われるすべての文字を含む文字列。",
             "type": "string",
-            "default": " ()[]{}',\"`─‘’",
-            "defaultDefaultValue": " ()[]{}',\"`─‘’",
+            "default": " ()[]{}',\"`─‘’|",
+            "defaultDefaultValue": " ()[]{}',\"`─‘’|",
             "scope": 3,
             "restricted": false
         },
@@ -21026,7 +21165,7 @@
             "restricted": false
         },
         "terminal.integrated.customGlyphs": {
-            "description": "フォントを使用する代わりに、ブロック要素およびボックス描画文字のカスタム グリフを描画するかどうか。通常は、連続した直線を使用した方が適切なレンダリングを行います。これは DOM レンダラーでは動作しないことにご注意ください。",
+            "description": "フォントを使用する代わりに、ブロック要素およびボックス描画文字のカスタム グリフを描画するかどうか。通常は、連続した直線を使用した方が適切なレンダリングを行います。これは `#terminal.integrated.gpuAcceleration#` が無効である場合は動作しないことにご注意ください。",
             "type": "boolean",
             "default": true,
             "defaultDefaultValue": true,
@@ -22109,6 +22248,23 @@
             "defaultDefaultValue": "off",
             "restricted": false
         },
+        "markdown.server.log": {
+            "type": "string",
+            "scope": 3,
+            "enum": [
+                "off",
+                "debug",
+                "trace"
+            ],
+            "default": "off",
+            "description": "Markdown 言語サーバーのログ レベルを制御します。",
+            "source": {
+                "id": "vscode.markdown-language-features",
+                "displayName": "Markdown 言語機能"
+            },
+            "defaultDefaultValue": "off",
+            "restricted": false
+        },
         "markdown.updateLinksOnFileMove.enabled": {
             "type": "string",
             "enum": [
@@ -22523,7 +22679,7 @@
                     "items": {
                         "type": "string"
                     },
-                    "markdownDescription": "A list of patterns at which to manually insert entrypoint breakpoints. This can be useful to give the debugger an opportunity to set breakpoints when using sourcemaps that don't exist or can't be detected before launch, such as [with the Serverless framework](https://github.com/microsoft/vscode-js-debug/issues/492).",
+                    "markdownDescription": "エントリポイント ブレークポイントを手動で挿入するパターンの一覧。これは、[Serverless Framework を使用する場合](https://github.com/microsoft/vscode-js-debug/issues/492) のように、存在しない、または起動前には検出できないソースマップを使用している場合に、デバッガーでブレークポイントを設定できるようにするために役立ちます。",
                     "default": []
                 },
                 "nodeVersionHint": {
@@ -23041,7 +23197,7 @@
                                             "items": {
                                                 "type": "string"
                                             },
-                                            "markdownDescription": "A list of patterns at which to manually insert entrypoint breakpoints. This can be useful to give the debugger an opportunity to set breakpoints when using sourcemaps that don't exist or can't be detected before launch, such as [with the Serverless framework](https://github.com/microsoft/vscode-js-debug/issues/492).",
+                                            "markdownDescription": "エントリポイント ブレークポイントを手動で挿入するパターンの一覧。これは、[Serverless Framework を使用する場合](https://github.com/microsoft/vscode-js-debug/issues/492) のように、存在しない、または起動前には検出できないソースマップを使用している場合に、デバッガーでブレークポイントを設定できるようにするために役立ちます。",
                                             "default": []
                                         },
                                         "nodeVersionHint": {
@@ -23400,7 +23556,7 @@
                                             "items": {
                                                 "type": "string"
                                             },
-                                            "markdownDescription": "A list of patterns at which to manually insert entrypoint breakpoints. This can be useful to give the debugger an opportunity to set breakpoints when using sourcemaps that don't exist or can't be detected before launch, such as [with the Serverless framework](https://github.com/microsoft/vscode-js-debug/issues/492).",
+                                            "markdownDescription": "エントリポイント ブレークポイントを手動で挿入するパターンの一覧。これは、[Serverless Framework を使用する場合](https://github.com/microsoft/vscode-js-debug/issues/492) のように、存在しない、または起動前には検出できないソースマップを使用している場合に、デバッガーでブレークポイントを設定できるようにするために役立ちます。",
                                             "default": []
                                         },
                                         "nodeVersionHint": {
@@ -23775,7 +23931,7 @@
                     "items": {
                         "type": "string"
                     },
-                    "markdownDescription": "A list of patterns at which to manually insert entrypoint breakpoints. This can be useful to give the debugger an opportunity to set breakpoints when using sourcemaps that don't exist or can't be detected before launch, such as [with the Serverless framework](https://github.com/microsoft/vscode-js-debug/issues/492).",
+                    "markdownDescription": "エントリポイント ブレークポイントを手動で挿入するパターンの一覧。これは、[Serverless Framework を使用する場合](https://github.com/microsoft/vscode-js-debug/issues/492) のように、存在しない、または起動前には検出できないソースマップを使用している場合に、デバッガーでブレークポイントを設定できるようにするために役立ちます。",
                     "default": []
                 },
                 "nodeVersionHint": {
@@ -23952,7 +24108,7 @@
         "debug.javascript.resourceRequestOptions": {
             "type": "object",
             "default": {},
-            "markdownDescription": "Request options to use when loading resources, such as source maps, in the debugger. You may need to configure this if your sourcemaps require authentication or use a self-signed certificate, for instance. Options are used to create a request using the [`got`](https://github.com/sindresorhus/got) library.\r\n\r\nA common case to disable certificate verification can be done by passing `{ \"https\": { \"rejectUnauthorized\": false } }`.",
+            "markdownDescription": "デバッガーでソース マップなどのリソースを読み込むときに使用する要求オプションです。ソースマップで認証が必要な場合または自己署名証明書を使用する場合などに、これを構成する必要がある可能性があります。オプションは、[`got`](https://github.com/sindresorhus/got) ライブラリを使用して要求を作成するために使用されます。\r\n\r\n通常、証明書の検証を無効にするためには、`{ \"https\": { \"rejectUnauthorized\": false } }` をパスします。",
             "scope": 3,
             "source": {
                 "id": "ms-vscode.js-debug",
@@ -24751,6 +24907,11 @@
                     "default": false,
                     "description": "検索エディター"
                 },
+                "workbench.editor.interactiveSession": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "対話型セッション"
+                },
                 "jupyter-notebook": {
                     "type": "boolean",
                     "default": false,
@@ -24800,6 +24961,7 @@
             "default": {
                 "default": false,
                 "workbench.editorinputs.searchEditorInput": false,
+                "workbench.editor.interactiveSession": false,
                 "jupyter-notebook": false,
                 "imagePreview.previewEditor": false,
                 "vscode.audioPreview": false,
@@ -24814,6 +24976,7 @@
             "defaultDefaultValue": {
                 "default": false,
                 "workbench.editorinputs.searchEditorInput": false,
+                "workbench.editor.interactiveSession": false,
                 "jupyter-notebook": false,
                 "imagePreview.previewEditor": false,
                 "vscode.audioPreview": false,
@@ -24833,6 +24996,7 @@
             "enum": [
                 "default",
                 "workbench.editorinputs.searchEditorInput",
+                "workbench.editor.interactiveSession",
                 "jupyter-notebook",
                 "vscode.markdown.preview.editor",
                 "imagePreview.previewEditor",
@@ -24856,6 +25020,7 @@
                     "enum": [
                         "default",
                         "workbench.editorinputs.searchEditorInput",
+                        "workbench.editor.interactiveSession",
                         "jupyter-notebook",
                         "vscode.markdown.preview.editor",
                         "imagePreview.previewEditor",
@@ -24995,6 +25160,14 @@
             "tags": [
                 "experimental"
             ],
+            "defaultDefaultValue": false,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.experimental.asyncTokenizationLogging": {
+            "type": "boolean",
+            "default": false,
+            "description": "非同期トークン化をログに記録するかどうかを制御します。デバッグ用のみ。",
             "defaultDefaultValue": false,
             "scope": 5,
             "restricted": false
@@ -25212,6 +25385,17 @@
             ],
             "default": "languageDefined",
             "defaultDefaultValue": "languageDefined",
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.screenReaderAnnounceInlineSuggestion": {
+            "description": "スクリーン リーダーでインライン候補が通知されるかどうかを制御します。VoiceOver を使用した macOS では動作しないことに注意してください。",
+            "tags": [
+                "accessibility"
+            ],
+            "type": "boolean",
+            "default": false,
+            "defaultDefaultValue": false,
             "scope": 5,
             "restricted": false
         },
@@ -26119,6 +26303,14 @@
             "scope": 5,
             "restricted": false
         },
+        "editor.inlineSuggest.suppressSuggestions": {
+            "type": "boolean",
+            "default": true,
+            "description": "インライン提案と提案ウィジェットの相互作用の方法を制御します。有効すると、インライン候補が使用可能な場合は、提案ウィジェットが自動的に表示されません。",
+            "defaultDefaultValue": true,
+            "scope": 5,
+            "restricted": false
+        },
         "editor.letterSpacing": {
             "description": "文字間隔 (ピクセル単位) を制御します。",
             "type": "number",
@@ -26810,6 +27002,19 @@
             "maximum": 10,
             "description": "表示する追従行の最大数を定義します。",
             "defaultDefaultValue": 5,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.stickyScroll.defaultModel": {
+            "type": "string",
+            "enum": [
+                "outlineModel",
+                "foldingProviderModel",
+                "indentationModel"
+            ],
+            "default": "outlineModel",
+            "description": "固定する行を決定するために使用するモデルを定義します。アウトライン モデルが存在しない場合、インデント モデルにフォールバックする折りたたみプロバイダー モデルにフォールバックします。この順序は、3 つのケースすべてで優先されます。",
+            "defaultDefaultValue": "outlineModel",
             "scope": 5,
             "restricted": false
         },
@@ -29582,6 +29787,9 @@
                 "git-pull-request-new-changes",
                 "search-fuzzy",
                 "comment-draft",
+                "send",
+                "sparkle",
+                "insert",
                 "dialog-error",
                 "dialog-warning",
                 "dialog-info",
@@ -30119,6 +30327,9 @@
                 "$(git-pull-request-new-changes)",
                 "$(search-fuzzy)",
                 "$(comment-draft)",
+                "$(send)",
+                "$(sparkle)",
+                "$(insert)",
                 "$(dialog-error)",
                 "$(dialog-warning)",
                 "$(dialog-info)",
