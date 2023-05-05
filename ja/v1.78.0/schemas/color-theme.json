@@ -1,0 +1,33 @@
+{
+    "type": "object",
+    "allowComments": true,
+    "allowTrailingCommas": true,
+    "properties": {
+        "colors": {
+            "description": "ワークベンチの色",
+            "$ref": "vscode://schemas/workbench-colors",
+            "additionalProperties": false
+        },
+        "tokenColors": {
+            "anyOf": [
+                {
+                    "type": "string",
+                    "description": "tmTheme ファイルへのパス (現在のファイルとの相対パス)。"
+                },
+                {
+                    "description": "構文の強調表示をする色",
+                    "$ref": "vscode://schemas/textmate-colors"
+                }
+            ]
+        },
+        "semanticHighlighting": {
+            "type": "boolean",
+            "description": "このテーマに対してセマンティック強調表示を有効にするかどうか。"
+        },
+        "semanticTokenColors": {
+            "type": "object",
+            "description": "セマンティック トークンの色",
+            "$ref": "vscode://schemas/token-styling"
+        }
+    }
+}

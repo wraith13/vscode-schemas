@@ -918,6 +918,41 @@
             "scope": 3,
             "restricted": false
         },
+        "accessibility.verbosity.terminal": {
+            "description": "Provide information about how to access the terminal accessibility help menu when the terminal is focused",
+            "type": "boolean",
+            "default": true,
+            "tags": [
+                "accessibility"
+            ],
+            "defaultDefaultValue": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "accessibility.verbosity.diff-editor": {
+            "description": "Provide information about how to navigate changes in the diff editor when it is focused",
+            "type": "boolean",
+            "default": true,
+            "tags": [
+                "accessibility"
+            ],
+            "defaultDefaultValue": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "interactiveEditor.editMode": {
+            "description": "Configure if changes crafted in the interactive editor are applied directly or previewed first",
+            "default": "live",
+            "type": "string",
+            "enum": [
+                "live",
+                "livePreview",
+                "preview"
+            ],
+            "defaultDefaultValue": "live",
+            "scope": 3,
+            "restricted": false
+        },
         "notebook.navigation.allowNavigateToSurroundingCells": {
             "type": "boolean",
             "default": true,
@@ -1707,22 +1742,6 @@
             "scope": 3,
             "restricted": false
         },
-        "notebook.outline.showCodeCells": {
-            "type": "boolean",
-            "default": false,
-            "markdownDescription": "When enabled notebook outline shows code cells.",
-            "defaultDefaultValue": false,
-            "scope": 3,
-            "restricted": false
-        },
-        "notebook.breadcrumbs.showCodeCells": {
-            "type": "boolean",
-            "default": true,
-            "markdownDescription": "When enabled notebook breadcrumbs contain code cells.",
-            "defaultDefaultValue": true,
-            "scope": 3,
-            "restricted": false
-        },
         "audioCues.enabled": {
             "markdownDeprecationMessage": "Deprecated. Use the specific setting for each audio cue instead (`audioCues.*`).",
             "tags": [
@@ -2197,14 +2216,16 @@
         },
         "remote.autoForwardPortsSource": {
             "type": "string",
-            "markdownDescription": "Sets the source from which ports are automatically forwarded when `#remote.autoForwardPorts#` is true. On Windows and Mac remotes, the `process` option has no effect and `output` will be used. Requires a reload to take effect.",
+            "markdownDescription": "Sets the source from which ports are automatically forwarded when `#remote.autoForwardPorts#` is true. On Windows and Mac remotes, the `process` and `hybrid` options have no effect and `output` will be used. Requires a reload to take effect.",
             "enum": [
                 "process",
-                "output"
+                "output",
+                "hybrid"
             ],
             "enumDescriptions": [
                 "Ports will be automatically forwarded when discovered by watching for processes that are started and include a port.",
-                "Ports will be automatically forwarded when discovered by reading terminal and debug output. Not all processes that use ports will print to the integrated terminal or debug console, so some ports will be missed. Ports forwarded based on output will not be \"un-forwarded\" until reload or until the port is closed by the user in the Ports view."
+                "Ports will be automatically forwarded when discovered by reading terminal and debug output. Not all processes that use ports will print to the integrated terminal or debug console, so some ports will be missed. Ports forwarded based on output will not be \"un-forwarded\" until reload or until the port is closed by the user in the Ports view.",
+                "Ports will be automatically forwarded when discovered by reading terminal and debug output. Not all processes that use ports will print to the integrated terminal or debug console, so some ports will be missed. Ports will be \"un-forwarded\" by watching for processes that listen on that port to be terminated."
             ],
             "default": "process",
             "defaultDefaultValue": "process",
@@ -2524,18 +2545,18 @@
         "workbench.colorTheme": {
             "type": "string",
             "description": "Specifies the color theme used in the workbench.",
-            "default": "Default Dark+",
+            "default": "Default Dark Modern",
             "enum": [
                 "Abyss",
                 "Visual Studio Dark",
                 "Default High Contrast",
+                "Default Dark Modern",
                 "Default Dark+",
-                "Default Dark+ Experimental",
                 "Kimbie Dark",
                 "Visual Studio Light",
                 "Default High Contrast Light",
+                "Default Light Modern",
                 "Default Light+",
-                "Default Light+ Experimental",
                 "Monokai",
                 "Monokai Dimmed",
                 "Quiet Light",
@@ -2567,13 +2588,13 @@
                 "Abyss",
                 "Dark (Visual Studio)",
                 "Dark High Contrast",
-                "Dark+ (default dark)",
-                "Dark+ V2 (Experimental)",
+                "Dark Modern",
+                "Dark+",
                 "Kimbie Dark",
                 "Light (Visual Studio)",
                 "Light High Contrast",
-                "Light+ (default light)",
-                "Light+ V2 (Experimental)",
+                "Light Modern",
+                "Light+",
                 "Monokai",
                 "Monokai Dimmed",
                 "Quiet Light",
@@ -2583,25 +2604,25 @@
                 "Tomorrow Night Blue"
             ],
             "errorMessage": "Theme is unknown or not installed.",
-            "defaultDefaultValue": "Default Dark+",
+            "defaultDefaultValue": "Default Dark Modern",
             "scope": 3,
             "restricted": false
         },
         "workbench.preferredDarkColorTheme": {
             "type": "string",
             "markdownDescription": "Specifies the preferred color theme for dark OS appearance when `#window.autoDetectColorScheme#` is enabled.",
-            "default": "Default Dark+",
+            "default": "Default Dark Modern",
             "enum": [
                 "Abyss",
                 "Visual Studio Dark",
                 "Default High Contrast",
+                "Default Dark Modern",
                 "Default Dark+",
-                "Default Dark+ Experimental",
                 "Kimbie Dark",
                 "Visual Studio Light",
                 "Default High Contrast Light",
+                "Default Light Modern",
                 "Default Light+",
-                "Default Light+ Experimental",
                 "Monokai",
                 "Monokai Dimmed",
                 "Quiet Light",
@@ -2633,13 +2654,13 @@
                 "Abyss",
                 "Dark (Visual Studio)",
                 "Dark High Contrast",
-                "Dark+ (default dark)",
-                "Dark+ V2 (Experimental)",
+                "Dark Modern",
+                "Dark+",
                 "Kimbie Dark",
                 "Light (Visual Studio)",
                 "Light High Contrast",
-                "Light+ (default light)",
-                "Light+ V2 (Experimental)",
+                "Light Modern",
+                "Light+",
                 "Monokai",
                 "Monokai Dimmed",
                 "Quiet Light",
@@ -2649,25 +2670,25 @@
                 "Tomorrow Night Blue"
             ],
             "errorMessage": "Theme is unknown or not installed.",
-            "defaultDefaultValue": "Default Dark+",
+            "defaultDefaultValue": "Default Dark Modern",
             "scope": 3,
             "restricted": false
         },
         "workbench.preferredLightColorTheme": {
             "type": "string",
             "markdownDescription": "Specifies the preferred color theme for light OS appearance when `#window.autoDetectColorScheme#` is enabled.",
-            "default": "Default Light+",
+            "default": "Default Light Modern",
             "enum": [
                 "Abyss",
                 "Visual Studio Dark",
                 "Default High Contrast",
+                "Default Dark Modern",
                 "Default Dark+",
-                "Default Dark+ Experimental",
                 "Kimbie Dark",
                 "Visual Studio Light",
                 "Default High Contrast Light",
+                "Default Light Modern",
                 "Default Light+",
-                "Default Light+ Experimental",
                 "Monokai",
                 "Monokai Dimmed",
                 "Quiet Light",
@@ -2699,13 +2720,13 @@
                 "Abyss",
                 "Dark (Visual Studio)",
                 "Dark High Contrast",
-                "Dark+ (default dark)",
-                "Dark+ V2 (Experimental)",
+                "Dark Modern",
+                "Dark+",
                 "Kimbie Dark",
                 "Light (Visual Studio)",
                 "Light High Contrast",
-                "Light+ (default light)",
-                "Light+ V2 (Experimental)",
+                "Light Modern",
+                "Light+",
                 "Monokai",
                 "Monokai Dimmed",
                 "Quiet Light",
@@ -2715,7 +2736,7 @@
                 "Tomorrow Night Blue"
             ],
             "errorMessage": "Theme is unknown or not installed.",
-            "defaultDefaultValue": "Default Light+",
+            "defaultDefaultValue": "Default Light Modern",
             "scope": 3,
             "restricted": false
         },
@@ -2727,13 +2748,13 @@
                 "Abyss",
                 "Visual Studio Dark",
                 "Default High Contrast",
+                "Default Dark Modern",
                 "Default Dark+",
-                "Default Dark+ Experimental",
                 "Kimbie Dark",
                 "Visual Studio Light",
                 "Default High Contrast Light",
+                "Default Light Modern",
                 "Default Light+",
-                "Default Light+ Experimental",
                 "Monokai",
                 "Monokai Dimmed",
                 "Quiet Light",
@@ -2765,13 +2786,13 @@
                 "Abyss",
                 "Dark (Visual Studio)",
                 "Dark High Contrast",
-                "Dark+ (default dark)",
-                "Dark+ V2 (Experimental)",
+                "Dark Modern",
+                "Dark+",
                 "Kimbie Dark",
                 "Light (Visual Studio)",
                 "Light High Contrast",
-                "Light+ (default light)",
-                "Light+ V2 (Experimental)",
+                "Light Modern",
+                "Light+",
                 "Monokai",
                 "Monokai Dimmed",
                 "Quiet Light",
@@ -2793,13 +2814,13 @@
                 "Abyss",
                 "Visual Studio Dark",
                 "Default High Contrast",
+                "Default Dark Modern",
                 "Default Dark+",
-                "Default Dark+ Experimental",
                 "Kimbie Dark",
                 "Visual Studio Light",
                 "Default High Contrast Light",
+                "Default Light Modern",
                 "Default Light+",
-                "Default Light+ Experimental",
                 "Monokai",
                 "Monokai Dimmed",
                 "Quiet Light",
@@ -2831,13 +2852,13 @@
                 "Abyss",
                 "Dark (Visual Studio)",
                 "Dark High Contrast",
-                "Dark+ (default dark)",
-                "Dark+ V2 (Experimental)",
+                "Dark Modern",
+                "Dark+",
                 "Kimbie Dark",
                 "Light (Visual Studio)",
                 "Light High Contrast",
-                "Light+ (default light)",
-                "Light+ V2 (Experimental)",
+                "Light Modern",
+                "Light+",
                 "Monokai",
                 "Monokai Dimmed",
                 "Quiet Light",
@@ -2899,11 +2920,11 @@
                             "$ref": "vscode://schemas/workbench-colors",
                             "additionalProperties": false
                         },
-                        "[Default Dark+]": {
+                        "[Default Dark Modern]": {
                             "$ref": "vscode://schemas/workbench-colors",
                             "additionalProperties": false
                         },
-                        "[Default Dark+ Experimental]": {
+                        "[Default Dark+]": {
                             "$ref": "vscode://schemas/workbench-colors",
                             "additionalProperties": false
                         },
@@ -2919,11 +2940,11 @@
                             "$ref": "vscode://schemas/workbench-colors",
                             "additionalProperties": false
                         },
-                        "[Default Light+]": {
+                        "[Default Light Modern]": {
                             "$ref": "vscode://schemas/workbench-colors",
                             "additionalProperties": false
                         },
-                        "[Default Light+ Experimental]": {
+                        "[Default Light+]": {
                             "$ref": "vscode://schemas/workbench-colors",
                             "additionalProperties": false
                         },
@@ -3185,7 +3206,7 @@
                             },
                             "additionalProperties": false
                         },
-                        "[Default Dark+]": {
+                        "[Default Dark Modern]": {
                             "properties": {
                                 "comments": {
                                     "description": "Sets the colors and styles for comments",
@@ -3228,7 +3249,7 @@
                             },
                             "additionalProperties": false
                         },
-                        "[Default Dark+ Experimental]": {
+                        "[Default Dark+]": {
                             "properties": {
                                 "comments": {
                                     "description": "Sets the colors and styles for comments",
@@ -3400,7 +3421,7 @@
                             },
                             "additionalProperties": false
                         },
-                        "[Default Light+]": {
+                        "[Default Light Modern]": {
                             "properties": {
                                 "comments": {
                                     "description": "Sets the colors and styles for comments",
@@ -3443,7 +3464,7 @@
                             },
                             "additionalProperties": false
                         },
-                        "[Default Light+ Experimental]": {
+                        "[Default Light+]": {
                             "properties": {
                                 "comments": {
                                     "description": "Sets the colors and styles for comments",
@@ -3912,7 +3933,7 @@
                             },
                             "additionalProperties": false
                         },
-                        "[Default Dark+]": {
+                        "[Default Dark Modern]": {
                             "type": "object",
                             "properties": {
                                 "enabled": {
@@ -3928,7 +3949,7 @@
                             },
                             "additionalProperties": false
                         },
-                        "[Default Dark+ Experimental]": {
+                        "[Default Dark+]": {
                             "type": "object",
                             "properties": {
                                 "enabled": {
@@ -3992,7 +4013,7 @@
                             },
                             "additionalProperties": false
                         },
-                        "[Default Light+]": {
+                        "[Default Light Modern]": {
                             "type": "object",
                             "properties": {
                                 "enabled": {
@@ -4008,7 +4029,7 @@
                             },
                             "additionalProperties": false
                         },
-                        "[Default Light+ Experimental]": {
+                        "[Default Light+]": {
                             "type": "object",
                             "properties": {
                                 "enabled": {
@@ -4340,15 +4361,15 @@
         "mergeEditor.diffAlgorithm": {
             "type": "string",
             "enum": [
-                "smart",
-                "experimental"
+                "legacy",
+                "advanced"
             ],
-            "default": "experimental",
+            "default": "advanced",
             "markdownEnumDescriptions": [
-                "Uses the default diffing algorithm.",
-                "Uses an experimental diffing algorithm."
+                "Uses the legacy diffing algorithm.",
+                "Uses the advanced diffing algorithm."
             ],
-            "defaultDefaultValue": "experimental",
+            "defaultDefaultValue": "advanced",
             "scope": 3,
             "restricted": false
         },
@@ -4391,6 +4412,1120 @@
             "description": "Controls if files that were part of a refactoring are saved automatically",
             "default": true,
             "type": "boolean",
+            "defaultDefaultValue": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "debug.allowBreakpointsEverywhere": {
+            "type": "boolean",
+            "description": "Allow setting breakpoints in any file.",
+            "default": false,
+            "defaultDefaultValue": false,
+            "scope": 3,
+            "restricted": false
+        },
+        "debug.openExplorerOnEnd": {
+            "type": "boolean",
+            "description": "Automatically open the explorer view at the end of a debug session.",
+            "default": false,
+            "defaultDefaultValue": false,
+            "scope": 3,
+            "restricted": false
+        },
+        "debug.inlineValues": {
+            "type": "string",
+            "enum": [
+                "on",
+                "off",
+                "auto"
+            ],
+            "description": "Show variable values inline in editor while debugging.",
+            "enumDescriptions": [
+                "Always show variable values inline in editor while debugging.",
+                "Never show variable values inline in editor while debugging.",
+                "Show variable values inline in editor while debugging when the language supports inline value locations."
+            ],
+            "default": "auto",
+            "defaultDefaultValue": "auto",
+            "scope": 3,
+            "restricted": false
+        },
+        "debug.toolBarLocation": {
+            "enum": [
+                "floating",
+                "docked",
+                "hidden"
+            ],
+            "markdownDescription": "Controls the location of the debug toolbar. Either `floating` in all views, `docked` in the debug view, or `hidden`.",
+            "default": "floating",
+            "defaultDefaultValue": "floating",
+            "scope": 3,
+            "restricted": false
+        },
+        "debug.showInStatusBar": {
+            "enum": [
+                "never",
+                "always",
+                "onFirstSessionStart"
+            ],
+            "enumDescriptions": [
+                "Never show debug in Status bar",
+                "Always show debug in Status bar",
+                "Show debug in Status bar only after debug was started for the first time"
+            ],
+            "description": "Controls when the debug Status bar should be visible.",
+            "default": "onFirstSessionStart",
+            "defaultDefaultValue": "onFirstSessionStart",
+            "scope": 3,
+            "restricted": false
+        },
+        "debug.internalConsoleOptions": {
+            "enum": [
+                "neverOpen",
+                "openOnSessionStart",
+                "openOnFirstSessionStart"
+            ],
+            "default": "openOnFirstSessionStart",
+            "description": "Controls when the internal Debug Console should open.",
+            "defaultDefaultValue": "openOnFirstSessionStart",
+            "scope": 3,
+            "restricted": false
+        },
+        "debug.console.closeOnEnd": {
+            "type": "boolean",
+            "description": "Controls if the Debug Console should be automatically closed when the debug session ends.",
+            "default": false,
+            "defaultDefaultValue": false,
+            "scope": 3,
+            "restricted": false
+        },
+        "debug.terminal.clearBeforeReusing": {
+            "type": "boolean",
+            "description": "Before starting a new debug session in an integrated or external terminal, clear the terminal.",
+            "default": false,
+            "defaultDefaultValue": false,
+            "scope": 3,
+            "restricted": false
+        },
+        "debug.openDebug": {
+            "enum": [
+                "neverOpen",
+                "openOnSessionStart",
+                "openOnFirstSessionStart",
+                "openOnDebugBreak"
+            ],
+            "default": "openOnDebugBreak",
+            "description": "Controls when the debug view should open.",
+            "defaultDefaultValue": "openOnDebugBreak",
+            "scope": 3,
+            "restricted": false
+        },
+        "debug.showSubSessionsInToolBar": {
+            "type": "boolean",
+            "description": "Controls whether the debug sub-sessions are shown in the debug tool bar. When this setting is false the stop command on a sub-session will also stop the parent session.",
+            "default": false,
+            "defaultDefaultValue": false,
+            "scope": 3,
+            "restricted": false
+        },
+        "debug.console.fontSize": {
+            "type": "number",
+            "description": "Controls the font size in pixels in the Debug Console.",
+            "default": 14,
+            "defaultDefaultValue": 14,
+            "scope": 3,
+            "restricted": false
+        },
+        "debug.console.fontFamily": {
+            "type": "string",
+            "description": "Controls the font family in the Debug Console.",
+            "default": "default",
+            "defaultDefaultValue": "default",
+            "scope": 3,
+            "restricted": false
+        },
+        "debug.console.lineHeight": {
+            "type": "number",
+            "description": "Controls the line height in pixels in the Debug Console. Use 0 to compute the line height from the font size.",
+            "default": 0,
+            "defaultDefaultValue": 0,
+            "scope": 3,
+            "restricted": false
+        },
+        "debug.console.wordWrap": {
+            "type": "boolean",
+            "description": "Controls if the lines should wrap in the Debug Console.",
+            "default": true,
+            "defaultDefaultValue": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "debug.console.historySuggestions": {
+            "type": "boolean",
+            "description": "Controls if the Debug Console should suggest previously typed input.",
+            "default": true,
+            "defaultDefaultValue": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "debug.console.collapseIdenticalLines": {
+            "type": "boolean",
+            "description": "Controls if the Debug Console should collapse identical lines and show a number of occurrences with a badge.",
+            "default": true,
+            "defaultDefaultValue": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "debug.console.acceptSuggestionOnEnter": {
+            "enum": [
+                "off",
+                "on"
+            ],
+            "description": "Controls whether suggestions should be accepted on Enter in the Debug Console. Enter is also used to evaluate whatever is typed in the Debug Console.",
+            "default": "off",
+            "defaultDefaultValue": "off",
+            "scope": 3,
+            "restricted": false
+        },
+        "launch": {
+            "type": "object",
+            "description": "Global debug launch configuration. Should be used as an alternative to 'launch.json' that is shared across workspaces.",
+            "default": {
+                "configurations": [],
+                "compounds": []
+            },
+            "$ref": "vscode://schemas/launch",
+            "defaultDefaultValue": {
+                "configurations": [],
+                "compounds": []
+            },
+            "scope": 3,
+            "restricted": false
+        },
+        "debug.focusWindowOnBreak": {
+            "type": "boolean",
+            "description": "Controls whether the workbench window should be focused when the debugger breaks.",
+            "default": true,
+            "defaultDefaultValue": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "debug.focusEditorOnBreak": {
+            "type": "boolean",
+            "description": "Controls whether the editor should be focused when the debugger breaks.",
+            "default": true,
+            "defaultDefaultValue": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "debug.onTaskErrors": {
+            "enum": [
+                "debugAnyway",
+                "showErrors",
+                "prompt",
+                "abort"
+            ],
+            "enumDescriptions": [
+                "Ignore task errors and start debugging.",
+                "Show the Problems view and do not start debugging.",
+                "Prompt user.",
+                "Cancel debugging."
+            ],
+            "description": "Controls what to do when errors are encountered after running a preLaunchTask.",
+            "default": "prompt",
+            "defaultDefaultValue": "prompt",
+            "scope": 3,
+            "restricted": false
+        },
+        "debug.showBreakpointsInOverviewRuler": {
+            "type": "boolean",
+            "description": "Controls whether breakpoints should be shown in the overview ruler.",
+            "default": false,
+            "defaultDefaultValue": false,
+            "scope": 3,
+            "restricted": false
+        },
+        "debug.showInlineBreakpointCandidates": {
+            "type": "boolean",
+            "description": "Controls whether inline breakpoints candidate decorations should be shown in the editor while debugging.",
+            "default": true,
+            "defaultDefaultValue": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "debug.confirmOnExit": {
+            "description": "Controls whether to confirm when the window closes if there are active debug sessions.",
+            "type": "string",
+            "enum": [
+                "never",
+                "always"
+            ],
+            "enumDescriptions": [
+                "Never confirm.",
+                "Always confirm if there are debug sessions."
+            ],
+            "default": "never",
+            "defaultDefaultValue": "never",
+            "scope": 3,
+            "restricted": false
+        },
+        "debug.disassemblyView.showSourceCode": {
+            "type": "boolean",
+            "default": true,
+            "description": "Show Source Code in Disassembly View.",
+            "defaultDefaultValue": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "debug.autoExpandLazyVariables": {
+            "type": "boolean",
+            "default": false,
+            "description": "Automatically show values for variables that are lazily resolved by the debugger, such as getters.",
+            "defaultDefaultValue": false,
+            "scope": 3,
+            "restricted": false
+        },
+        "debug.enableStatusBarColor": {
+            "type": "boolean",
+            "description": "Color status bar when debugger is active",
+            "default": true,
+            "defaultDefaultValue": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "workbench.experimental.cloudChanges.autoStore": {
+            "enum": [
+                "onShutdown",
+                "off"
+            ],
+            "enumDescriptions": [
+                "Automatically store current working changes in the cloud on window close.",
+                "Never attempt to automatically store working changes in the cloud."
+            ],
+            "type": "string",
+            "tags": [
+                "experimental",
+                "usesOnlineServices"
+            ],
+            "default": "off",
+            "markdownDescription": "Controls whether to automatically store available working changes in the cloud for the current workspace. This setting has no effect in the web.",
+            "defaultDefaultValue": "off",
+            "scope": 3,
+            "restricted": false
+        },
+        "workbench.cloudChanges.autoResume": {
+            "enum": [
+                "onReload",
+                "off"
+            ],
+            "enumDescriptions": [
+                "Automatically resume available working changes from the cloud on window reload.",
+                "Never attempt to resume working changes from the cloud."
+            ],
+            "type": "string",
+            "tags": [
+                "usesOnlineServices"
+            ],
+            "default": "onReload",
+            "markdownDescription": "Controls whether to automatically resume available working changes stored in the cloud for the current workspace.",
+            "defaultDefaultValue": "onReload",
+            "scope": 3,
+            "restricted": false
+        },
+        "workbench.cloudChanges.continueOn": {
+            "enum": [
+                "prompt",
+                "off"
+            ],
+            "enumDescriptions": [
+                "Prompt the user to sign in to store working changes in the cloud with Continue Working On.",
+                "Do not store working changes in the cloud with Continue Working On unless the user has already turned on Cloud Changes."
+            ],
+            "type": "string",
+            "tags": [
+                "usesOnlineServices"
+            ],
+            "default": "prompt",
+            "markdownDescription": "Controls whether to prompt the user to store working changes in the cloud when using Continue Working On.",
+            "defaultDefaultValue": "prompt",
+            "scope": 3,
+            "restricted": false
+        },
+        "workbench.experimental.editSessions.autoStore": {
+            "markdownDeprecationMessage": "This setting is deprecated in favor of `#workbench.experimental.cloudChanges.autoStore#`.",
+            "default": null,
+            "scope": 3,
+            "restricted": false,
+            "deprecationMessage": "This setting is deprecated in favor of `#workbench.experimental.cloudChanges.autoStore#`."
+        },
+        "workbench.editSessions.autoResume": {
+            "markdownDeprecationMessage": "This setting is deprecated in favor of `#workbench.cloudChanges.autoResume#`.",
+            "default": null,
+            "scope": 3,
+            "restricted": false,
+            "deprecationMessage": "This setting is deprecated in favor of `#workbench.cloudChanges.autoResume#`."
+        },
+        "workbench.editSessions.continueOn": {
+            "markdownDeprecationMessage": "This setting is deprecated in favor of `#workbench.cloudChanges.continueOn#`.",
+            "default": null,
+            "scope": 3,
+            "restricted": false,
+            "deprecationMessage": "This setting is deprecated in favor of `#workbench.cloudChanges.continueOn#`."
+        },
+        "workbench.experimental.cloudChanges.partialMatches.enabled": {
+            "type": "boolean",
+            "tags": [
+                "experimental",
+                "usesOnlineServices"
+            ],
+            "default": false,
+            "markdownDescription": "Controls whether to surface cloud changes which partially match the current session.",
+            "defaultDefaultValue": false,
+            "scope": 3,
+            "restricted": false
+        },
+        "workbench.experimental.editSessions.partialMatches.enabled": {
+            "markdownDeprecationMessage": "This setting is deprecated in favor of `#workbench.experimental.cloudChanges.partialMatches.enabled#`.",
+            "default": null,
+            "scope": 3,
+            "restricted": false,
+            "deprecationMessage": "This setting is deprecated in favor of `#workbench.experimental.cloudChanges.partialMatches.enabled#`."
+        },
+        "files.associations": {
+            "type": "object",
+            "markdownDescription": "Configure file associations to languages (for example `\"*.extension\": \"html\"`). These have precedence over the default associations of the languages installed.",
+            "additionalProperties": {
+                "type": "string"
+            },
+            "default": {},
+            "scope": 3,
+            "restricted": false
+        },
+        "files.enableTrash": {
+            "type": "boolean",
+            "default": true,
+            "description": "Moves files/folders to the OS trash (recycle bin on Windows) when deleting. Disabling this will delete files/folders permanently.",
+            "defaultDefaultValue": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "files.autoSave": {
+            "type": "string",
+            "enum": [
+                "off",
+                "afterDelay",
+                "onFocusChange",
+                "onWindowChange"
+            ],
+            "markdownEnumDescriptions": [
+                "An editor with changes is never automatically saved.",
+                "An editor with changes is automatically saved after the configured `#files.autoSaveDelay#`.",
+                "An editor with changes is automatically saved when the editor loses focus.",
+                "An editor with changes is automatically saved when the window loses focus."
+            ],
+            "default": "off",
+            "markdownDescription": "Controls [auto save](https://code.visualstudio.com/docs/editor/codebasics#_save-auto-save) of editors that have unsaved changes.",
+            "defaultDefaultValue": "off",
+            "scope": 3,
+            "restricted": false
+        },
+        "files.autoSaveDelay": {
+            "type": "number",
+            "default": 1000,
+            "minimum": 0,
+            "markdownDescription": "Controls the delay in milliseconds after which an editor with unsaved changes is saved automatically. Only applies when `#files.autoSave#` is set to `afterDelay`.",
+            "defaultDefaultValue": 1000,
+            "scope": 3,
+            "restricted": false
+        },
+        "files.defaultLanguage": {
+            "type": "string",
+            "markdownDescription": "The default language identifier that is assigned to new files. If configured to `${activeEditorLanguage}`, will use the language identifier of the currently active text editor if any.",
+            "default": "",
+            "scope": 3,
+            "restricted": false
+        },
+        "files.restoreUndoStack": {
+            "type": "boolean",
+            "description": "Restore the undo stack when a file is reopened.",
+            "default": true,
+            "defaultDefaultValue": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "files.simpleDialog.enable": {
+            "type": "boolean",
+            "description": "Enables the simple file dialog. The simple file dialog replaces the system file dialog when enabled.",
+            "default": false,
+            "defaultDefaultValue": false,
+            "scope": 3,
+            "restricted": false
+        },
+        "files.participants.timeout": {
+            "type": "number",
+            "default": 60000,
+            "markdownDescription": "Timeout in milliseconds after which file participants for create, rename, and delete are cancelled. Use `0` to disable participants.",
+            "defaultDefaultValue": 60000,
+            "scope": 3,
+            "restricted": false
+        },
+        "explorer.openEditors.visible": {
+            "type": "number",
+            "description": "The maximum number of editors shown in the Open Editors pane. Setting this to 0 hides the Open Editors pane.",
+            "default": 9,
+            "minimum": 0,
+            "defaultDefaultValue": 9,
+            "scope": 3,
+            "restricted": false
+        },
+        "explorer.openEditors.minVisible": {
+            "type": "number",
+            "description": "The minimum number of editor slots shown in the Open Editors pane. If set to 0 the Open Editors pane will dynamically resize based on the number of editors.",
+            "default": 0,
+            "minimum": 0,
+            "defaultDefaultValue": 0,
+            "scope": 3,
+            "restricted": false
+        },
+        "explorer.openEditors.sortOrder": {
+            "type": "string",
+            "enum": [
+                "editorOrder",
+                "alphabetical",
+                "fullPath"
+            ],
+            "description": "Controls the sorting order of editors in the Open Editors pane.",
+            "enumDescriptions": [
+                "Editors are ordered in the same order editor tabs are shown.",
+                "Editors are ordered alphabetically by tab name inside each editor group.",
+                "Editors are ordered alphabetically by full path inside each editor group."
+            ],
+            "default": "editorOrder",
+            "defaultDefaultValue": "editorOrder",
+            "scope": 3,
+            "restricted": false
+        },
+        "explorer.autoReveal": {
+            "type": [
+                "boolean",
+                "string"
+            ],
+            "enum": [
+                true,
+                false,
+                "focusNoScroll"
+            ],
+            "default": true,
+            "enumDescriptions": [
+                "Files will be revealed and selected.",
+                "Files will not be revealed and selected.",
+                "Files will not be scrolled into view, but will still be focused."
+            ],
+            "description": "Controls whether the Explorer should automatically reveal and select files when opening them.",
+            "defaultDefaultValue": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "explorer.autoRevealExclude": {
+            "type": "object",
+            "markdownDescription": "Configure glob patterns for excluding files and folders from being revealed and selected in the Explorer when they are opened. Read more about glob patterns [here](https://code.visualstudio.com/docs/editor/codebasics#_advanced-search-options).",
+            "default": {
+                "**/node_modules": true,
+                "**/bower_components": true
+            },
+            "additionalProperties": {
+                "anyOf": [
+                    {
+                        "type": "boolean",
+                        "description": "The glob pattern to match file paths against. Set to true or false to enable or disable the pattern."
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "when": {
+                                "type": "string",
+                                "pattern": "\\w*\\$\\(basename\\)\\w*",
+                                "default": "$(basename).ext",
+                                "description": "Additional check on the siblings of a matching file. Use $(basename) as variable for the matching file name."
+                            }
+                        }
+                    }
+                ]
+            },
+            "defaultDefaultValue": {
+                "**/node_modules": true,
+                "**/bower_components": true
+            },
+            "scope": 3,
+            "restricted": false
+        },
+        "explorer.enableDragAndDrop": {
+            "type": "boolean",
+            "description": "Controls whether the Explorer should allow to move files and folders via drag and drop. This setting only effects drag and drop from inside the Explorer.",
+            "default": true,
+            "defaultDefaultValue": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "explorer.confirmDragAndDrop": {
+            "type": "boolean",
+            "description": "Controls whether the Explorer should ask for confirmation to move files and folders via drag and drop.",
+            "default": true,
+            "defaultDefaultValue": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "explorer.confirmDelete": {
+            "type": "boolean",
+            "description": "Controls whether the Explorer should ask for confirmation when deleting a file via the trash.",
+            "default": true,
+            "defaultDefaultValue": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "explorer.enableUndo": {
+            "type": "boolean",
+            "description": "Controls whether the Explorer should support undoing file and folder operations.",
+            "default": true,
+            "defaultDefaultValue": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "explorer.confirmUndo": {
+            "type": "string",
+            "enum": [
+                "verbose",
+                "default",
+                "light"
+            ],
+            "description": "Controls whether the Explorer should ask for confirmation when undoing.",
+            "default": "default",
+            "enumDescriptions": [
+                "Explorer will prompt before all undo operations.",
+                "Explorer will prompt before destructive undo operations.",
+                "Explorer will not prompt before undo operations when focused."
+            ],
+            "defaultDefaultValue": "default",
+            "scope": 3,
+            "restricted": false
+        },
+        "explorer.expandSingleFolderWorkspaces": {
+            "type": "boolean",
+            "description": "Controls whether the Explorer should expand multi-root workspaces containing only one folder during initialization",
+            "default": true,
+            "defaultDefaultValue": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "explorer.sortOrder": {
+            "type": "string",
+            "enum": [
+                "default",
+                "mixed",
+                "filesFirst",
+                "type",
+                "modified",
+                "foldersNestsFiles"
+            ],
+            "default": "default",
+            "enumDescriptions": [
+                "Files and folders are sorted by their names. Folders are displayed before files.",
+                "Files and folders are sorted by their names. Files are interwoven with folders.",
+                "Files and folders are sorted by their names. Files are displayed before folders.",
+                "Files and folders are grouped by extension type then sorted by their names. Folders are displayed before files.",
+                "Files and folders are sorted by last modified date in descending order. Folders are displayed before files.",
+                "Files and folders are sorted by their names. Folders are displayed before files. Files with nested children are displayed before other files."
+            ],
+            "markdownDescription": "Controls the property-based sorting of files and folders in the Explorer. When `#explorer.fileNesting.enabled#` is enabled, also controls sorting of nested files.",
+            "defaultDefaultValue": "default",
+            "scope": 3,
+            "restricted": false
+        },
+        "explorer.sortOrderLexicographicOptions": {
+            "type": "string",
+            "enum": [
+                "default",
+                "upper",
+                "lower",
+                "unicode"
+            ],
+            "default": "default",
+            "enumDescriptions": [
+                "Uppercase and lowercase names are mixed together.",
+                "Uppercase names are grouped together before lowercase names.",
+                "Lowercase names are grouped together before uppercase names.",
+                "Names are sorted in Unicode order."
+            ],
+            "description": "Controls the lexicographic sorting of file and folder names in the Explorer.",
+            "defaultDefaultValue": "default",
+            "scope": 3,
+            "restricted": false
+        },
+        "explorer.decorations.colors": {
+            "type": "boolean",
+            "description": "Controls whether file decorations should use colors.",
+            "default": true,
+            "defaultDefaultValue": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "explorer.decorations.badges": {
+            "type": "boolean",
+            "description": "Controls whether file decorations should use badges.",
+            "default": true,
+            "defaultDefaultValue": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "explorer.incrementalNaming": {
+            "type": "string",
+            "enum": [
+                "simple",
+                "smart",
+                "disabled"
+            ],
+            "enumDescriptions": [
+                "Appends the word \"copy\" at the end of the duplicated name potentially followed by a number.",
+                "Adds a number at the end of the duplicated name. If some number is already part of the name, tries to increase that number.",
+                "Disables incremental naming. If two files with the same name exist you will be prompted to overwrite the existing file."
+            ],
+            "description": "Controls what naming strategy to use when a giving a new name to a duplicated Explorer item on paste.",
+            "default": "simple",
+            "defaultDefaultValue": "simple",
+            "scope": 3,
+            "restricted": false
+        },
+        "explorer.compactFolders": {
+            "type": "boolean",
+            "description": "Controls whether the Explorer should render folders in a compact form. In such a form, single child folders will be compressed in a combined tree element. Useful for Java package structures, for example.",
+            "default": true,
+            "defaultDefaultValue": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "explorer.copyRelativePathSeparator": {
+            "type": "string",
+            "enum": [
+                "/",
+                "\\",
+                "auto"
+            ],
+            "enumDescriptions": [
+                "Use slash as path separation character.",
+                "Use backslash as path separation character.",
+                "Uses operating system specific path separation character."
+            ],
+            "description": "The path separation character used when copying relative file paths.",
+            "default": "auto",
+            "defaultDefaultValue": "auto",
+            "scope": 3,
+            "restricted": false
+        },
+        "explorer.fileNesting.expand": {
+            "type": "boolean",
+            "markdownDescription": "Controls whether file nests are automatically expanded. `#explorer.fileNesting.enabled#` must be set for this to take effect.",
+            "default": true,
+            "defaultDefaultValue": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "interactiveSession.editor.fontSize": {
+            "type": "number",
+            "description": "Controls the font size in pixels in Interactive Sessions.",
+            "default": 14,
+            "defaultDefaultValue": 14,
+            "scope": 3,
+            "restricted": false
+        },
+        "interactiveSession.editor.fontFamily": {
+            "type": "string",
+            "description": "Controls the font family in Interactive Sessions.",
+            "default": "default",
+            "defaultDefaultValue": "default",
+            "scope": 3,
+            "restricted": false
+        },
+        "interactiveSession.editor.fontWeight": {
+            "type": "string",
+            "description": "Controls the font weight in Interactive Sessions.",
+            "default": "default",
+            "defaultDefaultValue": "default",
+            "scope": 3,
+            "restricted": false
+        },
+        "interactiveSession.editor.wordWrap": {
+            "type": "string",
+            "description": "Controls whether lines should wrap in Interactive Sessions.",
+            "default": "off",
+            "enum": [
+                "on",
+                "off"
+            ],
+            "defaultDefaultValue": "off",
+            "scope": 3,
+            "restricted": false
+        },
+        "interactiveSession.editor.lineHeight": {
+            "type": "number",
+            "description": "Controls the line height in pixels in Interactive Sessions. Use 0 to compute the line height from the font size.",
+            "default": 0,
+            "defaultDefaultValue": 0,
+            "scope": 3,
+            "restricted": false
+        },
+        "problems.autoReveal": {
+            "description": "Controls whether Problems view should automatically reveal files when opening them.",
+            "type": "boolean",
+            "default": true,
+            "defaultDefaultValue": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "problems.defaultViewMode": {
+            "description": "Controls the default view mode of the Problems view.",
+            "type": "string",
+            "default": "tree",
+            "enum": [
+                "table",
+                "tree"
+            ],
+            "defaultDefaultValue": "tree",
+            "scope": 3,
+            "restricted": false
+        },
+        "problems.showCurrentInStatus": {
+            "description": "When enabled shows the current problem in the status bar.",
+            "type": "boolean",
+            "default": false,
+            "defaultDefaultValue": false,
+            "scope": 3,
+            "restricted": false
+        },
+        "problems.sortOrder": {
+            "description": "Controls the order in which problems are navigated.",
+            "type": "string",
+            "default": "severity",
+            "enum": [
+                "severity",
+                "position"
+            ],
+            "enumDescriptions": [
+                "Navigate problems ordered by severity",
+                "Navigate problems ordered by position"
+            ],
+            "defaultDefaultValue": "severity",
+            "scope": 3,
+            "restricted": false
+        },
+        "outline.icons": {
+            "description": "Render Outline elements with icons.",
+            "type": "boolean",
+            "default": true,
+            "defaultDefaultValue": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "outline.problems.enabled": {
+            "description": "Show errors and warnings on Outline elements.",
+            "type": "boolean",
+            "default": true,
+            "defaultDefaultValue": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "outline.problems.colors": {
+            "description": "Use colors for errors and warnings on Outline elements.",
+            "type": "boolean",
+            "default": true,
+            "defaultDefaultValue": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "outline.problems.badges": {
+            "description": "Use badges for errors and warnings on Outline elements.",
+            "type": "boolean",
+            "default": true,
+            "defaultDefaultValue": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "output.smartScroll.enabled": {
+            "type": "boolean",
+            "description": "Enable/disable the ability of smart scrolling in the output view. Smart scrolling allows you to lock scrolling automatically when you click in the output view and unlocks when you click in the last line.",
+            "default": true,
+            "scope": 3,
+            "tags": [
+                "output"
+            ],
+            "defaultDefaultValue": true,
+            "restricted": false
+        },
+        "testing.autoRun.delay": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "How long to wait, in milliseconds, after a test is marked as outdated and starting a new run.",
+            "default": 1000,
+            "defaultDefaultValue": 1000,
+            "scope": 3,
+            "restricted": false
+        },
+        "testing.automaticallyOpenPeekView": {
+            "description": "Configures when the error Peek view is automatically opened.",
+            "enum": [
+                "failureAnywhere",
+                "failureInVisibleDocument",
+                "never"
+            ],
+            "default": "failureInVisibleDocument",
+            "enumDescriptions": [
+                "Open automatically no matter where the failure is.",
+                "Open automatically when a test fails in a visible document.",
+                "Never automatically open."
+            ],
+            "defaultDefaultValue": "failureInVisibleDocument",
+            "scope": 3,
+            "restricted": false
+        },
+        "testing.automaticallyOpenPeekViewDuringAutoRun": {
+            "description": "Controls whether to automatically open the Peek view during continuous run mode.",
+            "type": "boolean",
+            "default": false,
+            "defaultDefaultValue": false,
+            "scope": 3,
+            "restricted": false
+        },
+        "testing.followRunningTest": {
+            "description": "Controls whether the running test should be followed in the Test Explorer view.",
+            "type": "boolean",
+            "default": true,
+            "defaultDefaultValue": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "testing.defaultGutterClickAction": {
+            "description": "Controls the action to take when left-clicking on a test decoration in the gutter.",
+            "enum": [
+                "run",
+                "debug",
+                "contextMenu"
+            ],
+            "enumDescriptions": [
+                "Run the test.",
+                "Debug the test.",
+                "Open the context menu for more options."
+            ],
+            "default": "run",
+            "defaultDefaultValue": "run",
+            "scope": 3,
+            "restricted": false
+        },
+        "testing.gutterEnabled": {
+            "description": "Controls whether test decorations are shown in the editor gutter.",
+            "type": "boolean",
+            "default": true,
+            "defaultDefaultValue": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "testing.saveBeforeTest": {
+            "description": "Control whether save all dirty editors before running a test.",
+            "type": "boolean",
+            "default": true,
+            "defaultDefaultValue": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "testing.openTesting": {
+            "enum": [
+                "neverOpen",
+                "openOnTestStart",
+                "openOnTestFailure"
+            ],
+            "enumDescriptions": [
+                "Never automatically open the testing view",
+                "Open the testing view when tests start",
+                "Open the testing view on any test failure"
+            ],
+            "default": "openOnTestStart",
+            "description": "Controls when the testing view should open.",
+            "defaultDefaultValue": "openOnTestStart",
+            "scope": 3,
+            "restricted": false
+        },
+        "testing.alwaysRevealTestOnStateChange": {
+            "markdownDescription": "Always reveal the executed test when `#testing.followRunningTest#` is on. If this setting is turned off, only failed tests will be revealed.",
+            "type": "boolean",
+            "default": false,
+            "defaultDefaultValue": false,
+            "scope": 3,
+            "restricted": false
+        },
+        "timeline.pageSize": {
+            "type": [
+                "number",
+                "null"
+            ],
+            "default": null,
+            "markdownDescription": "The number of items to show in the Timeline view by default and when loading more items. Setting to `null` (the default) will automatically choose a page size based on the visible area of the Timeline view.",
+            "defaultDefaultValue": null,
+            "scope": 3,
+            "restricted": false
+        },
+        "timeline.pageOnScroll": {
+            "type": "boolean",
+            "default": false,
+            "description": "Experimental. Controls whether the Timeline view will load the next page of items when you scroll to the end of the list.",
+            "defaultDefaultValue": false,
+            "scope": 3,
+            "restricted": false
+        },
+        "window.zoomLevel": {
+            "type": "number",
+            "default": 0,
+            "minimum": -5,
+            "description": "Adjust the zoom level of the window. The original size is 0 and each increment above (e.g. 1) or below (e.g. -1) represents zooming 20% larger or smaller. You can also enter decimals to adjust the zoom level with a finer granularity.",
+            "ignoreSync": true,
+            "tags": [
+                "accessibility"
+            ],
+            "defaultDefaultValue": 0,
+            "scope": 3,
+            "restricted": false
+        },
+        "window.closeWhenEmpty": {
+            "type": "boolean",
+            "default": false,
+            "description": "Controls whether closing the last editor should also close the window. This setting only applies for windows that do not show folders.",
+            "defaultDefaultValue": false,
+            "scope": 3,
+            "restricted": false
+        },
+        "telemetry.enableCrashReporter": {
+            "type": "boolean",
+            "description": "Enable crash reports to be collected. This helps us improve stability. \nThis option requires restart to take effect.",
+            "default": true,
+            "tags": [
+                "usesOnlineServices",
+                "telemetry"
+            ],
+            "markdownDeprecationMessage": "If this setting is false, no telemetry will be sent regardless of the new setting's value. Deprecated due to being combined into the `#telemetry.telemetryLevel#` setting.",
+            "defaultDefaultValue": true,
+            "scope": 3,
+            "restricted": false,
+            "deprecationMessage": "If this setting is false, no telemetry will be sent regardless of the new setting's value. Deprecated due to being combined into the `#telemetry.telemetryLevel#` setting."
+        },
+        "extensions.ignoreRecommendations": {
+            "type": "boolean",
+            "description": "When enabled, the notifications for extension recommendations will not be shown.",
+            "default": false,
+            "defaultDefaultValue": false,
+            "scope": 3,
+            "restricted": false
+        },
+        "extensions.showRecommendationsOnlyOnDemand": {
+            "type": "boolean",
+            "deprecationMessage": "This setting is deprecated. Use extensions.ignoreRecommendations setting to control recommendation notifications. Use Extensions view's visibility actions to hide Recommended view by default.",
+            "default": false,
+            "tags": [
+                "usesOnlineServices"
+            ],
+            "defaultDefaultValue": false,
+            "scope": 3,
+            "restricted": false
+        },
+        "extensions.closeExtensionDetailsOnViewChange": {
+            "type": "boolean",
+            "description": "When enabled, editors with extension details will be automatically closed upon navigating away from the Extensions View.",
+            "default": false,
+            "defaultDefaultValue": false,
+            "scope": 3,
+            "restricted": false
+        },
+        "extensions.webWorker": {
+            "type": [
+                "boolean",
+                "string"
+            ],
+            "enum": [
+                true,
+                false,
+                "auto"
+            ],
+            "enumDescriptions": [
+                "The Web Worker Extension Host will always be launched.",
+                "The Web Worker Extension Host will never be launched.",
+                "The Web Worker Extension Host will be launched when a web extension needs it."
+            ],
+            "description": "Enable web worker extension host.",
+            "default": "auto",
+            "defaultDefaultValue": "auto",
+            "scope": 3,
+            "restricted": false
+        },
+        "extensions.supportVirtualWorkspaces": {
+            "type": "object",
+            "markdownDescription": "Override the virtual workspaces support of an extension.",
+            "patternProperties": {
+                "([a-z0-9A-Z][a-z0-9-A-Z]*)\\.([a-z0-9A-Z][a-z0-9-A-Z]*)$": {
+                    "type": "boolean",
+                    "default": false
+                }
+            },
+            "additionalProperties": false,
+            "default": {},
+            "defaultSnippets": [
+                {
+                    "body": {
+                        "pub.name": false
+                    }
+                }
+            ],
+            "defaultDefaultValue": {},
+            "scope": 3,
+            "restricted": false
+        },
+        "extensions.experimental.affinity": {
+            "type": "object",
+            "markdownDescription": "Configure an extension to execute in a different extension host process.",
+            "patternProperties": {
+                "([a-z0-9A-Z][a-z0-9-A-Z]*)\\.([a-z0-9A-Z][a-z0-9-A-Z]*)$": {
+                    "type": "integer",
+                    "default": 1
+                }
+            },
+            "additionalProperties": false,
+            "default": {},
+            "defaultSnippets": [
+                {
+                    "body": {
+                        "pub.name": 1
+                    }
+                }
+            ],
+            "defaultDefaultValue": {},
+            "scope": 3,
+            "restricted": false
+        },
+        "extensions.experimental.deferredStartupFinishedActivation": {
+            "type": "boolean",
+            "description": "When enabled, extensions which declare the `onStartupFinished` activation event will be activated after a timeout.",
+            "default": false,
+            "defaultDefaultValue": false,
+            "scope": 3,
+            "restricted": false
+        },
+        "notebook.outline.showCodeCells": {
+            "type": "boolean",
+            "default": false,
+            "markdownDescription": "When enabled notebook outline shows code cells.",
+            "defaultDefaultValue": false,
+            "scope": 3,
+            "restricted": false
+        },
+        "notebook.breadcrumbs.showCodeCells": {
+            "type": "boolean",
+            "default": true,
+            "markdownDescription": "When enabled notebook breadcrumbs contain code cells.",
             "defaultDefaultValue": true,
             "scope": 3,
             "restricted": false
@@ -4459,6 +5594,17 @@
                 "notebookLayout"
             ],
             "defaultDefaultValue": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "notebook.diff.overviewRuler": {
+            "description": "Whether to render the overview ruler in the diff editor for notebook.",
+            "type": "boolean",
+            "default": false,
+            "tags": [
+                "notebookLayout"
+            ],
+            "defaultDefaultValue": false,
             "scope": 3,
             "restricted": false
         },
@@ -4623,7 +5769,8 @@
             "type": "number",
             "default": 30,
             "tags": [
-                "notebookLayout"
+                "notebookLayout",
+                "notebookOutputLayout"
             ],
             "defaultDefaultValue": 30,
             "scope": 3,
@@ -5104,6 +6251,22 @@
                             "default": true,
                             "markdownDescription": "Controls whether you can drag and drop a file into a text editor by holding down `shift` (instead of opening the file in an editor).",
                             "defaultDefaultValue": true,
+                            "scope": 5,
+                            "restricted": false
+                        },
+                        "editor.dropIntoEditor.showDropSelector": {
+                            "type": "string",
+                            "markdownDescription": "Controls if a widget is shown when dropping files into the editor. This widget lets you control how the file is dropped.",
+                            "enum": [
+                                "afterDrop",
+                                "never"
+                            ],
+                            "enumDescriptions": [
+                                "Show the drop selector widget after a file is dropped into the editor.",
+                                "Never show the drop selector widget. Instead the default drop provider is always used."
+                            ],
+                            "default": "afterDrop",
+                            "defaultDefaultValue": "afterDrop",
                             "scope": 5,
                             "restricted": false
                         },
@@ -5652,9 +6815,9 @@
                         },
                         "editor.inlineSuggest.suppressSuggestions": {
                             "type": "boolean",
-                            "default": true,
+                            "default": false,
                             "description": "Controls how inline suggestions interact with the suggest widget. If enabled, the suggest widget is not shown automatically when inline suggestions are available.",
-                            "defaultDefaultValue": true,
+                            "defaultDefaultValue": false,
                             "scope": 5,
                             "restricted": false
                         },
@@ -7067,6 +8230,14 @@
                             "defaultDefaultValue": false,
                             "scope": 5,
                             "restricted": false
+                        },
+                        "editor.defaultColorDecorators": {
+                            "markdownDescription": "Controls whether inline color decorations should be shown using the default document color provider",
+                            "type": "boolean",
+                            "default": false,
+                            "defaultDefaultValue": false,
+                            "scope": 5,
+                            "restricted": false
                         }
                     }
                 }
@@ -7096,7 +8267,8 @@
             "type": "number",
             "default": 0,
             "tags": [
-                "notebookLayout"
+                "notebookLayout",
+                "notebookOutputLayout"
             ],
             "defaultDefaultValue": 0,
             "scope": 3,
@@ -7107,7 +8279,8 @@
             "type": "number",
             "default": 0,
             "tags": [
-                "notebookLayout"
+                "notebookLayout",
+                "notebookOutputLayout"
             ],
             "defaultDefaultValue": 0,
             "scope": 3,
@@ -7117,17 +8290,19 @@
             "markdownDescription": "The font family of the output text within notebook cells. When set to empty, the `#editor.fontFamily#` is used.",
             "type": "string",
             "tags": [
-                "notebookLayout"
+                "notebookLayout",
+                "notebookOutputLayout"
             ],
             "default": "",
             "scope": 3,
             "restricted": false
         },
         "notebook.output.scrolling": {
-            "markdownDescription": "Use a scrollable region for notebook output when longer than the limit",
+            "markdownDescription": "Initially render notebook outputs in a scrollable region when longer than the limit",
             "type": "boolean",
             "tags": [
-                "notebookLayout"
+                "notebookLayout",
+                "notebookOutputLayout"
             ],
             "default": false,
             "defaultDefaultValue": false,
@@ -7138,7 +8313,8 @@
             "markdownDescription": "Controls whether the lines in output should wrap.",
             "type": "boolean",
             "tags": [
-                "notebookLayout"
+                "notebookLayout",
+                "notebookOutputLayout"
             ],
             "default": false,
             "defaultDefaultValue": false,
@@ -7156,858 +8332,51 @@
             "scope": 3,
             "restricted": false
         },
-        "debug.allowBreakpointsEverywhere": {
+        "notebook.confirmDeleteRunningCell": {
+            "markdownDescription": "Control whether a confirmation prompt is required to delete a running cell.",
             "type": "boolean",
-            "description": "Allow setting breakpoints in any file.",
-            "default": false,
-            "defaultDefaultValue": false,
-            "scope": 3,
-            "restricted": false
-        },
-        "debug.openExplorerOnEnd": {
-            "type": "boolean",
-            "description": "Automatically open the explorer view at the end of a debug session.",
-            "default": false,
-            "defaultDefaultValue": false,
-            "scope": 3,
-            "restricted": false
-        },
-        "debug.inlineValues": {
-            "type": "string",
-            "enum": [
-                "on",
-                "off",
-                "auto"
-            ],
-            "description": "Show variable values inline in editor while debugging.",
-            "enumDescriptions": [
-                "Always show variable values inline in editor while debugging.",
-                "Never show variable values inline in editor while debugging.",
-                "Show variable values inline in editor while debugging when the language supports inline value locations."
-            ],
-            "default": "auto",
-            "defaultDefaultValue": "auto",
-            "scope": 3,
-            "restricted": false
-        },
-        "debug.toolBarLocation": {
-            "enum": [
-                "floating",
-                "docked",
-                "hidden"
-            ],
-            "markdownDescription": "Controls the location of the debug toolbar. Either `floating` in all views, `docked` in the debug view, or `hidden`.",
-            "default": "floating",
-            "defaultDefaultValue": "floating",
-            "scope": 3,
-            "restricted": false
-        },
-        "debug.showInStatusBar": {
-            "enum": [
-                "never",
-                "always",
-                "onFirstSessionStart"
-            ],
-            "enumDescriptions": [
-                "Never show debug in Status bar",
-                "Always show debug in Status bar",
-                "Show debug in Status bar only after debug was started for the first time"
-            ],
-            "description": "Controls when the debug Status bar should be visible.",
-            "default": "onFirstSessionStart",
-            "defaultDefaultValue": "onFirstSessionStart",
-            "scope": 3,
-            "restricted": false
-        },
-        "debug.internalConsoleOptions": {
-            "enum": [
-                "neverOpen",
-                "openOnSessionStart",
-                "openOnFirstSessionStart"
-            ],
-            "default": "openOnFirstSessionStart",
-            "description": "Controls when the internal Debug Console should open.",
-            "defaultDefaultValue": "openOnFirstSessionStart",
-            "scope": 3,
-            "restricted": false
-        },
-        "debug.console.closeOnEnd": {
-            "type": "boolean",
-            "description": "Controls if the Debug Console should be automatically closed when the debug session ends.",
-            "default": false,
-            "defaultDefaultValue": false,
-            "scope": 3,
-            "restricted": false
-        },
-        "debug.terminal.clearBeforeReusing": {
-            "type": "boolean",
-            "description": "Before starting a new debug session in an integrated or external terminal, clear the terminal.",
-            "default": false,
-            "defaultDefaultValue": false,
-            "scope": 3,
-            "restricted": false
-        },
-        "debug.openDebug": {
-            "enum": [
-                "neverOpen",
-                "openOnSessionStart",
-                "openOnFirstSessionStart",
-                "openOnDebugBreak"
-            ],
-            "default": "openOnDebugBreak",
-            "description": "Controls when the debug view should open.",
-            "defaultDefaultValue": "openOnDebugBreak",
-            "scope": 3,
-            "restricted": false
-        },
-        "debug.showSubSessionsInToolBar": {
-            "type": "boolean",
-            "description": "Controls whether the debug sub-sessions are shown in the debug tool bar. When this setting is false the stop command on a sub-session will also stop the parent session.",
-            "default": false,
-            "defaultDefaultValue": false,
-            "scope": 3,
-            "restricted": false
-        },
-        "debug.console.fontSize": {
-            "type": "number",
-            "description": "Controls the font size in pixels in the Debug Console.",
-            "default": 14,
-            "defaultDefaultValue": 14,
-            "scope": 3,
-            "restricted": false
-        },
-        "debug.console.fontFamily": {
-            "type": "string",
-            "description": "Controls the font family in the Debug Console.",
-            "default": "default",
-            "defaultDefaultValue": "default",
-            "scope": 3,
-            "restricted": false
-        },
-        "debug.console.lineHeight": {
-            "type": "number",
-            "description": "Controls the line height in pixels in the Debug Console. Use 0 to compute the line height from the font size.",
-            "default": 0,
-            "defaultDefaultValue": 0,
-            "scope": 3,
-            "restricted": false
-        },
-        "debug.console.wordWrap": {
-            "type": "boolean",
-            "description": "Controls if the lines should wrap in the Debug Console.",
             "default": true,
             "defaultDefaultValue": true,
             "scope": 3,
             "restricted": false
         },
-        "debug.console.historySuggestions": {
-            "type": "boolean",
-            "description": "Controls if the Debug Console should suggest previously typed input.",
-            "default": true,
-            "defaultDefaultValue": true,
-            "scope": 3,
-            "restricted": false
-        },
-        "debug.console.collapseIdenticalLines": {
-            "type": "boolean",
-            "description": "Controls if the Debug Console should collapse identical lines and show a number of occurrences with a badge.",
-            "default": true,
-            "defaultDefaultValue": true,
-            "scope": 3,
-            "restricted": false
-        },
-        "debug.console.acceptSuggestionOnEnter": {
-            "enum": [
-                "off",
-                "on"
-            ],
-            "description": "Controls whether suggestions should be accepted on Enter in the Debug Console. Enter is also used to evaluate whatever is typed in the Debug Console.",
-            "default": "off",
-            "defaultDefaultValue": "off",
-            "scope": 3,
-            "restricted": false
-        },
-        "launch": {
+        "notebook.find.scope": {
+            "markdownDescription": "Customize the Find Widget behavior for searching within notebook cells. When both markup source and markup preview are enabled, the Find Widget will search either the source code or preview based on the current state of the cell.",
             "type": "object",
-            "description": "Global debug launch configuration. Should be used as an alternative to 'launch.json' that is shared across workspaces.",
+            "properties": {
+                "markupSource": {
+                    "type": "boolean",
+                    "default": true
+                },
+                "markupPreview": {
+                    "type": "boolean",
+                    "default": true
+                },
+                "codeSource": {
+                    "type": "boolean",
+                    "default": true
+                },
+                "codeOutput": {
+                    "type": "boolean",
+                    "default": true
+                }
+            },
             "default": {
-                "configurations": [],
-                "compounds": []
+                "markupSource": true,
+                "markupPreview": true,
+                "codeSource": true,
+                "codeOutput": true
             },
-            "$ref": "vscode://schemas/launch",
+            "tags": [
+                "notebookLayout"
+            ],
             "defaultDefaultValue": {
-                "configurations": [],
-                "compounds": []
+                "markupSource": true,
+                "markupPreview": true,
+                "codeSource": true,
+                "codeOutput": true
             },
             "scope": 3,
-            "restricted": false
-        },
-        "debug.focusWindowOnBreak": {
-            "type": "boolean",
-            "description": "Controls whether the workbench window should be focused when the debugger breaks.",
-            "default": true,
-            "defaultDefaultValue": true,
-            "scope": 3,
-            "restricted": false
-        },
-        "debug.focusEditorOnBreak": {
-            "type": "boolean",
-            "description": "Controls whether the editor should be focused when the debugger breaks.",
-            "default": true,
-            "defaultDefaultValue": true,
-            "scope": 3,
-            "restricted": false
-        },
-        "debug.onTaskErrors": {
-            "enum": [
-                "debugAnyway",
-                "showErrors",
-                "prompt",
-                "abort"
-            ],
-            "enumDescriptions": [
-                "Ignore task errors and start debugging.",
-                "Show the Problems view and do not start debugging.",
-                "Prompt user.",
-                "Cancel debugging."
-            ],
-            "description": "Controls what to do when errors are encountered after running a preLaunchTask.",
-            "default": "prompt",
-            "defaultDefaultValue": "prompt",
-            "scope": 3,
-            "restricted": false
-        },
-        "debug.showBreakpointsInOverviewRuler": {
-            "type": "boolean",
-            "description": "Controls whether breakpoints should be shown in the overview ruler.",
-            "default": false,
-            "defaultDefaultValue": false,
-            "scope": 3,
-            "restricted": false
-        },
-        "debug.showInlineBreakpointCandidates": {
-            "type": "boolean",
-            "description": "Controls whether inline breakpoints candidate decorations should be shown in the editor while debugging.",
-            "default": true,
-            "defaultDefaultValue": true,
-            "scope": 3,
-            "restricted": false
-        },
-        "debug.confirmOnExit": {
-            "description": "Controls whether to confirm when the window closes if there are active debug sessions.",
-            "type": "string",
-            "enum": [
-                "never",
-                "always"
-            ],
-            "enumDescriptions": [
-                "Never confirm.",
-                "Always confirm if there are debug sessions."
-            ],
-            "default": "never",
-            "defaultDefaultValue": "never",
-            "scope": 3,
-            "restricted": false
-        },
-        "debug.disassemblyView.showSourceCode": {
-            "type": "boolean",
-            "default": true,
-            "description": "Show Source Code in Disassembly View.",
-            "defaultDefaultValue": true,
-            "scope": 3,
-            "restricted": false
-        },
-        "debug.autoExpandLazyVariables": {
-            "type": "boolean",
-            "default": false,
-            "description": "Automatically show values for variables that are lazily resolved by the debugger, such as getters.",
-            "defaultDefaultValue": false,
-            "scope": 3,
-            "restricted": false
-        },
-        "debug.enableStatusBarColor": {
-            "type": "boolean",
-            "description": "Color status bar when debugger is active",
-            "default": true,
-            "defaultDefaultValue": true,
-            "scope": 3,
-            "restricted": false
-        },
-        "workbench.experimental.cloudChanges.autoStore": {
-            "enum": [
-                "onShutdown",
-                "off"
-            ],
-            "enumDescriptions": [
-                "Automatically store current working changes in the cloud on window close.",
-                "Never attempt to automatically store working changes in the cloud."
-            ],
-            "type": "string",
-            "tags": [
-                "experimental",
-                "usesOnlineServices"
-            ],
-            "default": "off",
-            "markdownDescription": "Controls whether to automatically store available working changes in the cloud for the current workspace. This setting has no effect in the web.",
-            "defaultDefaultValue": "off",
-            "scope": 3,
-            "restricted": false
-        },
-        "workbench.cloudChanges.autoResume": {
-            "enum": [
-                "onReload",
-                "off"
-            ],
-            "enumDescriptions": [
-                "Automatically resume available working changes from the cloud on window reload.",
-                "Never attempt to resume working changes from the cloud."
-            ],
-            "type": "string",
-            "tags": [
-                "usesOnlineServices"
-            ],
-            "default": "onReload",
-            "markdownDescription": "Controls whether to automatically resume available working changes stored in the cloud for the current workspace.",
-            "defaultDefaultValue": "onReload",
-            "scope": 3,
-            "restricted": false
-        },
-        "workbench.cloudChanges.continueOn": {
-            "enum": [
-                "prompt",
-                "off"
-            ],
-            "enumDescriptions": [
-                "Prompt the user to sign in to store working changes in the cloud with Continue Working On.",
-                "Do not store working changes in the cloud with Continue Working On unless the user has already turned on Cloud Changes."
-            ],
-            "type": "string",
-            "tags": [
-                "usesOnlineServices"
-            ],
-            "default": "prompt",
-            "markdownDescription": "Controls whether to prompt the user to store working changes in the cloud when using Continue Working On.",
-            "defaultDefaultValue": "prompt",
-            "scope": 3,
-            "restricted": false
-        },
-        "workbench.experimental.editSessions.autoStore": {
-            "markdownDeprecationMessage": "This setting is deprecated in favor of `#workbench.experimental.cloudChanges.autoStore#`.",
-            "default": null,
-            "scope": 3,
-            "restricted": false,
-            "deprecationMessage": "This setting is deprecated in favor of `#workbench.experimental.cloudChanges.autoStore#`."
-        },
-        "workbench.editSessions.autoResume": {
-            "markdownDeprecationMessage": "This setting is deprecated in favor of `#workbench.cloudChanges.autoResume#`.",
-            "default": null,
-            "scope": 3,
-            "restricted": false,
-            "deprecationMessage": "This setting is deprecated in favor of `#workbench.cloudChanges.autoResume#`."
-        },
-        "workbench.editSessions.continueOn": {
-            "markdownDeprecationMessage": "This setting is deprecated in favor of `#workbench.cloudChanges.continueOn#`.",
-            "default": null,
-            "scope": 3,
-            "restricted": false,
-            "deprecationMessage": "This setting is deprecated in favor of `#workbench.cloudChanges.continueOn#`."
-        },
-        "workbench.experimental.cloudChanges.partialMatches.enabled": {
-            "type": "boolean",
-            "tags": [
-                "experimental",
-                "usesOnlineServices"
-            ],
-            "default": false,
-            "markdownDescription": "Controls whether to surface cloud changes which partially match the current session.",
-            "defaultDefaultValue": false,
-            "scope": 3,
-            "restricted": false
-        },
-        "workbench.experimental.editSessions.partialMatches.enabled": {
-            "markdownDeprecationMessage": "This setting is deprecated in favor of `#workbench.experimental.cloudChanges.partialMatches.enabled#`.",
-            "default": null,
-            "scope": 3,
-            "restricted": false,
-            "deprecationMessage": "This setting is deprecated in favor of `#workbench.experimental.cloudChanges.partialMatches.enabled#`."
-        },
-        "files.associations": {
-            "type": "object",
-            "markdownDescription": "Configure file associations to languages (for example `\"*.extension\": \"html\"`). These have precedence over the default associations of the languages installed.",
-            "additionalProperties": {
-                "type": "string"
-            },
-            "default": {},
-            "scope": 3,
-            "restricted": false
-        },
-        "files.enableTrash": {
-            "type": "boolean",
-            "default": true,
-            "description": "Moves files/folders to the OS trash (recycle bin on Windows) when deleting. Disabling this will delete files/folders permanently.",
-            "defaultDefaultValue": true,
-            "scope": 3,
-            "restricted": false
-        },
-        "files.autoSave": {
-            "type": "string",
-            "enum": [
-                "off",
-                "afterDelay",
-                "onFocusChange",
-                "onWindowChange"
-            ],
-            "markdownEnumDescriptions": [
-                "An editor with changes is never automatically saved.",
-                "An editor with changes is automatically saved after the configured `#files.autoSaveDelay#`.",
-                "An editor with changes is automatically saved when the editor loses focus.",
-                "An editor with changes is automatically saved when the window loses focus."
-            ],
-            "default": "off",
-            "markdownDescription": "Controls [auto save](https://code.visualstudio.com/docs/editor/codebasics#_save-auto-save) of editors that have unsaved changes.",
-            "defaultDefaultValue": "off",
-            "scope": 3,
-            "restricted": false
-        },
-        "files.autoSaveDelay": {
-            "type": "number",
-            "default": 1000,
-            "minimum": 0,
-            "markdownDescription": "Controls the delay in milliseconds after which an editor with unsaved changes is saved automatically. Only applies when `#files.autoSave#` is set to `afterDelay`.",
-            "defaultDefaultValue": 1000,
-            "scope": 3,
-            "restricted": false
-        },
-        "files.defaultLanguage": {
-            "type": "string",
-            "markdownDescription": "The default language identifier that is assigned to new files. If configured to `${activeEditorLanguage}`, will use the language identifier of the currently active text editor if any.",
-            "default": "",
-            "scope": 3,
-            "restricted": false
-        },
-        "files.maxMemoryForLargeFilesMB": {
-            "type": "number",
-            "default": 4096,
-            "minimum": 0,
-            "markdownDescription": "Controls the memory available to VS Code after restart when trying to open large files. Same effect as specifying `--max-memory=NEWSIZE` on the command line.",
-            "included": true,
-            "defaultDefaultValue": 4096,
-            "scope": 3,
-            "restricted": false
-        },
-        "files.restoreUndoStack": {
-            "type": "boolean",
-            "description": "Restore the undo stack when a file is reopened.",
-            "default": true,
-            "defaultDefaultValue": true,
-            "scope": 3,
-            "restricted": false
-        },
-        "files.simpleDialog.enable": {
-            "type": "boolean",
-            "description": "Enables the simple file dialog. The simple file dialog replaces the system file dialog when enabled.",
-            "default": false,
-            "defaultDefaultValue": false,
-            "scope": 3,
-            "restricted": false
-        },
-        "files.participants.timeout": {
-            "type": "number",
-            "default": 60000,
-            "markdownDescription": "Timeout in milliseconds after which file participants for create, rename, and delete are cancelled. Use `0` to disable participants.",
-            "defaultDefaultValue": 60000,
-            "scope": 3,
-            "restricted": false
-        },
-        "explorer.openEditors.visible": {
-            "type": "number",
-            "description": "The maximum number of editors shown in the Open Editors pane. Setting this to 0 hides the Open Editors pane.",
-            "default": 9,
-            "minimum": 0,
-            "defaultDefaultValue": 9,
-            "scope": 3,
-            "restricted": false
-        },
-        "explorer.openEditors.minVisible": {
-            "type": "number",
-            "description": "The minimum number of editor slots shown in the Open Editors pane. If set to 0 the Open Editors pane will dynamically resize based on the number of editors.",
-            "default": 0,
-            "minimum": 0,
-            "defaultDefaultValue": 0,
-            "scope": 3,
-            "restricted": false
-        },
-        "explorer.openEditors.sortOrder": {
-            "type": "string",
-            "enum": [
-                "editorOrder",
-                "alphabetical",
-                "fullPath"
-            ],
-            "description": "Controls the sorting order of editors in the Open Editors pane.",
-            "enumDescriptions": [
-                "Editors are ordered in the same order editor tabs are shown.",
-                "Editors are ordered alphabetically by tab name inside each editor group.",
-                "Editors are ordered alphabetically by full path inside each editor group."
-            ],
-            "default": "editorOrder",
-            "defaultDefaultValue": "editorOrder",
-            "scope": 3,
-            "restricted": false
-        },
-        "explorer.autoReveal": {
-            "type": [
-                "boolean",
-                "string"
-            ],
-            "enum": [
-                true,
-                false,
-                "focusNoScroll"
-            ],
-            "default": true,
-            "enumDescriptions": [
-                "Files will be revealed and selected.",
-                "Files will not be revealed and selected.",
-                "Files will not be scrolled into view, but will still be focused."
-            ],
-            "description": "Controls whether the Explorer should automatically reveal and select files when opening them.",
-            "defaultDefaultValue": true,
-            "scope": 3,
-            "restricted": false
-        },
-        "explorer.autoRevealExclude": {
-            "type": "object",
-            "markdownDescription": "Configure glob patterns for excluding files and folders from being revealed and selected in the Explorer when they are opened. Read more about glob patterns [here](https://code.visualstudio.com/docs/editor/codebasics#_advanced-search-options).",
-            "default": {
-                "**/node_modules": true,
-                "**/bower_components": true
-            },
-            "additionalProperties": {
-                "anyOf": [
-                    {
-                        "type": "boolean",
-                        "description": "The glob pattern to match file paths against. Set to true or false to enable or disable the pattern."
-                    },
-                    {
-                        "type": "object",
-                        "properties": {
-                            "when": {
-                                "type": "string",
-                                "pattern": "\\w*\\$\\(basename\\)\\w*",
-                                "default": "$(basename).ext",
-                                "description": "Additional check on the siblings of a matching file. Use $(basename) as variable for the matching file name."
-                            }
-                        }
-                    }
-                ]
-            },
-            "defaultDefaultValue": {
-                "**/node_modules": true,
-                "**/bower_components": true
-            },
-            "scope": 3,
-            "restricted": false
-        },
-        "explorer.enableDragAndDrop": {
-            "type": "boolean",
-            "description": "Controls whether the Explorer should allow to move files and folders via drag and drop. This setting only effects drag and drop from inside the Explorer.",
-            "default": true,
-            "defaultDefaultValue": true,
-            "scope": 3,
-            "restricted": false
-        },
-        "explorer.confirmDragAndDrop": {
-            "type": "boolean",
-            "description": "Controls whether the Explorer should ask for confirmation to move files and folders via drag and drop.",
-            "default": true,
-            "defaultDefaultValue": true,
-            "scope": 3,
-            "restricted": false
-        },
-        "explorer.confirmDelete": {
-            "type": "boolean",
-            "description": "Controls whether the Explorer should ask for confirmation when deleting a file via the trash.",
-            "default": true,
-            "defaultDefaultValue": true,
-            "scope": 3,
-            "restricted": false
-        },
-        "explorer.enableUndo": {
-            "type": "boolean",
-            "description": "Controls whether the Explorer should support undoing file and folder operations.",
-            "default": true,
-            "defaultDefaultValue": true,
-            "scope": 3,
-            "restricted": false
-        },
-        "explorer.confirmUndo": {
-            "type": "string",
-            "enum": [
-                "verbose",
-                "default",
-                "light"
-            ],
-            "description": "Controls whether the Explorer should ask for confirmation when undoing.",
-            "default": "default",
-            "enumDescriptions": [
-                "Explorer will prompt before all undo operations.",
-                "Explorer will prompt before destructive undo operations.",
-                "Explorer will not prompt before undo operations when focused."
-            ],
-            "defaultDefaultValue": "default",
-            "scope": 3,
-            "restricted": false
-        },
-        "explorer.expandSingleFolderWorkspaces": {
-            "type": "boolean",
-            "description": "Controls whether the Explorer should expand multi-root workspaces containing only one folder during initialization",
-            "default": true,
-            "defaultDefaultValue": true,
-            "scope": 3,
-            "restricted": false
-        },
-        "explorer.sortOrder": {
-            "type": "string",
-            "enum": [
-                "default",
-                "mixed",
-                "filesFirst",
-                "type",
-                "modified",
-                "foldersNestsFiles"
-            ],
-            "default": "default",
-            "enumDescriptions": [
-                "Files and folders are sorted by their names. Folders are displayed before files.",
-                "Files and folders are sorted by their names. Files are interwoven with folders.",
-                "Files and folders are sorted by their names. Files are displayed before folders.",
-                "Files and folders are grouped by extension type then sorted by their names. Folders are displayed before files.",
-                "Files and folders are sorted by last modified date in descending order. Folders are displayed before files.",
-                "Files and folders are sorted by their names. Folders are displayed before files. Files with nested children are displayed before other files."
-            ],
-            "markdownDescription": "Controls the property-based sorting of files and folders in the Explorer. When `#explorer.fileNesting.enabled#` is enabled, also controls sorting of nested files.",
-            "defaultDefaultValue": "default",
-            "scope": 3,
-            "restricted": false
-        },
-        "explorer.sortOrderLexicographicOptions": {
-            "type": "string",
-            "enum": [
-                "default",
-                "upper",
-                "lower",
-                "unicode"
-            ],
-            "default": "default",
-            "enumDescriptions": [
-                "Uppercase and lowercase names are mixed together.",
-                "Uppercase names are grouped together before lowercase names.",
-                "Lowercase names are grouped together before uppercase names.",
-                "Names are sorted in Unicode order."
-            ],
-            "description": "Controls the lexicographic sorting of file and folder names in the Explorer.",
-            "defaultDefaultValue": "default",
-            "scope": 3,
-            "restricted": false
-        },
-        "explorer.decorations.colors": {
-            "type": "boolean",
-            "description": "Controls whether file decorations should use colors.",
-            "default": true,
-            "defaultDefaultValue": true,
-            "scope": 3,
-            "restricted": false
-        },
-        "explorer.decorations.badges": {
-            "type": "boolean",
-            "description": "Controls whether file decorations should use badges.",
-            "default": true,
-            "defaultDefaultValue": true,
-            "scope": 3,
-            "restricted": false
-        },
-        "explorer.incrementalNaming": {
-            "type": "string",
-            "enum": [
-                "simple",
-                "smart",
-                "disabled"
-            ],
-            "enumDescriptions": [
-                "Appends the word \"copy\" at the end of the duplicated name potentially followed by a number.",
-                "Adds a number at the end of the duplicated name. If some number is already part of the name, tries to increase that number.",
-                "Disables incremental naming. If two files with the same name exist you will be prompted to overwrite the existing file."
-            ],
-            "description": "Controls what naming strategy to use when a giving a new name to a duplicated Explorer item on paste.",
-            "default": "simple",
-            "defaultDefaultValue": "simple",
-            "scope": 3,
-            "restricted": false
-        },
-        "explorer.compactFolders": {
-            "type": "boolean",
-            "description": "Controls whether the Explorer should render folders in a compact form. In such a form, single child folders will be compressed in a combined tree element. Useful for Java package structures, for example.",
-            "default": true,
-            "defaultDefaultValue": true,
-            "scope": 3,
-            "restricted": false
-        },
-        "explorer.copyRelativePathSeparator": {
-            "type": "string",
-            "enum": [
-                "/",
-                "\\",
-                "auto"
-            ],
-            "enumDescriptions": [
-                "Use slash as path separation character.",
-                "Use backslash as path separation character.",
-                "Uses operating system specific path separation character."
-            ],
-            "description": "The path separation character used when copying relative file paths.",
-            "default": "auto",
-            "defaultDefaultValue": "auto",
-            "scope": 3,
-            "restricted": false
-        },
-        "explorer.fileNesting.expand": {
-            "type": "boolean",
-            "markdownDescription": "Controls whether file nests are automatically expanded. `#explorer.fileNesting.enabled#` must be set for this to take effect.",
-            "default": true,
-            "defaultDefaultValue": true,
-            "scope": 3,
-            "restricted": false
-        },
-        "interactiveSession.editor.fontSize": {
-            "type": "number",
-            "description": "Controls the font size in pixels in Interactive Sessions.",
-            "default": 14,
-            "defaultDefaultValue": 14,
-            "scope": 3,
-            "restricted": false
-        },
-        "interactiveSession.editor.fontFamily": {
-            "type": "string",
-            "description": "Controls the font family in Interactive Sessions.",
-            "default": "default",
-            "defaultDefaultValue": "default",
-            "scope": 3,
-            "restricted": false
-        },
-        "interactiveSession.editor.fontWeight": {
-            "type": "string",
-            "description": "Controls the font weight in Interactive Sessions.",
-            "default": "default",
-            "defaultDefaultValue": "default",
-            "scope": 3,
-            "restricted": false
-        },
-        "interactiveSession.editor.wordWrap": {
-            "type": "string",
-            "description": "Controls whether lines should wrap in Interactive Sessions.",
-            "default": "off",
-            "enum": [
-                "on",
-                "off"
-            ],
-            "defaultDefaultValue": "off",
-            "scope": 3,
-            "restricted": false
-        },
-        "interactiveSession.editor.lineHeight": {
-            "type": "number",
-            "description": "Controls the line height in pixels in Interactive Sessions. Use 0 to compute the line height from the font size.",
-            "default": 0,
-            "defaultDefaultValue": 0,
-            "scope": 3,
-            "restricted": false
-        },
-        "problems.autoReveal": {
-            "description": "Controls whether Problems view should automatically reveal files when opening them.",
-            "type": "boolean",
-            "default": true,
-            "defaultDefaultValue": true,
-            "scope": 3,
-            "restricted": false
-        },
-        "problems.defaultViewMode": {
-            "description": "Controls the default view mode of the Problems view.",
-            "type": "string",
-            "default": "tree",
-            "enum": [
-                "table",
-                "tree"
-            ],
-            "defaultDefaultValue": "tree",
-            "scope": 3,
-            "restricted": false
-        },
-        "problems.showCurrentInStatus": {
-            "description": "When enabled shows the current problem in the status bar.",
-            "type": "boolean",
-            "default": false,
-            "defaultDefaultValue": false,
-            "scope": 3,
-            "restricted": false
-        },
-        "problems.sortOrder": {
-            "description": "Controls the order in which problems are navigated.",
-            "type": "string",
-            "default": "severity",
-            "enum": [
-                "severity",
-                "position"
-            ],
-            "enumDescriptions": [
-                "Navigate problems ordered by severity",
-                "Navigate problems ordered by position"
-            ],
-            "defaultDefaultValue": "severity",
-            "scope": 3,
-            "restricted": false
-        },
-        "outline.icons": {
-            "description": "Render Outline elements with icons.",
-            "type": "boolean",
-            "default": true,
-            "defaultDefaultValue": true,
-            "scope": 3,
-            "restricted": false
-        },
-        "outline.problems.enabled": {
-            "description": "Show errors and warnings on Outline elements.",
-            "type": "boolean",
-            "default": true,
-            "defaultDefaultValue": true,
-            "scope": 3,
-            "restricted": false
-        },
-        "outline.problems.colors": {
-            "description": "Use colors for errors and warnings on Outline elements.",
-            "type": "boolean",
-            "default": true,
-            "defaultDefaultValue": true,
-            "scope": 3,
-            "restricted": false
-        },
-        "outline.problems.badges": {
-            "description": "Use badges for errors and warnings on Outline elements.",
-            "type": "boolean",
-            "default": true,
-            "defaultDefaultValue": true,
-            "scope": 3,
-            "restricted": false
-        },
-        "output.smartScroll.enabled": {
-            "type": "boolean",
-            "description": "Enable/disable the ability of smart scrolling in the output view. Smart scrolling allows you to lock scrolling automatically when you click in the output view and unlocks when you click in the last line.",
-            "default": true,
-            "scope": 3,
-            "tags": [
-                "output"
-            ],
-            "defaultDefaultValue": true,
             "restricted": false
         },
         "search.mode": {
@@ -8305,260 +8674,6 @@
         "search.experimental.notebookSearch": {
             "type": "boolean",
             "description": "Controls whether to use the experimental notebook search in the global search. Please reload your VS Code instance for changes to this setting to take effect.",
-            "default": false,
-            "defaultDefaultValue": false,
-            "scope": 3,
-            "restricted": false
-        },
-        "testing.autoRun.delay": {
-            "type": "integer",
-            "minimum": 0,
-            "description": "How long to wait, in milliseconds, after a test is marked as outdated and starting a new run.",
-            "default": 1000,
-            "defaultDefaultValue": 1000,
-            "scope": 3,
-            "restricted": false
-        },
-        "testing.automaticallyOpenPeekView": {
-            "description": "Configures when the error Peek view is automatically opened.",
-            "enum": [
-                "failureAnywhere",
-                "failureInVisibleDocument",
-                "never"
-            ],
-            "default": "failureInVisibleDocument",
-            "enumDescriptions": [
-                "Open automatically no matter where the failure is.",
-                "Open automatically when a test fails in a visible document.",
-                "Never automatically open."
-            ],
-            "defaultDefaultValue": "failureInVisibleDocument",
-            "scope": 3,
-            "restricted": false
-        },
-        "testing.automaticallyOpenPeekViewDuringAutoRun": {
-            "description": "Controls whether to automatically open the Peek view during continuous run mode.",
-            "type": "boolean",
-            "default": false,
-            "defaultDefaultValue": false,
-            "scope": 3,
-            "restricted": false
-        },
-        "testing.followRunningTest": {
-            "description": "Controls whether the running test should be followed in the Test Explorer view.",
-            "type": "boolean",
-            "default": true,
-            "defaultDefaultValue": true,
-            "scope": 3,
-            "restricted": false
-        },
-        "testing.defaultGutterClickAction": {
-            "description": "Controls the action to take when left-clicking on a test decoration in the gutter.",
-            "enum": [
-                "run",
-                "debug",
-                "contextMenu"
-            ],
-            "enumDescriptions": [
-                "Run the test.",
-                "Debug the test.",
-                "Open the context menu for more options."
-            ],
-            "default": "run",
-            "defaultDefaultValue": "run",
-            "scope": 3,
-            "restricted": false
-        },
-        "testing.gutterEnabled": {
-            "description": "Controls whether test decorations are shown in the editor gutter.",
-            "type": "boolean",
-            "default": true,
-            "defaultDefaultValue": true,
-            "scope": 3,
-            "restricted": false
-        },
-        "testing.saveBeforeTest": {
-            "description": "Control whether save all dirty editors before running a test.",
-            "type": "boolean",
-            "default": true,
-            "defaultDefaultValue": true,
-            "scope": 3,
-            "restricted": false
-        },
-        "testing.openTesting": {
-            "enum": [
-                "neverOpen",
-                "openOnTestStart",
-                "openOnTestFailure"
-            ],
-            "enumDescriptions": [
-                "Never automatically open the testing view",
-                "Open the testing view when tests start",
-                "Open the testing view on any test failure"
-            ],
-            "default": "openOnTestStart",
-            "description": "Controls when the testing view should open.",
-            "defaultDefaultValue": "openOnTestStart",
-            "scope": 3,
-            "restricted": false
-        },
-        "testing.alwaysRevealTestOnStateChange": {
-            "markdownDescription": "Always reveal the executed test when `#testing.followRunningTest#` is on. If this setting is turned off, only failed tests will be revealed.",
-            "type": "boolean",
-            "default": false,
-            "defaultDefaultValue": false,
-            "scope": 3,
-            "restricted": false
-        },
-        "timeline.pageSize": {
-            "type": [
-                "number",
-                "null"
-            ],
-            "default": null,
-            "markdownDescription": "The number of items to show in the Timeline view by default and when loading more items. Setting to `null` (the default) will automatically choose a page size based on the visible area of the Timeline view.",
-            "defaultDefaultValue": null,
-            "scope": 3,
-            "restricted": false
-        },
-        "timeline.pageOnScroll": {
-            "type": "boolean",
-            "default": false,
-            "description": "Experimental. Controls whether the Timeline view will load the next page of items when you scroll to the end of the list.",
-            "defaultDefaultValue": false,
-            "scope": 3,
-            "restricted": false
-        },
-        "window.zoomLevel": {
-            "type": "number",
-            "default": 0,
-            "minimum": -5,
-            "description": "Adjust the zoom level of the window. The original size is 0 and each increment above (e.g. 1) or below (e.g. -1) represents zooming 20% larger or smaller. You can also enter decimals to adjust the zoom level with a finer granularity.",
-            "ignoreSync": true,
-            "tags": [
-                "accessibility"
-            ],
-            "defaultDefaultValue": 0,
-            "scope": 3,
-            "restricted": false
-        },
-        "window.closeWhenEmpty": {
-            "type": "boolean",
-            "default": false,
-            "description": "Controls whether closing the last editor should also close the window. This setting only applies for windows that do not show folders.",
-            "defaultDefaultValue": false,
-            "scope": 3,
-            "restricted": false
-        },
-        "telemetry.enableCrashReporter": {
-            "type": "boolean",
-            "description": "Enable crash reports to be collected. This helps us improve stability. \nThis option requires restart to take effect.",
-            "default": true,
-            "tags": [
-                "usesOnlineServices",
-                "telemetry"
-            ],
-            "markdownDeprecationMessage": "If this setting is false, no telemetry will be sent regardless of the new setting's value. Deprecated due to being combined into the `#telemetry.telemetryLevel#` setting.",
-            "defaultDefaultValue": true,
-            "scope": 3,
-            "restricted": false,
-            "deprecationMessage": "If this setting is false, no telemetry will be sent regardless of the new setting's value. Deprecated due to being combined into the `#telemetry.telemetryLevel#` setting."
-        },
-        "extensions.ignoreRecommendations": {
-            "type": "boolean",
-            "description": "When enabled, the notifications for extension recommendations will not be shown.",
-            "default": false,
-            "defaultDefaultValue": false,
-            "scope": 3,
-            "restricted": false
-        },
-        "extensions.showRecommendationsOnlyOnDemand": {
-            "type": "boolean",
-            "deprecationMessage": "This setting is deprecated. Use extensions.ignoreRecommendations setting to control recommendation notifications. Use Extensions view's visibility actions to hide Recommended view by default.",
-            "default": false,
-            "tags": [
-                "usesOnlineServices"
-            ],
-            "defaultDefaultValue": false,
-            "scope": 3,
-            "restricted": false
-        },
-        "extensions.closeExtensionDetailsOnViewChange": {
-            "type": "boolean",
-            "description": "When enabled, editors with extension details will be automatically closed upon navigating away from the Extensions View.",
-            "default": false,
-            "defaultDefaultValue": false,
-            "scope": 3,
-            "restricted": false
-        },
-        "extensions.webWorker": {
-            "type": [
-                "boolean",
-                "string"
-            ],
-            "enum": [
-                true,
-                false,
-                "auto"
-            ],
-            "enumDescriptions": [
-                "The Web Worker Extension Host will always be launched.",
-                "The Web Worker Extension Host will never be launched.",
-                "The Web Worker Extension Host will be launched when a web extension needs it."
-            ],
-            "description": "Enable web worker extension host.",
-            "default": "auto",
-            "defaultDefaultValue": "auto",
-            "scope": 3,
-            "restricted": false
-        },
-        "extensions.supportVirtualWorkspaces": {
-            "type": "object",
-            "markdownDescription": "Override the virtual workspaces support of an extension.",
-            "patternProperties": {
-                "([a-z0-9A-Z][a-z0-9-A-Z]*)\\.([a-z0-9A-Z][a-z0-9-A-Z]*)$": {
-                    "type": "boolean",
-                    "default": false
-                }
-            },
-            "additionalProperties": false,
-            "default": {},
-            "defaultSnippets": [
-                {
-                    "body": {
-                        "pub.name": false
-                    }
-                }
-            ],
-            "defaultDefaultValue": {},
-            "scope": 3,
-            "restricted": false
-        },
-        "extensions.experimental.affinity": {
-            "type": "object",
-            "markdownDescription": "Configure an extension to execute in a different extension host process.",
-            "patternProperties": {
-                "([a-z0-9A-Z][a-z0-9-A-Z]*)\\.([a-z0-9A-Z][a-z0-9-A-Z]*)$": {
-                    "type": "integer",
-                    "default": 1
-                }
-            },
-            "additionalProperties": false,
-            "default": {},
-            "defaultSnippets": [
-                {
-                    "body": {
-                        "pub.name": 1
-                    }
-                }
-            ],
-            "defaultDefaultValue": {},
-            "scope": 3,
-            "restricted": false
-        },
-        "extensions.experimental.deferredStartupFinishedActivation": {
-            "type": "boolean",
-            "description": "When enabled, extensions which declare the `onStartupFinished` activation event will be activated after a timeout.",
             "default": false,
             "defaultDefaultValue": false,
             "scope": 3,
@@ -20894,7 +21009,7 @@
             "restricted": false
         },
         "terminal.integrated.commandsToSkipShell": {
-            "markdownDescription": "A set of command IDs whose keybindings will not be sent to the shell but instead always be handled by VS Code. This allows keybindings that would normally be consumed by the shell to act instead the same as when the terminal is not focused, for example `Ctrl+P` to launch Quick Open.\n\n&nbsp;\n\nMany commands are skipped by default. To override a default and pass that command's keybinding to the shell instead, add the command prefixed with the `-` character. For example add `-workbench.action.quickOpen` to allow `Ctrl+P` to reach the shell.\n\n&nbsp;\n\nThe following list of default skipped commands is truncated when viewed in Settings Editor. To see the full list, [open the default settings JSON](command:workbench.action.openRawDefaultSettings 'Open Default Settings (JSON)') and search for the first command from the list below.\n\n&nbsp;\n\nDefault Skipped Commands:\n\n- editor.action.toggleTabFocusMode\n- notification.acceptPrimaryAction\n- notifications.hideList\n- notifications.hideToasts\n- workbench.action.closeQuickOpen\n- workbench.action.debug.continue\n- workbench.action.debug.pause\n- workbench.action.debug.restart\n- workbench.action.debug.run\n- workbench.action.debug.start\n- workbench.action.debug.stepInto\n- workbench.action.debug.stepOut\n- workbench.action.debug.stepOver\n- workbench.action.debug.stop\n- workbench.action.firstEditorInGroup\n- workbench.action.focusActiveEditorGroup\n- workbench.action.focusEighthEditorGroup\n- workbench.action.focusFifthEditorGroup\n- workbench.action.focusFirstEditorGroup\n- workbench.action.focusFourthEditorGroup\n- workbench.action.focusLastEditorGroup\n- workbench.action.focusNextPart\n- workbench.action.focusPreviousPart\n- workbench.action.focusSecondEditorGroup\n- workbench.action.focusSeventhEditorGroup\n- workbench.action.focusSixthEditorGroup\n- workbench.action.focusThirdEditorGroup\n- workbench.action.lastEditorInGroup\n- workbench.action.navigateDown\n- workbench.action.navigateLeft\n- workbench.action.navigateRight\n- workbench.action.navigateUp\n- workbench.action.nextEditor\n- workbench.action.nextEditorInGroup\n- workbench.action.nextPanelView\n- workbench.action.nextSideBarView\n- workbench.action.openNextRecentlyUsedEditor\n- workbench.action.openNextRecentlyUsedEditorInGroup\n- workbench.action.openPreviousRecentlyUsedEditor\n- workbench.action.openPreviousRecentlyUsedEditorInGroup\n- workbench.action.previousEditor\n- workbench.action.previousEditorInGroup\n- workbench.action.previousPanelView\n- workbench.action.previousSideBarView\n- workbench.action.quickOpen\n- workbench.action.quickOpenLeastRecentlyUsedEditor\n- workbench.action.quickOpenLeastRecentlyUsedEditorInGroup\n- workbench.action.quickOpenPreviousEditor\n- workbench.action.quickOpenPreviousRecentlyUsedEditor\n- workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup\n- workbench.action.quickOpenView\n- workbench.action.showCommands\n- workbench.action.tasks.build\n- workbench.action.tasks.reRunTask\n- workbench.action.tasks.restartTask\n- workbench.action.tasks.runTask\n- workbench.action.tasks.showLog\n- workbench.action.tasks.showTasks\n- workbench.action.tasks.terminate\n- workbench.action.tasks.test\n- workbench.action.terminal.acceptSelectedSuggestion\n- workbench.action.terminal.clear\n- workbench.action.terminal.clearSelection\n- workbench.action.terminal.copyAndClearSelection\n- workbench.action.terminal.copyLastCommandOutput\n- workbench.action.terminal.copySelection\n- workbench.action.terminal.copySelectionAsHtml\n- workbench.action.terminal.deleteToLineStart\n- workbench.action.terminal.deleteWordLeft\n- workbench.action.terminal.deleteWordRight\n- workbench.action.terminal.findNext\n- workbench.action.terminal.findPrevious\n- workbench.action.terminal.focus\n- workbench.action.terminal.focusAtIndex1\n- workbench.action.terminal.focusAtIndex2\n- workbench.action.terminal.focusAtIndex3\n- workbench.action.terminal.focusAtIndex4\n- workbench.action.terminal.focusAtIndex5\n- workbench.action.terminal.focusAtIndex6\n- workbench.action.terminal.focusAtIndex7\n- workbench.action.terminal.focusAtIndex8\n- workbench.action.terminal.focusAtIndex9\n- workbench.action.terminal.focusFind\n- workbench.action.terminal.focusHover\n- workbench.action.terminal.focusNext\n- workbench.action.terminal.focusNextPane\n- workbench.action.terminal.focusPrevious\n- workbench.action.terminal.focusPreviousPane\n- workbench.action.terminal.goToRecentDirectory\n- workbench.action.terminal.hideFind\n- workbench.action.terminal.hideSuggestWidget\n- workbench.action.terminal.kill\n- workbench.action.terminal.killEditor\n- workbench.action.terminal.moveToEditor\n- workbench.action.terminal.moveToLineEnd\n- workbench.action.terminal.moveToLineStart\n- workbench.action.terminal.moveToTerminalPanel\n- workbench.action.terminal.new\n- workbench.action.terminal.newInActiveWorkspace\n- workbench.action.terminal.paste\n- workbench.action.terminal.pasteSelection\n- workbench.action.terminal.quickFix\n- workbench.action.terminal.resizePaneDown\n- workbench.action.terminal.resizePaneLeft\n- workbench.action.terminal.resizePaneRight\n- workbench.action.terminal.resizePaneUp\n- workbench.action.terminal.runActiveFile\n- workbench.action.terminal.runRecentCommand\n- workbench.action.terminal.runSelectedText\n- workbench.action.terminal.scrollDown\n- workbench.action.terminal.scrollDownPage\n- workbench.action.terminal.scrollToBottom\n- workbench.action.terminal.scrollToNextCommand\n- workbench.action.terminal.scrollToPreviousCommand\n- workbench.action.terminal.scrollToTop\n- workbench.action.terminal.scrollUp\n- workbench.action.terminal.scrollUpPage\n- workbench.action.terminal.selectAll\n- workbench.action.terminal.selectNextPageSuggestion\n- workbench.action.terminal.selectNextSuggestion\n- workbench.action.terminal.selectPrevPageSuggestion\n- workbench.action.terminal.selectPrevSuggestion\n- workbench.action.terminal.selectToNextCommand\n- workbench.action.terminal.selectToNextLine\n- workbench.action.terminal.selectToPreviousCommand\n- workbench.action.terminal.selectToPreviousLine\n- workbench.action.terminal.sendSequence\n- workbench.action.terminal.showAccessibilityHelp\n- workbench.action.terminal.sizeToContentWidth\n- workbench.action.terminal.split\n- workbench.action.terminal.splitInActiveWorkspace\n- workbench.action.terminal.toggleFindCaseSensitive\n- workbench.action.terminal.toggleFindRegex\n- workbench.action.terminal.toggleFindWholeWord\n- workbench.action.terminal.toggleTerminal\n- workbench.action.toggleFullScreen\n- workbench.action.toggleMaximizedPanel\n- workbench.action.togglePanel",
+            "markdownDescription": "A set of command IDs whose keybindings will not be sent to the shell but instead always be handled by VS Code. This allows keybindings that would normally be consumed by the shell to act instead the same as when the terminal is not focused, for example `Ctrl+P` to launch Quick Open.\n\n&nbsp;\n\nMany commands are skipped by default. To override a default and pass that command's keybinding to the shell instead, add the command prefixed with the `-` character. For example add `-workbench.action.quickOpen` to allow `Ctrl+P` to reach the shell.\n\n&nbsp;\n\nThe following list of default skipped commands is truncated when viewed in Settings Editor. To see the full list, [open the default settings JSON](command:workbench.action.openRawDefaultSettings 'Open Default Settings (JSON)') and search for the first command from the list below.\n\n&nbsp;\n\nDefault Skipped Commands:\n\n- editor.action.toggleTabFocusMode\n- notification.acceptPrimaryAction\n- notifications.hideList\n- notifications.hideToasts\n- workbench.action.closeQuickOpen\n- workbench.action.debug.continue\n- workbench.action.debug.pause\n- workbench.action.debug.restart\n- workbench.action.debug.run\n- workbench.action.debug.start\n- workbench.action.debug.stepInto\n- workbench.action.debug.stepOut\n- workbench.action.debug.stepOver\n- workbench.action.debug.stop\n- workbench.action.firstEditorInGroup\n- workbench.action.focusActiveEditorGroup\n- workbench.action.focusEighthEditorGroup\n- workbench.action.focusFifthEditorGroup\n- workbench.action.focusFirstEditorGroup\n- workbench.action.focusFourthEditorGroup\n- workbench.action.focusLastEditorGroup\n- workbench.action.focusNextPart\n- workbench.action.focusPreviousPart\n- workbench.action.focusSecondEditorGroup\n- workbench.action.focusSeventhEditorGroup\n- workbench.action.focusSixthEditorGroup\n- workbench.action.focusThirdEditorGroup\n- workbench.action.lastEditorInGroup\n- workbench.action.navigateDown\n- workbench.action.navigateLeft\n- workbench.action.navigateRight\n- workbench.action.navigateUp\n- workbench.action.nextEditor\n- workbench.action.nextEditorInGroup\n- workbench.action.nextPanelView\n- workbench.action.nextSideBarView\n- workbench.action.openNextRecentlyUsedEditor\n- workbench.action.openNextRecentlyUsedEditorInGroup\n- workbench.action.openPreviousRecentlyUsedEditor\n- workbench.action.openPreviousRecentlyUsedEditorInGroup\n- workbench.action.previousEditor\n- workbench.action.previousEditorInGroup\n- workbench.action.previousPanelView\n- workbench.action.previousSideBarView\n- workbench.action.quickOpen\n- workbench.action.quickOpenLeastRecentlyUsedEditor\n- workbench.action.quickOpenLeastRecentlyUsedEditorInGroup\n- workbench.action.quickOpenPreviousEditor\n- workbench.action.quickOpenPreviousRecentlyUsedEditor\n- workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup\n- workbench.action.quickOpenView\n- workbench.action.showCommands\n- workbench.action.tasks.build\n- workbench.action.tasks.reRunTask\n- workbench.action.tasks.restartTask\n- workbench.action.tasks.runTask\n- workbench.action.tasks.showLog\n- workbench.action.tasks.showTasks\n- workbench.action.tasks.terminate\n- workbench.action.tasks.test\n- workbench.action.terminal.acceptSelectedSuggestion\n- workbench.action.terminal.clear\n- workbench.action.terminal.clearSelection\n- workbench.action.terminal.copyAndClearSelection\n- workbench.action.terminal.copyLastCommandOutput\n- workbench.action.terminal.copySelection\n- workbench.action.terminal.copySelectionAsHtml\n- workbench.action.terminal.deleteToLineStart\n- workbench.action.terminal.deleteWordLeft\n- workbench.action.terminal.deleteWordRight\n- workbench.action.terminal.findNext\n- workbench.action.terminal.findPrevious\n- workbench.action.terminal.focus\n- workbench.action.terminal.focusAtIndex1\n- workbench.action.terminal.focusAtIndex2\n- workbench.action.terminal.focusAtIndex3\n- workbench.action.terminal.focusAtIndex4\n- workbench.action.terminal.focusAtIndex5\n- workbench.action.terminal.focusAtIndex6\n- workbench.action.terminal.focusAtIndex7\n- workbench.action.terminal.focusAtIndex8\n- workbench.action.terminal.focusAtIndex9\n- workbench.action.terminal.focusFind\n- workbench.action.terminal.focusHover\n- workbench.action.terminal.focusNext\n- workbench.action.terminal.focusNextPane\n- workbench.action.terminal.focusPrevious\n- workbench.action.terminal.focusPreviousPane\n- workbench.action.terminal.goToRecentDirectory\n- workbench.action.terminal.hideFind\n- workbench.action.terminal.hideSuggestWidget\n- workbench.action.terminal.kill\n- workbench.action.terminal.killEditor\n- workbench.action.terminal.moveToEditor\n- workbench.action.terminal.moveToLineEnd\n- workbench.action.terminal.moveToLineStart\n- workbench.action.terminal.moveToTerminalPanel\n- workbench.action.terminal.new\n- workbench.action.terminal.newInActiveWorkspace\n- workbench.action.terminal.paste\n- workbench.action.terminal.pasteSelection\n- workbench.action.terminal.resizePaneDown\n- workbench.action.terminal.resizePaneLeft\n- workbench.action.terminal.resizePaneRight\n- workbench.action.terminal.resizePaneUp\n- workbench.action.terminal.runActiveFile\n- workbench.action.terminal.runRecentCommand\n- workbench.action.terminal.runSelectedText\n- workbench.action.terminal.scrollDown\n- workbench.action.terminal.scrollDownPage\n- workbench.action.terminal.scrollToBottom\n- workbench.action.terminal.scrollToNextCommand\n- workbench.action.terminal.scrollToPreviousCommand\n- workbench.action.terminal.scrollToTop\n- workbench.action.terminal.scrollUp\n- workbench.action.terminal.scrollUpPage\n- workbench.action.terminal.selectAll\n- workbench.action.terminal.selectNextPageSuggestion\n- workbench.action.terminal.selectNextSuggestion\n- workbench.action.terminal.selectPrevPageSuggestion\n- workbench.action.terminal.selectPrevSuggestion\n- workbench.action.terminal.selectToNextCommand\n- workbench.action.terminal.selectToNextLine\n- workbench.action.terminal.selectToPreviousCommand\n- workbench.action.terminal.selectToPreviousLine\n- workbench.action.terminal.sendSequence\n- workbench.action.terminal.showAccessibilityHelp\n- workbench.action.terminal.sizeToContentWidth\n- workbench.action.terminal.split\n- workbench.action.terminal.splitInActiveWorkspace\n- workbench.action.terminal.toggleFindCaseSensitive\n- workbench.action.terminal.toggleFindRegex\n- workbench.action.terminal.toggleFindWholeWord\n- workbench.action.terminal.toggleTerminal\n- workbench.action.toggleFullScreen\n- workbench.action.toggleMaximizedPanel\n- workbench.action.togglePanel",
             "type": "array",
             "items": {
                 "type": "string"
@@ -22425,6 +22540,28 @@
                 "displayName": "Merge Conflict"
             },
             "defaultDefaultValue": "Current",
+            "restricted": false
+        },
+        "microsoft-sovereign-cloud.endpoint": {
+            "anyOf": [
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "string",
+                    "enum": [
+                        "Azure China",
+                        "Azure US Government"
+                    ]
+                }
+            ],
+            "description": "Login endpoint for Azure authentication. Select a national cloud or enter the login URL for a custom Azure cloud.",
+            "scope": 3,
+            "source": {
+                "id": "vscode.microsoft-authentication",
+                "displayName": "Microsoft Account"
+            },
+            "default": null,
             "restricted": false
         },
         "debug.javascript.codelens.npmScripts": {
@@ -23959,6 +24096,10 @@
                     "type": "string",
                     "description": "Exact websocket address to attach to. If unspecified, it will be discovered from the address and port."
                 },
+                "remoteHostHeader": {
+                    "type": "string",
+                    "description": "Explicit Host header to use when connecting to the websocket of inspector. If unspecified, the host header will be set to 'localhost'. This is useful when the inspector is running behind a proxy that only accept particular Host header."
+                },
                 "restart": {
                     "description": "Try to reconnect to the program if we lose connection. If set to `true`, we'll try once a second, forever. You can customize the interval and maximum number of attempts by specifying the `delay` and `maxAttempts` in an object instead.",
                     "default": true,
@@ -24365,23 +24506,6 @@
             ],
             "default": "off",
             "description": "Enables logging of the TS server to a file. This log can be used to diagnose TS Server issues. The log may contain file paths, source code, and other potentially sensitive information from your project.",
-            "scope": 3,
-            "source": {
-                "id": "vscode.typescript-language-features",
-                "displayName": "TypeScript and JavaScript Language Features"
-            },
-            "defaultDefaultValue": "off",
-            "restricted": false
-        },
-        "typescript.tsserver.trace": {
-            "type": "string",
-            "enum": [
-                "off",
-                "messages",
-                "verbose"
-            ],
-            "default": "off",
-            "description": "Enables tracing of messages sent to the TS server. This trace can be used to diagnose TS Server issues. The trace may contain file paths, source code, and other potentially sensitive information from your project.",
             "scope": 3,
             "source": {
                 "id": "vscode.typescript-language-features",
@@ -24828,15 +24952,41 @@
             "defaultDefaultValue": false,
             "restricted": false
         },
+        "typescript.preferGoToSourceDefinition": {
+            "type": "boolean",
+            "default": false,
+            "description": "Makes Go to Definition avoid type declaration files when possible by triggering Go to Source Definition instead. This allows Go to Source Definition to be triggered with the mouse gesture. Requires using TypeScript 4.7+ in the workspace.",
+            "scope": 3,
+            "source": {
+                "id": "vscode.typescript-language-features",
+                "displayName": "TypeScript and JavaScript Language Features"
+            },
+            "defaultDefaultValue": false,
+            "restricted": false
+        },
+        "javascript.preferGoToSourceDefinition": {
+            "type": "boolean",
+            "default": false,
+            "description": "Makes Go to Definition avoid type declaration files when possible by triggering Go to Source Definition instead. This allows Go to Source Definition to be triggered with the mouse gesture. Requires using TypeScript 4.7+ in the workspace.",
+            "scope": 3,
+            "source": {
+                "id": "vscode.typescript-language-features",
+                "displayName": "TypeScript and JavaScript Language Features"
+            },
+            "defaultDefaultValue": false,
+            "restricted": false
+        },
         "terminal.explorerKind": {
             "type": "string",
             "enum": [
                 "integrated",
-                "external"
+                "external",
+                "both"
             ],
             "enumDescriptions": [
                 "Use VS Code's integrated terminal.",
-                "Use the configured external terminal."
+                "Use the configured external terminal.",
+                "Use the other two together."
             ],
             "description": "When opening a file from the Explorer in a terminal, determines what kind of terminal will be launched",
             "default": "integrated",
@@ -25172,6 +25322,14 @@
             "scope": 5,
             "restricted": false
         },
+        "editor.experimental.asyncTokenizationVerification": {
+            "type": "boolean",
+            "default": false,
+            "description": "Controls whether async tokenization should be verified against legacy background tokenization. Might slow down tokenization. For debugging only.",
+            "defaultDefaultValue": false,
+            "scope": 5,
+            "restricted": false
+        },
         "editor.language.brackets": {
             "type": [
                 "array",
@@ -25296,15 +25454,18 @@
         "diffEditor.diffAlgorithm": {
             "type": "string",
             "enum": [
-                "smart",
+                "legacy",
+                "advanced"
+            ],
+            "default": "legacy",
+            "markdownEnumDescriptions": [
+                "Uses the legacy diffing algorithm.",
+                "Uses the advanced diffing algorithm."
+            ],
+            "tags": [
                 "experimental"
             ],
-            "default": "smart",
-            "markdownEnumDescriptions": [
-                "Uses the default diffing algorithm.",
-                "Uses an experimental diffing algorithm."
-            ],
-            "defaultDefaultValue": "smart",
+            "defaultDefaultValue": "legacy",
             "scope": 5,
             "restricted": false
         },
@@ -25766,6 +25927,22 @@
             "default": true,
             "markdownDescription": "Controls whether you can drag and drop a file into a text editor by holding down `shift` (instead of opening the file in an editor).",
             "defaultDefaultValue": true,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.dropIntoEditor.showDropSelector": {
+            "type": "string",
+            "markdownDescription": "Controls if a widget is shown when dropping files into the editor. This widget lets you control how the file is dropped.",
+            "enum": [
+                "afterDrop",
+                "never"
+            ],
+            "enumDescriptions": [
+                "Show the drop selector widget after a file is dropped into the editor.",
+                "Never show the drop selector widget. Instead the default drop provider is always used."
+            ],
+            "default": "afterDrop",
+            "defaultDefaultValue": "afterDrop",
             "scope": 5,
             "restricted": false
         },
@@ -26305,9 +26482,9 @@
         },
         "editor.inlineSuggest.suppressSuggestions": {
             "type": "boolean",
-            "default": true,
+            "default": false,
             "description": "Controls how inline suggestions interact with the suggest widget. If enabled, the suggest widget is not shown automatically when inline suggestions are available.",
-            "defaultDefaultValue": true,
+            "defaultDefaultValue": false,
             "scope": 5,
             "restricted": false
         },
@@ -27712,12 +27889,12 @@
             "scope": 5,
             "restricted": false
         },
-        "editor.experimental.pasteActions.enabled": {
+        "editor.defaultColorDecorators": {
+            "markdownDescription": "Controls whether inline color decorations should be shown using the default document color provider",
             "type": "boolean",
-            "scope": 5,
-            "description": "Enable/disable running edits from extensions on paste.",
             "default": false,
             "defaultDefaultValue": false,
+            "scope": 5,
             "restricted": false
         },
         "editor.codeActionWidget.showHeaders": {
@@ -27734,6 +27911,14 @@
             "default": true,
             "type": "boolean",
             "defaultDefaultValue": true,
+            "restricted": false
+        },
+        "editor.experimental.pasteActions.enabled": {
+            "type": "boolean",
+            "scope": 5,
+            "description": "Enable/disable running edits from extensions on paste.",
+            "default": false,
+            "defaultDefaultValue": false,
             "restricted": false
         },
         "breadcrumbs.symbolSortOrder": {
@@ -29164,6 +29349,28 @@
             "scope": 4,
             "restricted": false
         },
+        "workbench.startupEditor": {
+            "scope": 4,
+            "type": "string",
+            "enum": [
+                "none",
+                "welcomePage",
+                "readme",
+                "newUntitledFile",
+                "welcomePageInEmptyWorkbench"
+            ],
+            "enumDescriptions": [
+                "Start without an editor.",
+                "Open the Welcome page, with content to aid in getting started with VS Code and extensions.",
+                "Open the README when opening a folder that contains one, fallback to 'welcomePage' otherwise. Note: This is only observed as a global configuration, it will be ignored if set in a workspace or folder configuration.",
+                "Open a new untitled text file (only applies when opening an empty window).",
+                "Open the Welcome page when opening an empty workbench."
+            ],
+            "default": "welcomePage",
+            "description": "Controls which editor is shown at startup, if none are restored from the previous session.",
+            "defaultDefaultValue": "welcomePage",
+            "restricted": false
+        },
         "search.exclude": {
             "type": "object",
             "markdownDescription": "Configure [glob patterns](https://code.visualstudio.com/docs/editor/codebasics#_advanced-search-options) for excluding files and folders in fulltext searches and quick open. Inherits all glob patterns from the `#files.exclude#` setting.",
@@ -29221,28 +29428,6 @@
             "default": false,
             "scope": 4,
             "defaultDefaultValue": false,
-            "restricted": false
-        },
-        "workbench.startupEditor": {
-            "scope": 4,
-            "type": "string",
-            "enum": [
-                "none",
-                "welcomePage",
-                "readme",
-                "newUntitledFile",
-                "welcomePageInEmptyWorkbench"
-            ],
-            "enumDescriptions": [
-                "Start without an editor.",
-                "Open the Welcome page, with content to aid in getting started with VS Code and extensions.",
-                "Open the README when opening a folder that contains one, fallback to 'welcomePage' otherwise. Note: This is only observed as a global configuration, it will be ignored if set in a workspace or folder configuration.",
-                "Open a new untitled text file (only applies when opening an empty window).",
-                "Open the Welcome page when opening an empty workbench."
-            ],
-            "default": "welcomePage",
-            "description": "Controls which editor is shown at startup, if none are restored from the previous session.",
-            "defaultDefaultValue": "welcomePage",
             "restricted": false
         },
         "terminal.integrated.tabs.defaultColor": {
@@ -32549,6 +32734,18 @@
             "defaultDefaultValue": "prompt",
             "restricted": false
         },
+        "github.branchProtection": {
+            "type": "boolean",
+            "scope": 4,
+            "default": false,
+            "description": "Controls whether to query repository rules for GitHub repositories",
+            "source": {
+                "id": "vscode.github",
+                "displayName": "GitHub"
+            },
+            "defaultDefaultValue": false,
+            "restricted": false
+        },
         "github.gitAuthentication": {
             "type": "boolean",
             "scope": 4,
@@ -33910,6 +34107,18 @@
             "defaultDefaultValue": "ignore",
             "restricted": false
         },
+        "typescript.format.indentSwitchCase": {
+            "type": "boolean",
+            "default": true,
+            "description": "Indent case clauses in switch statements. Requires using TypeScript 5.1+ in the workspace.",
+            "scope": 4,
+            "source": {
+                "id": "vscode.typescript-language-features",
+                "displayName": "TypeScript and JavaScript Language Features"
+            },
+            "defaultDefaultValue": true,
+            "restricted": false
+        },
         "javascript.format.insertSpaceAfterCommaDelimiter": {
             "type": "boolean",
             "default": true,
@@ -34344,11 +34553,17 @@
                 "index",
                 "js"
             ],
+            "enumItemLabels": [
+                null,
+                null,
+                null,
+                ".js / .ts"
+            ],
             "markdownEnumDescriptions": [
                 "Use project settings to select a default.",
                 "Shorten `./component/index.js` to `./component`.",
                 "Shorten `./component/index.js` to `./component/index`.",
-                "Do not shorten path endings; include the `.js` extension."
+                "Do not shorten path endings; include the `.js` or `.ts` extension."
             ],
             "default": "auto",
             "description": "Preferred path ending for auto imports.",
@@ -34368,11 +34583,17 @@
                 "index",
                 "js"
             ],
+            "enumItemLabels": [
+                null,
+                null,
+                null,
+                ".js / .ts"
+            ],
             "markdownEnumDescriptions": [
                 "Use project settings to select a default.",
                 "Shorten `./component/index.js` to `./component`.",
                 "Shorten `./component/index.js` to `./component/index`.",
-                "Do not shorten path endings; include the `.js` extension."
+                "Do not shorten path endings; include the `.js` or `.ts` extension."
             ],
             "default": "auto",
             "description": "Preferred path ending for auto imports.",
@@ -34498,6 +34719,30 @@
             "type": "boolean",
             "default": true,
             "description": "Enable/disable introducing aliases for object shorthand properties during renames.",
+            "scope": 5,
+            "source": {
+                "id": "vscode.typescript-language-features",
+                "displayName": "TypeScript and JavaScript Language Features"
+            },
+            "defaultDefaultValue": true,
+            "restricted": false
+        },
+        "javascript.preferences.renameMatchingJsxTags": {
+            "type": "boolean",
+            "default": true,
+            "description": "When on a JSX tag, try to rename the matching tag instead of renaming the symbol. Requires using TypeScript 5.1+ in the workspace.",
+            "scope": 5,
+            "source": {
+                "id": "vscode.typescript-language-features",
+                "displayName": "TypeScript and JavaScript Language Features"
+            },
+            "defaultDefaultValue": true,
+            "restricted": false
+        },
+        "typescript.preferences.renameMatchingJsxTags": {
+            "type": "boolean",
+            "default": true,
+            "description": "When on a JSX tag, try to rename the matching tag instead of renaming the symbol. Requires using TypeScript 5.1+ in the workspace.",
             "scope": 5,
             "source": {
                 "id": "vscode.typescript-language-features",
