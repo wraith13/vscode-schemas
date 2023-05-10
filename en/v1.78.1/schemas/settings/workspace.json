@@ -10,45 +10,6 @@
                 "editor.unicodeHighlight.invisibleCharacters": false
             }
         },
-        "security.allowedUNCHosts": {
-            "type": "array",
-            "items": {
-                "type": "string"
-            },
-            "default": [],
-            "markdownDescription": "A set of UNC host names to allow without user confirmation. If a UNC host is being accessed that is not allowed via this setting or has not been acknowledged via user confirmation, an error will occur and the operation stopped. A restart is required when changing this setting. Find out more about this setting at https://aka.ms/vscode-windows-unc.",
-            "included": true,
-            "scope": 2,
-            "defaultDefaultValue": [],
-            "restricted": false
-        },
-        "remote.tunnels.access.hostNameOverride": {
-            "description": "The name under which the remote tunnel access is registered. If not set, the host name is used.",
-            "type": "string",
-            "scope": 2,
-            "pattern": "^(\\w[\\w-]*)?$",
-            "patternErrorMessage": "The name must only consist of letters, numbers, underscore and dash. It must not start with a dash.",
-            "maxLength": 20,
-            "default": "",
-            "defaultDefaultValue": "",
-            "restricted": false
-        },
-        "remote.tunnels.access.preventSleep": {
-            "description": "Prevent the computer from sleeping when remote tunnel access is turned on.",
-            "type": "boolean",
-            "scope": 2,
-            "default": false,
-            "defaultDefaultValue": false,
-            "restricted": false
-        },
-        "workbench.welcomePage.walkthroughs.openOnInstall": {
-            "scope": 2,
-            "type": "boolean",
-            "default": true,
-            "description": "When enabled, an extension's walkthrough will open upon install of the extension.",
-            "defaultDefaultValue": true,
-            "restricted": false
-        },
         "[code-text-binary]": {
             "type": "object",
             "description": "Configure editor settings to be overridden for a language.",
@@ -76,17 +37,6 @@
             "errorMessage": "This setting does not support per-language configuration.",
             "$ref": "vscode://schemas/settings/resourceLanguage",
             "default": {}
-        },
-        "workbench.remote.experimental.showStartListEntry": {
-            "scope": 2,
-            "type": "boolean",
-            "default": false,
-            "tags": [
-                "experimental"
-            ],
-            "description": "When enabled, a start list entry for getting started with remote experiences in shown on the welcome page.",
-            "defaultDefaultValue": false,
-            "restricted": false
         },
         "[clojure]": {
             "type": "object",
@@ -424,62 +374,35 @@
                 "displayName": "YAML Language Basics"
             }
         },
-        "git.path": {
-            "type": [
-                "string",
-                "null",
-                "array"
-            ],
-            "markdownDescription": "Path and filename of the git executable, e.g. `C:\\Program Files\\Git\\bin\\git.exe` (Windows). This can also be an array of string values containing multiple paths to look up.",
-            "default": null,
-            "scope": 2,
-            "source": {
-                "id": "vscode.git",
-                "displayName": "Git"
+        "emmet.extensionsPath": {
+            "type": "array",
+            "items": {
+                "type": "string",
+                "markdownDescription": "A path containing Emmet syntaxProfiles and/or snippets."
             },
-            "defaultDefaultValue": null,
+            "default": [],
+            "scope": 6,
+            "markdownDescription": "An array of paths, where each path can contain Emmet syntaxProfiles and/or snippet files.\nIn case of conflicts, the profiles/snippets of later paths will override those of earlier paths.\nSee https://code.visualstudio.com/docs/editor/emmet for more information and an example snippet file.",
+            "source": {
+                "id": "vscode.emmet",
+                "displayName": "Emmet"
+            },
+            "defaultDefaultValue": [],
             "restricted": false
         },
-        "git.defaultCloneDirectory": {
+        "php.validate.executablePath": {
             "type": [
                 "string",
                 "null"
             ],
             "default": null,
-            "scope": 2,
-            "description": "The default location to clone a git repository.",
+            "description": "Points to the PHP executable.",
+            "scope": 6,
             "source": {
-                "id": "vscode.git",
-                "displayName": "Git"
+                "id": "vscode.php-language-features",
+                "displayName": "PHP Language Features"
             },
             "defaultDefaultValue": null,
-            "restricted": false
-        },
-        "typescript.npm": {
-            "type": "string",
-            "markdownDescription": "Specifies the path to the npm executable used for [Automatic Type Acquisition](https://code.visualstudio.com/docs/nodejs/working-with-javascript#_typings-and-automatic-type-acquisition).",
-            "scope": 2,
-            "source": {
-                "id": "vscode.typescript-language-features",
-                "displayName": "TypeScript and JavaScript Language Features"
-            },
-            "default": "",
-            "restricted": true
-        },
-        "typescript.tsserver.pluginPaths": {
-            "type": "array",
-            "items": {
-                "type": "string",
-                "description": "Either an absolute or relative path. Relative path will be resolved against workspace folder(s)."
-            },
-            "default": [],
-            "description": "Additional paths to discover TypeScript Language Service plugins.",
-            "scope": 2,
-            "source": {
-                "id": "vscode.typescript-language-features",
-                "displayName": "TypeScript and JavaScript Language Features"
-            },
-            "defaultDefaultValue": [],
             "restricted": true
         },
         "[bat]": {
@@ -775,37 +698,6 @@
             "errorMessage": "This setting does not support per-language configuration.",
             "$ref": "vscode://schemas/settings/resourceLanguage",
             "default": {}
-        },
-        "emmet.extensionsPath": {
-            "type": "array",
-            "items": {
-                "type": "string",
-                "markdownDescription": "A path containing Emmet syntaxProfiles and/or snippets."
-            },
-            "default": [],
-            "scope": 6,
-            "markdownDescription": "An array of paths, where each path can contain Emmet syntaxProfiles and/or snippet files.\nIn case of conflicts, the profiles/snippets of later paths will override those of earlier paths.\nSee https://code.visualstudio.com/docs/editor/emmet for more information and an example snippet file.",
-            "source": {
-                "id": "vscode.emmet",
-                "displayName": "Emmet"
-            },
-            "defaultDefaultValue": [],
-            "restricted": false
-        },
-        "php.validate.executablePath": {
-            "type": [
-                "string",
-                "null"
-            ],
-            "default": null,
-            "description": "Points to the PHP executable.",
-            "scope": 6,
-            "source": {
-                "id": "vscode.php-language-features",
-                "displayName": "PHP Language Features"
-            },
-            "defaultDefaultValue": null,
-            "restricted": true
         },
         "workbench.list.multiSelectModifier": {
             "type": "string",

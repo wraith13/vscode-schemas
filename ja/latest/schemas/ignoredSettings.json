@@ -1299,6 +1299,7 @@
             "workbench.editorLargeFileConfirmation",
             "-window.zoomLevel",
             "-window.experimental.useSandbox",
+            "-security.allowedUNCHosts",
             "-remote.tunnels.access.hostNameOverride",
             "-remote.tunnels.access.preventSleep",
             "-workbench.welcomePage.walkthroughs.openOnInstall",
