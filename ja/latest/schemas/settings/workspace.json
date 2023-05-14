@@ -7450,7 +7450,7 @@
                                 "折りたたみコントロールを表示せず、余白のサイズを小さくします。",
                                 "マウスがとじしろの上にあるときにのみ、折りたたみコントロールを表示します。"
                             ],
-                            "description": "とじしろのの折りたたみコントロールを表示するタイミングを制御します。",
+                            "description": "とじしろの折りたたみコントロールを表示するタイミングを制御します。",
                             "type": "string",
                             "enum": [
                                 "always",
@@ -22571,7 +22571,7 @@
                 "never"
             ],
             "default": "top",
-            "description": "Where a \"Run\" and \"Debug\" code lens should be shown in your npm scripts. It may be on \"all\", scripts, on \"top\" of the script section, or \"never\".",
+            "description": "npm スクリプトで \"実行\" と \"デバッグ\" のコード レンズが表示される場所。\"すべて\" のスクリプトまたはスクリプト セクションの \"上\" に表示するか、\"表示しない\" を指定できます。",
             "scope": 3,
             "source": {
                 "id": "ms-vscode.js-debug",
@@ -22582,7 +22582,7 @@
         },
         "debug.javascript.terminalOptions": {
             "type": "object",
-            "description": "Default launch options for the JavaScript debug terminal and npm scripts.",
+            "description": "JavaScript デバッグ ターミナルおよび npm スクリプトの既定の起動オプション。",
             "default": {},
             "properties": {
                 "resolveSourceMapLocations": {
@@ -22590,7 +22590,7 @@
                         "array",
                         "null"
                     ],
-                    "description": "A list of minimatch patterns for locations (folders and URLs) in which source maps can be used to resolve local files. This can be used to avoid incorrectly breaking in external source mapped code. Patterns can be prefixed with \"!\" to exclude them. May be set to an empty array or null to avoid restriction.",
+                    "description": "ソース マップを使用してローカル ファイルを解決できる場所 (フォルダーと URL) の minimatch パターンの一覧。これを使用すると、外部ソースのマップされたコードの誤った破損を回避できます。パターンは、その先頭に \"!\" を付けて除外できます。制約を避けるために、空の配列または null に設定できます。",
                     "default": [
                         "${workspaceFolder}/**",
                         "!**/node_modules/**"
@@ -22603,7 +22603,7 @@
                     "type": [
                         "array"
                     ],
-                    "description": "If source maps are enabled, these glob patterns specify the generated JavaScript files. If a pattern starts with `!` the files are excluded. If not specified, the generated code is expected in the same directory as its source.",
+                    "description": "ソース マップが有効にされている場合、これらの glob パターンは、生成された JavaScript ファイルを指定します。パターンが '!' で始まる場合、ファイルは除外されます。指定されない場合、生成されたコードは、そのソースと同じディレクトリにあるものと見なされます。",
                     "default": [
                         "${workspaceFolder}/**/*.js",
                         "!**/node_modules/**"
@@ -22614,11 +22614,11 @@
                 },
                 "pauseForSourceMap": {
                     "type": "boolean",
-                    "markdownDescription": "Whether to wait for source maps to load for each incoming script. This has a performance overhead, and might be safely disabled when running off of disk, so long as `rootPath` is not disabled.",
+                    "markdownDescription": "各入力スクリプトに対してソース マップが読み込まれるのを待機するかどうか。これには、パフォーマンス上のオーバーヘッドが発生しており、'rootPath' が無効でない限り、ディスクからの実行時に安全に無効にされる可能性があります。",
                     "default": false
                 },
                 "showAsyncStacks": {
-                    "description": "Show the async calls that led to the current call stack.",
+                    "description": "現在の呼び出し履歴にまで至った非同期呼び出しを表示します。",
                     "default": true,
                     "oneOf": [
                         {
@@ -22652,29 +22652,29 @@
                 },
                 "skipFiles": {
                     "type": "array",
-                    "description": "An array of file or folder names, or path globs, to skip when debugging. Star patterns and negations are allowed, for example, `[\"**/node_modules/**\", \"!**/node_modules/my-module/**\"]`",
+                    "description": "デバッグ時にスキップするファイル名またはフォルダー名の配列、またはパス glob: スター パターンと否定は許可されます。たとえば、'[\"**/node_modules/**\"、\"!**/node_modules/my-module/**\"]`",
                     "default": [
                         "<node_internals>/**"
                     ]
                 },
                 "smartStep": {
                     "type": "boolean",
-                    "description": "Automatically step through generated code that cannot be mapped back to the original source.",
+                    "description": "元のソースにマップできない生成コードを自動的にステップスルーします。",
                     "default": true
                 },
                 "sourceMaps": {
                     "type": "boolean",
-                    "description": "Use JavaScript source maps (if they exist).",
+                    "description": "JavaScript ソース マップを使用します (存在する場合)。",
                     "default": true
                 },
                 "sourceMapRenames": {
                     "type": "boolean",
                     "default": true,
-                    "description": "Whether to use the \"names\" mapping in sourcemaps. This requires requesting source content, which can be slow with certain debuggers."
+                    "description": "ソースマップで \"names\" マッピングを使用するかどうかを指定します。これを使用するには、ソース コンテンツを要求する必要がありますが、これは特定のデバッガーでは速度が低下する可能性があります。"
                 },
                 "sourceMapPathOverrides": {
                     "type": "object",
-                    "description": "A set of mappings for rewriting the locations of source files from what the sourcemap says, to their locations on disk.",
+                    "description": "ソース ファイルの場所をソースマップが示している場所からディスク上の場所に書き換えるための一連のマッピングです。",
                     "default": {
                         "webpack://?:*/*": "${workspaceFolder}/*",
                         "webpack:///./~/*": "${workspaceFolder}/node_modules/*",
@@ -22683,40 +22683,40 @@
                 },
                 "timeout": {
                     "type": "number",
-                    "description": "Retry for this number of milliseconds to connect to Node.js. Default is 10000 ms.",
+                    "description": "Node.js への接続を再試行する期間 (ミリ秒単位)。既定値は 10000 ミリ秒です。",
                     "default": 10000
                 },
                 "timeouts": {
                     "type": "object",
-                    "description": "Timeouts for several debugger operations.",
+                    "description": "いくつかのデバッガー操作のタイムアウト。",
                     "default": {},
                     "properties": {
                         "sourceMapMinPause": {
                             "type": "number",
-                            "description": "Minimum time in milliseconds spent waiting for each source-map to be processed when a script is being parsed",
+                            "description": "スクリプトの解析時に各ソース マップが処理されるのを待機する最小時間 (ミリ秒)",
                             "default": 1000
                         },
                         "sourceMapCumulativePause": {
                             "type": "number",
-                            "description": "Extra time in milliseconds allowed per session to be spent waiting for source-maps to be processed, after the minimum time (sourceMapMinPause) has been exhausted",
+                            "description": "最小時間 (sourceMapMinPause) を使い切った後、ソース マップが処理されるのを待機するために使用可能なセッションあたりの追加時間 (ミリ秒)",
                             "default": 1000
                         },
                         "hoverEvaluation": {
                             "type": "number",
-                            "description": "Time until value evaluation for hovered symbols is aborted. If set to 0, hover evaluation does never time out.",
+                            "description": "ホバーされたシンボルの値の評価が中止されるまでの時間。0 に設定すると、ホバー評価がタイムアウトすることはありません。",
                             "default": 500
                         }
                     },
                     "additionalProperties": false,
-                    "markdownDescription": "Timeouts for several debugger operations."
+                    "markdownDescription": "いくつかのデバッガー操作のタイムアウト。"
                 },
                 "trace": {
-                    "description": "Configures what diagnostic output is produced.",
+                    "description": "生成される診断出力を構成します。",
                     "default": true,
                     "oneOf": [
                         {
                             "type": "boolean",
-                            "description": "Trace may be set to 'true' to write diagnostic logs to the disk."
+                            "description": "診断ログをディスクに書き込むには、トレースを 'true' に設定します。"
                         },
                         {
                             "type": "object",
@@ -22724,14 +22724,14 @@
                             "properties": {
                                 "stdio": {
                                     "type": "boolean",
-                                    "description": "Whether to return trace data from the launched application or browser."
+                                    "description": "起動したアプリケーションまたはブラウザーからトレース データを返すかどうか。"
                                 },
                                 "logFile": {
                                     "type": [
                                         "string",
                                         "null"
                                     ],
-                                    "description": "Configures where on disk logs are written."
+                                    "description": "ディスク上のログが書き込まれる場所を構成します。"
                                 }
                             }
                         }
@@ -22742,22 +22742,22 @@
                         "console",
                         "std"
                     ],
-                    "markdownDescription": "From where to capture output messages: the default debug API if set to `console`, or stdout/stderr streams if set to `std`.",
+                    "markdownDescription": "出力メッセージのキャプチャ元の場所: 'console' に設定した場合は既定のデバッグ API、'std' に設定した場合は stdout または stderr ストリームになります。",
                     "default": "console"
                 },
                 "enableContentValidation": {
                     "default": true,
                     "type": "boolean",
-                    "description": "Toggles whether we verify the contents of files on disk match the ones loaded in the runtime. This is useful in a variety of scenarios and required in some, but can cause issues if you have server-side transformation of scripts, for example."
+                    "description": "ディスク上のファイルの内容が、ランタイムに読み込まれたものと一致していることを Microsoft が確認するかどうかを切り替えます。これは、さまざまなシナリオで役立ち、一部のシナリオでは必須です。ただし、一例としてスクリプトのサーバー側変換がある場合に問題が発生する可能性があります。"
                 },
                 "customDescriptionGenerator": {
                     "type": "string",
-                    "description": "Customize the textual description the debugger shows for objects (local variables, etc...). Samples:\r\n      1. this.toString() // will call toString to print all objects\r\n      2. this.customDescription ? this.customDescription() : defaultValue // Use customDescription method if available, if not return defaultValue\r\n      3. function (def) { return this.customDescription ? this.customDescription() : def } // Use customDescription method if available, if not return defaultValue\r\n      "
+                    "description": "デバッガーがオブジェクト (ローカル変数など) に対して表示するテキスト形式の説明をカスタマイズします。サンプル:\r\n      1. this.toString() // は toString を呼び出して、すべてのオブジェクトを出力します\r\n      2. this.customDescription ? this.customDescription() : defaultValue // 利用可能な場合は customDescription メソッドを使用し、そうでない場合は defaultValue を返します\r\n      3. 関数 (def) { return this.customDescription ? this.customDescription() : def } // 利用可能な場合は customDescription メソッドを使用し、そうでない場合は defaultValue を返します\r\n      "
                 },
                 "customPropertiesGenerator": {
                     "type": "string",
                     "deprecated": true,
-                    "description": "Customize the properties shown for an object in the debugger (local variables, etc...). Samples:\r\n    1. { ...this, extraProperty: '12345' } // Add an extraProperty 12345 to all objects\r\n    2. this.customProperties ? this.customProperties() : this // Use customProperties method if available, if not use the properties in this (the default properties)\r\n    3. function () { return this.customProperties ? this.customProperties() : this } // Use customDescription method if available, if not return the default properties\r\n\r\n    Deprecated: This is a temporary implementation of this feature until we have time to implement it in the way described here: https://github.com/microsoft/vscode/issues/102181"
+                    "description": "デバッガーのオブジェクトに表示されるプロパティ (ローカル変数など) をカスタマイズします。サンプル:\r\n    1. { ...this, extraProperty: '12345' } //すべてのオブジェクトに extraProperty 12345 を追加します。\r\n    2. this.customProperties ? this.customProperties() : this // 使用可能であれば customProperties メソッドを使用します。そうでない場合は this 内のプロパティを使用します (既定のプロパティ)\r\n    3. function () { return this.customProperties ? this.customProperties() : this } // 使用可能であれば customDescription メソッドを使用します。そうでない場合は既定のプロパティを返します\r\n\r\n    非推奨: これは、https://github.com/microsoft/vscode/issues/102181 で説明されている方法でこの機能が実装されるまでの間の、一時的な実装です。"
                 },
                 "cascadeTerminateToConfigurations": {
                     "type": "array",
@@ -22766,11 +22766,11 @@
                         "uniqueItems": true
                     },
                     "default": [],
-                    "description": "A list of debug sessions which, when this debug session is terminated, will also be stopped."
+                    "description": "このデバッグ セッションの終了と同時に停止するデバッグ セッションの一覧。"
                 },
                 "cwd": {
                     "type": "string",
-                    "description": "Absolute path to the working directory of the program being debugged. If you've set localRoot then cwd will match that value otherwise it falls back to your workspaceFolder",
+                    "description": "デバッグされているプログラムの作業ディレクトリへの絶対パスです。LocalRoot を設定すると、cwd はその値と一致するか、またはお客様の workspaceFolder に戻ります",
                     "default": "${workspaceFolder}",
                     "docDefault": "localRoot || ${workspaceFolder}"
                 },
@@ -22779,7 +22779,7 @@
                         "string",
                         "null"
                     ],
-                    "description": "Path to the local directory containing the program.",
+                    "description": "プログラムの入ったローカル ディレクトリへのパス。",
                     "default": null
                 },
                 "remoteRoot": {
@@ -22787,12 +22787,12 @@
                         "string",
                         "null"
                     ],
-                    "description": "Absolute path to the remote directory containing the program.",
+                    "description": "プログラムの入ったリモート ディレクトリへの絶対パス。",
                     "default": null
                 },
                 "autoAttachChildProcesses": {
                     "type": "boolean",
-                    "description": "Attach debugger to new child processes automatically.",
+                    "description": "デバッガーを自動的に新しい子プロセスにアタッチします。",
                     "default": true
                 },
                 "env": {
@@ -22803,12 +22803,12 @@
                             "null"
                         ]
                     },
-                    "markdownDescription": "Environment variables passed to the program. The value `null` removes the variable from the environment.",
+                    "markdownDescription": "環境変数がプログラムに渡されました。値 'null' を指定すると、変数が環境から削除されます。",
                     "default": {}
                 },
                 "envFile": {
                     "type": "string",
-                    "description": "Absolute path to a file containing environment variable definitions.",
+                    "description": "環境変数定義が含まれているファイルへの絶対パス。",
                     "default": "${workspaceFolder}/.env"
                 },
                 "runtimeSourcemapPausePatterns": {
@@ -22816,26 +22816,26 @@
                     "items": {
                         "type": "string"
                     },
-                    "markdownDescription": "A list of patterns at which to manually insert entrypoint breakpoints. This can be useful to give the debugger an opportunity to set breakpoints when using sourcemaps that don't exist or can't be detected before launch, such as [with the Serverless framework](https://github.com/microsoft/vscode-js-debug/issues/492).",
+                    "markdownDescription": "エントリポイント ブレークポイントを手動で挿入するパターンの一覧。これは、[Serverless Framework を使用する場合](https://github.com/microsoft/vscode-js-debug/issues/492) のように、存在しない、または起動前には検出できないソースマップを使用している場合に、デバッガーでブレークポイントを設定できるようにするために役立ちます。",
                     "default": []
                 },
                 "nodeVersionHint": {
                     "type": "number",
                     "minimum": 8,
-                    "description": "Allows you to explicitly specify the Node version that's running, which can be used to disable or enable certain behaviors in cases where the automatic version detection does not work.",
+                    "description": "実行中のノード バージョンを明示的に指定できます。これにより、自動バージョン検出が機能していない場合に特定の動作を無効または有効にすることができます。",
                     "default": 12
                 },
                 "enableTurboSourcemaps": {
                     "type": "boolean",
                     "default": true,
-                    "description": "Configures whether to use a new, faster mechanism for sourcemap discovery"
+                    "description": "ソースマップ検出に新しい高速メカニズムを使用するかどうかを構成します"
                 },
                 "command": {
                     "type": [
                         "string",
                         "null"
                     ],
-                    "description": "Command to run in the launched terminal. If not provided, the terminal will open without launching a program.",
+                    "description": "起動されたターミナルで実行するコマンド。指定しない場合、ターミナルはプログラムを起動せずに開きます。",
                     "default": "npm start"
                 }
             },
@@ -22849,7 +22849,7 @@
         },
         "debug.javascript.automaticallyTunnelRemoteServer": {
             "type": "boolean",
-            "description": "When debugging a remote web app, configures whether to automatically tunnel the remote server to your local machine.",
+            "description": "リモート Web アプリをデバッグするときに、リモート サーバーを自動的にローカル マシンにトンネルするかどうかを構成します。",
             "default": true,
             "scope": 3,
             "source": {
@@ -22861,7 +22861,7 @@
         },
         "debug.javascript.debugByLinkOptions": {
             "default": "on",
-            "description": "Options used when debugging open links clicked from inside the JavaScript Debug Terminal. Can be set to \"off\" to disable this behavior, or \"always\" to enable debugging in all terminals.",
+            "description": "デバッグ時に使用したオプションによって、デバッグ ターミナル内からクリックしたリンクが開きます。\"false\" に設定にすると、この動作を無効にできます。",
             "oneOf": [
                 {
                     "type": "string",
@@ -22879,7 +22879,7 @@
                                 "array",
                                 "null"
                             ],
-                            "description": "A list of minimatch patterns for locations (folders and URLs) in which source maps can be used to resolve local files. This can be used to avoid incorrectly breaking in external source mapped code. Patterns can be prefixed with \"!\" to exclude them. May be set to an empty array or null to avoid restriction.",
+                            "description": "ソース マップを使用してローカル ファイルを解決できる場所 (フォルダーと URL) の minimatch パターンの一覧。これを使用すると、外部ソースのマップされたコードの誤った破損を回避できます。パターンは、その先頭に \"!\" を付けて除外できます。制約を避けるために、空の配列または null に設定できます。",
                             "default": null,
                             "items": {
                                 "type": "string"
@@ -22889,7 +22889,7 @@
                             "type": [
                                 "array"
                             ],
-                            "description": "If source maps are enabled, these glob patterns specify the generated JavaScript files. If a pattern starts with `!` the files are excluded. If not specified, the generated code is expected in the same directory as its source.",
+                            "description": "ソース マップが有効にされている場合、これらの glob パターンは、生成された JavaScript ファイルを指定します。パターンが '!' で始まる場合、ファイルは除外されます。指定されない場合、生成されたコードは、そのソースと同じディレクトリにあるものと見なされます。",
                             "default": [
                                 "${workspaceFolder}/**/*.js",
                                 "!**/node_modules/**"
@@ -22900,11 +22900,11 @@
                         },
                         "pauseForSourceMap": {
                             "type": "boolean",
-                            "markdownDescription": "Whether to wait for source maps to load for each incoming script. This has a performance overhead, and might be safely disabled when running off of disk, so long as `rootPath` is not disabled.",
+                            "markdownDescription": "各入力スクリプトに対してソース マップが読み込まれるのを待機するかどうか。これには、パフォーマンス上のオーバーヘッドが発生しており、'rootPath' が無効でない限り、ディスクからの実行時に安全に無効にされる可能性があります。",
                             "default": false
                         },
                         "showAsyncStacks": {
-                            "description": "Show the async calls that led to the current call stack.",
+                            "description": "現在の呼び出し履歴にまで至った非同期呼び出しを表示します。",
                             "default": true,
                             "oneOf": [
                                 {
@@ -22938,29 +22938,29 @@
                         },
                         "skipFiles": {
                             "type": "array",
-                            "description": "An array of file or folder names, or path globs, to skip when debugging. Star patterns and negations are allowed, for example, `[\"**/node_modules/**\", \"!**/node_modules/my-module/**\"]`",
+                            "description": "デバッグ時にスキップするファイル名またはフォルダー名の配列、またはパス glob: スター パターンと否定は許可されます。たとえば、'[\"**/node_modules/**\"、\"!**/node_modules/my-module/**\"]`",
                             "default": [
                                 "<node_internals>/**"
                             ]
                         },
                         "smartStep": {
                             "type": "boolean",
-                            "description": "Automatically step through generated code that cannot be mapped back to the original source.",
+                            "description": "元のソースにマップできない生成コードを自動的にステップスルーします。",
                             "default": true
                         },
                         "sourceMaps": {
                             "type": "boolean",
-                            "description": "Use JavaScript source maps (if they exist).",
+                            "description": "JavaScript ソース マップを使用します (存在する場合)。",
                             "default": true
                         },
                         "sourceMapRenames": {
                             "type": "boolean",
                             "default": true,
-                            "description": "Whether to use the \"names\" mapping in sourcemaps. This requires requesting source content, which can be slow with certain debuggers."
+                            "description": "ソースマップで \"names\" マッピングを使用するかどうかを指定します。これを使用するには、ソース コンテンツを要求する必要がありますが、これは特定のデバッガーでは速度が低下する可能性があります。"
                         },
                         "sourceMapPathOverrides": {
                             "type": "object",
-                            "description": "A set of mappings for rewriting the locations of source files from what the sourcemap says, to their locations on disk.",
+                            "description": "ソース ファイルの場所をソースマップが示している場所からディスク上の場所に書き換えるための一連のマッピングです。",
                             "default": {
                                 "webpack://?:*/*": "${workspaceFolder}/*",
                                 "webpack:///./~/*": "${workspaceFolder}/node_modules/*",
@@ -22969,40 +22969,40 @@
                         },
                         "timeout": {
                             "type": "number",
-                            "description": "Retry for this number of milliseconds to connect to Node.js. Default is 10000 ms.",
+                            "description": "Node.js への接続を再試行する期間 (ミリ秒単位)。既定値は 10000 ミリ秒です。",
                             "default": 10000
                         },
                         "timeouts": {
                             "type": "object",
-                            "description": "Timeouts for several debugger operations.",
+                            "description": "いくつかのデバッガー操作のタイムアウト。",
                             "default": {},
                             "properties": {
                                 "sourceMapMinPause": {
                                     "type": "number",
-                                    "description": "Minimum time in milliseconds spent waiting for each source-map to be processed when a script is being parsed",
+                                    "description": "スクリプトの解析時に各ソース マップが処理されるのを待機する最小時間 (ミリ秒)",
                                     "default": 1000
                                 },
                                 "sourceMapCumulativePause": {
                                     "type": "number",
-                                    "description": "Extra time in milliseconds allowed per session to be spent waiting for source-maps to be processed, after the minimum time (sourceMapMinPause) has been exhausted",
+                                    "description": "最小時間 (sourceMapMinPause) を使い切った後、ソース マップが処理されるのを待機するために使用可能なセッションあたりの追加時間 (ミリ秒)",
                                     "default": 1000
                                 },
                                 "hoverEvaluation": {
                                     "type": "number",
-                                    "description": "Time until value evaluation for hovered symbols is aborted. If set to 0, hover evaluation does never time out.",
+                                    "description": "ホバーされたシンボルの値の評価が中止されるまでの時間。0 に設定すると、ホバー評価がタイムアウトすることはありません。",
                                     "default": 500
                                 }
                             },
                             "additionalProperties": false,
-                            "markdownDescription": "Timeouts for several debugger operations."
+                            "markdownDescription": "いくつかのデバッガー操作のタイムアウト。"
                         },
                         "trace": {
-                            "description": "Configures what diagnostic output is produced.",
+                            "description": "生成される診断出力を構成します。",
                             "default": true,
                             "oneOf": [
                                 {
                                     "type": "boolean",
-                                    "description": "Trace may be set to 'true' to write diagnostic logs to the disk."
+                                    "description": "診断ログをディスクに書き込むには、トレースを 'true' に設定します。"
                                 },
                                 {
                                     "type": "object",
@@ -23010,14 +23010,14 @@
                                     "properties": {
                                         "stdio": {
                                             "type": "boolean",
-                                            "description": "Whether to return trace data from the launched application or browser."
+                                            "description": "起動したアプリケーションまたはブラウザーからトレース データを返すかどうか。"
                                         },
                                         "logFile": {
                                             "type": [
                                                 "string",
                                                 "null"
                                             ],
-                                            "description": "Configures where on disk logs are written."
+                                            "description": "ディスク上のログが書き込まれる場所を構成します。"
                                         }
                                     }
                                 }
@@ -23028,22 +23028,22 @@
                                 "console",
                                 "std"
                             ],
-                            "markdownDescription": "From where to capture output messages: the default debug API if set to `console`, or stdout/stderr streams if set to `std`.",
+                            "markdownDescription": "出力メッセージのキャプチャ元の場所: 'console' に設定した場合は既定のデバッグ API、'std' に設定した場合は stdout または stderr ストリームになります。",
                             "default": "console"
                         },
                         "enableContentValidation": {
                             "default": true,
                             "type": "boolean",
-                            "description": "Toggles whether we verify the contents of files on disk match the ones loaded in the runtime. This is useful in a variety of scenarios and required in some, but can cause issues if you have server-side transformation of scripts, for example."
+                            "description": "ディスク上のファイルの内容が、ランタイムに読み込まれたものと一致していることを Microsoft が確認するかどうかを切り替えます。これは、さまざまなシナリオで役立ち、一部のシナリオでは必須です。ただし、一例としてスクリプトのサーバー側変換がある場合に問題が発生する可能性があります。"
                         },
                         "customDescriptionGenerator": {
                             "type": "string",
-                            "description": "Customize the textual description the debugger shows for objects (local variables, etc...). Samples:\r\n      1. this.toString() // will call toString to print all objects\r\n      2. this.customDescription ? this.customDescription() : defaultValue // Use customDescription method if available, if not return defaultValue\r\n      3. function (def) { return this.customDescription ? this.customDescription() : def } // Use customDescription method if available, if not return defaultValue\r\n      "
+                            "description": "デバッガーがオブジェクト (ローカル変数など) に対して表示するテキスト形式の説明をカスタマイズします。サンプル:\r\n      1. this.toString() // は toString を呼び出して、すべてのオブジェクトを出力します\r\n      2. this.customDescription ? this.customDescription() : defaultValue // 利用可能な場合は customDescription メソッドを使用し、そうでない場合は defaultValue を返します\r\n      3. 関数 (def) { return this.customDescription ? this.customDescription() : def } // 利用可能な場合は customDescription メソッドを使用し、そうでない場合は defaultValue を返します\r\n      "
                         },
                         "customPropertiesGenerator": {
                             "type": "string",
                             "deprecated": true,
-                            "description": "Customize the properties shown for an object in the debugger (local variables, etc...). Samples:\r\n    1. { ...this, extraProperty: '12345' } // Add an extraProperty 12345 to all objects\r\n    2. this.customProperties ? this.customProperties() : this // Use customProperties method if available, if not use the properties in this (the default properties)\r\n    3. function () { return this.customProperties ? this.customProperties() : this } // Use customDescription method if available, if not return the default properties\r\n\r\n    Deprecated: This is a temporary implementation of this feature until we have time to implement it in the way described here: https://github.com/microsoft/vscode/issues/102181"
+                            "description": "デバッガーのオブジェクトに表示されるプロパティ (ローカル変数など) をカスタマイズします。サンプル:\r\n    1. { ...this, extraProperty: '12345' } //すべてのオブジェクトに extraProperty 12345 を追加します。\r\n    2. this.customProperties ? this.customProperties() : this // 使用可能であれば customProperties メソッドを使用します。そうでない場合は this 内のプロパティを使用します (既定のプロパティ)\r\n    3. function () { return this.customProperties ? this.customProperties() : this } // 使用可能であれば customDescription メソッドを使用します。そうでない場合は既定のプロパティを返します\r\n\r\n    非推奨: これは、https://github.com/microsoft/vscode/issues/102181 で説明されている方法でこの機能が実装されるまでの間の、一時的な実装です。"
                         },
                         "cascadeTerminateToConfigurations": {
                             "type": "array",
@@ -23052,31 +23052,31 @@
                                 "uniqueItems": true
                             },
                             "default": [],
-                            "description": "A list of debug sessions which, when this debug session is terminated, will also be stopped."
+                            "description": "このデバッグ セッションの終了と同時に停止するデバッグ セッションの一覧。"
                         },
                         "disableNetworkCache": {
                             "type": "boolean",
-                            "description": "Controls whether to skip the network cache for each request",
+                            "description": "要求ごとのネットワーク キャッシュをスキップするかどうかを制御します",
                             "default": true
                         },
                         "pathMapping": {
                             "type": "object",
-                            "description": "A mapping of URLs/paths to local folders, to resolve scripts in the Browser to scripts on disk",
+                            "description": "ブラウザーのスクリプトをディスク上のスクリプトに解決するための、ローカル フォルダーへの URL またはパスのマッピング",
                             "default": {}
                         },
                         "webRoot": {
                             "type": "string",
-                            "description": "This specifies the workspace absolute path to the webserver root. Used to resolve paths like `/app.js` to files on disk. Shorthand for a pathMapping for \"/\"",
+                            "description": "これは、Web サーバー ルートに対するワークスペースの絶対パスを指定します。ディスク上のファイルへの `/app.js` などのパスを解決するために使用されます。\"/\" は、pathMapping の短縮形です",
                             "default": "${workspaceFolder}"
                         },
                         "urlFilter": {
                             "type": "string",
-                            "description": "Will search for a page with this url and attach to it, if found. Can have * wildcards.",
+                            "description": "この URL のページを検索し、見つかった場合はそれにアタッチします。ワイルドカード * を使用できます。",
                             "default": ""
                         },
                         "url": {
                             "type": "string",
-                            "description": "Will search for a tab with this exact url and attach to it, if found",
+                            "description": "これとまったく同じ URL のタブを検索し、見つかった場合はそれにアタッチします",
                             "default": "http://localhost:8080"
                         },
                         "inspectUri": {
@@ -23084,12 +23084,12 @@
                                 "string",
                                 "null"
                             ],
-                            "description": "Format to use to rewrite the inspectUri: It's a template string that interpolates keys in `{curlyBraces}`. Available keys are:\r\n - `url.*` is the parsed address of the running application. For instance, `{url.port}`, `{url.hostname}`\r\n - `port` is the debug port that Chrome is listening on.\r\n - `browserInspectUri` is the inspector URI on the launched browser\r\n - `browserInspectUriPath` is the path part of the inspector URI on the launched browser (e.g.: \"/devtools/browser/e9ec0098-306e-472a-8133-5e42488929c2\").\r\n - `wsProtocol` is the hinted websocket protocol. This is set to `wss` if the original URL is `https`, or `ws` otherwise.\r\n",
+                            "description": "inspectUri の書き換えに使用する形式: '{curlyBraces}' 内にキーを補間するテンプレート文字列です。使用できるキーは以下のとおりです。\r\n - 'url.*' は、実行中のアプリケーションの解析されたアドレスです。例: '{url.port}', '{url.hostname}'\r\n - 'port' は、Chrome がリッスンするデバッグ ポートです。\r\n - 'browserInspectUri' は、起動したブラウザーのインスペクター URI です。\r\n - 'browserInspectUriPath' は起動したブラウザーのインスペクター URI のパス部分です (例: \"/devtools/browser/e9ec0098-306e-472a-8133-5e42488929c2\")。\r\n - 'wsProtocol' は、示唆される WebSocket プロトコルです。元の URL が 'https' の場合は 'wss' に設定され、それ以外の場合は 'ws' に設定されます。\r\n",
                             "default": null
                         },
                         "vueComponentPaths": {
                             "type": "array",
-                            "description": "A list of file glob patterns to find `*.vue` components. By default, searches the entire workspace. This needs to be specified due to extra lookups that Vue's sourcemaps require in Vue CLI 4. You can disable this special handling by setting this to an empty array.",
+                            "description": "'*.vue' コンポーネントを検索するファイル glob パターンの一覧。既定では、ワークスペース全体を検索します。これは、Vue CLI 4 で Vue のソースマップに必要な追加のルックアップのために指定する必要があります。この特殊な処理を無効にするには、この値を空の配列に設定します。",
                             "default": [
                                 "${workspaceFolder}/**/*.vue"
                             ]
@@ -23098,7 +23098,7 @@
                             "oneOf": [
                                 {
                                     "type": "object",
-                                    "description": "Configures a web server to start up. Takes the same configuration as the 'node' launch task.",
+                                    "description": "起動する Web サーバーを構成します。'ノード' 起動タスクと同じ構成になります。",
                                     "additionalProperties": false,
                                     "default": {
                                         "program": "node my-server.js"
@@ -23109,7 +23109,7 @@
                                                 "array",
                                                 "null"
                                             ],
-                                            "description": "A list of minimatch patterns for locations (folders and URLs) in which source maps can be used to resolve local files. This can be used to avoid incorrectly breaking in external source mapped code. Patterns can be prefixed with \"!\" to exclude them. May be set to an empty array or null to avoid restriction.",
+                                            "description": "ソース マップを使用してローカル ファイルを解決できる場所 (フォルダーと URL) の minimatch パターンの一覧。これを使用すると、外部ソースのマップされたコードの誤った破損を回避できます。パターンは、その先頭に \"!\" を付けて除外できます。制約を避けるために、空の配列または null に設定できます。",
                                             "default": [
                                                 "${workspaceFolder}/**",
                                                 "!**/node_modules/**"
@@ -23122,7 +23122,7 @@
                                             "type": [
                                                 "array"
                                             ],
-                                            "description": "If source maps are enabled, these glob patterns specify the generated JavaScript files. If a pattern starts with `!` the files are excluded. If not specified, the generated code is expected in the same directory as its source.",
+                                            "description": "ソース マップが有効にされている場合、これらの glob パターンは、生成された JavaScript ファイルを指定します。パターンが '!' で始まる場合、ファイルは除外されます。指定されない場合、生成されたコードは、そのソースと同じディレクトリにあるものと見なされます。",
                                             "default": [
                                                 "${workspaceFolder}/**/*.js",
                                                 "!**/node_modules/**"
@@ -23133,11 +23133,11 @@
                                         },
                                         "pauseForSourceMap": {
                                             "type": "boolean",
-                                            "markdownDescription": "Whether to wait for source maps to load for each incoming script. This has a performance overhead, and might be safely disabled when running off of disk, so long as `rootPath` is not disabled.",
+                                            "markdownDescription": "各入力スクリプトに対してソース マップが読み込まれるのを待機するかどうか。これには、パフォーマンス上のオーバーヘッドが発生しており、'rootPath' が無効でない限り、ディスクからの実行時に安全に無効にされる可能性があります。",
                                             "default": false
                                         },
                                         "showAsyncStacks": {
-                                            "description": "Show the async calls that led to the current call stack.",
+                                            "description": "現在の呼び出し履歴にまで至った非同期呼び出しを表示します。",
                                             "default": true,
                                             "oneOf": [
                                                 {
@@ -23171,29 +23171,29 @@
                                         },
                                         "skipFiles": {
                                             "type": "array",
-                                            "description": "An array of file or folder names, or path globs, to skip when debugging. Star patterns and negations are allowed, for example, `[\"**/node_modules/**\", \"!**/node_modules/my-module/**\"]`",
+                                            "description": "デバッグ時にスキップするファイル名またはフォルダー名の配列、またはパス glob: スター パターンと否定は許可されます。たとえば、'[\"**/node_modules/**\"、\"!**/node_modules/my-module/**\"]`",
                                             "default": [
                                                 "<node_internals>/**"
                                             ]
                                         },
                                         "smartStep": {
                                             "type": "boolean",
-                                            "description": "Automatically step through generated code that cannot be mapped back to the original source.",
+                                            "description": "元のソースにマップできない生成コードを自動的にステップスルーします。",
                                             "default": true
                                         },
                                         "sourceMaps": {
                                             "type": "boolean",
-                                            "description": "Use JavaScript source maps (if they exist).",
+                                            "description": "JavaScript ソース マップを使用します (存在する場合)。",
                                             "default": true
                                         },
                                         "sourceMapRenames": {
                                             "type": "boolean",
                                             "default": true,
-                                            "description": "Whether to use the \"names\" mapping in sourcemaps. This requires requesting source content, which can be slow with certain debuggers."
+                                            "description": "ソースマップで \"names\" マッピングを使用するかどうかを指定します。これを使用するには、ソース コンテンツを要求する必要がありますが、これは特定のデバッガーでは速度が低下する可能性があります。"
                                         },
                                         "sourceMapPathOverrides": {
                                             "type": "object",
-                                            "description": "A set of mappings for rewriting the locations of source files from what the sourcemap says, to their locations on disk.",
+                                            "description": "ソース ファイルの場所をソースマップが示している場所からディスク上の場所に書き換えるための一連のマッピングです。",
                                             "default": {
                                                 "webpack://?:*/*": "${workspaceFolder}/*",
                                                 "webpack:///./~/*": "${workspaceFolder}/node_modules/*",
@@ -23202,40 +23202,40 @@
                                         },
                                         "timeout": {
                                             "type": "number",
-                                            "description": "Retry for this number of milliseconds to connect to Node.js. Default is 10000 ms.",
+                                            "description": "Node.js への接続を再試行する期間 (ミリ秒単位)。既定値は 10000 ミリ秒です。",
                                             "default": 10000
                                         },
                                         "timeouts": {
                                             "type": "object",
-                                            "description": "Timeouts for several debugger operations.",
+                                            "description": "いくつかのデバッガー操作のタイムアウト。",
                                             "default": {},
                                             "properties": {
                                                 "sourceMapMinPause": {
                                                     "type": "number",
-                                                    "description": "Minimum time in milliseconds spent waiting for each source-map to be processed when a script is being parsed",
+                                                    "description": "スクリプトの解析時に各ソース マップが処理されるのを待機する最小時間 (ミリ秒)",
                                                     "default": 1000
                                                 },
                                                 "sourceMapCumulativePause": {
                                                     "type": "number",
-                                                    "description": "Extra time in milliseconds allowed per session to be spent waiting for source-maps to be processed, after the minimum time (sourceMapMinPause) has been exhausted",
+                                                    "description": "最小時間 (sourceMapMinPause) を使い切った後、ソース マップが処理されるのを待機するために使用可能なセッションあたりの追加時間 (ミリ秒)",
                                                     "default": 1000
                                                 },
                                                 "hoverEvaluation": {
                                                     "type": "number",
-                                                    "description": "Time until value evaluation for hovered symbols is aborted. If set to 0, hover evaluation does never time out.",
+                                                    "description": "ホバーされたシンボルの値の評価が中止されるまでの時間。0 に設定すると、ホバー評価がタイムアウトすることはありません。",
                                                     "default": 500
                                                 }
                                             },
                                             "additionalProperties": false,
-                                            "markdownDescription": "Timeouts for several debugger operations."
+                                            "markdownDescription": "いくつかのデバッガー操作のタイムアウト。"
                                         },
                                         "trace": {
-                                            "description": "Configures what diagnostic output is produced.",
+                                            "description": "生成される診断出力を構成します。",
                                             "default": true,
                                             "oneOf": [
                                                 {
                                                     "type": "boolean",
-                                                    "description": "Trace may be set to 'true' to write diagnostic logs to the disk."
+                                                    "description": "診断ログをディスクに書き込むには、トレースを 'true' に設定します。"
                                                 },
                                                 {
                                                     "type": "object",
@@ -23243,14 +23243,14 @@
                                                     "properties": {
                                                         "stdio": {
                                                             "type": "boolean",
-                                                            "description": "Whether to return trace data from the launched application or browser."
+                                                            "description": "起動したアプリケーションまたはブラウザーからトレース データを返すかどうか。"
                                                         },
                                                         "logFile": {
                                                             "type": [
                                                                 "string",
                                                                 "null"
                                                             ],
-                                                            "description": "Configures where on disk logs are written."
+                                                            "description": "ディスク上のログが書き込まれる場所を構成します。"
                                                         }
                                                     }
                                                 }
@@ -23261,22 +23261,22 @@
                                                 "console",
                                                 "std"
                                             ],
-                                            "markdownDescription": "From where to capture output messages: the default debug API if set to `console`, or stdout/stderr streams if set to `std`.",
+                                            "markdownDescription": "出力メッセージのキャプチャ元の場所: 'console' に設定した場合は既定のデバッグ API、'std' に設定した場合は stdout または stderr ストリームになります。",
                                             "default": "console"
                                         },
                                         "enableContentValidation": {
                                             "default": true,
                                             "type": "boolean",
-                                            "description": "Toggles whether we verify the contents of files on disk match the ones loaded in the runtime. This is useful in a variety of scenarios and required in some, but can cause issues if you have server-side transformation of scripts, for example."
+                                            "description": "ディスク上のファイルの内容が、ランタイムに読み込まれたものと一致していることを Microsoft が確認するかどうかを切り替えます。これは、さまざまなシナリオで役立ち、一部のシナリオでは必須です。ただし、一例としてスクリプトのサーバー側変換がある場合に問題が発生する可能性があります。"
                                         },
                                         "customDescriptionGenerator": {
                                             "type": "string",
-                                            "description": "Customize the textual description the debugger shows for objects (local variables, etc...). Samples:\r\n      1. this.toString() // will call toString to print all objects\r\n      2. this.customDescription ? this.customDescription() : defaultValue // Use customDescription method if available, if not return defaultValue\r\n      3. function (def) { return this.customDescription ? this.customDescription() : def } // Use customDescription method if available, if not return defaultValue\r\n      "
+                                            "description": "デバッガーがオブジェクト (ローカル変数など) に対して表示するテキスト形式の説明をカスタマイズします。サンプル:\r\n      1. this.toString() // は toString を呼び出して、すべてのオブジェクトを出力します\r\n      2. this.customDescription ? this.customDescription() : defaultValue // 利用可能な場合は customDescription メソッドを使用し、そうでない場合は defaultValue を返します\r\n      3. 関数 (def) { return this.customDescription ? this.customDescription() : def } // 利用可能な場合は customDescription メソッドを使用し、そうでない場合は defaultValue を返します\r\n      "
                                         },
                                         "customPropertiesGenerator": {
                                             "type": "string",
                                             "deprecated": true,
-                                            "description": "Customize the properties shown for an object in the debugger (local variables, etc...). Samples:\r\n    1. { ...this, extraProperty: '12345' } // Add an extraProperty 12345 to all objects\r\n    2. this.customProperties ? this.customProperties() : this // Use customProperties method if available, if not use the properties in this (the default properties)\r\n    3. function () { return this.customProperties ? this.customProperties() : this } // Use customDescription method if available, if not return the default properties\r\n\r\n    Deprecated: This is a temporary implementation of this feature until we have time to implement it in the way described here: https://github.com/microsoft/vscode/issues/102181"
+                                            "description": "デバッガーのオブジェクトに表示されるプロパティ (ローカル変数など) をカスタマイズします。サンプル:\r\n    1. { ...this, extraProperty: '12345' } //すべてのオブジェクトに extraProperty 12345 を追加します。\r\n    2. this.customProperties ? this.customProperties() : this // 使用可能であれば customProperties メソッドを使用します。そうでない場合は this 内のプロパティを使用します (既定のプロパティ)\r\n    3. function () { return this.customProperties ? this.customProperties() : this } // 使用可能であれば customDescription メソッドを使用します。そうでない場合は既定のプロパティを返します\r\n\r\n    非推奨: これは、https://github.com/microsoft/vscode/issues/102181 で説明されている方法でこの機能が実装されるまでの間の、一時的な実装です。"
                                         },
                                         "cascadeTerminateToConfigurations": {
                                             "type": "array",
@@ -23285,11 +23285,11 @@
                                                 "uniqueItems": true
                                             },
                                             "default": [],
-                                            "description": "A list of debug sessions which, when this debug session is terminated, will also be stopped."
+                                            "description": "このデバッグ セッションの終了と同時に停止するデバッグ セッションの一覧。"
                                         },
                                         "cwd": {
                                             "type": "string",
-                                            "description": "Absolute path to the working directory of the program being debugged. If you've set localRoot then cwd will match that value otherwise it falls back to your workspaceFolder",
+                                            "description": "デバッグされているプログラムの作業ディレクトリへの絶対パスです。LocalRoot を設定すると、cwd はその値と一致するか、またはお客様の workspaceFolder に戻ります",
                                             "default": "${workspaceFolder}"
                                         },
                                         "localRoot": {
@@ -23297,7 +23297,7 @@
                                                 "string",
                                                 "null"
                                             ],
-                                            "description": "Path to the local directory containing the program.",
+                                            "description": "プログラムの入ったローカル ディレクトリへのパス。",
                                             "default": null
                                         },
                                         "remoteRoot": {
@@ -23305,12 +23305,12 @@
                                                 "string",
                                                 "null"
                                             ],
-                                            "description": "Absolute path to the remote directory containing the program.",
+                                            "description": "プログラムの入ったリモート ディレクトリへの絶対パス。",
                                             "default": null
                                         },
                                         "autoAttachChildProcesses": {
                                             "type": "boolean",
-                                            "description": "Attach debugger to new child processes automatically.",
+                                            "description": "デバッガーを自動的に新しい子プロセスにアタッチします。",
                                             "default": true
                                         },
                                         "env": {
@@ -23321,12 +23321,12 @@
                                                     "null"
                                                 ]
                                             },
-                                            "markdownDescription": "Environment variables passed to the program. The value `null` removes the variable from the environment.",
+                                            "markdownDescription": "環境変数がプログラムに渡されました。値 'null' を指定すると、変数が環境から削除されます。",
                                             "default": {}
                                         },
                                         "envFile": {
                                             "type": "string",
-                                            "description": "Absolute path to a file containing environment variable definitions.",
+                                            "description": "環境変数定義が含まれているファイルへの絶対パス。",
                                             "default": "${workspaceFolder}/.env"
                                         },
                                         "runtimeSourcemapPausePatterns": {
@@ -23334,23 +23334,23 @@
                                             "items": {
                                                 "type": "string"
                                             },
-                                            "markdownDescription": "A list of patterns at which to manually insert entrypoint breakpoints. This can be useful to give the debugger an opportunity to set breakpoints when using sourcemaps that don't exist or can't be detected before launch, such as [with the Serverless framework](https://github.com/microsoft/vscode-js-debug/issues/492).",
+                                            "markdownDescription": "エントリポイント ブレークポイントを手動で挿入するパターンの一覧。これは、[Serverless Framework を使用する場合](https://github.com/microsoft/vscode-js-debug/issues/492) のように、存在しない、または起動前には検出できないソースマップを使用している場合に、デバッガーでブレークポイントを設定できるようにするために役立ちます。",
                                             "default": []
                                         },
                                         "nodeVersionHint": {
                                             "type": "number",
                                             "minimum": 8,
-                                            "description": "Allows you to explicitly specify the Node version that's running, which can be used to disable or enable certain behaviors in cases where the automatic version detection does not work.",
+                                            "description": "実行中のノード バージョンを明示的に指定できます。これにより、自動バージョン検出が機能していない場合に特定の動作を無効または有効にすることができます。",
                                             "default": 12
                                         },
                                         "enableTurboSourcemaps": {
                                             "type": "boolean",
                                             "default": true,
-                                            "description": "Configures whether to use a new, faster mechanism for sourcemap discovery"
+                                            "description": "ソースマップ検出に新しい高速メカニズムを使用するかどうかを構成します"
                                         },
                                         "program": {
                                             "type": "string",
-                                            "description": "Absolute path to the program. Generated value is guessed by looking at package.json and opened files. Edit this attribute.",
+                                            "description": "プログラムへの絶対パス。生成される値は、package.json ファイルと開かれたファイルを参照して推測されます。この属性を編集してください。",
                                             "default": ""
                                         },
                                         "stopOnEntry": {
@@ -23358,7 +23358,7 @@
                                                 "boolean",
                                                 "string"
                                             ],
-                                            "description": "Automatically stop program after launch.",
+                                            "description": "起動後、プログラムを自動的に停止します。",
                                             "default": true
                                         },
                                         "console": {
@@ -23369,11 +23369,11 @@
                                                 "externalTerminal"
                                             ],
                                             "enumDescriptions": [
-                                                "VS Code Debug Console (which doesn't support to read input from a program)",
-                                                "VS Code's integrated terminal",
-                                                "External terminal that can be configured via user settings"
+                                                "VS Code デバッグ コンソールです (プログラムからの入力の読み取りはサポートしていません)",
+                                                "VS Code の統合ターミナルです",
+                                                "ユーザー設定を介して構成できる外部ターミナルです"
                                             ],
-                                            "description": "Where to launch the debug target.",
+                                            "description": "デバッグ ターゲットの起動場所です。",
                                             "default": "internalConsole"
                                         },
                                         "args": {
@@ -23381,14 +23381,14 @@
                                                 "array",
                                                 "string"
                                             ],
-                                            "description": "Command line arguments passed to the program.\r\n\r\nCan be an array of strings or a single string. When the program is launched in a terminal, setting this property to a single string will result in the arguments not being escaped for the shell.",
+                                            "description": "プログラムに渡されるコマンド ライン引数。\r\n\r\n文字列の配列または 1 つの文字列を指定できます。プログラムがターミナルで起動される場合、このプロパティを単一の文字列に設定すると、シェルの引数がエスケープされません。",
                                             "items": {
                                                 "type": "string"
                                             },
                                             "default": []
                                         },
                                         "restart": {
-                                            "description": "Try to reconnect to the program if we lose connection. If set to `true`, we'll try once a second, forever. You can customize the interval and maximum number of attempts by specifying the `delay` and `maxAttempts` in an object instead.",
+                                            "description": "接続が切れた場合に、プログラムへの再接続が試行されます。'True' に設定すると、1 秒に 1 回、無期限に試行されます。代わりに、'delay' と 'maxAttempts' をオブジェクトに指定すれば、再試行の間隔と最大試行回数をカスタマイズできます。",
                                             "default": true,
                                             "oneOf": [
                                                 {
@@ -23416,17 +23416,17 @@
                                                 "string",
                                                 "null"
                                             ],
-                                            "markdownDescription": "Runtime to use. Either an absolute path or the name of a runtime available on the PATH. If omitted `node` is assumed.",
+                                            "markdownDescription": "使用するランタイム。絶対パス、または PATH 上で使用可能なランタイムの名前のいずれかです。省略した場合は、`node` とみなされます。",
                                             "default": "node"
                                         },
                                         "runtimeVersion": {
                                             "type": "string",
-                                            "markdownDescription": "Version of `node` runtime to use. Requires `nvm`.",
+                                            "markdownDescription": "使用する `node` ランタイムのバージョン。`nvm` が必要です。",
                                             "default": "default"
                                         },
                                         "runtimeArgs": {
                                             "type": "array",
-                                            "description": "Optional arguments passed to the runtime executable.",
+                                            "description": "省略可能な引数がランタイム実行可能ファイルに渡されました。",
                                             "items": {
                                                 "type": "string"
                                             },
@@ -23434,12 +23434,12 @@
                                         },
                                         "profileStartup": {
                                             "type": "boolean",
-                                            "description": "If true, will start profiling as soon as the process launches",
+                                            "description": "true にすると、プロセスが起動したときすぐにプロファイルが開始されます",
                                             "default": true
                                         },
                                         "attachSimplePort": {
                                             "type": "integer",
-                                            "description": "If set, attaches to the process via the given port. This is generally no longer necessary for Node.js programs and loses the ability to debug child processes, but can be useful in more esoteric scenarios such as with Deno and Docker launches. If set to 0, a random port will be chosen and --inspect-brk added to the launch arguments automatically.",
+                                            "description": "設定した場合、指定したポート経由でプロセスにアタッチされます。Node.js プログラムでは一般にもはやこれは不要になっており、子プロセスをデバッグする機能が失われますが、Deno や Docker による起動など、より複雑なシナリオで役立つことがあります。0 に設定されている場合は、ランダムのポートが選択され、--inspect-brk が起動引数に自動的に追加されます。",
                                             "default": 9229
                                         },
                                         "killBehavior": {
@@ -23450,13 +23450,13 @@
                                                 "none"
                                             ],
                                             "default": "forceful",
-                                            "markdownDescription": "Configures how debug processes are killed when stopping the session. Can be:\r\n\r\n- forceful (default): forcefully tears down the process tree. Sends SIGKILL on posix, or `taskkill.exe /F` on Windows.\r\n- polite: gracefully tears down the process tree. It's possible that misbehaving processes continue to run after shutdown in this way. Sends SIGTERM on posix, or `taskkill.exe` with no `/F` (force) flag on Windows.\r\n- none: no termination will happen."
+                                            "markdownDescription": "セッションの停止時にデバッグ プロセスを中止する方法を構成します。以下を指定できます:\r\n\r\n- forceful (既定): プロセス ツリーを強制的に停止します。posix 上では SIGKILL を、Windows 上では 'taskkill.exe /F' を 送信します。\r\n- polite: プロセス ツリーを正常に終了します。この方法でシャットダウンした後、不適切なプロセスが引き続き実行される可能性があります。posix 上では SIGTERM を、Windows 上では '/F' (force) フラグなしの taskkill.exe を送信します。\r\n-none: 終了は発生しません。"
                                         }
                                     }
                                 },
                                 {
                                     "type": "object",
-                                    "description": "JavaScript Debug Terminal",
+                                    "description": "JavaScript デバッグ ターミナル",
                                     "additionalProperties": false,
                                     "default": {
                                         "program": "npm start"
@@ -23467,7 +23467,7 @@
                                                 "array",
                                                 "null"
                                             ],
-                                            "description": "A list of minimatch patterns for locations (folders and URLs) in which source maps can be used to resolve local files. This can be used to avoid incorrectly breaking in external source mapped code. Patterns can be prefixed with \"!\" to exclude them. May be set to an empty array or null to avoid restriction.",
+                                            "description": "ソース マップを使用してローカル ファイルを解決できる場所 (フォルダーと URL) の minimatch パターンの一覧。これを使用すると、外部ソースのマップされたコードの誤った破損を回避できます。パターンは、その先頭に \"!\" を付けて除外できます。制約を避けるために、空の配列または null に設定できます。",
                                             "default": [
                                                 "${workspaceFolder}/**",
                                                 "!**/node_modules/**"
@@ -23480,7 +23480,7 @@
                                             "type": [
                                                 "array"
                                             ],
-                                            "description": "If source maps are enabled, these glob patterns specify the generated JavaScript files. If a pattern starts with `!` the files are excluded. If not specified, the generated code is expected in the same directory as its source.",
+                                            "description": "ソース マップが有効にされている場合、これらの glob パターンは、生成された JavaScript ファイルを指定します。パターンが '!' で始まる場合、ファイルは除外されます。指定されない場合、生成されたコードは、そのソースと同じディレクトリにあるものと見なされます。",
                                             "default": [
                                                 "${workspaceFolder}/**/*.js",
                                                 "!**/node_modules/**"
@@ -23491,11 +23491,11 @@
                                         },
                                         "pauseForSourceMap": {
                                             "type": "boolean",
-                                            "markdownDescription": "Whether to wait for source maps to load for each incoming script. This has a performance overhead, and might be safely disabled when running off of disk, so long as `rootPath` is not disabled.",
+                                            "markdownDescription": "各入力スクリプトに対してソース マップが読み込まれるのを待機するかどうか。これには、パフォーマンス上のオーバーヘッドが発生しており、'rootPath' が無効でない限り、ディスクからの実行時に安全に無効にされる可能性があります。",
                                             "default": false
                                         },
                                         "showAsyncStacks": {
-                                            "description": "Show the async calls that led to the current call stack.",
+                                            "description": "現在の呼び出し履歴にまで至った非同期呼び出しを表示します。",
                                             "default": true,
                                             "oneOf": [
                                                 {
@@ -23529,29 +23529,29 @@
                                         },
                                         "skipFiles": {
                                             "type": "array",
-                                            "description": "An array of file or folder names, or path globs, to skip when debugging. Star patterns and negations are allowed, for example, `[\"**/node_modules/**\", \"!**/node_modules/my-module/**\"]`",
+                                            "description": "デバッグ時にスキップするファイル名またはフォルダー名の配列、またはパス glob: スター パターンと否定は許可されます。たとえば、'[\"**/node_modules/**\"、\"!**/node_modules/my-module/**\"]`",
                                             "default": [
                                                 "<node_internals>/**"
                                             ]
                                         },
                                         "smartStep": {
                                             "type": "boolean",
-                                            "description": "Automatically step through generated code that cannot be mapped back to the original source.",
+                                            "description": "元のソースにマップできない生成コードを自動的にステップスルーします。",
                                             "default": true
                                         },
                                         "sourceMaps": {
                                             "type": "boolean",
-                                            "description": "Use JavaScript source maps (if they exist).",
+                                            "description": "JavaScript ソース マップを使用します (存在する場合)。",
                                             "default": true
                                         },
                                         "sourceMapRenames": {
                                             "type": "boolean",
                                             "default": true,
-                                            "description": "Whether to use the \"names\" mapping in sourcemaps. This requires requesting source content, which can be slow with certain debuggers."
+                                            "description": "ソースマップで \"names\" マッピングを使用するかどうかを指定します。これを使用するには、ソース コンテンツを要求する必要がありますが、これは特定のデバッガーでは速度が低下する可能性があります。"
                                         },
                                         "sourceMapPathOverrides": {
                                             "type": "object",
-                                            "description": "A set of mappings for rewriting the locations of source files from what the sourcemap says, to their locations on disk.",
+                                            "description": "ソース ファイルの場所をソースマップが示している場所からディスク上の場所に書き換えるための一連のマッピングです。",
                                             "default": {
                                                 "webpack://?:*/*": "${workspaceFolder}/*",
                                                 "webpack:///./~/*": "${workspaceFolder}/node_modules/*",
@@ -23560,40 +23560,40 @@
                                         },
                                         "timeout": {
                                             "type": "number",
-                                            "description": "Retry for this number of milliseconds to connect to Node.js. Default is 10000 ms.",
+                                            "description": "Node.js への接続を再試行する期間 (ミリ秒単位)。既定値は 10000 ミリ秒です。",
                                             "default": 10000
                                         },
                                         "timeouts": {
                                             "type": "object",
-                                            "description": "Timeouts for several debugger operations.",
+                                            "description": "いくつかのデバッガー操作のタイムアウト。",
                                             "default": {},
                                             "properties": {
                                                 "sourceMapMinPause": {
                                                     "type": "number",
-                                                    "description": "Minimum time in milliseconds spent waiting for each source-map to be processed when a script is being parsed",
+                                                    "description": "スクリプトの解析時に各ソース マップが処理されるのを待機する最小時間 (ミリ秒)",
                                                     "default": 1000
                                                 },
                                                 "sourceMapCumulativePause": {
                                                     "type": "number",
-                                                    "description": "Extra time in milliseconds allowed per session to be spent waiting for source-maps to be processed, after the minimum time (sourceMapMinPause) has been exhausted",
+                                                    "description": "最小時間 (sourceMapMinPause) を使い切った後、ソース マップが処理されるのを待機するために使用可能なセッションあたりの追加時間 (ミリ秒)",
                                                     "default": 1000
                                                 },
                                                 "hoverEvaluation": {
                                                     "type": "number",
-                                                    "description": "Time until value evaluation for hovered symbols is aborted. If set to 0, hover evaluation does never time out.",
+                                                    "description": "ホバーされたシンボルの値の評価が中止されるまでの時間。0 に設定すると、ホバー評価がタイムアウトすることはありません。",
                                                     "default": 500
                                                 }
                                             },
                                             "additionalProperties": false,
-                                            "markdownDescription": "Timeouts for several debugger operations."
+                                            "markdownDescription": "いくつかのデバッガー操作のタイムアウト。"
                                         },
                                         "trace": {
-                                            "description": "Configures what diagnostic output is produced.",
+                                            "description": "生成される診断出力を構成します。",
                                             "default": true,
                                             "oneOf": [
                                                 {
                                                     "type": "boolean",
-                                                    "description": "Trace may be set to 'true' to write diagnostic logs to the disk."
+                                                    "description": "診断ログをディスクに書き込むには、トレースを 'true' に設定します。"
                                                 },
                                                 {
                                                     "type": "object",
@@ -23601,14 +23601,14 @@
                                                     "properties": {
                                                         "stdio": {
                                                             "type": "boolean",
-                                                            "description": "Whether to return trace data from the launched application or browser."
+                                                            "description": "起動したアプリケーションまたはブラウザーからトレース データを返すかどうか。"
                                                         },
                                                         "logFile": {
                                                             "type": [
                                                                 "string",
                                                                 "null"
                                                             ],
-                                                            "description": "Configures where on disk logs are written."
+                                                            "description": "ディスク上のログが書き込まれる場所を構成します。"
                                                         }
                                                     }
                                                 }
@@ -23619,22 +23619,22 @@
                                                 "console",
                                                 "std"
                                             ],
-                                            "markdownDescription": "From where to capture output messages: the default debug API if set to `console`, or stdout/stderr streams if set to `std`.",
+                                            "markdownDescription": "出力メッセージのキャプチャ元の場所: 'console' に設定した場合は既定のデバッグ API、'std' に設定した場合は stdout または stderr ストリームになります。",
                                             "default": "console"
                                         },
                                         "enableContentValidation": {
                                             "default": true,
                                             "type": "boolean",
-                                            "description": "Toggles whether we verify the contents of files on disk match the ones loaded in the runtime. This is useful in a variety of scenarios and required in some, but can cause issues if you have server-side transformation of scripts, for example."
+                                            "description": "ディスク上のファイルの内容が、ランタイムに読み込まれたものと一致していることを Microsoft が確認するかどうかを切り替えます。これは、さまざまなシナリオで役立ち、一部のシナリオでは必須です。ただし、一例としてスクリプトのサーバー側変換がある場合に問題が発生する可能性があります。"
                                         },
                                         "customDescriptionGenerator": {
                                             "type": "string",
-                                            "description": "Customize the textual description the debugger shows for objects (local variables, etc...). Samples:\r\n      1. this.toString() // will call toString to print all objects\r\n      2. this.customDescription ? this.customDescription() : defaultValue // Use customDescription method if available, if not return defaultValue\r\n      3. function (def) { return this.customDescription ? this.customDescription() : def } // Use customDescription method if available, if not return defaultValue\r\n      "
+                                            "description": "デバッガーがオブジェクト (ローカル変数など) に対して表示するテキスト形式の説明をカスタマイズします。サンプル:\r\n      1. this.toString() // は toString を呼び出して、すべてのオブジェクトを出力します\r\n      2. this.customDescription ? this.customDescription() : defaultValue // 利用可能な場合は customDescription メソッドを使用し、そうでない場合は defaultValue を返します\r\n      3. 関数 (def) { return this.customDescription ? this.customDescription() : def } // 利用可能な場合は customDescription メソッドを使用し、そうでない場合は defaultValue を返します\r\n      "
                                         },
                                         "customPropertiesGenerator": {
                                             "type": "string",
                                             "deprecated": true,
-                                            "description": "Customize the properties shown for an object in the debugger (local variables, etc...). Samples:\r\n    1. { ...this, extraProperty: '12345' } // Add an extraProperty 12345 to all objects\r\n    2. this.customProperties ? this.customProperties() : this // Use customProperties method if available, if not use the properties in this (the default properties)\r\n    3. function () { return this.customProperties ? this.customProperties() : this } // Use customDescription method if available, if not return the default properties\r\n\r\n    Deprecated: This is a temporary implementation of this feature until we have time to implement it in the way described here: https://github.com/microsoft/vscode/issues/102181"
+                                            "description": "デバッガーのオブジェクトに表示されるプロパティ (ローカル変数など) をカスタマイズします。サンプル:\r\n    1. { ...this, extraProperty: '12345' } //すべてのオブジェクトに extraProperty 12345 を追加します。\r\n    2. this.customProperties ? this.customProperties() : this // 使用可能であれば customProperties メソッドを使用します。そうでない場合は this 内のプロパティを使用します (既定のプロパティ)\r\n    3. function () { return this.customProperties ? this.customProperties() : this } // 使用可能であれば customDescription メソッドを使用します。そうでない場合は既定のプロパティを返します\r\n\r\n    非推奨: これは、https://github.com/microsoft/vscode/issues/102181 で説明されている方法でこの機能が実装されるまでの間の、一時的な実装です。"
                                         },
                                         "cascadeTerminateToConfigurations": {
                                             "type": "array",
@@ -23643,11 +23643,11 @@
                                                 "uniqueItems": true
                                             },
                                             "default": [],
-                                            "description": "A list of debug sessions which, when this debug session is terminated, will also be stopped."
+                                            "description": "このデバッグ セッションの終了と同時に停止するデバッグ セッションの一覧。"
                                         },
                                         "cwd": {
                                             "type": "string",
-                                            "description": "Absolute path to the working directory of the program being debugged. If you've set localRoot then cwd will match that value otherwise it falls back to your workspaceFolder",
+                                            "description": "デバッグされているプログラムの作業ディレクトリへの絶対パスです。LocalRoot を設定すると、cwd はその値と一致するか、またはお客様の workspaceFolder に戻ります",
                                             "default": "${workspaceFolder}",
                                             "docDefault": "localRoot || ${workspaceFolder}"
                                         },
@@ -23656,7 +23656,7 @@
                                                 "string",
                                                 "null"
                                             ],
-                                            "description": "Path to the local directory containing the program.",
+                                            "description": "プログラムの入ったローカル ディレクトリへのパス。",
                                             "default": null
                                         },
                                         "remoteRoot": {
@@ -23664,12 +23664,12 @@
                                                 "string",
                                                 "null"
                                             ],
-                                            "description": "Absolute path to the remote directory containing the program.",
+                                            "description": "プログラムの入ったリモート ディレクトリへの絶対パス。",
                                             "default": null
                                         },
                                         "autoAttachChildProcesses": {
                                             "type": "boolean",
-                                            "description": "Attach debugger to new child processes automatically.",
+                                            "description": "デバッガーを自動的に新しい子プロセスにアタッチします。",
                                             "default": true
                                         },
                                         "env": {
@@ -23680,12 +23680,12 @@
                                                     "null"
                                                 ]
                                             },
-                                            "markdownDescription": "Environment variables passed to the program. The value `null` removes the variable from the environment.",
+                                            "markdownDescription": "環境変数がプログラムに渡されました。値 'null' を指定すると、変数が環境から削除されます。",
                                             "default": {}
                                         },
                                         "envFile": {
                                             "type": "string",
-                                            "description": "Absolute path to a file containing environment variable definitions.",
+                                            "description": "環境変数定義が含まれているファイルへの絶対パス。",
                                             "default": "${workspaceFolder}/.env"
                                         },
                                         "runtimeSourcemapPausePatterns": {
@@ -23693,26 +23693,26 @@
                                             "items": {
                                                 "type": "string"
                                             },
-                                            "markdownDescription": "A list of patterns at which to manually insert entrypoint breakpoints. This can be useful to give the debugger an opportunity to set breakpoints when using sourcemaps that don't exist or can't be detected before launch, such as [with the Serverless framework](https://github.com/microsoft/vscode-js-debug/issues/492).",
+                                            "markdownDescription": "エントリポイント ブレークポイントを手動で挿入するパターンの一覧。これは、[Serverless Framework を使用する場合](https://github.com/microsoft/vscode-js-debug/issues/492) のように、存在しない、または起動前には検出できないソースマップを使用している場合に、デバッガーでブレークポイントを設定できるようにするために役立ちます。",
                                             "default": []
                                         },
                                         "nodeVersionHint": {
                                             "type": "number",
                                             "minimum": 8,
-                                            "description": "Allows you to explicitly specify the Node version that's running, which can be used to disable or enable certain behaviors in cases where the automatic version detection does not work.",
+                                            "description": "実行中のノード バージョンを明示的に指定できます。これにより、自動バージョン検出が機能していない場合に特定の動作を無効または有効にすることができます。",
                                             "default": 12
                                         },
                                         "enableTurboSourcemaps": {
                                             "type": "boolean",
                                             "default": true,
-                                            "description": "Configures whether to use a new, faster mechanism for sourcemap discovery"
+                                            "description": "ソースマップ検出に新しい高速メカニズムを使用するかどうかを構成します"
                                         },
                                         "command": {
                                             "type": [
                                                 "string",
                                                 "null"
                                             ],
-                                            "description": "Command to run in the launched terminal. If not provided, the terminal will open without launching a program.",
+                                            "description": "起動されたターミナルで実行するコマンド。指定しない場合、ターミナルはプログラムを起動せずに開きます。",
                                             "default": "npm start"
                                         }
                                     }
@@ -23727,16 +23727,16 @@
                                 "no",
                                 "auto"
                             ],
-                            "description": "Whether scripts are loaded individually with unique sourcemaps containing the basename of the source file. This can be set to optimize sourcemap handling when dealing with lots of small scripts. If set to \"auto\", we'll detect known cases where this is appropriate."
+                            "description": "ソース ファイルのベース名を含む一意のソースマップを使用してスクリプトを個別に読み込むかどうか。これは、多数の小さなスクリプトを処理するときに、ソースマップの処理を最適化するために設定できます。\"auto\" に設定すると、これが適切である既知のケースが自動的に検出されます。"
                         },
                         "port": {
                             "type": "number",
-                            "description": "Port for the browser to listen on. Defaults to \"0\", which will cause the browser to be debugged via pipes, which is generally more secure and should be chosen unless you need to attach to the browser from another tool.",
+                            "description": "ブラウザーがリッスンするポート。既定値は \"0\" で、パイプを介してブラウザーをデバッグするようになります。一般にこれはセキュリティに優れているため、別のツールからブラウザーに接続する必要がなければ、これを選択してください。",
                             "default": 0
                         },
                         "file": {
                             "type": "string",
-                            "description": "A local html file to open in the browser",
+                            "description": "ブラウザーで開くローカル HTML ファイル",
                             "default": "${workspaceFolder}/index.html"
                         },
                         "userDataDir": {
@@ -23744,17 +23744,17 @@
                                 "string",
                                 "boolean"
                             ],
-                            "description": "By default, the browser is launched with a separate user profile in a temp folder. Use this option to override it. Set to false to launch with your default user profile. A new browser can't be launched if an instance is already running from `userDataDir`.",
+                            "description": "既定では、ブラウザーは一時フォルダー内の個別のユーザー プロファイルで起動されます。このオプションを使用して、上書きします。false に設定すると、既定のユーザー プロファイルで起動します。既に `userDataDir` でインスタンスを起動している場合は、新しいブラウザーを起動することはできません。",
                             "default": true
                         },
                         "includeDefaultArgs": {
                             "type": "boolean",
-                            "description": "Whether default browser launch arguments (to disable features that may make debugging harder) will be included in the launch.",
+                            "description": "(デバッグを困難にする可能性のある機能を無効にする) 既定のブラウザー起動引数を起動に含めるかどうか。",
                             "default": true
                         },
                         "includeLaunchArgs": {
                             "type": "boolean",
-                            "description": "Advanced: whether any default launch/debugging arguments are set on the browser. The debugger will assume the browser will use pipe debugging such as that which is provided with `--remote-debugging-pipe`.",
+                            "description": "詳細設定: ブラウザーで既定の起動/デバッグ引数を設定するかどうかを指定します。デバッガーでは、ブラウザーが '--remote-debugging-pipe' で提供されているようなパイプ デバッグを使用することを前提としています。",
                             "default": true
                         },
                         "runtimeExecutable": {
@@ -23762,12 +23762,12 @@
                                 "string",
                                 "null"
                             ],
-                            "description": "Either 'canary', 'stable', 'custom' or path to the browser executable. Custom means a custom wrapper, custom build or CHROME_PATH environment variable.",
+                            "description": "'カナリア'、'安定'、'カスタム'、ブラウザー実行可能ファイルのパスのいずれか。[カスタム] は、カスタム ラッパー、カスタム ビルド、または CHROME_PATH 環境変数を意味します。",
                             "default": "stable"
                         },
                         "runtimeArgs": {
                             "type": "array",
-                            "description": "Optional arguments passed to the runtime executable.",
+                            "description": "省略可能な引数がランタイム実行可能ファイルに渡されました。",
                             "items": {
                                 "type": "string"
                             },
@@ -23775,17 +23775,17 @@
                         },
                         "env": {
                             "type": "object",
-                            "description": "Optional dictionary of environment key/value pairs for the browser.",
+                            "description": "ブラウザーの環境キーと値のペアから成るディクショナリ (省略可能)。",
                             "default": {}
                         },
                         "cwd": {
                             "type": "string",
-                            "description": "Optional working directory for the runtime executable.",
+                            "description": "ランタイム実行可能ファイル用の省略可能な作業ディレクトリです。",
                             "default": null
                         },
                         "profileStartup": {
                             "type": "boolean",
-                            "description": "If true, will start profiling soon as the process launches",
+                            "description": "true にすると、プロセスが起動したときすぐにプロファイルが開始されます",
                             "default": true
                         },
                         "cleanUp": {
@@ -23794,11 +23794,11 @@
                                 "wholeBrowser",
                                 "onlyTab"
                             ],
-                            "description": "What clean-up to do after the debugging session finishes. Close only the tab being debug, vs. close the whole browser.",
+                            "description": "デバッグ セッションが終了した後に実行するクリーンアップです。デバッグ対象のタブのみを閉じるか、ブラウザー全体を閉じます。",
                             "default": "wholeBrowser"
                         },
                         "browserLaunchLocation": {
-                            "description": "Forces the browser to be launched in one location. In a remote workspace (through ssh or WSL, for example) this can be used to open the browser on the remote machine rather than locally.",
+                            "description": "ブラウザーを強制的に 1 つの場所で起動します。リモート ワークスペース (ssh または WSL などを介して) でこれを使用すると、ローカルではなくリモート マシンでブラウザーを開くことができます。",
                             "default": null,
                             "oneOf": [
                                 {
@@ -23835,14 +23835,14 @@
         "debug.javascript.pickAndAttachOptions": {
             "type": "object",
             "default": {},
-            "markdownDescription": "Default options used when debugging a process through the `Debug: Attach to Node.js Process` command",
+            "markdownDescription": "'デバッグ: Node.js のプロセスにアタッチ' コマンドでプロセスをデバッグするときに使用する既定のオプション",
             "properties": {
                 "resolveSourceMapLocations": {
                     "type": [
                         "array",
                         "null"
                     ],
-                    "description": "A list of minimatch patterns for locations (folders and URLs) in which source maps can be used to resolve local files. This can be used to avoid incorrectly breaking in external source mapped code. Patterns can be prefixed with \"!\" to exclude them. May be set to an empty array or null to avoid restriction.",
+                    "description": "ソース マップを使用してローカル ファイルを解決できる場所 (フォルダーと URL) の minimatch パターンの一覧。これを使用すると、外部ソースのマップされたコードの誤った破損を回避できます。パターンは、その先頭に \"!\" を付けて除外できます。制約を避けるために、空の配列または null に設定できます。",
                     "default": [
                         "${workspaceFolder}/**",
                         "!**/node_modules/**"
@@ -23855,7 +23855,7 @@
                     "type": [
                         "array"
                     ],
-                    "description": "If source maps are enabled, these glob patterns specify the generated JavaScript files. If a pattern starts with `!` the files are excluded. If not specified, the generated code is expected in the same directory as its source.",
+                    "description": "ソース マップが有効にされている場合、これらの glob パターンは、生成された JavaScript ファイルを指定します。パターンが '!' で始まる場合、ファイルは除外されます。指定されない場合、生成されたコードは、そのソースと同じディレクトリにあるものと見なされます。",
                     "default": [
                         "${workspaceFolder}/**/*.js",
                         "!**/node_modules/**"
@@ -23866,11 +23866,11 @@
                 },
                 "pauseForSourceMap": {
                     "type": "boolean",
-                    "markdownDescription": "Whether to wait for source maps to load for each incoming script. This has a performance overhead, and might be safely disabled when running off of disk, so long as `rootPath` is not disabled.",
+                    "markdownDescription": "各入力スクリプトに対してソース マップが読み込まれるのを待機するかどうか。これには、パフォーマンス上のオーバーヘッドが発生しており、'rootPath' が無効でない限り、ディスクからの実行時に安全に無効にされる可能性があります。",
                     "default": false
                 },
                 "showAsyncStacks": {
-                    "description": "Show the async calls that led to the current call stack.",
+                    "description": "現在の呼び出し履歴にまで至った非同期呼び出しを表示します。",
                     "default": true,
                     "oneOf": [
                         {
@@ -23904,29 +23904,29 @@
                 },
                 "skipFiles": {
                     "type": "array",
-                    "description": "An array of file or folder names, or path globs, to skip when debugging. Star patterns and negations are allowed, for example, `[\"**/node_modules/**\", \"!**/node_modules/my-module/**\"]`",
+                    "description": "デバッグ時にスキップするファイル名またはフォルダー名の配列、またはパス glob: スター パターンと否定は許可されます。たとえば、'[\"**/node_modules/**\"、\"!**/node_modules/my-module/**\"]`",
                     "default": [
                         "<node_internals>/**"
                     ]
                 },
                 "smartStep": {
                     "type": "boolean",
-                    "description": "Automatically step through generated code that cannot be mapped back to the original source.",
+                    "description": "元のソースにマップできない生成コードを自動的にステップスルーします。",
                     "default": true
                 },
                 "sourceMaps": {
                     "type": "boolean",
-                    "description": "Use JavaScript source maps (if they exist).",
+                    "description": "JavaScript ソース マップを使用します (存在する場合)。",
                     "default": true
                 },
                 "sourceMapRenames": {
                     "type": "boolean",
                     "default": true,
-                    "description": "Whether to use the \"names\" mapping in sourcemaps. This requires requesting source content, which can be slow with certain debuggers."
+                    "description": "ソースマップで \"names\" マッピングを使用するかどうかを指定します。これを使用するには、ソース コンテンツを要求する必要がありますが、これは特定のデバッガーでは速度が低下する可能性があります。"
                 },
                 "sourceMapPathOverrides": {
                     "type": "object",
-                    "description": "A set of mappings for rewriting the locations of source files from what the sourcemap says, to their locations on disk.",
+                    "description": "ソース ファイルの場所をソースマップが示している場所からディスク上の場所に書き換えるための一連のマッピングです。",
                     "default": {
                         "webpack://?:*/*": "${workspaceFolder}/*",
                         "webpack:///./~/*": "${workspaceFolder}/node_modules/*",
@@ -23935,40 +23935,40 @@
                 },
                 "timeout": {
                     "type": "number",
-                    "description": "Retry for this number of milliseconds to connect to Node.js. Default is 10000 ms.",
+                    "description": "Node.js への接続を再試行する期間 (ミリ秒単位)。既定値は 10000 ミリ秒です。",
                     "default": 10000
                 },
                 "timeouts": {
                     "type": "object",
-                    "description": "Timeouts for several debugger operations.",
+                    "description": "いくつかのデバッガー操作のタイムアウト。",
                     "default": {},
                     "properties": {
                         "sourceMapMinPause": {
                             "type": "number",
-                            "description": "Minimum time in milliseconds spent waiting for each source-map to be processed when a script is being parsed",
+                            "description": "スクリプトの解析時に各ソース マップが処理されるのを待機する最小時間 (ミリ秒)",
                             "default": 1000
                         },
                         "sourceMapCumulativePause": {
                             "type": "number",
-                            "description": "Extra time in milliseconds allowed per session to be spent waiting for source-maps to be processed, after the minimum time (sourceMapMinPause) has been exhausted",
+                            "description": "最小時間 (sourceMapMinPause) を使い切った後、ソース マップが処理されるのを待機するために使用可能なセッションあたりの追加時間 (ミリ秒)",
                             "default": 1000
                         },
                         "hoverEvaluation": {
                             "type": "number",
-                            "description": "Time until value evaluation for hovered symbols is aborted. If set to 0, hover evaluation does never time out.",
+                            "description": "ホバーされたシンボルの値の評価が中止されるまでの時間。0 に設定すると、ホバー評価がタイムアウトすることはありません。",
                             "default": 500
                         }
                     },
                     "additionalProperties": false,
-                    "markdownDescription": "Timeouts for several debugger operations."
+                    "markdownDescription": "いくつかのデバッガー操作のタイムアウト。"
                 },
                 "trace": {
-                    "description": "Configures what diagnostic output is produced.",
+                    "description": "生成される診断出力を構成します。",
                     "default": true,
                     "oneOf": [
                         {
                             "type": "boolean",
-                            "description": "Trace may be set to 'true' to write diagnostic logs to the disk."
+                            "description": "診断ログをディスクに書き込むには、トレースを 'true' に設定します。"
                         },
                         {
                             "type": "object",
@@ -23976,14 +23976,14 @@
                             "properties": {
                                 "stdio": {
                                     "type": "boolean",
-                                    "description": "Whether to return trace data from the launched application or browser."
+                                    "description": "起動したアプリケーションまたはブラウザーからトレース データを返すかどうか。"
                                 },
                                 "logFile": {
                                     "type": [
                                         "string",
                                         "null"
                                     ],
-                                    "description": "Configures where on disk logs are written."
+                                    "description": "ディスク上のログが書き込まれる場所を構成します。"
                                 }
                             }
                         }
@@ -23994,22 +23994,22 @@
                         "console",
                         "std"
                     ],
-                    "markdownDescription": "From where to capture output messages: the default debug API if set to `console`, or stdout/stderr streams if set to `std`.",
+                    "markdownDescription": "出力メッセージのキャプチャ元の場所: 'console' に設定した場合は既定のデバッグ API、'std' に設定した場合は stdout または stderr ストリームになります。",
                     "default": "console"
                 },
                 "enableContentValidation": {
                     "default": true,
                     "type": "boolean",
-                    "description": "Toggles whether we verify the contents of files on disk match the ones loaded in the runtime. This is useful in a variety of scenarios and required in some, but can cause issues if you have server-side transformation of scripts, for example."
+                    "description": "ディスク上のファイルの内容が、ランタイムに読み込まれたものと一致していることを Microsoft が確認するかどうかを切り替えます。これは、さまざまなシナリオで役立ち、一部のシナリオでは必須です。ただし、一例としてスクリプトのサーバー側変換がある場合に問題が発生する可能性があります。"
                 },
                 "customDescriptionGenerator": {
                     "type": "string",
-                    "description": "Customize the textual description the debugger shows for objects (local variables, etc...). Samples:\r\n      1. this.toString() // will call toString to print all objects\r\n      2. this.customDescription ? this.customDescription() : defaultValue // Use customDescription method if available, if not return defaultValue\r\n      3. function (def) { return this.customDescription ? this.customDescription() : def } // Use customDescription method if available, if not return defaultValue\r\n      "
+                    "description": "デバッガーがオブジェクト (ローカル変数など) に対して表示するテキスト形式の説明をカスタマイズします。サンプル:\r\n      1. this.toString() // は toString を呼び出して、すべてのオブジェクトを出力します\r\n      2. this.customDescription ? this.customDescription() : defaultValue // 利用可能な場合は customDescription メソッドを使用し、そうでない場合は defaultValue を返します\r\n      3. 関数 (def) { return this.customDescription ? this.customDescription() : def } // 利用可能な場合は customDescription メソッドを使用し、そうでない場合は defaultValue を返します\r\n      "
                 },
                 "customPropertiesGenerator": {
                     "type": "string",
                     "deprecated": true,
-                    "description": "Customize the properties shown for an object in the debugger (local variables, etc...). Samples:\r\n    1. { ...this, extraProperty: '12345' } // Add an extraProperty 12345 to all objects\r\n    2. this.customProperties ? this.customProperties() : this // Use customProperties method if available, if not use the properties in this (the default properties)\r\n    3. function () { return this.customProperties ? this.customProperties() : this } // Use customDescription method if available, if not return the default properties\r\n\r\n    Deprecated: This is a temporary implementation of this feature until we have time to implement it in the way described here: https://github.com/microsoft/vscode/issues/102181"
+                    "description": "デバッガーのオブジェクトに表示されるプロパティ (ローカル変数など) をカスタマイズします。サンプル:\r\n    1. { ...this, extraProperty: '12345' } //すべてのオブジェクトに extraProperty 12345 を追加します。\r\n    2. this.customProperties ? this.customProperties() : this // 使用可能であれば customProperties メソッドを使用します。そうでない場合は this 内のプロパティを使用します (既定のプロパティ)\r\n    3. function () { return this.customProperties ? this.customProperties() : this } // 使用可能であれば customDescription メソッドを使用します。そうでない場合は既定のプロパティを返します\r\n\r\n    非推奨: これは、https://github.com/microsoft/vscode/issues/102181 で説明されている方法でこの機能が実装されるまでの間の、一時的な実装です。"
                 },
                 "cascadeTerminateToConfigurations": {
                     "type": "array",
@@ -24018,11 +24018,11 @@
                         "uniqueItems": true
                     },
                     "default": [],
-                    "description": "A list of debug sessions which, when this debug session is terminated, will also be stopped."
+                    "description": "このデバッグ セッションの終了と同時に停止するデバッグ セッションの一覧。"
                 },
                 "cwd": {
                     "type": "string",
-                    "description": "Absolute path to the working directory of the program being debugged. If you've set localRoot then cwd will match that value otherwise it falls back to your workspaceFolder",
+                    "description": "デバッグされているプログラムの作業ディレクトリへの絶対パスです。LocalRoot を設定すると、cwd はその値と一致するか、またはお客様の workspaceFolder に戻ります",
                     "default": "${workspaceFolder}",
                     "docDefault": "localRoot || ${workspaceFolder}"
                 },
@@ -24031,7 +24031,7 @@
                         "string",
                         "null"
                     ],
-                    "description": "Path to the local directory containing the program.",
+                    "description": "プログラムの入ったローカル ディレクトリへのパス。",
                     "default": null
                 },
                 "remoteRoot": {
@@ -24039,12 +24039,12 @@
                         "string",
                         "null"
                     ],
-                    "description": "Absolute path to the remote directory containing the program.",
+                    "description": "プログラムの入ったリモート ディレクトリへの絶対パス。",
                     "default": null
                 },
                 "autoAttachChildProcesses": {
                     "type": "boolean",
-                    "description": "Attach debugger to new child processes automatically.",
+                    "description": "デバッガーを自動的に新しい子プロセスにアタッチします。",
                     "default": true
                 },
                 "env": {
@@ -24055,12 +24055,12 @@
                             "null"
                         ]
                     },
-                    "markdownDescription": "Environment variables passed to the program. The value `null` removes the variable from the environment.",
+                    "markdownDescription": "環境変数がプログラムに渡されました。値 'null' を指定すると、変数が環境から削除されます。",
                     "default": {}
                 },
                 "envFile": {
                     "type": "string",
-                    "description": "Absolute path to a file containing environment variable definitions.",
+                    "description": "環境変数定義が含まれているファイルへの絶対パス。",
                     "default": "${workspaceFolder}/.env"
                 },
                 "runtimeSourcemapPausePatterns": {
@@ -24068,40 +24068,40 @@
                     "items": {
                         "type": "string"
                     },
-                    "markdownDescription": "A list of patterns at which to manually insert entrypoint breakpoints. This can be useful to give the debugger an opportunity to set breakpoints when using sourcemaps that don't exist or can't be detected before launch, such as [with the Serverless framework](https://github.com/microsoft/vscode-js-debug/issues/492).",
+                    "markdownDescription": "エントリポイント ブレークポイントを手動で挿入するパターンの一覧。これは、[Serverless Framework を使用する場合](https://github.com/microsoft/vscode-js-debug/issues/492) のように、存在しない、または起動前には検出できないソースマップを使用している場合に、デバッガーでブレークポイントを設定できるようにするために役立ちます。",
                     "default": []
                 },
                 "nodeVersionHint": {
                     "type": "number",
                     "minimum": 8,
-                    "description": "Allows you to explicitly specify the Node version that's running, which can be used to disable or enable certain behaviors in cases where the automatic version detection does not work.",
+                    "description": "実行中のノード バージョンを明示的に指定できます。これにより、自動バージョン検出が機能していない場合に特定の動作を無効または有効にすることができます。",
                     "default": 12
                 },
                 "enableTurboSourcemaps": {
                     "type": "boolean",
                     "default": true,
-                    "description": "Configures whether to use a new, faster mechanism for sourcemap discovery"
+                    "description": "ソースマップ検出に新しい高速メカニズムを使用するかどうかを構成します"
                 },
                 "address": {
                     "type": "string",
-                    "description": "TCP/IP address of process to be debugged. Default is 'localhost'.",
+                    "description": "デバッグするプロセスの TCP/IP アドレス。既定値は 'localhost' です。",
                     "default": "localhost"
                 },
                 "port": {
                     "type": "number",
-                    "description": "Debug port to attach to. Default is 9229.",
+                    "description": "アタッチ先のデバッグ ポート。既定値は 9229 です。",
                     "default": 9229
                 },
                 "websocketAddress": {
                     "type": "string",
-                    "description": "Exact websocket address to attach to. If unspecified, it will be discovered from the address and port."
+                    "description": "アタッチ先の正確な WebSocket アドレスです。指定しない場合は、アドレスとポートから探索されます。"
                 },
                 "remoteHostHeader": {
                     "type": "string",
-                    "description": "Explicit Host header to use when connecting to the websocket of inspector. If unspecified, the host header will be set to 'localhost'. This is useful when the inspector is running behind a proxy that only accept particular Host header."
+                    "description": "インスペクターの websocket に接続するときに使用する明示的な Host ヘッダー。指定しない場合、ホスト ヘッダーは 'localhost' に設定されます。これは、特定の Host ヘッダーのみを受け入れるプロキシの背後でインスペクターが実行されている場合に便利です。"
                 },
                 "restart": {
-                    "description": "Try to reconnect to the program if we lose connection. If set to `true`, we'll try once a second, forever. You can customize the interval and maximum number of attempts by specifying the `delay` and `maxAttempts` in an object instead.",
+                    "description": "接続が切れた場合に、プログラムへの再接続が試行されます。'True' に設定すると、1 秒に 1 回、無期限に試行されます。代わりに、'delay' と 'maxAttempts' をオブジェクトに指定すれば、再試行の間隔と最大試行回数をカスタマイズできます。",
                     "default": true,
                     "oneOf": [
                         {
@@ -24126,17 +24126,17 @@
                 },
                 "processId": {
                     "type": "string",
-                    "description": "ID of process to attach to.",
+                    "description": "アタッチするプロセスの ID。",
                     "default": "${command:PickProcess}"
                 },
                 "attachExistingChildren": {
                     "type": "boolean",
-                    "description": "Whether to attempt to attach to already-spawned child processes.",
+                    "description": "生成済みの子プロセスにアタッチを試行するかどうか。",
                     "default": false
                 },
                 "continueOnAttach": {
                     "type": "boolean",
-                    "markdownDescription": "If true, we'll automatically resume programs launched and waiting on `--inspect-brk`",
+                    "markdownDescription": "true の場合、`--inspect-brk`を待機中の起動済みのプログラムを自動的に再開します",
                     "default": true
                 }
             },
@@ -24158,12 +24158,12 @@
                 "disabled"
             ],
             "enumDescriptions": [
-                "Auto attach to every Node.js process launched in the terminal.",
-                "Auto attach when running scripts that aren't in a node_modules folder.",
-                "Only auto attach when the `--inspect` is given.",
-                "Auto attach is disabled and not shown in status bar."
+                "ターミナルで起動されるすべての Node.js プロセスに自動アタッチします。",
+                "node_modules フォルダーにないスクリプトを実行しているときに自動アタッチします。",
+                "`--inspect` が指定されている場合にのみ自動アタッチします。",
+                "オート アタッチが無効で、ステータス バーに表示されません。"
             ],
-            "markdownDescription": "Configures which processes to automatically attach and debug when `#debug.node.autoAttach#` is on. A Node process launched with the `--inspect` flag will always be attached to, regardless of this setting.",
+            "markdownDescription": "'#debug.node.autoAttach#' がオンの場合に、自動的にアタッチしてデバッグするプロセスを構成します。'--inspect' フラグで起動されるノード プロセスは、この設定に関係なく、常にアタッチされます。",
             "scope": 3,
             "source": {
                 "id": "ms-vscode.js-debug",
@@ -24182,7 +24182,7 @@
                 "!**/node_modules/**",
                 "**/$KNOWN_TOOLS$/**"
             ],
-            "markdownDescription": "Configures glob patterns for determining when to attach in \"smart\" `#debug.javascript.autoAttachFilter#` mode. `$KNOWN_TOOLS$` is replaced with a list of names of common test and code runners. [Read more on the VS Code docs](https://code.visualstudio.com/docs/nodejs/nodejs-debugging#_auto-attach-smart-patterns).",
+            "markdownDescription": "\"スマート\" `#debug.javascript.autoAttachFilter#` モードでアタッチするタイミングを決定するために glob パターンを構成します。`$KNOWN_TOOLS$` は、共通テストとコード ランナーの名前の一覧で置き換えられます。[VS Code ドキュメントで詳細をご確認ください](https://code.visualstudio.com/docs/nodejs/nodejs-debugging#_auto-attach-smart-patterns)。",
             "scope": 3,
             "source": {
                 "id": "ms-vscode.js-debug",
@@ -24198,7 +24198,7 @@
         "debug.javascript.breakOnConditionalError": {
             "type": "boolean",
             "default": false,
-            "markdownDescription": "Whether to stop when conditional breakpoints throw an error.",
+            "markdownDescription": "条件付きブレークポイントでエラーが発生したときに停止するかどうかを指定します。",
             "scope": 3,
             "source": {
                 "id": "ms-vscode.js-debug",
@@ -24210,7 +24210,7 @@
         "debug.javascript.unmapMissingSources": {
             "type": "boolean",
             "default": false,
-            "description": "Configures whether sourcemapped file where the original file can't be read will automatically be unmapped. If this is false (default), a prompt is shown.",
+            "description": "元のファイルを読み取ることができない sourcemapped ファイルが自動的にマップ解除されるかどうかを構成します。これが False (既定) の場合は、プロンプトが表示されます。",
             "scope": 3,
             "source": {
                 "id": "ms-vscode.js-debug",
@@ -24224,7 +24224,7 @@
             "default": {
                 "pwa-node": "node"
             },
-            "markdownDescription": "The default `runtimeExecutable` used for launch configurations, if unspecified. This can be used to config custom paths to Node.js or browser installations.",
+            "markdownDescription": "指定されていない場合に起動構成に使用される、既定の 'runtimeExecutable'。これは、Node.js またはブラウザーのインストールのカスタム パスを構成するために使用できます。",
             "properties": {
                 "pwa-node": {
                     "type": "string"
@@ -24249,7 +24249,7 @@
         "debug.javascript.resourceRequestOptions": {
             "type": "object",
             "default": {},
-            "markdownDescription": "Request options to use when loading resources, such as source maps, in the debugger. You may need to configure this if your sourcemaps require authentication or use a self-signed certificate, for instance. Options are used to create a request using the [`got`](https://github.com/sindresorhus/got) library.\r\n\r\nA common case to disable certificate verification can be done by passing `{ \"https\": { \"rejectUnauthorized\": false } }`.",
+            "markdownDescription": "デバッガーでソース マップなどのリソースを読み込むときに使用する要求オプションです。ソースマップで認証が必要な場合または自己署名証明書を使用する場合などに、これを構成する必要がある可能性があります。オプションは、[`got`](https://github.com/sindresorhus/got) ライブラリを使用して要求を作成するために使用されます。\r\n\r\n通常、証明書の検証を無効にするためには、`{ \"https\": { \"rejectUnauthorized\": false } }` をパスします。",
             "scope": 3,
             "source": {
                 "id": "ms-vscode.js-debug",
@@ -25030,7 +25030,7 @@
                 "Windows PowerShell",
                 "Git Bash",
                 "Command Prompt",
-                "JavaScript Debug Terminal"
+                "JavaScript デバッグ ターミナル"
             ],
             "markdownEnumDescriptions": [
                 "既定値を自動的に検出する",
@@ -25038,7 +25038,7 @@
                 "$(terminal-powershell) Windows PowerShell\n- path: C:\\WINDOWS\\Sysnative\\WindowsPowerShell\\v1.0\\powershell.exe",
                 "$(terminal) Git Bash\n- path: C:\\Program Files\\Git\\bin\\bash.exe\n- args: ['--login','-i']",
                 "$(terminal-cmd) Command Prompt\n- path: C:\\WINDOWS\\Sysnative\\cmd.exe\n- args: []",
-                "$($(debug)) JavaScript Debug Terminal\n- extensionIdentifier: ms-vscode.js-debug"
+                "$($(debug)) JavaScript デバッグ ターミナル\n- extensionIdentifier: ms-vscode.js-debug"
             ],
             "defaultDefaultValue": null,
             "scope": 3
@@ -27108,7 +27108,7 @@
                 "折りたたみコントロールを表示せず、余白のサイズを小さくします。",
                 "マウスがとじしろの上にあるときにのみ、折りたたみコントロールを表示します。"
             ],
-            "description": "とじしろのの折りたたみコントロールを表示するタイミングを制御します。",
+            "description": "とじしろの折りたたみコントロールを表示するタイミングを制御します。",
             "type": "string",
             "enum": [
                 "always",
