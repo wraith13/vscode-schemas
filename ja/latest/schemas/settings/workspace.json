@@ -503,6 +503,13 @@
             "$ref": "vscode://schemas/settings/resourceLanguage",
             "default": {}
         },
+        "[jsonl]": {
+            "type": "object",
+            "description": "言語に対して上書きされるエディター設定を構成します。",
+            "errorMessage": "この設定では、言語ごとの構成はサポートされていません。",
+            "$ref": "vscode://schemas/settings/resourceLanguage",
+            "default": {}
+        },
         "[julia]": {
             "type": "object",
             "description": "言語に対して上書きされるエディター設定を構成します。",
@@ -929,7 +936,7 @@
             "scope": 3,
             "restricted": false
         },
-        "accessibility.verbosity.diff-editor": {
+        "accessibility.verbosity.diffEditor": {
             "description": "差分エディターにフォーカスがあるときに変更を移動する方法に関する情報を提供する",
             "type": "boolean",
             "default": true,
@@ -940,24 +947,65 @@
             "scope": 3,
             "restricted": false
         },
-        "interactiveEditor.editMode": {
-            "description": "対話型エディターで作成された変更を直接適用するか、最初にプレビューするかどうかを構成する",
-            "default": "live",
-            "type": "string",
-            "enum": [
-                "live",
-                "livePreview",
-                "preview"
+        "accessibility.verbosity.chat": {
+            "description": "チャット入力がフォーカスされているときにチャット ヘルプ メニューにアクセスする方法に関する情報を提供します。",
+            "type": "boolean",
+            "default": true,
+            "tags": [
+                "accessibility"
             ],
-            "defaultDefaultValue": "live",
+            "defaultDefaultValue": true,
             "scope": 3,
             "restricted": false
         },
-        "notebook.navigation.allowNavigateToSurroundingCells": {
+        "accessibility.verbosity.interactiveEditor": {
+            "description": "対話型エディターの入力がフォーカスされているときに、対話型エディターのアクセシビリティ ヘルプ メニューにアクセスする方法に関する情報を提供します。",
             "type": "boolean",
             "default": true,
-            "markdownDescription": "有効にすると、セルエディター内の現在のカーソルが最初または最後の行にあるときに、カーソルは次または前のセルに移動できます。",
+            "tags": [
+                "accessibility"
+            ],
             "defaultDefaultValue": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "accessibility.verbosity.keybindingsEditor": {
+            "description": "行がフォーカスされているときにキー バインド エディターでキー バインドを変更する方法に関する情報を提供します",
+            "type": "boolean",
+            "default": true,
+            "tags": [
+                "accessibility"
+            ],
+            "defaultDefaultValue": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "accessibility.verbosity.notebook": {
+            "description": "ノートブック セルがフォーカスされているときにセル コンテナーまたは内部エディターにフォーカスを移動する方法に関する情報を提供します。",
+            "type": "boolean",
+            "default": true,
+            "tags": [
+                "accessibility"
+            ],
+            "defaultDefaultValue": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "interactiveEditor.editMode": {
+            "description": "対話型エディターで作成された変更をドキュメントに直接適用するか、最初にプレビューするかを構成します。",
+            "default": "livePreview",
+            "type": "string",
+            "enum": [
+                "livePreview",
+                "preview",
+                "live"
+            ],
+            "markdownEnumDescriptions": [
+                "変更はドキュメントに直接適用され、インライン差分または左右に並べて表示差分を介して視覚的に強調表示されます。セッションを終了しても変更は保持されます。",
+                "変更はプレビューのみであり、適用ボタンを使用して承認する必要があります。セッションを終了すると、変更は破棄されます。",
+                "変更はドキュメントに直接適用されますが、インライン差分を介して強調表示することもできます。セッションを終了しても変更は保持されます。"
+            ],
+            "defaultDefaultValue": "livePreview",
             "scope": 3,
             "restricted": false
         },
@@ -1152,15 +1200,26 @@
             "type": "string",
             "enum": [
                 "fit",
-                "shrink"
+                "shrink",
+                "fixed"
             ],
             "default": "fit",
             "enumDescriptions": [
                 "常に完全なエディター ラベルを表示するのに足りるタブの大きさを維持します。",
-                "すべてのタブを一度に表示するには利用可能なスペースが足りない場合に、タブを縮小するようにします。"
+                "すべてのタブを一度に表示するには利用可能なスペースが足りない場合に、タブを縮小するようにします。",
+                "すべてのタブを同じサイズにし、使用可能な領域が一度にすべてのタブを表示するのに十分でない場合に小さくできるようにします。"
             ],
-            "markdownDescription": "エディターのタブのサイズ設定を制御します。`#workbench.editor.showTabs#` が無効な場合、この値は無視されます。",
+            "markdownDescription": "エディター タブのサイズを制御します。'#workbench.editor.showTabs#' が無効になっている場合、この値は無視されます。",
             "defaultDefaultValue": "fit",
+            "scope": 3,
+            "restricted": false
+        },
+        "workbench.editor.tabSizingFixedMaxWidth": {
+            "type": "number",
+            "default": 160,
+            "minimum": 50,
+            "markdownDescription": "`#workbench.editor.tabSizing#` が `fixed` に設定されている場合のタブの最大幅を制御します。",
+            "defaultDefaultValue": 160,
             "scope": 3,
             "restricted": false
         },
@@ -1177,7 +1236,7 @@
                 "固定されたタブは、コンパクト形式でアイコンまたはエディター名の最初の文字のみが表示されます。",
                 "固定されたタブは、エディター名の一部を示すコンパクトな固定サイズに縮小されます。"
             ],
-            "markdownDescription": "固定されたエディターのタブのサイズ設定を制御します。固定されたタブは、開いているすべてのタブの先頭に表示され、通常、固定が解除されるまで閉じられません。`#workbench.editor.showTabs#` が無効な場合、この値は無視されます。",
+            "markdownDescription": "ピン留めされたエディター タブのサイズを制御します。ピン留めされたタブは、開いているすべてのタブの先頭に並べ替えられ、通常はピン留めを外すまで閉じません。'#workbench.editor.showTabs#' が無効になっている場合、この値は無視されます。",
             "defaultDefaultValue": "normal",
             "scope": 3,
             "restricted": false
@@ -1193,7 +1252,7 @@
                 "すべてのエディター グループを等分に分割します。",
                 "アクティブなエディター グループを等分に分割します。"
             ],
-            "description": "エディター グループの分割時のサイズを制御します。",
+            "description": "エディター グループを分割するときのサイズを制御します。",
             "defaultDefaultValue": "distribute",
             "scope": 3,
             "restricted": false
@@ -1415,6 +1474,14 @@
         "workbench.commandPalette.experimental.suggestCommands": {
             "type": "boolean",
             "description": "コマンド パレットに一般的に使用されるコマンドのリストを含めるかどうかを制御します。",
+            "default": false,
+            "defaultDefaultValue": false,
+            "scope": 3,
+            "restricted": false
+        },
+        "workbench.commandPalette.experimental.useSemanticSimilarity": {
+            "type": "boolean",
+            "description": "コマンド パレットに同様のコマンドを含めるかどうかを制御します。セマンティック類似性を提供する拡張機能がインストールされている必要があります。",
             "default": false,
             "defaultDefaultValue": false,
             "scope": 3,
@@ -2406,6 +2473,14 @@
             "markdownDescription": "有効にすると、拡張機能がローカルにダウンロードされ、リモート上にインストールされます。",
             "default": false,
             "defaultDefaultValue": false,
+            "scope": 3,
+            "restricted": false
+        },
+        "notebook.navigation.allowNavigateToSurroundingCells": {
+            "type": "boolean",
+            "default": true,
+            "markdownDescription": "有効にすると、セルエディター内の現在のカーソルが最初または最後の行にあるときに、カーソルは次または前のセルに移動できます。",
+            "defaultDefaultValue": true,
             "scope": 3,
             "restricted": false
         },
@@ -4416,6 +4491,61 @@
             "scope": 3,
             "restricted": false
         },
+        "chat.editor.fontSize": {
+            "type": "number",
+            "description": "チャット コード ブロック内のフォント サイズをピクセル単位で制御します。",
+            "default": 14,
+            "defaultDefaultValue": 14,
+            "scope": 3,
+            "restricted": false
+        },
+        "chat.editor.fontFamily": {
+            "type": "string",
+            "description": "チャット コード ブロック内のフォント ファミリを制御します。",
+            "default": "default",
+            "defaultDefaultValue": "default",
+            "scope": 3,
+            "restricted": false
+        },
+        "chat.editor.fontWeight": {
+            "type": "string",
+            "description": "チャット コード ブロック内のフォントの太さを制御します。",
+            "default": "default",
+            "defaultDefaultValue": "default",
+            "scope": 3,
+            "restricted": false
+        },
+        "chat.editor.wordWrap": {
+            "type": "string",
+            "description": "チャット コード ブロックで行を折り返すかどうかを制御します。",
+            "default": "off",
+            "enum": [
+                "on",
+                "off"
+            ],
+            "defaultDefaultValue": "off",
+            "scope": 3,
+            "restricted": false
+        },
+        "chat.editor.lineHeight": {
+            "type": "number",
+            "description": "チャット コード ブロック内の行の高さをピクセル単位で制御します。フォント サイズから行の高さを計算するには 0 を使用します。",
+            "default": 0,
+            "defaultDefaultValue": 0,
+            "scope": 3,
+            "restricted": false
+        },
+        "chat.experimental.quickQuestion.enable": {
+            "type": "boolean",
+            "description": "クイック質問機能を有効にするかどうかを制御します。",
+            "default": false,
+            "tags": [
+                "experimental"
+            ],
+            "defaultDefaultValue": false,
+            "scope": 3,
+            "restricted": false
+        },
         "debug.allowBreakpointsEverywhere": {
             "type": "boolean",
             "description": "任意のファイルにブレークポイントを設定できるようにします。",
@@ -4693,104 +4823,6 @@
             "scope": 3,
             "restricted": false
         },
-        "workbench.experimental.cloudChanges.autoStore": {
-            "enum": [
-                "onShutdown",
-                "off"
-            ],
-            "enumDescriptions": [
-                "ウィンドウを閉じるときに、現在の作業変更をクラウドに自動的に保存します。",
-                "作業変更をクラウドに自動的に保存しないでください。"
-            ],
-            "type": "string",
-            "tags": [
-                "experimental",
-                "usesOnlineServices"
-            ],
-            "default": "off",
-            "markdownDescription": "現在のワークスペースの利用可能な作業変更をクラウドに自動的に格納するかどうかを制御します。この設定は Web では無効です。",
-            "defaultDefaultValue": "off",
-            "scope": 3,
-            "restricted": false
-        },
-        "workbench.cloudChanges.autoResume": {
-            "enum": [
-                "onReload",
-                "off"
-            ],
-            "enumDescriptions": [
-                "ウィンドウの再読み込み時に、クラウドから使用可能な作業変更を自動的に再開します。",
-                "クラウドから作業変更を再開しないでください。"
-            ],
-            "type": "string",
-            "tags": [
-                "usesOnlineServices"
-            ],
-            "default": "onReload",
-            "markdownDescription": "現在のワークスペースのクラウドに保存されている使用可能な作業変更を自動的に再開するかどうかを制御します。",
-            "defaultDefaultValue": "onReload",
-            "scope": 3,
-            "restricted": false
-        },
-        "workbench.cloudChanges.continueOn": {
-            "enum": [
-                "prompt",
-                "off"
-            ],
-            "enumDescriptions": [
-                "[作業を続行] を使用して作業変更をクラウドに保存するためにサインインするようユーザーに確認します。",
-                "ユーザーがクラウドの変更を既に有効にしていない限り、[作業を続行] を使用してクラウドに作業変更を保存しないでください。"
-            ],
-            "type": "string",
-            "tags": [
-                "usesOnlineServices"
-            ],
-            "default": "prompt",
-            "markdownDescription": "[作業の続行] を使用するときに、クラウドに作業変更を保存するようユーザーに確認するかどうかを制御します。",
-            "defaultDefaultValue": "prompt",
-            "scope": 3,
-            "restricted": false
-        },
-        "workbench.experimental.editSessions.autoStore": {
-            "markdownDeprecationMessage": "この設定は非推奨とされ、`#workbench.experimental.cloudChanges.autoStore#` が優先されます。",
-            "default": null,
-            "scope": 3,
-            "restricted": false,
-            "deprecationMessage": "この設定は非推奨とされ、`#workbench.experimental.cloudChanges.autoStore#` が優先されます。"
-        },
-        "workbench.editSessions.autoResume": {
-            "markdownDeprecationMessage": "この設定は非推奨とされ、`#workbench.cloudChanges.autoResume#` が優先されます。",
-            "default": null,
-            "scope": 3,
-            "restricted": false,
-            "deprecationMessage": "この設定は非推奨とされ、`#workbench.cloudChanges.autoResume#` が優先されます。"
-        },
-        "workbench.editSessions.continueOn": {
-            "markdownDeprecationMessage": "この設定は非推奨とされ、`#workbench.cloudChanges.continueOn#` が優先されます。",
-            "default": null,
-            "scope": 3,
-            "restricted": false,
-            "deprecationMessage": "この設定は非推奨とされ、`#workbench.cloudChanges.continueOn#` が優先されます。"
-        },
-        "workbench.experimental.cloudChanges.partialMatches.enabled": {
-            "type": "boolean",
-            "tags": [
-                "experimental",
-                "usesOnlineServices"
-            ],
-            "default": false,
-            "markdownDescription": "現在のセッションと部分的に一致するクラウドの変更を表示するかどうかを制御します。",
-            "defaultDefaultValue": false,
-            "scope": 3,
-            "restricted": false
-        },
-        "workbench.experimental.editSessions.partialMatches.enabled": {
-            "markdownDeprecationMessage": "この設定は非推奨とされ、`#workbench.experimental.cloudChanges.partialMatches.enabled#` が優先されます。",
-            "default": null,
-            "scope": 3,
-            "restricted": false,
-            "deprecationMessage": "この設定は非推奨とされ、`#workbench.experimental.cloudChanges.partialMatches.enabled#` が優先されます。"
-        },
         "files.associations": {
             "type": "object",
             "markdownDescription": "言語に対するファイルの関連付け (例: `\"*.extension\": \"html\") を構成します。これらの関連付けは、インストールされている言語の既定の関連付けより優先されます。",
@@ -4845,6 +4877,14 @@
             "scope": 3,
             "restricted": false
         },
+        "files.readonlyFromPermissions": {
+            "type": "boolean",
+            "markdownDescription": "ファイルのアクセス許可がそのように示されると、ファイルを読み取り専用としてマークします。これは、`#files.readonlyInclude#` および `#files.readonlyExclude#` 設定を使用してオーバーライドできます。",
+            "default": false,
+            "defaultDefaultValue": false,
+            "scope": 3,
+            "restricted": false
+        },
         "files.restoreUndoStack": {
             "type": "boolean",
             "description": "ファイルを再度開いたときに、元に戻す機能のスタックを復元します。",
@@ -4855,7 +4895,7 @@
         },
         "files.simpleDialog.enable": {
             "type": "boolean",
-            "description": "単純なファイル ダイアログを有効にします。有効な場合、単純なファイル ダイアログはシステム ファイル ダイアログを置き換えます。",
+            "description": "ファイルとフォルダーを開いたり保存したりするための単純なファイル ダイアログを有効にします。簡易ファイル ダイアログを有効にするとシステム ファイル ダイアログが置き換えられます。",
             "default": false,
             "defaultDefaultValue": false,
             "scope": 3,
@@ -4871,16 +4911,16 @@
         },
         "explorer.openEditors.visible": {
             "type": "number",
-            "description": "[開いているエディター] ペインに表示されるエディターの数。これを 0 に設定すると、[開いているエディター] ペインが非表示になります。",
+            "description": "[エディターを開く] ウィンドウに表示されるエディターの初期最大数です。この制限を超えるとスクロール バーが表示され、ウィンドウのサイズを変更してより多くの項目を表示できます。",
             "default": 9,
-            "minimum": 0,
+            "minimum": 1,
             "defaultDefaultValue": 9,
             "scope": 3,
             "restricted": false
         },
         "explorer.openEditors.minVisible": {
             "type": "number",
-            "description": "[エディターを開く] ペインに表示されるエディター スロットの最小数。0 に設定すると、[エディターを開く] ペインは、エディターの数に基づいて動的にサイズ変更されます。",
+            "description": "[エディターを開く] ウィンドウにあらかじめ割り当てられるエディター スロットの最小数です。0 に設定すると、[エディターを開く] ウィンドウは、エディターの数に基づいて動的にサイズ変更されます。",
             "default": 0,
             "minimum": 0,
             "defaultDefaultValue": 0,
@@ -4928,7 +4968,7 @@
         },
         "explorer.autoRevealExclude": {
             "type": "object",
-            "markdownDescription": "ファイルとフォルダーを開いたときにエクスプローラーで表示および選択されないように、ファイルとフォルダーを除外するための glob パターンを構成します。glob パターンの詳細については、[こちら](https://code.visualstudio.com/docs/editor/codebasics#_advanced-search-options) を参照してください。",
+            "markdownDescription": "エクスプローラーでファイルとフォルダーが開いたときに表示および選択されないように、パスまたは [glob パターン](https://code.visualstudio.com/docs/editor/codebasics#_advanced-search-options) を構成します。Glob パターンは、絶対パスでない限り、ワークスペース フォルダーのパスを基準にして常に評価されます。",
             "default": {
                 "**/node_modules": true,
                 "**/bower_components": true
@@ -5129,50 +5169,6 @@
             "scope": 3,
             "restricted": false
         },
-        "interactiveSession.editor.fontSize": {
-            "type": "number",
-            "description": "対話型セッション内のフォント サイズをピクセル単位で制御します。",
-            "default": 14,
-            "defaultDefaultValue": 14,
-            "scope": 3,
-            "restricted": false
-        },
-        "interactiveSession.editor.fontFamily": {
-            "type": "string",
-            "description": "対話型セッションでのフォント ファミリを制御します。",
-            "default": "default",
-            "defaultDefaultValue": "default",
-            "scope": 3,
-            "restricted": false
-        },
-        "interactiveSession.editor.fontWeight": {
-            "type": "string",
-            "description": "対話型セッションでのフォントの太さを制御します。",
-            "default": "default",
-            "defaultDefaultValue": "default",
-            "scope": 3,
-            "restricted": false
-        },
-        "interactiveSession.editor.wordWrap": {
-            "type": "string",
-            "description": "対話型セッションで行を折り返すかどうかを制御します。",
-            "default": "off",
-            "enum": [
-                "on",
-                "off"
-            ],
-            "defaultDefaultValue": "off",
-            "scope": 3,
-            "restricted": false
-        },
-        "interactiveSession.editor.lineHeight": {
-            "type": "number",
-            "description": "対話型セッション内での行の高さをピクセル単位で制御します。フォント サイズから行の高さを計算するには 0 を使用します。",
-            "default": 0,
-            "defaultDefaultValue": 0,
-            "scope": 3,
-            "restricted": false
-        },
         "problems.autoReveal": {
             "description": "ファイルを開くとき、問題ビューに自動的にそのファイルを表示するかどうかを制御します",
             "type": "boolean",
@@ -5291,6 +5287,25 @@
             "type": "boolean",
             "default": false,
             "defaultDefaultValue": false,
+            "scope": 3,
+            "restricted": false
+        },
+        "testing.countBadge": {
+            "description": "アクティビティ バーの [テスト] アイコンのカウント バッジを制御します。",
+            "enum": [
+                "failed",
+                "off",
+                "passed",
+                "skipped"
+            ],
+            "enumDescriptions": [
+                "失敗したテストの数を表示する",
+                "テスト カウント バッジを無効にする",
+                "成功したテストの数を表示する",
+                "スキップされたテストの数を表示する"
+            ],
+            "default": "failed",
+            "defaultDefaultValue": "failed",
             "scope": 3,
             "restricted": false
         },
@@ -5413,6 +5428,76 @@
             "scope": 3,
             "restricted": false,
             "deprecationMessage": "この設定が false の場合、新しい設定の値に関係なくテレメトリは送信されません。`#telemetry.telemetryLevel#`設定に結合されているため、非推奨になりました。"
+        },
+        "workbench.experimental.cloudChanges.autoStore": {
+            "enum": [
+                "onShutdown",
+                "off"
+            ],
+            "enumDescriptions": [
+                "ウィンドウを閉じるときに、現在の作業変更をクラウドに自動的に保存します。",
+                "作業変更をクラウドに自動的に保存しないでください。"
+            ],
+            "type": "string",
+            "tags": [
+                "experimental",
+                "usesOnlineServices"
+            ],
+            "default": "off",
+            "markdownDescription": "現在のワークスペースの利用可能な作業変更をクラウドに自動的に格納するかどうかを制御します。この設定は Web では無効です。",
+            "defaultDefaultValue": "off",
+            "scope": 3,
+            "restricted": false
+        },
+        "workbench.cloudChanges.autoResume": {
+            "enum": [
+                "onReload",
+                "off"
+            ],
+            "enumDescriptions": [
+                "ウィンドウの再読み込み時に、クラウドから使用可能な作業変更を自動的に再開します。",
+                "クラウドから作業変更を再開しないでください。"
+            ],
+            "type": "string",
+            "tags": [
+                "usesOnlineServices"
+            ],
+            "default": "onReload",
+            "markdownDescription": "現在のワークスペースのクラウドに保存されている使用可能な作業変更を自動的に再開するかどうかを制御します。",
+            "defaultDefaultValue": "onReload",
+            "scope": 3,
+            "restricted": false
+        },
+        "workbench.cloudChanges.continueOn": {
+            "enum": [
+                "prompt",
+                "off"
+            ],
+            "enumDescriptions": [
+                "[作業を続行] を使用して作業変更をクラウドに保存するためにサインインするようユーザーに確認します。",
+                "ユーザーがクラウドの変更を既に有効にしていない限り、[作業を続行] を使用してクラウドに作業変更を保存しないでください。"
+            ],
+            "type": "string",
+            "tags": [
+                "usesOnlineServices"
+            ],
+            "default": "prompt",
+            "markdownDescription": "[作業の続行] を使用するときに、クラウドに作業変更を保存するようユーザーに確認するかどうかを制御します。",
+            "defaultDefaultValue": "prompt",
+            "scope": 3,
+            "restricted": false
+        },
+        "workbench.experimental.cloudChanges.partialMatches.enabled": {
+            "type": "boolean",
+            "tags": [
+                "experimental",
+                "usesOnlineServices"
+            ],
+            "default": false,
+            "markdownDescription": "現在のセッションと部分的に一致するクラウドの変更を表示するかどうかを制御します。",
+            "defaultDefaultValue": false,
+            "scope": 3,
+            "restricted": false
         },
         "extensions.ignoreRecommendations": {
             "type": "boolean",
@@ -5874,13 +5959,13 @@
                             "restricted": false
                         },
                         "editor.screenReaderAnnounceInlineSuggestion": {
-                            "description": "スクリーン リーダーでインライン候補が通知されるかどうかを制御します。VoiceOver を使用した macOS では動作しないことに注意してください。",
+                            "description": "スクリーン リーダーによってインライン候補が読み上げられるかどうかを制御します。",
                             "tags": [
                                 "accessibility"
                             ],
                             "type": "boolean",
-                            "default": false,
-                            "defaultDefaultValue": false,
+                            "default": true,
+                            "defaultDefaultValue": true,
                             "scope": 5,
                             "restricted": false
                         },
@@ -7085,6 +7170,30 @@
                             "scope": 5,
                             "restricted": false
                         },
+                        "editor.pasteAs.enabled": {
+                            "type": "boolean",
+                            "default": true,
+                            "markdownDescription": "さまざまな方法でコンテンツを貼り付けることができるかどうかを制御します。",
+                            "defaultDefaultValue": true,
+                            "scope": 5,
+                            "restricted": false
+                        },
+                        "editor.pasteAs.showPasteSelector": {
+                            "type": "string",
+                            "markdownDescription": "エディターにコンテンツを貼り付けるときにウィジェットを表示するかどうかを制御します。このウィジェットを使用すると、ファイルの貼り付け方法を制御できます。",
+                            "enum": [
+                                "afterPaste",
+                                "never"
+                            ],
+                            "enumDescriptions": [
+                                "コンテンツをエディターに貼り付けた後、貼り付けセレクター ウィジェットを表示します。",
+                                "貼り付けセレクター ウィジェットを表示しないでください。代わりに、既定の貼り付け動作が常に使用されます。"
+                            ],
+                            "default": "afterPaste",
+                            "defaultDefaultValue": "afterPaste",
+                            "scope": 5,
+                            "restricted": false
+                        },
                         "editor.parameterHints.enabled": {
                             "type": "boolean",
                             "default": true,
@@ -7607,9 +7716,9 @@
                         },
                         "editor.suggest.snippetsPreventQuickSuggestions": {
                             "type": "boolean",
-                            "default": true,
+                            "default": false,
                             "description": "アクティブ スニペットがクイック候補を防止するかどうかを制御します。",
-                            "defaultDefaultValue": true,
+                            "defaultDefaultValue": false,
                             "scope": 5,
                             "restricted": false
                         },
@@ -8332,6 +8441,25 @@
             "scope": 3,
             "restricted": false
         },
+        "notebook.codeActionsOnSave": {
+            "markdownDescription": "実験。保存時にノートブックに対して一連の CodeActions を実行します。CodeActions を指定する必要があります。遅延後にファイルを保存することはできず、エディターをシャットダウンすることはできません。例: 'source.fixAll: true'",
+            "type": "object",
+            "additionalProperties": {
+                "type": "boolean"
+            },
+            "default": {},
+            "defaultDefaultValue": {},
+            "scope": 3,
+            "restricted": false
+        },
+        "notebook.formatOnCellExecution": {
+            "markdownDescription": "実行時にノートブック セルの書式を設定します。フォーマッタを使用できる必要があります。",
+            "type": "boolean",
+            "default": false,
+            "defaultDefaultValue": false,
+            "scope": 3,
+            "restricted": false
+        },
         "notebook.confirmDeleteRunningCell": {
             "markdownDescription": "実行中のセルを削除する場合に確認プロンプトを必須とするかどうかを制御します。",
             "type": "boolean",
@@ -8668,14 +8796,6 @@
             ],
             "description": "既定の検索結果ビュー モードを制御します。",
             "defaultDefaultValue": "list",
-            "scope": 3,
-            "restricted": false
-        },
-        "search.experimental.notebookSearch": {
-            "type": "boolean",
-            "description": "グローバル検索で試験的なノートブック検索を使用するかどうかを制御します。この設定に対する変更を有効にするには、VS Code インスタンスを読み込んでください。",
-            "default": false,
-            "defaultDefaultValue": false,
             "scope": 3,
             "restricted": false
         },
@@ -12306,7 +12426,7 @@
         },
         "terminal.integrated.profiles.windows": {
             "restricted": true,
-            "markdownDescription": "ターミナル ドロップダウンを使用して新しいターミナルを作成するときに表示する Windows プロファイルです。シェルの場所を自動的に検出するには、`path` プロパティを使用してください。または、`source` プロパティを省略可能な `args` で手動で設定してください。\r\n\r\n既存のプロファイルを一覧から非表示にするには、プロファイルを `null` に設定してください。例: `\"Ubuntu-20.04 (WSL)\": null`。",
+            "markdownDescription": "ターミナルの起動方法を追加、削除、または変更できる、Windows の一連のターミナル プロファイルのカスタマイズ。プロファイルは、必須のパス、オプションの引数、その他のプレゼンテーション オプションで構成されます。\r\n\r\n既存のプロファイルを上書きするには、プロファイル名をキーとして使用します。例: \r\n\r\n```json\n\"terminal.integrated.profile.windows\": {\n  \"bash\": null\n}\n```\r\n\r\n[プロファイルの構成に関する詳細をご覧ください](https://code.visualstudio.com/docs/terminal/profiles)。",
             "type": "object",
             "default": {
                 "PowerShell": {
@@ -15780,7 +15900,7 @@
         },
         "terminal.integrated.profiles.osx": {
             "restricted": true,
-            "markdownDescription": "ターミナル ドロップダウンを使用して新しいターミナルを作成するときに表示する macOS プロファイルです。省略可能な `args` を使用して、`path` プロパティを手動で設定してください。\r\n\r\n既存のプロファイルを一覧から非表示にするには、プロファイルを `null` に設定してください。例: `\"bash\": null`。",
+            "markdownDescription": "ターミナルの起動方法を追加、削除、または変更できる、Mac の一連のターミナル プロファイルのカスタマイズ。プロファイルは、必須のパス、オプションの引数、その他のプレゼンテーション オプションで構成されます。\r\n\r\n既存のプロファイルを上書きするには、プロファイル名をキーとして使用します。例: \r\n\r\n```json\n\"terminal.integrated.profile.osx\": {\n  \"bash\": null\n}\n```\r\n\r\n[プロファイルの構成に関する詳細をご覧ください](https://code.visualstudio.com/docs/terminal/profiles)。",
             "type": "object",
             "default": {
                 "bash": {
@@ -18139,7 +18259,7 @@
         },
         "terminal.integrated.profiles.linux": {
             "restricted": true,
-            "markdownDescription": "ターミナル ドロップダウンを使用して新しいターミナルを作成するときに表示する Linux プロファイルです。省略可能な `args` を使用して、`path` プロパティを手動で設定してください。\r\n\r\n既存のプロファイルを一覧から非表示にするには、プロファイルを `null` に設定してください。例: `\"bash\": null`。",
+            "markdownDescription": "ターミナルの起動方法を追加、削除、または変更できる、Linux の一連のターミナル プロファイルのカスタマイズ。プロファイルは、必須のパス、オプションの引数、その他のプレゼンテーション オプションで構成されます。\r\n\r\n既存のプロファイルを上書きするには、プロファイル名をキーとして使用します。例: \r\n\r\n```json\n\"terminal.integrated.profile.linux\": {\n  \"bash\": null\n}\n```\r\n\r\n[プロファイルの構成に関する詳細をご覧ください](https://code.visualstudio.com/docs/terminal/profiles)。",
             "type": "object",
             "default": {
                 "bash": {
@@ -20871,7 +20991,7 @@
             "restricted": false
         },
         "terminal.integrated.scrollback": {
-            "description": "ターミナルがバッファーに保持する最大行数を制御します。",
+            "description": "ターミナルがバッファーに保持する最大行数を制御します。スムーズなエクスペリエンスを実現するために、この値に基づいてメモリを事前に割り当てます。そのため、値が大きくなると、メモリの量も増えます。",
             "type": "number",
             "default": 1000,
             "defaultDefaultValue": 1000,
@@ -21009,7 +21129,7 @@
             "restricted": false
         },
         "terminal.integrated.commandsToSkipShell": {
-            "markdownDescription": "キー バインドがシェルに送信されず、代わりに常に VS Code で処理されるコマンド ID のセット。これにより、シェルによって通常使用されるキー バインドが、ターミナルがフォーカスされていない場合と同じ動作をするようにします。たとえば、'Ctrl+P' で Quick Open を起動します。\r\n\r\n&nbsp;\r\n\r\n既定では、多くのコマンドがスキップされます。既定値をオーバーライドし、代わりにそのコマンドのキー バインドをシェルに渡すには、先頭に '-' 文字が付いているコマンドを追加します。たとえば、'-workbench.action.quickOpen' を追加して、'Ctrl+P' でシェルにアクセスできるようにします。\r\n\r\n&nbsp;\r\n\r\n既定でスキップされる以下のコマンドの一覧は、設定エディターで表示したときには切り詰められます。完全な一覧を表示するには、下の一覧から最初のコマンドを [既定の設定の JSON を開く](command:workbench.action.openRawDefaultSettings '既定の設定 (JSON) を開く') して検索します。\r\n\r\n&nbsp;\r\n\r\n既定でスキップされるコマンド:\r\n\r\n- editor.action.toggleTabFocusMode\n- notification.acceptPrimaryAction\n- notifications.hideList\n- notifications.hideToasts\n- workbench.action.closeQuickOpen\n- workbench.action.debug.continue\n- workbench.action.debug.pause\n- workbench.action.debug.restart\n- workbench.action.debug.run\n- workbench.action.debug.start\n- workbench.action.debug.stepInto\n- workbench.action.debug.stepOut\n- workbench.action.debug.stepOver\n- workbench.action.debug.stop\n- workbench.action.firstEditorInGroup\n- workbench.action.focusActiveEditorGroup\n- workbench.action.focusEighthEditorGroup\n- workbench.action.focusFifthEditorGroup\n- workbench.action.focusFirstEditorGroup\n- workbench.action.focusFourthEditorGroup\n- workbench.action.focusLastEditorGroup\n- workbench.action.focusNextPart\n- workbench.action.focusPreviousPart\n- workbench.action.focusSecondEditorGroup\n- workbench.action.focusSeventhEditorGroup\n- workbench.action.focusSixthEditorGroup\n- workbench.action.focusThirdEditorGroup\n- workbench.action.lastEditorInGroup\n- workbench.action.navigateDown\n- workbench.action.navigateLeft\n- workbench.action.navigateRight\n- workbench.action.navigateUp\n- workbench.action.nextEditor\n- workbench.action.nextEditorInGroup\n- workbench.action.nextPanelView\n- workbench.action.nextSideBarView\n- workbench.action.openNextRecentlyUsedEditor\n- workbench.action.openNextRecentlyUsedEditorInGroup\n- workbench.action.openPreviousRecentlyUsedEditor\n- workbench.action.openPreviousRecentlyUsedEditorInGroup\n- workbench.action.previousEditor\n- workbench.action.previousEditorInGroup\n- workbench.action.previousPanelView\n- workbench.action.previousSideBarView\n- workbench.action.quickOpen\n- workbench.action.quickOpenLeastRecentlyUsedEditor\n- workbench.action.quickOpenLeastRecentlyUsedEditorInGroup\n- workbench.action.quickOpenPreviousEditor\n- workbench.action.quickOpenPreviousRecentlyUsedEditor\n- workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup\n- workbench.action.quickOpenView\n- workbench.action.showCommands\n- workbench.action.tasks.build\n- workbench.action.tasks.reRunTask\n- workbench.action.tasks.restartTask\n- workbench.action.tasks.runTask\n- workbench.action.tasks.showLog\n- workbench.action.tasks.showTasks\n- workbench.action.tasks.terminate\n- workbench.action.tasks.test\n- workbench.action.terminal.acceptSelectedSuggestion\n- workbench.action.terminal.clear\n- workbench.action.terminal.clearSelection\n- workbench.action.terminal.copyAndClearSelection\n- workbench.action.terminal.copyLastCommandOutput\n- workbench.action.terminal.copySelection\n- workbench.action.terminal.copySelectionAsHtml\n- workbench.action.terminal.deleteToLineStart\n- workbench.action.terminal.deleteWordLeft\n- workbench.action.terminal.deleteWordRight\n- workbench.action.terminal.findNext\n- workbench.action.terminal.findPrevious\n- workbench.action.terminal.focus\n- workbench.action.terminal.focusAtIndex1\n- workbench.action.terminal.focusAtIndex2\n- workbench.action.terminal.focusAtIndex3\n- workbench.action.terminal.focusAtIndex4\n- workbench.action.terminal.focusAtIndex5\n- workbench.action.terminal.focusAtIndex6\n- workbench.action.terminal.focusAtIndex7\n- workbench.action.terminal.focusAtIndex8\n- workbench.action.terminal.focusAtIndex9\n- workbench.action.terminal.focusFind\n- workbench.action.terminal.focusHover\n- workbench.action.terminal.focusNext\n- workbench.action.terminal.focusNextPane\n- workbench.action.terminal.focusPrevious\n- workbench.action.terminal.focusPreviousPane\n- workbench.action.terminal.goToRecentDirectory\n- workbench.action.terminal.hideFind\n- workbench.action.terminal.hideSuggestWidget\n- workbench.action.terminal.kill\n- workbench.action.terminal.killEditor\n- workbench.action.terminal.moveToEditor\n- workbench.action.terminal.moveToLineEnd\n- workbench.action.terminal.moveToLineStart\n- workbench.action.terminal.moveToTerminalPanel\n- workbench.action.terminal.new\n- workbench.action.terminal.newInActiveWorkspace\n- workbench.action.terminal.paste\n- workbench.action.terminal.pasteSelection\n- workbench.action.terminal.resizePaneDown\n- workbench.action.terminal.resizePaneLeft\n- workbench.action.terminal.resizePaneRight\n- workbench.action.terminal.resizePaneUp\n- workbench.action.terminal.runActiveFile\n- workbench.action.terminal.runRecentCommand\n- workbench.action.terminal.runSelectedText\n- workbench.action.terminal.scrollDown\n- workbench.action.terminal.scrollDownPage\n- workbench.action.terminal.scrollToBottom\n- workbench.action.terminal.scrollToNextCommand\n- workbench.action.terminal.scrollToPreviousCommand\n- workbench.action.terminal.scrollToTop\n- workbench.action.terminal.scrollUp\n- workbench.action.terminal.scrollUpPage\n- workbench.action.terminal.selectAll\n- workbench.action.terminal.selectNextPageSuggestion\n- workbench.action.terminal.selectNextSuggestion\n- workbench.action.terminal.selectPrevPageSuggestion\n- workbench.action.terminal.selectPrevSuggestion\n- workbench.action.terminal.selectToNextCommand\n- workbench.action.terminal.selectToNextLine\n- workbench.action.terminal.selectToPreviousCommand\n- workbench.action.terminal.selectToPreviousLine\n- workbench.action.terminal.sendSequence\n- workbench.action.terminal.showAccessibilityHelp\n- workbench.action.terminal.sizeToContentWidth\n- workbench.action.terminal.split\n- workbench.action.terminal.splitInActiveWorkspace\n- workbench.action.terminal.toggleFindCaseSensitive\n- workbench.action.terminal.toggleFindRegex\n- workbench.action.terminal.toggleFindWholeWord\n- workbench.action.terminal.toggleTerminal\n- workbench.action.toggleFullScreen\n- workbench.action.toggleMaximizedPanel\n- workbench.action.togglePanel",
+            "markdownDescription": "キー バインドがシェルに送信されず、代わりに常に VS Code で処理されるコマンド ID のセット。これにより、シェルによって通常使用されるキー バインドが、ターミナルがフォーカスされていない場合と同じ動作をするようにします。たとえば、'Ctrl+P' で Quick Open を起動します。\r\n\r\n&nbsp;\r\n\r\n既定では、多くのコマンドがスキップされます。既定値をオーバーライドし、代わりにそのコマンドのキー バインドをシェルに渡すには、先頭に '-' 文字が付いているコマンドを追加します。たとえば、'-workbench.action.quickOpen' を追加して、'Ctrl+P' でシェルにアクセスできるようにします。\r\n\r\n&nbsp;\r\n\r\n既定でスキップされる以下のコマンドの一覧は、設定エディターで表示したときには切り詰められます。完全な一覧を表示するには、下の一覧から最初のコマンドを [既定の設定の JSON を開く](command:workbench.action.openRawDefaultSettings '既定の設定 (JSON) を開く') して検索します。\r\n\r\n&nbsp;\r\n\r\n既定でスキップされるコマンド:\r\n\r\n- editor.action.toggleTabFocusMode\n- notification.acceptPrimaryAction\n- notifications.hideList\n- notifications.hideToasts\n- runCommands\n- workbench.action.closeQuickOpen\n- workbench.action.debug.continue\n- workbench.action.debug.pause\n- workbench.action.debug.restart\n- workbench.action.debug.run\n- workbench.action.debug.start\n- workbench.action.debug.stepInto\n- workbench.action.debug.stepOut\n- workbench.action.debug.stepOver\n- workbench.action.debug.stop\n- workbench.action.firstEditorInGroup\n- workbench.action.focusActiveEditorGroup\n- workbench.action.focusEighthEditorGroup\n- workbench.action.focusFifthEditorGroup\n- workbench.action.focusFirstEditorGroup\n- workbench.action.focusFourthEditorGroup\n- workbench.action.focusLastEditorGroup\n- workbench.action.focusNextPart\n- workbench.action.focusPreviousPart\n- workbench.action.focusSecondEditorGroup\n- workbench.action.focusSeventhEditorGroup\n- workbench.action.focusSixthEditorGroup\n- workbench.action.focusThirdEditorGroup\n- workbench.action.lastEditorInGroup\n- workbench.action.navigateDown\n- workbench.action.navigateLeft\n- workbench.action.navigateRight\n- workbench.action.navigateUp\n- workbench.action.nextEditor\n- workbench.action.nextEditorInGroup\n- workbench.action.nextPanelView\n- workbench.action.nextSideBarView\n- workbench.action.openNextRecentlyUsedEditor\n- workbench.action.openNextRecentlyUsedEditorInGroup\n- workbench.action.openPreviousRecentlyUsedEditor\n- workbench.action.openPreviousRecentlyUsedEditorInGroup\n- workbench.action.previousEditor\n- workbench.action.previousEditorInGroup\n- workbench.action.previousPanelView\n- workbench.action.previousSideBarView\n- workbench.action.quickOpen\n- workbench.action.quickOpenLeastRecentlyUsedEditor\n- workbench.action.quickOpenLeastRecentlyUsedEditorInGroup\n- workbench.action.quickOpenPreviousEditor\n- workbench.action.quickOpenPreviousRecentlyUsedEditor\n- workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup\n- workbench.action.quickOpenView\n- workbench.action.showCommands\n- workbench.action.tasks.build\n- workbench.action.tasks.reRunTask\n- workbench.action.tasks.restartTask\n- workbench.action.tasks.runTask\n- workbench.action.tasks.showLog\n- workbench.action.tasks.showTasks\n- workbench.action.tasks.terminate\n- workbench.action.tasks.test\n- workbench.action.terminal.acceptSelectedSuggestion\n- workbench.action.terminal.clear\n- workbench.action.terminal.clearSelection\n- workbench.action.terminal.copyAndClearSelection\n- workbench.action.terminal.copyLastCommandOutput\n- workbench.action.terminal.copySelection\n- workbench.action.terminal.copySelectionAsHtml\n- workbench.action.terminal.deleteToLineStart\n- workbench.action.terminal.deleteWordLeft\n- workbench.action.terminal.deleteWordRight\n- workbench.action.terminal.findNext\n- workbench.action.terminal.findPrevious\n- workbench.action.terminal.focus\n- workbench.action.terminal.focusAtIndex1\n- workbench.action.terminal.focusAtIndex2\n- workbench.action.terminal.focusAtIndex3\n- workbench.action.terminal.focusAtIndex4\n- workbench.action.terminal.focusAtIndex5\n- workbench.action.terminal.focusAtIndex6\n- workbench.action.terminal.focusAtIndex7\n- workbench.action.terminal.focusAtIndex8\n- workbench.action.terminal.focusAtIndex9\n- workbench.action.terminal.focusFind\n- workbench.action.terminal.focusHover\n- workbench.action.terminal.focusNext\n- workbench.action.terminal.focusNextPane\n- workbench.action.terminal.focusPrevious\n- workbench.action.terminal.focusPreviousPane\n- workbench.action.terminal.goToRecentDirectory\n- workbench.action.terminal.hideFind\n- workbench.action.terminal.hideSuggestWidget\n- workbench.action.terminal.kill\n- workbench.action.terminal.killEditor\n- workbench.action.terminal.moveToEditor\n- workbench.action.terminal.moveToLineEnd\n- workbench.action.terminal.moveToLineStart\n- workbench.action.terminal.moveToTerminalPanel\n- workbench.action.terminal.new\n- workbench.action.terminal.newInActiveWorkspace\n- workbench.action.terminal.paste\n- workbench.action.terminal.pasteSelection\n- workbench.action.terminal.resizePaneDown\n- workbench.action.terminal.resizePaneLeft\n- workbench.action.terminal.resizePaneRight\n- workbench.action.terminal.resizePaneUp\n- workbench.action.terminal.runActiveFile\n- workbench.action.terminal.runRecentCommand\n- workbench.action.terminal.runSelectedText\n- workbench.action.terminal.scrollDown\n- workbench.action.terminal.scrollDownPage\n- workbench.action.terminal.scrollToBottom\n- workbench.action.terminal.scrollToNextCommand\n- workbench.action.terminal.scrollToPreviousCommand\n- workbench.action.terminal.scrollToTop\n- workbench.action.terminal.scrollUp\n- workbench.action.terminal.scrollUpPage\n- workbench.action.terminal.selectAll\n- workbench.action.terminal.selectNextPageSuggestion\n- workbench.action.terminal.selectNextSuggestion\n- workbench.action.terminal.selectPrevPageSuggestion\n- workbench.action.terminal.selectPrevSuggestion\n- workbench.action.terminal.selectToNextCommand\n- workbench.action.terminal.selectToNextLine\n- workbench.action.terminal.selectToPreviousCommand\n- workbench.action.terminal.selectToPreviousLine\n- workbench.action.terminal.sendSequence\n- workbench.action.terminal.showAccessibilityHelp\n- workbench.action.terminal.sizeToContentWidth\n- workbench.action.terminal.split\n- workbench.action.terminal.splitInActiveWorkspace\n- workbench.action.terminal.toggleFindCaseSensitive\n- workbench.action.terminal.toggleFindRegex\n- workbench.action.terminal.toggleFindWholeWord\n- workbench.action.terminal.toggleTerminal\n- workbench.action.toggleFullScreen\n- workbench.action.toggleMaximizedPanel\n- workbench.action.togglePanel",
             "type": "array",
             "items": {
                 "type": "string"
@@ -21347,6 +21467,9 @@
             "markdownDescription": "`#terminal.integrated.shellIntegration.enabled#` が `true` に設定されている場合、サポートされているシェルの試験的なターミナル Intellisense 候補が有効になります。シェル統合が手動でインストールされている場合、スクリプトを呼び出す前に `VSCODE_SUGGEST` が `1` に設定されている必要があります。",
             "type": "boolean",
             "default": false,
+            "tags": [
+                "experimental"
+            ],
             "defaultDefaultValue": false,
             "scope": 3
         },
@@ -21357,6 +21480,17 @@
             "defaultDefaultValue": false,
             "scope": 3,
             "restricted": false
+        },
+        "terminal.integrated.experimentalImageSupport": {
+            "restricted": true,
+            "markdownDescription": "ターミナルで試験的なイメージのサポートを有効にします。Linux と macOS では、6el と iTerm の両方のインライン イメージ プロトコルがサポートされています。ConPTY がシーケンスを通過すると、Windows のサポートが自動的に点灯します。現在、イメージはウィンドウの再読み込み/再接続の間は保持されません。",
+            "type": "boolean",
+            "default": false,
+            "tags": [
+                "experimental"
+            ],
+            "defaultDefaultValue": false,
+            "scope": 3
         },
         "css.trace.server": {
             "type": "string",
@@ -22380,6 +22514,46 @@
             "defaultDefaultValue": "off",
             "restricted": false
         },
+        "markdown.editor.drop.copyIntoWorkspace": {
+            "type": "string",
+            "markdownDescription": "Markdown エディターにドロップされたワークスペースの外部のファイルをワークスペースにコピーするかどうかを制御します。\r\n\r\n`#markdown.copyFiles.destination#` を使用して、コピーしたドロップされたファイルを作成する場所を構成します",
+            "default": "mediaFiles",
+            "enum": [
+                "mediaFiles",
+                "never"
+            ],
+            "markdownEnumDescriptions": [
+                "外部の画像ファイルとビデオ ファイルをワークスペースにコピーしてみてください。",
+                "外部ファイルをワークスペースにコピーしないでください。"
+            ],
+            "scope": 3,
+            "source": {
+                "id": "vscode.markdown-language-features",
+                "displayName": "Markdown 言語機能"
+            },
+            "defaultDefaultValue": "mediaFiles",
+            "restricted": false
+        },
+        "markdown.editor.filePaste.copyIntoWorkspace": {
+            "type": "string",
+            "markdownDescription": "Markdown エディターに貼り付けられたワークスペースの外部のファイルをワークスペースにコピーするかどうかを制御します。\r\n\r\n`#markdown.copyFiles.destination#` を使用して、コピーされたファイルを作成する場所を構成します。",
+            "default": "mediaFiles",
+            "enum": [
+                "mediaFiles",
+                "never"
+            ],
+            "markdownEnumDescriptions": [
+                "外部の画像ファイルとビデオ ファイルをワークスペースにコピーしてみてください。",
+                "外部ファイルをワークスペースにコピーしないでください。"
+            ],
+            "scope": 3,
+            "source": {
+                "id": "vscode.markdown-language-features",
+                "displayName": "Markdown 言語機能"
+            },
+            "defaultDefaultValue": "mediaFiles",
+            "restricted": false
+        },
         "markdown.updateLinksOnFileMove.enabled": {
             "type": "string",
             "enum": [
@@ -22436,9 +22610,9 @@
             "defaultDefaultValue": true,
             "restricted": false
         },
-        "markdown.experimental.copyFiles.destination": {
+        "markdown.copyFiles.destination": {
             "type": "object",
-            "markdownDescription": "Markdown ドキュメントにコピーするファイルを作成する場所を定義します。これは、Markdown ドキュメント上で一致する glob からコピー先へのマップです。\r\n\r\nコピー先では次の変数を使用できます:\r\n\r\n- `${documentFileName}` — Markdown ドキュメントの完全なファイル名。例: `readme.md`。\r\n- `${documentBaseName}` — Markdown ドキュメントのベース名。例: `readme`。\r\n- `${documentExtName}` — Markdown ドキュメントの拡張子 (例: `md`)。\r\n- `${documentDirName}` — Markdown ドキュメントの親ディレクトリの名前。\r\n- `${documentWorkspaceFolder}` — Markdown ドキュメントのワークスペース フォルダー。例: `/Users/me/myProject`。ファイルがワークスペースに含まれていない場合、これは `${documentDirName}` と同じです。\r\n- `${fileName}` — ドロップされたファイルのファイル名。例: `image.png`。",
+            "markdownDescription": "ドロップまたは貼り付けによって作成されたファイルをコピーするする場所を定義します。これは、Markdown ドキュメント上で一致する glob からコピー先へのマップです。\r\n\r\nコピー先では次の変数を使用できます:\r\n\r\n- `${documentFileName}` — Markdown ドキュメントの完全なファイル名。例: `readme.md`。\r\n- `${documentBaseName}` — Markdown ドキュメントのベース名。例: `readme`。\r\n- `${documentExtName}` — Markdown ドキュメントの拡張子 (例: `md`)。\r\n- `${documentDirName}` — Markdown ドキュメントの親ディレクトリの名前。\r\n- `${documentWorkspaceFolder}` — Markdown ドキュメントのワークスペース フォルダー。例: `/Users/me/myProject`。ファイルがワークスペースに含まれていない場合、これは `${documentDirName}` と同じです。\r\n- `${fileName}` — ドロップされたファイルのファイル名。例: `image.png`。",
             "additionalProperties": {
                 "type": "string"
             },
@@ -22448,6 +22622,26 @@
                 "displayName": "Markdown 言語機能"
             },
             "default": {},
+            "restricted": false
+        },
+        "markdown.copyFiles.overwriteBehavior": {
+            "type": "string",
+            "markdownDescription": "ドロップまたは貼り付けによって作成されたファイルが既存のファイルを上書きするかどうかを制御します。",
+            "default": "nameIncrementally",
+            "enum": [
+                "nameIncrementally",
+                "overwrite"
+            ],
+            "markdownEnumDescriptions": [
+                "同じ名前のファイルが既に存在する場合は、ファイル名に番号を追加します。たとえば、`image.png` は `image-1.png` になります。",
+                "同じ名前のファイルが既に存在する場合は、上書きします。"
+            ],
+            "scope": 3,
+            "source": {
+                "id": "vscode.markdown-language-features",
+                "displayName": "Markdown 言語機能"
+            },
+            "defaultDefaultValue": "nameIncrementally",
             "restricted": false
         },
         "markdown.preferredMdPathExtensionStyle": {
@@ -24937,19 +25131,28 @@
             "defaultDefaultValue": "allOpenProjects",
             "restricted": false
         },
-        "typescript.experimental.tsserver.web.enableProjectWideIntellisense": {
+        "typescript.tsserver.web.projectWideIntellisense.enabled": {
             "type": "boolean",
-            "default": false,
+            "default": true,
             "description": "Web 上でプロジェクト全体の IntelliSense を有効または無効にします。VS Code が信頼されたコンテキストで実行されている必要があります。",
             "scope": 3,
-            "tags": [
-                "experimental"
-            ],
             "source": {
                 "id": "vscode.typescript-language-features",
                 "displayName": "TypeScript と JavaScript の言語機能"
             },
-            "defaultDefaultValue": false,
+            "defaultDefaultValue": true,
+            "restricted": false
+        },
+        "typescript.tsserver.web.projectWideIntellisense.suppressSemanticErrors": {
+            "type": "boolean",
+            "default": true,
+            "description": "セマンティック エラーを抑制します。外部パッケージは Web 上で分析することができないため、これは外部パッケージを使用する場合に必要です。",
+            "scope": 3,
+            "source": {
+                "id": "vscode.typescript-language-features",
+                "displayName": "TypeScript と JavaScript の言語機能"
+            },
+            "defaultDefaultValue": true,
             "restricted": false
         },
         "typescript.preferGoToSourceDefinition": {
@@ -25057,10 +25260,10 @@
                     "default": false,
                     "description": "検索エディター"
                 },
-                "workbench.editor.interactiveSession": {
+                "workbench.editor.chatSession": {
                     "type": "boolean",
                     "default": false,
-                    "description": "対話型セッション"
+                    "description": "チャット"
                 },
                 "jupyter-notebook": {
                     "type": "boolean",
@@ -25111,7 +25314,7 @@
             "default": {
                 "default": false,
                 "workbench.editorinputs.searchEditorInput": false,
-                "workbench.editor.interactiveSession": false,
+                "workbench.editor.chatSession": false,
                 "jupyter-notebook": false,
                 "imagePreview.previewEditor": false,
                 "vscode.audioPreview": false,
@@ -25126,7 +25329,7 @@
             "defaultDefaultValue": {
                 "default": false,
                 "workbench.editorinputs.searchEditorInput": false,
-                "workbench.editor.interactiveSession": false,
+                "workbench.editor.chatSession": false,
                 "jupyter-notebook": false,
                 "imagePreview.previewEditor": false,
                 "vscode.audioPreview": false,
@@ -25146,7 +25349,7 @@
             "enum": [
                 "default",
                 "workbench.editorinputs.searchEditorInput",
-                "workbench.editor.interactiveSession",
+                "workbench.editor.chatSession",
                 "jupyter-notebook",
                 "vscode.markdown.preview.editor",
                 "imagePreview.previewEditor",
@@ -25170,7 +25373,7 @@
                     "enum": [
                         "default",
                         "workbench.editorinputs.searchEditorInput",
-                        "workbench.editor.interactiveSession",
+                        "workbench.editor.chatSession",
                         "jupyter-notebook",
                         "vscode.markdown.preview.editor",
                         "imagePreview.previewEditor",
@@ -25469,6 +25672,22 @@
             "scope": 5,
             "restricted": false
         },
+        "diffEditor.experimental.collapseUnchangedRegions": {
+            "type": "boolean",
+            "default": false,
+            "description": "差分エディターで変更されていない領域を表示するかどうかを制御します。'diffEditor.experimental.useVersion2' が設定されている場合にのみ機能します。",
+            "defaultDefaultValue": false,
+            "scope": 5,
+            "restricted": false
+        },
+        "diffEditor.experimental.useVersion2": {
+            "type": "boolean",
+            "default": false,
+            "description": "差分エディターで新しい実装と古い実装のどちらを使用するかを制御します。",
+            "defaultDefaultValue": false,
+            "scope": 5,
+            "restricted": false
+        },
         "editor.acceptSuggestionOnCommitCharacter": {
             "markdownDescription": "コミット文字で候補を受け入れるかどうかを制御します。たとえば、JavaScript ではセミコロン (`;`) をコミット文字にして、候補を受け入れてその文字を入力することができます。",
             "type": "boolean",
@@ -25550,13 +25769,13 @@
             "restricted": false
         },
         "editor.screenReaderAnnounceInlineSuggestion": {
-            "description": "スクリーン リーダーでインライン候補が通知されるかどうかを制御します。VoiceOver を使用した macOS では動作しないことに注意してください。",
+            "description": "スクリーン リーダーによってインライン候補が読み上げられるかどうかを制御します。",
             "tags": [
                 "accessibility"
             ],
             "type": "boolean",
-            "default": false,
-            "defaultDefaultValue": false,
+            "default": true,
+            "defaultDefaultValue": true,
             "scope": 5,
             "restricted": false
         },
@@ -26752,6 +26971,30 @@
             "scope": 5,
             "restricted": false
         },
+        "editor.pasteAs.enabled": {
+            "type": "boolean",
+            "default": true,
+            "markdownDescription": "さまざまな方法でコンテンツを貼り付けることができるかどうかを制御します。",
+            "defaultDefaultValue": true,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.pasteAs.showPasteSelector": {
+            "type": "string",
+            "markdownDescription": "エディターにコンテンツを貼り付けるときにウィジェットを表示するかどうかを制御します。このウィジェットを使用すると、ファイルの貼り付け方法を制御できます。",
+            "enum": [
+                "afterPaste",
+                "never"
+            ],
+            "enumDescriptions": [
+                "コンテンツをエディターに貼り付けた後、貼り付けセレクター ウィジェットを表示します。",
+                "貼り付けセレクター ウィジェットを表示しないでください。代わりに、既定の貼り付け動作が常に使用されます。"
+            ],
+            "default": "afterPaste",
+            "defaultDefaultValue": "afterPaste",
+            "scope": 5,
+            "restricted": false
+        },
         "editor.parameterHints.enabled": {
             "type": "boolean",
             "default": true,
@@ -27265,9 +27508,9 @@
         },
         "editor.suggest.snippetsPreventQuickSuggestions": {
             "type": "boolean",
-            "default": true,
+            "default": false,
             "description": "アクティブ スニペットがクイック候補を防止するかどうかを制御します。",
-            "defaultDefaultValue": true,
+            "defaultDefaultValue": false,
             "scope": 5,
             "restricted": false
         },
@@ -27913,14 +28156,6 @@
             "defaultDefaultValue": true,
             "restricted": false
         },
-        "editor.experimental.pasteActions.enabled": {
-            "type": "boolean",
-            "scope": 5,
-            "description": "貼り付け時に拡張機能からの編集の実行を有効化/無効化してください。",
-            "default": false,
-            "defaultDefaultValue": false,
-            "restricted": false
-        },
         "breadcrumbs.symbolSortOrder": {
             "description": "階層リンクのアウトライン ビューでシンボルを並び替える方法を制御します。",
             "type": "string",
@@ -28191,7 +28426,12 @@
         },
         "workbench.localHistory.exclude": {
             "type": "object",
-            "markdownDescription": "ローカル ファイル履歴からファイルを除外するための [glob パターン](https://code.visualstudio.com/docs/editor/codebasics#_advanced-search-options) を構成します。この設定を変更しても、既存のローカル ファイル履歴エントリには影響しません。",
+            "patternProperties": {
+                ".*": {
+                    "type": "boolean"
+                }
+            },
+            "markdownDescription": "ローカル ファイル履歴からファイルを除外するためのパスまたは [glob パターン](https://code.visualstudio.com/docs/editor/codebasics#_advanced-search-options) を構成します。Glob パターンは、絶対パスでない限り、ワークスペース フォルダーのパスを基準にして常に評価されます。この設定を変更しても、既存のローカル ファイル履歴エントリには影響しません。",
             "scope": 4,
             "default": {},
             "restricted": false
@@ -28755,6 +28995,11 @@
         },
         "files.watcherExclude": {
             "type": "object",
+            "patternProperties": {
+                ".*": {
+                    "type": "boolean"
+                }
+            },
             "default": {
                 "**/.git/objects/**": true,
                 "**/.git/subtree-cache/**": true,
@@ -28780,6 +29025,32 @@
             "description": "追加のパスを構成して、ワークスペース内の変更を監視します。既定では、シンボリック リンクのフォルダーを除き、すべてのワークスペースのフォルダーを再帰的に監視します。絶対パスまたは相対パスを明示的に追加して、シンボリック リンクのフォルダーの監視をサポートすることができます。相対パスは、現在開いているワークスペースを使用して絶対パスに解決されます。",
             "scope": 4,
             "defaultDefaultValue": [],
+            "restricted": false
+        },
+        "files.readonlyInclude": {
+            "type": "object",
+            "patternProperties": {
+                ".*": {
+                    "type": "boolean"
+                }
+            },
+            "default": {},
+            "markdownDescription": "パスまたは [glob パターン](https://code.visualstudio.com/docs/editor/codebasics#_advanced-search-options) を読み取り専用としてマークするように構成します。Glob パターンは、絶対パスでない限り、ワークスペース フォルダーのパスを基準にして常に評価されます。`#files.readonlyExclude#` 設定を使用して、一致するパスを除外できます。読み取り専用ファイル システム プロバイダーのファイルは、この設定とは関係なく常に読み取り専用になります。",
+            "scope": 4,
+            "defaultDefaultValue": {},
+            "restricted": false
+        },
+        "files.readonlyExclude": {
+            "type": "object",
+            "patternProperties": {
+                ".*": {
+                    "type": "boolean"
+                }
+            },
+            "default": {},
+            "markdownDescription": "パスまたは [glob パターン](https://code.visualstudio.com/docs/editor/codebasics#_advanced-search-options) が `#files.readonlyInclude#` 設定の結果として一致する場合に読み取り専用としてマークされないように構成します。Glob パターンは、絶対パスでない限り、ワークスペース フォルダーのパスを基準にして常に評価されます。読み取り専用ファイル システム プロバイダーのファイルは、この設定とは関係なく常に読み取り専用になります。",
+            "scope": 4,
+            "defaultDefaultValue": {},
             "restricted": false
         },
         "files.saveConflictResolution": {
@@ -32066,6 +32337,18 @@
             "defaultDefaultValue": 180,
             "restricted": false
         },
+        "git.defaultBranchName": {
+            "type": "string",
+            "description": "新しい Git リポジトリを初期化するときの既定のブランチ (メイン、トランク、開発など) の名前。空に設定すると、git で構成された既定のブランチ名が使用されます。",
+            "default": "main",
+            "scope": 4,
+            "source": {
+                "id": "vscode.git",
+                "displayName": "Git"
+            },
+            "defaultDefaultValue": "main",
+            "restricted": false
+        },
         "git.branchPrefix": {
             "type": "string",
             "description": "新しいブランチを作成するときに使用されるプレフィックス。",
@@ -32734,6 +33017,20 @@
             "defaultDefaultValue": "prompt",
             "restricted": false
         },
+        "git.similarityThreshold": {
+            "type": "number",
+            "default": 50,
+            "minimum": 0,
+            "maximum": 100,
+            "description": "名前変更と見なされる追加/削除されたファイルのペアの変更に対する類似性インデックスのしきい値 (つまり、ファイルのサイズと比較した追加/削除の量) を制御します。",
+            "scope": 4,
+            "source": {
+                "id": "vscode.git",
+                "displayName": "Git"
+            },
+            "defaultDefaultValue": 50,
+            "restricted": false
+        },
         "github.branchProtection": {
             "type": "boolean",
             "scope": 4,
@@ -33343,14 +33640,11 @@
             "defaultDefaultValue": true,
             "restricted": false
         },
-        "markdown.experimental.editor.pasteLinks.enabled": {
+        "markdown.editor.filePaste.enabled": {
             "type": "boolean",
             "scope": 4,
-            "markdownDescription": "Markdown エディターへのファイルの貼り付け機能を有効にすると、Markdown リンクが挿入されます。'#editor.experimental.pasteActions.enabled#' を有効にする必要があります。",
+            "markdownDescription": "Markdown エディターへのファイルの貼り付け機能を有効にして、Markdown リンクを作成します。`#editor.pasteAs.enabled#` を有効にする必要があります。",
             "default": true,
-            "tags": [
-                "experimental"
-            ],
             "source": {
                 "id": "vscode.markdown-language-features",
                 "displayName": "Markdown 言語機能"
@@ -33607,6 +33901,18 @@
                 "displayName": "VS Code の npm サポート"
             },
             "defaultDefaultValue": [],
+            "restricted": false
+        },
+        "typescript.experimental.aiQuickFix": {
+            "type": "boolean",
+            "default": false,
+            "description": "AI 支援クイック修正を有効または無効にします。AI チャット機能を提供する拡張機能が必要です。",
+            "scope": 4,
+            "source": {
+                "id": "vscode.typescript-language-features",
+                "displayName": "TypeScript と JavaScript の言語機能"
+            },
+            "defaultDefaultValue": false,
             "restricted": false
         },
         "javascript.suggest.completeFunctionCalls": {

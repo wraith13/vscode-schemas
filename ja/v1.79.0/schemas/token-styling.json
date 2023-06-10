@@ -1,0 +1,668 @@
+{
+    "type": "object",
+    "properties": {
+        "comment": {
+            "description": "コメントのスタイル。",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "string": {
+            "description": "文字列のスタイル。",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "keyword": {
+            "description": "キーワードのスタイル。",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "number": {
+            "description": "数値のスタイル。",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "regexp": {
+            "description": "式のスタイル。",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "operator": {
+            "description": "演算子のスタイル。",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "namespace": {
+            "description": "名前空間のスタイル。",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "type": {
+            "description": "型のスタイル。",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "struct": {
+            "description": "構造体のスタイル。",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "class": {
+            "description": "クラスのスタイル。",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "interface": {
+            "description": "インターフェイスのスタイル。",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "enum": {
+            "description": "列挙型のスタイル。",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "typeParameter": {
+            "description": "型パラメーターのスタイル。",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "function": {
+            "description": "関数のスタイル",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "member": {
+            "description": "メンバー関数のスタイル",
+            "deprecationMessage": "Deprecated use `method` instead",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "method": {
+            "description": "メソッド (メンバー関数) のスタイル ",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "macro": {
+            "description": "マクロのスタイル。",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "variable": {
+            "description": "変数のスタイル。",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "parameter": {
+            "description": "パラメーターのスタイル。",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "property": {
+            "description": "プロパティのスタイル。",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "enumMember": {
+            "description": "列挙型メンバーのスタイル。",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "event": {
+            "description": "イベントのスタイル。",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "decorator": {
+            "description": "デコレーターと注釈のスタイル。",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "label": {
+            "description": "ラベルのスタイル。 ",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "*.declaration": {
+            "description": "すべての記号の宣言のスタイル。",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "*.documentation": {
+            "description": "ドキュメント内の参照に使用するスタイル。",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "*.static": {
+            "description": "静的記号に使用するスタイル。",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "*.abstract": {
+            "description": "抽象記号に使用するスタイル。",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "*.deprecated": {
+            "description": "非推奨になったシンボルに対して使用するスタイルです。",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "*.modification": {
+            "description": "書き込みアクセスに使用するスタイル。",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "*.async": {
+            "description": "非同期の記号に使用するスタイル。",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "*.readonly": {
+            "description": "読み取り専用のシンボルに使用するスタイル。",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        }
+    },
+    "patternProperties": {
+        "^(\\w+[-_\\w+]*|\\*)(\\.\\w+[-_\\w+]*)*(:\\w+[-_\\w+]*)?$": {
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        }
+    },
+    "additionalProperties": false,
+    "definitions": {
+        "style": {
+            "type": "object",
+            "description": "トークンの色とスタイル。",
+            "properties": {
+                "foreground": {
+                    "type": "string",
+                    "description": "トークンの前景色。",
+                    "format": "color-hex",
+                    "default": "#ff0000"
+                },
+                "background": {
+                    "type": "string",
+                    "deprecationMessage": "トークンの背景色は、現在サポートされていません。"
+                },
+                "fontStyle": {
+                    "type": "string",
+                    "description": "'斜体'、'太字'、'下線'、'取り消し線' のいずれかまたはこれらを組み合わせたもので、規則のすべてのフォント スタイルを設定します。一覧表示されていないすべてのスタイルが設定解除されます。空の文字列はすべてのスタイルの設定を解除します。",
+                    "pattern": "^(\\s*(italic|bold|underline|strikethrough))*\\s*$",
+                    "patternErrorMessage": "フォント スタイルは、'斜体'、'太字'、'下線'、'取り消し線' のいずれかまたはこれらを組み合わせたものである必要があります。空の文字列は、すべてのスタイルの設定を解除します。",
+                    "defaultSnippets": [
+                        {
+                            "label": "なし (継承したスタイルを解除)",
+                            "bodyText": "\"\""
+                        },
+                        {
+                            "body": "italic"
+                        },
+                        {
+                            "body": "bold"
+                        },
+                        {
+                            "body": "underline"
+                        },
+                        {
+                            "body": "strikethrough"
+                        },
+                        {
+                            "body": "italic bold"
+                        },
+                        {
+                            "body": "italic underline"
+                        },
+                        {
+                            "body": "italic strikethrough"
+                        },
+                        {
+                            "body": "bold underline"
+                        },
+                        {
+                            "body": "bold strikethrough"
+                        },
+                        {
+                            "body": "underline strikethrough"
+                        },
+                        {
+                            "body": "italic bold underline"
+                        },
+                        {
+                            "body": "italic bold strikethrough"
+                        },
+                        {
+                            "body": "italic underline strikethrough"
+                        },
+                        {
+                            "body": "bold underline strikethrough"
+                        },
+                        {
+                            "body": "italic bold underline strikethrough"
+                        }
+                    ]
+                },
+                "bold": {
+                    "type": "boolean",
+                    "description": "フォント スタイルの太字を設定または解除します。'fontStyle ' が存在すると、この設定がオーバーライドされることにご注意ください。"
+                },
+                "italic": {
+                    "type": "boolean",
+                    "description": "フォント スタイルの斜体を設定または解除します。'fontStyle ' が存在すると、この設定がオーバーライドされることにご注意ください。"
+                },
+                "underline": {
+                    "type": "boolean",
+                    "description": "フォント スタイルの下線を設定または解除します。'fontStyle ' が存在すると、この設定がオーバーライドされることにご注意ください。"
+                },
+                "strikethrough": {
+                    "type": "boolean",
+                    "description": "フォント スタイルを取り消し線に設定するか設定を解除します。'fontStyle' が存在すると、この設定がオーバーライドされることに注意してください。"
+                }
+            },
+            "defaultSnippets": [
+                {
+                    "body": {
+                        "foreground": "${1:#FF0000}",
+                        "fontStyle": "${2:bold}"
+                    }
+                }
+            ]
+        }
+    }
+}

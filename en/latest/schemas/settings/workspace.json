@@ -503,6 +503,13 @@
             "$ref": "vscode://schemas/settings/resourceLanguage",
             "default": {}
         },
+        "[jsonl]": {
+            "type": "object",
+            "description": "Configure editor settings to be overridden for a language.",
+            "errorMessage": "This setting does not support per-language configuration.",
+            "$ref": "vscode://schemas/settings/resourceLanguage",
+            "default": {}
+        },
         "[julia]": {
             "type": "object",
             "description": "Configure editor settings to be overridden for a language.",
@@ -929,7 +936,7 @@
             "scope": 3,
             "restricted": false
         },
-        "accessibility.verbosity.diff-editor": {
+        "accessibility.verbosity.diffEditor": {
             "description": "Provide information about how to navigate changes in the diff editor when it is focused",
             "type": "boolean",
             "default": true,
@@ -940,24 +947,65 @@
             "scope": 3,
             "restricted": false
         },
-        "interactiveEditor.editMode": {
-            "description": "Configure if changes crafted in the interactive editor are applied directly or previewed first",
-            "default": "live",
-            "type": "string",
-            "enum": [
-                "live",
-                "livePreview",
-                "preview"
+        "accessibility.verbosity.chat": {
+            "description": "Provide information about how to access the chat help menu when the chat input is focused",
+            "type": "boolean",
+            "default": true,
+            "tags": [
+                "accessibility"
             ],
-            "defaultDefaultValue": "live",
+            "defaultDefaultValue": true,
             "scope": 3,
             "restricted": false
         },
-        "notebook.navigation.allowNavigateToSurroundingCells": {
+        "accessibility.verbosity.interactiveEditor": {
+            "description": "Provide information about how to access the interactive editor accessibility help menu when the interactive editor input is focused",
             "type": "boolean",
             "default": true,
-            "markdownDescription": "When enabled cursor can navigate to the next/previous cell when the current cursor in the cell editor is at the first/last line.",
+            "tags": [
+                "accessibility"
+            ],
             "defaultDefaultValue": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "accessibility.verbosity.keybindingsEditor": {
+            "description": "Provide information about how to change a keybinding in the keybindings editor when a row is focused",
+            "type": "boolean",
+            "default": true,
+            "tags": [
+                "accessibility"
+            ],
+            "defaultDefaultValue": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "accessibility.verbosity.notebook": {
+            "description": "Provide information about how to focus the cell container or inner editor when a notebook cell is focused.",
+            "type": "boolean",
+            "default": true,
+            "tags": [
+                "accessibility"
+            ],
+            "defaultDefaultValue": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "interactiveEditor.editMode": {
+            "description": "Configure if changes crafted in the interactive editor are applied directly to the document or are previewed first.",
+            "default": "livePreview",
+            "type": "string",
+            "enum": [
+                "livePreview",
+                "preview",
+                "live"
+            ],
+            "markdownEnumDescriptions": [
+                "Changes are applied directly to the document and are highlighted visually via inline or side-by-side diffs. Ending a session will keep the changes.",
+                "Changes are previewed only and need to be accepted via the apply button. Ending a session will discard the changes.",
+                "Changes are applied directly to the document but can be highlighted via inline diffs. Ending a session will keep the changes."
+            ],
+            "defaultDefaultValue": "livePreview",
             "scope": 3,
             "restricted": false
         },
@@ -1152,15 +1200,26 @@
             "type": "string",
             "enum": [
                 "fit",
-                "shrink"
+                "shrink",
+                "fixed"
             ],
             "default": "fit",
             "enumDescriptions": [
                 "Always keep tabs large enough to show the full editor label.",
-                "Allow tabs to get smaller when the available space is not enough to show all tabs at once."
+                "Allow tabs to get smaller when the available space is not enough to show all tabs at once.",
+                "Make all tabs the same size, while allowing them to get smaller when the available space is not enough to show all tabs at once."
             ],
-            "markdownDescription": "Controls the sizing of editor tabs. This value is ignored when `#workbench.editor.showTabs#` is disabled.",
+            "markdownDescription": "Controls the size of editor tabs. This value is ignored when `#workbench.editor.showTabs#` is disabled.",
             "defaultDefaultValue": "fit",
+            "scope": 3,
+            "restricted": false
+        },
+        "workbench.editor.tabSizingFixedMaxWidth": {
+            "type": "number",
+            "default": 160,
+            "minimum": 50,
+            "markdownDescription": "Controls the maximum width of tabs when `#workbench.editor.tabSizing#` is set to `fixed`.",
+            "defaultDefaultValue": 160,
             "scope": 3,
             "restricted": false
         },
@@ -1177,7 +1236,7 @@
                 "A pinned tab will show in a compact form with only icon or first letter of the editor name.",
                 "A pinned tab shrinks to a compact fixed size showing parts of the editor name."
             ],
-            "markdownDescription": "Controls the sizing of pinned editor tabs. Pinned tabs are sorted to the beginning of all opened tabs and typically do not close until unpinned. This value is ignored when `#workbench.editor.showTabs#` is disabled.",
+            "markdownDescription": "Controls the size of pinned editor tabs. Pinned tabs are sorted to the beginning of all opened tabs and typically do not close until unpinned. This value is ignored when `#workbench.editor.showTabs#` is disabled.",
             "defaultDefaultValue": "normal",
             "scope": 3,
             "restricted": false
@@ -1193,7 +1252,7 @@
                 "Splits all the editor groups to equal parts.",
                 "Splits the active editor group to equal parts."
             ],
-            "description": "Controls the sizing of editor groups when splitting them.",
+            "description": "Controls the size of editor groups when splitting them.",
             "defaultDefaultValue": "distribute",
             "scope": 3,
             "restricted": false
@@ -1415,6 +1474,14 @@
         "workbench.commandPalette.experimental.suggestCommands": {
             "type": "boolean",
             "description": "Controls whether the command palette should have a list of commonly used commands.",
+            "default": false,
+            "defaultDefaultValue": false,
+            "scope": 3,
+            "restricted": false
+        },
+        "workbench.commandPalette.experimental.useSemanticSimilarity": {
+            "type": "boolean",
+            "description": "Controls whether the command palette should include similar commands. You must have an extension installed that provides Semantic Similarity.",
             "default": false,
             "defaultDefaultValue": false,
             "scope": 3,
@@ -2406,6 +2473,14 @@
             "markdownDescription": "When enabled extensions are downloaded locally and installed on remote.",
             "default": false,
             "defaultDefaultValue": false,
+            "scope": 3,
+            "restricted": false
+        },
+        "notebook.navigation.allowNavigateToSurroundingCells": {
+            "type": "boolean",
+            "default": true,
+            "markdownDescription": "When enabled cursor can navigate to the next/previous cell when the current cursor in the cell editor is at the first/last line.",
+            "defaultDefaultValue": true,
             "scope": 3,
             "restricted": false
         },
@@ -4416,6 +4491,61 @@
             "scope": 3,
             "restricted": false
         },
+        "chat.editor.fontSize": {
+            "type": "number",
+            "description": "Controls the font size in pixels in chat codeblocks.",
+            "default": 14,
+            "defaultDefaultValue": 14,
+            "scope": 3,
+            "restricted": false
+        },
+        "chat.editor.fontFamily": {
+            "type": "string",
+            "description": "Controls the font family in chat codeblocks.",
+            "default": "default",
+            "defaultDefaultValue": "default",
+            "scope": 3,
+            "restricted": false
+        },
+        "chat.editor.fontWeight": {
+            "type": "string",
+            "description": "Controls the font weight in chat codeblocks.",
+            "default": "default",
+            "defaultDefaultValue": "default",
+            "scope": 3,
+            "restricted": false
+        },
+        "chat.editor.wordWrap": {
+            "type": "string",
+            "description": "Controls whether lines should wrap in chat codeblocks.",
+            "default": "off",
+            "enum": [
+                "on",
+                "off"
+            ],
+            "defaultDefaultValue": "off",
+            "scope": 3,
+            "restricted": false
+        },
+        "chat.editor.lineHeight": {
+            "type": "number",
+            "description": "Controls the line height in pixels in chat codeblocks. Use 0 to compute the line height from the font size.",
+            "default": 0,
+            "defaultDefaultValue": 0,
+            "scope": 3,
+            "restricted": false
+        },
+        "chat.experimental.quickQuestion.enable": {
+            "type": "boolean",
+            "description": "Controls whether the quick question feature is enabled.",
+            "default": false,
+            "tags": [
+                "experimental"
+            ],
+            "defaultDefaultValue": false,
+            "scope": 3,
+            "restricted": false
+        },
         "debug.allowBreakpointsEverywhere": {
             "type": "boolean",
             "description": "Allow setting breakpoints in any file.",
@@ -4693,104 +4823,6 @@
             "scope": 3,
             "restricted": false
         },
-        "workbench.experimental.cloudChanges.autoStore": {
-            "enum": [
-                "onShutdown",
-                "off"
-            ],
-            "enumDescriptions": [
-                "Automatically store current working changes in the cloud on window close.",
-                "Never attempt to automatically store working changes in the cloud."
-            ],
-            "type": "string",
-            "tags": [
-                "experimental",
-                "usesOnlineServices"
-            ],
-            "default": "off",
-            "markdownDescription": "Controls whether to automatically store available working changes in the cloud for the current workspace. This setting has no effect in the web.",
-            "defaultDefaultValue": "off",
-            "scope": 3,
-            "restricted": false
-        },
-        "workbench.cloudChanges.autoResume": {
-            "enum": [
-                "onReload",
-                "off"
-            ],
-            "enumDescriptions": [
-                "Automatically resume available working changes from the cloud on window reload.",
-                "Never attempt to resume working changes from the cloud."
-            ],
-            "type": "string",
-            "tags": [
-                "usesOnlineServices"
-            ],
-            "default": "onReload",
-            "markdownDescription": "Controls whether to automatically resume available working changes stored in the cloud for the current workspace.",
-            "defaultDefaultValue": "onReload",
-            "scope": 3,
-            "restricted": false
-        },
-        "workbench.cloudChanges.continueOn": {
-            "enum": [
-                "prompt",
-                "off"
-            ],
-            "enumDescriptions": [
-                "Prompt the user to sign in to store working changes in the cloud with Continue Working On.",
-                "Do not store working changes in the cloud with Continue Working On unless the user has already turned on Cloud Changes."
-            ],
-            "type": "string",
-            "tags": [
-                "usesOnlineServices"
-            ],
-            "default": "prompt",
-            "markdownDescription": "Controls whether to prompt the user to store working changes in the cloud when using Continue Working On.",
-            "defaultDefaultValue": "prompt",
-            "scope": 3,
-            "restricted": false
-        },
-        "workbench.experimental.editSessions.autoStore": {
-            "markdownDeprecationMessage": "This setting is deprecated in favor of `#workbench.experimental.cloudChanges.autoStore#`.",
-            "default": null,
-            "scope": 3,
-            "restricted": false,
-            "deprecationMessage": "This setting is deprecated in favor of `#workbench.experimental.cloudChanges.autoStore#`."
-        },
-        "workbench.editSessions.autoResume": {
-            "markdownDeprecationMessage": "This setting is deprecated in favor of `#workbench.cloudChanges.autoResume#`.",
-            "default": null,
-            "scope": 3,
-            "restricted": false,
-            "deprecationMessage": "This setting is deprecated in favor of `#workbench.cloudChanges.autoResume#`."
-        },
-        "workbench.editSessions.continueOn": {
-            "markdownDeprecationMessage": "This setting is deprecated in favor of `#workbench.cloudChanges.continueOn#`.",
-            "default": null,
-            "scope": 3,
-            "restricted": false,
-            "deprecationMessage": "This setting is deprecated in favor of `#workbench.cloudChanges.continueOn#`."
-        },
-        "workbench.experimental.cloudChanges.partialMatches.enabled": {
-            "type": "boolean",
-            "tags": [
-                "experimental",
-                "usesOnlineServices"
-            ],
-            "default": false,
-            "markdownDescription": "Controls whether to surface cloud changes which partially match the current session.",
-            "defaultDefaultValue": false,
-            "scope": 3,
-            "restricted": false
-        },
-        "workbench.experimental.editSessions.partialMatches.enabled": {
-            "markdownDeprecationMessage": "This setting is deprecated in favor of `#workbench.experimental.cloudChanges.partialMatches.enabled#`.",
-            "default": null,
-            "scope": 3,
-            "restricted": false,
-            "deprecationMessage": "This setting is deprecated in favor of `#workbench.experimental.cloudChanges.partialMatches.enabled#`."
-        },
         "files.associations": {
             "type": "object",
             "markdownDescription": "Configure file associations to languages (for example `\"*.extension\": \"html\"`). These have precedence over the default associations of the languages installed.",
@@ -4845,6 +4877,14 @@
             "scope": 3,
             "restricted": false
         },
+        "files.readonlyFromPermissions": {
+            "type": "boolean",
+            "markdownDescription": "Marks files as readonly when their file permissions indicate as such. This can be overridden via `#files.readonlyInclude#` and `#files.readonlyExclude#` settings.",
+            "default": false,
+            "defaultDefaultValue": false,
+            "scope": 3,
+            "restricted": false
+        },
         "files.restoreUndoStack": {
             "type": "boolean",
             "description": "Restore the undo stack when a file is reopened.",
@@ -4855,7 +4895,7 @@
         },
         "files.simpleDialog.enable": {
             "type": "boolean",
-            "description": "Enables the simple file dialog. The simple file dialog replaces the system file dialog when enabled.",
+            "description": "Enables the simple file dialog for opening and saving files and folders. The simple file dialog replaces the system file dialog when enabled.",
             "default": false,
             "defaultDefaultValue": false,
             "scope": 3,
@@ -4871,16 +4911,16 @@
         },
         "explorer.openEditors.visible": {
             "type": "number",
-            "description": "The maximum number of editors shown in the Open Editors pane. Setting this to 0 hides the Open Editors pane.",
+            "description": "The initial maximum number of editors shown in the Open Editors pane. Exceeding this limit will show a scroll bar and allow resizing the pane to display more items.",
             "default": 9,
-            "minimum": 0,
+            "minimum": 1,
             "defaultDefaultValue": 9,
             "scope": 3,
             "restricted": false
         },
         "explorer.openEditors.minVisible": {
             "type": "number",
-            "description": "The minimum number of editor slots shown in the Open Editors pane. If set to 0 the Open Editors pane will dynamically resize based on the number of editors.",
+            "description": "The minimum number of editor slots pre-allocated in the Open Editors pane. If set to 0 the Open Editors pane will dynamically resize based on the number of editors.",
             "default": 0,
             "minimum": 0,
             "defaultDefaultValue": 0,
@@ -4928,7 +4968,7 @@
         },
         "explorer.autoRevealExclude": {
             "type": "object",
-            "markdownDescription": "Configure glob patterns for excluding files and folders from being revealed and selected in the Explorer when they are opened. Read more about glob patterns [here](https://code.visualstudio.com/docs/editor/codebasics#_advanced-search-options).",
+            "markdownDescription": "Configure paths or [glob patterns](https://code.visualstudio.com/docs/editor/codebasics#_advanced-search-options) for excluding files and folders from being revealed and selected in the Explorer when they are opened. Glob patterns are always evaluated relative to the path of the workspace folder unless they are absolute paths.",
             "default": {
                 "**/node_modules": true,
                 "**/bower_components": true
@@ -5129,50 +5169,6 @@
             "scope": 3,
             "restricted": false
         },
-        "interactiveSession.editor.fontSize": {
-            "type": "number",
-            "description": "Controls the font size in pixels in Interactive Sessions.",
-            "default": 14,
-            "defaultDefaultValue": 14,
-            "scope": 3,
-            "restricted": false
-        },
-        "interactiveSession.editor.fontFamily": {
-            "type": "string",
-            "description": "Controls the font family in Interactive Sessions.",
-            "default": "default",
-            "defaultDefaultValue": "default",
-            "scope": 3,
-            "restricted": false
-        },
-        "interactiveSession.editor.fontWeight": {
-            "type": "string",
-            "description": "Controls the font weight in Interactive Sessions.",
-            "default": "default",
-            "defaultDefaultValue": "default",
-            "scope": 3,
-            "restricted": false
-        },
-        "interactiveSession.editor.wordWrap": {
-            "type": "string",
-            "description": "Controls whether lines should wrap in Interactive Sessions.",
-            "default": "off",
-            "enum": [
-                "on",
-                "off"
-            ],
-            "defaultDefaultValue": "off",
-            "scope": 3,
-            "restricted": false
-        },
-        "interactiveSession.editor.lineHeight": {
-            "type": "number",
-            "description": "Controls the line height in pixels in Interactive Sessions. Use 0 to compute the line height from the font size.",
-            "default": 0,
-            "defaultDefaultValue": 0,
-            "scope": 3,
-            "restricted": false
-        },
         "problems.autoReveal": {
             "description": "Controls whether Problems view should automatically reveal files when opening them.",
             "type": "boolean",
@@ -5291,6 +5287,25 @@
             "type": "boolean",
             "default": false,
             "defaultDefaultValue": false,
+            "scope": 3,
+            "restricted": false
+        },
+        "testing.countBadge": {
+            "description": "Controls the count badge on the Testing icon on the Activity Bar.",
+            "enum": [
+                "failed",
+                "off",
+                "passed",
+                "skipped"
+            ],
+            "enumDescriptions": [
+                "Show the number of failed tests",
+                "Disable the testing count badge",
+                "Show the number of passed tests",
+                "Show the number of skipped tests"
+            ],
+            "default": "failed",
+            "defaultDefaultValue": "failed",
             "scope": 3,
             "restricted": false
         },
@@ -5413,6 +5428,76 @@
             "scope": 3,
             "restricted": false,
             "deprecationMessage": "If this setting is false, no telemetry will be sent regardless of the new setting's value. Deprecated due to being combined into the `#telemetry.telemetryLevel#` setting."
+        },
+        "workbench.experimental.cloudChanges.autoStore": {
+            "enum": [
+                "onShutdown",
+                "off"
+            ],
+            "enumDescriptions": [
+                "Automatically store current working changes in the cloud on window close.",
+                "Never attempt to automatically store working changes in the cloud."
+            ],
+            "type": "string",
+            "tags": [
+                "experimental",
+                "usesOnlineServices"
+            ],
+            "default": "off",
+            "markdownDescription": "Controls whether to automatically store available working changes in the cloud for the current workspace. This setting has no effect in the web.",
+            "defaultDefaultValue": "off",
+            "scope": 3,
+            "restricted": false
+        },
+        "workbench.cloudChanges.autoResume": {
+            "enum": [
+                "onReload",
+                "off"
+            ],
+            "enumDescriptions": [
+                "Automatically resume available working changes from the cloud on window reload.",
+                "Never attempt to resume working changes from the cloud."
+            ],
+            "type": "string",
+            "tags": [
+                "usesOnlineServices"
+            ],
+            "default": "onReload",
+            "markdownDescription": "Controls whether to automatically resume available working changes stored in the cloud for the current workspace.",
+            "defaultDefaultValue": "onReload",
+            "scope": 3,
+            "restricted": false
+        },
+        "workbench.cloudChanges.continueOn": {
+            "enum": [
+                "prompt",
+                "off"
+            ],
+            "enumDescriptions": [
+                "Prompt the user to sign in to store working changes in the cloud with Continue Working On.",
+                "Do not store working changes in the cloud with Continue Working On unless the user has already turned on Cloud Changes."
+            ],
+            "type": "string",
+            "tags": [
+                "usesOnlineServices"
+            ],
+            "default": "prompt",
+            "markdownDescription": "Controls whether to prompt the user to store working changes in the cloud when using Continue Working On.",
+            "defaultDefaultValue": "prompt",
+            "scope": 3,
+            "restricted": false
+        },
+        "workbench.experimental.cloudChanges.partialMatches.enabled": {
+            "type": "boolean",
+            "tags": [
+                "experimental",
+                "usesOnlineServices"
+            ],
+            "default": false,
+            "markdownDescription": "Controls whether to surface cloud changes which partially match the current session.",
+            "defaultDefaultValue": false,
+            "scope": 3,
+            "restricted": false
         },
         "extensions.ignoreRecommendations": {
             "type": "boolean",
@@ -5874,13 +5959,13 @@
                             "restricted": false
                         },
                         "editor.screenReaderAnnounceInlineSuggestion": {
-                            "description": "Control whether inline suggestions are announced by a screen reader. Note that this does not work on macOS with VoiceOver.",
+                            "description": "Control whether inline suggestions are announced by a screen reader.",
                             "tags": [
                                 "accessibility"
                             ],
                             "type": "boolean",
-                            "default": false,
-                            "defaultDefaultValue": false,
+                            "default": true,
+                            "defaultDefaultValue": true,
                             "scope": 5,
                             "restricted": false
                         },
@@ -7085,6 +7170,30 @@
                             "scope": 5,
                             "restricted": false
                         },
+                        "editor.pasteAs.enabled": {
+                            "type": "boolean",
+                            "default": true,
+                            "markdownDescription": "Controls whether you can paste content in different ways.",
+                            "defaultDefaultValue": true,
+                            "scope": 5,
+                            "restricted": false
+                        },
+                        "editor.pasteAs.showPasteSelector": {
+                            "type": "string",
+                            "markdownDescription": "Controls if a widget is shown when pasting content in to the editor. This widget lets you control how the file is pasted.",
+                            "enum": [
+                                "afterPaste",
+                                "never"
+                            ],
+                            "enumDescriptions": [
+                                "Show the paste selector widget after content is pasted into the editor.",
+                                "Never show the paste selector widget. Instead the default pasting behavior is always used."
+                            ],
+                            "default": "afterPaste",
+                            "defaultDefaultValue": "afterPaste",
+                            "scope": 5,
+                            "restricted": false
+                        },
                         "editor.parameterHints.enabled": {
                             "type": "boolean",
                             "default": true,
@@ -7607,9 +7716,9 @@
                         },
                         "editor.suggest.snippetsPreventQuickSuggestions": {
                             "type": "boolean",
-                            "default": true,
+                            "default": false,
                             "description": "Controls whether an active snippet prevents quick suggestions.",
-                            "defaultDefaultValue": true,
+                            "defaultDefaultValue": false,
                             "scope": 5,
                             "restricted": false
                         },
@@ -8332,6 +8441,25 @@
             "scope": 3,
             "restricted": false
         },
+        "notebook.codeActionsOnSave": {
+            "markdownDescription": "Experimental. Run a series of CodeActions for a notebook on save. CodeActions must be specified, the file must not be saved after delay, and the editor must not be shutting down. Example: `source.fixAll: true`",
+            "type": "object",
+            "additionalProperties": {
+                "type": "boolean"
+            },
+            "default": {},
+            "defaultDefaultValue": {},
+            "scope": 3,
+            "restricted": false
+        },
+        "notebook.formatOnCellExecution": {
+            "markdownDescription": "Format a notebook cell upon execution. A formatter must be available.",
+            "type": "boolean",
+            "default": false,
+            "defaultDefaultValue": false,
+            "scope": 3,
+            "restricted": false
+        },
         "notebook.confirmDeleteRunningCell": {
             "markdownDescription": "Control whether a confirmation prompt is required to delete a running cell.",
             "type": "boolean",
@@ -8668,14 +8796,6 @@
             ],
             "description": "Controls the default search result view mode.",
             "defaultDefaultValue": "list",
-            "scope": 3,
-            "restricted": false
-        },
-        "search.experimental.notebookSearch": {
-            "type": "boolean",
-            "description": "Controls whether to use the experimental notebook search in the global search. Please reload your VS Code instance for changes to this setting to take effect.",
-            "default": false,
-            "defaultDefaultValue": false,
             "scope": 3,
             "restricted": false
         },
@@ -12306,7 +12426,7 @@
         },
         "terminal.integrated.profiles.windows": {
             "restricted": true,
-            "markdownDescription": "The Windows profiles to present when creating a new terminal via the terminal dropdown. Use the `source` property to automatically detect the shell's location. Or set the `path` property manually with an optional `args`.\n\nSet an existing profile to `null` to hide the profile from the list, for example: `\"Ubuntu-20.04 (WSL)\": null`.",
+            "markdownDescription": "A set of terminal profile customizations for Windows which allows adding, removing or changing how terminals are launched. Profiles are made up of a mandatory path, optional arguments and other presentation options.\n\nTo override an existing profile use its profile name as the key, for example:\n\n```json\n\"terminal.integrated.profile.windows\": {\n  \"bash\": null\n}\n```\n\n[Read more about configuring profiles](https://code.visualstudio.com/docs/terminal/profiles).",
             "type": "object",
             "default": {
                 "PowerShell": {
@@ -15780,7 +15900,7 @@
         },
         "terminal.integrated.profiles.osx": {
             "restricted": true,
-            "markdownDescription": "The macOS profiles to present when creating a new terminal via the terminal dropdown. Set the `path` property manually with an optional `args`.\n\nSet an existing profile to `null` to hide the profile from the list, for example: `\"bash\": null`.",
+            "markdownDescription": "A set of terminal profile customizations for Mac which allows adding, removing or changing how terminals are launched. Profiles are made up of a mandatory path, optional arguments and other presentation options.\n\nTo override an existing profile use its profile name as the key, for example:\n\n```json\n\"terminal.integrated.profile.osx\": {\n  \"bash\": null\n}\n```\n\n[Read more about configuring profiles](https://code.visualstudio.com/docs/terminal/profiles).",
             "type": "object",
             "default": {
                 "bash": {
@@ -18139,7 +18259,7 @@
         },
         "terminal.integrated.profiles.linux": {
             "restricted": true,
-            "markdownDescription": "The Linux profiles to present when creating a new terminal via the terminal dropdown. Set the `path` property manually with an optional `args`.\n\nSet an existing profile to `null` to hide the profile from the list, for example: `\"bash\": null`.",
+            "markdownDescription": "A set of terminal profile customizations for Linux which allows adding, removing or changing how terminals are launched. Profiles are made up of a mandatory path, optional arguments and other presentation options.\n\nTo override an existing profile use its profile name as the key, for example:\n\n```json\n\"terminal.integrated.profile.linux\": {\n  \"bash\": null\n}\n```\n\n[Read more about configuring profiles](https://code.visualstudio.com/docs/terminal/profiles).",
             "type": "object",
             "default": {
                 "bash": {
@@ -20871,7 +20991,7 @@
             "restricted": false
         },
         "terminal.integrated.scrollback": {
-            "description": "Controls the maximum number of lines the terminal keeps in its buffer.",
+            "description": "Controls the maximum number of lines the terminal keeps in its buffer. We pre-allocate memory based on this value in order to ensure a smooth experience. As such, as the value increases, so will the amount of memory.",
             "type": "number",
             "default": 1000,
             "defaultDefaultValue": 1000,
@@ -21009,7 +21129,7 @@
             "restricted": false
         },
         "terminal.integrated.commandsToSkipShell": {
-            "markdownDescription": "A set of command IDs whose keybindings will not be sent to the shell but instead always be handled by VS Code. This allows keybindings that would normally be consumed by the shell to act instead the same as when the terminal is not focused, for example `Ctrl+P` to launch Quick Open.\n\n&nbsp;\n\nMany commands are skipped by default. To override a default and pass that command's keybinding to the shell instead, add the command prefixed with the `-` character. For example add `-workbench.action.quickOpen` to allow `Ctrl+P` to reach the shell.\n\n&nbsp;\n\nThe following list of default skipped commands is truncated when viewed in Settings Editor. To see the full list, [open the default settings JSON](command:workbench.action.openRawDefaultSettings 'Open Default Settings (JSON)') and search for the first command from the list below.\n\n&nbsp;\n\nDefault Skipped Commands:\n\n- editor.action.toggleTabFocusMode\n- notification.acceptPrimaryAction\n- notifications.hideList\n- notifications.hideToasts\n- workbench.action.closeQuickOpen\n- workbench.action.debug.continue\n- workbench.action.debug.pause\n- workbench.action.debug.restart\n- workbench.action.debug.run\n- workbench.action.debug.start\n- workbench.action.debug.stepInto\n- workbench.action.debug.stepOut\n- workbench.action.debug.stepOver\n- workbench.action.debug.stop\n- workbench.action.firstEditorInGroup\n- workbench.action.focusActiveEditorGroup\n- workbench.action.focusEighthEditorGroup\n- workbench.action.focusFifthEditorGroup\n- workbench.action.focusFirstEditorGroup\n- workbench.action.focusFourthEditorGroup\n- workbench.action.focusLastEditorGroup\n- workbench.action.focusNextPart\n- workbench.action.focusPreviousPart\n- workbench.action.focusSecondEditorGroup\n- workbench.action.focusSeventhEditorGroup\n- workbench.action.focusSixthEditorGroup\n- workbench.action.focusThirdEditorGroup\n- workbench.action.lastEditorInGroup\n- workbench.action.navigateDown\n- workbench.action.navigateLeft\n- workbench.action.navigateRight\n- workbench.action.navigateUp\n- workbench.action.nextEditor\n- workbench.action.nextEditorInGroup\n- workbench.action.nextPanelView\n- workbench.action.nextSideBarView\n- workbench.action.openNextRecentlyUsedEditor\n- workbench.action.openNextRecentlyUsedEditorInGroup\n- workbench.action.openPreviousRecentlyUsedEditor\n- workbench.action.openPreviousRecentlyUsedEditorInGroup\n- workbench.action.previousEditor\n- workbench.action.previousEditorInGroup\n- workbench.action.previousPanelView\n- workbench.action.previousSideBarView\n- workbench.action.quickOpen\n- workbench.action.quickOpenLeastRecentlyUsedEditor\n- workbench.action.quickOpenLeastRecentlyUsedEditorInGroup\n- workbench.action.quickOpenPreviousEditor\n- workbench.action.quickOpenPreviousRecentlyUsedEditor\n- workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup\n- workbench.action.quickOpenView\n- workbench.action.showCommands\n- workbench.action.tasks.build\n- workbench.action.tasks.reRunTask\n- workbench.action.tasks.restartTask\n- workbench.action.tasks.runTask\n- workbench.action.tasks.showLog\n- workbench.action.tasks.showTasks\n- workbench.action.tasks.terminate\n- workbench.action.tasks.test\n- workbench.action.terminal.acceptSelectedSuggestion\n- workbench.action.terminal.clear\n- workbench.action.terminal.clearSelection\n- workbench.action.terminal.copyAndClearSelection\n- workbench.action.terminal.copyLastCommandOutput\n- workbench.action.terminal.copySelection\n- workbench.action.terminal.copySelectionAsHtml\n- workbench.action.terminal.deleteToLineStart\n- workbench.action.terminal.deleteWordLeft\n- workbench.action.terminal.deleteWordRight\n- workbench.action.terminal.findNext\n- workbench.action.terminal.findPrevious\n- workbench.action.terminal.focus\n- workbench.action.terminal.focusAtIndex1\n- workbench.action.terminal.focusAtIndex2\n- workbench.action.terminal.focusAtIndex3\n- workbench.action.terminal.focusAtIndex4\n- workbench.action.terminal.focusAtIndex5\n- workbench.action.terminal.focusAtIndex6\n- workbench.action.terminal.focusAtIndex7\n- workbench.action.terminal.focusAtIndex8\n- workbench.action.terminal.focusAtIndex9\n- workbench.action.terminal.focusFind\n- workbench.action.terminal.focusHover\n- workbench.action.terminal.focusNext\n- workbench.action.terminal.focusNextPane\n- workbench.action.terminal.focusPrevious\n- workbench.action.terminal.focusPreviousPane\n- workbench.action.terminal.goToRecentDirectory\n- workbench.action.terminal.hideFind\n- workbench.action.terminal.hideSuggestWidget\n- workbench.action.terminal.kill\n- workbench.action.terminal.killEditor\n- workbench.action.terminal.moveToEditor\n- workbench.action.terminal.moveToLineEnd\n- workbench.action.terminal.moveToLineStart\n- workbench.action.terminal.moveToTerminalPanel\n- workbench.action.terminal.new\n- workbench.action.terminal.newInActiveWorkspace\n- workbench.action.terminal.paste\n- workbench.action.terminal.pasteSelection\n- workbench.action.terminal.resizePaneDown\n- workbench.action.terminal.resizePaneLeft\n- workbench.action.terminal.resizePaneRight\n- workbench.action.terminal.resizePaneUp\n- workbench.action.terminal.runActiveFile\n- workbench.action.terminal.runRecentCommand\n- workbench.action.terminal.runSelectedText\n- workbench.action.terminal.scrollDown\n- workbench.action.terminal.scrollDownPage\n- workbench.action.terminal.scrollToBottom\n- workbench.action.terminal.scrollToNextCommand\n- workbench.action.terminal.scrollToPreviousCommand\n- workbench.action.terminal.scrollToTop\n- workbench.action.terminal.scrollUp\n- workbench.action.terminal.scrollUpPage\n- workbench.action.terminal.selectAll\n- workbench.action.terminal.selectNextPageSuggestion\n- workbench.action.terminal.selectNextSuggestion\n- workbench.action.terminal.selectPrevPageSuggestion\n- workbench.action.terminal.selectPrevSuggestion\n- workbench.action.terminal.selectToNextCommand\n- workbench.action.terminal.selectToNextLine\n- workbench.action.terminal.selectToPreviousCommand\n- workbench.action.terminal.selectToPreviousLine\n- workbench.action.terminal.sendSequence\n- workbench.action.terminal.showAccessibilityHelp\n- workbench.action.terminal.sizeToContentWidth\n- workbench.action.terminal.split\n- workbench.action.terminal.splitInActiveWorkspace\n- workbench.action.terminal.toggleFindCaseSensitive\n- workbench.action.terminal.toggleFindRegex\n- workbench.action.terminal.toggleFindWholeWord\n- workbench.action.terminal.toggleTerminal\n- workbench.action.toggleFullScreen\n- workbench.action.toggleMaximizedPanel\n- workbench.action.togglePanel",
+            "markdownDescription": "A set of command IDs whose keybindings will not be sent to the shell but instead always be handled by VS Code. This allows keybindings that would normally be consumed by the shell to act instead the same as when the terminal is not focused, for example `Ctrl+P` to launch Quick Open.\n\n&nbsp;\n\nMany commands are skipped by default. To override a default and pass that command's keybinding to the shell instead, add the command prefixed with the `-` character. For example add `-workbench.action.quickOpen` to allow `Ctrl+P` to reach the shell.\n\n&nbsp;\n\nThe following list of default skipped commands is truncated when viewed in Settings Editor. To see the full list, [open the default settings JSON](command:workbench.action.openRawDefaultSettings 'Open Default Settings (JSON)') and search for the first command from the list below.\n\n&nbsp;\n\nDefault Skipped Commands:\n\n- editor.action.toggleTabFocusMode\n- notification.acceptPrimaryAction\n- notifications.hideList\n- notifications.hideToasts\n- runCommands\n- workbench.action.closeQuickOpen\n- workbench.action.debug.continue\n- workbench.action.debug.pause\n- workbench.action.debug.restart\n- workbench.action.debug.run\n- workbench.action.debug.start\n- workbench.action.debug.stepInto\n- workbench.action.debug.stepOut\n- workbench.action.debug.stepOver\n- workbench.action.debug.stop\n- workbench.action.firstEditorInGroup\n- workbench.action.focusActiveEditorGroup\n- workbench.action.focusEighthEditorGroup\n- workbench.action.focusFifthEditorGroup\n- workbench.action.focusFirstEditorGroup\n- workbench.action.focusFourthEditorGroup\n- workbench.action.focusLastEditorGroup\n- workbench.action.focusNextPart\n- workbench.action.focusPreviousPart\n- workbench.action.focusSecondEditorGroup\n- workbench.action.focusSeventhEditorGroup\n- workbench.action.focusSixthEditorGroup\n- workbench.action.focusThirdEditorGroup\n- workbench.action.lastEditorInGroup\n- workbench.action.navigateDown\n- workbench.action.navigateLeft\n- workbench.action.navigateRight\n- workbench.action.navigateUp\n- workbench.action.nextEditor\n- workbench.action.nextEditorInGroup\n- workbench.action.nextPanelView\n- workbench.action.nextSideBarView\n- workbench.action.openNextRecentlyUsedEditor\n- workbench.action.openNextRecentlyUsedEditorInGroup\n- workbench.action.openPreviousRecentlyUsedEditor\n- workbench.action.openPreviousRecentlyUsedEditorInGroup\n- workbench.action.previousEditor\n- workbench.action.previousEditorInGroup\n- workbench.action.previousPanelView\n- workbench.action.previousSideBarView\n- workbench.action.quickOpen\n- workbench.action.quickOpenLeastRecentlyUsedEditor\n- workbench.action.quickOpenLeastRecentlyUsedEditorInGroup\n- workbench.action.quickOpenPreviousEditor\n- workbench.action.quickOpenPreviousRecentlyUsedEditor\n- workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup\n- workbench.action.quickOpenView\n- workbench.action.showCommands\n- workbench.action.tasks.build\n- workbench.action.tasks.reRunTask\n- workbench.action.tasks.restartTask\n- workbench.action.tasks.runTask\n- workbench.action.tasks.showLog\n- workbench.action.tasks.showTasks\n- workbench.action.tasks.terminate\n- workbench.action.tasks.test\n- workbench.action.terminal.acceptSelectedSuggestion\n- workbench.action.terminal.clear\n- workbench.action.terminal.clearSelection\n- workbench.action.terminal.copyAndClearSelection\n- workbench.action.terminal.copyLastCommandOutput\n- workbench.action.terminal.copySelection\n- workbench.action.terminal.copySelectionAsHtml\n- workbench.action.terminal.deleteToLineStart\n- workbench.action.terminal.deleteWordLeft\n- workbench.action.terminal.deleteWordRight\n- workbench.action.terminal.findNext\n- workbench.action.terminal.findPrevious\n- workbench.action.terminal.focus\n- workbench.action.terminal.focusAtIndex1\n- workbench.action.terminal.focusAtIndex2\n- workbench.action.terminal.focusAtIndex3\n- workbench.action.terminal.focusAtIndex4\n- workbench.action.terminal.focusAtIndex5\n- workbench.action.terminal.focusAtIndex6\n- workbench.action.terminal.focusAtIndex7\n- workbench.action.terminal.focusAtIndex8\n- workbench.action.terminal.focusAtIndex9\n- workbench.action.terminal.focusFind\n- workbench.action.terminal.focusHover\n- workbench.action.terminal.focusNext\n- workbench.action.terminal.focusNextPane\n- workbench.action.terminal.focusPrevious\n- workbench.action.terminal.focusPreviousPane\n- workbench.action.terminal.goToRecentDirectory\n- workbench.action.terminal.hideFind\n- workbench.action.terminal.hideSuggestWidget\n- workbench.action.terminal.kill\n- workbench.action.terminal.killEditor\n- workbench.action.terminal.moveToEditor\n- workbench.action.terminal.moveToLineEnd\n- workbench.action.terminal.moveToLineStart\n- workbench.action.terminal.moveToTerminalPanel\n- workbench.action.terminal.new\n- workbench.action.terminal.newInActiveWorkspace\n- workbench.action.terminal.paste\n- workbench.action.terminal.pasteSelection\n- workbench.action.terminal.resizePaneDown\n- workbench.action.terminal.resizePaneLeft\n- workbench.action.terminal.resizePaneRight\n- workbench.action.terminal.resizePaneUp\n- workbench.action.terminal.runActiveFile\n- workbench.action.terminal.runRecentCommand\n- workbench.action.terminal.runSelectedText\n- workbench.action.terminal.scrollDown\n- workbench.action.terminal.scrollDownPage\n- workbench.action.terminal.scrollToBottom\n- workbench.action.terminal.scrollToNextCommand\n- workbench.action.terminal.scrollToPreviousCommand\n- workbench.action.terminal.scrollToTop\n- workbench.action.terminal.scrollUp\n- workbench.action.terminal.scrollUpPage\n- workbench.action.terminal.selectAll\n- workbench.action.terminal.selectNextPageSuggestion\n- workbench.action.terminal.selectNextSuggestion\n- workbench.action.terminal.selectPrevPageSuggestion\n- workbench.action.terminal.selectPrevSuggestion\n- workbench.action.terminal.selectToNextCommand\n- workbench.action.terminal.selectToNextLine\n- workbench.action.terminal.selectToPreviousCommand\n- workbench.action.terminal.selectToPreviousLine\n- workbench.action.terminal.sendSequence\n- workbench.action.terminal.showAccessibilityHelp\n- workbench.action.terminal.sizeToContentWidth\n- workbench.action.terminal.split\n- workbench.action.terminal.splitInActiveWorkspace\n- workbench.action.terminal.toggleFindCaseSensitive\n- workbench.action.terminal.toggleFindRegex\n- workbench.action.terminal.toggleFindWholeWord\n- workbench.action.terminal.toggleTerminal\n- workbench.action.toggleFullScreen\n- workbench.action.toggleMaximizedPanel\n- workbench.action.togglePanel",
             "type": "array",
             "items": {
                 "type": "string"
@@ -21347,6 +21467,9 @@
             "markdownDescription": "Enables experimental terminal Intellisense suggestions for supported shells when `#terminal.integrated.shellIntegration.enabled#` is set to `true`. If shell integration is installed manually, `VSCODE_SUGGEST` needs to be set to `1` before calling the script.",
             "type": "boolean",
             "default": false,
+            "tags": [
+                "experimental"
+            ],
             "defaultDefaultValue": false,
             "scope": 3
         },
@@ -21357,6 +21480,17 @@
             "defaultDefaultValue": false,
             "scope": 3,
             "restricted": false
+        },
+        "terminal.integrated.experimentalImageSupport": {
+            "restricted": true,
+            "markdownDescription": "Enables experimental image support in the terminal. Both sixel and iTerm's inline image protocol are supported on Linux and macOS, Windows support will light up automatically when ConPTY passes through the sequences. Images will not be retained currently between window reloads/reconnects.",
+            "type": "boolean",
+            "default": false,
+            "tags": [
+                "experimental"
+            ],
+            "defaultDefaultValue": false,
+            "scope": 3
         },
         "css.trace.server": {
             "type": "string",
@@ -22380,6 +22514,46 @@
             "defaultDefaultValue": "off",
             "restricted": false
         },
+        "markdown.editor.drop.copyIntoWorkspace": {
+            "type": "string",
+            "markdownDescription": "Controls if files outside of the workspace that are dropped into a Markdown editor should be copied into the workspace.\n\nUse `#markdown.copyFiles.destination#` to configure where copied dropped files should be created",
+            "default": "mediaFiles",
+            "enum": [
+                "mediaFiles",
+                "never"
+            ],
+            "markdownEnumDescriptions": [
+                "Try to copy external image and video files into the workspace.",
+                "Do not copy external files into the workspace."
+            ],
+            "scope": 3,
+            "source": {
+                "id": "vscode.markdown-language-features",
+                "displayName": "Markdown Language Features"
+            },
+            "defaultDefaultValue": "mediaFiles",
+            "restricted": false
+        },
+        "markdown.editor.filePaste.copyIntoWorkspace": {
+            "type": "string",
+            "markdownDescription": "Controls if files outside of the workspace that are pasted into a Markdown editor should be copied into the workspace.\n\nUse `#markdown.copyFiles.destination#` to configure where copied files should be created.",
+            "default": "mediaFiles",
+            "enum": [
+                "mediaFiles",
+                "never"
+            ],
+            "markdownEnumDescriptions": [
+                "Try to copy external image and video files into the workspace.",
+                "Do not copy external files into the workspace."
+            ],
+            "scope": 3,
+            "source": {
+                "id": "vscode.markdown-language-features",
+                "displayName": "Markdown Language Features"
+            },
+            "defaultDefaultValue": "mediaFiles",
+            "restricted": false
+        },
         "markdown.updateLinksOnFileMove.enabled": {
             "type": "string",
             "enum": [
@@ -22436,9 +22610,9 @@
             "defaultDefaultValue": true,
             "restricted": false
         },
-        "markdown.experimental.copyFiles.destination": {
+        "markdown.copyFiles.destination": {
             "type": "object",
-            "markdownDescription": "Defines where files copied into a Markdown document should be created. This is a map from globs that match on the Markdown document to destinations.\n\nThe destinations may use the following variables:\n\n- `${documentFileName}` — The full filename of the Markdown document, for example `readme.md`.\n- `${documentBaseName}` — The basename of Markdown document, for example `readme`.\n- `${documentExtName}` — The extension of the Markdown document, for example `md`.\n- `${documentDirName}` — The name of the Markdown document's parent directory.\n- `${documentWorkspaceFolder}` — The workspace folder for the Markdown document, for examples, `/Users/me/myProject`. This is the same as `${documentDirName}` if the file is not part of in a workspace.\n- `${fileName}` — The file name of the dropped file, for example `image.png`.",
+            "markdownDescription": "Defines where files copied created by drop or paste should be created. This is a map from globs that match on the Markdown document to destinations.\n\nThe destinations may use the following variables:\n\n- `${documentFileName}` — The full filename of the Markdown document, for example: `readme.md`.\n- `${documentBaseName}` — The basename of Markdown document, for example: `readme`.\n- `${documentExtName}` — The extension of the Markdown document, for example: `md`.\n- `${documentDirName}` — The name of the Markdown document's parent directory.\n- `${documentWorkspaceFolder}` — The workspace folder for the Markdown document, for example: `/Users/me/myProject`. This is the same as `${documentDirName}` if the file is not part of a workspace.\n- `${fileName}` — The file name of the dropped file, for example: `image.png`.",
             "additionalProperties": {
                 "type": "string"
             },
@@ -22448,6 +22622,26 @@
                 "displayName": "Markdown Language Features"
             },
             "default": {},
+            "restricted": false
+        },
+        "markdown.copyFiles.overwriteBehavior": {
+            "type": "string",
+            "markdownDescription": "Controls if files created by drop or paste should overwrite existing files.",
+            "default": "nameIncrementally",
+            "enum": [
+                "nameIncrementally",
+                "overwrite"
+            ],
+            "markdownEnumDescriptions": [
+                "If a file with the same name already exists, append a number to the file name, for example: `image.png` becomes `image-1.png`.",
+                "If a file with the same name already exists, overwrite it."
+            ],
+            "scope": 3,
+            "source": {
+                "id": "vscode.markdown-language-features",
+                "displayName": "Markdown Language Features"
+            },
+            "defaultDefaultValue": "nameIncrementally",
             "restricted": false
         },
         "markdown.preferredMdPathExtensionStyle": {
@@ -24937,19 +25131,28 @@
             "defaultDefaultValue": "allOpenProjects",
             "restricted": false
         },
-        "typescript.experimental.tsserver.web.enableProjectWideIntellisense": {
+        "typescript.tsserver.web.projectWideIntellisense.enabled": {
             "type": "boolean",
-            "default": false,
+            "default": true,
             "description": "Enable/disable project-wide IntelliSense on web. Requires that VS Code is running in a trusted context.",
             "scope": 3,
-            "tags": [
-                "experimental"
-            ],
             "source": {
                 "id": "vscode.typescript-language-features",
                 "displayName": "TypeScript and JavaScript Language Features"
             },
-            "defaultDefaultValue": false,
+            "defaultDefaultValue": true,
+            "restricted": false
+        },
+        "typescript.tsserver.web.projectWideIntellisense.suppressSemanticErrors": {
+            "type": "boolean",
+            "default": true,
+            "description": "Suppresses semantic errors. This is needed when using external packages as these can't be included analyzed on web.",
+            "scope": 3,
+            "source": {
+                "id": "vscode.typescript-language-features",
+                "displayName": "TypeScript and JavaScript Language Features"
+            },
+            "defaultDefaultValue": true,
             "restricted": false
         },
         "typescript.preferGoToSourceDefinition": {
@@ -25057,10 +25260,10 @@
                     "default": false,
                     "description": "Search Editor"
                 },
-                "workbench.editor.interactiveSession": {
+                "workbench.editor.chatSession": {
                     "type": "boolean",
                     "default": false,
-                    "description": "Interactive Session"
+                    "description": "Chat"
                 },
                 "jupyter-notebook": {
                     "type": "boolean",
@@ -25111,7 +25314,7 @@
             "default": {
                 "default": false,
                 "workbench.editorinputs.searchEditorInput": false,
-                "workbench.editor.interactiveSession": false,
+                "workbench.editor.chatSession": false,
                 "jupyter-notebook": false,
                 "imagePreview.previewEditor": false,
                 "vscode.audioPreview": false,
@@ -25126,7 +25329,7 @@
             "defaultDefaultValue": {
                 "default": false,
                 "workbench.editorinputs.searchEditorInput": false,
-                "workbench.editor.interactiveSession": false,
+                "workbench.editor.chatSession": false,
                 "jupyter-notebook": false,
                 "imagePreview.previewEditor": false,
                 "vscode.audioPreview": false,
@@ -25146,7 +25349,7 @@
             "enum": [
                 "default",
                 "workbench.editorinputs.searchEditorInput",
-                "workbench.editor.interactiveSession",
+                "workbench.editor.chatSession",
                 "jupyter-notebook",
                 "vscode.markdown.preview.editor",
                 "imagePreview.previewEditor",
@@ -25170,7 +25373,7 @@
                     "enum": [
                         "default",
                         "workbench.editorinputs.searchEditorInput",
-                        "workbench.editor.interactiveSession",
+                        "workbench.editor.chatSession",
                         "jupyter-notebook",
                         "vscode.markdown.preview.editor",
                         "imagePreview.previewEditor",
@@ -25469,6 +25672,22 @@
             "scope": 5,
             "restricted": false
         },
+        "diffEditor.experimental.collapseUnchangedRegions": {
+            "type": "boolean",
+            "default": false,
+            "description": "Controls whether the diff editor shows unchanged regions. Only works when 'diffEditor.experimental.useVersion2' is set.",
+            "defaultDefaultValue": false,
+            "scope": 5,
+            "restricted": false
+        },
+        "diffEditor.experimental.useVersion2": {
+            "type": "boolean",
+            "default": false,
+            "description": "Controls whether the diff editor uses the new or the old implementation.",
+            "defaultDefaultValue": false,
+            "scope": 5,
+            "restricted": false
+        },
         "editor.acceptSuggestionOnCommitCharacter": {
             "markdownDescription": "Controls whether suggestions should be accepted on commit characters. For example, in JavaScript, the semi-colon (`;`) can be a commit character that accepts a suggestion and types that character.",
             "type": "boolean",
@@ -25550,13 +25769,13 @@
             "restricted": false
         },
         "editor.screenReaderAnnounceInlineSuggestion": {
-            "description": "Control whether inline suggestions are announced by a screen reader. Note that this does not work on macOS with VoiceOver.",
+            "description": "Control whether inline suggestions are announced by a screen reader.",
             "tags": [
                 "accessibility"
             ],
             "type": "boolean",
-            "default": false,
-            "defaultDefaultValue": false,
+            "default": true,
+            "defaultDefaultValue": true,
             "scope": 5,
             "restricted": false
         },
@@ -26752,6 +26971,30 @@
             "scope": 5,
             "restricted": false
         },
+        "editor.pasteAs.enabled": {
+            "type": "boolean",
+            "default": true,
+            "markdownDescription": "Controls whether you can paste content in different ways.",
+            "defaultDefaultValue": true,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.pasteAs.showPasteSelector": {
+            "type": "string",
+            "markdownDescription": "Controls if a widget is shown when pasting content in to the editor. This widget lets you control how the file is pasted.",
+            "enum": [
+                "afterPaste",
+                "never"
+            ],
+            "enumDescriptions": [
+                "Show the paste selector widget after content is pasted into the editor.",
+                "Never show the paste selector widget. Instead the default pasting behavior is always used."
+            ],
+            "default": "afterPaste",
+            "defaultDefaultValue": "afterPaste",
+            "scope": 5,
+            "restricted": false
+        },
         "editor.parameterHints.enabled": {
             "type": "boolean",
             "default": true,
@@ -27265,9 +27508,9 @@
         },
         "editor.suggest.snippetsPreventQuickSuggestions": {
             "type": "boolean",
-            "default": true,
+            "default": false,
             "description": "Controls whether an active snippet prevents quick suggestions.",
-            "defaultDefaultValue": true,
+            "defaultDefaultValue": false,
             "scope": 5,
             "restricted": false
         },
@@ -27913,14 +28156,6 @@
             "defaultDefaultValue": true,
             "restricted": false
         },
-        "editor.experimental.pasteActions.enabled": {
-            "type": "boolean",
-            "scope": 5,
-            "description": "Enable/disable running edits from extensions on paste.",
-            "default": false,
-            "defaultDefaultValue": false,
-            "restricted": false
-        },
         "breadcrumbs.symbolSortOrder": {
             "description": "Controls how symbols are sorted in the breadcrumbs outline view.",
             "type": "string",
@@ -28191,7 +28426,12 @@
         },
         "workbench.localHistory.exclude": {
             "type": "object",
-            "markdownDescription": "Configure [glob patterns](https://code.visualstudio.com/docs/editor/codebasics#_advanced-search-options) for excluding files from the local file history. Changing this setting has no effect on existing local file history entries.",
+            "patternProperties": {
+                ".*": {
+                    "type": "boolean"
+                }
+            },
+            "markdownDescription": "Configure paths or [glob patterns](https://code.visualstudio.com/docs/editor/codebasics#_advanced-search-options) for excluding files from the local file history. Glob patterns are always evaluated relative to the path of the workspace folder unless they are absolute paths. Changing this setting has no effect on existing local file history entries.",
             "scope": 4,
             "default": {},
             "restricted": false
@@ -28755,6 +28995,11 @@
         },
         "files.watcherExclude": {
             "type": "object",
+            "patternProperties": {
+                ".*": {
+                    "type": "boolean"
+                }
+            },
             "default": {
                 "**/.git/objects/**": true,
                 "**/.git/subtree-cache/**": true,
@@ -28780,6 +29025,32 @@
             "description": "Configure extra paths to watch for changes inside the workspace. By default, all workspace folders will be watched recursively, except for folders that are symbolic links. You can explicitly add absolute or relative paths to support watching folders that are symbolic links. Relative paths will be resolved to an absolute path using the currently opened workspace.",
             "scope": 4,
             "defaultDefaultValue": [],
+            "restricted": false
+        },
+        "files.readonlyInclude": {
+            "type": "object",
+            "patternProperties": {
+                ".*": {
+                    "type": "boolean"
+                }
+            },
+            "default": {},
+            "markdownDescription": "Configure paths or [glob patterns](https://code.visualstudio.com/docs/editor/codebasics#_advanced-search-options) to mark as read-only. Glob patterns are always evaluated relative to the path of the workspace folder unless they are absolute paths. You can exclude matching paths via the `#files.readonlyExclude#` setting. Files from readonly file system providers will always be read-only independent of this setting.",
+            "scope": 4,
+            "defaultDefaultValue": {},
+            "restricted": false
+        },
+        "files.readonlyExclude": {
+            "type": "object",
+            "patternProperties": {
+                ".*": {
+                    "type": "boolean"
+                }
+            },
+            "default": {},
+            "markdownDescription": "Configure paths or [glob patterns](https://code.visualstudio.com/docs/editor/codebasics#_advanced-search-options) to exclude from being marked as read-only if they match as a result of the `#files.readonlyInclude#` setting. Glob patterns are always evaluated relative to the path of the workspace folder unless they are absolute paths. Files from readonly file system providers will always be read-only independent of this setting.",
+            "scope": 4,
+            "defaultDefaultValue": {},
             "restricted": false
         },
         "files.saveConflictResolution": {
@@ -32066,6 +32337,18 @@
             "defaultDefaultValue": 180,
             "restricted": false
         },
+        "git.defaultBranchName": {
+            "type": "string",
+            "description": "The name of the default branch (ex: main, trunk, development) when initializing a new git repository. When set to empty, the default branch name configured in git will be used.",
+            "default": "main",
+            "scope": 4,
+            "source": {
+                "id": "vscode.git",
+                "displayName": "Git"
+            },
+            "defaultDefaultValue": "main",
+            "restricted": false
+        },
         "git.branchPrefix": {
             "type": "string",
             "description": "Prefix used when creating a new branch.",
@@ -32734,6 +33017,20 @@
             "defaultDefaultValue": "prompt",
             "restricted": false
         },
+        "git.similarityThreshold": {
+            "type": "number",
+            "default": 50,
+            "minimum": 0,
+            "maximum": 100,
+            "description": "Controls the threshold of the similarity index (i.e. amount of additions/deletions compared to the file's size) for changes in a pair of added/deleted files to be considered a rename.",
+            "scope": 4,
+            "source": {
+                "id": "vscode.git",
+                "displayName": "Git"
+            },
+            "defaultDefaultValue": 50,
+            "restricted": false
+        },
         "github.branchProtection": {
             "type": "boolean",
             "scope": 4,
@@ -33313,7 +33610,7 @@
             "type": "string",
             "default": "onDoubleHash",
             "scope": 4,
-            "markdownDescription": "Enable suggestions for headers in other Markdown files in the current workspace. Accepting one of these suggestions inserts the full path to header in that file, for example `[link text](/path/to/file.md#header)`.",
+            "markdownDescription": "Enable suggestions for headers in other Markdown files in the current workspace. Accepting one of these suggestions inserts the full path to header in that file, for example: `[link text](/path/to/file.md#header)`.",
             "enum": [
                 "never",
                 "onDoubleHash",
@@ -33321,8 +33618,8 @@
             ],
             "markdownEnumDescriptions": [
                 "Disable workspace header suggestions.",
-                "Enable workspace header suggestions after typing `##` in a path, for example `[link text](##`.",
-                "Enable workspace header suggestions after typing either `##` or `#` in a path, for example `[link text](#` or `[link text](##`."
+                "Enable workspace header suggestions after typing `##` in a path, for example: `[link text](##`.",
+                "Enable workspace header suggestions after typing either `##` or `#` in a path, for example: `[link text](#` or `[link text](##`."
             ],
             "source": {
                 "id": "vscode.markdown-language-features",
@@ -33343,14 +33640,11 @@
             "defaultDefaultValue": true,
             "restricted": false
         },
-        "markdown.experimental.editor.pasteLinks.enabled": {
+        "markdown.editor.filePaste.enabled": {
             "type": "boolean",
             "scope": 4,
-            "markdownDescription": "Enable pasting files into a Markdown editor inserts Markdown links. Requires enabling `#editor.experimental.pasteActions.enabled#`.",
+            "markdownDescription": "Enable pasting files into a Markdown editor to create Markdown links. Requires enabling `#editor.pasteAs.enabled#`.",
             "default": true,
-            "tags": [
-                "experimental"
-            ],
             "source": {
                 "id": "vscode.markdown-language-features",
                 "displayName": "Markdown Language Features"
@@ -33373,7 +33667,7 @@
         "markdown.validate.referenceLinks.enabled": {
             "type": "string",
             "scope": 4,
-            "markdownDescription": "Validate reference links in Markdown files, for example `[link][ref]`. Requires enabling `#markdown.validate.enabled#`.",
+            "markdownDescription": "Validate reference links in Markdown files, for example: `[link][ref]`. Requires enabling `#markdown.validate.enabled#`.",
             "default": "warning",
             "enum": [
                 "ignore",
@@ -33390,7 +33684,7 @@
         "markdown.validate.fragmentLinks.enabled": {
             "type": "string",
             "scope": 4,
-            "markdownDescription": "Validate fragment links to headers in the current Markdown file, for example `[link](#header)`. Requires enabling `#markdown.validate.enabled#`.",
+            "markdownDescription": "Validate fragment links to headers in the current Markdown file, for example: `[link](#header)`. Requires enabling `#markdown.validate.enabled#`.",
             "default": "warning",
             "enum": [
                 "ignore",
@@ -33424,7 +33718,7 @@
         "markdown.validate.fileLinks.markdownFragmentLinks": {
             "type": "string",
             "scope": 4,
-            "markdownDescription": "Validate the fragment part of links to headers in other files in Markdown files, for example `[link](/path/to/file.md#header)`. Inherits the setting value from `#markdown.validate.fragmentLinks.enabled#` by default.",
+            "markdownDescription": "Validate the fragment part of links to headers in other files in Markdown files, for example: `[link](/path/to/file.md#header)`. Inherits the setting value from `#markdown.validate.fragmentLinks.enabled#` by default.",
             "default": "inherit",
             "enum": [
                 "inherit",
@@ -33607,6 +33901,18 @@
                 "displayName": "NPM support for VS Code"
             },
             "defaultDefaultValue": [],
+            "restricted": false
+        },
+        "typescript.experimental.aiQuickFix": {
+            "type": "boolean",
+            "default": false,
+            "description": "Enable/disable AI-assisted quick fixes. Requires an extension providing AI chat functionality.",
+            "scope": 4,
+            "source": {
+                "id": "vscode.typescript-language-features",
+                "displayName": "TypeScript and JavaScript Language Features"
+            },
+            "defaultDefaultValue": false,
             "restricted": false
         },
         "javascript.suggest.completeFunctionCalls": {
