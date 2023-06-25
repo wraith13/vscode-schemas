@@ -1,0 +1,2699 @@
+{
+    "definitions": {
+        "icons": {
+            "type": "object",
+            "properties": {
+                "fontId": {
+                    "type": "string",
+                    "description": "The id of the font to use. If not set, the font that is defined first is used."
+                },
+                "fontCharacter": {
+                    "type": "string",
+                    "description": "The font character associated with the icon definition."
+                }
+            },
+            "additionalProperties": false,
+            "defaultSnippets": [
+                {
+                    "body": {
+                        "fontCharacter": "\\\\e030"
+                    }
+                }
+            ]
+        }
+    },
+    "type": "object",
+    "properties": {
+        "add": {
+            "$ref": "#/definitions/icons"
+        },
+        "plus": {
+            "$ref": "#/definitions/icons"
+        },
+        "gist-new": {
+            "$ref": "#/definitions/icons"
+        },
+        "repo-create": {
+            "$ref": "#/definitions/icons"
+        },
+        "lightbulb": {
+            "$ref": "#/definitions/icons"
+        },
+        "light-bulb": {
+            "$ref": "#/definitions/icons"
+        },
+        "repo": {
+            "$ref": "#/definitions/icons"
+        },
+        "repo-delete": {
+            "$ref": "#/definitions/icons"
+        },
+        "gist-fork": {
+            "$ref": "#/definitions/icons"
+        },
+        "repo-forked": {
+            "$ref": "#/definitions/icons"
+        },
+        "git-pull-request": {
+            "$ref": "#/definitions/icons"
+        },
+        "git-pull-request-abandoned": {
+            "$ref": "#/definitions/icons"
+        },
+        "record-keys": {
+            "$ref": "#/definitions/icons"
+        },
+        "keyboard": {
+            "$ref": "#/definitions/icons"
+        },
+        "tag": {
+            "$ref": "#/definitions/icons"
+        },
+        "tag-add": {
+            "$ref": "#/definitions/icons"
+        },
+        "tag-remove": {
+            "$ref": "#/definitions/icons"
+        },
+        "person": {
+            "$ref": "#/definitions/icons"
+        },
+        "person-follow": {
+            "$ref": "#/definitions/icons"
+        },
+        "person-outline": {
+            "$ref": "#/definitions/icons"
+        },
+        "person-filled": {
+            "$ref": "#/definitions/icons"
+        },
+        "git-branch": {
+            "$ref": "#/definitions/icons"
+        },
+        "git-branch-create": {
+            "$ref": "#/definitions/icons"
+        },
+        "git-branch-delete": {
+            "$ref": "#/definitions/icons"
+        },
+        "source-control": {
+            "$ref": "#/definitions/icons"
+        },
+        "mirror": {
+            "$ref": "#/definitions/icons"
+        },
+        "mirror-public": {
+            "$ref": "#/definitions/icons"
+        },
+        "star": {
+            "$ref": "#/definitions/icons"
+        },
+        "star-add": {
+            "$ref": "#/definitions/icons"
+        },
+        "star-delete": {
+            "$ref": "#/definitions/icons"
+        },
+        "star-empty": {
+            "$ref": "#/definitions/icons"
+        },
+        "comment": {
+            "$ref": "#/definitions/icons"
+        },
+        "comment-add": {
+            "$ref": "#/definitions/icons"
+        },
+        "alert": {
+            "$ref": "#/definitions/icons"
+        },
+        "warning": {
+            "$ref": "#/definitions/icons"
+        },
+        "search": {
+            "$ref": "#/definitions/icons"
+        },
+        "search-save": {
+            "$ref": "#/definitions/icons"
+        },
+        "log-out": {
+            "$ref": "#/definitions/icons"
+        },
+        "sign-out": {
+            "$ref": "#/definitions/icons"
+        },
+        "log-in": {
+            "$ref": "#/definitions/icons"
+        },
+        "sign-in": {
+            "$ref": "#/definitions/icons"
+        },
+        "eye": {
+            "$ref": "#/definitions/icons"
+        },
+        "eye-unwatch": {
+            "$ref": "#/definitions/icons"
+        },
+        "eye-watch": {
+            "$ref": "#/definitions/icons"
+        },
+        "circle-filled": {
+            "$ref": "#/definitions/icons"
+        },
+        "primitive-dot": {
+            "$ref": "#/definitions/icons"
+        },
+        "close-dirty": {
+            "$ref": "#/definitions/icons"
+        },
+        "debug-breakpoint": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for breakpoints. $(debug-breakpoint)"
+        },
+        "debug-breakpoint-disabled": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for disabled breakpoints. $(debug-breakpoint-disabled)"
+        },
+        "debug-hint": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for breakpoint hints shown on hover in editor glyph margin. $(debug-hint)"
+        },
+        "primitive-square": {
+            "$ref": "#/definitions/icons"
+        },
+        "edit": {
+            "$ref": "#/definitions/icons"
+        },
+        "pencil": {
+            "$ref": "#/definitions/icons"
+        },
+        "info": {
+            "$ref": "#/definitions/icons"
+        },
+        "issue-opened": {
+            "$ref": "#/definitions/icons"
+        },
+        "gist-private": {
+            "$ref": "#/definitions/icons"
+        },
+        "git-fork-private": {
+            "$ref": "#/definitions/icons"
+        },
+        "lock": {
+            "$ref": "#/definitions/icons"
+        },
+        "mirror-private": {
+            "$ref": "#/definitions/icons"
+        },
+        "close": {
+            "$ref": "#/definitions/icons"
+        },
+        "remove-close": {
+            "$ref": "#/definitions/icons"
+        },
+        "x": {
+            "$ref": "#/definitions/icons"
+        },
+        "repo-sync": {
+            "$ref": "#/definitions/icons"
+        },
+        "sync": {
+            "$ref": "#/definitions/icons"
+        },
+        "clone": {
+            "$ref": "#/definitions/icons"
+        },
+        "desktop-download": {
+            "$ref": "#/definitions/icons"
+        },
+        "beaker": {
+            "$ref": "#/definitions/icons"
+        },
+        "microscope": {
+            "$ref": "#/definitions/icons"
+        },
+        "vm": {
+            "$ref": "#/definitions/icons"
+        },
+        "device-desktop": {
+            "$ref": "#/definitions/icons"
+        },
+        "file": {
+            "$ref": "#/definitions/icons"
+        },
+        "file-text": {
+            "$ref": "#/definitions/icons"
+        },
+        "more": {
+            "$ref": "#/definitions/icons"
+        },
+        "ellipsis": {
+            "$ref": "#/definitions/icons"
+        },
+        "kebab-horizontal": {
+            "$ref": "#/definitions/icons"
+        },
+        "mail-reply": {
+            "$ref": "#/definitions/icons"
+        },
+        "reply": {
+            "$ref": "#/definitions/icons"
+        },
+        "organization": {
+            "$ref": "#/definitions/icons"
+        },
+        "organization-filled": {
+            "$ref": "#/definitions/icons"
+        },
+        "organization-outline": {
+            "$ref": "#/definitions/icons"
+        },
+        "new-file": {
+            "$ref": "#/definitions/icons"
+        },
+        "file-add": {
+            "$ref": "#/definitions/icons"
+        },
+        "new-folder": {
+            "$ref": "#/definitions/icons"
+        },
+        "file-directory-create": {
+            "$ref": "#/definitions/icons"
+        },
+        "trash": {
+            "$ref": "#/definitions/icons"
+        },
+        "trashcan": {
+            "$ref": "#/definitions/icons"
+        },
+        "history": {
+            "$ref": "#/definitions/icons"
+        },
+        "clock": {
+            "$ref": "#/definitions/icons"
+        },
+        "folder": {
+            "$ref": "#/definitions/icons"
+        },
+        "file-directory": {
+            "$ref": "#/definitions/icons"
+        },
+        "symbol-folder": {
+            "$ref": "#/definitions/icons"
+        },
+        "logo-github": {
+            "$ref": "#/definitions/icons"
+        },
+        "mark-github": {
+            "$ref": "#/definitions/icons"
+        },
+        "github": {
+            "$ref": "#/definitions/icons"
+        },
+        "terminal": {
+            "$ref": "#/definitions/icons"
+        },
+        "console": {
+            "$ref": "#/definitions/icons"
+        },
+        "repl": {
+            "$ref": "#/definitions/icons"
+        },
+        "zap": {
+            "$ref": "#/definitions/icons"
+        },
+        "symbol-event": {
+            "$ref": "#/definitions/icons"
+        },
+        "error": {
+            "$ref": "#/definitions/icons"
+        },
+        "stop": {
+            "$ref": "#/definitions/icons"
+        },
+        "variable": {
+            "$ref": "#/definitions/icons"
+        },
+        "symbol-variable": {
+            "$ref": "#/definitions/icons"
+        },
+        "array": {
+            "$ref": "#/definitions/icons"
+        },
+        "symbol-array": {
+            "$ref": "#/definitions/icons"
+        },
+        "symbol-module": {
+            "$ref": "#/definitions/icons"
+        },
+        "symbol-package": {
+            "$ref": "#/definitions/icons"
+        },
+        "symbol-namespace": {
+            "$ref": "#/definitions/icons"
+        },
+        "symbol-object": {
+            "$ref": "#/definitions/icons"
+        },
+        "symbol-method": {
+            "$ref": "#/definitions/icons"
+        },
+        "symbol-function": {
+            "$ref": "#/definitions/icons"
+        },
+        "symbol-constructor": {
+            "$ref": "#/definitions/icons"
+        },
+        "symbol-boolean": {
+            "$ref": "#/definitions/icons"
+        },
+        "symbol-null": {
+            "$ref": "#/definitions/icons"
+        },
+        "symbol-numeric": {
+            "$ref": "#/definitions/icons"
+        },
+        "symbol-number": {
+            "$ref": "#/definitions/icons"
+        },
+        "symbol-structure": {
+            "$ref": "#/definitions/icons"
+        },
+        "symbol-struct": {
+            "$ref": "#/definitions/icons"
+        },
+        "symbol-parameter": {
+            "$ref": "#/definitions/icons"
+        },
+        "symbol-type-parameter": {
+            "$ref": "#/definitions/icons"
+        },
+        "symbol-key": {
+            "$ref": "#/definitions/icons"
+        },
+        "symbol-text": {
+            "$ref": "#/definitions/icons"
+        },
+        "symbol-reference": {
+            "$ref": "#/definitions/icons"
+        },
+        "go-to-file": {
+            "$ref": "#/definitions/icons"
+        },
+        "symbol-enum": {
+            "$ref": "#/definitions/icons"
+        },
+        "symbol-value": {
+            "$ref": "#/definitions/icons"
+        },
+        "symbol-ruler": {
+            "$ref": "#/definitions/icons"
+        },
+        "symbol-unit": {
+            "$ref": "#/definitions/icons"
+        },
+        "activate-breakpoints": {
+            "$ref": "#/definitions/icons"
+        },
+        "archive": {
+            "$ref": "#/definitions/icons"
+        },
+        "arrow-both": {
+            "$ref": "#/definitions/icons"
+        },
+        "arrow-down": {
+            "$ref": "#/definitions/icons"
+        },
+        "arrow-left": {
+            "$ref": "#/definitions/icons"
+        },
+        "arrow-right": {
+            "$ref": "#/definitions/icons"
+        },
+        "arrow-small-down": {
+            "$ref": "#/definitions/icons"
+        },
+        "arrow-small-left": {
+            "$ref": "#/definitions/icons"
+        },
+        "arrow-small-right": {
+            "$ref": "#/definitions/icons"
+        },
+        "arrow-small-up": {
+            "$ref": "#/definitions/icons"
+        },
+        "arrow-up": {
+            "$ref": "#/definitions/icons"
+        },
+        "bell": {
+            "$ref": "#/definitions/icons"
+        },
+        "bold": {
+            "$ref": "#/definitions/icons"
+        },
+        "book": {
+            "$ref": "#/definitions/icons"
+        },
+        "bookmark": {
+            "$ref": "#/definitions/icons"
+        },
+        "debug-breakpoint-conditional-unverified": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for unverified conditional breakpoints. $(debug-breakpoint-conditional-unverified)"
+        },
+        "debug-breakpoint-conditional": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for conditional breakpoints. $(debug-breakpoint-conditional)"
+        },
+        "debug-breakpoint-conditional-disabled": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for disabled conditional breakpoints. $(debug-breakpoint-conditional-disabled)"
+        },
+        "debug-breakpoint-data-unverified": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for unverified data breakpoints. $(debug-breakpoint-data-unverified)"
+        },
+        "debug-breakpoint-data": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for data breakpoints. $(debug-breakpoint-data)"
+        },
+        "debug-breakpoint-data-disabled": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for disabled data breakpoints. $(debug-breakpoint-data-disabled)"
+        },
+        "debug-breakpoint-log-unverified": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for unverified log breakpoints. $(debug-breakpoint-log-unverified)"
+        },
+        "debug-breakpoint-log": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for log breakpoints. $(debug-breakpoint-log)"
+        },
+        "debug-breakpoint-log-disabled": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for disabled log breakpoint. $(debug-breakpoint-log-disabled)"
+        },
+        "briefcase": {
+            "$ref": "#/definitions/icons"
+        },
+        "broadcast": {
+            "$ref": "#/definitions/icons"
+        },
+        "browser": {
+            "$ref": "#/definitions/icons"
+        },
+        "bug": {
+            "$ref": "#/definitions/icons"
+        },
+        "calendar": {
+            "$ref": "#/definitions/icons"
+        },
+        "case-sensitive": {
+            "$ref": "#/definitions/icons"
+        },
+        "check": {
+            "$ref": "#/definitions/icons"
+        },
+        "checklist": {
+            "$ref": "#/definitions/icons"
+        },
+        "chevron-down": {
+            "$ref": "#/definitions/icons"
+        },
+        "drop-down-button": {
+            "$ref": "#/definitions/icons"
+        },
+        "chevron-left": {
+            "$ref": "#/definitions/icons"
+        },
+        "chevron-right": {
+            "$ref": "#/definitions/icons"
+        },
+        "chevron-up": {
+            "$ref": "#/definitions/icons"
+        },
+        "chrome-close": {
+            "$ref": "#/definitions/icons"
+        },
+        "chrome-maximize": {
+            "$ref": "#/definitions/icons"
+        },
+        "chrome-minimize": {
+            "$ref": "#/definitions/icons"
+        },
+        "chrome-restore": {
+            "$ref": "#/definitions/icons"
+        },
+        "circle": {
+            "$ref": "#/definitions/icons"
+        },
+        "circle-outline": {
+            "$ref": "#/definitions/icons"
+        },
+        "debug-breakpoint-unverified": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for unverified breakpoints. $(debug-breakpoint-unverified)"
+        },
+        "circle-slash": {
+            "$ref": "#/definitions/icons"
+        },
+        "circuit-board": {
+            "$ref": "#/definitions/icons"
+        },
+        "clear-all": {
+            "$ref": "#/definitions/icons"
+        },
+        "clippy": {
+            "$ref": "#/definitions/icons"
+        },
+        "close-all": {
+            "$ref": "#/definitions/icons"
+        },
+        "cloud-download": {
+            "$ref": "#/definitions/icons"
+        },
+        "cloud-upload": {
+            "$ref": "#/definitions/icons"
+        },
+        "code": {
+            "$ref": "#/definitions/icons"
+        },
+        "collapse-all": {
+            "$ref": "#/definitions/icons"
+        },
+        "color-mode": {
+            "$ref": "#/definitions/icons"
+        },
+        "comment-discussion": {
+            "$ref": "#/definitions/icons"
+        },
+        "compare-changes": {
+            "$ref": "#/definitions/icons"
+        },
+        "credit-card": {
+            "$ref": "#/definitions/icons"
+        },
+        "dash": {
+            "$ref": "#/definitions/icons"
+        },
+        "dashboard": {
+            "$ref": "#/definitions/icons"
+        },
+        "database": {
+            "$ref": "#/definitions/icons"
+        },
+        "debug-continue": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for the debug continue action. $(debug-continue)"
+        },
+        "debug-disconnect": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for the debug disconnect action. $(debug-disconnect)"
+        },
+        "debug-pause": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for the debug pause action. $(debug-pause)"
+        },
+        "debug-restart": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for the debug restart action. $(debug-restart)"
+        },
+        "debug-start": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for the debug start action. $(debug-start)"
+        },
+        "debug-step-into": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for the debug step into action. $(debug-step-into)"
+        },
+        "debug-step-out": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for the debug step out action. $(debug-step-out)"
+        },
+        "debug-step-over": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for the debug step over action. $(debug-step-over)"
+        },
+        "debug-stop": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for the debug stop action. $(debug-stop)"
+        },
+        "debug": {
+            "$ref": "#/definitions/icons"
+        },
+        "device-camera-video": {
+            "$ref": "#/definitions/icons"
+        },
+        "device-camera": {
+            "$ref": "#/definitions/icons"
+        },
+        "device-mobile": {
+            "$ref": "#/definitions/icons"
+        },
+        "diff-added": {
+            "$ref": "#/definitions/icons"
+        },
+        "diff-ignored": {
+            "$ref": "#/definitions/icons"
+        },
+        "diff-modified": {
+            "$ref": "#/definitions/icons"
+        },
+        "diff-removed": {
+            "$ref": "#/definitions/icons"
+        },
+        "diff-renamed": {
+            "$ref": "#/definitions/icons"
+        },
+        "diff": {
+            "$ref": "#/definitions/icons"
+        },
+        "discard": {
+            "$ref": "#/definitions/icons"
+        },
+        "editor-layout": {
+            "$ref": "#/definitions/icons"
+        },
+        "empty-window": {
+            "$ref": "#/definitions/icons"
+        },
+        "exclude": {
+            "$ref": "#/definitions/icons"
+        },
+        "extensions": {
+            "$ref": "#/definitions/icons"
+        },
+        "eye-closed": {
+            "$ref": "#/definitions/icons"
+        },
+        "file-binary": {
+            "$ref": "#/definitions/icons"
+        },
+        "file-code": {
+            "$ref": "#/definitions/icons"
+        },
+        "file-media": {
+            "$ref": "#/definitions/icons"
+        },
+        "file-pdf": {
+            "$ref": "#/definitions/icons"
+        },
+        "file-submodule": {
+            "$ref": "#/definitions/icons"
+        },
+        "file-symlink-directory": {
+            "$ref": "#/definitions/icons"
+        },
+        "file-symlink-file": {
+            "$ref": "#/definitions/icons"
+        },
+        "file-zip": {
+            "$ref": "#/definitions/icons"
+        },
+        "files": {
+            "$ref": "#/definitions/icons"
+        },
+        "filter": {
+            "$ref": "#/definitions/icons"
+        },
+        "flame": {
+            "$ref": "#/definitions/icons"
+        },
+        "fold-down": {
+            "$ref": "#/definitions/icons"
+        },
+        "fold-up": {
+            "$ref": "#/definitions/icons"
+        },
+        "fold": {
+            "$ref": "#/definitions/icons"
+        },
+        "folder-active": {
+            "$ref": "#/definitions/icons"
+        },
+        "folder-opened": {
+            "$ref": "#/definitions/icons"
+        },
+        "gear": {
+            "$ref": "#/definitions/icons"
+        },
+        "gift": {
+            "$ref": "#/definitions/icons"
+        },
+        "gist-secret": {
+            "$ref": "#/definitions/icons"
+        },
+        "gist": {
+            "$ref": "#/definitions/icons"
+        },
+        "git-commit": {
+            "$ref": "#/definitions/icons"
+        },
+        "git-compare": {
+            "$ref": "#/definitions/icons"
+        },
+        "git-merge": {
+            "$ref": "#/definitions/icons"
+        },
+        "github-action": {
+            "$ref": "#/definitions/icons"
+        },
+        "github-alt": {
+            "$ref": "#/definitions/icons"
+        },
+        "globe": {
+            "$ref": "#/definitions/icons"
+        },
+        "grabber": {
+            "$ref": "#/definitions/icons"
+        },
+        "graph": {
+            "$ref": "#/definitions/icons"
+        },
+        "gripper": {
+            "$ref": "#/definitions/icons"
+        },
+        "heart": {
+            "$ref": "#/definitions/icons"
+        },
+        "home": {
+            "$ref": "#/definitions/icons"
+        },
+        "horizontal-rule": {
+            "$ref": "#/definitions/icons"
+        },
+        "hubot": {
+            "$ref": "#/definitions/icons"
+        },
+        "inbox": {
+            "$ref": "#/definitions/icons"
+        },
+        "issue-closed": {
+            "$ref": "#/definitions/icons"
+        },
+        "issue-reopened": {
+            "$ref": "#/definitions/icons"
+        },
+        "issues": {
+            "$ref": "#/definitions/icons"
+        },
+        "italic": {
+            "$ref": "#/definitions/icons"
+        },
+        "jersey": {
+            "$ref": "#/definitions/icons"
+        },
+        "json": {
+            "$ref": "#/definitions/icons"
+        },
+        "bracket": {
+            "$ref": "#/definitions/icons"
+        },
+        "kebab-vertical": {
+            "$ref": "#/definitions/icons"
+        },
+        "key": {
+            "$ref": "#/definitions/icons"
+        },
+        "law": {
+            "$ref": "#/definitions/icons"
+        },
+        "lightbulb-autofix": {
+            "$ref": "#/definitions/icons"
+        },
+        "link-external": {
+            "$ref": "#/definitions/icons"
+        },
+        "link": {
+            "$ref": "#/definitions/icons"
+        },
+        "list-ordered": {
+            "$ref": "#/definitions/icons"
+        },
+        "list-unordered": {
+            "$ref": "#/definitions/icons"
+        },
+        "live-share": {
+            "$ref": "#/definitions/icons"
+        },
+        "loading": {
+            "$ref": "#/definitions/icons"
+        },
+        "location": {
+            "$ref": "#/definitions/icons"
+        },
+        "mail-read": {
+            "$ref": "#/definitions/icons"
+        },
+        "mail": {
+            "$ref": "#/definitions/icons"
+        },
+        "markdown": {
+            "$ref": "#/definitions/icons"
+        },
+        "megaphone": {
+            "$ref": "#/definitions/icons"
+        },
+        "mention": {
+            "$ref": "#/definitions/icons"
+        },
+        "milestone": {
+            "$ref": "#/definitions/icons"
+        },
+        "mortar-board": {
+            "$ref": "#/definitions/icons"
+        },
+        "move": {
+            "$ref": "#/definitions/icons"
+        },
+        "multiple-windows": {
+            "$ref": "#/definitions/icons"
+        },
+        "mute": {
+            "$ref": "#/definitions/icons"
+        },
+        "no-newline": {
+            "$ref": "#/definitions/icons"
+        },
+        "note": {
+            "$ref": "#/definitions/icons"
+        },
+        "octoface": {
+            "$ref": "#/definitions/icons"
+        },
+        "open-preview": {
+            "$ref": "#/definitions/icons"
+        },
+        "package": {
+            "$ref": "#/definitions/icons"
+        },
+        "paintcan": {
+            "$ref": "#/definitions/icons"
+        },
+        "pin": {
+            "$ref": "#/definitions/icons"
+        },
+        "play": {
+            "$ref": "#/definitions/icons"
+        },
+        "run": {
+            "$ref": "#/definitions/icons"
+        },
+        "plug": {
+            "$ref": "#/definitions/icons"
+        },
+        "preserve-case": {
+            "$ref": "#/definitions/icons"
+        },
+        "preview": {
+            "$ref": "#/definitions/icons"
+        },
+        "project": {
+            "$ref": "#/definitions/icons"
+        },
+        "pulse": {
+            "$ref": "#/definitions/icons"
+        },
+        "question": {
+            "$ref": "#/definitions/icons"
+        },
+        "quote": {
+            "$ref": "#/definitions/icons"
+        },
+        "radio-tower": {
+            "$ref": "#/definitions/icons"
+        },
+        "reactions": {
+            "$ref": "#/definitions/icons"
+        },
+        "references": {
+            "$ref": "#/definitions/icons"
+        },
+        "refresh": {
+            "$ref": "#/definitions/icons"
+        },
+        "regex": {
+            "$ref": "#/definitions/icons"
+        },
+        "remote-explorer": {
+            "$ref": "#/definitions/icons"
+        },
+        "remote": {
+            "$ref": "#/definitions/icons"
+        },
+        "remove": {
+            "$ref": "#/definitions/icons"
+        },
+        "replace-all": {
+            "$ref": "#/definitions/icons"
+        },
+        "replace": {
+            "$ref": "#/definitions/icons"
+        },
+        "repo-clone": {
+            "$ref": "#/definitions/icons"
+        },
+        "repo-force-push": {
+            "$ref": "#/definitions/icons"
+        },
+        "repo-pull": {
+            "$ref": "#/definitions/icons"
+        },
+        "repo-push": {
+            "$ref": "#/definitions/icons"
+        },
+        "report": {
+            "$ref": "#/definitions/icons"
+        },
+        "request-changes": {
+            "$ref": "#/definitions/icons"
+        },
+        "rocket": {
+            "$ref": "#/definitions/icons"
+        },
+        "root-folder-opened": {
+            "$ref": "#/definitions/icons"
+        },
+        "root-folder": {
+            "$ref": "#/definitions/icons"
+        },
+        "rss": {
+            "$ref": "#/definitions/icons"
+        },
+        "ruby": {
+            "$ref": "#/definitions/icons"
+        },
+        "save-all": {
+            "$ref": "#/definitions/icons"
+        },
+        "save-as": {
+            "$ref": "#/definitions/icons"
+        },
+        "save": {
+            "$ref": "#/definitions/icons"
+        },
+        "screen-full": {
+            "$ref": "#/definitions/icons"
+        },
+        "screen-normal": {
+            "$ref": "#/definitions/icons"
+        },
+        "search-stop": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for stop in the search view. $(search-stop)"
+        },
+        "server": {
+            "$ref": "#/definitions/icons"
+        },
+        "settings-gear": {
+            "$ref": "#/definitions/icons"
+        },
+        "settings": {
+            "$ref": "#/definitions/icons"
+        },
+        "shield": {
+            "$ref": "#/definitions/icons"
+        },
+        "smiley": {
+            "$ref": "#/definitions/icons"
+        },
+        "sort-precedence": {
+            "$ref": "#/definitions/icons"
+        },
+        "split-horizontal": {
+            "$ref": "#/definitions/icons"
+        },
+        "split-vertical": {
+            "$ref": "#/definitions/icons"
+        },
+        "squirrel": {
+            "$ref": "#/definitions/icons"
+        },
+        "star-full": {
+            "$ref": "#/definitions/icons"
+        },
+        "star-half": {
+            "$ref": "#/definitions/icons"
+        },
+        "symbol-class": {
+            "$ref": "#/definitions/icons"
+        },
+        "symbol-color": {
+            "$ref": "#/definitions/icons"
+        },
+        "symbol-customcolor": {
+            "$ref": "#/definitions/icons"
+        },
+        "symbol-constant": {
+            "$ref": "#/definitions/icons"
+        },
+        "symbol-enum-member": {
+            "$ref": "#/definitions/icons"
+        },
+        "symbol-field": {
+            "$ref": "#/definitions/icons"
+        },
+        "symbol-file": {
+            "$ref": "#/definitions/icons"
+        },
+        "symbol-interface": {
+            "$ref": "#/definitions/icons"
+        },
+        "symbol-keyword": {
+            "$ref": "#/definitions/icons"
+        },
+        "symbol-misc": {
+            "$ref": "#/definitions/icons"
+        },
+        "symbol-operator": {
+            "$ref": "#/definitions/icons"
+        },
+        "symbol-property": {
+            "$ref": "#/definitions/icons"
+        },
+        "wrench": {
+            "$ref": "#/definitions/icons"
+        },
+        "wrench-subaction": {
+            "$ref": "#/definitions/icons"
+        },
+        "symbol-snippet": {
+            "$ref": "#/definitions/icons"
+        },
+        "tasklist": {
+            "$ref": "#/definitions/icons"
+        },
+        "telescope": {
+            "$ref": "#/definitions/icons"
+        },
+        "text-size": {
+            "$ref": "#/definitions/icons"
+        },
+        "three-bars": {
+            "$ref": "#/definitions/icons"
+        },
+        "thumbsdown": {
+            "$ref": "#/definitions/icons"
+        },
+        "thumbsup": {
+            "$ref": "#/definitions/icons"
+        },
+        "tools": {
+            "$ref": "#/definitions/icons"
+        },
+        "triangle-down": {
+            "$ref": "#/definitions/icons"
+        },
+        "triangle-left": {
+            "$ref": "#/definitions/icons"
+        },
+        "triangle-right": {
+            "$ref": "#/definitions/icons"
+        },
+        "triangle-up": {
+            "$ref": "#/definitions/icons"
+        },
+        "twitter": {
+            "$ref": "#/definitions/icons"
+        },
+        "unfold": {
+            "$ref": "#/definitions/icons"
+        },
+        "unlock": {
+            "$ref": "#/definitions/icons"
+        },
+        "unmute": {
+            "$ref": "#/definitions/icons"
+        },
+        "unverified": {
+            "$ref": "#/definitions/icons"
+        },
+        "verified": {
+            "$ref": "#/definitions/icons"
+        },
+        "versions": {
+            "$ref": "#/definitions/icons"
+        },
+        "vm-active": {
+            "$ref": "#/definitions/icons"
+        },
+        "vm-outline": {
+            "$ref": "#/definitions/icons"
+        },
+        "vm-running": {
+            "$ref": "#/definitions/icons"
+        },
+        "watch": {
+            "$ref": "#/definitions/icons"
+        },
+        "whitespace": {
+            "$ref": "#/definitions/icons"
+        },
+        "whole-word": {
+            "$ref": "#/definitions/icons"
+        },
+        "window": {
+            "$ref": "#/definitions/icons"
+        },
+        "word-wrap": {
+            "$ref": "#/definitions/icons"
+        },
+        "zoom-in": {
+            "$ref": "#/definitions/icons"
+        },
+        "zoom-out": {
+            "$ref": "#/definitions/icons"
+        },
+        "list-filter": {
+            "$ref": "#/definitions/icons"
+        },
+        "list-flat": {
+            "$ref": "#/definitions/icons"
+        },
+        "list-selection": {
+            "$ref": "#/definitions/icons"
+        },
+        "selection": {
+            "$ref": "#/definitions/icons"
+        },
+        "list-tree": {
+            "$ref": "#/definitions/icons"
+        },
+        "debug-breakpoint-function-unverified": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for unverified function breakpoints. $(debug-breakpoint-function-unverified)"
+        },
+        "debug-breakpoint-function": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for function breakpoints. $(debug-breakpoint-function)"
+        },
+        "debug-breakpoint-function-disabled": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for disabled function breakpoints. $(debug-breakpoint-function-disabled)"
+        },
+        "debug-stackframe-active": {
+            "$ref": "#/definitions/icons"
+        },
+        "circle-small-filled": {
+            "$ref": "#/definitions/icons"
+        },
+        "debug-stackframe-dot": {
+            "$ref": "#/definitions/icons"
+        },
+        "debug-stackframe": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for a stackframe shown in the editor glyph margin. $(debug-stackframe)"
+        },
+        "debug-stackframe-focused": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for a focused stackframe  shown in the editor glyph margin. $(debug-stackframe-focused)"
+        },
+        "debug-breakpoint-unsupported": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for unsupported breakpoints. $(debug-breakpoint-unsupported)"
+        },
+        "symbol-string": {
+            "$ref": "#/definitions/icons"
+        },
+        "debug-reverse-continue": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for the debug reverse continue action. $(debug-reverse-continue)"
+        },
+        "debug-step-back": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for the debug step back action. $(debug-step-back)"
+        },
+        "debug-restart-frame": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for the debug restart frame action. $(debug-restart-frame)"
+        },
+        "call-incoming": {
+            "$ref": "#/definitions/icons"
+        },
+        "call-outgoing": {
+            "$ref": "#/definitions/icons"
+        },
+        "menu": {
+            "$ref": "#/definitions/icons"
+        },
+        "expand-all": {
+            "$ref": "#/definitions/icons"
+        },
+        "feedback": {
+            "$ref": "#/definitions/icons"
+        },
+        "group-by-ref-type": {
+            "$ref": "#/definitions/icons"
+        },
+        "ungroup-by-ref-type": {
+            "$ref": "#/definitions/icons"
+        },
+        "account": {
+            "$ref": "#/definitions/icons"
+        },
+        "bell-dot": {
+            "$ref": "#/definitions/icons"
+        },
+        "debug-console": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for the debug console open action. $(debug-console)"
+        },
+        "library": {
+            "$ref": "#/definitions/icons"
+        },
+        "output": {
+            "$ref": "#/definitions/icons"
+        },
+        "run-all": {
+            "$ref": "#/definitions/icons"
+        },
+        "sync-ignored": {
+            "$ref": "#/definitions/icons"
+        },
+        "pinned": {
+            "$ref": "#/definitions/icons"
+        },
+        "github-inverted": {
+            "$ref": "#/definitions/icons"
+        },
+        "debug-alt": {
+            "$ref": "#/definitions/icons"
+        },
+        "server-process": {
+            "$ref": "#/definitions/icons"
+        },
+        "server-environment": {
+            "$ref": "#/definitions/icons"
+        },
+        "pass": {
+            "$ref": "#/definitions/icons"
+        },
+        "stop-circle": {
+            "$ref": "#/definitions/icons"
+        },
+        "play-circle": {
+            "$ref": "#/definitions/icons"
+        },
+        "record": {
+            "$ref": "#/definitions/icons"
+        },
+        "debug-alt-small": {
+            "$ref": "#/definitions/icons"
+        },
+        "vm-connect": {
+            "$ref": "#/definitions/icons"
+        },
+        "cloud": {
+            "$ref": "#/definitions/icons"
+        },
+        "merge": {
+            "$ref": "#/definitions/icons"
+        },
+        "export": {
+            "$ref": "#/definitions/icons"
+        },
+        "graph-left": {
+            "$ref": "#/definitions/icons"
+        },
+        "magnet": {
+            "$ref": "#/definitions/icons"
+        },
+        "notebook": {
+            "$ref": "#/definitions/icons"
+        },
+        "redo": {
+            "$ref": "#/definitions/icons"
+        },
+        "check-all": {
+            "$ref": "#/definitions/icons"
+        },
+        "pinned-dirty": {
+            "$ref": "#/definitions/icons"
+        },
+        "pass-filled": {
+            "$ref": "#/definitions/icons"
+        },
+        "circle-large-filled": {
+            "$ref": "#/definitions/icons"
+        },
+        "circle-large": {
+            "$ref": "#/definitions/icons"
+        },
+        "circle-large-outline": {
+            "$ref": "#/definitions/icons"
+        },
+        "combine": {
+            "$ref": "#/definitions/icons"
+        },
+        "gather": {
+            "$ref": "#/definitions/icons"
+        },
+        "table": {
+            "$ref": "#/definitions/icons"
+        },
+        "variable-group": {
+            "$ref": "#/definitions/icons"
+        },
+        "type-hierarchy": {
+            "$ref": "#/definitions/icons"
+        },
+        "type-hierarchy-sub": {
+            "$ref": "#/definitions/icons"
+        },
+        "type-hierarchy-super": {
+            "$ref": "#/definitions/icons"
+        },
+        "git-pull-request-create": {
+            "$ref": "#/definitions/icons"
+        },
+        "run-above": {
+            "$ref": "#/definitions/icons"
+        },
+        "run-below": {
+            "$ref": "#/definitions/icons"
+        },
+        "notebook-template": {
+            "$ref": "#/definitions/icons"
+        },
+        "debug-rerun": {
+            "$ref": "#/definitions/icons"
+        },
+        "workspace-trusted": {
+            "$ref": "#/definitions/icons"
+        },
+        "workspace-untrusted": {
+            "$ref": "#/definitions/icons"
+        },
+        "workspace-unspecified": {
+            "$ref": "#/definitions/icons"
+        },
+        "terminal-cmd": {
+            "$ref": "#/definitions/icons"
+        },
+        "terminal-debian": {
+            "$ref": "#/definitions/icons"
+        },
+        "terminal-linux": {
+            "$ref": "#/definitions/icons"
+        },
+        "terminal-powershell": {
+            "$ref": "#/definitions/icons"
+        },
+        "terminal-tmux": {
+            "$ref": "#/definitions/icons"
+        },
+        "terminal-ubuntu": {
+            "$ref": "#/definitions/icons"
+        },
+        "terminal-bash": {
+            "$ref": "#/definitions/icons"
+        },
+        "arrow-swap": {
+            "$ref": "#/definitions/icons"
+        },
+        "copy": {
+            "$ref": "#/definitions/icons"
+        },
+        "person-add": {
+            "$ref": "#/definitions/icons"
+        },
+        "filter-filled": {
+            "$ref": "#/definitions/icons"
+        },
+        "wand": {
+            "$ref": "#/definitions/icons"
+        },
+        "debug-line-by-line": {
+            "$ref": "#/definitions/icons"
+        },
+        "inspect": {
+            "$ref": "#/definitions/icons"
+        },
+        "layers": {
+            "$ref": "#/definitions/icons"
+        },
+        "layers-dot": {
+            "$ref": "#/definitions/icons"
+        },
+        "layers-active": {
+            "$ref": "#/definitions/icons"
+        },
+        "compass": {
+            "$ref": "#/definitions/icons"
+        },
+        "compass-dot": {
+            "$ref": "#/definitions/icons"
+        },
+        "compass-active": {
+            "$ref": "#/definitions/icons"
+        },
+        "azure": {
+            "$ref": "#/definitions/icons"
+        },
+        "issue-draft": {
+            "$ref": "#/definitions/icons"
+        },
+        "git-pull-request-closed": {
+            "$ref": "#/definitions/icons"
+        },
+        "git-pull-request-draft": {
+            "$ref": "#/definitions/icons"
+        },
+        "debug-all": {
+            "$ref": "#/definitions/icons"
+        },
+        "debug-coverage": {
+            "$ref": "#/definitions/icons"
+        },
+        "run-errors": {
+            "$ref": "#/definitions/icons"
+        },
+        "folder-library": {
+            "$ref": "#/definitions/icons"
+        },
+        "debug-continue-small": {
+            "$ref": "#/definitions/icons"
+        },
+        "beaker-stop": {
+            "$ref": "#/definitions/icons"
+        },
+        "graph-line": {
+            "$ref": "#/definitions/icons"
+        },
+        "graph-scatter": {
+            "$ref": "#/definitions/icons"
+        },
+        "pie-chart": {
+            "$ref": "#/definitions/icons"
+        },
+        "bracket-dot": {
+            "$ref": "#/definitions/icons"
+        },
+        "bracket-error": {
+            "$ref": "#/definitions/icons"
+        },
+        "lock-small": {
+            "$ref": "#/definitions/icons"
+        },
+        "azure-devops": {
+            "$ref": "#/definitions/icons"
+        },
+        "verified-filled": {
+            "$ref": "#/definitions/icons"
+        },
+        "newline": {
+            "$ref": "#/definitions/icons"
+        },
+        "layout": {
+            "$ref": "#/definitions/icons"
+        },
+        "layout-activitybar-left": {
+            "$ref": "#/definitions/icons"
+        },
+        "layout-activitybar-right": {
+            "$ref": "#/definitions/icons"
+        },
+        "layout-panel-left": {
+            "$ref": "#/definitions/icons"
+        },
+        "layout-panel-center": {
+            "$ref": "#/definitions/icons"
+        },
+        "layout-panel-justify": {
+            "$ref": "#/definitions/icons"
+        },
+        "layout-panel-right": {
+            "$ref": "#/definitions/icons"
+        },
+        "layout-panel": {
+            "$ref": "#/definitions/icons"
+        },
+        "layout-sidebar-left": {
+            "$ref": "#/definitions/icons"
+        },
+        "layout-sidebar-right": {
+            "$ref": "#/definitions/icons"
+        },
+        "layout-statusbar": {
+            "$ref": "#/definitions/icons"
+        },
+        "layout-menubar": {
+            "$ref": "#/definitions/icons"
+        },
+        "layout-centered": {
+            "$ref": "#/definitions/icons"
+        },
+        "layout-sidebar-right-off": {
+            "$ref": "#/definitions/icons"
+        },
+        "layout-panel-off": {
+            "$ref": "#/definitions/icons"
+        },
+        "layout-sidebar-left-off": {
+            "$ref": "#/definitions/icons"
+        },
+        "target": {
+            "$ref": "#/definitions/icons"
+        },
+        "indent": {
+            "$ref": "#/definitions/icons"
+        },
+        "record-small": {
+            "$ref": "#/definitions/icons"
+        },
+        "error-small": {
+            "$ref": "#/definitions/icons"
+        },
+        "arrow-circle-down": {
+            "$ref": "#/definitions/icons"
+        },
+        "arrow-circle-left": {
+            "$ref": "#/definitions/icons"
+        },
+        "arrow-circle-right": {
+            "$ref": "#/definitions/icons"
+        },
+        "arrow-circle-up": {
+            "$ref": "#/definitions/icons"
+        },
+        "heart-filled": {
+            "$ref": "#/definitions/icons"
+        },
+        "map": {
+            "$ref": "#/definitions/icons"
+        },
+        "map-filled": {
+            "$ref": "#/definitions/icons"
+        },
+        "circle-small": {
+            "$ref": "#/definitions/icons"
+        },
+        "bell-slash": {
+            "$ref": "#/definitions/icons"
+        },
+        "bell-slash-dot": {
+            "$ref": "#/definitions/icons"
+        },
+        "comment-unresolved": {
+            "$ref": "#/definitions/icons"
+        },
+        "git-pull-request-go-to-changes": {
+            "$ref": "#/definitions/icons"
+        },
+        "git-pull-request-new-changes": {
+            "$ref": "#/definitions/icons"
+        },
+        "search-fuzzy": {
+            "$ref": "#/definitions/icons"
+        },
+        "comment-draft": {
+            "$ref": "#/definitions/icons"
+        },
+        "send": {
+            "$ref": "#/definitions/icons"
+        },
+        "sparkle": {
+            "$ref": "#/definitions/icons"
+        },
+        "insert": {
+            "$ref": "#/definitions/icons"
+        },
+        "dialog-error": {
+            "$ref": "#/definitions/icons"
+        },
+        "dialog-warning": {
+            "$ref": "#/definitions/icons"
+        },
+        "dialog-info": {
+            "$ref": "#/definitions/icons"
+        },
+        "dialog-close": {
+            "$ref": "#/definitions/icons"
+        },
+        "tree-item-expanded": {
+            "$ref": "#/definitions/icons"
+        },
+        "tree-filter-on-type-on": {
+            "$ref": "#/definitions/icons"
+        },
+        "tree-filter-on-type-off": {
+            "$ref": "#/definitions/icons"
+        },
+        "tree-filter-clear": {
+            "$ref": "#/definitions/icons"
+        },
+        "tree-item-loading": {
+            "$ref": "#/definitions/icons"
+        },
+        "menu-selection": {
+            "$ref": "#/definitions/icons"
+        },
+        "menu-submenu": {
+            "$ref": "#/definitions/icons"
+        },
+        "menubar-more": {
+            "$ref": "#/definitions/icons"
+        },
+        "scrollbar-button-left": {
+            "$ref": "#/definitions/icons"
+        },
+        "scrollbar-button-right": {
+            "$ref": "#/definitions/icons"
+        },
+        "scrollbar-button-up": {
+            "$ref": "#/definitions/icons"
+        },
+        "scrollbar-button-down": {
+            "$ref": "#/definitions/icons"
+        },
+        "toolbar-more": {
+            "$ref": "#/definitions/icons"
+        },
+        "quick-input-back": {
+            "$ref": "#/definitions/icons"
+        },
+        "widget-close": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for the close action in widgets.: $(widget-close)"
+        },
+        "goto-previous-location": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for goto previous editor location.: $(goto-previous-location)"
+        },
+        "goto-next-location": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for goto next editor location.: $(goto-next-location)"
+        },
+        "diff-review-insert": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for 'Insert' in diff review.: $(diff-review-insert)"
+        },
+        "diff-review-remove": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for 'Remove' in diff review.: $(diff-review-remove)"
+        },
+        "diff-review-close": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for 'Close' in diff review.: $(diff-review-close)"
+        },
+        "parameter-hints-next": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for show next parameter hint.: $(parameter-hints-next)"
+        },
+        "parameter-hints-previous": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for show previous parameter hint.: $(parameter-hints-previous)"
+        },
+        "suggest-more-info": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for more information in the suggest widget.: $(suggest-more-info)"
+        },
+        "diff-insert": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Line decoration for inserts in the diff editor.: $(diff-insert)"
+        },
+        "diff-remove": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Line decoration for removals in the diff editor.: $(diff-remove)"
+        },
+        "find-selection": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for 'Find in Selection' in the editor find widget.: $(find-selection)"
+        },
+        "find-collapsed": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon to indicate that the editor find widget is collapsed.: $(find-collapsed)"
+        },
+        "find-expanded": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon to indicate that the editor find widget is expanded.: $(find-expanded)"
+        },
+        "find-replace": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for 'Replace' in the editor find widget.: $(find-replace)"
+        },
+        "find-replace-all": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for 'Replace All' in the editor find widget.: $(find-replace-all)"
+        },
+        "find-previous-match": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for 'Find Previous' in the editor find widget.: $(find-previous-match)"
+        },
+        "find-next-match": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for 'Find Next' in the editor find widget.: $(find-next-match)"
+        },
+        "folding-expanded": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for expanded ranges in the editor glyph margin.: $(folding-expanded)"
+        },
+        "folding-collapsed": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for collapsed ranges in the editor glyph margin.: $(folding-collapsed)"
+        },
+        "folding-manual-collapsed": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for manually collapsed ranges in the editor glyph margin.: $(folding-manual-collapsed)"
+        },
+        "folding-manual-expanded": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for manually expanded ranges in the editor glyph margin.: $(folding-manual-expanded)"
+        },
+        "marker-navigation-next": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for goto next marker.: $(marker-navigation-next)"
+        },
+        "marker-navigation-previous": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for goto previous marker.: $(marker-navigation-previous)"
+        },
+        "inline-suggestion-hints-next": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for show next parameter hint.: $(inline-suggestion-hints-next)"
+        },
+        "inline-suggestion-hints-previous": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for show previous parameter hint.: $(inline-suggestion-hints-previous)"
+        },
+        "extensions-warning-message": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon shown with a warning message in the extensions editor.: $(extensions-warning-message)"
+        },
+        "notifications-clear": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for the clear action in notifications.: $(notifications-clear)"
+        },
+        "notifications-clear-all": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for the clear all action in notifications.: $(notifications-clear-all)"
+        },
+        "notifications-hide": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for the hide action in notifications.: $(notifications-hide)"
+        },
+        "notifications-expand": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for the expand action in notifications.: $(notifications-expand)"
+        },
+        "notifications-collapse": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for the collapse action in notifications.: $(notifications-collapse)"
+        },
+        "notifications-configure": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for the configure action in notifications.: $(notifications-configure)"
+        },
+        "notifications-do-not-disturb": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for the mute all action in notifications.: $(notifications-do-not-disturb)"
+        },
+        "default-view-icon": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Default view icon.: $(default-view-icon)"
+        },
+        "review-comment-collapse": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon to collapse a review comment.: $(review-comment-collapse)"
+        },
+        "debug-console-view-icon": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "View icon of the debug console view.: $(debug-console-view-icon)"
+        },
+        "run-view-icon": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "View icon of the run view.: $(run-view-icon)"
+        },
+        "variables-view-icon": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "View icon of the variables view.: $(variables-view-icon)"
+        },
+        "watch-view-icon": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "View icon of the watch view.: $(watch-view-icon)"
+        },
+        "callstack-view-icon": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "View icon of the call stack view.: $(callstack-view-icon)"
+        },
+        "breakpoints-view-icon": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "View icon of the breakpoints view.: $(breakpoints-view-icon)"
+        },
+        "loaded-scripts-view-icon": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "View icon of the loaded scripts view.: $(loaded-scripts-view-icon)"
+        },
+        "debug-gripper": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for the debug bar gripper.: $(debug-gripper)"
+        },
+        "debug-run": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for the run or debug action.: $(debug-run)"
+        },
+        "debug-configure": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for the debug configure action.: $(debug-configure)"
+        },
+        "debug-remove-config": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for removing debug configurations.: $(debug-remove-config)"
+        },
+        "debug-collapse-all": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for the collapse all action in the debug views.: $(debug-collapse-all)"
+        },
+        "callstack-view-session": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for the session icon in the call stack view.: $(callstack-view-session)"
+        },
+        "debug-console-clear-all": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for the clear all action in the debug console.: $(debug-console-clear-all)"
+        },
+        "watch-expressions-remove-all": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for the Remove All action in the watch view.: $(watch-expressions-remove-all)"
+        },
+        "watch-expression-remove": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for the Remove action in the watch view.: $(watch-expression-remove)"
+        },
+        "watch-expressions-add": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for the add action in the watch view.: $(watch-expressions-add)"
+        },
+        "watch-expressions-add-function-breakpoint": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for the add function breakpoint action in the watch view.: $(watch-expressions-add-function-breakpoint)"
+        },
+        "breakpoints-remove-all": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for the Remove All action in the breakpoints view.: $(breakpoints-remove-all)"
+        },
+        "breakpoints-activate": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for the activate action in the breakpoints view.: $(breakpoints-activate)"
+        },
+        "debug-console-evaluation-input": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for the debug evaluation input marker.: $(debug-console-evaluation-input)"
+        },
+        "debug-console-evaluation-prompt": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for the debug evaluation prompt.: $(debug-console-evaluation-prompt)"
+        },
+        "debug-inspect-memory": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for the inspect memory action.: $(debug-inspect-memory)"
+        },
+        "edit-sessions-view-icon": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "View icon of the cloud changes view.: $(edit-sessions-view-icon)"
+        },
+        "extensions-view-icon": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "View icon of the extensions view.: $(extensions-view-icon)"
+        },
+        "extensions-manage": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for the 'Manage' action in the extensions view.: $(extensions-manage)"
+        },
+        "extensions-clear-search-results": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for the 'Clear Search Result' action in the extensions view.: $(extensions-clear-search-results)"
+        },
+        "extensions-refresh": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for the 'Refresh' action in the extensions view.: $(extensions-refresh)"
+        },
+        "extensions-filter": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for the 'Filter' action in the extensions view.: $(extensions-filter)"
+        },
+        "extensions-install-local-in-remote": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for the 'Install Local Extension in Remote' action in the extensions view.: $(extensions-install-local-in-remote)"
+        },
+        "extensions-install-workspace-recommended": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for the 'Install Workspace Recommended Extensions' action in the extensions view.: $(extensions-install-workspace-recommended)"
+        },
+        "extensions-configure-recommended": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for the 'Configure Recommended Extensions' action in the extensions view.: $(extensions-configure-recommended)"
+        },
+        "extensions-sync-enabled": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon to indicate that an extension is synced.: $(extensions-sync-enabled)"
+        },
+        "extensions-sync-ignored": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon to indicate that an extension is ignored when syncing.: $(extensions-sync-ignored)"
+        },
+        "extensions-remote": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon to indicate that an extension is remote in the extensions view and editor.: $(extensions-remote)"
+        },
+        "extensions-install-count": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon shown along with the install count in the extensions view and editor.: $(extensions-install-count)"
+        },
+        "extensions-rating": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon shown along with the rating in the extensions view and editor.: $(extensions-rating)"
+        },
+        "extensions-verified-publisher": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon used for the verified extension publisher in the extensions view and editor.: $(extensions-verified-publisher)"
+        },
+        "extensions-pre-release": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon shown for extensions having pre-release versions in extensions view and editor.: $(extensions-pre-release)"
+        },
+        "extensions-sponsor": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon used for sponsoring extensions in the extensions view and editor.: $(extensions-sponsor)"
+        },
+        "extensions-star-full": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Full star icon used for the rating in the extensions editor.: $(extensions-star-full)"
+        },
+        "extensions-star-half": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Half star icon used for the rating in the extensions editor.: $(extensions-star-half)"
+        },
+        "extensions-star-empty": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Empty star icon used for the rating in the extensions editor.: $(extensions-star-empty)"
+        },
+        "extensions-error-message": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon shown with a error message in the extensions editor.: $(extensions-error-message)"
+        },
+        "extensions-info-message": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon shown with an info message in the extensions editor.: $(extensions-info-message)"
+        },
+        "extension-workspace-trust": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon shown with a workspace trust message in the extension editor.: $(extension-workspace-trust)"
+        },
+        "extension-activation-time": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon shown with a activation time message in the extension editor.: $(extension-activation-time)"
+        },
+        "localHistory-icon": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for a local history entry in the timeline view.: $(localHistory-icon)"
+        },
+        "localHistory-restore": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for restoring contents of a local history entry.: $(localHistory-restore)"
+        },
+        "notebook-kernel-select": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Configure icon to select a kernel in notebook editors.: $(notebook-kernel-select)"
+        },
+        "notebook-execute": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon to execute in notebook editors.: $(notebook-execute)"
+        },
+        "notebook-execute-above": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon to execute above cells in notebook editors.: $(notebook-execute-above)"
+        },
+        "notebook-execute-below": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon to execute below cells in notebook editors.: $(notebook-execute-below)"
+        },
+        "notebook-stop": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon to stop an execution in notebook editors.: $(notebook-stop)"
+        },
+        "notebook-delete-cell": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon to delete a cell in notebook editors.: $(notebook-delete-cell)"
+        },
+        "notebook-execute-all": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon to execute all cells in notebook editors.: $(notebook-execute-all)"
+        },
+        "notebook-edit": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon to edit a cell in notebook editors.: $(notebook-edit)"
+        },
+        "notebook-stop-edit": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon to stop editing a cell in notebook editors.: $(notebook-stop-edit)"
+        },
+        "notebook-move-up": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon to move up a cell in notebook editors.: $(notebook-move-up)"
+        },
+        "notebook-move-down": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon to move down a cell in notebook editors.: $(notebook-move-down)"
+        },
+        "notebook-clear": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon to clear cell outputs in notebook editors.: $(notebook-clear)"
+        },
+        "notebook-split-cell": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon to split a cell in notebook editors.: $(notebook-split-cell)"
+        },
+        "notebook-state-success": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon to indicate a success state in notebook editors.: $(notebook-state-success)"
+        },
+        "notebook-state-error": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon to indicate an error state in notebook editors.: $(notebook-state-error)"
+        },
+        "notebook-state-pending": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon to indicate a pending state in notebook editors.: $(notebook-state-pending)"
+        },
+        "notebook-state-executing": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon to indicate an executing state in notebook editors.: $(notebook-state-executing)"
+        },
+        "notebook-collapsed": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon to annotate a collapsed section in notebook editors.: $(notebook-collapsed)"
+        },
+        "notebook-expanded": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon to annotate an expanded section in notebook editors.: $(notebook-expanded)"
+        },
+        "notebook-open-as-text": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon to open the notebook in a text editor.: $(notebook-open-as-text)"
+        },
+        "notebook-revert": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon to revert in notebook editors.: $(notebook-revert)"
+        },
+        "notebook-render-output": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon to render output in diff editor.: $(notebook-render-output)"
+        },
+        "notebook-mimetype": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for a mime type in notebook editors.: $(notebook-mimetype)"
+        },
+        "notebook-diff-editor-previous-change": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for the previous change action in the diff editor.: $(notebook-diff-editor-previous-change)"
+        },
+        "notebook-diff-editor-next-change": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for the next change action in the diff editor.: $(notebook-diff-editor-next-change)"
+        },
+        "find-filter": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for Find Filter in find widget.: $(find-filter)"
+        },
+        "settings-folder-dropdown": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for the folder dropdown button in the split JSON Settings editor.: $(settings-folder-dropdown)"
+        },
+        "settings-more-action": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for the 'more actions' action in the Settings UI.: $(settings-more-action)"
+        },
+        "keybindings-record-keys": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for the 'record keys' action in the keybinding UI.: $(keybindings-record-keys)"
+        },
+        "keybindings-sort": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for the 'sort by precedence' toggle in the keybinding UI.: $(keybindings-sort)"
+        },
+        "keybindings-edit": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for the edit action in the keybinding UI.: $(keybindings-edit)"
+        },
+        "keybindings-add": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for the add action in the keybinding UI.: $(keybindings-add)"
+        },
+        "settings-edit": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for the edit action in the Settings UI.: $(settings-edit)"
+        },
+        "settings-remove": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for the remove action in the Settings UI.: $(settings-remove)"
+        },
+        "settings-discard": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for the discard action in the Settings UI.: $(settings-discard)"
+        },
+        "preferences-clear-input": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for clear input in the Settings and keybinding UI.: $(preferences-clear-input)"
+        },
+        "preferences-filter": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for the button that suggests filters for the Settings UI.: $(preferences-filter)"
+        },
+        "preferences-open-settings": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for open settings commands.: $(preferences-open-settings)"
+        },
+        "remote-explorer-get-started": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Getting started icon in the remote explorer view.: $(remote-explorer-get-started)"
+        },
+        "remote-explorer-documentation": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Documentation icon in the remote explorer view.: $(remote-explorer-documentation)"
+        },
+        "remote-explorer-feedback": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Feedback icon in the remote explorer view.: $(remote-explorer-feedback)"
+        },
+        "remote-explorer-review-issues": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Review issue icon in the remote explorer view.: $(remote-explorer-review-issues)"
+        },
+        "remote-explorer-report-issues": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Report issue icon in the remote explorer view.: $(remote-explorer-report-issues)"
+        },
+        "remote-explorer-view-icon": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "View icon of the remote explorer view.: $(remote-explorer-view-icon)"
+        },
+        "ports-view-icon": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "View icon of the remote ports view.: $(ports-view-icon)"
+        },
+        "private-ports-view-icon": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon representing a private remote port.: $(private-ports-view-icon)"
+        },
+        "ports-forward-icon": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for the forward action.: $(ports-forward-icon)"
+        },
+        "ports-stop-forward-icon": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for the stop forwarding action.: $(ports-stop-forward-icon)"
+        },
+        "ports-open-browser-icon": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for the open browser action.: $(ports-open-browser-icon)"
+        },
+        "ports-open-preview-icon": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for the open preview action.: $(ports-open-preview-icon)"
+        },
+        "ports-copy-address-icon": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for the copy local address action.: $(ports-copy-address-icon)"
+        },
+        "ports-label-icon": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for the label port action.: $(ports-label-icon)"
+        },
+        "ports-forwarded-without-process-icon": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for forwarded ports that don't have a running process.: $(ports-forwarded-without-process-icon)"
+        },
+        "ports-forwarded-with-process-icon": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for forwarded ports that do have a running process.: $(ports-forwarded-with-process-icon)"
+        },
+        "search-details": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon to make search details visible.: $(search-details)"
+        },
+        "search-show-context": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for toggle the context in the search editor.: $(search-show-context)"
+        },
+        "search-hide-replace": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon to collapse the replace section in the search view.: $(search-hide-replace)"
+        },
+        "search-show-replace": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon to expand the replace section in the search view.: $(search-show-replace)"
+        },
+        "search-replace-all": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for replace all in the search view.: $(search-replace-all)"
+        },
+        "search-replace": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for replace in the search view.: $(search-replace)"
+        },
+        "search-remove": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon to remove a search result.: $(search-remove)"
+        },
+        "search-refresh": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for refresh in the search view.: $(search-refresh)"
+        },
+        "search-collapse-results": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for collapse results in the search view.: $(search-collapse-results)"
+        },
+        "search-expand-results": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for expand results in the search view.: $(search-expand-results)"
+        },
+        "search-tree": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for viewing results as a tree in the search view.: $(search-tree)"
+        },
+        "search-list": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for viewing results as a list in the search view.: $(search-list)"
+        },
+        "search-clear-results": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for clear results in the search view.: $(search-clear-results)"
+        },
+        "search-view-icon": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "View icon of the search view.: $(search-view-icon)"
+        },
+        "search-new-editor": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for the action to open a new search editor.: $(search-new-editor)"
+        },
+        "terminal-view-icon": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "View icon of the terminal view.: $(terminal-view-icon)"
+        },
+        "terminal-rename": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for rename in the terminal quick menu.: $(terminal-rename)"
+        },
+        "terminal-kill": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for killing a terminal instance.: $(terminal-kill)"
+        },
+        "terminal-new": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for creating a new terminal instance.: $(terminal-new)"
+        },
+        "terminal-configure-profile": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for creating a new terminal profile.: $(terminal-configure-profile)"
+        },
+        "terminal-decoration-mark": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for a terminal decoration mark.: $(terminal-decoration-mark)"
+        },
+        "terminal-decoration-incomplete": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for a terminal decoration of a command that was incomplete.: $(terminal-decoration-incomplete)"
+        },
+        "terminal-decoration-error": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for a terminal decoration of a command that errored.: $(terminal-decoration-error)"
+        },
+        "terminal-decoration-success": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for a terminal decoration of a command that was successful.: $(terminal-decoration-success)"
+        },
+        "terminal-command-history-remove": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for removing a terminal command from command history.: $(terminal-command-history-remove)"
+        },
+        "terminal-command-history-output": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for viewing output of a terminal command.: $(terminal-command-history-output)"
+        },
+        "terminal-command-history-fuzzy-search": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for toggling fuzzy search of command history.: $(terminal-command-history-fuzzy-search)"
+        },
+        "test-view-icon": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "View icon of the test view.: $(test-view-icon)"
+        },
+        "test-results-icon": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icons for test results.: $(test-results-icon)"
+        },
+        "testing-run-icon": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon of the \"run test\" action.: $(testing-run-icon)"
+        },
+        "testing-run-all-icon": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon of the \"run all tests\" action.: $(testing-run-all-icon)"
+        },
+        "testing-debug-all-icon": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon of the \"debug all tests\" action.: $(testing-debug-all-icon)"
+        },
+        "testing-debug-icon": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon of the \"debug test\" action.: $(testing-debug-icon)"
+        },
+        "testing-cancel-icon": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon to cancel ongoing test runs.: $(testing-cancel-icon)"
+        },
+        "testing-filter": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for the 'Filter' action in the testing view.: $(testing-filter)"
+        },
+        "testing-hidden": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon shown beside hidden tests, when they've been shown.: $(testing-hidden)"
+        },
+        "testing-show-as-list-icon": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon shown when the test explorer is disabled as a tree.: $(testing-show-as-list-icon)"
+        },
+        "testing-update-profiles": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon shown to update test profiles.: $(testing-update-profiles)"
+        },
+        "testing-refresh-tests": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon on the button to refresh tests.: $(testing-refresh-tests)"
+        },
+        "testing-turn-continuous-run-on": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon to turn continuous test runs on.: $(testing-turn-continuous-run-on)"
+        },
+        "testing-turn-continuous-run-off": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon to turn continuous test runs off.: $(testing-turn-continuous-run-off)"
+        },
+        "testing-continuous-is-on": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon when continuous run is on for a test ite,.: $(testing-continuous-is-on)"
+        },
+        "testing-cancel-refresh-tests": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon on the button to cancel refreshing tests.: $(testing-cancel-refresh-tests)"
+        },
+        "testing-error-icon": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon shown for tests that have an error.: $(testing-error-icon)"
+        },
+        "testing-failed-icon": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon shown for tests that failed.: $(testing-failed-icon)"
+        },
+        "testing-passed-icon": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon shown for tests that passed.: $(testing-passed-icon)"
+        },
+        "testing-queued-icon": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon shown for tests that are queued.: $(testing-queued-icon)"
+        },
+        "testing-skipped-icon": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon shown for tests that are skipped.: $(testing-skipped-icon)"
+        },
+        "testing-unset-icon": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon shown for tests that are in an unset state.: $(testing-unset-icon)"
+        },
+        "getting-started-step-unchecked": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Used to represent walkthrough steps which have not been completed: $(getting-started-step-unchecked)"
+        },
+        "getting-started-step-checked": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Used to represent walkthrough steps which have been completed: $(getting-started-step-checked)"
+        },
+        "callhierarchy-incoming": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for incoming calls in the call hierarchy view.: $(callhierarchy-incoming)"
+        },
+        "callhierarchy-outgoing": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for outgoing calls in the call hierarchy view.: $(callhierarchy-outgoing)"
+        },
+        "markers-view-multi-line-expanded": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon indicating that multiple lines are shown in the markers view.: $(markers-view-multi-line-expanded)"
+        },
+        "markers-view-multi-line-collapsed": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon indicating that multiple lines are collapsed in the markers view.: $(markers-view-multi-line-collapsed)"
+        },
+        "tasks-list-configure": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Configuration icon in the tasks selection list.: $(tasks-list-configure)"
+        },
+        "tasks-remove": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for remove in the tasks selection list.: $(tasks-remove)"
+        },
+        "auxiliarybar-right-layout-icon": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon to toggle the auxiliary bar off in its right position.: $(auxiliarybar-right-layout-icon)"
+        },
+        "auxiliarybar-right-off-layout-icon": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon to toggle the auxiliary bar on in its right position.: $(auxiliarybar-right-off-layout-icon)"
+        },
+        "auxiliarybar-left-layout-icon": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon to toggle the auxiliary bar in its left position.: $(auxiliarybar-left-layout-icon)"
+        },
+        "auxiliarybar-left-off-layout-icon": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon to toggle the auxiliary bar on in its left position.: $(auxiliarybar-left-off-layout-icon)"
+        },
+        "view-pane-container-expanded": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for an expanded view pane container.: $(view-pane-container-expanded)"
+        },
+        "view-pane-container-collapsed": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for a collapsed view pane container.: $(view-pane-container-collapsed)"
+        },
+        "breadcrumb-separator": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for the separator in the breadcrumbs.: $(breadcrumb-separator)"
+        },
+        "getting-started-setup": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon used for the setup category of welcome page: $(getting-started-setup)"
+        },
+        "getting-started-beginner": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon used for the beginner category of welcome page: $(getting-started-beginner)"
+        },
+        "getting-started-intermediate": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon used for the intermediate category of welcome page: $(getting-started-intermediate)"
+        },
+        "theme-selection-manage-extension": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for the 'Manage' action in the theme selection quick pick.: $(theme-selection-manage-extension)"
+        },
+        "defaultProfile-icon": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for Default Profile.: $(defaultProfile-icon)"
+        },
+        "settings-sync-view-icon": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "View icon of the Settings Sync view.: $(settings-sync-view-icon)"
+        },
+        "timeline-refresh": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for the refresh timeline action.: $(timeline-refresh)"
+        },
+        "timeline-pin": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for the pin timeline action.: $(timeline-pin)"
+        },
+        "timeline-unpin": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for the unpin timeline action.: $(timeline-unpin)"
+        },
+        "panel-maximize": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon to maximize a panel.: $(panel-maximize)"
+        },
+        "panel-restore": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon to restore a panel.: $(panel-restore)"
+        },
+        "panel-close": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon to close a panel.: $(panel-close)"
+        },
+        "panel-layout-icon": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon to toggle the panel off when it is on.: $(panel-layout-icon)"
+        },
+        "panel-layout-icon-off": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon to toggle the panel on when it is off.: $(panel-layout-icon-off)"
+        },
+        "menuBar": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Represents the menu bar: $(menuBar)"
+        },
+        "activity-bar-left": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Represents the activity bar in the left position: $(activity-bar-left)"
+        },
+        "activity-bar-right": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Represents the activity bar in the right position: $(activity-bar-right)"
+        },
+        "panel-left": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Represents a side bar in the left position: $(panel-left)"
+        },
+        "panel-left-off": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Represents a side bar in the left position toggled off: $(panel-left-off)"
+        },
+        "panel-right": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Represents side bar in the right position: $(panel-right)"
+        },
+        "panel-right-off": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Represents side bar in the right position toggled off: $(panel-right-off)"
+        },
+        "panel-bottom": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Represents the bottom panel: $(panel-bottom)"
+        },
+        "statusBar": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Represents the status bar: $(statusBar)"
+        },
+        "panel-align-left": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Represents the bottom panel alignment set to the left: $(panel-align-left)"
+        },
+        "panel-align-right": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Represents the bottom panel alignment set to the right: $(panel-align-right)"
+        },
+        "panel-align-center": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Represents the bottom panel alignment set to the center: $(panel-align-center)"
+        },
+        "panel-align-justify": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Represents the bottom panel alignment set to justified: $(panel-align-justify)"
+        },
+        "fullscreen": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Represents full screen: $(fullscreen)"
+        },
+        "centerLayoutIcon": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Represents centered layout mode: $(centerLayoutIcon)"
+        },
+        "zenMode": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Represents zen mode: $(zenMode)"
+        },
+        "configure-layout-icon": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon represents workbench layout configuration.: $(configure-layout-icon)"
+        },
+        "settings-view-bar-icon": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Settings icon in the view bar.: $(settings-view-bar-icon)"
+        },
+        "accounts-view-bar-icon": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Accounts icon in the view bar.: $(accounts-view-bar-icon)"
+        },
+        "diff-editor-previous-change": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for the previous change action in the diff editor.: $(diff-editor-previous-change)"
+        },
+        "diff-editor-next-change": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for the next change action in the diff editor.: $(diff-editor-next-change)"
+        },
+        "diff-editor-toggle-whitespace": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for the toggle whitespace action in the diff editor.: $(diff-editor-toggle-whitespace)"
+        },
+        "comments-view-icon": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "View icon of the comments view.: $(comments-view-icon)"
+        },
+        "refactor-preview-view-icon": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "View icon of the refactor preview view.: $(refactor-preview-view-icon)"
+        },
+        "explorer-view-icon": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "View icon of the explorer view.: $(explorer-view-icon)"
+        },
+        "open-editors-view-icon": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "View icon of the open editors view.: $(open-editors-view-icon)"
+        },
+        "markers-view-icon": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "View icon of the markers view.: $(markers-view-icon)"
+        },
+        "outline-view-icon": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "View icon of the outline view.: $(outline-view-icon)"
+        },
+        "output-view-icon": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "View icon of the output view.: $(output-view-icon)"
+        },
+        "source-control-view-icon": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "View icon of the Source Control view.: $(source-control-view-icon)"
+        },
+        "timeline-view-icon": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "View icon of the timeline view.: $(timeline-view-icon)"
+        },
+        "timeline-open": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for the open timeline action.: $(timeline-open)"
+        },
+        "timeline-filter": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for the filter timeline action.: $(timeline-filter)"
+        },
+        "workspace-trust-banner": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for workspace trust ion the banner.: $(workspace-trust-banner)"
+        },
+        "workspace-trust-editor-check": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for the checkmark in the workspace trust editor.: $(workspace-trust-editor-check)"
+        },
+        "workspace-trust-editor-cross": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for the cross in the workspace trust editor.: $(workspace-trust-editor-cross)"
+        },
+        "workspace-trust-editor-folder-picker": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for the pick folder icon in the workspace trust editor.: $(workspace-trust-editor-folder-picker)"
+        },
+        "workspace-trust-editor-edit-folder": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for the edit folder icon in the workspace trust editor.: $(workspace-trust-editor-edit-folder)"
+        },
+        "workspace-trust-editor-remove-folder": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Icon for the remove folder icon in the workspace trust editor.: $(workspace-trust-editor-remove-folder)"
+        }
+    }
+}
