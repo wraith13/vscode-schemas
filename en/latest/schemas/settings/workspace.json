@@ -925,73 +925,7 @@
             "scope": 3,
             "restricted": false
         },
-        "accessibility.verbosity.terminal": {
-            "description": "Provide information about how to access the terminal accessibility help menu when the terminal is focused",
-            "type": "boolean",
-            "default": true,
-            "tags": [
-                "accessibility"
-            ],
-            "defaultDefaultValue": true,
-            "scope": 3,
-            "restricted": false
-        },
-        "accessibility.verbosity.diffEditor": {
-            "description": "Provide information about how to navigate changes in the diff editor when it is focused",
-            "type": "boolean",
-            "default": true,
-            "tags": [
-                "accessibility"
-            ],
-            "defaultDefaultValue": true,
-            "scope": 3,
-            "restricted": false
-        },
-        "accessibility.verbosity.chat": {
-            "description": "Provide information about how to access the chat help menu when the chat input is focused",
-            "type": "boolean",
-            "default": true,
-            "tags": [
-                "accessibility"
-            ],
-            "defaultDefaultValue": true,
-            "scope": 3,
-            "restricted": false
-        },
-        "accessibility.verbosity.interactiveEditor": {
-            "description": "Provide information about how to access the interactive editor accessibility help menu when the interactive editor input is focused",
-            "type": "boolean",
-            "default": true,
-            "tags": [
-                "accessibility"
-            ],
-            "defaultDefaultValue": true,
-            "scope": 3,
-            "restricted": false
-        },
-        "accessibility.verbosity.keybindingsEditor": {
-            "description": "Provide information about how to change a keybinding in the keybindings editor when a row is focused",
-            "type": "boolean",
-            "default": true,
-            "tags": [
-                "accessibility"
-            ],
-            "defaultDefaultValue": true,
-            "scope": 3,
-            "restricted": false
-        },
-        "accessibility.verbosity.notebook": {
-            "description": "Provide information about how to focus the cell container or inner editor when a notebook cell is focused.",
-            "type": "boolean",
-            "default": true,
-            "tags": [
-                "accessibility"
-            ],
-            "defaultDefaultValue": true,
-            "scope": 3,
-            "restricted": false
-        },
-        "interactiveEditor.editMode": {
+        "inlineChat.mode": {
             "description": "Configure if changes crafted in the interactive editor are applied directly to the document or are previewed first.",
             "default": "livePreview",
             "type": "string",
@@ -1214,11 +1148,20 @@
             "scope": 3,
             "restricted": false
         },
+        "workbench.editor.tabSizingFixedMinWidth": {
+            "type": "number",
+            "default": 50,
+            "minimum": 38,
+            "markdownDescription": "Controls the minimum width of tabs when `#workbench.editor.tabSizing#` size is set to `fixed`.",
+            "defaultDefaultValue": 50,
+            "scope": 3,
+            "restricted": false
+        },
         "workbench.editor.tabSizingFixedMaxWidth": {
             "type": "number",
             "default": 160,
-            "minimum": 50,
-            "markdownDescription": "Controls the maximum width of tabs when `#workbench.editor.tabSizing#` is set to `fixed`.",
+            "minimum": 38,
+            "markdownDescription": "Controls the maximum width of tabs when `#workbench.editor.tabSizing#` size is set to `fixed`.",
             "defaultDefaultValue": 160,
             "scope": 3,
             "restricted": false
@@ -1244,16 +1187,18 @@
         "workbench.editor.splitSizing": {
             "type": "string",
             "enum": [
+                "auto",
                 "distribute",
                 "split"
             ],
-            "default": "distribute",
+            "default": "auto",
             "enumDescriptions": [
+                "Splits all the editor groups to equal parts unless a part has been changed in size.",
                 "Splits all the editor groups to equal parts.",
                 "Splits the active editor group to equal parts."
             ],
             "description": "Controls the size of editor groups when splitting them.",
-            "defaultDefaultValue": "distribute",
+            "defaultDefaultValue": "auto",
             "scope": 3,
             "restricted": false
         },
@@ -1421,6 +1366,14 @@
             "scope": 3,
             "restricted": false
         },
+        "workbench.editor.doubleClickTabToToggleEditorGroupSizes": {
+            "type": "boolean",
+            "default": true,
+            "markdownDescription": "Controls whether to maximize/restore the editor group when double clicking on a tab. This value is ignored when `#workbench.editor.showTabs#` is disabled.",
+            "defaultDefaultValue": true,
+            "scope": 3,
+            "restricted": false
+        },
         "workbench.editor.limit.enabled": {
             "type": "boolean",
             "default": false,
@@ -1473,6 +1426,9 @@
         },
         "workbench.commandPalette.experimental.suggestCommands": {
             "type": "boolean",
+            "tags": [
+                "experimental"
+            ],
             "description": "Controls whether the command palette should have a list of commonly used commands.",
             "default": false,
             "defaultDefaultValue": false,
@@ -1481,9 +1437,12 @@
         },
         "workbench.commandPalette.experimental.useSemanticSimilarity": {
             "type": "boolean",
+            "tags": [
+                "experimental"
+            ],
             "description": "Controls whether the command palette should include similar commands. You must have an extension installed that provides Semantic Similarity.",
-            "default": false,
-            "defaultDefaultValue": false,
+            "default": true,
+            "defaultDefaultValue": true,
             "scope": 3,
             "restricted": false
         },
@@ -1808,6 +1767,17 @@
             "defaultDefaultValue": 300,
             "scope": 3,
             "restricted": false
+        },
+        "workbench.experimental.share.enabled": {
+            "type": "boolean",
+            "default": false,
+            "tags": [
+                "experimental"
+            ],
+            "markdownDescription": "Controls whether to render the Share action next to the command center when `#window.commandCenter#` is `true`.",
+            "restricted": false,
+            "defaultDefaultValue": false,
+            "scope": 3
         },
         "audioCues.enabled": {
             "markdownDeprecationMessage": "Deprecated. Use the specific setting for each audio cue instead (`audioCues.*`).",
@@ -2176,6 +2146,69 @@
                 "accessibility"
             ],
             "defaultDefaultValue": "auto",
+            "scope": 3,
+            "restricted": false
+        },
+        "audioCues.chatRequestSent": {
+            "description": "Plays a sound when a chat request is made.",
+            "type": "string",
+            "enum": [
+                "auto",
+                "on",
+                "off"
+            ],
+            "default": "off",
+            "enumDescriptions": [
+                "Enable audio cue when a screen reader is attached.",
+                "Enable audio cue.",
+                "Disable audio cue."
+            ],
+            "tags": [
+                "accessibility"
+            ],
+            "defaultDefaultValue": "off",
+            "scope": 3,
+            "restricted": false
+        },
+        "audioCues.chatResponsePending": {
+            "description": "Plays a sound on loop while the response is pending.",
+            "type": "string",
+            "enum": [
+                "auto",
+                "on",
+                "off"
+            ],
+            "default": "auto",
+            "enumDescriptions": [
+                "Enable audio cue when a screen reader is attached.",
+                "Enable audio cue.",
+                "Disable audio cue."
+            ],
+            "tags": [
+                "accessibility"
+            ],
+            "defaultDefaultValue": "auto",
+            "scope": 3,
+            "restricted": false
+        },
+        "audioCues.chatResponseReceived": {
+            "description": "Plays a sound on loop while the response has been received.",
+            "type": "string",
+            "enum": [
+                "auto",
+                "on",
+                "off"
+            ],
+            "default": "off",
+            "enumDescriptions": [
+                "Enable audio cue when a screen reader is attached.",
+                "Enable audio cue.",
+                "Disable audio cue."
+            ],
+            "tags": [
+                "accessibility"
+            ],
+            "defaultDefaultValue": "off",
             "scope": 3,
             "restricted": false
         },
@@ -4268,6 +4301,72 @@
             "scope": 3,
             "restricted": false
         },
+        "accessibility.verbosity.terminal": {
+            "description": "Provide information about how to access the terminal accessibility help menu when the terminal is focused",
+            "type": "boolean",
+            "default": true,
+            "tags": [
+                "accessibility"
+            ],
+            "defaultDefaultValue": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "accessibility.verbosity.diffEditor": {
+            "description": "Provide information about how to navigate changes in the diff editor when it is focused",
+            "type": "boolean",
+            "default": true,
+            "tags": [
+                "accessibility"
+            ],
+            "defaultDefaultValue": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "accessibility.verbosity.panelChat": {
+            "description": "Provide information about how to access the chat help menu when the chat input is focused",
+            "type": "boolean",
+            "default": true,
+            "tags": [
+                "accessibility"
+            ],
+            "defaultDefaultValue": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "accessibility.verbosity.inlineChat": {
+            "description": "Provide information about how to access the inline editor chat accessibility help menu when the input is focused",
+            "type": "boolean",
+            "default": true,
+            "tags": [
+                "accessibility"
+            ],
+            "defaultDefaultValue": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "accessibility.verbosity.keybindingsEditor": {
+            "description": "Provide information about how to change a keybinding in the keybindings editor when a row is focused",
+            "type": "boolean",
+            "default": true,
+            "tags": [
+                "accessibility"
+            ],
+            "defaultDefaultValue": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "accessibility.verbosity.notebook": {
+            "description": "Provide information about how to focus the cell container or inner editor when a notebook cell is focused.",
+            "type": "boolean",
+            "default": true,
+            "tags": [
+                "accessibility"
+            ],
+            "defaultDefaultValue": true,
+            "scope": 3,
+            "restricted": false
+        },
         "comments.openPanel": {
             "enum": [
                 "neverOpen",
@@ -4311,6 +4410,14 @@
             "type": "boolean",
             "default": true,
             "description": "Controls the visibility of the comments bar and comment threads in editors that have commenting ranges and comments. Comments are still accessible via the Comments view and will cause commenting to be toggled on in the same way running the command \"Comments: Toggle Editor Commenting\" toggles comments.",
+            "defaultDefaultValue": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "comments.maxHeight": {
+            "type": "boolean",
+            "default": true,
+            "description": "Controls whether the comments widget scrolls or expands.",
             "defaultDefaultValue": true,
             "scope": 3,
             "restricted": false
@@ -4425,14 +4532,6 @@
             "scope": 3,
             "restricted": false
         },
-        "interactiveWindow.restore": {
-            "type": "boolean",
-            "default": false,
-            "markdownDescription": "Controls whether the Interactive Window sessions/history should be restored across window reloads. Whether the state of controllers used in Interactive Windows is persisted across window reloads are controlled by extensions contributing controllers.",
-            "defaultDefaultValue": false,
-            "scope": 3,
-            "restricted": false
-        },
         "mergeEditor.diffAlgorithm": {
             "type": "string",
             "enum": [
@@ -4532,17 +4631,6 @@
             "description": "Controls the line height in pixels in chat codeblocks. Use 0 to compute the line height from the font size.",
             "default": 0,
             "defaultDefaultValue": 0,
-            "scope": 3,
-            "restricted": false
-        },
-        "chat.experimental.quickQuestion.enable": {
-            "type": "boolean",
-            "description": "Controls whether the quick question feature is enabled.",
-            "default": false,
-            "tags": [
-                "experimental"
-            ],
-            "defaultDefaultValue": false,
             "scope": 3,
             "restricted": false
         },
@@ -4879,7 +4967,7 @@
         },
         "files.readonlyFromPermissions": {
             "type": "boolean",
-            "markdownDescription": "Marks files as readonly when their file permissions indicate as such. This can be overridden via `#files.readonlyInclude#` and `#files.readonlyExclude#` settings.",
+            "markdownDescription": "Marks files as read-only when their file permissions indicate as such. This can be overridden via `#files.readonlyInclude#` and `#files.readonlyExclude#` settings.",
             "default": false,
             "defaultDefaultValue": false,
             "scope": 3,
@@ -4968,7 +5056,7 @@
         },
         "explorer.autoRevealExclude": {
             "type": "object",
-            "markdownDescription": "Configure paths or [glob patterns](https://code.visualstudio.com/docs/editor/codebasics#_advanced-search-options) for excluding files and folders from being revealed and selected in the Explorer when they are opened. Glob patterns are always evaluated relative to the path of the workspace folder unless they are absolute paths.",
+            "markdownDescription": "Configure paths or [glob patterns](https://aka.ms/vscode-glob-patterns) for excluding files and folders from being revealed and selected in the Explorer when they are opened. Glob patterns are always evaluated relative to the path of the workspace folder unless they are absolute paths.",
             "default": {
                 "**/node_modules": true,
                 "**/bower_components": true
@@ -5279,6 +5367,14 @@
                 "Never automatically open."
             ],
             "defaultDefaultValue": "failureInVisibleDocument",
+            "scope": 3,
+            "restricted": false
+        },
+        "testing.showAllMessages": {
+            "description": "Controls whether to show messages from all test runs.",
+            "type": "boolean",
+            "default": false,
+            "defaultDefaultValue": false,
             "scope": 3,
             "restricted": false
         },
@@ -7607,6 +7703,14 @@
                             "scope": 5,
                             "restricted": false
                         },
+                        "editor.smartSelect.selectSubwords": {
+                            "description": "Whether subwords (like 'foo' in 'fooBar' or 'foo_bar') should be selected.",
+                            "default": true,
+                            "type": "boolean",
+                            "defaultDefaultValue": true,
+                            "scope": 5,
+                            "restricted": false
+                        },
                         "editor.smoothScrolling": {
                             "description": "Controls whether the editor will scroll using an animation.",
                             "type": "boolean",
@@ -8347,6 +8451,24 @@
                             "defaultDefaultValue": false,
                             "scope": 5,
                             "restricted": false
+                        },
+                        "editor.colorDecoratorsActivatedOn": {
+                            "enumDescriptions": [
+                                "Make the color picker appear both on click and hover of the color decorator",
+                                "Make the color picker appear on hover of the color decorator",
+                                "Make the color picker appear on click of the color decorator"
+                            ],
+                            "description": "Controls the condition to make a color picker appear from a color decorator",
+                            "type": "string",
+                            "enum": [
+                                "clickAndHover",
+                                "hover",
+                                "click"
+                            ],
+                            "default": "clickAndHover",
+                            "defaultDefaultValue": "clickAndHover",
+                            "scope": 5,
+                            "restricted": false
                         }
                     }
                 }
@@ -8799,48 +8921,9 @@
             "scope": 3,
             "restricted": false
         },
-        "terminal.integrated.automationShell.linux": {
-            "restricted": true,
-            "markdownDescription": "A path that when set will override `terminal.integrated.shell.linux` and ignore `shellArgs` values for automation-related terminal usage like tasks and debug.",
-            "type": [
-                "string",
-                "null"
-            ],
-            "default": null,
-            "markdownDeprecationMessage": "This is deprecated, the new recommended way to configure your automation shell is by creating a terminal automation profile with `#terminal.integrated.automationProfile.linux#`. This will currently take priority over the new automation profile settings but that will change in the future.",
-            "defaultDefaultValue": null,
-            "scope": 3,
-            "deprecationMessage": "This is deprecated, the new recommended way to configure your automation shell is by creating a terminal automation profile with `#terminal.integrated.automationProfile.linux#`. This will currently take priority over the new automation profile settings but that will change in the future."
-        },
-        "terminal.integrated.automationShell.osx": {
-            "restricted": true,
-            "markdownDescription": "A path that when set will override `terminal.integrated.shell.osx` and ignore `shellArgs` values for automation-related terminal usage like tasks and debug.",
-            "type": [
-                "string",
-                "null"
-            ],
-            "default": null,
-            "markdownDeprecationMessage": "This is deprecated, the new recommended way to configure your automation shell is by creating a terminal automation profile with `#terminal.integrated.automationProfile.osx#`. This will currently take priority over the new automation profile settings but that will change in the future.",
-            "defaultDefaultValue": null,
-            "scope": 3,
-            "deprecationMessage": "This is deprecated, the new recommended way to configure your automation shell is by creating a terminal automation profile with `#terminal.integrated.automationProfile.osx#`. This will currently take priority over the new automation profile settings but that will change in the future."
-        },
-        "terminal.integrated.automationShell.windows": {
-            "restricted": true,
-            "markdownDescription": "A path that when set will override `terminal.integrated.shell.windows` and ignore `shellArgs` values for automation-related terminal usage like tasks and debug.",
-            "type": [
-                "string",
-                "null"
-            ],
-            "default": null,
-            "markdownDeprecationMessage": "This is deprecated, the new recommended way to configure your automation shell is by creating a terminal automation profile with `#terminal.integrated.automationProfile.windows#`. This will currently take priority over the new automation profile settings but that will change in the future.",
-            "defaultDefaultValue": null,
-            "scope": 3,
-            "deprecationMessage": "This is deprecated, the new recommended way to configure your automation shell is by creating a terminal automation profile with `#terminal.integrated.automationProfile.windows#`. This will currently take priority over the new automation profile settings but that will change in the future."
-        },
         "terminal.integrated.automationProfile.linux": {
             "restricted": true,
-            "markdownDescription": "The terminal profile to use on Linux for automation-related terminal usage like tasks and debug. This setting will currently be ignored if `terminal.integrated.automationShell.linux` (now deprecated) is set.",
+            "markdownDescription": "The terminal profile to use on Linux for automation-related terminal usage like tasks and debug.",
             "type": [
                 "object",
                 "null"
@@ -10005,7 +10088,7 @@
         },
         "terminal.integrated.automationProfile.osx": {
             "restricted": true,
-            "markdownDescription": "The terminal profile to use on macOS for automation-related terminal usage like tasks and debug. This setting will currently be ignored if `terminal.integrated.automationShell.osx` (now deprecated) is set.",
+            "markdownDescription": "The terminal profile to use on macOS for automation-related terminal usage like tasks and debug.",
             "type": [
                 "object",
                 "null"
@@ -12332,97 +12415,6 @@
             ],
             "defaultDefaultValue": null,
             "scope": 3
-        },
-        "terminal.integrated.shell.linux": {
-            "restricted": true,
-            "markdownDescription": "The path of the shell that the terminal uses on Linux. [Read more about configuring the shell](https://code.visualstudio.com/docs/editor/integrated-terminal#_terminal-profiles).",
-            "type": [
-                "string",
-                "null"
-            ],
-            "default": null,
-            "markdownDeprecationMessage": "This is deprecated, the new recommended way to configure your default shell is by creating a terminal profile in `#terminal.integrated.profiles.linux#` and setting its profile name as the default in `#terminal.integrated.defaultProfile.linux#`. This will currently take priority over the new profiles settings but that will change in the future.",
-            "defaultDefaultValue": null,
-            "scope": 3,
-            "deprecationMessage": "This is deprecated, the new recommended way to configure your default shell is by creating a terminal profile in `#terminal.integrated.profiles.linux#` and setting its profile name as the default in `#terminal.integrated.defaultProfile.linux#`. This will currently take priority over the new profiles settings but that will change in the future."
-        },
-        "terminal.integrated.shell.osx": {
-            "restricted": true,
-            "markdownDescription": "The path of the shell that the terminal uses on macOS. [Read more about configuring the shell](https://code.visualstudio.com/docs/editor/integrated-terminal#_terminal-profiles).",
-            "type": [
-                "string",
-                "null"
-            ],
-            "default": null,
-            "markdownDeprecationMessage": "This is deprecated, the new recommended way to configure your default shell is by creating a terminal profile in `#terminal.integrated.profiles.osx#` and setting its profile name as the default in `#terminal.integrated.defaultProfile.osx#`. This will currently take priority over the new profiles settings but that will change in the future.",
-            "defaultDefaultValue": null,
-            "scope": 3,
-            "deprecationMessage": "This is deprecated, the new recommended way to configure your default shell is by creating a terminal profile in `#terminal.integrated.profiles.osx#` and setting its profile name as the default in `#terminal.integrated.defaultProfile.osx#`. This will currently take priority over the new profiles settings but that will change in the future."
-        },
-        "terminal.integrated.shell.windows": {
-            "restricted": true,
-            "markdownDescription": "The path of the shell that the terminal uses on Windows. [Read more about configuring the shell](https://code.visualstudio.com/docs/editor/integrated-terminal#_terminal-profiles).",
-            "type": [
-                "string",
-                "null"
-            ],
-            "default": null,
-            "markdownDeprecationMessage": "This is deprecated, the new recommended way to configure your default shell is by creating a terminal profile in `#terminal.integrated.profiles.windows#` and setting its profile name as the default in `#terminal.integrated.defaultProfile.windows#`. This will currently take priority over the new profiles settings but that will change in the future.",
-            "defaultDefaultValue": null,
-            "scope": 3,
-            "deprecationMessage": "This is deprecated, the new recommended way to configure your default shell is by creating a terminal profile in `#terminal.integrated.profiles.windows#` and setting its profile name as the default in `#terminal.integrated.defaultProfile.windows#`. This will currently take priority over the new profiles settings but that will change in the future."
-        },
-        "terminal.integrated.shellArgs.linux": {
-            "restricted": true,
-            "markdownDescription": "The command line arguments to use when on the Linux terminal. [Read more about configuring the shell](https://code.visualstudio.com/docs/editor/integrated-terminal#_terminal-profiles).",
-            "type": "array",
-            "items": {
-                "type": "string"
-            },
-            "default": [],
-            "markdownDeprecationMessage": "This is deprecated, the new recommended way to configure your default shell is by creating a terminal profile in `#terminal.integrated.profiles.linux#` and setting its profile name as the default in `#terminal.integrated.defaultProfile.linux#`. This will currently take priority over the new profiles settings but that will change in the future.",
-            "defaultDefaultValue": [],
-            "scope": 3,
-            "deprecationMessage": "This is deprecated, the new recommended way to configure your default shell is by creating a terminal profile in `#terminal.integrated.profiles.linux#` and setting its profile name as the default in `#terminal.integrated.defaultProfile.linux#`. This will currently take priority over the new profiles settings but that will change in the future."
-        },
-        "terminal.integrated.shellArgs.osx": {
-            "restricted": true,
-            "markdownDescription": "The command line arguments to use when on the macOS terminal. [Read more about configuring the shell](https://code.visualstudio.com/docs/editor/integrated-terminal#_terminal-profiles).",
-            "type": "array",
-            "items": {
-                "type": "string"
-            },
-            "default": [
-                "-l"
-            ],
-            "markdownDeprecationMessage": "This is deprecated, the new recommended way to configure your default shell is by creating a terminal profile in `#terminal.integrated.profiles.osx#` and setting its profile name as the default in `#terminal.integrated.defaultProfile.osx#`. This will currently take priority over the new profiles settings but that will change in the future.",
-            "defaultDefaultValue": [
-                "-l"
-            ],
-            "scope": 3,
-            "deprecationMessage": "This is deprecated, the new recommended way to configure your default shell is by creating a terminal profile in `#terminal.integrated.profiles.osx#` and setting its profile name as the default in `#terminal.integrated.defaultProfile.osx#`. This will currently take priority over the new profiles settings but that will change in the future."
-        },
-        "terminal.integrated.shellArgs.windows": {
-            "restricted": true,
-            "markdownDescription": "The command line arguments to use when on the Windows terminal. [Read more about configuring the shell](https://code.visualstudio.com/docs/editor/integrated-terminal#_terminal-profiles).",
-            "anyOf": [
-                {
-                    "type": "array",
-                    "items": {
-                        "type": "string",
-                        "markdownDescription": "The command line arguments to use when on the Windows terminal. [Read more about configuring the shell](https://code.visualstudio.com/docs/editor/integrated-terminal#_terminal-profiles)."
-                    }
-                },
-                {
-                    "type": "string",
-                    "markdownDescription": "The command line arguments in [command-line format](https://msdn.microsoft.com/en-au/08dfcab2-eb6e-49a4-80eb-87d4076c98c6) to use when on the Windows terminal. [Read more about configuring the shell](https://code.visualstudio.com/docs/editor/integrated-terminal#_terminal-profiles)."
-                }
-            ],
-            "default": [],
-            "markdownDeprecationMessage": "This is deprecated, the new recommended way to configure your default shell is by creating a terminal profile in `#terminal.integrated.profiles.windows#` and setting its profile name as the default in `#terminal.integrated.defaultProfile.windows#`. This will currently take priority over the new profiles settings but that will change in the future.",
-            "defaultDefaultValue": [],
-            "scope": 3,
-            "deprecationMessage": "This is deprecated, the new recommended way to configure your default shell is by creating a terminal profile in `#terminal.integrated.profiles.windows#` and setting its profile name as the default in `#terminal.integrated.defaultProfile.windows#`. This will currently take priority over the new profiles settings but that will change in the future."
         },
         "terminal.integrated.profiles.windows": {
             "restricted": true,
@@ -21129,7 +21121,7 @@
             "restricted": false
         },
         "terminal.integrated.commandsToSkipShell": {
-            "markdownDescription": "A set of command IDs whose keybindings will not be sent to the shell but instead always be handled by VS Code. This allows keybindings that would normally be consumed by the shell to act instead the same as when the terminal is not focused, for example `Ctrl+P` to launch Quick Open.\n\n&nbsp;\n\nMany commands are skipped by default. To override a default and pass that command's keybinding to the shell instead, add the command prefixed with the `-` character. For example add `-workbench.action.quickOpen` to allow `Ctrl+P` to reach the shell.\n\n&nbsp;\n\nThe following list of default skipped commands is truncated when viewed in Settings Editor. To see the full list, [open the default settings JSON](command:workbench.action.openRawDefaultSettings 'Open Default Settings (JSON)') and search for the first command from the list below.\n\n&nbsp;\n\nDefault Skipped Commands:\n\n- editor.action.toggleTabFocusMode\n- notification.acceptPrimaryAction\n- notifications.hideList\n- notifications.hideToasts\n- runCommands\n- workbench.action.closeQuickOpen\n- workbench.action.debug.continue\n- workbench.action.debug.pause\n- workbench.action.debug.restart\n- workbench.action.debug.run\n- workbench.action.debug.start\n- workbench.action.debug.stepInto\n- workbench.action.debug.stepOut\n- workbench.action.debug.stepOver\n- workbench.action.debug.stop\n- workbench.action.firstEditorInGroup\n- workbench.action.focusActiveEditorGroup\n- workbench.action.focusEighthEditorGroup\n- workbench.action.focusFifthEditorGroup\n- workbench.action.focusFirstEditorGroup\n- workbench.action.focusFourthEditorGroup\n- workbench.action.focusLastEditorGroup\n- workbench.action.focusNextPart\n- workbench.action.focusPreviousPart\n- workbench.action.focusSecondEditorGroup\n- workbench.action.focusSeventhEditorGroup\n- workbench.action.focusSixthEditorGroup\n- workbench.action.focusThirdEditorGroup\n- workbench.action.lastEditorInGroup\n- workbench.action.navigateDown\n- workbench.action.navigateLeft\n- workbench.action.navigateRight\n- workbench.action.navigateUp\n- workbench.action.nextEditor\n- workbench.action.nextEditorInGroup\n- workbench.action.nextPanelView\n- workbench.action.nextSideBarView\n- workbench.action.openNextRecentlyUsedEditor\n- workbench.action.openNextRecentlyUsedEditorInGroup\n- workbench.action.openPreviousRecentlyUsedEditor\n- workbench.action.openPreviousRecentlyUsedEditorInGroup\n- workbench.action.previousEditor\n- workbench.action.previousEditorInGroup\n- workbench.action.previousPanelView\n- workbench.action.previousSideBarView\n- workbench.action.quickOpen\n- workbench.action.quickOpenLeastRecentlyUsedEditor\n- workbench.action.quickOpenLeastRecentlyUsedEditorInGroup\n- workbench.action.quickOpenPreviousEditor\n- workbench.action.quickOpenPreviousRecentlyUsedEditor\n- workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup\n- workbench.action.quickOpenView\n- workbench.action.showCommands\n- workbench.action.tasks.build\n- workbench.action.tasks.reRunTask\n- workbench.action.tasks.restartTask\n- workbench.action.tasks.runTask\n- workbench.action.tasks.showLog\n- workbench.action.tasks.showTasks\n- workbench.action.tasks.terminate\n- workbench.action.tasks.test\n- workbench.action.terminal.acceptSelectedSuggestion\n- workbench.action.terminal.clear\n- workbench.action.terminal.clearSelection\n- workbench.action.terminal.copyAndClearSelection\n- workbench.action.terminal.copyLastCommandOutput\n- workbench.action.terminal.copySelection\n- workbench.action.terminal.copySelectionAsHtml\n- workbench.action.terminal.deleteToLineStart\n- workbench.action.terminal.deleteWordLeft\n- workbench.action.terminal.deleteWordRight\n- workbench.action.terminal.findNext\n- workbench.action.terminal.findPrevious\n- workbench.action.terminal.focus\n- workbench.action.terminal.focusAtIndex1\n- workbench.action.terminal.focusAtIndex2\n- workbench.action.terminal.focusAtIndex3\n- workbench.action.terminal.focusAtIndex4\n- workbench.action.terminal.focusAtIndex5\n- workbench.action.terminal.focusAtIndex6\n- workbench.action.terminal.focusAtIndex7\n- workbench.action.terminal.focusAtIndex8\n- workbench.action.terminal.focusAtIndex9\n- workbench.action.terminal.focusFind\n- workbench.action.terminal.focusHover\n- workbench.action.terminal.focusNext\n- workbench.action.terminal.focusNextPane\n- workbench.action.terminal.focusPrevious\n- workbench.action.terminal.focusPreviousPane\n- workbench.action.terminal.goToRecentDirectory\n- workbench.action.terminal.hideFind\n- workbench.action.terminal.hideSuggestWidget\n- workbench.action.terminal.kill\n- workbench.action.terminal.killEditor\n- workbench.action.terminal.moveToEditor\n- workbench.action.terminal.moveToLineEnd\n- workbench.action.terminal.moveToLineStart\n- workbench.action.terminal.moveToTerminalPanel\n- workbench.action.terminal.new\n- workbench.action.terminal.newInActiveWorkspace\n- workbench.action.terminal.paste\n- workbench.action.terminal.pasteSelection\n- workbench.action.terminal.resizePaneDown\n- workbench.action.terminal.resizePaneLeft\n- workbench.action.terminal.resizePaneRight\n- workbench.action.terminal.resizePaneUp\n- workbench.action.terminal.runActiveFile\n- workbench.action.terminal.runRecentCommand\n- workbench.action.terminal.runSelectedText\n- workbench.action.terminal.scrollDown\n- workbench.action.terminal.scrollDownPage\n- workbench.action.terminal.scrollToBottom\n- workbench.action.terminal.scrollToNextCommand\n- workbench.action.terminal.scrollToPreviousCommand\n- workbench.action.terminal.scrollToTop\n- workbench.action.terminal.scrollUp\n- workbench.action.terminal.scrollUpPage\n- workbench.action.terminal.selectAll\n- workbench.action.terminal.selectNextPageSuggestion\n- workbench.action.terminal.selectNextSuggestion\n- workbench.action.terminal.selectPrevPageSuggestion\n- workbench.action.terminal.selectPrevSuggestion\n- workbench.action.terminal.selectToNextCommand\n- workbench.action.terminal.selectToNextLine\n- workbench.action.terminal.selectToPreviousCommand\n- workbench.action.terminal.selectToPreviousLine\n- workbench.action.terminal.sendSequence\n- workbench.action.terminal.showAccessibilityHelp\n- workbench.action.terminal.sizeToContentWidth\n- workbench.action.terminal.split\n- workbench.action.terminal.splitInActiveWorkspace\n- workbench.action.terminal.toggleFindCaseSensitive\n- workbench.action.terminal.toggleFindRegex\n- workbench.action.terminal.toggleFindWholeWord\n- workbench.action.terminal.toggleTerminal\n- workbench.action.toggleFullScreen\n- workbench.action.toggleMaximizedPanel\n- workbench.action.togglePanel",
+            "markdownDescription": "A set of command IDs whose keybindings will not be sent to the shell but instead always be handled by VS Code. This allows keybindings that would normally be consumed by the shell to act instead the same as when the terminal is not focused, for example `Ctrl+P` to launch Quick Open.\n\n&nbsp;\n\nMany commands are skipped by default. To override a default and pass that command's keybinding to the shell instead, add the command prefixed with the `-` character. For example add `-workbench.action.quickOpen` to allow `Ctrl+P` to reach the shell.\n\n&nbsp;\n\nThe following list of default skipped commands is truncated when viewed in Settings Editor. To see the full list, [open the default settings JSON](command:workbench.action.openRawDefaultSettings 'Open Default Settings (JSON)') and search for the first command from the list below.\n\n&nbsp;\n\nDefault Skipped Commands:\n\n- editor.action.accessibilityHelp\n- editor.action.toggleTabFocusMode\n- notification.acceptPrimaryAction\n- notifications.hideList\n- notifications.hideToasts\n- runCommands\n- workbench.action.closeQuickOpen\n- workbench.action.debug.continue\n- workbench.action.debug.pause\n- workbench.action.debug.restart\n- workbench.action.debug.run\n- workbench.action.debug.start\n- workbench.action.debug.stepInto\n- workbench.action.debug.stepOut\n- workbench.action.debug.stepOver\n- workbench.action.debug.stop\n- workbench.action.firstEditorInGroup\n- workbench.action.focusActiveEditorGroup\n- workbench.action.focusEighthEditorGroup\n- workbench.action.focusFifthEditorGroup\n- workbench.action.focusFirstEditorGroup\n- workbench.action.focusFourthEditorGroup\n- workbench.action.focusLastEditorGroup\n- workbench.action.focusNextPart\n- workbench.action.focusPreviousPart\n- workbench.action.focusSecondEditorGroup\n- workbench.action.focusSeventhEditorGroup\n- workbench.action.focusSixthEditorGroup\n- workbench.action.focusThirdEditorGroup\n- workbench.action.lastEditorInGroup\n- workbench.action.navigateDown\n- workbench.action.navigateLeft\n- workbench.action.navigateRight\n- workbench.action.navigateUp\n- workbench.action.nextEditor\n- workbench.action.nextEditorInGroup\n- workbench.action.nextPanelView\n- workbench.action.nextSideBarView\n- workbench.action.openNextRecentlyUsedEditor\n- workbench.action.openNextRecentlyUsedEditorInGroup\n- workbench.action.openPreviousRecentlyUsedEditor\n- workbench.action.openPreviousRecentlyUsedEditorInGroup\n- workbench.action.previousEditor\n- workbench.action.previousEditorInGroup\n- workbench.action.previousPanelView\n- workbench.action.previousSideBarView\n- workbench.action.quickOpen\n- workbench.action.quickOpenLeastRecentlyUsedEditor\n- workbench.action.quickOpenLeastRecentlyUsedEditorInGroup\n- workbench.action.quickOpenPreviousEditor\n- workbench.action.quickOpenPreviousRecentlyUsedEditor\n- workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup\n- workbench.action.quickOpenView\n- workbench.action.showCommands\n- workbench.action.tasks.build\n- workbench.action.tasks.reRunTask\n- workbench.action.tasks.restartTask\n- workbench.action.tasks.runTask\n- workbench.action.tasks.showLog\n- workbench.action.tasks.showTasks\n- workbench.action.tasks.terminate\n- workbench.action.tasks.test\n- workbench.action.terminal.acceptSelectedSuggestion\n- workbench.action.terminal.clear\n- workbench.action.terminal.clearSelection\n- workbench.action.terminal.copyAndClearSelection\n- workbench.action.terminal.copyLastCommandOutput\n- workbench.action.terminal.copySelection\n- workbench.action.terminal.copySelectionAsHtml\n- workbench.action.terminal.deleteToLineStart\n- workbench.action.terminal.deleteWordLeft\n- workbench.action.terminal.deleteWordRight\n- workbench.action.terminal.findNext\n- workbench.action.terminal.findPrevious\n- workbench.action.terminal.focus\n- workbench.action.terminal.focusAtIndex1\n- workbench.action.terminal.focusAtIndex2\n- workbench.action.terminal.focusAtIndex3\n- workbench.action.terminal.focusAtIndex4\n- workbench.action.terminal.focusAtIndex5\n- workbench.action.terminal.focusAtIndex6\n- workbench.action.terminal.focusAtIndex7\n- workbench.action.terminal.focusAtIndex8\n- workbench.action.terminal.focusAtIndex9\n- workbench.action.terminal.focusFind\n- workbench.action.terminal.focusHover\n- workbench.action.terminal.focusNext\n- workbench.action.terminal.focusNextPane\n- workbench.action.terminal.focusPrevious\n- workbench.action.terminal.focusPreviousPane\n- workbench.action.terminal.goToRecentDirectory\n- workbench.action.terminal.hideFind\n- workbench.action.terminal.hideSuggestWidget\n- workbench.action.terminal.kill\n- workbench.action.terminal.killEditor\n- workbench.action.terminal.moveToEditor\n- workbench.action.terminal.moveToLineEnd\n- workbench.action.terminal.moveToLineStart\n- workbench.action.terminal.moveToTerminalPanel\n- workbench.action.terminal.new\n- workbench.action.terminal.newInActiveWorkspace\n- workbench.action.terminal.paste\n- workbench.action.terminal.pasteSelection\n- workbench.action.terminal.resizePaneDown\n- workbench.action.terminal.resizePaneLeft\n- workbench.action.terminal.resizePaneRight\n- workbench.action.terminal.resizePaneUp\n- workbench.action.terminal.runActiveFile\n- workbench.action.terminal.runRecentCommand\n- workbench.action.terminal.runSelectedText\n- workbench.action.terminal.scrollDown\n- workbench.action.terminal.scrollDownPage\n- workbench.action.terminal.scrollToBottom\n- workbench.action.terminal.scrollToNextCommand\n- workbench.action.terminal.scrollToPreviousCommand\n- workbench.action.terminal.scrollToTop\n- workbench.action.terminal.scrollUp\n- workbench.action.terminal.scrollUpPage\n- workbench.action.terminal.selectAll\n- workbench.action.terminal.selectNextPageSuggestion\n- workbench.action.terminal.selectNextSuggestion\n- workbench.action.terminal.selectPrevPageSuggestion\n- workbench.action.terminal.selectPrevSuggestion\n- workbench.action.terminal.selectToNextCommand\n- workbench.action.terminal.selectToNextLine\n- workbench.action.terminal.selectToPreviousCommand\n- workbench.action.terminal.selectToPreviousLine\n- workbench.action.terminal.sendSequence\n- workbench.action.terminal.sizeToContentWidth\n- workbench.action.terminal.split\n- workbench.action.terminal.splitInActiveWorkspace\n- workbench.action.terminal.toggleFindCaseSensitive\n- workbench.action.terminal.toggleFindRegex\n- workbench.action.terminal.toggleFindWholeWord\n- workbench.action.terminal.toggleTerminal\n- workbench.action.toggleFullScreen\n- workbench.action.toggleMaximizedPanel\n- workbench.action.togglePanel",
             "type": "array",
             "items": {
                 "type": "string"
@@ -21467,9 +21459,6 @@
             "markdownDescription": "Enables experimental terminal Intellisense suggestions for supported shells when `#terminal.integrated.shellIntegration.enabled#` is set to `true`. If shell integration is installed manually, `VSCODE_SUGGEST` needs to be set to `1` before calling the script.",
             "type": "boolean",
             "default": false,
-            "tags": [
-                "experimental"
-            ],
             "defaultDefaultValue": false,
             "scope": 3
         },
@@ -21481,15 +21470,12 @@
             "scope": 3,
             "restricted": false
         },
-        "terminal.integrated.experimentalImageSupport": {
+        "terminal.integrated.enableImages": {
             "restricted": true,
-            "markdownDescription": "Enables experimental image support in the terminal. Both sixel and iTerm's inline image protocol are supported on Linux and macOS, Windows support will light up automatically when ConPTY passes through the sequences. Images will not be retained currently between window reloads/reconnects.",
+            "markdownDescription": "Enables image support in the terminal. Both sixel and iTerm's inline image protocol are supported on Linux and macOS, Windows support will light up automatically when ConPTY passes through the sequences. Images will currently not be restored between window reloads/reconnects.",
             "type": "boolean",
-            "default": false,
-            "tags": [
-                "experimental"
-            ],
-            "defaultDefaultValue": false,
+            "default": true,
+            "defaultDefaultValue": true,
             "scope": 3
         },
         "css.trace.server": {
@@ -22678,6 +22664,30 @@
             "defaultDefaultValue": true,
             "restricted": false
         },
+        "mediaPreview.video.autoPlay": {
+            "type": "boolean",
+            "default": false,
+            "markdownDescription": "Start playing videos on mute automatically.",
+            "scope": 3,
+            "source": {
+                "id": "vscode.media-preview",
+                "displayName": "Media Preview"
+            },
+            "defaultDefaultValue": false,
+            "restricted": false
+        },
+        "mediaPreview.video.loop": {
+            "type": "boolean",
+            "default": false,
+            "markdownDescription": "Loop videos over again automatically.",
+            "scope": 3,
+            "source": {
+                "id": "vscode.media-preview",
+                "displayName": "Media Preview"
+            },
+            "defaultDefaultValue": false,
+            "restricted": false
+        },
         "merge-conflict.codeLens.enabled": {
             "type": "boolean",
             "description": "Create a CodeLens for merge conflict blocks within editor.",
@@ -22736,26 +22746,71 @@
             "defaultDefaultValue": "Current",
             "restricted": false
         },
-        "microsoft-sovereign-cloud.endpoint": {
-            "anyOf": [
-                {
-                    "type": "string"
-                },
-                {
-                    "type": "string",
-                    "enum": [
-                        "Azure China",
-                        "Azure US Government"
-                    ]
-                }
+        "microsoft-sovereign-cloud.environment": {
+            "type": "string",
+            "markdownDescription": "The Sovereign Cloud to use for authentication. If you select `custom`, you must also set the `#microsoft-sovereign-cloud.customEnvironment#` setting.",
+            "enum": [
+                "ChinaCloud",
+                "USGovernment",
+                "custom"
             ],
-            "description": "Login endpoint for Azure authentication. Select a national cloud or enter the login URL for a custom Azure cloud.",
+            "enumDescriptions": [
+                "Azure China",
+                "Azure US Government",
+                "A custom Microsoft Sovereign Cloud"
+            ],
             "scope": 3,
             "source": {
                 "id": "vscode.microsoft-authentication",
                 "displayName": "Microsoft Account"
             },
-            "default": null,
+            "default": "",
+            "restricted": false
+        },
+        "microsoft-sovereign-cloud.customEnvironment": {
+            "type": "object",
+            "additionalProperties": true,
+            "markdownDescription": "The custom configuration for the Sovereign Cloud to use with the Microsoft Sovereign Cloud authentication provider. This along with setting `#microsoft-sovereign-cloud.environment#` to `custom` is required to use this feature.",
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "The name of the custom Sovereign Cloud."
+                },
+                "portalUrl": {
+                    "type": "string",
+                    "description": "The portal URL for the custom Sovereign Cloud."
+                },
+                "managementEndpointUrl": {
+                    "type": "string",
+                    "description": "The management endpoint for the custom Sovereign Cloud."
+                },
+                "resourceManagerEndpointUrl": {
+                    "type": "string",
+                    "description": "The resource manager endpoint for the custom Sovereign Cloud."
+                },
+                "activeDirectoryEndpointUrl": {
+                    "type": "string",
+                    "description": "The Active Directory endpoint for the custom Sovereign Cloud."
+                },
+                "activeDirectoryResourceId": {
+                    "type": "string",
+                    "description": "The Active Directory resource ID for the custom Sovereign Cloud."
+                }
+            },
+            "required": [
+                "name",
+                "portalUrl",
+                "managementEndpointUrl",
+                "resourceManagerEndpointUrl",
+                "activeDirectoryEndpointUrl",
+                "activeDirectoryResourceId"
+            ],
+            "scope": 3,
+            "source": {
+                "id": "vscode.microsoft-authentication",
+                "displayName": "Microsoft Account"
+            },
+            "default": {},
             "restricted": false
         },
         "debug.javascript.codelens.npmScripts": {
@@ -23018,11 +23073,6 @@
                     "minimum": 8,
                     "description": "Allows you to explicitly specify the Node version that's running, which can be used to disable or enable certain behaviors in cases where the automatic version detection does not work.",
                     "default": 12
-                },
-                "enableTurboSourcemaps": {
-                    "type": "boolean",
-                    "default": true,
-                    "description": "Configures whether to use a new, faster mechanism for sourcemap discovery"
                 },
                 "command": {
                     "type": [
@@ -23537,11 +23587,6 @@
                                             "description": "Allows you to explicitly specify the Node version that's running, which can be used to disable or enable certain behaviors in cases where the automatic version detection does not work.",
                                             "default": 12
                                         },
-                                        "enableTurboSourcemaps": {
-                                            "type": "boolean",
-                                            "default": true,
-                                            "description": "Configures whether to use a new, faster mechanism for sourcemap discovery"
-                                        },
                                         "program": {
                                             "type": "string",
                                             "description": "Absolute path to the program. Generated value is guessed by looking at package.json and opened files. Edit this attribute.",
@@ -23895,11 +23940,6 @@
                                             "minimum": 8,
                                             "description": "Allows you to explicitly specify the Node version that's running, which can be used to disable or enable certain behaviors in cases where the automatic version detection does not work.",
                                             "default": 12
-                                        },
-                                        "enableTurboSourcemaps": {
-                                            "type": "boolean",
-                                            "default": true,
-                                            "description": "Configures whether to use a new, faster mechanism for sourcemap discovery"
                                         },
                                         "command": {
                                             "type": [
@@ -24270,11 +24310,6 @@
                     "minimum": 8,
                     "description": "Allows you to explicitly specify the Node version that's running, which can be used to disable or enable certain behaviors in cases where the automatic version detection does not work.",
                     "default": 12
-                },
-                "enableTurboSourcemaps": {
-                    "type": "boolean",
-                    "default": true,
-                    "description": "Configures whether to use a new, faster mechanism for sourcemap discovery"
                 },
                 "address": {
                     "type": "string",
@@ -25179,27 +25214,9 @@
             "defaultDefaultValue": false,
             "restricted": false
         },
-        "terminal.explorerKind": {
-            "type": "string",
-            "enum": [
-                "integrated",
-                "external",
-                "both"
-            ],
-            "enumDescriptions": [
-                "Use VS Code's integrated terminal.",
-                "Use the configured external terminal.",
-                "Use the other two together."
-            ],
-            "description": "When opening a file from the Explorer in a terminal, determines what kind of terminal will be launched",
-            "default": "integrated",
-            "defaultDefaultValue": "integrated",
-            "scope": 3,
-            "restricted": false
-        },
         "terminal.integrated.defaultProfile.linux": {
             "restricted": true,
-            "markdownDescription": "The default profile used on Linux. This setting will currently be ignored if either `terminal.integrated.shell.linux` or `terminal.integrated.shellArgs.linux` are set.",
+            "markdownDescription": "The default terminal profile on Linux.",
             "type": [
                 "string",
                 "null"
@@ -25210,7 +25227,7 @@
         },
         "terminal.integrated.defaultProfile.osx": {
             "restricted": true,
-            "markdownDescription": "The default profile used on macOS. This setting will currently be ignored if either `terminal.integrated.shell.osx` or `terminal.integrated.shellArgs.osx` are set.",
+            "markdownDescription": "The default terminal profile on macOS.",
             "type": [
                 "string",
                 "null"
@@ -25221,7 +25238,7 @@
         },
         "terminal.integrated.defaultProfile.windows": {
             "restricted": true,
-            "markdownDescription": "The default profile used on Windows. This setting will currently be ignored if either `terminal.integrated.shell.windows` or `terminal.integrated.shellArgs.windows` are set.",
+            "markdownDescription": "The default terminal profile on Windows.",
             "type": [
                 "string",
                 "null"
@@ -25245,6 +25262,24 @@
             ],
             "defaultDefaultValue": null,
             "scope": 3
+        },
+        "terminal.explorerKind": {
+            "type": "string",
+            "enum": [
+                "integrated",
+                "external",
+                "both"
+            ],
+            "enumDescriptions": [
+                "Use VS Code's integrated terminal.",
+                "Use the configured external terminal.",
+                "Use the other two together."
+            ],
+            "description": "When opening a file from the Explorer in a terminal, determines what kind of terminal will be launched",
+            "default": "integrated",
+            "defaultDefaultValue": "integrated",
+            "scope": 3,
+            "restricted": false
         },
         "workbench.editor.autoLockGroups": {
             "type": "object",
@@ -25295,6 +25330,11 @@
                     "default": false,
                     "description": "Heap Profile Table Visualizer"
                 },
+                "workbench.editors.gettingStartedInput": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Welcome Page"
+                },
                 "terminalEditor": {
                     "type": "boolean",
                     "default": true,
@@ -25321,6 +25361,7 @@
                 "vscode.videoPreview": false,
                 "jsProfileVisualizer.cpuprofile.table": false,
                 "jsProfileVisualizer.heapprofile.table": false,
+                "workbench.editors.gettingStartedInput": false,
                 "terminalEditor": true,
                 "workbench.input.interactive": false,
                 "mainThreadWebview-markdown.preview": false
@@ -25336,6 +25377,7 @@
                 "vscode.videoPreview": false,
                 "jsProfileVisualizer.cpuprofile.table": false,
                 "jsProfileVisualizer.heapprofile.table": false,
+                "workbench.editors.gettingStartedInput": false,
                 "terminalEditor": true,
                 "workbench.input.interactive": false,
                 "mainThreadWebview-markdown.preview": false
@@ -25357,6 +25399,7 @@
                 "vscode.videoPreview",
                 "jsProfileVisualizer.cpuprofile.table",
                 "jsProfileVisualizer.heapprofile.table",
+                "workbench.editors.gettingStartedInput",
                 ""
             ],
             "description": "The default editor for files detected as binary. If undefined, the user will be presented with a picker.",
@@ -25366,7 +25409,7 @@
         },
         "workbench.editorAssociations": {
             "type": "object",
-            "markdownDescription": "Configure glob patterns to editors (for example `\"*.hex\": \"hexEditor.hexedit\"`). These have precedence over the default behavior.",
+            "markdownDescription": "Configure [glob patterns](https://aka.ms/vscode-glob-patterns) to editors (for example `\"*.hex\": \"hexEditor.hexedit\"`). These have precedence over the default behavior.",
             "patternProperties": {
                 ".*": {
                     "type": "string",
@@ -25380,7 +25423,8 @@
                         "vscode.audioPreview",
                         "vscode.videoPreview",
                         "jsProfileVisualizer.cpuprofile.table",
-                        "jsProfileVisualizer.heapprofile.table"
+                        "jsProfileVisualizer.heapprofile.table",
+                        "workbench.editors.gettingStartedInput"
                     ]
                 }
             },
@@ -25675,7 +25719,15 @@
         "diffEditor.experimental.collapseUnchangedRegions": {
             "type": "boolean",
             "default": false,
-            "description": "Controls whether the diff editor shows unchanged regions. Only works when 'diffEditor.experimental.useVersion2' is set.",
+            "markdownDescription": "Controls whether the diff editor shows unchanged regions. Only works when `#diffEditor.experimental.useVersion2#` is set.",
+            "defaultDefaultValue": false,
+            "scope": 5,
+            "restricted": false
+        },
+        "diffEditor.experimental.showMoves": {
+            "type": "boolean",
+            "default": false,
+            "markdownDescription": "Controls whether the diff editor should show detected code moves. Only works when `#diffEditor.experimental.useVersion2#` is set.",
             "defaultDefaultValue": false,
             "scope": 5,
             "restricted": false
@@ -25685,6 +25737,14 @@
             "default": false,
             "description": "Controls whether the diff editor uses the new or the old implementation.",
             "defaultDefaultValue": false,
+            "scope": 5,
+            "restricted": false
+        },
+        "diffEditor.experimental.showEmptyDecorations": {
+            "type": "boolean",
+            "default": true,
+            "description": "Controls whether the diff editor shows empty decorations to see where characters got inserted or deleted.",
+            "defaultDefaultValue": true,
             "scope": 5,
             "restricted": false
         },
@@ -27399,6 +27459,14 @@
             "scope": 5,
             "restricted": false
         },
+        "editor.smartSelect.selectSubwords": {
+            "description": "Whether subwords (like 'foo' in 'fooBar' or 'foo_bar') should be selected.",
+            "default": true,
+            "type": "boolean",
+            "defaultDefaultValue": true,
+            "scope": 5,
+            "restricted": false
+        },
         "editor.smoothScrolling": {
             "description": "Controls whether the editor will scroll using an animation.",
             "type": "boolean",
@@ -28140,6 +28208,24 @@
             "scope": 5,
             "restricted": false
         },
+        "editor.colorDecoratorsActivatedOn": {
+            "enumDescriptions": [
+                "Make the color picker appear both on click and hover of the color decorator",
+                "Make the color picker appear on hover of the color decorator",
+                "Make the color picker appear on click of the color decorator"
+            ],
+            "description": "Controls the condition to make a color picker appear from a color decorator",
+            "type": "string",
+            "enum": [
+                "clickAndHover",
+                "hover",
+                "click"
+            ],
+            "default": "clickAndHover",
+            "defaultDefaultValue": "clickAndHover",
+            "scope": 5,
+            "restricted": false
+        },
         "editor.codeActionWidget.showHeaders": {
             "type": "boolean",
             "scope": 5,
@@ -28431,7 +28517,7 @@
                     "type": "boolean"
                 }
             },
-            "markdownDescription": "Configure paths or [glob patterns](https://code.visualstudio.com/docs/editor/codebasics#_advanced-search-options) for excluding files from the local file history. Glob patterns are always evaluated relative to the path of the workspace folder unless they are absolute paths. Changing this setting has no effect on existing local file history entries.",
+            "markdownDescription": "Configure paths or [glob patterns](https://aka.ms/vscode-glob-patterns) for excluding files from the local file history. Glob patterns are always evaluated relative to the path of the workspace folder unless they are absolute paths. Changing this setting has no effect on existing local file history entries.",
             "scope": 4,
             "default": {},
             "restricted": false
@@ -28741,7 +28827,7 @@
         },
         "files.exclude": {
             "type": "object",
-            "markdownDescription": "Configure [glob patterns](https://code.visualstudio.com/docs/editor/codebasics#_advanced-search-options) for excluding files and folders. For example, the File Explorer decides which files and folders to show or hide based on this setting. Refer to the `#search.exclude#` setting to define search-specific excludes. Refer to the `#explorer.excludeGitIgnore#` setting for ignoring files based on your `.gitignore`.",
+            "markdownDescription": "Configure [glob patterns](https://aka.ms/vscode-glob-patterns) for excluding files and folders. For example, the File Explorer decides which files and folders to show or hide based on this setting. Refer to the `#search.exclude#` setting to define search-specific excludes. Refer to the `#explorer.excludeGitIgnore#` setting for ignoring files based on your `.gitignore`.",
             "default": {
                 "**/.git": true,
                 "**/.svn": true,
@@ -29006,7 +29092,7 @@
                 "**/node_modules/*/**": true,
                 "**/.hg/store/**": true
             },
-            "markdownDescription": "Configure paths or glob patterns to exclude from file watching. Paths can either be relative to the watched folder or absolute. Glob patterns are matched relative from the watched folder. When you experience the file watcher process consuming a lot of CPU, make sure to exclude large folders that are of less interest (such as build output folders).",
+            "markdownDescription": "Configure paths or [glob patterns](https://aka.ms/vscode-glob-patterns) to exclude from file watching. Paths can either be relative to the watched folder or absolute. Glob patterns are matched relative from the watched folder. When you experience the file watcher process consuming a lot of CPU, make sure to exclude large folders that are of less interest (such as build output folders).",
             "scope": 4,
             "defaultDefaultValue": {
                 "**/.git/objects/**": true,
@@ -29035,7 +29121,7 @@
                 }
             },
             "default": {},
-            "markdownDescription": "Configure paths or [glob patterns](https://code.visualstudio.com/docs/editor/codebasics#_advanced-search-options) to mark as read-only. Glob patterns are always evaluated relative to the path of the workspace folder unless they are absolute paths. You can exclude matching paths via the `#files.readonlyExclude#` setting. Files from readonly file system providers will always be read-only independent of this setting.",
+            "markdownDescription": "Configure paths or [glob patterns](https://aka.ms/vscode-glob-patterns) to mark as read-only. Glob patterns are always evaluated relative to the path of the workspace folder unless they are absolute paths. You can exclude matching paths via the `#files.readonlyExclude#` setting. Files from readonly file system providers will always be read-only independent of this setting.",
             "scope": 4,
             "defaultDefaultValue": {},
             "restricted": false
@@ -29048,7 +29134,7 @@
                 }
             },
             "default": {},
-            "markdownDescription": "Configure paths or [glob patterns](https://code.visualstudio.com/docs/editor/codebasics#_advanced-search-options) to exclude from being marked as read-only if they match as a result of the `#files.readonlyInclude#` setting. Glob patterns are always evaluated relative to the path of the workspace folder unless they are absolute paths. Files from readonly file system providers will always be read-only independent of this setting.",
+            "markdownDescription": "Configure paths or [glob patterns](https://aka.ms/vscode-glob-patterns) to exclude from being marked as read-only if they match as a result of the `#files.readonlyInclude#` setting. Glob patterns are always evaluated relative to the path of the workspace folder unless they are absolute paths. Files from readonly file system providers will always be read-only independent of this setting.",
             "scope": 4,
             "defaultDefaultValue": {},
             "restricted": false
@@ -32339,7 +32425,7 @@
         },
         "git.defaultBranchName": {
             "type": "string",
-            "description": "The name of the default branch (ex: main, trunk, development) when initializing a new git repository. When set to empty, the default branch name configured in git will be used.",
+            "markdownDescription": "The name of the default branch (ex: main, trunk, development) when initializing a new git repository. When set to empty, the default branch name configured in git will be used. **Note:** Requires git version `2.28.0` or later.",
             "default": "main",
             "scope": 4,
             "source": {
@@ -33022,7 +33108,7 @@
             "default": 50,
             "minimum": 0,
             "maximum": 100,
-            "description": "Controls the threshold of the similarity index (i.e. amount of additions/deletions compared to the file's size) for changes in a pair of added/deleted files to be considered a rename.",
+            "markdownDescription": "Controls the threshold of the similarity index (i.e. amount of additions/deletions compared to the file's size) for changes in a pair of added/deleted files to be considered a rename. **Note:** Requires git version `2.18.0` or later.",
             "scope": 4,
             "source": {
                 "id": "vscode.git",
@@ -33652,6 +33738,18 @@
             "defaultDefaultValue": true,
             "restricted": false
         },
+        "markdown.editor.pasteUrlAsFormattedLink.enabled": {
+            "type": "boolean",
+            "scope": 4,
+            "markdownDescription": "Controls if a Markdown link is created when a URL is pasted into the Markdown editor. Requires enabling `#editor.pasteAs.enabled#`.",
+            "default": false,
+            "source": {
+                "id": "vscode.markdown-language-features",
+                "displayName": "Markdown Language Features"
+            },
+            "defaultDefaultValue": false,
+            "restricted": false
+        },
         "markdown.validate.enabled": {
             "type": "boolean",
             "scope": 4,
@@ -33794,6 +33892,21 @@
             "defaultDefaultValue": false,
             "restricted": false
         },
+        "markdown.math.macros": {
+            "type": "object",
+            "additionalProperties": {
+                "type": "string"
+            },
+            "default": {},
+            "description": "A collection of custom macros. Each macro is a key-value pair where the key is a new command name and the value is the expansion of the macro.",
+            "scope": 4,
+            "source": {
+                "id": "vscode.markdown-math",
+                "displayName": "Markdown Math"
+            },
+            "defaultDefaultValue": {},
+            "restricted": false
+        },
         "npm.autoDetect": {
             "type": "string",
             "enum": [
@@ -33905,14 +34018,14 @@
         },
         "typescript.experimental.aiQuickFix": {
             "type": "boolean",
-            "default": false,
+            "default": true,
             "description": "Enable/disable AI-assisted quick fixes. Requires an extension providing AI chat functionality.",
             "scope": 4,
             "source": {
                 "id": "vscode.typescript-language-features",
                 "displayName": "TypeScript and JavaScript Language Features"
             },
-            "defaultDefaultValue": false,
+            "defaultDefaultValue": true,
             "restricted": false
         },
         "javascript.suggest.completeFunctionCalls": {

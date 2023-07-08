@@ -925,73 +925,7 @@
             "scope": 3,
             "restricted": false
         },
-        "accessibility.verbosity.terminal": {
-            "description": "ターミナルにフォーカスがある場合に、ターミナルのアクセシビリティ ヘルプ メニューにアクセスする方法に関する情報を提供します",
-            "type": "boolean",
-            "default": true,
-            "tags": [
-                "accessibility"
-            ],
-            "defaultDefaultValue": true,
-            "scope": 3,
-            "restricted": false
-        },
-        "accessibility.verbosity.diffEditor": {
-            "description": "差分エディターにフォーカスがあるときに変更を移動する方法に関する情報を提供する",
-            "type": "boolean",
-            "default": true,
-            "tags": [
-                "accessibility"
-            ],
-            "defaultDefaultValue": true,
-            "scope": 3,
-            "restricted": false
-        },
-        "accessibility.verbosity.chat": {
-            "description": "チャット入力がフォーカスされているときにチャット ヘルプ メニューにアクセスする方法に関する情報を提供します。",
-            "type": "boolean",
-            "default": true,
-            "tags": [
-                "accessibility"
-            ],
-            "defaultDefaultValue": true,
-            "scope": 3,
-            "restricted": false
-        },
-        "accessibility.verbosity.interactiveEditor": {
-            "description": "対話型エディターの入力がフォーカスされているときに、対話型エディターのアクセシビリティ ヘルプ メニューにアクセスする方法に関する情報を提供します。",
-            "type": "boolean",
-            "default": true,
-            "tags": [
-                "accessibility"
-            ],
-            "defaultDefaultValue": true,
-            "scope": 3,
-            "restricted": false
-        },
-        "accessibility.verbosity.keybindingsEditor": {
-            "description": "行がフォーカスされているときにキー バインド エディターでキー バインドを変更する方法に関する情報を提供します",
-            "type": "boolean",
-            "default": true,
-            "tags": [
-                "accessibility"
-            ],
-            "defaultDefaultValue": true,
-            "scope": 3,
-            "restricted": false
-        },
-        "accessibility.verbosity.notebook": {
-            "description": "ノートブック セルがフォーカスされているときにセル コンテナーまたは内部エディターにフォーカスを移動する方法に関する情報を提供します。",
-            "type": "boolean",
-            "default": true,
-            "tags": [
-                "accessibility"
-            ],
-            "defaultDefaultValue": true,
-            "scope": 3,
-            "restricted": false
-        },
-        "interactiveEditor.editMode": {
+        "inlineChat.mode": {
             "description": "対話型エディターで作成された変更をドキュメントに直接適用するか、最初にプレビューするかを構成します。",
             "default": "livePreview",
             "type": "string",
@@ -1214,11 +1148,20 @@
             "scope": 3,
             "restricted": false
         },
+        "workbench.editor.tabSizingFixedMinWidth": {
+            "type": "number",
+            "default": 50,
+            "minimum": 38,
+            "markdownDescription": "'#workbench.editor.tabSizing#' サイズが 'fixed' に設定されている場合のタブの最小幅を制御します。",
+            "defaultDefaultValue": 50,
+            "scope": 3,
+            "restricted": false
+        },
         "workbench.editor.tabSizingFixedMaxWidth": {
             "type": "number",
             "default": 160,
-            "minimum": 50,
-            "markdownDescription": "`#workbench.editor.tabSizing#` が `fixed` に設定されている場合のタブの最大幅を制御します。",
+            "minimum": 38,
+            "markdownDescription": "'#workbench.editor.tabSizing#' サイズが 'fixed' に設定されている場合のタブの最大幅を制御します。",
             "defaultDefaultValue": 160,
             "scope": 3,
             "restricted": false
@@ -1244,16 +1187,18 @@
         "workbench.editor.splitSizing": {
             "type": "string",
             "enum": [
+                "auto",
                 "distribute",
                 "split"
             ],
-            "default": "distribute",
+            "default": "auto",
             "enumDescriptions": [
+                "パーツのサイズが変更されていない限り、すべてのエディター グループを等しいサイズに分割します。",
                 "すべてのエディター グループを等分に分割します。",
                 "アクティブなエディター グループを等分に分割します。"
             ],
             "description": "エディター グループを分割するときのサイズを制御します。",
-            "defaultDefaultValue": "distribute",
+            "defaultDefaultValue": "auto",
             "scope": 3,
             "restricted": false
         },
@@ -1421,6 +1366,14 @@
             "scope": 3,
             "restricted": false
         },
+        "workbench.editor.doubleClickTabToToggleEditorGroupSizes": {
+            "type": "boolean",
+            "default": true,
+            "markdownDescription": "タブをダブルクリックしたときにエディター グループを最大化/復元するかどうかを制御します。 `#workbench.editor.showTabs#` が無効な場合、この値は無視されます。",
+            "defaultDefaultValue": true,
+            "scope": 3,
+            "restricted": false
+        },
         "workbench.editor.limit.enabled": {
             "type": "boolean",
             "default": false,
@@ -1473,6 +1426,9 @@
         },
         "workbench.commandPalette.experimental.suggestCommands": {
             "type": "boolean",
+            "tags": [
+                "experimental"
+            ],
             "description": "コマンド パレットに一般的に使用されるコマンドのリストを含めるかどうかを制御します。",
             "default": false,
             "defaultDefaultValue": false,
@@ -1481,9 +1437,12 @@
         },
         "workbench.commandPalette.experimental.useSemanticSimilarity": {
             "type": "boolean",
+            "tags": [
+                "experimental"
+            ],
             "description": "コマンド パレットに同様のコマンドを含めるかどうかを制御します。セマンティック類似性を提供する拡張機能がインストールされている必要があります。",
-            "default": false,
-            "defaultDefaultValue": false,
+            "default": true,
+            "defaultDefaultValue": true,
             "scope": 3,
             "restricted": false
         },
@@ -1808,6 +1767,17 @@
             "defaultDefaultValue": 300,
             "scope": 3,
             "restricted": false
+        },
+        "workbench.experimental.share.enabled": {
+            "type": "boolean",
+            "default": false,
+            "tags": [
+                "experimental"
+            ],
+            "markdownDescription": "`#window.commandCenter#` が `true` の場合に、コマンド センターの横に [共有] アクションを表示するかどうかを制御します。",
+            "restricted": false,
+            "defaultDefaultValue": false,
+            "scope": 3
         },
         "audioCues.enabled": {
             "markdownDeprecationMessage": "Deprecated. Use the specific setting for each audio cue instead (`audioCues.*`).",
@@ -2176,6 +2146,69 @@
                 "accessibility"
             ],
             "defaultDefaultValue": "auto",
+            "scope": 3,
+            "restricted": false
+        },
+        "audioCues.chatRequestSent": {
+            "description": "チャット要求が行われたときにサウンドを再生します。",
+            "type": "string",
+            "enum": [
+                "auto",
+                "on",
+                "off"
+            ],
+            "default": "off",
+            "enumDescriptions": [
+                "スクリーン リーダーが接続されたときにオーディオ キューを有効にします。",
+                "オーディオ キューを有効にします。",
+                "オーディオ キューを無効にします。"
+            ],
+            "tags": [
+                "accessibility"
+            ],
+            "defaultDefaultValue": "off",
+            "scope": 3,
+            "restricted": false
+        },
+        "audioCues.chatResponsePending": {
+            "description": "応答が保留中の間、サウンドを繰り返し再生します。",
+            "type": "string",
+            "enum": [
+                "auto",
+                "on",
+                "off"
+            ],
+            "default": "auto",
+            "enumDescriptions": [
+                "スクリーン リーダーが接続されたときにオーディオ キューを有効にします。",
+                "オーディオ キューを有効にします。",
+                "オーディオ キューを無効にします。"
+            ],
+            "tags": [
+                "accessibility"
+            ],
+            "defaultDefaultValue": "auto",
+            "scope": 3,
+            "restricted": false
+        },
+        "audioCues.chatResponseReceived": {
+            "description": "応答の受信中に、サウンドを繰り返し再生します。",
+            "type": "string",
+            "enum": [
+                "auto",
+                "on",
+                "off"
+            ],
+            "default": "off",
+            "enumDescriptions": [
+                "スクリーン リーダーが接続されたときにオーディオ キューを有効にします。",
+                "オーディオ キューを有効にします。",
+                "オーディオ キューを無効にします。"
+            ],
+            "tags": [
+                "accessibility"
+            ],
+            "defaultDefaultValue": "off",
             "scope": 3,
             "restricted": false
         },
@@ -4268,6 +4301,72 @@
             "scope": 3,
             "restricted": false
         },
+        "accessibility.verbosity.terminal": {
+            "description": "ターミナルにフォーカスがある場合に、ターミナルのアクセシビリティ ヘルプ メニューにアクセスする方法に関する情報を提供します",
+            "type": "boolean",
+            "default": true,
+            "tags": [
+                "accessibility"
+            ],
+            "defaultDefaultValue": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "accessibility.verbosity.diffEditor": {
+            "description": "差分エディターにフォーカスがあるときに変更を移動する方法に関する情報を提供する",
+            "type": "boolean",
+            "default": true,
+            "tags": [
+                "accessibility"
+            ],
+            "defaultDefaultValue": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "accessibility.verbosity.panelChat": {
+            "description": "チャット入力がフォーカスされているときにチャット ヘルプ メニューにアクセスする方法に関する情報を提供します。",
+            "type": "boolean",
+            "default": true,
+            "tags": [
+                "accessibility"
+            ],
+            "defaultDefaultValue": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "accessibility.verbosity.inlineChat": {
+            "description": "入力にフォーカスがある場合にインライン エディターのチャット アクセシビリティ ヘルプ メニューにアクセスする方法に関する情報を提供する",
+            "type": "boolean",
+            "default": true,
+            "tags": [
+                "accessibility"
+            ],
+            "defaultDefaultValue": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "accessibility.verbosity.keybindingsEditor": {
+            "description": "行がフォーカスされているときにキー バインド エディターでキー バインドを変更する方法に関する情報を提供します",
+            "type": "boolean",
+            "default": true,
+            "tags": [
+                "accessibility"
+            ],
+            "defaultDefaultValue": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "accessibility.verbosity.notebook": {
+            "description": "ノートブック セルがフォーカスされているときにセル コンテナーまたは内部エディターにフォーカスを移動する方法に関する情報を提供します。",
+            "type": "boolean",
+            "default": true,
+            "tags": [
+                "accessibility"
+            ],
+            "defaultDefaultValue": true,
+            "scope": 3,
+            "restricted": false
+        },
         "comments.openPanel": {
             "enum": [
                 "neverOpen",
@@ -4311,6 +4410,14 @@
             "type": "boolean",
             "default": true,
             "description": "コメント範囲とコメントを含むエディターで、コメント バーとコメント スレッドを表示するかどうかを制御します。コメントはコメント ビューを介して引き続きアクセスでき、コマンド \"Comments: Toggle Editor Commenting\" の切り替えを実行するのと同じ方法でコメントがオンに切り替わります。",
+            "defaultDefaultValue": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "comments.maxHeight": {
+            "type": "boolean",
+            "default": true,
+            "description": "コメント ウィジェットをスクロールするか展開するかを制御します。",
             "defaultDefaultValue": true,
             "scope": 3,
             "restricted": false
@@ -4425,14 +4532,6 @@
             "scope": 3,
             "restricted": false
         },
-        "interactiveWindow.restore": {
-            "type": "boolean",
-            "default": false,
-            "markdownDescription": "ウィンドウの再読み込み時にインタラクティブ ウィンドウ セッション/履歴を復元する必要があるかどうかを制御します。インタラクティブ ウィンドウで使用されるコントローラーの状態がウィンドウの再読み込み時に保持されるかどうかは、コントローラーに貢献する拡張機能によって制御されます。",
-            "defaultDefaultValue": false,
-            "scope": 3,
-            "restricted": false
-        },
         "mergeEditor.diffAlgorithm": {
             "type": "string",
             "enum": [
@@ -4532,17 +4631,6 @@
             "description": "チャット コード ブロック内の行の高さをピクセル単位で制御します。フォント サイズから行の高さを計算するには 0 を使用します。",
             "default": 0,
             "defaultDefaultValue": 0,
-            "scope": 3,
-            "restricted": false
-        },
-        "chat.experimental.quickQuestion.enable": {
-            "type": "boolean",
-            "description": "クイック質問機能を有効にするかどうかを制御します。",
-            "default": false,
-            "tags": [
-                "experimental"
-            ],
-            "defaultDefaultValue": false,
             "scope": 3,
             "restricted": false
         },
@@ -4879,7 +4967,7 @@
         },
         "files.readonlyFromPermissions": {
             "type": "boolean",
-            "markdownDescription": "ファイルのアクセス許可がそのように示されると、ファイルを読み取り専用としてマークします。これは、`#files.readonlyInclude#` および `#files.readonlyExclude#` 設定を使用してオーバーライドできます。",
+            "markdownDescription": "ファイルのアクセス許可がそのように示されると、ファイルが読み取り専用としてマークされます。これは、`#files.readonlyInclude#` および `#files.readonlyExclude#` 設定を使用してオーバーライドできます。",
             "default": false,
             "defaultDefaultValue": false,
             "scope": 3,
@@ -4968,7 +5056,7 @@
         },
         "explorer.autoRevealExclude": {
             "type": "object",
-            "markdownDescription": "エクスプローラーでファイルとフォルダーが開いたときに表示および選択されないように、パスまたは [glob パターン](https://code.visualstudio.com/docs/editor/codebasics#_advanced-search-options) を構成します。Glob パターンは、絶対パスでない限り、ワークスペース フォルダーのパスを基準にして常に評価されます。",
+            "markdownDescription": "エクスプローラーでファイルとフォルダーが開いたときに表示および選択されないように、パスまたは [glob パターン](https://aka.ms/vscode-glob-patterns) を構成します。Glob パターンは、絶対パスでない限り、常にワークスペース フォルダーのパスを基準にして評価されます。",
             "default": {
                 "**/node_modules": true,
                 "**/bower_components": true
@@ -5279,6 +5367,14 @@
                 "自動的に開くことはありません。"
             ],
             "defaultDefaultValue": "failureInVisibleDocument",
+            "scope": 3,
+            "restricted": false
+        },
+        "testing.showAllMessages": {
+            "description": "すべてのテストの実行からメッセージを表示するかどうかを制御します。",
+            "type": "boolean",
+            "default": false,
+            "defaultDefaultValue": false,
             "scope": 3,
             "restricted": false
         },
@@ -7607,6 +7703,14 @@
                             "scope": 5,
                             "restricted": false
                         },
+                        "editor.smartSelect.selectSubwords": {
+                            "description": "サブワード ('fooBar' の 'foo' または 'foo_bar' など) を選択する必要があるかどうか。",
+                            "default": true,
+                            "type": "boolean",
+                            "defaultDefaultValue": true,
+                            "scope": 5,
+                            "restricted": false
+                        },
                         "editor.smoothScrolling": {
                             "description": "アニメーションでエディターをスクロールするかどうかを制御します。",
                             "type": "boolean",
@@ -8347,6 +8451,24 @@
                             "defaultDefaultValue": false,
                             "scope": 5,
                             "restricted": false
+                        },
+                        "editor.colorDecoratorsActivatedOn": {
+                            "enumDescriptions": [
+                                "カラー デコレーターのクリック時とポイント時の両方にカラー ピッカーを表示する",
+                                "カラー デコレーターのポイント時にカラー ピッカーを表示する",
+                                "カラー デコレーターのクリック時にカラー ピッカーを表示する"
+                            ],
+                            "description": "カラー デコレーターからカラー ピッカーを表示する条件を制御します",
+                            "type": "string",
+                            "enum": [
+                                "clickAndHover",
+                                "hover",
+                                "click"
+                            ],
+                            "default": "clickAndHover",
+                            "defaultDefaultValue": "clickAndHover",
+                            "scope": 5,
+                            "restricted": false
                         }
                     }
                 }
@@ -8799,48 +8921,9 @@
             "scope": 3,
             "restricted": false
         },
-        "terminal.integrated.automationShell.linux": {
-            "restricted": true,
-            "markdownDescription": "このパスを設定すると、`terminal.integrated.shell.linux` がオーバーライドされ、`shellArgs` の値が無視されます。この値は、タスクやデバッグなどのオートメーション関連のターミナル使用に関するものです。",
-            "type": [
-                "string",
-                "null"
-            ],
-            "default": null,
-            "markdownDeprecationMessage": "これは非推奨です。オートメーション シェルを構成するための新しい推奨される方法は、`#terminal.integrated.automationProfile.linux#`を使用してターミナルオートメーション プロファイルを作成することです。これは現在、新しいオートメーション プロファイル設定よりも優先されますが、今後変更される予定です。",
-            "defaultDefaultValue": null,
-            "scope": 3,
-            "deprecationMessage": "これは非推奨です。オートメーション シェルを構成するための新しい推奨される方法は、`#terminal.integrated.automationProfile.linux#`を使用してターミナルオートメーション プロファイルを作成することです。これは現在、新しいオートメーション プロファイル設定よりも優先されますが、今後変更される予定です。"
-        },
-        "terminal.integrated.automationShell.osx": {
-            "restricted": true,
-            "markdownDescription": "このパスを設定すると、`terminal.integrated.shell.osx` がオーバーライドされ、`shellArgs` の値が無視されます。この値は、タスクやデバッグなどのオートメーション関連のターミナル使用に関するものです。",
-            "type": [
-                "string",
-                "null"
-            ],
-            "default": null,
-            "markdownDeprecationMessage": "これは非推奨です。オートメーション シェルを構成するための新しい推奨される方法は、`#terminal.integrated.automationProfile.osx#`を使用してターミナルオートメーション プロファイルを作成することです。これは現在、新しいオートメーション プロファイル設定よりも優先されますが、今後変更される予定です。",
-            "defaultDefaultValue": null,
-            "scope": 3,
-            "deprecationMessage": "これは非推奨です。オートメーション シェルを構成するための新しい推奨される方法は、`#terminal.integrated.automationProfile.osx#`を使用してターミナルオートメーション プロファイルを作成することです。これは現在、新しいオートメーション プロファイル設定よりも優先されますが、今後変更される予定です。"
-        },
-        "terminal.integrated.automationShell.windows": {
-            "restricted": true,
-            "markdownDescription": "このパスを設定すると、`terminal.integrated.shell.windows` がオーバーライドされ、`shellArgs` の値が無視されます。この値は、タスクやデバッグなどのオートメーション関連のターミナル使用に関するものです。",
-            "type": [
-                "string",
-                "null"
-            ],
-            "default": null,
-            "markdownDeprecationMessage": "これは非推奨です。オートメーション シェルを構成するための新しい推奨される方法は、`#terminal.integrated.automationProfile.windows#`を使用してターミナルオートメーション プロファイルを作成することです。これは現在、新しいオートメーション プロファイル設定よりも優先されますが、今後変更される予定です。",
-            "defaultDefaultValue": null,
-            "scope": 3,
-            "deprecationMessage": "これは非推奨です。オートメーション シェルを構成するための新しい推奨される方法は、`#terminal.integrated.automationProfile.windows#`を使用してターミナルオートメーション プロファイルを作成することです。これは現在、新しいオートメーション プロファイル設定よりも優先されますが、今後変更される予定です。"
-        },
         "terminal.integrated.automationProfile.linux": {
             "restricted": true,
-            "markdownDescription": "タスクやデバッグなどのオートメーション関連のターミナルの使用に Linux で使用するターミナル プロファイル。現在、この設定は、`terminal.integrated.automationShell.linux` (非推奨になりました) が設定されている場合は無視されます。",
+            "markdownDescription": "タスクやデバッグなどのオートメーション関連のターミナルの使用に Linux で使用するターミナル プロファイル。",
             "type": [
                 "object",
                 "null"
@@ -10005,7 +10088,7 @@
         },
         "terminal.integrated.automationProfile.osx": {
             "restricted": true,
-            "markdownDescription": "タスクやデバッグなどのオートメーション関連のターミナルの使用に macOS で使用するターミナル プロファイル。現在、この設定は、`terminal.integrated.automationShell.osx` (非推奨になりました) が設定されている場合は無視されます。",
+            "markdownDescription": "タスクやデバッグなどのオートメーション関連のターミナルの使用に macOS で使用するターミナル プロファイル。",
             "type": [
                 "object",
                 "null"
@@ -12332,97 +12415,6 @@
             ],
             "defaultDefaultValue": null,
             "scope": 3
-        },
-        "terminal.integrated.shell.linux": {
-            "restricted": true,
-            "markdownDescription": "The path of the shell that the terminal uses on Linux. [Read more about configuring the shell](https://code.visualstudio.com/docs/editor/integrated-terminal#_terminal-profiles).",
-            "type": [
-                "string",
-                "null"
-            ],
-            "default": null,
-            "markdownDeprecationMessage": "これは推奨されていません。既定のシェルを構成するための新しい推奨方法は、`#terminal.integrated.profiles.linux#` にターミナル プロファイルを作成し、そのプロファイル名を `#terminal.integrated.defaultProfile.linux#` の既定値として設定することです。これは現在、新しいプロファイル設定より優先されていますが、将来は変更されます。",
-            "defaultDefaultValue": null,
-            "scope": 3,
-            "deprecationMessage": "これは推奨されていません。既定のシェルを構成するための新しい推奨方法は、`#terminal.integrated.profiles.linux#` にターミナル プロファイルを作成し、そのプロファイル名を `#terminal.integrated.defaultProfile.linux#` の既定値として設定することです。これは現在、新しいプロファイル設定より優先されていますが、将来は変更されます。"
-        },
-        "terminal.integrated.shell.osx": {
-            "restricted": true,
-            "markdownDescription": "The path of the shell that the terminal uses on macOS. [Read more about configuring the shell](https://code.visualstudio.com/docs/editor/integrated-terminal#_terminal-profiles).",
-            "type": [
-                "string",
-                "null"
-            ],
-            "default": null,
-            "markdownDeprecationMessage": "これは推奨されていません。既定のシェルを構成するための新しい推奨方法は、`#terminal.integrated.profiles.osx#` にターミナル プロファイルを作成し、そのプロファイル名を `#terminal.integrated.defaultProfile.osx#` の既定値として設定することです。これは現在、新しいプロファイル設定より優先されていますが、将来は変更されます。",
-            "defaultDefaultValue": null,
-            "scope": 3,
-            "deprecationMessage": "これは推奨されていません。既定のシェルを構成するための新しい推奨方法は、`#terminal.integrated.profiles.osx#` にターミナル プロファイルを作成し、そのプロファイル名を `#terminal.integrated.defaultProfile.osx#` の既定値として設定することです。これは現在、新しいプロファイル設定より優先されていますが、将来は変更されます。"
-        },
-        "terminal.integrated.shell.windows": {
-            "restricted": true,
-            "markdownDescription": "The path of the shell that the terminal uses on Windows. [Read more about configuring the shell](https://code.visualstudio.com/docs/editor/integrated-terminal#_terminal-profiles).",
-            "type": [
-                "string",
-                "null"
-            ],
-            "default": null,
-            "markdownDeprecationMessage": "これは推奨されていません。既定のシェルを構成するための新しい推奨方法は、`#terminal.integrated.profiles.windows#` にターミナル プロファイルを作成し、そのプロファイル名を `#terminal.integrated.defaultProfile.windows#` の既定値として設定することです。これは現在、新しいプロファイル設定より優先されていますが、将来は変更されます。",
-            "defaultDefaultValue": null,
-            "scope": 3,
-            "deprecationMessage": "これは推奨されていません。既定のシェルを構成するための新しい推奨方法は、`#terminal.integrated.profiles.windows#` にターミナル プロファイルを作成し、そのプロファイル名を `#terminal.integrated.defaultProfile.windows#` の既定値として設定することです。これは現在、新しいプロファイル設定より優先されていますが、将来は変更されます。"
-        },
-        "terminal.integrated.shellArgs.linux": {
-            "restricted": true,
-            "markdownDescription": "Linux ターミナルで使用するコマンドラインの引数。[シェルの構成についての詳細情報](https://code.visualstudio.com/docs/editor/integrated-terminal#_terminal-profiles)。",
-            "type": "array",
-            "items": {
-                "type": "string"
-            },
-            "default": [],
-            "markdownDeprecationMessage": "これは推奨されていません。既定のシェルを構成するための新しい推奨方法は、`#terminal.integrated.profiles.linux#` にターミナル プロファイルを作成し、そのプロファイル名を `#terminal.integrated.defaultProfile.linux#` の既定値として設定することです。これは現在、新しいプロファイル設定より優先されていますが、将来は変更されます。",
-            "defaultDefaultValue": [],
-            "scope": 3,
-            "deprecationMessage": "これは推奨されていません。既定のシェルを構成するための新しい推奨方法は、`#terminal.integrated.profiles.linux#` にターミナル プロファイルを作成し、そのプロファイル名を `#terminal.integrated.defaultProfile.linux#` の既定値として設定することです。これは現在、新しいプロファイル設定より優先されていますが、将来は変更されます。"
-        },
-        "terminal.integrated.shellArgs.osx": {
-            "restricted": true,
-            "markdownDescription": "Mac OS ターミナルで使用するコマンドラインの引数。[シェルの構成についての詳細情報](https://code.visualstudio.com/docs/editor/integrated-terminal#_terminal-profiles)。",
-            "type": "array",
-            "items": {
-                "type": "string"
-            },
-            "default": [
-                "-l"
-            ],
-            "markdownDeprecationMessage": "これは推奨されていません。既定のシェルを構成するための新しい推奨方法は、`#terminal.integrated.profiles.osx#` にターミナル プロファイルを作成し、そのプロファイル名を `#terminal.integrated.defaultProfile.osx#` の既定値として設定することです。これは現在、新しいプロファイル設定より優先されていますが、将来は変更されます。",
-            "defaultDefaultValue": [
-                "-l"
-            ],
-            "scope": 3,
-            "deprecationMessage": "これは推奨されていません。既定のシェルを構成するための新しい推奨方法は、`#terminal.integrated.profiles.osx#` にターミナル プロファイルを作成し、そのプロファイル名を `#terminal.integrated.defaultProfile.osx#` の既定値として設定することです。これは現在、新しいプロファイル設定より優先されていますが、将来は変更されます。"
-        },
-        "terminal.integrated.shellArgs.windows": {
-            "restricted": true,
-            "markdownDescription": "Windows ターミナルで使用するコマンドラインの引数。[シェルの構成についての詳細情報](https://code.visualstudio.com/docs/editor/integrated-terminal#_terminal-profiles)。",
-            "anyOf": [
-                {
-                    "type": "array",
-                    "items": {
-                        "type": "string",
-                        "markdownDescription": "Windows ターミナルで使用するコマンドラインの引数。[シェルの構成についての詳細情報](https://code.visualstudio.com/docs/editor/integrated-terminal#_terminal-profiles)。"
-                    }
-                },
-                {
-                    "type": "string",
-                    "markdownDescription": "Windows ターミナル上で使用する [コマンド ライン形式](https://msdn.microsoft.com/ja-jp/08dfcab2-eb6e-49a4-80eb-87d4076c98c6) のコマンド ライン引数です。[シェルの構成に関する詳細情報](https://code.visualstudio.com/docs/editor/integrated-terminal#_terminal-profiles)。"
-                }
-            ],
-            "default": [],
-            "markdownDeprecationMessage": "これは推奨されていません。既定のシェルを構成するための新しい推奨方法は、`#terminal.integrated.profiles.windows#` にターミナル プロファイルを作成し、そのプロファイル名を `#terminal.integrated.defaultProfile.windows#` の既定値として設定することです。これは現在、新しいプロファイル設定より優先されていますが、将来は変更されます。",
-            "defaultDefaultValue": [],
-            "scope": 3,
-            "deprecationMessage": "これは推奨されていません。既定のシェルを構成するための新しい推奨方法は、`#terminal.integrated.profiles.windows#` にターミナル プロファイルを作成し、そのプロファイル名を `#terminal.integrated.defaultProfile.windows#` の既定値として設定することです。これは現在、新しいプロファイル設定より優先されていますが、将来は変更されます。"
         },
         "terminal.integrated.profiles.windows": {
             "restricted": true,
@@ -21129,7 +21121,7 @@
             "restricted": false
         },
         "terminal.integrated.commandsToSkipShell": {
-            "markdownDescription": "キー バインドがシェルに送信されず、代わりに常に VS Code で処理されるコマンド ID のセット。これにより、シェルによって通常使用されるキー バインドが、ターミナルがフォーカスされていない場合と同じ動作をするようにします。たとえば、'Ctrl+P' で Quick Open を起動します。\r\n\r\n&nbsp;\r\n\r\n既定では、多くのコマンドがスキップされます。既定値をオーバーライドし、代わりにそのコマンドのキー バインドをシェルに渡すには、先頭に '-' 文字が付いているコマンドを追加します。たとえば、'-workbench.action.quickOpen' を追加して、'Ctrl+P' でシェルにアクセスできるようにします。\r\n\r\n&nbsp;\r\n\r\n既定でスキップされる以下のコマンドの一覧は、設定エディターで表示したときには切り詰められます。完全な一覧を表示するには、下の一覧から最初のコマンドを [既定の設定の JSON を開く](command:workbench.action.openRawDefaultSettings '既定の設定 (JSON) を開く') して検索します。\r\n\r\n&nbsp;\r\n\r\n既定でスキップされるコマンド:\r\n\r\n- editor.action.toggleTabFocusMode\n- notification.acceptPrimaryAction\n- notifications.hideList\n- notifications.hideToasts\n- runCommands\n- workbench.action.closeQuickOpen\n- workbench.action.debug.continue\n- workbench.action.debug.pause\n- workbench.action.debug.restart\n- workbench.action.debug.run\n- workbench.action.debug.start\n- workbench.action.debug.stepInto\n- workbench.action.debug.stepOut\n- workbench.action.debug.stepOver\n- workbench.action.debug.stop\n- workbench.action.firstEditorInGroup\n- workbench.action.focusActiveEditorGroup\n- workbench.action.focusEighthEditorGroup\n- workbench.action.focusFifthEditorGroup\n- workbench.action.focusFirstEditorGroup\n- workbench.action.focusFourthEditorGroup\n- workbench.action.focusLastEditorGroup\n- workbench.action.focusNextPart\n- workbench.action.focusPreviousPart\n- workbench.action.focusSecondEditorGroup\n- workbench.action.focusSeventhEditorGroup\n- workbench.action.focusSixthEditorGroup\n- workbench.action.focusThirdEditorGroup\n- workbench.action.lastEditorInGroup\n- workbench.action.navigateDown\n- workbench.action.navigateLeft\n- workbench.action.navigateRight\n- workbench.action.navigateUp\n- workbench.action.nextEditor\n- workbench.action.nextEditorInGroup\n- workbench.action.nextPanelView\n- workbench.action.nextSideBarView\n- workbench.action.openNextRecentlyUsedEditor\n- workbench.action.openNextRecentlyUsedEditorInGroup\n- workbench.action.openPreviousRecentlyUsedEditor\n- workbench.action.openPreviousRecentlyUsedEditorInGroup\n- workbench.action.previousEditor\n- workbench.action.previousEditorInGroup\n- workbench.action.previousPanelView\n- workbench.action.previousSideBarView\n- workbench.action.quickOpen\n- workbench.action.quickOpenLeastRecentlyUsedEditor\n- workbench.action.quickOpenLeastRecentlyUsedEditorInGroup\n- workbench.action.quickOpenPreviousEditor\n- workbench.action.quickOpenPreviousRecentlyUsedEditor\n- workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup\n- workbench.action.quickOpenView\n- workbench.action.showCommands\n- workbench.action.tasks.build\n- workbench.action.tasks.reRunTask\n- workbench.action.tasks.restartTask\n- workbench.action.tasks.runTask\n- workbench.action.tasks.showLog\n- workbench.action.tasks.showTasks\n- workbench.action.tasks.terminate\n- workbench.action.tasks.test\n- workbench.action.terminal.acceptSelectedSuggestion\n- workbench.action.terminal.clear\n- workbench.action.terminal.clearSelection\n- workbench.action.terminal.copyAndClearSelection\n- workbench.action.terminal.copyLastCommandOutput\n- workbench.action.terminal.copySelection\n- workbench.action.terminal.copySelectionAsHtml\n- workbench.action.terminal.deleteToLineStart\n- workbench.action.terminal.deleteWordLeft\n- workbench.action.terminal.deleteWordRight\n- workbench.action.terminal.findNext\n- workbench.action.terminal.findPrevious\n- workbench.action.terminal.focus\n- workbench.action.terminal.focusAtIndex1\n- workbench.action.terminal.focusAtIndex2\n- workbench.action.terminal.focusAtIndex3\n- workbench.action.terminal.focusAtIndex4\n- workbench.action.terminal.focusAtIndex5\n- workbench.action.terminal.focusAtIndex6\n- workbench.action.terminal.focusAtIndex7\n- workbench.action.terminal.focusAtIndex8\n- workbench.action.terminal.focusAtIndex9\n- workbench.action.terminal.focusFind\n- workbench.action.terminal.focusHover\n- workbench.action.terminal.focusNext\n- workbench.action.terminal.focusNextPane\n- workbench.action.terminal.focusPrevious\n- workbench.action.terminal.focusPreviousPane\n- workbench.action.terminal.goToRecentDirectory\n- workbench.action.terminal.hideFind\n- workbench.action.terminal.hideSuggestWidget\n- workbench.action.terminal.kill\n- workbench.action.terminal.killEditor\n- workbench.action.terminal.moveToEditor\n- workbench.action.terminal.moveToLineEnd\n- workbench.action.terminal.moveToLineStart\n- workbench.action.terminal.moveToTerminalPanel\n- workbench.action.terminal.new\n- workbench.action.terminal.newInActiveWorkspace\n- workbench.action.terminal.paste\n- workbench.action.terminal.pasteSelection\n- workbench.action.terminal.resizePaneDown\n- workbench.action.terminal.resizePaneLeft\n- workbench.action.terminal.resizePaneRight\n- workbench.action.terminal.resizePaneUp\n- workbench.action.terminal.runActiveFile\n- workbench.action.terminal.runRecentCommand\n- workbench.action.terminal.runSelectedText\n- workbench.action.terminal.scrollDown\n- workbench.action.terminal.scrollDownPage\n- workbench.action.terminal.scrollToBottom\n- workbench.action.terminal.scrollToNextCommand\n- workbench.action.terminal.scrollToPreviousCommand\n- workbench.action.terminal.scrollToTop\n- workbench.action.terminal.scrollUp\n- workbench.action.terminal.scrollUpPage\n- workbench.action.terminal.selectAll\n- workbench.action.terminal.selectNextPageSuggestion\n- workbench.action.terminal.selectNextSuggestion\n- workbench.action.terminal.selectPrevPageSuggestion\n- workbench.action.terminal.selectPrevSuggestion\n- workbench.action.terminal.selectToNextCommand\n- workbench.action.terminal.selectToNextLine\n- workbench.action.terminal.selectToPreviousCommand\n- workbench.action.terminal.selectToPreviousLine\n- workbench.action.terminal.sendSequence\n- workbench.action.terminal.showAccessibilityHelp\n- workbench.action.terminal.sizeToContentWidth\n- workbench.action.terminal.split\n- workbench.action.terminal.splitInActiveWorkspace\n- workbench.action.terminal.toggleFindCaseSensitive\n- workbench.action.terminal.toggleFindRegex\n- workbench.action.terminal.toggleFindWholeWord\n- workbench.action.terminal.toggleTerminal\n- workbench.action.toggleFullScreen\n- workbench.action.toggleMaximizedPanel\n- workbench.action.togglePanel",
+            "markdownDescription": "キー バインドがシェルに送信されず、代わりに常に VS Code で処理されるコマンド ID のセット。これにより、シェルによって通常使用されるキー バインドが、ターミナルがフォーカスされていない場合と同じ動作をするようにします。たとえば、'Ctrl+P' で Quick Open を起動します。\r\n\r\n&nbsp;\r\n\r\n既定では、多くのコマンドがスキップされます。既定値をオーバーライドし、代わりにそのコマンドのキー バインドをシェルに渡すには、先頭に '-' 文字が付いているコマンドを追加します。たとえば、'-workbench.action.quickOpen' を追加して、'Ctrl+P' でシェルにアクセスできるようにします。\r\n\r\n&nbsp;\r\n\r\n既定でスキップされる以下のコマンドの一覧は、設定エディターで表示したときには切り詰められます。完全な一覧を表示するには、下の一覧から最初のコマンドを [既定の設定の JSON を開く](command:workbench.action.openRawDefaultSettings '既定の設定 (JSON) を開く') して検索します。\r\n\r\n&nbsp;\r\n\r\n既定でスキップされるコマンド:\r\n\r\n- editor.action.accessibilityHelp\n- editor.action.toggleTabFocusMode\n- notification.acceptPrimaryAction\n- notifications.hideList\n- notifications.hideToasts\n- runCommands\n- workbench.action.closeQuickOpen\n- workbench.action.debug.continue\n- workbench.action.debug.pause\n- workbench.action.debug.restart\n- workbench.action.debug.run\n- workbench.action.debug.start\n- workbench.action.debug.stepInto\n- workbench.action.debug.stepOut\n- workbench.action.debug.stepOver\n- workbench.action.debug.stop\n- workbench.action.firstEditorInGroup\n- workbench.action.focusActiveEditorGroup\n- workbench.action.focusEighthEditorGroup\n- workbench.action.focusFifthEditorGroup\n- workbench.action.focusFirstEditorGroup\n- workbench.action.focusFourthEditorGroup\n- workbench.action.focusLastEditorGroup\n- workbench.action.focusNextPart\n- workbench.action.focusPreviousPart\n- workbench.action.focusSecondEditorGroup\n- workbench.action.focusSeventhEditorGroup\n- workbench.action.focusSixthEditorGroup\n- workbench.action.focusThirdEditorGroup\n- workbench.action.lastEditorInGroup\n- workbench.action.navigateDown\n- workbench.action.navigateLeft\n- workbench.action.navigateRight\n- workbench.action.navigateUp\n- workbench.action.nextEditor\n- workbench.action.nextEditorInGroup\n- workbench.action.nextPanelView\n- workbench.action.nextSideBarView\n- workbench.action.openNextRecentlyUsedEditor\n- workbench.action.openNextRecentlyUsedEditorInGroup\n- workbench.action.openPreviousRecentlyUsedEditor\n- workbench.action.openPreviousRecentlyUsedEditorInGroup\n- workbench.action.previousEditor\n- workbench.action.previousEditorInGroup\n- workbench.action.previousPanelView\n- workbench.action.previousSideBarView\n- workbench.action.quickOpen\n- workbench.action.quickOpenLeastRecentlyUsedEditor\n- workbench.action.quickOpenLeastRecentlyUsedEditorInGroup\n- workbench.action.quickOpenPreviousEditor\n- workbench.action.quickOpenPreviousRecentlyUsedEditor\n- workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup\n- workbench.action.quickOpenView\n- workbench.action.showCommands\n- workbench.action.tasks.build\n- workbench.action.tasks.reRunTask\n- workbench.action.tasks.restartTask\n- workbench.action.tasks.runTask\n- workbench.action.tasks.showLog\n- workbench.action.tasks.showTasks\n- workbench.action.tasks.terminate\n- workbench.action.tasks.test\n- workbench.action.terminal.acceptSelectedSuggestion\n- workbench.action.terminal.clear\n- workbench.action.terminal.clearSelection\n- workbench.action.terminal.copyAndClearSelection\n- workbench.action.terminal.copyLastCommandOutput\n- workbench.action.terminal.copySelection\n- workbench.action.terminal.copySelectionAsHtml\n- workbench.action.terminal.deleteToLineStart\n- workbench.action.terminal.deleteWordLeft\n- workbench.action.terminal.deleteWordRight\n- workbench.action.terminal.findNext\n- workbench.action.terminal.findPrevious\n- workbench.action.terminal.focus\n- workbench.action.terminal.focusAtIndex1\n- workbench.action.terminal.focusAtIndex2\n- workbench.action.terminal.focusAtIndex3\n- workbench.action.terminal.focusAtIndex4\n- workbench.action.terminal.focusAtIndex5\n- workbench.action.terminal.focusAtIndex6\n- workbench.action.terminal.focusAtIndex7\n- workbench.action.terminal.focusAtIndex8\n- workbench.action.terminal.focusAtIndex9\n- workbench.action.terminal.focusFind\n- workbench.action.terminal.focusHover\n- workbench.action.terminal.focusNext\n- workbench.action.terminal.focusNextPane\n- workbench.action.terminal.focusPrevious\n- workbench.action.terminal.focusPreviousPane\n- workbench.action.terminal.goToRecentDirectory\n- workbench.action.terminal.hideFind\n- workbench.action.terminal.hideSuggestWidget\n- workbench.action.terminal.kill\n- workbench.action.terminal.killEditor\n- workbench.action.terminal.moveToEditor\n- workbench.action.terminal.moveToLineEnd\n- workbench.action.terminal.moveToLineStart\n- workbench.action.terminal.moveToTerminalPanel\n- workbench.action.terminal.new\n- workbench.action.terminal.newInActiveWorkspace\n- workbench.action.terminal.paste\n- workbench.action.terminal.pasteSelection\n- workbench.action.terminal.resizePaneDown\n- workbench.action.terminal.resizePaneLeft\n- workbench.action.terminal.resizePaneRight\n- workbench.action.terminal.resizePaneUp\n- workbench.action.terminal.runActiveFile\n- workbench.action.terminal.runRecentCommand\n- workbench.action.terminal.runSelectedText\n- workbench.action.terminal.scrollDown\n- workbench.action.terminal.scrollDownPage\n- workbench.action.terminal.scrollToBottom\n- workbench.action.terminal.scrollToNextCommand\n- workbench.action.terminal.scrollToPreviousCommand\n- workbench.action.terminal.scrollToTop\n- workbench.action.terminal.scrollUp\n- workbench.action.terminal.scrollUpPage\n- workbench.action.terminal.selectAll\n- workbench.action.terminal.selectNextPageSuggestion\n- workbench.action.terminal.selectNextSuggestion\n- workbench.action.terminal.selectPrevPageSuggestion\n- workbench.action.terminal.selectPrevSuggestion\n- workbench.action.terminal.selectToNextCommand\n- workbench.action.terminal.selectToNextLine\n- workbench.action.terminal.selectToPreviousCommand\n- workbench.action.terminal.selectToPreviousLine\n- workbench.action.terminal.sendSequence\n- workbench.action.terminal.sizeToContentWidth\n- workbench.action.terminal.split\n- workbench.action.terminal.splitInActiveWorkspace\n- workbench.action.terminal.toggleFindCaseSensitive\n- workbench.action.terminal.toggleFindRegex\n- workbench.action.terminal.toggleFindWholeWord\n- workbench.action.terminal.toggleTerminal\n- workbench.action.toggleFullScreen\n- workbench.action.toggleMaximizedPanel\n- workbench.action.togglePanel",
             "type": "array",
             "items": {
                 "type": "string"
@@ -21467,9 +21459,6 @@
             "markdownDescription": "`#terminal.integrated.shellIntegration.enabled#` が `true` に設定されている場合、サポートされているシェルの試験的なターミナル Intellisense 候補が有効になります。シェル統合が手動でインストールされている場合、スクリプトを呼び出す前に `VSCODE_SUGGEST` が `1` に設定されている必要があります。",
             "type": "boolean",
             "default": false,
-            "tags": [
-                "experimental"
-            ],
             "defaultDefaultValue": false,
             "scope": 3
         },
@@ -21481,15 +21470,12 @@
             "scope": 3,
             "restricted": false
         },
-        "terminal.integrated.experimentalImageSupport": {
+        "terminal.integrated.enableImages": {
             "restricted": true,
-            "markdownDescription": "ターミナルで試験的なイメージのサポートを有効にします。Linux と macOS では、6el と iTerm の両方のインライン イメージ プロトコルがサポートされています。ConPTY がシーケンスを通過すると、Windows のサポートが自動的に点灯します。現在、イメージはウィンドウの再読み込み/再接続の間は保持されません。",
+            "markdownDescription": "ターミナルでイメージのサポートを有効にします。Linux と macOS では、6el と iTerm の両方のインライン イメージ プロトコルがサポートされています。ConPTY がシーケンスを通過すると、Windows のサポートが自動的に点灯します。現在、イメージはウィンドウの再読み込み/再接続の間は復元されません。",
             "type": "boolean",
-            "default": false,
-            "tags": [
-                "experimental"
-            ],
-            "defaultDefaultValue": false,
+            "default": true,
+            "defaultDefaultValue": true,
             "scope": 3
         },
         "css.trace.server": {
@@ -22678,6 +22664,30 @@
             "defaultDefaultValue": true,
             "restricted": false
         },
+        "mediaPreview.video.autoPlay": {
+            "type": "boolean",
+            "default": false,
+            "markdownDescription": "ミュート時にビデオの再生を自動的に開始します。",
+            "scope": 3,
+            "source": {
+                "id": "vscode.media-preview",
+                "displayName": "メディア プレビュー"
+            },
+            "defaultDefaultValue": false,
+            "restricted": false
+        },
+        "mediaPreview.video.loop": {
+            "type": "boolean",
+            "default": false,
+            "markdownDescription": "ビデオを自動的にループさせます。",
+            "scope": 3,
+            "source": {
+                "id": "vscode.media-preview",
+                "displayName": "メディア プレビュー"
+            },
+            "defaultDefaultValue": false,
+            "restricted": false
+        },
         "merge-conflict.codeLens.enabled": {
             "type": "boolean",
             "description": "エディター内のマージ競合ブロックのコード レンズを作成します。",
@@ -22736,26 +22746,71 @@
             "defaultDefaultValue": "Current",
             "restricted": false
         },
-        "microsoft-sovereign-cloud.endpoint": {
-            "anyOf": [
-                {
-                    "type": "string"
-                },
-                {
-                    "type": "string",
-                    "enum": [
-                        "Azure China",
-                        "Azure US Government"
-                    ]
-                }
+        "microsoft-sovereign-cloud.environment": {
+            "type": "string",
+            "markdownDescription": "認証に使用するソブリン クラウドです。`custom` を選択した場合は、`#microsoft-sovereign-cloud.customEnvironment#` も設定する必要があります。",
+            "enum": [
+                "ChinaCloud",
+                "USGovernment",
+                "custom"
             ],
-            "description": "Azure 認証のログイン エンドポイント。各国のクラウドを選択するか、カスタム Azure クラウドのログイン URL を入力します。",
+            "enumDescriptions": [
+                "Azure China",
+                "Azure 米国政府機関",
+                "カスタム Microsoft ソブリン クラウド"
+            ],
             "scope": 3,
             "source": {
                 "id": "vscode.microsoft-authentication",
                 "displayName": "Microsoft アカウント"
             },
-            "default": null,
+            "default": "",
+            "restricted": false
+        },
+        "microsoft-sovereign-cloud.customEnvironment": {
+            "type": "object",
+            "additionalProperties": true,
+            "markdownDescription": "Microsoft ソブリン クラウド認証プロバイダーで使用するソブリン クラウドのカスタム構成です。この機能を使用するには、これと、`#microsoft-sovereign-cloud.environment#` を 'custom' に設定することが必要です。",
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "カスタム ソブリン クラウドの名前。"
+                },
+                "portalUrl": {
+                    "type": "string",
+                    "description": "カスタム ソブリン クラウドのポータル URL。"
+                },
+                "managementEndpointUrl": {
+                    "type": "string",
+                    "description": "カスタム ソブリン クラウドの管理エンドポイント。"
+                },
+                "resourceManagerEndpointUrl": {
+                    "type": "string",
+                    "description": "カスタム ソブリン クラウドのリソース マネージャー エンドポイント。"
+                },
+                "activeDirectoryEndpointUrl": {
+                    "type": "string",
+                    "description": "カスタム ソブリン クラウドの Active Directory エンドポイント。"
+                },
+                "activeDirectoryResourceId": {
+                    "type": "string",
+                    "description": "カスタム ソブリン クラウドの Active Directory リソース ID。"
+                }
+            },
+            "required": [
+                "name",
+                "portalUrl",
+                "managementEndpointUrl",
+                "resourceManagerEndpointUrl",
+                "activeDirectoryEndpointUrl",
+                "activeDirectoryResourceId"
+            ],
+            "scope": 3,
+            "source": {
+                "id": "vscode.microsoft-authentication",
+                "displayName": "Microsoft アカウント"
+            },
+            "default": {},
             "restricted": false
         },
         "debug.javascript.codelens.npmScripts": {
@@ -23018,11 +23073,6 @@
                     "minimum": 8,
                     "description": "実行中のノード バージョンを明示的に指定できます。これにより、自動バージョン検出が機能していない場合に特定の動作を無効または有効にすることができます。",
                     "default": 12
-                },
-                "enableTurboSourcemaps": {
-                    "type": "boolean",
-                    "default": true,
-                    "description": "ソースマップ検出に新しい高速メカニズムを使用するかどうかを構成します"
                 },
                 "command": {
                     "type": [
@@ -23537,11 +23587,6 @@
                                             "description": "実行中のノード バージョンを明示的に指定できます。これにより、自動バージョン検出が機能していない場合に特定の動作を無効または有効にすることができます。",
                                             "default": 12
                                         },
-                                        "enableTurboSourcemaps": {
-                                            "type": "boolean",
-                                            "default": true,
-                                            "description": "ソースマップ検出に新しい高速メカニズムを使用するかどうかを構成します"
-                                        },
                                         "program": {
                                             "type": "string",
                                             "description": "プログラムへの絶対パス。生成される値は、package.json ファイルと開かれたファイルを参照して推測されます。この属性を編集してください。",
@@ -23895,11 +23940,6 @@
                                             "minimum": 8,
                                             "description": "実行中のノード バージョンを明示的に指定できます。これにより、自動バージョン検出が機能していない場合に特定の動作を無効または有効にすることができます。",
                                             "default": 12
-                                        },
-                                        "enableTurboSourcemaps": {
-                                            "type": "boolean",
-                                            "default": true,
-                                            "description": "ソースマップ検出に新しい高速メカニズムを使用するかどうかを構成します"
                                         },
                                         "command": {
                                             "type": [
@@ -24270,11 +24310,6 @@
                     "minimum": 8,
                     "description": "実行中のノード バージョンを明示的に指定できます。これにより、自動バージョン検出が機能していない場合に特定の動作を無効または有効にすることができます。",
                     "default": 12
-                },
-                "enableTurboSourcemaps": {
-                    "type": "boolean",
-                    "default": true,
-                    "description": "ソースマップ検出に新しい高速メカニズムを使用するかどうかを構成します"
                 },
                 "address": {
                     "type": "string",
@@ -25199,7 +25234,7 @@
         },
         "terminal.integrated.defaultProfile.linux": {
             "restricted": true,
-            "markdownDescription": "Linux で使用される既定のプロファイルです。`terminal.integrated.shell.linux` または `terminal.integrated.shellArgs.linux` のいずれかが設定されている場合、現在この設定は無視されます。",
+            "markdownDescription": "Linux 上の既定のターミナル プロファイル。",
             "type": [
                 "string",
                 "null"
@@ -25210,7 +25245,7 @@
         },
         "terminal.integrated.defaultProfile.osx": {
             "restricted": true,
-            "markdownDescription": "MacOS で使用される既定のプロファイルです。`terminal.integrated.shell.osx` または `terminal.integrated.shellArgs.osx` のいずれかが設定されている場合、現在この設定は無視されます。",
+            "markdownDescription": "macOS 上の既定のターミナル プロファイル。",
             "type": [
                 "string",
                 "null"
@@ -25221,7 +25256,7 @@
         },
         "terminal.integrated.defaultProfile.windows": {
             "restricted": true,
-            "markdownDescription": "Windows で使用される既定のプロファイルです。`terminal.integrated.shell.windows` または `terminal.integrated.shellArgs.windows` のいずれかが設定されている場合、現在この設定は無視されます。",
+            "markdownDescription": "Windows 上の既定のターミナル プロファイル。",
             "type": [
                 "string",
                 "null"
@@ -25295,6 +25330,11 @@
                     "default": false,
                     "description": "Heap Profile Table Visualizer"
                 },
+                "workbench.editors.gettingStartedInput": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "ウェルカム ページ"
+                },
                 "terminalEditor": {
                     "type": "boolean",
                     "default": true,
@@ -25321,6 +25361,7 @@
                 "vscode.videoPreview": false,
                 "jsProfileVisualizer.cpuprofile.table": false,
                 "jsProfileVisualizer.heapprofile.table": false,
+                "workbench.editors.gettingStartedInput": false,
                 "terminalEditor": true,
                 "workbench.input.interactive": false,
                 "mainThreadWebview-markdown.preview": false
@@ -25336,6 +25377,7 @@
                 "vscode.videoPreview": false,
                 "jsProfileVisualizer.cpuprofile.table": false,
                 "jsProfileVisualizer.heapprofile.table": false,
+                "workbench.editors.gettingStartedInput": false,
                 "terminalEditor": true,
                 "workbench.input.interactive": false,
                 "mainThreadWebview-markdown.preview": false
@@ -25357,6 +25399,7 @@
                 "vscode.videoPreview",
                 "jsProfileVisualizer.cpuprofile.table",
                 "jsProfileVisualizer.heapprofile.table",
+                "workbench.editors.gettingStartedInput",
                 ""
             ],
             "description": "バイナリとして検出されたファイルの既定のエディター。未定義の場合、ユーザーにはピッカーが掲示されます。",
@@ -25366,7 +25409,7 @@
         },
         "workbench.editorAssociations": {
             "type": "object",
-            "markdownDescription": "glob パターンをエディターに構成します (`\"*.hex\": \"hexEditor.hexedit\"` など)。これらは既定の動作よりも優先されます。",
+            "markdownDescription": "[glob パターン](https://aka.ms/vscode-glob-patterns) をエディターに構成します (`\"*.hex\": \"hexEditor.hexedit\"` など)。これらは既定の動作よりも優先されます。",
             "patternProperties": {
                 ".*": {
                     "type": "string",
@@ -25380,7 +25423,8 @@
                         "vscode.audioPreview",
                         "vscode.videoPreview",
                         "jsProfileVisualizer.cpuprofile.table",
-                        "jsProfileVisualizer.heapprofile.table"
+                        "jsProfileVisualizer.heapprofile.table",
+                        "workbench.editors.gettingStartedInput"
                     ]
                 }
             },
@@ -25675,7 +25719,15 @@
         "diffEditor.experimental.collapseUnchangedRegions": {
             "type": "boolean",
             "default": false,
-            "description": "差分エディターで変更されていない領域を表示するかどうかを制御します。'diffEditor.experimental.useVersion2' が設定されている場合にのみ機能します。",
+            "markdownDescription": "差分エディターで変更されていない領域を表示するかどうかを制御します。`#diffEditor.experimental.useVersion2#` が設定されている場合にのみ機能します。",
+            "defaultDefaultValue": false,
+            "scope": 5,
+            "restricted": false
+        },
+        "diffEditor.experimental.showMoves": {
+            "type": "boolean",
+            "default": false,
+            "markdownDescription": "差分エディターで検出されたコードの移動を表示するかどうかを制御します。`#diffEditor.experimental.useVersion2#` が設定されている場合にのみ機能します。",
             "defaultDefaultValue": false,
             "scope": 5,
             "restricted": false
@@ -25685,6 +25737,14 @@
             "default": false,
             "description": "差分エディターで新しい実装と古い実装のどちらを使用するかを制御します。",
             "defaultDefaultValue": false,
+            "scope": 5,
+            "restricted": false
+        },
+        "diffEditor.experimental.showEmptyDecorations": {
+            "type": "boolean",
+            "default": true,
+            "description": "文字が挿入または削除された場所を確認するために、差分エディターに空の装飾を表示するかどうかを制御します。",
+            "defaultDefaultValue": true,
             "scope": 5,
             "restricted": false
         },
@@ -27399,6 +27459,14 @@
             "scope": 5,
             "restricted": false
         },
+        "editor.smartSelect.selectSubwords": {
+            "description": "サブワード ('fooBar' の 'foo' または 'foo_bar' など) を選択する必要があるかどうか。",
+            "default": true,
+            "type": "boolean",
+            "defaultDefaultValue": true,
+            "scope": 5,
+            "restricted": false
+        },
         "editor.smoothScrolling": {
             "description": "アニメーションでエディターをスクロールするかどうかを制御します。",
             "type": "boolean",
@@ -28140,6 +28208,24 @@
             "scope": 5,
             "restricted": false
         },
+        "editor.colorDecoratorsActivatedOn": {
+            "enumDescriptions": [
+                "カラー デコレーターのクリック時とポイント時の両方にカラー ピッカーを表示する",
+                "カラー デコレーターのポイント時にカラー ピッカーを表示する",
+                "カラー デコレーターのクリック時にカラー ピッカーを表示する"
+            ],
+            "description": "カラー デコレーターからカラー ピッカーを表示する条件を制御します",
+            "type": "string",
+            "enum": [
+                "clickAndHover",
+                "hover",
+                "click"
+            ],
+            "default": "clickAndHover",
+            "defaultDefaultValue": "clickAndHover",
+            "scope": 5,
+            "restricted": false
+        },
         "editor.codeActionWidget.showHeaders": {
             "type": "boolean",
             "scope": 5,
@@ -28431,7 +28517,7 @@
                     "type": "boolean"
                 }
             },
-            "markdownDescription": "ローカル ファイル履歴からファイルを除外するためのパスまたは [glob パターン](https://code.visualstudio.com/docs/editor/codebasics#_advanced-search-options) を構成します。Glob パターンは、絶対パスでない限り、ワークスペース フォルダーのパスを基準にして常に評価されます。この設定を変更しても、既存のローカル ファイル履歴エントリには影響しません。",
+            "markdownDescription": "ローカル ファイル履歴からファイルを除外するためのパスまたは [glob パターン](https://aka.ms/vscode-glob-patterns) を構成します。Glob パターンは、絶対パスでない限り、ワークスペース フォルダーのパスを基準にして常に評価されます。この設定を変更しても、既存のローカル ファイル履歴エントリには影響しません。",
             "scope": 4,
             "default": {},
             "restricted": false
@@ -28741,7 +28827,7 @@
         },
         "files.exclude": {
             "type": "object",
-            "markdownDescription": "ファイルとフォルダーを除外するための [glob パターン](https://code.visualstudio.com/docs/editor/codebasics#_advanced-search-options) を構成します。たとえば、エクスプローラーでは、この設定に基づいて表示または非表示にするファイルとフォルダーを決定します。検索固有の除外を定義するには、`#search.exclude#` 設定を参照してください。`.gitignore` に基づいてファイルを無視するには、`#explorer.excludeGitIgnore#` 設定を参照してください。",
+            "markdownDescription": "ファイルとフォルダーを除外するための [glob パターン](https://aka.ms/vscode-glob-patterns) を構成します。たとえば、エクスプローラーでは、この設定に基づいて表示または非表示にするファイルとフォルダーが決定されます。検索固有の除外を定義するには、`#search.exclude#` 設定を参照してください。`.gitignore` に基づいてファイルを無視するには、`#explorer.excludeGitIgnore#` 設定を参照してください。",
             "default": {
                 "**/.git": true,
                 "**/.svn": true,
@@ -29006,7 +29092,7 @@
                 "**/node_modules/*/**": true,
                 "**/.hg/store/**": true
             },
-            "markdownDescription": "ファイルの監視から除外するパスまたは glob パターンを構成します。パスは、監視フォルダーに対する相対パスまたは絶対パスのいずれかです。glob パターンは、監視フォルダーから相対的に一致します。ファイル ウォッチャー プロセスが大量の CPU を消費する場合は、あまり重要でない大きなフォルダー (ビルド出力フォルダーなど) を除外してください。",
+            "markdownDescription": "ファイルの監視から除外するパスまたは [glob パターン](https://aka.ms/vscode-glob-patterns) を構成します。パスは、監視フォルダーに対する相対パスまたは絶対パスのいずれかです。glob パターンは、監視フォルダーから相対的に一致します。ファイル ウォッチャー プロセスが大量の CPU を消費する場合は、あまり重要でない大きなフォルダー (ビルド出力フォルダーなど) を除外してください。",
             "scope": 4,
             "defaultDefaultValue": {
                 "**/.git/objects/**": true,
@@ -29035,7 +29121,7 @@
                 }
             },
             "default": {},
-            "markdownDescription": "パスまたは [glob パターン](https://code.visualstudio.com/docs/editor/codebasics#_advanced-search-options) を読み取り専用としてマークするように構成します。Glob パターンは、絶対パスでない限り、ワークスペース フォルダーのパスを基準にして常に評価されます。`#files.readonlyExclude#` 設定を使用して、一致するパスを除外できます。読み取り専用ファイル システム プロバイダーのファイルは、この設定とは関係なく常に読み取り専用になります。",
+            "markdownDescription": "パスまたは [glob パターン](https://aka.ms/vscode-glob-patterns) を読み取り専用としてマークするように構成します。Glob パターンは、絶対パスでない限り、ワークスペース フォルダーのパスを基準にして常に評価されます。`#files.readonlyExclude#` 設定を使用して、一致するパスを除外できます。読み取り専用ファイル システム プロバイダーのファイルは、この設定とは関係なく常に読み取り専用になります。",
             "scope": 4,
             "defaultDefaultValue": {},
             "restricted": false
@@ -29048,7 +29134,7 @@
                 }
             },
             "default": {},
-            "markdownDescription": "パスまたは [glob パターン](https://code.visualstudio.com/docs/editor/codebasics#_advanced-search-options) が `#files.readonlyInclude#` 設定の結果として一致する場合に読み取り専用としてマークされないように構成します。Glob パターンは、絶対パスでない限り、ワークスペース フォルダーのパスを基準にして常に評価されます。読み取り専用ファイル システム プロバイダーのファイルは、この設定とは関係なく常に読み取り専用になります。",
+            "markdownDescription": "パスまたは [glob パターン](https://aka.ms/vscode-glob-patterns) が `#files.readonlyInclude#` 設定の結果として一致する場合に読み取り専用としてマークされないように構成します。Glob パターンは、絶対パスでない限り、ワークスペース フォルダーのパスを基準にして常に評価されます。読み取り専用ファイル システム プロバイダーのファイルは、この設定とは関係なく常に読み取り専用になります。",
             "scope": 4,
             "defaultDefaultValue": {},
             "restricted": false
@@ -32339,7 +32425,7 @@
         },
         "git.defaultBranchName": {
             "type": "string",
-            "description": "新しい Git リポジトリを初期化するときの既定のブランチ (メイン、トランク、開発など) の名前。空に設定すると、git で構成された既定のブランチ名が使用されます。",
+            "markdownDescription": "新しい Git リポジトリを初期化するときの既定のブランチ (メイン、トランク、開発など) の名前。空に設定すると、Git で構成された既定のブランチ名が使用されます。**注意:** Git バージョン `2.28.0` 以降が必要です。",
             "default": "main",
             "scope": 4,
             "source": {
@@ -33022,7 +33108,7 @@
             "default": 50,
             "minimum": 0,
             "maximum": 100,
-            "description": "名前変更と見なされる追加/削除されたファイルのペアの変更に対する類似性インデックスのしきい値 (つまり、ファイルのサイズと比較した追加/削除の量) を制御します。",
+            "markdownDescription": "名前変更と見なされる追加/削除されたファイルのペアの変更に対する類似性インデックスのしきい値 (つまり、ファイルのサイズと比較した追加/削除の量) を制御します。**注意:** Git バージョン `2.18.0` 以降が必要です。",
             "scope": 4,
             "source": {
                 "id": "vscode.git",
@@ -33652,6 +33738,18 @@
             "defaultDefaultValue": true,
             "restricted": false
         },
+        "markdown.editor.pasteUrlAsFormattedLink.enabled": {
+            "type": "boolean",
+            "scope": 4,
+            "markdownDescription": "Controls if a Markdown link is created when a URL is pasted into the Markdown editor. Requires enabling `#editor.pasteAs.enabled#`.",
+            "default": false,
+            "source": {
+                "id": "vscode.markdown-language-features",
+                "displayName": "Markdown 言語機能"
+            },
+            "defaultDefaultValue": false,
+            "restricted": false
+        },
         "markdown.validate.enabled": {
             "type": "boolean",
             "scope": 4,
@@ -33794,6 +33892,21 @@
             "defaultDefaultValue": false,
             "restricted": false
         },
+        "markdown.math.macros": {
+            "type": "object",
+            "additionalProperties": {
+                "type": "string"
+            },
+            "default": {},
+            "description": "カスタム マクロのコレクションです。各マクロはキーと値のペアであり、キーは新しいコマンド名、値はマクロの展開形です。",
+            "scope": 4,
+            "source": {
+                "id": "vscode.markdown-math",
+                "displayName": "Markdown 数式"
+            },
+            "defaultDefaultValue": {},
+            "restricted": false
+        },
         "npm.autoDetect": {
             "type": "string",
             "enum": [
@@ -33905,14 +34018,14 @@
         },
         "typescript.experimental.aiQuickFix": {
             "type": "boolean",
-            "default": false,
+            "default": true,
             "description": "AI 支援クイック修正を有効または無効にします。AI チャット機能を提供する拡張機能が必要です。",
             "scope": 4,
             "source": {
                 "id": "vscode.typescript-language-features",
                 "displayName": "TypeScript と JavaScript の言語機能"
             },
-            "defaultDefaultValue": false,
+            "defaultDefaultValue": true,
             "restricted": false
         },
         "javascript.suggest.completeFunctionCalls": {
