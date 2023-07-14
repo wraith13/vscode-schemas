@@ -21472,7 +21472,7 @@
         },
         "terminal.integrated.enableImages": {
             "restricted": true,
-            "markdownDescription": "ターミナルでイメージのサポートを有効にします。Linux と macOS では、6el と iTerm の両方のインライン イメージ プロトコルがサポートされています。ConPTY がシーケンスを通過すると、Windows のサポートが自動的に点灯します。現在、イメージはウィンドウの再読み込み/再接続の間は復元されません。",
+            "markdownDescription": "Enables image support in the terminal, this will only work when `#terminal.integrated.gpuAcceleration#` is enabled. Both sixel and iTerm's inline image protocol are supported on Linux and macOS, Windows support will light up automatically when ConPTY passes through the sequences. Images will currently not be restored between window reloads/reconnects.",
             "type": "boolean",
             "default": true,
             "defaultDefaultValue": true,
@@ -33741,7 +33741,7 @@
         "markdown.editor.pasteUrlAsFormattedLink.enabled": {
             "type": "boolean",
             "scope": 4,
-            "markdownDescription": "Controls if a Markdown link is created when a URL is pasted into the Markdown editor. Requires enabling `#editor.pasteAs.enabled#`.",
+            "markdownDescription": "URL を Markdown エディターに貼り付けるときにマークダウン リンクを作成するかどうかを制御します。`#editor.pasteAs.enabled#` を有効にする必要があります。",
             "default": false,
             "source": {
                 "id": "vscode.markdown-language-features",

@@ -21472,7 +21472,7 @@
         },
         "terminal.integrated.enableImages": {
             "restricted": true,
-            "markdownDescription": "Enables image support in the terminal. Both sixel and iTerm's inline image protocol are supported on Linux and macOS, Windows support will light up automatically when ConPTY passes through the sequences. Images will currently not be restored between window reloads/reconnects.",
+            "markdownDescription": "Enables image support in the terminal, this will only work when `#terminal.integrated.gpuAcceleration#` is enabled. Both sixel and iTerm's inline image protocol are supported on Linux and macOS, Windows support will light up automatically when ConPTY passes through the sequences. Images will currently not be restored between window reloads/reconnects.",
             "type": "boolean",
             "default": true,
             "defaultDefaultValue": true,
