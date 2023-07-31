@@ -25214,6 +25214,24 @@
             "defaultDefaultValue": false,
             "restricted": false
         },
+        "terminal.explorerKind": {
+            "type": "string",
+            "enum": [
+                "integrated",
+                "external",
+                "both"
+            ],
+            "enumDescriptions": [
+                "Use VS Code's integrated terminal.",
+                "Use the configured external terminal.",
+                "Use the other two together."
+            ],
+            "description": "When opening a file from the Explorer in a terminal, determines what kind of terminal will be launched",
+            "default": "integrated",
+            "defaultDefaultValue": "integrated",
+            "scope": 3,
+            "restricted": false
+        },
         "terminal.integrated.defaultProfile.linux": {
             "restricted": true,
             "markdownDescription": "The default terminal profile on Linux.",
@@ -25262,24 +25280,6 @@
             ],
             "defaultDefaultValue": null,
             "scope": 3
-        },
-        "terminal.explorerKind": {
-            "type": "string",
-            "enum": [
-                "integrated",
-                "external",
-                "both"
-            ],
-            "enumDescriptions": [
-                "Use VS Code's integrated terminal.",
-                "Use the configured external terminal.",
-                "Use the other two together."
-            ],
-            "description": "When opening a file from the Explorer in a terminal, determines what kind of terminal will be launched",
-            "default": "integrated",
-            "defaultDefaultValue": "integrated",
-            "scope": 3,
-            "restricted": false
         },
         "workbench.editor.autoLockGroups": {
             "type": "object",
