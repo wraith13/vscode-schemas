@@ -925,24 +925,6 @@
             "scope": 3,
             "restricted": false
         },
-        "inlineChat.mode": {
-            "description": "対話型エディターで作成された変更をドキュメントに直接適用するか、最初にプレビューするかを構成します。",
-            "default": "livePreview",
-            "type": "string",
-            "enum": [
-                "livePreview",
-                "preview",
-                "live"
-            ],
-            "markdownEnumDescriptions": [
-                "変更はドキュメントに直接適用され、インライン差分または左右に並べて表示差分を介して視覚的に強調表示されます。セッションを終了しても変更は保持されます。",
-                "変更はプレビューのみであり、適用ボタンを使用して承認する必要があります。セッションを終了すると、変更は破棄されます。",
-                "変更はドキュメントに直接適用されますが、インライン差分を介して強調表示することもできます。セッションを終了しても変更は保持されます。"
-            ],
-            "defaultDefaultValue": "livePreview",
-            "scope": 3,
-            "restricted": false
-        },
         "notebook.lineNumbers": {
             "type": "string",
             "enum": [
@@ -951,6 +933,447 @@
             ],
             "default": "off",
             "markdownDescription": "セル エディターでの行番号の表示を制御します。",
+            "defaultDefaultValue": "off",
+            "scope": 3,
+            "restricted": false
+        },
+        "problems.decorations.enabled": {
+            "description": "ファイルとフォルダーのエラーと警告を表示します。",
+            "type": "boolean",
+            "default": true,
+            "defaultDefaultValue": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "audioCues.enabled": {
+            "markdownDeprecationMessage": "Deprecated. Use the specific setting for each audio cue instead (`audioCues.*`).",
+            "tags": [
+                "accessibility"
+            ],
+            "default": null,
+            "scope": 3,
+            "restricted": false,
+            "deprecationMessage": "Deprecated. Use the specific setting for each audio cue instead (`audioCues.*`)."
+        },
+        "audioCues.volume": {
+            "description": "オーディオ キューの音量 (パーセント単位) (0 - 100)。",
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100,
+            "default": 70,
+            "tags": [
+                "accessibility"
+            ],
+            "defaultDefaultValue": 70,
+            "scope": 3,
+            "restricted": false
+        },
+        "audioCues.debouncePositionChanges": {
+            "description": "位置の変更をデバウンスする必要があるかどうか",
+            "type": "boolean",
+            "default": false,
+            "tags": [
+                "accessibility"
+            ],
+            "defaultDefaultValue": false,
+            "scope": 3,
+            "restricted": false
+        },
+        "audioCues.lineHasBreakpoint": {
+            "description": "アクティブ行にブレークポイントがある場合、音を鳴らします。",
+            "type": "string",
+            "enum": [
+                "auto",
+                "on",
+                "off"
+            ],
+            "default": "auto",
+            "enumDescriptions": [
+                "スクリーン リーダーが接続されたときにオーディオ キューを有効にします。",
+                "オーディオ キューを有効にします。",
+                "オーディオ キューを無効にします。"
+            ],
+            "tags": [
+                "accessibility"
+            ],
+            "defaultDefaultValue": "auto",
+            "scope": 3,
+            "restricted": false
+        },
+        "audioCues.lineHasInlineSuggestion": {
+            "description": "アクティブ行にインライン候補が発生した場合、音を鳴らします。",
+            "type": "string",
+            "enum": [
+                "auto",
+                "on",
+                "off"
+            ],
+            "default": "auto",
+            "enumDescriptions": [
+                "スクリーン リーダーが接続されたときにオーディオ キューを有効にします。",
+                "オーディオ キューを有効にします。",
+                "オーディオ キューを無効にします。"
+            ],
+            "tags": [
+                "accessibility"
+            ],
+            "defaultDefaultValue": "auto",
+            "scope": 3,
+            "restricted": false
+        },
+        "audioCues.lineHasError": {
+            "description": "アクティブ行にエラーがある場合、音を鳴らします。",
+            "type": "string",
+            "enum": [
+                "auto",
+                "on",
+                "off"
+            ],
+            "default": "auto",
+            "enumDescriptions": [
+                "スクリーン リーダーが接続されたときにオーディオ キューを有効にします。",
+                "オーディオ キューを有効にします。",
+                "オーディオ キューを無効にします。"
+            ],
+            "tags": [
+                "accessibility"
+            ],
+            "defaultDefaultValue": "auto",
+            "scope": 3,
+            "restricted": false
+        },
+        "audioCues.lineHasFoldedArea": {
+            "description": "アクティブ行に、展開可能だが、折りたたまれた領域がある場合、音を鳴らします。",
+            "type": "string",
+            "enum": [
+                "auto",
+                "on",
+                "off"
+            ],
+            "default": "auto",
+            "enumDescriptions": [
+                "スクリーン リーダーが接続されたときにオーディオ キューを有効にします。",
+                "オーディオ キューを有効にします。",
+                "オーディオ キューを無効にします。"
+            ],
+            "tags": [
+                "accessibility"
+            ],
+            "defaultDefaultValue": "auto",
+            "scope": 3,
+            "restricted": false
+        },
+        "audioCues.lineHasWarning": {
+            "description": "アクティブ行に警告がある場合、音を鳴らします。",
+            "type": "string",
+            "enum": [
+                "auto",
+                "on",
+                "off"
+            ],
+            "default": "off",
+            "enumDescriptions": [
+                "スクリーン リーダーが接続されたときにオーディオ キューを有効にします。",
+                "オーディオ キューを有効にします。",
+                "オーディオ キューを無効にします。"
+            ],
+            "tags": [
+                "accessibility"
+            ],
+            "defaultDefaultValue": "off",
+            "scope": 3,
+            "restricted": false
+        },
+        "audioCues.onDebugBreak": {
+            "description": "デバッガーがブレークポイントで停止したときに、音を鳴らします。",
+            "type": "string",
+            "enum": [
+                "auto",
+                "on",
+                "off"
+            ],
+            "default": "auto",
+            "enumDescriptions": [
+                "スクリーン リーダーが接続されたときにオーディオ キューを有効にします。",
+                "オーディオ キューを有効にします。",
+                "オーディオ キューを無効にします。"
+            ],
+            "tags": [
+                "accessibility"
+            ],
+            "defaultDefaultValue": "auto",
+            "scope": 3,
+            "restricted": false
+        },
+        "audioCues.noInlayHints": {
+            "description": "インレイ ヒントのないインレイ ヒントを含む行を読み上げようとすると、サウンドが再生されます。",
+            "type": "string",
+            "enum": [
+                "auto",
+                "on",
+                "off"
+            ],
+            "default": "auto",
+            "enumDescriptions": [
+                "スクリーン リーダーが接続されたときにオーディオ キューを有効にします。",
+                "オーディオ キューを有効にします。",
+                "オーディオ キューを無効にします。"
+            ],
+            "tags": [
+                "accessibility"
+            ],
+            "defaultDefaultValue": "auto",
+            "scope": 3,
+            "restricted": false
+        },
+        "audioCues.taskCompleted": {
+            "description": "タスクの終了時に音を鳴らします。",
+            "type": "string",
+            "enum": [
+                "auto",
+                "on",
+                "off"
+            ],
+            "default": "auto",
+            "enumDescriptions": [
+                "スクリーン リーダーが接続されたときにオーディオ キューを有効にします。",
+                "オーディオ キューを有効にします。",
+                "オーディオ キューを無効にします。"
+            ],
+            "tags": [
+                "accessibility"
+            ],
+            "defaultDefaultValue": "auto",
+            "scope": 3,
+            "restricted": false
+        },
+        "audioCues.taskFailed": {
+            "description": "タスクが失敗したときに音を鳴らします (ゼロ以外の終了コード)。",
+            "type": "string",
+            "enum": [
+                "auto",
+                "on",
+                "off"
+            ],
+            "default": "auto",
+            "enumDescriptions": [
+                "スクリーン リーダーが接続されたときにオーディオ キューを有効にします。",
+                "オーディオ キューを有効にします。",
+                "オーディオ キューを無効にします。"
+            ],
+            "tags": [
+                "accessibility"
+            ],
+            "defaultDefaultValue": "auto",
+            "scope": 3,
+            "restricted": false
+        },
+        "audioCues.terminalCommandFailed": {
+            "description": "ターミナル コマンドが失敗したときにサウンドを再生します (ゼロ以外の終了コード)。",
+            "type": "string",
+            "enum": [
+                "auto",
+                "on",
+                "off"
+            ],
+            "default": "auto",
+            "enumDescriptions": [
+                "スクリーン リーダーが接続されたときにオーディオ キューを有効にします。",
+                "オーディオ キューを有効にします。",
+                "オーディオ キューを無効にします。"
+            ],
+            "tags": [
+                "accessibility"
+            ],
+            "defaultDefaultValue": "auto",
+            "scope": 3,
+            "restricted": false
+        },
+        "audioCues.terminalQuickFix": {
+            "description": "ターミナルのクイック修正が利用可能になったときに音を鳴らします。",
+            "type": "string",
+            "enum": [
+                "auto",
+                "on",
+                "off"
+            ],
+            "default": "auto",
+            "enumDescriptions": [
+                "スクリーン リーダーが接続されたときにオーディオ キューを有効にします。",
+                "オーディオ キューを有効にします。",
+                "オーディオ キューを無効にします。"
+            ],
+            "tags": [
+                "accessibility"
+            ],
+            "defaultDefaultValue": "auto",
+            "scope": 3,
+            "restricted": false
+        },
+        "audioCues.diffLineInserted": {
+            "description": "アクセシビリティの高い差分ビューアー モードでフォーカスが挿入された行に移動したとき、または次/前の変更に移動したときに音を鳴らします",
+            "type": "string",
+            "enum": [
+                "auto",
+                "on",
+                "off"
+            ],
+            "default": "auto",
+            "enumDescriptions": [
+                "スクリーン リーダーが接続されたときにオーディオ キューを有効にします。",
+                "オーディオ キューを有効にします。",
+                "オーディオ キューを無効にします。"
+            ],
+            "tags": [
+                "accessibility"
+            ],
+            "defaultDefaultValue": "auto",
+            "scope": 3,
+            "restricted": false
+        },
+        "audioCues.diffLineDeleted": {
+            "description": "アクセシビリティの高い差分ビューアー モードでフォーカスが削除された行に移動したとき、または次/前の変更に移動したときに音を鳴らします",
+            "type": "string",
+            "enum": [
+                "auto",
+                "on",
+                "off"
+            ],
+            "default": "auto",
+            "enumDescriptions": [
+                "スクリーン リーダーが接続されたときにオーディオ キューを有効にします。",
+                "オーディオ キューを有効にします。",
+                "オーディオ キューを無効にします。"
+            ],
+            "tags": [
+                "accessibility"
+            ],
+            "defaultDefaultValue": "auto",
+            "scope": 3,
+            "restricted": false
+        },
+        "audioCues.diffLineModified": {
+            "description": "アクセシビリティの高い差分ビューアー モードでフォーカスが変更された行に移動したとき、または次/前の変更に移動したときに音を鳴らします",
+            "type": "string",
+            "enum": [
+                "auto",
+                "on",
+                "off"
+            ],
+            "default": "auto",
+            "enumDescriptions": [
+                "スクリーン リーダーが接続されたときにオーディオ キューを有効にします。",
+                "オーディオ キューを有効にします。",
+                "オーディオ キューを無効にします。"
+            ],
+            "tags": [
+                "accessibility"
+            ],
+            "defaultDefaultValue": "auto",
+            "scope": 3,
+            "restricted": false
+        },
+        "audioCues.notebookCellCompleted": {
+            "description": "ノートブック セルの実行が正常に完了したときに音を鳴らします。",
+            "type": "string",
+            "enum": [
+                "auto",
+                "on",
+                "off"
+            ],
+            "default": "auto",
+            "enumDescriptions": [
+                "スクリーン リーダーが接続されたときにオーディオ キューを有効にします。",
+                "オーディオ キューを有効にします。",
+                "オーディオ キューを無効にします。"
+            ],
+            "tags": [
+                "accessibility"
+            ],
+            "defaultDefaultValue": "auto",
+            "scope": 3,
+            "restricted": false
+        },
+        "audioCues.notebookCellFailed": {
+            "description": "ノートブック セルの実行に失敗したときに音を鳴らします。",
+            "type": "string",
+            "enum": [
+                "auto",
+                "on",
+                "off"
+            ],
+            "default": "auto",
+            "enumDescriptions": [
+                "スクリーン リーダーが接続されたときにオーディオ キューを有効にします。",
+                "オーディオ キューを有効にします。",
+                "オーディオ キューを無効にします。"
+            ],
+            "tags": [
+                "accessibility"
+            ],
+            "defaultDefaultValue": "auto",
+            "scope": 3,
+            "restricted": false
+        },
+        "audioCues.chatRequestSent": {
+            "description": "チャット要求が行われたときにサウンドを再生します。",
+            "type": "string",
+            "enum": [
+                "auto",
+                "on",
+                "off"
+            ],
+            "default": "off",
+            "enumDescriptions": [
+                "スクリーン リーダーが接続されたときにオーディオ キューを有効にします。",
+                "オーディオ キューを有効にします。",
+                "オーディオ キューを無効にします。"
+            ],
+            "tags": [
+                "accessibility"
+            ],
+            "defaultDefaultValue": "off",
+            "scope": 3,
+            "restricted": false
+        },
+        "audioCues.chatResponsePending": {
+            "description": "応答が保留中の間、サウンドを繰り返し再生します。",
+            "type": "string",
+            "enum": [
+                "auto",
+                "on",
+                "off"
+            ],
+            "default": "auto",
+            "enumDescriptions": [
+                "スクリーン リーダーが接続されたときにオーディオ キューを有効にします。",
+                "オーディオ キューを有効にします。",
+                "オーディオ キューを無効にします。"
+            ],
+            "tags": [
+                "accessibility"
+            ],
+            "defaultDefaultValue": "auto",
+            "scope": 3,
+            "restricted": false
+        },
+        "audioCues.chatResponseReceived": {
+            "description": "応答の受信中に、サウンドを繰り返し再生します。",
+            "type": "string",
+            "enum": [
+                "auto",
+                "on",
+                "off"
+            ],
+            "default": "off",
+            "enumDescriptions": [
+                "スクリーン リーダーが接続されたときにオーディオ キューを有効にします。",
+                "オーディオ キューを有効にします。",
+                "オーディオ キューを無効にします。"
+            ],
+            "tags": [
+                "accessibility"
+            ],
             "defaultDefaultValue": "off",
             "scope": 3,
             "restricted": false
@@ -1193,7 +1616,7 @@
             ],
             "default": "auto",
             "enumDescriptions": [
-                "パーツのサイズが変更されていない限り、すべてのエディター グループを等しいサイズに分割します。",
+                "すべてのエディター グループが既に等分に分割されていない限り、アクティブなエディター グループを等分に分割します。その場合、すべてのエディター グループを等分に分割します。",
                 "すべてのエディター グループを等分に分割します。",
                 "アクティブなエディター グループを等分に分割します。"
             ],
@@ -1740,478 +2163,6 @@
             "scope": 3,
             "restricted": false
         },
-        "problems.decorations.enabled": {
-            "description": "ファイルとフォルダーのエラーと警告を表示します。",
-            "type": "boolean",
-            "default": true,
-            "defaultDefaultValue": true,
-            "scope": 3,
-            "restricted": false
-        },
-        "workbench.sash.size": {
-            "type": "number",
-            "default": 4,
-            "minimum": 1,
-            "maximum": 20,
-            "description": "ビューまたはエディター間にあるドラッグ領域のフィードバック領域のサイズをピクセル単位で制御します。マウスを使用してビューのサイズを変更するのが困難な場合は、これを大きな値に設定してください。",
-            "defaultDefaultValue": 4,
-            "scope": 3,
-            "restricted": false
-        },
-        "workbench.sash.hoverDelay": {
-            "type": "number",
-            "default": 300,
-            "minimum": 0,
-            "maximum": 2000,
-            "description": "ビューまたはエディター間のドラッグ領域のホバー フィードバックの遅延をミリ秒単位で制御します。",
-            "defaultDefaultValue": 300,
-            "scope": 3,
-            "restricted": false
-        },
-        "workbench.experimental.share.enabled": {
-            "type": "boolean",
-            "default": false,
-            "tags": [
-                "experimental"
-            ],
-            "markdownDescription": "`#window.commandCenter#` が `true` の場合に、コマンド センターの横に [共有] アクションを表示するかどうかを制御します。",
-            "restricted": false,
-            "defaultDefaultValue": false,
-            "scope": 3
-        },
-        "audioCues.enabled": {
-            "markdownDeprecationMessage": "Deprecated. Use the specific setting for each audio cue instead (`audioCues.*`).",
-            "tags": [
-                "accessibility"
-            ],
-            "default": null,
-            "scope": 3,
-            "restricted": false,
-            "deprecationMessage": "Deprecated. Use the specific setting for each audio cue instead (`audioCues.*`)."
-        },
-        "audioCues.volume": {
-            "description": "オーディオ キューの音量 (パーセント単位) (0 - 100)。",
-            "type": "number",
-            "minimum": 0,
-            "maximum": 100,
-            "default": 70,
-            "tags": [
-                "accessibility"
-            ],
-            "defaultDefaultValue": 70,
-            "scope": 3,
-            "restricted": false
-        },
-        "audioCues.debouncePositionChanges": {
-            "description": "位置の変更をデバウンスする必要があるかどうか",
-            "type": "boolean",
-            "default": false,
-            "tags": [
-                "accessibility"
-            ],
-            "defaultDefaultValue": false,
-            "scope": 3,
-            "restricted": false
-        },
-        "audioCues.lineHasBreakpoint": {
-            "description": "アクティブ行にブレークポイントがある場合、音を鳴らします。",
-            "type": "string",
-            "enum": [
-                "auto",
-                "on",
-                "off"
-            ],
-            "default": "auto",
-            "enumDescriptions": [
-                "スクリーン リーダーが接続されたときにオーディオ キューを有効にします。",
-                "オーディオ キューを有効にします。",
-                "オーディオ キューを無効にします。"
-            ],
-            "tags": [
-                "accessibility"
-            ],
-            "defaultDefaultValue": "auto",
-            "scope": 3,
-            "restricted": false
-        },
-        "audioCues.lineHasInlineSuggestion": {
-            "description": "アクティブ行にインライン候補が発生した場合、音を鳴らします。",
-            "type": "string",
-            "enum": [
-                "auto",
-                "on",
-                "off"
-            ],
-            "default": "auto",
-            "enumDescriptions": [
-                "スクリーン リーダーが接続されたときにオーディオ キューを有効にします。",
-                "オーディオ キューを有効にします。",
-                "オーディオ キューを無効にします。"
-            ],
-            "tags": [
-                "accessibility"
-            ],
-            "defaultDefaultValue": "auto",
-            "scope": 3,
-            "restricted": false
-        },
-        "audioCues.lineHasError": {
-            "description": "アクティブ行にエラーがある場合、音を鳴らします。",
-            "type": "string",
-            "enum": [
-                "auto",
-                "on",
-                "off"
-            ],
-            "default": "auto",
-            "enumDescriptions": [
-                "スクリーン リーダーが接続されたときにオーディオ キューを有効にします。",
-                "オーディオ キューを有効にします。",
-                "オーディオ キューを無効にします。"
-            ],
-            "tags": [
-                "accessibility"
-            ],
-            "defaultDefaultValue": "auto",
-            "scope": 3,
-            "restricted": false
-        },
-        "audioCues.lineHasFoldedArea": {
-            "description": "アクティブ行に、展開可能だが、折りたたまれた領域がある場合、音を鳴らします。",
-            "type": "string",
-            "enum": [
-                "auto",
-                "on",
-                "off"
-            ],
-            "default": "auto",
-            "enumDescriptions": [
-                "スクリーン リーダーが接続されたときにオーディオ キューを有効にします。",
-                "オーディオ キューを有効にします。",
-                "オーディオ キューを無効にします。"
-            ],
-            "tags": [
-                "accessibility"
-            ],
-            "defaultDefaultValue": "auto",
-            "scope": 3,
-            "restricted": false
-        },
-        "audioCues.lineHasWarning": {
-            "description": "アクティブ行に警告がある場合、音を鳴らします。",
-            "type": "string",
-            "enum": [
-                "auto",
-                "on",
-                "off"
-            ],
-            "default": "off",
-            "enumDescriptions": [
-                "スクリーン リーダーが接続されたときにオーディオ キューを有効にします。",
-                "オーディオ キューを有効にします。",
-                "オーディオ キューを無効にします。"
-            ],
-            "tags": [
-                "accessibility"
-            ],
-            "defaultDefaultValue": "off",
-            "scope": 3,
-            "restricted": false
-        },
-        "audioCues.onDebugBreak": {
-            "description": "デバッガーがブレークポイントで停止したときに、音を鳴らします。",
-            "type": "string",
-            "enum": [
-                "auto",
-                "on",
-                "off"
-            ],
-            "default": "auto",
-            "enumDescriptions": [
-                "スクリーン リーダーが接続されたときにオーディオ キューを有効にします。",
-                "オーディオ キューを有効にします。",
-                "オーディオ キューを無効にします。"
-            ],
-            "tags": [
-                "accessibility"
-            ],
-            "defaultDefaultValue": "auto",
-            "scope": 3,
-            "restricted": false
-        },
-        "audioCues.noInlayHints": {
-            "description": "インレイ ヒントのないインレイ ヒントを含む行を読み上げようとすると、サウンドが再生されます。",
-            "type": "string",
-            "enum": [
-                "auto",
-                "on",
-                "off"
-            ],
-            "default": "auto",
-            "enumDescriptions": [
-                "スクリーン リーダーが接続されたときにオーディオ キューを有効にします。",
-                "オーディオ キューを有効にします。",
-                "オーディオ キューを無効にします。"
-            ],
-            "tags": [
-                "accessibility"
-            ],
-            "defaultDefaultValue": "auto",
-            "scope": 3,
-            "restricted": false
-        },
-        "audioCues.taskCompleted": {
-            "description": "タスクの終了時に音を鳴らします。",
-            "type": "string",
-            "enum": [
-                "auto",
-                "on",
-                "off"
-            ],
-            "default": "auto",
-            "enumDescriptions": [
-                "スクリーン リーダーが接続されたときにオーディオ キューを有効にします。",
-                "オーディオ キューを有効にします。",
-                "オーディオ キューを無効にします。"
-            ],
-            "tags": [
-                "accessibility"
-            ],
-            "defaultDefaultValue": "auto",
-            "scope": 3,
-            "restricted": false
-        },
-        "audioCues.taskFailed": {
-            "description": "タスクが失敗したときに音を鳴らします (ゼロ以外の終了コード)。",
-            "type": "string",
-            "enum": [
-                "auto",
-                "on",
-                "off"
-            ],
-            "default": "auto",
-            "enumDescriptions": [
-                "スクリーン リーダーが接続されたときにオーディオ キューを有効にします。",
-                "オーディオ キューを有効にします。",
-                "オーディオ キューを無効にします。"
-            ],
-            "tags": [
-                "accessibility"
-            ],
-            "defaultDefaultValue": "auto",
-            "scope": 3,
-            "restricted": false
-        },
-        "audioCues.terminalCommandFailed": {
-            "description": "ターミナル コマンドが失敗したときにサウンドを再生します (ゼロ以外の終了コード)。",
-            "type": "string",
-            "enum": [
-                "auto",
-                "on",
-                "off"
-            ],
-            "default": "auto",
-            "enumDescriptions": [
-                "スクリーン リーダーが接続されたときにオーディオ キューを有効にします。",
-                "オーディオ キューを有効にします。",
-                "オーディオ キューを無効にします。"
-            ],
-            "tags": [
-                "accessibility"
-            ],
-            "defaultDefaultValue": "auto",
-            "scope": 3,
-            "restricted": false
-        },
-        "audioCues.terminalQuickFix": {
-            "description": "ターミナルのクイック修正が利用可能になったときに音を鳴らします。",
-            "type": "string",
-            "enum": [
-                "auto",
-                "on",
-                "off"
-            ],
-            "default": "auto",
-            "enumDescriptions": [
-                "スクリーン リーダーが接続されたときにオーディオ キューを有効にします。",
-                "オーディオ キューを有効にします。",
-                "オーディオ キューを無効にします。"
-            ],
-            "tags": [
-                "accessibility"
-            ],
-            "defaultDefaultValue": "auto",
-            "scope": 3,
-            "restricted": false
-        },
-        "audioCues.diffLineInserted": {
-            "description": "差分レビュー モードでフォーカスが挿入された行に移動したときまたは次/前の変更に移動したときに音を鳴らします",
-            "type": "string",
-            "enum": [
-                "auto",
-                "on",
-                "off"
-            ],
-            "default": "auto",
-            "enumDescriptions": [
-                "スクリーン リーダーが接続されたときにオーディオ キューを有効にします。",
-                "オーディオ キューを有効にします。",
-                "オーディオ キューを無効にします。"
-            ],
-            "tags": [
-                "accessibility"
-            ],
-            "defaultDefaultValue": "auto",
-            "scope": 3,
-            "restricted": false
-        },
-        "audioCues.diffLineDeleted": {
-            "description": "差分レビュー モードでフォーカスが削除された行に移動したときまたは次/前の変更に移動したときに音を鳴らします",
-            "type": "string",
-            "enum": [
-                "auto",
-                "on",
-                "off"
-            ],
-            "default": "auto",
-            "enumDescriptions": [
-                "スクリーン リーダーが接続されたときにオーディオ キューを有効にします。",
-                "オーディオ キューを有効にします。",
-                "オーディオ キューを無効にします。"
-            ],
-            "tags": [
-                "accessibility"
-            ],
-            "defaultDefaultValue": "auto",
-            "scope": 3,
-            "restricted": false
-        },
-        "audioCues.diffLineModified": {
-            "description": "差分レビュー モードでフォーカスが変更された行に移動したときまたは次/前の変更に移動したときに音を鳴らします",
-            "type": "string",
-            "enum": [
-                "auto",
-                "on",
-                "off"
-            ],
-            "default": "auto",
-            "enumDescriptions": [
-                "スクリーン リーダーが接続されたときにオーディオ キューを有効にします。",
-                "オーディオ キューを有効にします。",
-                "オーディオ キューを無効にします。"
-            ],
-            "tags": [
-                "accessibility"
-            ],
-            "defaultDefaultValue": "auto",
-            "scope": 3,
-            "restricted": false
-        },
-        "audioCues.notebookCellCompleted": {
-            "description": "ノートブック セルの実行が正常に完了したときに音を鳴らします。",
-            "type": "string",
-            "enum": [
-                "auto",
-                "on",
-                "off"
-            ],
-            "default": "auto",
-            "enumDescriptions": [
-                "スクリーン リーダーが接続されたときにオーディオ キューを有効にします。",
-                "オーディオ キューを有効にします。",
-                "オーディオ キューを無効にします。"
-            ],
-            "tags": [
-                "accessibility"
-            ],
-            "defaultDefaultValue": "auto",
-            "scope": 3,
-            "restricted": false
-        },
-        "audioCues.notebookCellFailed": {
-            "description": "ノートブック セルの実行に失敗したときに音を鳴らします。",
-            "type": "string",
-            "enum": [
-                "auto",
-                "on",
-                "off"
-            ],
-            "default": "auto",
-            "enumDescriptions": [
-                "スクリーン リーダーが接続されたときにオーディオ キューを有効にします。",
-                "オーディオ キューを有効にします。",
-                "オーディオ キューを無効にします。"
-            ],
-            "tags": [
-                "accessibility"
-            ],
-            "defaultDefaultValue": "auto",
-            "scope": 3,
-            "restricted": false
-        },
-        "audioCues.chatRequestSent": {
-            "description": "チャット要求が行われたときにサウンドを再生します。",
-            "type": "string",
-            "enum": [
-                "auto",
-                "on",
-                "off"
-            ],
-            "default": "off",
-            "enumDescriptions": [
-                "スクリーン リーダーが接続されたときにオーディオ キューを有効にします。",
-                "オーディオ キューを有効にします。",
-                "オーディオ キューを無効にします。"
-            ],
-            "tags": [
-                "accessibility"
-            ],
-            "defaultDefaultValue": "off",
-            "scope": 3,
-            "restricted": false
-        },
-        "audioCues.chatResponsePending": {
-            "description": "応答が保留中の間、サウンドを繰り返し再生します。",
-            "type": "string",
-            "enum": [
-                "auto",
-                "on",
-                "off"
-            ],
-            "default": "auto",
-            "enumDescriptions": [
-                "スクリーン リーダーが接続されたときにオーディオ キューを有効にします。",
-                "オーディオ キューを有効にします。",
-                "オーディオ キューを無効にします。"
-            ],
-            "tags": [
-                "accessibility"
-            ],
-            "defaultDefaultValue": "auto",
-            "scope": 3,
-            "restricted": false
-        },
-        "audioCues.chatResponseReceived": {
-            "description": "応答の受信中に、サウンドを繰り返し再生します。",
-            "type": "string",
-            "enum": [
-                "auto",
-                "on",
-                "off"
-            ],
-            "default": "off",
-            "enumDescriptions": [
-                "スクリーン リーダーが接続されたときにオーディオ キューを有効にします。",
-                "オーディオ キューを有効にします。",
-                "オーディオ キューを無効にします。"
-            ],
-            "tags": [
-                "accessibility"
-            ],
-            "defaultDefaultValue": "off",
-            "scope": 3,
-            "restricted": false
-        },
         "workbench.externalUriOpeners": {
             "type": "object",
             "markdownDescription": "外部 URI (http、https) に使用する opener を構成します。",
@@ -2245,6 +2196,32 @@
                 ]
             },
             "default": {},
+            "scope": 3,
+            "restricted": false
+        },
+        "inlineChat.mode": {
+            "description": "対話型エディターで作成された変更をドキュメントに直接適用するか、最初にプレビューするかを構成します。",
+            "default": "livePreview",
+            "type": "string",
+            "enum": [
+                "livePreview",
+                "preview",
+                "live"
+            ],
+            "markdownEnumDescriptions": [
+                "変更はドキュメントに直接適用され、インライン差分または左右に並べて表示差分を介して視覚的に強調表示されます。セッションを終了しても変更は保持されます。",
+                "変更はプレビューのみであり、適用ボタンを使用して承認する必要があります。セッションを終了すると、変更は破棄されます。",
+                "変更はドキュメントに直接適用されますが、インライン差分を介して強調表示することもできます。セッションを終了しても変更は保持されます。"
+            ],
+            "defaultDefaultValue": "livePreview",
+            "scope": 3,
+            "restricted": false
+        },
+        "inlineChat.showDiff": {
+            "description": "編集の生成時にdiffを表示することを有効または無効にします。inlineChat.mode が live または livePreview と等しい場合にのみ機能します。",
+            "default": true,
+            "type": "boolean",
+            "defaultDefaultValue": true,
             "scope": 3,
             "restricted": false
         },
@@ -2501,19 +2478,42 @@
             "scope": 3,
             "restricted": false
         },
+        "workbench.sash.size": {
+            "type": "number",
+            "default": 4,
+            "minimum": 1,
+            "maximum": 20,
+            "description": "ビューまたはエディター間にあるドラッグ領域のフィードバック領域のサイズをピクセル単位で制御します。マウスを使用してビューのサイズを変更するのが困難な場合は、これを大きな値に設定してください。",
+            "defaultDefaultValue": 4,
+            "scope": 3,
+            "restricted": false
+        },
+        "workbench.sash.hoverDelay": {
+            "type": "number",
+            "default": 300,
+            "minimum": 0,
+            "maximum": 2000,
+            "description": "ビューまたはエディター間のドラッグ領域のホバー フィードバックの遅延をミリ秒単位で制御します。",
+            "defaultDefaultValue": 300,
+            "scope": 3,
+            "restricted": false
+        },
+        "workbench.experimental.share.enabled": {
+            "type": "boolean",
+            "default": false,
+            "tags": [
+                "experimental"
+            ],
+            "markdownDescription": "`#window.commandCenter#` が `true` の場合に、コマンド センターの横に [共有] アクションを表示するかどうかを制御します。",
+            "restricted": false,
+            "defaultDefaultValue": false,
+            "scope": 3
+        },
         "remote.downloadExtensionsLocally": {
             "type": "boolean",
             "markdownDescription": "有効にすると、拡張機能がローカルにダウンロードされ、リモート上にインストールされます。",
             "default": false,
             "defaultDefaultValue": false,
-            "scope": 3,
-            "restricted": false
-        },
-        "notebook.navigation.allowNavigateToSurroundingCells": {
-            "type": "boolean",
-            "default": true,
-            "markdownDescription": "有効にすると、セルエディター内の現在のカーソルが最初または最後の行にあるときに、カーソルは次または前のセルに移動できます。",
-            "defaultDefaultValue": true,
             "scope": 3,
             "restricted": false
         },
@@ -4335,7 +4335,7 @@
             "restricted": false
         },
         "accessibility.verbosity.inlineChat": {
-            "description": "入力にフォーカスがある場合にインライン エディターのチャット アクセシビリティ ヘルプ メニューにアクセスする方法に関する情報を提供する",
+            "description": "インライン エディター チャットのアクセシビリティ ヘルプ メニューにアクセスする方法に関する情報を提供し、入力にフォーカスがあるときに機能を使用する方法を説明するヒントを通知します",
             "type": "boolean",
             "default": true,
             "tags": [
@@ -4358,6 +4358,28 @@
         },
         "accessibility.verbosity.notebook": {
             "description": "ノートブック セルがフォーカスされているときにセル コンテナーまたは内部エディターにフォーカスを移動する方法に関する情報を提供します。",
+            "type": "boolean",
+            "default": true,
+            "tags": [
+                "accessibility"
+            ],
+            "defaultDefaultValue": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "accessibility.verbosity.hover": {
+            "description": "アクセス可能なビューでホバーを開く方法に関する情報を提供します。",
+            "type": "boolean",
+            "default": true,
+            "tags": [
+                "accessibility"
+            ],
+            "defaultDefaultValue": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "accessibility.verbosity.notification": {
+            "description": "アクセス可能なビューで通知を開く方法に関する情報を提供します。",
             "type": "boolean",
             "default": true,
             "tags": [
@@ -4422,6 +4444,14 @@
             "scope": 3,
             "restricted": false
         },
+        "notebook.navigation.allowNavigateToSurroundingCells": {
+            "type": "boolean",
+            "default": true,
+            "markdownDescription": "有効にすると、セルエディター内の現在のカーソルが最初または最後の行にあるときに、カーソルは次または前のセルに移動できます。",
+            "defaultDefaultValue": true,
+            "scope": 3,
+            "restricted": false
+        },
         "notebook.diff.ignoreMetadata": {
             "type": "boolean",
             "default": false,
@@ -4458,40 +4488,44 @@
             "scope": 3,
             "restricted": false
         },
-        "screencastMode.keyboardShortcutsFormat": {
-            "enum": [
-                "keys",
-                "command",
-                "commandWithGroup",
-                "commandAndKeys",
-                "commandWithGroupAndKeys"
-            ],
-            "enumDescriptions": [
-                "キー。",
-                "コマンド タイトル。",
-                "コマンド タイトルには、そのグループのプレフィックスが付いています。",
-                "コマンドのタイトルとキー。",
-                "コマンドのタイトルとキー。コマンドの前にグループが付きます。"
-            ],
-            "description": "ショートカットを表示するときにキーボード オーバーレイに表示される内容を制御します。",
-            "default": "commandAndKeys",
-            "defaultDefaultValue": "commandAndKeys",
-            "scope": 3,
-            "restricted": false
-        },
-        "screencastMode.onlyKeyboardShortcuts": {
-            "type": "boolean",
-            "description": "スクリーンキャスト モードでキーボード ショートカットのみを表示します (アクション名は含めない)。",
-            "default": false,
-            "defaultDefaultValue": false,
-            "scope": 3,
-            "restricted": false
-        },
-        "screencastMode.hideSingleEditorCursorMoves": {
-            "type": "boolean",
-            "description": "スクリーンキャスト モードの単一エディター カーソル移動コマンドを非表示にします。",
-            "default": false,
-            "defaultDefaultValue": false,
+        "screencastMode.keyboardOptions": {
+            "type": "object",
+            "description": "スクリーンキャスト モードでキーボード オーバーレイをカスタマイズするためのオプション。",
+            "properties": {
+                "showKeys": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "生キーを表示します。"
+                },
+                "showCommands": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "コマンド名を表示します。"
+                },
+                "showCommandGroups": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "コマンドが表示されるときに、コマンド グループ名を表示します。"
+                },
+                "showSingleEditorCursorMoves": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "1 つのエディター カーソル移動コマンドを表示します。"
+                }
+            },
+            "default": {
+                "showKeys": true,
+                "showCommands": true,
+                "showCommandGroups": false,
+                "showSingleEditorCursorMoves": true
+            },
+            "additionalProperties": false,
+            "defaultDefaultValue": {
+                "showKeys": true,
+                "showCommands": true,
+                "showCommandGroups": false,
+                "showSingleEditorCursorMoves": true
+            },
             "scope": 3,
             "restricted": false
         },
@@ -4631,6 +4665,43 @@
             "description": "チャット コード ブロック内の行の高さをピクセル単位で制御します。フォント サイズから行の高さを計算するには 0 を使用します。",
             "default": 0,
             "defaultDefaultValue": 0,
+            "scope": 3,
+            "restricted": false
+        },
+        "chat.experimental.defaultMode": {
+            "type": "string",
+            "tags": [
+                "experimental"
+            ],
+            "enum": [
+                "chatView",
+                "quickQuestion",
+                "both"
+            ],
+            "enumDescriptions": [
+                "既定のモードとしてチャット ビューを使用します。アクティビティ バーにチャット アイコンを表示します。",
+                "クイック質問を既定のモードとして使用します。タイトル バーにチャット アイコンを表示します。",
+                "アクティビティ バーとタイトル バーにチャット アイコンを表示し、それぞれのチャット モードを開きます。"
+            ],
+            "description": "チャット エクスペリエンスの既定のモードを制御します。",
+            "default": "chatView",
+            "defaultDefaultValue": "chatView",
+            "scope": 3,
+            "restricted": false
+        },
+        "chat.experimental.quickQuestion.mode": {
+            "type": "string",
+            "tags": [
+                "experimental"
+            ],
+            "enum": [
+                "singleQuestion",
+                "inputOnTopChat",
+                "inputOnBottomChat"
+            ],
+            "description": "クイック質問チャット エクスペリエンスのモードを制御します。",
+            "default": "inputOnTopChat",
+            "defaultDefaultValue": "inputOnTopChat",
             "scope": 3,
             "restricted": false
         },
@@ -5872,6 +5943,17 @@
                 "notebookLayout"
             ],
             "defaultDefaultValue": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "notebook.stickyScroll.enabled": {
+            "description": "実験。ノートブック エディターでノートブック固定スクロール ヘッダーをレンダリングするかどうかを制御します。",
+            "type": "boolean",
+            "default": false,
+            "tags": [
+                "notebookLayout"
+            ],
+            "defaultDefaultValue": false,
             "scope": 3,
             "restricted": false
         },
@@ -8629,6 +8711,14 @@
             "scope": 3,
             "restricted": false
         },
+        "notebook.experimental.remoteSave": {
+            "markdownDescription": "リモート環境でのノートブックの増分保存を有効にします。有効にすると、ノートブックへの変更のみが拡張機能ホストに送信され、大きなノートブックと低速なネットワーク接続のパフォーマンスが向上します。",
+            "type": "boolean",
+            "default": false,
+            "defaultDefaultValue": false,
+            "scope": 3,
+            "restricted": false
+        },
         "search.mode": {
             "type": "string",
             "enum": [
@@ -8918,6 +9008,14 @@
             ],
             "description": "既定の検索結果ビュー モードを制御します。",
             "defaultDefaultValue": "list",
+            "scope": 3,
+            "restricted": false
+        },
+        "search.experimental.closedNotebookRichContentResults": {
+            "type": "boolean",
+            "description": "閉じているノートブックのノートブック エディターのリッチ コンテンツの結果を表示します。この設定を変更した後、検索結果を更新してください。",
+            "default": false,
+            "defaultDefaultValue": false,
             "scope": 3,
             "restricted": false
         },
@@ -21250,7 +21348,7 @@
             "restricted": false
         },
         "terminal.integrated.wordSeparators": {
-            "description": "ダブルクリックによる単語選択機能で単語区切り記号として扱われるすべての文字を含む文字列。",
+            "markdownDescription": "ダブルクリックして単語を選択し、フォールバック 'word' リンクの検出時に、単語区切り記号と見なされるすべての文字を含む文字列。これはリンク検出に使用されるため、リンクの検出時に使用される ':' などの文字を含めると、'file:10:5' などのリンクの行と列の部分が無視されます。",
             "type": "string",
             "default": " ()[]{}',\"`─‘’|",
             "defaultDefaultValue": " ()[]{}',\"`─‘’|",
@@ -21472,7 +21570,7 @@
         },
         "terminal.integrated.enableImages": {
             "restricted": true,
-            "markdownDescription": "Enables image support in the terminal, this will only work when `#terminal.integrated.gpuAcceleration#` is enabled. Both sixel and iTerm's inline image protocol are supported on Linux and macOS, Windows support will light up automatically when ConPTY passes through the sequences. Images will currently not be restored between window reloads/reconnects.",
+            "markdownDescription": "ターミナルでイメージのサポートを有効にします。これは、 `#terminal.integrated.gpuAcceleration#` が有効になっている場合にのみ機能します。Linux と macOS では、sixel と iTerm の両方のインライン イメージ プロトコルがサポートされています。ConPTY がシーケンスを通過すると、Windows のサポートが自動的に点灯します。現在、ウィンドウの再読み込み/再接続の間にイメージは復元されません。",
             "type": "boolean",
             "default": true,
             "defaultDefaultValue": true,
@@ -25232,6 +25330,24 @@
             "scope": 3,
             "restricted": false
         },
+        "terminal.sourceControlRepositoriesKind": {
+            "type": "string",
+            "enum": [
+                "integrated",
+                "external",
+                "both"
+            ],
+            "enumDescriptions": [
+                "VS Code の統合ターミナルを使用します。",
+                "構成済みの外部ターミナルを使用します。",
+                "他の 2 つを一緒に使用します。"
+            ],
+            "description": "ターミナルでソース管理リポジトリ ビューからリポジトリを開くときに、起動するターミナルの種類を決定します。",
+            "default": "integrated",
+            "defaultDefaultValue": "integrated",
+            "scope": 3,
+            "restricted": false
+        },
         "terminal.integrated.defaultProfile.linux": {
             "restricted": true,
             "markdownDescription": "Linux 上の既定のターミナル プロファイル。",
@@ -25704,7 +25820,7 @@
                 "legacy",
                 "advanced"
             ],
-            "default": "legacy",
+            "default": "advanced",
             "markdownEnumDescriptions": [
                 "従来の差分アルゴリズムを使用します。",
                 "高度な差分アルゴリズムを使用します。"
@@ -25712,7 +25828,7 @@
             "tags": [
                 "experimental"
             ],
-            "defaultDefaultValue": "legacy",
+            "defaultDefaultValue": "advanced",
             "scope": 5,
             "restricted": false
         },
@@ -25736,6 +25852,9 @@
             "type": "boolean",
             "default": false,
             "description": "差分エディターで新しい実装と古い実装のどちらを使用するかを制御します。",
+            "tags": [
+                "experimental"
+            ],
             "defaultDefaultValue": false,
             "scope": 5,
             "restricted": false
@@ -28468,69 +28587,6 @@
             "defaultDefaultValue": true,
             "restricted": false
         },
-        "workbench.editor.languageDetection": {
-            "type": "boolean",
-            "default": true,
-            "description": "言語の選択で言語が明示的に設定されている場合を除き、テキスト エディターの言語を自動的に検出するかどうかを制御します。これは、オフにしたくない言語を指定できるように、言語でスコープを設定することもできます。これは、Markdown のような言語 (多くの場合、言語検出で Markdown ではなく埋め込み言語であると認識させる可能性のある他の言語が含まれている) で便利です。",
-            "scope": 5,
-            "defaultDefaultValue": true,
-            "restricted": false
-        },
-        "workbench.editor.restoreViewState": {
-            "type": "boolean",
-            "markdownDescription": "エディターを閉じた後に再び開いたときに、最後のエディター ビューの状態 (スクロール位置など) を回復します。エディター ビューの状態は、エディター グループごとに保存され、グループが閉じられると破棄されます。エディター グループに以前のビュー状態が見つからなかった場合に、すべてのエディター グループにわたって最後に確認されたビュー状態を使用するには、`#workbench.editor.sharedViewState#` 設定を使用します。",
-            "default": true,
-            "scope": 5,
-            "defaultDefaultValue": true,
-            "restricted": false
-        },
-        "workbench.localHistory.enabled": {
-            "type": "boolean",
-            "default": true,
-            "description": "ローカル ファイル履歴を有効にするかどうかを制御します。有効にすると、保存されたエディターのファイル コンテンツはバックアップの場所に保存され、後で復元または確認できます。この設定の変更は、既存のファイル履歴エントリには影響しません。",
-            "scope": 4,
-            "defaultDefaultValue": true,
-            "restricted": false
-        },
-        "workbench.localHistory.maxFileSize": {
-            "type": "number",
-            "default": 256,
-            "minimum": 1,
-            "description": "ローカル ファイル履歴向けのファイルの最大サイズ (KB 単位) を制御します。より大きなファイルは、ローカル ファイル履歴に追加されません。この設定の変更は、既存のファイル ファイル履歴エントリに影響しません。",
-            "scope": 4,
-            "defaultDefaultValue": 256,
-            "restricted": false
-        },
-        "workbench.localHistory.maxFileEntries": {
-            "type": "number",
-            "default": 50,
-            "minimum": 0,
-            "description": "ファイルごとのローカル ファイル履歴エントリの最大数を制御します。ローカル ファイル履歴エントリ数がファイルのこの値を超えると、最古のエントリが破棄されます。",
-            "scope": 4,
-            "defaultDefaultValue": 50,
-            "restricted": false
-        },
-        "workbench.localHistory.exclude": {
-            "type": "object",
-            "patternProperties": {
-                ".*": {
-                    "type": "boolean"
-                }
-            },
-            "markdownDescription": "ローカル ファイル履歴からファイルを除外するためのパスまたは [glob パターン](https://aka.ms/vscode-glob-patterns) を構成します。Glob パターンは、絶対パスでない限り、ワークスペース フォルダーのパスを基準にして常に評価されます。この設定を変更しても、既存のローカル ファイル履歴エントリには影響しません。",
-            "scope": 4,
-            "default": {},
-            "restricted": false
-        },
-        "workbench.localHistory.mergeWindow": {
-            "type": "number",
-            "default": 10,
-            "minimum": 1,
-            "markdownDescription": "ローカル ファイル履歴の最後のエントリが追加されるエントリに置き換えられる間隔を秒単位で構成します。これにより、自動保存が有効になっている場合など、追加されるエントリの総数を減らすことができます。この設定は、元のソースが同じエントリにのみ適用されます。この設定を変更しても、既存のローカル ファイル履歴エントリには影響しません。",
-            "scope": 4,
-            "defaultDefaultValue": 10,
-            "restricted": false
-        },
         "editor.codeActionsOnSave": {
             "oneOf": [
                 {
@@ -28798,6 +28854,69 @@
             ],
             "defaultDefaultValue": null,
             "scope": 5,
+            "restricted": false
+        },
+        "workbench.editor.languageDetection": {
+            "type": "boolean",
+            "default": true,
+            "description": "言語の選択で言語が明示的に設定されている場合を除き、テキスト エディターの言語を自動的に検出するかどうかを制御します。これは、オフにしたくない言語を指定できるように、言語でスコープを設定することもできます。これは、Markdown のような言語 (多くの場合、言語検出で Markdown ではなく埋め込み言語であると認識させる可能性のある他の言語が含まれている) で便利です。",
+            "scope": 5,
+            "defaultDefaultValue": true,
+            "restricted": false
+        },
+        "workbench.editor.restoreViewState": {
+            "type": "boolean",
+            "markdownDescription": "エディターを閉じた後に再び開いたときに、最後のエディター ビューの状態 (スクロール位置など) を回復します。エディター ビューの状態は、エディター グループごとに保存され、グループが閉じられると破棄されます。エディター グループに以前のビュー状態が見つからなかった場合に、すべてのエディター グループにわたって最後に確認されたビュー状態を使用するには、`#workbench.editor.sharedViewState#` 設定を使用します。",
+            "default": true,
+            "scope": 5,
+            "defaultDefaultValue": true,
+            "restricted": false
+        },
+        "workbench.localHistory.enabled": {
+            "type": "boolean",
+            "default": true,
+            "description": "ローカル ファイル履歴を有効にするかどうかを制御します。有効にすると、保存されたエディターのファイル コンテンツはバックアップの場所に保存され、後で復元または確認できます。この設定の変更は、既存のファイル履歴エントリには影響しません。",
+            "scope": 4,
+            "defaultDefaultValue": true,
+            "restricted": false
+        },
+        "workbench.localHistory.maxFileSize": {
+            "type": "number",
+            "default": 256,
+            "minimum": 1,
+            "description": "ローカル ファイル履歴向けのファイルの最大サイズ (KB 単位) を制御します。より大きなファイルは、ローカル ファイル履歴に追加されません。この設定の変更は、既存のファイル ファイル履歴エントリに影響しません。",
+            "scope": 4,
+            "defaultDefaultValue": 256,
+            "restricted": false
+        },
+        "workbench.localHistory.maxFileEntries": {
+            "type": "number",
+            "default": 50,
+            "minimum": 0,
+            "description": "ファイルごとのローカル ファイル履歴エントリの最大数を制御します。ローカル ファイル履歴エントリ数がファイルのこの値を超えると、最古のエントリが破棄されます。",
+            "scope": 4,
+            "defaultDefaultValue": 50,
+            "restricted": false
+        },
+        "workbench.localHistory.exclude": {
+            "type": "object",
+            "patternProperties": {
+                ".*": {
+                    "type": "boolean"
+                }
+            },
+            "markdownDescription": "ローカル ファイル履歴からファイルを除外するためのパスまたは [glob パターン](https://aka.ms/vscode-glob-patterns) を構成します。Glob パターンは、絶対パスでない限り、ワークスペース フォルダーのパスを基準にして常に評価されます。この設定を変更しても、既存のローカル ファイル履歴エントリには影響しません。",
+            "scope": 4,
+            "default": {},
+            "restricted": false
+        },
+        "workbench.localHistory.mergeWindow": {
+            "type": "number",
+            "default": 10,
+            "minimum": 1,
+            "markdownDescription": "ローカル ファイル履歴の最後のエントリが追加されるエントリに置き換えられる間隔を秒単位で構成します。これにより、自動保存が有効になっている場合など、追加されるエントリの総数を減らすことができます。この設定は、元のソースが同じエントリにのみ適用されます。この設定を変更しても、既存のローカル ファイル履歴エントリには影響しません。",
+            "scope": 4,
+            "defaultDefaultValue": 10,
             "restricted": false
         },
         "editor.snippets.codeActions.enabled": {
@@ -33120,13 +33239,13 @@
         "github.branchProtection": {
             "type": "boolean",
             "scope": 4,
-            "default": false,
+            "default": true,
             "description": "GitHub リポジトリのリポジトリ ルールに対してクエリを実行するかどうかを制御します",
             "source": {
                 "id": "vscode.github",
                 "displayName": "GitHub"
             },
-            "defaultDefaultValue": false,
+            "defaultDefaultValue": true,
             "restricted": false
         },
         "github.gitAuthentication": {
@@ -33739,15 +33858,25 @@
             "restricted": false
         },
         "markdown.editor.pasteUrlAsFormattedLink.enabled": {
-            "type": "boolean",
+            "type": "string",
             "scope": 4,
-            "markdownDescription": "URL を Markdown エディターに貼り付けるときにマークダウン リンクを作成するかどうかを制御します。`#editor.pasteAs.enabled#` を有効にする必要があります。",
-            "default": false,
+            "markdownDescription": "URL を Markdown エディターに貼り付けるときにどのようにマークダウン リンクを作成するかを制御します。`#editor.pasteAs.enabled#` を有効にする必要があります。",
+            "default": "never",
+            "enum": [
+                "always",
+                "smart",
+                "never"
+            ],
+            "markdownEnumDescriptions": [
+                "URL が Markdown editor に貼り付けられている場合は、常に Markdown リンクを作成します。",
+                "コード ブラケット内や既存の Markdown リンク内など、特定の場合に Markdown リンクを作成することをスマートに回避します。",
+                "URL が Markdown editor に貼り付けられている場合は、Markdown リンクを作成しないでください。"
+            ],
             "source": {
                 "id": "vscode.markdown-language-features",
                 "displayName": "Markdown 言語機能"
             },
-            "defaultDefaultValue": false,
+            "defaultDefaultValue": "never",
             "restricted": false
         },
         "markdown.validate.enabled": {
@@ -34018,14 +34147,14 @@
         },
         "typescript.experimental.aiQuickFix": {
             "type": "boolean",
-            "default": true,
+            "default": false,
             "description": "AI 支援クイック修正を有効または無効にします。AI チャット機能を提供する拡張機能が必要です。",
             "scope": 4,
             "source": {
                 "id": "vscode.typescript-language-features",
                 "displayName": "TypeScript と JavaScript の言語機能"
             },
-            "defaultDefaultValue": true,
+            "defaultDefaultValue": false,
             "restricted": false
         },
         "javascript.suggest.completeFunctionCalls": {
@@ -35073,7 +35202,7 @@
             "items": {
                 "type": "string"
             },
-            "markdownDescription": "自動インポートから除外するファイルの glob パターンを指定します。ワークスペースで TypeScript 4.8 以降を使用する必要があります。",
+            "markdownDescription": "自動インポートから除外するファイルの glob パターンを指定します。相対パスは、ワークスペースのルートに対する相対パスとして解決されます。パターンは tsconfig.json ['exclude'](https://www.typescriptlang.org/tsconfig#exclude) セマンティクスを使用して評価されます。ワークスペースで TypeScript 4.8 以降を使用する必要があります。",
             "scope": 4,
             "source": {
                 "id": "vscode.typescript-language-features",
@@ -35087,7 +35216,7 @@
             "items": {
                 "type": "string"
             },
-            "markdownDescription": "自動インポートから除外するファイルの glob パターンを指定します。ワークスペースで TypeScript 4.8 以降を使用する必要があります。",
+            "markdownDescription": "自動インポートから除外するファイルの glob パターンを指定します。相対パスは、ワークスペースのルートに対する相対パスとして解決されます。パターンは tsconfig.json ['exclude'](https://www.typescriptlang.org/tsconfig#exclude) セマンティクスを使用して評価されます。ワークスペースで TypeScript 4.8 以降を使用する必要があります。",
             "scope": 4,
             "source": {
                 "id": "vscode.typescript-language-features",

@@ -925,24 +925,6 @@
             "scope": 3,
             "restricted": false
         },
-        "inlineChat.mode": {
-            "description": "Configure if changes crafted in the interactive editor are applied directly to the document or are previewed first.",
-            "default": "livePreview",
-            "type": "string",
-            "enum": [
-                "livePreview",
-                "preview",
-                "live"
-            ],
-            "markdownEnumDescriptions": [
-                "Changes are applied directly to the document and are highlighted visually via inline or side-by-side diffs. Ending a session will keep the changes.",
-                "Changes are previewed only and need to be accepted via the apply button. Ending a session will discard the changes.",
-                "Changes are applied directly to the document but can be highlighted via inline diffs. Ending a session will keep the changes."
-            ],
-            "defaultDefaultValue": "livePreview",
-            "scope": 3,
-            "restricted": false
-        },
         "notebook.lineNumbers": {
             "type": "string",
             "enum": [
@@ -951,6 +933,447 @@
             ],
             "default": "off",
             "markdownDescription": "Controls the display of line numbers in the cell editor.",
+            "defaultDefaultValue": "off",
+            "scope": 3,
+            "restricted": false
+        },
+        "problems.decorations.enabled": {
+            "description": "Show Errors & Warnings on files and folder.",
+            "type": "boolean",
+            "default": true,
+            "defaultDefaultValue": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "audioCues.enabled": {
+            "markdownDeprecationMessage": "Deprecated. Use the specific setting for each audio cue instead (`audioCues.*`).",
+            "tags": [
+                "accessibility"
+            ],
+            "default": null,
+            "scope": 3,
+            "restricted": false,
+            "deprecationMessage": "Deprecated. Use the specific setting for each audio cue instead (`audioCues.*`)."
+        },
+        "audioCues.volume": {
+            "description": "The volume of the audio cues in percent (0-100).",
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100,
+            "default": 70,
+            "tags": [
+                "accessibility"
+            ],
+            "defaultDefaultValue": 70,
+            "scope": 3,
+            "restricted": false
+        },
+        "audioCues.debouncePositionChanges": {
+            "description": "Whether or not position changes should be debounced",
+            "type": "boolean",
+            "default": false,
+            "tags": [
+                "accessibility"
+            ],
+            "defaultDefaultValue": false,
+            "scope": 3,
+            "restricted": false
+        },
+        "audioCues.lineHasBreakpoint": {
+            "description": "Plays a sound when the active line has a breakpoint.",
+            "type": "string",
+            "enum": [
+                "auto",
+                "on",
+                "off"
+            ],
+            "default": "auto",
+            "enumDescriptions": [
+                "Enable audio cue when a screen reader is attached.",
+                "Enable audio cue.",
+                "Disable audio cue."
+            ],
+            "tags": [
+                "accessibility"
+            ],
+            "defaultDefaultValue": "auto",
+            "scope": 3,
+            "restricted": false
+        },
+        "audioCues.lineHasInlineSuggestion": {
+            "description": "Plays a sound when the active line has an inline suggestion.",
+            "type": "string",
+            "enum": [
+                "auto",
+                "on",
+                "off"
+            ],
+            "default": "auto",
+            "enumDescriptions": [
+                "Enable audio cue when a screen reader is attached.",
+                "Enable audio cue.",
+                "Disable audio cue."
+            ],
+            "tags": [
+                "accessibility"
+            ],
+            "defaultDefaultValue": "auto",
+            "scope": 3,
+            "restricted": false
+        },
+        "audioCues.lineHasError": {
+            "description": "Plays a sound when the active line has an error.",
+            "type": "string",
+            "enum": [
+                "auto",
+                "on",
+                "off"
+            ],
+            "default": "auto",
+            "enumDescriptions": [
+                "Enable audio cue when a screen reader is attached.",
+                "Enable audio cue.",
+                "Disable audio cue."
+            ],
+            "tags": [
+                "accessibility"
+            ],
+            "defaultDefaultValue": "auto",
+            "scope": 3,
+            "restricted": false
+        },
+        "audioCues.lineHasFoldedArea": {
+            "description": "Plays a sound when the active line has a folded area that can be unfolded.",
+            "type": "string",
+            "enum": [
+                "auto",
+                "on",
+                "off"
+            ],
+            "default": "auto",
+            "enumDescriptions": [
+                "Enable audio cue when a screen reader is attached.",
+                "Enable audio cue.",
+                "Disable audio cue."
+            ],
+            "tags": [
+                "accessibility"
+            ],
+            "defaultDefaultValue": "auto",
+            "scope": 3,
+            "restricted": false
+        },
+        "audioCues.lineHasWarning": {
+            "description": "Plays a sound when the active line has a warning.",
+            "type": "string",
+            "enum": [
+                "auto",
+                "on",
+                "off"
+            ],
+            "default": "off",
+            "enumDescriptions": [
+                "Enable audio cue when a screen reader is attached.",
+                "Enable audio cue.",
+                "Disable audio cue."
+            ],
+            "tags": [
+                "accessibility"
+            ],
+            "defaultDefaultValue": "off",
+            "scope": 3,
+            "restricted": false
+        },
+        "audioCues.onDebugBreak": {
+            "description": "Plays a sound when the debugger stopped on a breakpoint.",
+            "type": "string",
+            "enum": [
+                "auto",
+                "on",
+                "off"
+            ],
+            "default": "auto",
+            "enumDescriptions": [
+                "Enable audio cue when a screen reader is attached.",
+                "Enable audio cue.",
+                "Disable audio cue."
+            ],
+            "tags": [
+                "accessibility"
+            ],
+            "defaultDefaultValue": "auto",
+            "scope": 3,
+            "restricted": false
+        },
+        "audioCues.noInlayHints": {
+            "description": "Plays a sound when trying to read a line with inlay hints that has no inlay hints.",
+            "type": "string",
+            "enum": [
+                "auto",
+                "on",
+                "off"
+            ],
+            "default": "auto",
+            "enumDescriptions": [
+                "Enable audio cue when a screen reader is attached.",
+                "Enable audio cue.",
+                "Disable audio cue."
+            ],
+            "tags": [
+                "accessibility"
+            ],
+            "defaultDefaultValue": "auto",
+            "scope": 3,
+            "restricted": false
+        },
+        "audioCues.taskCompleted": {
+            "description": "Plays a sound when a task is completed.",
+            "type": "string",
+            "enum": [
+                "auto",
+                "on",
+                "off"
+            ],
+            "default": "auto",
+            "enumDescriptions": [
+                "Enable audio cue when a screen reader is attached.",
+                "Enable audio cue.",
+                "Disable audio cue."
+            ],
+            "tags": [
+                "accessibility"
+            ],
+            "defaultDefaultValue": "auto",
+            "scope": 3,
+            "restricted": false
+        },
+        "audioCues.taskFailed": {
+            "description": "Plays a sound when a task fails (non-zero exit code).",
+            "type": "string",
+            "enum": [
+                "auto",
+                "on",
+                "off"
+            ],
+            "default": "auto",
+            "enumDescriptions": [
+                "Enable audio cue when a screen reader is attached.",
+                "Enable audio cue.",
+                "Disable audio cue."
+            ],
+            "tags": [
+                "accessibility"
+            ],
+            "defaultDefaultValue": "auto",
+            "scope": 3,
+            "restricted": false
+        },
+        "audioCues.terminalCommandFailed": {
+            "description": "Plays a sound when a terminal command fails (non-zero exit code).",
+            "type": "string",
+            "enum": [
+                "auto",
+                "on",
+                "off"
+            ],
+            "default": "auto",
+            "enumDescriptions": [
+                "Enable audio cue when a screen reader is attached.",
+                "Enable audio cue.",
+                "Disable audio cue."
+            ],
+            "tags": [
+                "accessibility"
+            ],
+            "defaultDefaultValue": "auto",
+            "scope": 3,
+            "restricted": false
+        },
+        "audioCues.terminalQuickFix": {
+            "description": "Plays a sound when terminal Quick Fixes are available.",
+            "type": "string",
+            "enum": [
+                "auto",
+                "on",
+                "off"
+            ],
+            "default": "auto",
+            "enumDescriptions": [
+                "Enable audio cue when a screen reader is attached.",
+                "Enable audio cue.",
+                "Disable audio cue."
+            ],
+            "tags": [
+                "accessibility"
+            ],
+            "defaultDefaultValue": "auto",
+            "scope": 3,
+            "restricted": false
+        },
+        "audioCues.diffLineInserted": {
+            "description": "Plays a sound when the focus moves to an inserted line in accessible diff viewer mode or to the next/previous change",
+            "type": "string",
+            "enum": [
+                "auto",
+                "on",
+                "off"
+            ],
+            "default": "auto",
+            "enumDescriptions": [
+                "Enable audio cue when a screen reader is attached.",
+                "Enable audio cue.",
+                "Disable audio cue."
+            ],
+            "tags": [
+                "accessibility"
+            ],
+            "defaultDefaultValue": "auto",
+            "scope": 3,
+            "restricted": false
+        },
+        "audioCues.diffLineDeleted": {
+            "description": "Plays a sound when the focus moves to a deleted line in accessible diff viewer mode or to the next/previous change",
+            "type": "string",
+            "enum": [
+                "auto",
+                "on",
+                "off"
+            ],
+            "default": "auto",
+            "enumDescriptions": [
+                "Enable audio cue when a screen reader is attached.",
+                "Enable audio cue.",
+                "Disable audio cue."
+            ],
+            "tags": [
+                "accessibility"
+            ],
+            "defaultDefaultValue": "auto",
+            "scope": 3,
+            "restricted": false
+        },
+        "audioCues.diffLineModified": {
+            "description": "Plays a sound when the focus moves to a modified line in accessible diff viewer mode or to the next/previous change",
+            "type": "string",
+            "enum": [
+                "auto",
+                "on",
+                "off"
+            ],
+            "default": "auto",
+            "enumDescriptions": [
+                "Enable audio cue when a screen reader is attached.",
+                "Enable audio cue.",
+                "Disable audio cue."
+            ],
+            "tags": [
+                "accessibility"
+            ],
+            "defaultDefaultValue": "auto",
+            "scope": 3,
+            "restricted": false
+        },
+        "audioCues.notebookCellCompleted": {
+            "description": "Plays a sound when a notebook cell execution is successfully completed.",
+            "type": "string",
+            "enum": [
+                "auto",
+                "on",
+                "off"
+            ],
+            "default": "auto",
+            "enumDescriptions": [
+                "Enable audio cue when a screen reader is attached.",
+                "Enable audio cue.",
+                "Disable audio cue."
+            ],
+            "tags": [
+                "accessibility"
+            ],
+            "defaultDefaultValue": "auto",
+            "scope": 3,
+            "restricted": false
+        },
+        "audioCues.notebookCellFailed": {
+            "description": "Plays a sound when a notebook cell execution fails.",
+            "type": "string",
+            "enum": [
+                "auto",
+                "on",
+                "off"
+            ],
+            "default": "auto",
+            "enumDescriptions": [
+                "Enable audio cue when a screen reader is attached.",
+                "Enable audio cue.",
+                "Disable audio cue."
+            ],
+            "tags": [
+                "accessibility"
+            ],
+            "defaultDefaultValue": "auto",
+            "scope": 3,
+            "restricted": false
+        },
+        "audioCues.chatRequestSent": {
+            "description": "Plays a sound when a chat request is made.",
+            "type": "string",
+            "enum": [
+                "auto",
+                "on",
+                "off"
+            ],
+            "default": "off",
+            "enumDescriptions": [
+                "Enable audio cue when a screen reader is attached.",
+                "Enable audio cue.",
+                "Disable audio cue."
+            ],
+            "tags": [
+                "accessibility"
+            ],
+            "defaultDefaultValue": "off",
+            "scope": 3,
+            "restricted": false
+        },
+        "audioCues.chatResponsePending": {
+            "description": "Plays a sound on loop while the response is pending.",
+            "type": "string",
+            "enum": [
+                "auto",
+                "on",
+                "off"
+            ],
+            "default": "auto",
+            "enumDescriptions": [
+                "Enable audio cue when a screen reader is attached.",
+                "Enable audio cue.",
+                "Disable audio cue."
+            ],
+            "tags": [
+                "accessibility"
+            ],
+            "defaultDefaultValue": "auto",
+            "scope": 3,
+            "restricted": false
+        },
+        "audioCues.chatResponseReceived": {
+            "description": "Plays a sound on loop while the response has been received.",
+            "type": "string",
+            "enum": [
+                "auto",
+                "on",
+                "off"
+            ],
+            "default": "off",
+            "enumDescriptions": [
+                "Enable audio cue when a screen reader is attached.",
+                "Enable audio cue.",
+                "Disable audio cue."
+            ],
+            "tags": [
+                "accessibility"
+            ],
             "defaultDefaultValue": "off",
             "scope": 3,
             "restricted": false
@@ -1193,7 +1616,7 @@
             ],
             "default": "auto",
             "enumDescriptions": [
-                "Splits all the editor groups to equal parts unless a part has been changed in size.",
+                "Splits the active editor group to equal parts, unless all editor groups are already in equal parts. In that case, splits all the editor groups to equal parts.",
                 "Splits all the editor groups to equal parts.",
                 "Splits the active editor group to equal parts."
             ],
@@ -1740,478 +2163,6 @@
             "scope": 3,
             "restricted": false
         },
-        "problems.decorations.enabled": {
-            "description": "Show Errors & Warnings on files and folder.",
-            "type": "boolean",
-            "default": true,
-            "defaultDefaultValue": true,
-            "scope": 3,
-            "restricted": false
-        },
-        "workbench.sash.size": {
-            "type": "number",
-            "default": 4,
-            "minimum": 1,
-            "maximum": 20,
-            "description": "Controls the feedback area size in pixels of the dragging area in between views/editors. Set it to a larger value if you feel it's hard to resize views using the mouse.",
-            "defaultDefaultValue": 4,
-            "scope": 3,
-            "restricted": false
-        },
-        "workbench.sash.hoverDelay": {
-            "type": "number",
-            "default": 300,
-            "minimum": 0,
-            "maximum": 2000,
-            "description": "Controls the hover feedback delay in milliseconds of the dragging area in between views/editors.",
-            "defaultDefaultValue": 300,
-            "scope": 3,
-            "restricted": false
-        },
-        "workbench.experimental.share.enabled": {
-            "type": "boolean",
-            "default": false,
-            "tags": [
-                "experimental"
-            ],
-            "markdownDescription": "Controls whether to render the Share action next to the command center when `#window.commandCenter#` is `true`.",
-            "restricted": false,
-            "defaultDefaultValue": false,
-            "scope": 3
-        },
-        "audioCues.enabled": {
-            "markdownDeprecationMessage": "Deprecated. Use the specific setting for each audio cue instead (`audioCues.*`).",
-            "tags": [
-                "accessibility"
-            ],
-            "default": null,
-            "scope": 3,
-            "restricted": false,
-            "deprecationMessage": "Deprecated. Use the specific setting for each audio cue instead (`audioCues.*`)."
-        },
-        "audioCues.volume": {
-            "description": "The volume of the audio cues in percent (0-100).",
-            "type": "number",
-            "minimum": 0,
-            "maximum": 100,
-            "default": 70,
-            "tags": [
-                "accessibility"
-            ],
-            "defaultDefaultValue": 70,
-            "scope": 3,
-            "restricted": false
-        },
-        "audioCues.debouncePositionChanges": {
-            "description": "Whether or not position changes should be debounced",
-            "type": "boolean",
-            "default": false,
-            "tags": [
-                "accessibility"
-            ],
-            "defaultDefaultValue": false,
-            "scope": 3,
-            "restricted": false
-        },
-        "audioCues.lineHasBreakpoint": {
-            "description": "Plays a sound when the active line has a breakpoint.",
-            "type": "string",
-            "enum": [
-                "auto",
-                "on",
-                "off"
-            ],
-            "default": "auto",
-            "enumDescriptions": [
-                "Enable audio cue when a screen reader is attached.",
-                "Enable audio cue.",
-                "Disable audio cue."
-            ],
-            "tags": [
-                "accessibility"
-            ],
-            "defaultDefaultValue": "auto",
-            "scope": 3,
-            "restricted": false
-        },
-        "audioCues.lineHasInlineSuggestion": {
-            "description": "Plays a sound when the active line has an inline suggestion.",
-            "type": "string",
-            "enum": [
-                "auto",
-                "on",
-                "off"
-            ],
-            "default": "auto",
-            "enumDescriptions": [
-                "Enable audio cue when a screen reader is attached.",
-                "Enable audio cue.",
-                "Disable audio cue."
-            ],
-            "tags": [
-                "accessibility"
-            ],
-            "defaultDefaultValue": "auto",
-            "scope": 3,
-            "restricted": false
-        },
-        "audioCues.lineHasError": {
-            "description": "Plays a sound when the active line has an error.",
-            "type": "string",
-            "enum": [
-                "auto",
-                "on",
-                "off"
-            ],
-            "default": "auto",
-            "enumDescriptions": [
-                "Enable audio cue when a screen reader is attached.",
-                "Enable audio cue.",
-                "Disable audio cue."
-            ],
-            "tags": [
-                "accessibility"
-            ],
-            "defaultDefaultValue": "auto",
-            "scope": 3,
-            "restricted": false
-        },
-        "audioCues.lineHasFoldedArea": {
-            "description": "Plays a sound when the active line has a folded area that can be unfolded.",
-            "type": "string",
-            "enum": [
-                "auto",
-                "on",
-                "off"
-            ],
-            "default": "auto",
-            "enumDescriptions": [
-                "Enable audio cue when a screen reader is attached.",
-                "Enable audio cue.",
-                "Disable audio cue."
-            ],
-            "tags": [
-                "accessibility"
-            ],
-            "defaultDefaultValue": "auto",
-            "scope": 3,
-            "restricted": false
-        },
-        "audioCues.lineHasWarning": {
-            "description": "Plays a sound when the active line has a warning.",
-            "type": "string",
-            "enum": [
-                "auto",
-                "on",
-                "off"
-            ],
-            "default": "off",
-            "enumDescriptions": [
-                "Enable audio cue when a screen reader is attached.",
-                "Enable audio cue.",
-                "Disable audio cue."
-            ],
-            "tags": [
-                "accessibility"
-            ],
-            "defaultDefaultValue": "off",
-            "scope": 3,
-            "restricted": false
-        },
-        "audioCues.onDebugBreak": {
-            "description": "Plays a sound when the debugger stopped on a breakpoint.",
-            "type": "string",
-            "enum": [
-                "auto",
-                "on",
-                "off"
-            ],
-            "default": "auto",
-            "enumDescriptions": [
-                "Enable audio cue when a screen reader is attached.",
-                "Enable audio cue.",
-                "Disable audio cue."
-            ],
-            "tags": [
-                "accessibility"
-            ],
-            "defaultDefaultValue": "auto",
-            "scope": 3,
-            "restricted": false
-        },
-        "audioCues.noInlayHints": {
-            "description": "Plays a sound when trying to read a line with inlay hints that has no inlay hints.",
-            "type": "string",
-            "enum": [
-                "auto",
-                "on",
-                "off"
-            ],
-            "default": "auto",
-            "enumDescriptions": [
-                "Enable audio cue when a screen reader is attached.",
-                "Enable audio cue.",
-                "Disable audio cue."
-            ],
-            "tags": [
-                "accessibility"
-            ],
-            "defaultDefaultValue": "auto",
-            "scope": 3,
-            "restricted": false
-        },
-        "audioCues.taskCompleted": {
-            "description": "Plays a sound when a task is completed.",
-            "type": "string",
-            "enum": [
-                "auto",
-                "on",
-                "off"
-            ],
-            "default": "auto",
-            "enumDescriptions": [
-                "Enable audio cue when a screen reader is attached.",
-                "Enable audio cue.",
-                "Disable audio cue."
-            ],
-            "tags": [
-                "accessibility"
-            ],
-            "defaultDefaultValue": "auto",
-            "scope": 3,
-            "restricted": false
-        },
-        "audioCues.taskFailed": {
-            "description": "Plays a sound when a task fails (non-zero exit code).",
-            "type": "string",
-            "enum": [
-                "auto",
-                "on",
-                "off"
-            ],
-            "default": "auto",
-            "enumDescriptions": [
-                "Enable audio cue when a screen reader is attached.",
-                "Enable audio cue.",
-                "Disable audio cue."
-            ],
-            "tags": [
-                "accessibility"
-            ],
-            "defaultDefaultValue": "auto",
-            "scope": 3,
-            "restricted": false
-        },
-        "audioCues.terminalCommandFailed": {
-            "description": "Plays a sound when a terminal command fails (non-zero exit code).",
-            "type": "string",
-            "enum": [
-                "auto",
-                "on",
-                "off"
-            ],
-            "default": "auto",
-            "enumDescriptions": [
-                "Enable audio cue when a screen reader is attached.",
-                "Enable audio cue.",
-                "Disable audio cue."
-            ],
-            "tags": [
-                "accessibility"
-            ],
-            "defaultDefaultValue": "auto",
-            "scope": 3,
-            "restricted": false
-        },
-        "audioCues.terminalQuickFix": {
-            "description": "Plays a sound when terminal Quick Fixes are available.",
-            "type": "string",
-            "enum": [
-                "auto",
-                "on",
-                "off"
-            ],
-            "default": "auto",
-            "enumDescriptions": [
-                "Enable audio cue when a screen reader is attached.",
-                "Enable audio cue.",
-                "Disable audio cue."
-            ],
-            "tags": [
-                "accessibility"
-            ],
-            "defaultDefaultValue": "auto",
-            "scope": 3,
-            "restricted": false
-        },
-        "audioCues.diffLineInserted": {
-            "description": "Plays a sound when the focus moves to an inserted line in diff review mode or to the next/previous change",
-            "type": "string",
-            "enum": [
-                "auto",
-                "on",
-                "off"
-            ],
-            "default": "auto",
-            "enumDescriptions": [
-                "Enable audio cue when a screen reader is attached.",
-                "Enable audio cue.",
-                "Disable audio cue."
-            ],
-            "tags": [
-                "accessibility"
-            ],
-            "defaultDefaultValue": "auto",
-            "scope": 3,
-            "restricted": false
-        },
-        "audioCues.diffLineDeleted": {
-            "description": "Plays a sound when the focus moves to a deleted line in diff review mode or to the next/previous change",
-            "type": "string",
-            "enum": [
-                "auto",
-                "on",
-                "off"
-            ],
-            "default": "auto",
-            "enumDescriptions": [
-                "Enable audio cue when a screen reader is attached.",
-                "Enable audio cue.",
-                "Disable audio cue."
-            ],
-            "tags": [
-                "accessibility"
-            ],
-            "defaultDefaultValue": "auto",
-            "scope": 3,
-            "restricted": false
-        },
-        "audioCues.diffLineModified": {
-            "description": "Plays a sound when the focus moves to a modified line in diff review mode or to the next/previous change",
-            "type": "string",
-            "enum": [
-                "auto",
-                "on",
-                "off"
-            ],
-            "default": "auto",
-            "enumDescriptions": [
-                "Enable audio cue when a screen reader is attached.",
-                "Enable audio cue.",
-                "Disable audio cue."
-            ],
-            "tags": [
-                "accessibility"
-            ],
-            "defaultDefaultValue": "auto",
-            "scope": 3,
-            "restricted": false
-        },
-        "audioCues.notebookCellCompleted": {
-            "description": "Plays a sound when a notebook cell execution is successfully completed.",
-            "type": "string",
-            "enum": [
-                "auto",
-                "on",
-                "off"
-            ],
-            "default": "auto",
-            "enumDescriptions": [
-                "Enable audio cue when a screen reader is attached.",
-                "Enable audio cue.",
-                "Disable audio cue."
-            ],
-            "tags": [
-                "accessibility"
-            ],
-            "defaultDefaultValue": "auto",
-            "scope": 3,
-            "restricted": false
-        },
-        "audioCues.notebookCellFailed": {
-            "description": "Plays a sound when a notebook cell execution fails.",
-            "type": "string",
-            "enum": [
-                "auto",
-                "on",
-                "off"
-            ],
-            "default": "auto",
-            "enumDescriptions": [
-                "Enable audio cue when a screen reader is attached.",
-                "Enable audio cue.",
-                "Disable audio cue."
-            ],
-            "tags": [
-                "accessibility"
-            ],
-            "defaultDefaultValue": "auto",
-            "scope": 3,
-            "restricted": false
-        },
-        "audioCues.chatRequestSent": {
-            "description": "Plays a sound when a chat request is made.",
-            "type": "string",
-            "enum": [
-                "auto",
-                "on",
-                "off"
-            ],
-            "default": "off",
-            "enumDescriptions": [
-                "Enable audio cue when a screen reader is attached.",
-                "Enable audio cue.",
-                "Disable audio cue."
-            ],
-            "tags": [
-                "accessibility"
-            ],
-            "defaultDefaultValue": "off",
-            "scope": 3,
-            "restricted": false
-        },
-        "audioCues.chatResponsePending": {
-            "description": "Plays a sound on loop while the response is pending.",
-            "type": "string",
-            "enum": [
-                "auto",
-                "on",
-                "off"
-            ],
-            "default": "auto",
-            "enumDescriptions": [
-                "Enable audio cue when a screen reader is attached.",
-                "Enable audio cue.",
-                "Disable audio cue."
-            ],
-            "tags": [
-                "accessibility"
-            ],
-            "defaultDefaultValue": "auto",
-            "scope": 3,
-            "restricted": false
-        },
-        "audioCues.chatResponseReceived": {
-            "description": "Plays a sound on loop while the response has been received.",
-            "type": "string",
-            "enum": [
-                "auto",
-                "on",
-                "off"
-            ],
-            "default": "off",
-            "enumDescriptions": [
-                "Enable audio cue when a screen reader is attached.",
-                "Enable audio cue.",
-                "Disable audio cue."
-            ],
-            "tags": [
-                "accessibility"
-            ],
-            "defaultDefaultValue": "off",
-            "scope": 3,
-            "restricted": false
-        },
         "workbench.externalUriOpeners": {
             "type": "object",
             "markdownDescription": "Configure the opener to use for external URIs (http, https).",
@@ -2245,6 +2196,32 @@
                 ]
             },
             "default": {},
+            "scope": 3,
+            "restricted": false
+        },
+        "inlineChat.mode": {
+            "description": "Configure if changes crafted in the interactive editor are applied directly to the document or are previewed first.",
+            "default": "livePreview",
+            "type": "string",
+            "enum": [
+                "livePreview",
+                "preview",
+                "live"
+            ],
+            "markdownEnumDescriptions": [
+                "Changes are applied directly to the document and are highlighted visually via inline or side-by-side diffs. Ending a session will keep the changes.",
+                "Changes are previewed only and need to be accepted via the apply button. Ending a session will discard the changes.",
+                "Changes are applied directly to the document but can be highlighted via inline diffs. Ending a session will keep the changes."
+            ],
+            "defaultDefaultValue": "livePreview",
+            "scope": 3,
+            "restricted": false
+        },
+        "inlineChat.showDiff": {
+            "description": "Enable/disable showing the diff when edits are generated. Works only with inlineChat.mode equal to live or livePreview.",
+            "default": true,
+            "type": "boolean",
+            "defaultDefaultValue": true,
             "scope": 3,
             "restricted": false
         },
@@ -2501,19 +2478,42 @@
             "scope": 3,
             "restricted": false
         },
+        "workbench.sash.size": {
+            "type": "number",
+            "default": 4,
+            "minimum": 1,
+            "maximum": 20,
+            "description": "Controls the feedback area size in pixels of the dragging area in between views/editors. Set it to a larger value if you feel it's hard to resize views using the mouse.",
+            "defaultDefaultValue": 4,
+            "scope": 3,
+            "restricted": false
+        },
+        "workbench.sash.hoverDelay": {
+            "type": "number",
+            "default": 300,
+            "minimum": 0,
+            "maximum": 2000,
+            "description": "Controls the hover feedback delay in milliseconds of the dragging area in between views/editors.",
+            "defaultDefaultValue": 300,
+            "scope": 3,
+            "restricted": false
+        },
+        "workbench.experimental.share.enabled": {
+            "type": "boolean",
+            "default": false,
+            "tags": [
+                "experimental"
+            ],
+            "markdownDescription": "Controls whether to render the Share action next to the command center when `#window.commandCenter#` is `true`.",
+            "restricted": false,
+            "defaultDefaultValue": false,
+            "scope": 3
+        },
         "remote.downloadExtensionsLocally": {
             "type": "boolean",
             "markdownDescription": "When enabled extensions are downloaded locally and installed on remote.",
             "default": false,
             "defaultDefaultValue": false,
-            "scope": 3,
-            "restricted": false
-        },
-        "notebook.navigation.allowNavigateToSurroundingCells": {
-            "type": "boolean",
-            "default": true,
-            "markdownDescription": "When enabled cursor can navigate to the next/previous cell when the current cursor in the cell editor is at the first/last line.",
-            "defaultDefaultValue": true,
             "scope": 3,
             "restricted": false
         },
@@ -4335,7 +4335,7 @@
             "restricted": false
         },
         "accessibility.verbosity.inlineChat": {
-            "description": "Provide information about how to access the inline editor chat accessibility help menu when the input is focused",
+            "description": "Provide information about how to access the inline editor chat accessibility help menu and alert with hints which describe how to use the feature when the input is focused",
             "type": "boolean",
             "default": true,
             "tags": [
@@ -4358,6 +4358,28 @@
         },
         "accessibility.verbosity.notebook": {
             "description": "Provide information about how to focus the cell container or inner editor when a notebook cell is focused.",
+            "type": "boolean",
+            "default": true,
+            "tags": [
+                "accessibility"
+            ],
+            "defaultDefaultValue": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "accessibility.verbosity.hover": {
+            "description": "Provide information about how to open the hover in an accessible view.",
+            "type": "boolean",
+            "default": true,
+            "tags": [
+                "accessibility"
+            ],
+            "defaultDefaultValue": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "accessibility.verbosity.notification": {
+            "description": "Provide information about how to open the notification in an accessible view.",
             "type": "boolean",
             "default": true,
             "tags": [
@@ -4422,6 +4444,14 @@
             "scope": 3,
             "restricted": false
         },
+        "notebook.navigation.allowNavigateToSurroundingCells": {
+            "type": "boolean",
+            "default": true,
+            "markdownDescription": "When enabled cursor can navigate to the next/previous cell when the current cursor in the cell editor is at the first/last line.",
+            "defaultDefaultValue": true,
+            "scope": 3,
+            "restricted": false
+        },
         "notebook.diff.ignoreMetadata": {
             "type": "boolean",
             "default": false,
@@ -4458,40 +4488,44 @@
             "scope": 3,
             "restricted": false
         },
-        "screencastMode.keyboardShortcutsFormat": {
-            "enum": [
-                "keys",
-                "command",
-                "commandWithGroup",
-                "commandAndKeys",
-                "commandWithGroupAndKeys"
-            ],
-            "enumDescriptions": [
-                "Keys.",
-                "Command title.",
-                "Command title prefixed by its group.",
-                "Command title and keys.",
-                "Command title and keys, with the command prefixed by its group."
-            ],
-            "description": "Controls what is displayed in the keyboard overlay when showing shortcuts.",
-            "default": "commandAndKeys",
-            "defaultDefaultValue": "commandAndKeys",
-            "scope": 3,
-            "restricted": false
-        },
-        "screencastMode.onlyKeyboardShortcuts": {
-            "type": "boolean",
-            "description": "Show only keyboard shortcuts in screencast mode (do not include action names).",
-            "default": false,
-            "defaultDefaultValue": false,
-            "scope": 3,
-            "restricted": false
-        },
-        "screencastMode.hideSingleEditorCursorMoves": {
-            "type": "boolean",
-            "description": "Hide the single editor cursor move commands in screencast mode.",
-            "default": false,
-            "defaultDefaultValue": false,
+        "screencastMode.keyboardOptions": {
+            "type": "object",
+            "description": "Options for customizing the keyboard overlay in screencast mode.",
+            "properties": {
+                "showKeys": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Show raw keys."
+                },
+                "showCommands": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Show command names."
+                },
+                "showCommandGroups": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Show command group names, when commands are also shown."
+                },
+                "showSingleEditorCursorMoves": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Show single editor cursor move commands."
+                }
+            },
+            "default": {
+                "showKeys": true,
+                "showCommands": true,
+                "showCommandGroups": false,
+                "showSingleEditorCursorMoves": true
+            },
+            "additionalProperties": false,
+            "defaultDefaultValue": {
+                "showKeys": true,
+                "showCommands": true,
+                "showCommandGroups": false,
+                "showSingleEditorCursorMoves": true
+            },
             "scope": 3,
             "restricted": false
         },
@@ -4631,6 +4665,43 @@
             "description": "Controls the line height in pixels in chat codeblocks. Use 0 to compute the line height from the font size.",
             "default": 0,
             "defaultDefaultValue": 0,
+            "scope": 3,
+            "restricted": false
+        },
+        "chat.experimental.defaultMode": {
+            "type": "string",
+            "tags": [
+                "experimental"
+            ],
+            "enum": [
+                "chatView",
+                "quickQuestion",
+                "both"
+            ],
+            "enumDescriptions": [
+                "Use the chat view as the default mode. Displays the chat icon in the Activity Bar.",
+                "Use the quick question as the default mode. Displays the chat icon in the Title Bar.",
+                "Displays the chat icon in the Activity Bar and the Title Bar which open their respective chat modes."
+            ],
+            "description": "Controls the default mode of the chat experience.",
+            "default": "chatView",
+            "defaultDefaultValue": "chatView",
+            "scope": 3,
+            "restricted": false
+        },
+        "chat.experimental.quickQuestion.mode": {
+            "type": "string",
+            "tags": [
+                "experimental"
+            ],
+            "enum": [
+                "singleQuestion",
+                "inputOnTopChat",
+                "inputOnBottomChat"
+            ],
+            "description": "Controls the mode of quick question chat experience.",
+            "default": "inputOnTopChat",
+            "defaultDefaultValue": "inputOnTopChat",
             "scope": 3,
             "restricted": false
         },
@@ -5872,6 +5943,17 @@
                 "notebookLayout"
             ],
             "defaultDefaultValue": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "notebook.stickyScroll.enabled": {
+            "description": "Experimental. Control whether to render notebook Sticky Scroll headers in the notebook editor.",
+            "type": "boolean",
+            "default": false,
+            "tags": [
+                "notebookLayout"
+            ],
+            "defaultDefaultValue": false,
             "scope": 3,
             "restricted": false
         },
@@ -8629,6 +8711,14 @@
             "scope": 3,
             "restricted": false
         },
+        "notebook.experimental.remoteSave": {
+            "markdownDescription": "Enables the incremental saving of notebooks in Remote environment. When enabled, only the changes to the notebook are sent to the extension host, improving performance for large notebooks and slow network connections.",
+            "type": "boolean",
+            "default": false,
+            "defaultDefaultValue": false,
+            "scope": 3,
+            "restricted": false
+        },
         "search.mode": {
             "type": "string",
             "enum": [
@@ -8918,6 +9008,14 @@
             ],
             "description": "Controls the default search result view mode.",
             "defaultDefaultValue": "list",
+            "scope": 3,
+            "restricted": false
+        },
+        "search.experimental.closedNotebookRichContentResults": {
+            "type": "boolean",
+            "description": "Show notebook editor rich content results for closed notebooks. Please refresh your search results after changing this setting.",
+            "default": false,
+            "defaultDefaultValue": false,
             "scope": 3,
             "restricted": false
         },
@@ -21250,7 +21348,7 @@
             "restricted": false
         },
         "terminal.integrated.wordSeparators": {
-            "description": "A string containing all characters to be considered word separators by the double-click to select word feature.",
+            "markdownDescription": "A string containing all characters to be considered word separators when double-clicking to select word and in the fallback 'word' link detection. Since this is used for link detection, including characters such as `:` that are used when detecting links will cause the line and column part of links like `file:10:5` to be ignored.",
             "type": "string",
             "default": " ()[]{}',\"`─‘’|",
             "defaultDefaultValue": " ()[]{}',\"`─‘’|",
@@ -25232,6 +25330,24 @@
             "scope": 3,
             "restricted": false
         },
+        "terminal.sourceControlRepositoriesKind": {
+            "type": "string",
+            "enum": [
+                "integrated",
+                "external",
+                "both"
+            ],
+            "enumDescriptions": [
+                "Use VS Code's integrated terminal.",
+                "Use the configured external terminal.",
+                "Use the other two together."
+            ],
+            "description": "When opening a repository from the Source Control Repositories view in a terminal, determines what kind of terminal will be launched",
+            "default": "integrated",
+            "defaultDefaultValue": "integrated",
+            "scope": 3,
+            "restricted": false
+        },
         "terminal.integrated.defaultProfile.linux": {
             "restricted": true,
             "markdownDescription": "The default terminal profile on Linux.",
@@ -25704,7 +25820,7 @@
                 "legacy",
                 "advanced"
             ],
-            "default": "legacy",
+            "default": "advanced",
             "markdownEnumDescriptions": [
                 "Uses the legacy diffing algorithm.",
                 "Uses the advanced diffing algorithm."
@@ -25712,7 +25828,7 @@
             "tags": [
                 "experimental"
             ],
-            "defaultDefaultValue": "legacy",
+            "defaultDefaultValue": "advanced",
             "scope": 5,
             "restricted": false
         },
@@ -25736,6 +25852,9 @@
             "type": "boolean",
             "default": false,
             "description": "Controls whether the diff editor uses the new or the old implementation.",
+            "tags": [
+                "experimental"
+            ],
             "defaultDefaultValue": false,
             "scope": 5,
             "restricted": false
@@ -28468,69 +28587,6 @@
             "defaultDefaultValue": true,
             "restricted": false
         },
-        "workbench.editor.languageDetection": {
-            "type": "boolean",
-            "default": true,
-            "description": "Controls whether the language in a text editor is automatically detected unless the language has been explicitly set by the language picker. This can also be scoped by language so you can specify which languages you do not want to be switched off of. This is useful for languages like Markdown that often contain other languages that might trick language detection into thinking it's the embedded language and not Markdown.",
-            "scope": 5,
-            "defaultDefaultValue": true,
-            "restricted": false
-        },
-        "workbench.editor.restoreViewState": {
-            "type": "boolean",
-            "markdownDescription": "Restores the last editor view state (such as scroll position) when re-opening editors after they have been closed. Editor view state is stored per editor group and discarded when a group closes. Use the `#workbench.editor.sharedViewState#` setting to use the last known view state across all editor groups in case no previous view state was found for a editor group.",
-            "default": true,
-            "scope": 5,
-            "defaultDefaultValue": true,
-            "restricted": false
-        },
-        "workbench.localHistory.enabled": {
-            "type": "boolean",
-            "default": true,
-            "description": "Controls whether local file history is enabled. When enabled, the file contents of an editor that is saved will be stored to a backup location to be able to restore or review the contents later. Changing this setting has no effect on existing local file history entries.",
-            "scope": 4,
-            "defaultDefaultValue": true,
-            "restricted": false
-        },
-        "workbench.localHistory.maxFileSize": {
-            "type": "number",
-            "default": 256,
-            "minimum": 1,
-            "description": "Controls the maximum size of a file (in KB) to be considered for local file history. Files that are larger will not be added to the local file history. Changing this setting has no effect on existing local file history entries.",
-            "scope": 4,
-            "defaultDefaultValue": 256,
-            "restricted": false
-        },
-        "workbench.localHistory.maxFileEntries": {
-            "type": "number",
-            "default": 50,
-            "minimum": 0,
-            "description": "Controls the maximum number of local file history entries per file. When the number of local file history entries exceeds this number for a file, the oldest entries will be discarded.",
-            "scope": 4,
-            "defaultDefaultValue": 50,
-            "restricted": false
-        },
-        "workbench.localHistory.exclude": {
-            "type": "object",
-            "patternProperties": {
-                ".*": {
-                    "type": "boolean"
-                }
-            },
-            "markdownDescription": "Configure paths or [glob patterns](https://aka.ms/vscode-glob-patterns) for excluding files from the local file history. Glob patterns are always evaluated relative to the path of the workspace folder unless they are absolute paths. Changing this setting has no effect on existing local file history entries.",
-            "scope": 4,
-            "default": {},
-            "restricted": false
-        },
-        "workbench.localHistory.mergeWindow": {
-            "type": "number",
-            "default": 10,
-            "minimum": 1,
-            "markdownDescription": "Configure an interval in seconds during which the last entry in local file history is replaced with the entry that is being added. This helps reduce the overall number of entries that are added, for example when auto save is enabled. This setting is only applied to entries that have the same source of origin. Changing this setting has no effect on existing local file history entries.",
-            "scope": 4,
-            "defaultDefaultValue": 10,
-            "restricted": false
-        },
         "editor.codeActionsOnSave": {
             "oneOf": [
                 {
@@ -28798,6 +28854,69 @@
             ],
             "defaultDefaultValue": null,
             "scope": 5,
+            "restricted": false
+        },
+        "workbench.editor.languageDetection": {
+            "type": "boolean",
+            "default": true,
+            "description": "Controls whether the language in a text editor is automatically detected unless the language has been explicitly set by the language picker. This can also be scoped by language so you can specify which languages you do not want to be switched off of. This is useful for languages like Markdown that often contain other languages that might trick language detection into thinking it's the embedded language and not Markdown.",
+            "scope": 5,
+            "defaultDefaultValue": true,
+            "restricted": false
+        },
+        "workbench.editor.restoreViewState": {
+            "type": "boolean",
+            "markdownDescription": "Restores the last editor view state (such as scroll position) when re-opening editors after they have been closed. Editor view state is stored per editor group and discarded when a group closes. Use the `#workbench.editor.sharedViewState#` setting to use the last known view state across all editor groups in case no previous view state was found for a editor group.",
+            "default": true,
+            "scope": 5,
+            "defaultDefaultValue": true,
+            "restricted": false
+        },
+        "workbench.localHistory.enabled": {
+            "type": "boolean",
+            "default": true,
+            "description": "Controls whether local file history is enabled. When enabled, the file contents of an editor that is saved will be stored to a backup location to be able to restore or review the contents later. Changing this setting has no effect on existing local file history entries.",
+            "scope": 4,
+            "defaultDefaultValue": true,
+            "restricted": false
+        },
+        "workbench.localHistory.maxFileSize": {
+            "type": "number",
+            "default": 256,
+            "minimum": 1,
+            "description": "Controls the maximum size of a file (in KB) to be considered for local file history. Files that are larger will not be added to the local file history. Changing this setting has no effect on existing local file history entries.",
+            "scope": 4,
+            "defaultDefaultValue": 256,
+            "restricted": false
+        },
+        "workbench.localHistory.maxFileEntries": {
+            "type": "number",
+            "default": 50,
+            "minimum": 0,
+            "description": "Controls the maximum number of local file history entries per file. When the number of local file history entries exceeds this number for a file, the oldest entries will be discarded.",
+            "scope": 4,
+            "defaultDefaultValue": 50,
+            "restricted": false
+        },
+        "workbench.localHistory.exclude": {
+            "type": "object",
+            "patternProperties": {
+                ".*": {
+                    "type": "boolean"
+                }
+            },
+            "markdownDescription": "Configure paths or [glob patterns](https://aka.ms/vscode-glob-patterns) for excluding files from the local file history. Glob patterns are always evaluated relative to the path of the workspace folder unless they are absolute paths. Changing this setting has no effect on existing local file history entries.",
+            "scope": 4,
+            "default": {},
+            "restricted": false
+        },
+        "workbench.localHistory.mergeWindow": {
+            "type": "number",
+            "default": 10,
+            "minimum": 1,
+            "markdownDescription": "Configure an interval in seconds during which the last entry in local file history is replaced with the entry that is being added. This helps reduce the overall number of entries that are added, for example when auto save is enabled. This setting is only applied to entries that have the same source of origin. Changing this setting has no effect on existing local file history entries.",
+            "scope": 4,
+            "defaultDefaultValue": 10,
             "restricted": false
         },
         "editor.snippets.codeActions.enabled": {
@@ -33120,13 +33239,13 @@
         "github.branchProtection": {
             "type": "boolean",
             "scope": 4,
-            "default": false,
+            "default": true,
             "description": "Controls whether to query repository rules for GitHub repositories",
             "source": {
                 "id": "vscode.github",
                 "displayName": "GitHub"
             },
-            "defaultDefaultValue": false,
+            "defaultDefaultValue": true,
             "restricted": false
         },
         "github.gitAuthentication": {
@@ -33739,15 +33858,25 @@
             "restricted": false
         },
         "markdown.editor.pasteUrlAsFormattedLink.enabled": {
-            "type": "boolean",
+            "type": "string",
             "scope": 4,
-            "markdownDescription": "Controls if a Markdown link is created when a URL is pasted into the Markdown editor. Requires enabling `#editor.pasteAs.enabled#`.",
-            "default": false,
+            "markdownDescription": "Controls how a Markdown link is created when a URL is pasted into the Markdown editor. Requires enabling `#editor.pasteAs.enabled#`.",
+            "default": "never",
+            "enum": [
+                "always",
+                "smart",
+                "never"
+            ],
+            "markdownEnumDescriptions": [
+                "Always creates a Markdown link when a URL is pasted into the Markdown editor.",
+                "Smartly avoids creating a Markdown link in specific cases, such as within code brackets or inside an existing Markdown link.",
+                "Never creates a Markdown link when a URL is pasted into the Markdown editor."
+            ],
             "source": {
                 "id": "vscode.markdown-language-features",
                 "displayName": "Markdown Language Features"
             },
-            "defaultDefaultValue": false,
+            "defaultDefaultValue": "never",
             "restricted": false
         },
         "markdown.validate.enabled": {
@@ -34018,14 +34147,14 @@
         },
         "typescript.experimental.aiQuickFix": {
             "type": "boolean",
-            "default": true,
+            "default": false,
             "description": "Enable/disable AI-assisted quick fixes. Requires an extension providing AI chat functionality.",
             "scope": 4,
             "source": {
                 "id": "vscode.typescript-language-features",
                 "displayName": "TypeScript and JavaScript Language Features"
             },
-            "defaultDefaultValue": true,
+            "defaultDefaultValue": false,
             "restricted": false
         },
         "javascript.suggest.completeFunctionCalls": {
@@ -35073,7 +35202,7 @@
             "items": {
                 "type": "string"
             },
-            "markdownDescription": "Specify glob patterns of files to exclude from auto imports. Requires using TypeScript 4.8 or newer in the workspace.",
+            "markdownDescription": "Specify glob patterns of files to exclude from auto imports. Relative paths are resolved relative to the workspace root. Patterns are evaluated using tsconfig.json [`exclude`](https://www.typescriptlang.org/tsconfig#exclude) semantics. Requires using TypeScript 4.8 or newer in the workspace.",
             "scope": 4,
             "source": {
                 "id": "vscode.typescript-language-features",
@@ -35087,7 +35216,7 @@
             "items": {
                 "type": "string"
             },
-            "markdownDescription": "Specify glob patterns of files to exclude from auto imports. Requires using TypeScript 4.8 or newer in the workspace.",
+            "markdownDescription": "Specify glob patterns of files to exclude from auto imports. Relative paths are resolved relative to the workspace root. Patterns are evaluated using tsconfig.json [`exclude`](https://www.typescriptlang.org/tsconfig#exclude) semantics. Requires using TypeScript 4.8 or newer in the workspace.",
             "scope": 4,
             "source": {
                 "id": "vscode.typescript-language-features",
