@@ -510,6 +510,13 @@
             "$ref": "vscode://schemas/settings/resourceLanguage",
             "default": {}
         },
+        "[snippets]": {
+            "type": "object",
+            "description": "言語に対して上書きされるエディター設定を構成します。",
+            "errorMessage": "この設定では、言語ごとの構成はサポートされていません。",
+            "$ref": "vscode://schemas/settings/resourceLanguage",
+            "default": {}
+        },
         "[julia]": {
             "type": "object",
             "description": "言語に対して上書きされるエディター設定を構成します。",
@@ -567,6 +574,13 @@
             "default": {}
         },
         "[markdown-math]": {
+            "type": "object",
+            "description": "言語に対して上書きされるエディター設定を構成します。",
+            "errorMessage": "この設定では、言語ごとの構成はサポートされていません。",
+            "$ref": "vscode://schemas/settings/resourceLanguage",
+            "default": {}
+        },
+        "[wat]": {
             "type": "object",
             "description": "言語に対して上書きされるエディター設定を構成します。",
             "errorMessage": "この設定では、言語ごとの構成はサポートされていません。",
@@ -1607,6 +1621,26 @@
             "scope": 3,
             "restricted": false
         },
+        "workbench.editor.preventPinnedEditorClose": {
+            "type": "string",
+            "enum": [
+                "keyboardAndMouse",
+                "keyboard",
+                "mouse",
+                "never"
+            ],
+            "default": "keyboardAndMouse",
+            "enumDescriptions": [
+                "Always prevent closing the pinned editor when using mouse middle click or keyboard.",
+                "Prevent closing the pinned editor when using the keyboard.",
+                "Prevent closing the pinned editor when using mouse middle click.",
+                "Never prevent closing a pinned editor."
+            ],
+            "description": "Controls whether pinned editors should close when keyboard or middle mouse click is used for closing.",
+            "defaultDefaultValue": "keyboardAndMouse",
+            "scope": 3,
+            "restricted": false
+        },
         "workbench.editor.splitSizing": {
             "type": "string",
             "enum": [
@@ -1858,12 +1892,12 @@
             "scope": 3,
             "restricted": false
         },
-        "workbench.commandPalette.experimental.useSemanticSimilarity": {
+        "workbench.commandPalette.experimental.enableNaturalLanguageSearch": {
             "type": "boolean",
             "tags": [
                 "experimental"
             ],
-            "description": "コマンド パレットに同様のコマンドを含めるかどうかを制御します。セマンティック類似性を提供する拡張機能がインストールされている必要があります。",
+            "description": "Controls whether the command palette should include similar commands. You must have an extension installed that provides Natural Language support.",
             "default": true,
             "defaultDefaultValue": true,
             "scope": 3,
@@ -2075,7 +2109,7 @@
         "window.title": {
             "type": "string",
             "default": "${dirty}${activeEditorShort}${separator}${rootName}${separator}${profileName}${separator}${appName}",
-            "markdownDescription": "アクティブなエディターに基づいてウィンドウのタイトルを制御します。変数はコンテキストに基づいて置き換えられます:\n- `${activeEditorShort}`: ファイル名 (例: myFile.txt)。\n- `${activeEditorMedium}`: ワークスペース フォルダーに対して相対的なファイルのパス (例: myFolder/myFileFolder/myFile.txt)。\n- `${activeEditorLong}`: ファイルの完全なパス (例: /Users/Development/myFolder/myFileFolder/myFile.txt)。\n- `${activeFolderShort}`: ファイルが含まれているフォルダーの名前 (例: myFileFolder)。\n- `${activeFolderMedium}`: ファイルを含むフォルダーの、ワークスペースフォルダーからの相対パス(例: myFolder/myFileFolder)。\n- `${activeFolderLong}`: ファイルが格納されているフォルダーのフルパス (例: /Users/Development/myFolder/myFileFolder)。\n- `${folderName}`: ファイルが含まれているワークスペース フォルダーの名前 (例: myFolder)。\n- `${folderPath}`: ファイルが含まれているワークスペースの絶対パスです (例: /Users/Development/myFolder)。\n- `${rootName}`: 利用可能なオプションのリモート名とワークスペース インジケーターのあるワークスペースの名前 (例: myFolder、myRemoteFolder [SSH]、myWorkspace (Workspace))。\n- `${rootNameShort}`: サフィックスのないワークスペースの短縮名 (例: myFolder、myRemoteFolder、myWorkspace)。\n- `${rootPath}`: 開かれたワークスペースまたはフォルダーのファイル パス (例: /Users/Development/myWorkspace)。\n- `${profileName}`: ワークスペースが開かれているプロファイルの名前 (例: データ サイエンス (プロファイル))。既定のプロファイルが使用されている場合は無視されます。\n- `${appName}`: 例: VS Code。\n- `${remoteName}`: 例: SSH\n- `${dirty}`: アクティブなエディターの変更が保存されていない場合を示すインジケーター。\n- `${separator}`: 値か固定のテキストで囲われたとき、条件付きの区切り記号 (\" - \") を表示します。",
+            "markdownDescription": "アクティブなエディターに基づいてウィンドウのタイトルを制御します。変数はコンテキストに基づいて置き換えられます:\n- `${activeEditorShort}`: ファイル名 (例: myFile.txt)。\n- `${activeEditorMedium}`: ワークスペース フォルダーに対して相対的なファイルのパス (例: myFolder/myFileFolder/myFile.txt)。\n- `${activeEditorLong}`: ファイルの完全なパス (例: /Users/Development/myFolder/myFileFolder/myFile.txt)。\n- `${activeFolderShort}`: ファイルが含まれているフォルダーの名前 (例: myFileFolder)。\n- `${activeFolderMedium}`: ファイルを含むフォルダーの、ワークスペースフォルダーからの相対パス(例: myFolder/myFileFolder)。\n- `${activeFolderLong}`: ファイルが格納されているフォルダーのフルパス (例: /Users/Development/myFolder/myFileFolder)。\n- `${folderName}`: ファイルが含まれているワークスペース フォルダーの名前 (例: myFolder)。\n- `${folderPath}`: ファイルが含まれているワークスペースの絶対パスです (例: /Users/Development/myFolder)。\n- `${rootName}`: 利用可能なオプションのリモート名とワークスペース インジケーターのあるワークスペースの名前 (例: myFolder、myRemoteFolder [SSH]、myWorkspace (Workspace))。\n- `${rootNameShort}`: サフィックスのないワークスペースの短縮名 (例: myFolder、myRemoteFolder、myWorkspace)。\n- `${rootPath}`: 開かれたワークスペースまたはフォルダーのファイル パス (例: /Users/Development/myWorkspace)。\n- `${profileName}`: ワークスペースが開かれているプロファイルの名前 (例: データ サイエンス (プロファイル))。既定のプロファイルが使用されている場合は無視されます。\n- `${appName}`: 例: VS Code。\n- `${remoteName}`: 例: SSH\n- `${dirty}`: アクティブなエディターの変更が保存されていない場合を示すインジケーター。\n- `${focusedView}`: the name of the view that is currently focused.\n- `${separator}`: 値か固定のテキストで囲われたとき、条件付きの区切り記号 (\" - \") を表示します。",
             "defaultDefaultValue": "${dirty}${activeEditorShort}${separator}${rootName}${separator}${profileName}${separator}${appName}",
             "scope": 3,
             "restricted": false
@@ -2090,12 +2124,9 @@
         },
         "window.commandCenter": {
             "type": "boolean",
-            "default": false,
-            "tags": [
-                "experimental"
-            ],
+            "default": true,
             "markdownDescription": "コマンド ランチャーをウィンドウ タイトルと共に表示します。この設定は、`#window.titleBarStyle#` が `custom` に設定されている場合にのみ有効です。",
-            "defaultDefaultValue": false,
+            "defaultDefaultValue": true,
             "scope": 3,
             "restricted": false
         },
@@ -4302,7 +4333,7 @@
             "restricted": false
         },
         "accessibility.verbosity.terminal": {
-            "description": "ターミナルにフォーカスがある場合に、ターミナルのアクセシビリティ ヘルプ メニューにアクセスする方法に関する情報を提供します",
+            "description": "Provide information about how to access the terminal accessibility help menu when the terminal is focused",
             "type": "boolean",
             "default": true,
             "tags": [
@@ -4313,7 +4344,7 @@
             "restricted": false
         },
         "accessibility.verbosity.diffEditor": {
-            "description": "差分エディターにフォーカスがあるときに変更を移動する方法に関する情報を提供する",
+            "description": "Provide information about how to navigate changes in the diff editor when it is focused",
             "type": "boolean",
             "default": true,
             "tags": [
@@ -4324,7 +4355,7 @@
             "restricted": false
         },
         "accessibility.verbosity.panelChat": {
-            "description": "チャット入力がフォーカスされているときにチャット ヘルプ メニューにアクセスする方法に関する情報を提供します。",
+            "description": "Provide information about how to access the chat help menu when the chat input is focused",
             "type": "boolean",
             "default": true,
             "tags": [
@@ -4335,7 +4366,18 @@
             "restricted": false
         },
         "accessibility.verbosity.inlineChat": {
-            "description": "インライン エディター チャットのアクセシビリティ ヘルプ メニューにアクセスする方法に関する情報を提供し、入力にフォーカスがあるときに機能を使用する方法を説明するヒントを通知します",
+            "description": "Provide information about how to access the inline editor chat accessibility help menu and alert with hints which describe how to use the feature when the input is focused",
+            "type": "boolean",
+            "default": true,
+            "tags": [
+                "accessibility"
+            ],
+            "defaultDefaultValue": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "accessibility.verbosity.inlineCompletions": {
+            "description": "Provide information about how to access the inline completions hover and accessible view",
             "type": "boolean",
             "default": true,
             "tags": [
@@ -4346,7 +4388,7 @@
             "restricted": false
         },
         "accessibility.verbosity.keybindingsEditor": {
-            "description": "行がフォーカスされているときにキー バインド エディターでキー バインドを変更する方法に関する情報を提供します",
+            "description": "Provide information about how to change a keybinding in the keybindings editor when a row is focused",
             "type": "boolean",
             "default": true,
             "tags": [
@@ -4357,7 +4399,7 @@
             "restricted": false
         },
         "accessibility.verbosity.notebook": {
-            "description": "ノートブック セルがフォーカスされているときにセル コンテナーまたは内部エディターにフォーカスを移動する方法に関する情報を提供します。",
+            "description": "Provide information about how to focus the cell container or inner editor when a notebook cell is focused.",
             "type": "boolean",
             "default": true,
             "tags": [
@@ -4368,7 +4410,7 @@
             "restricted": false
         },
         "accessibility.verbosity.hover": {
-            "description": "アクセス可能なビューでホバーを開く方法に関する情報を提供します。",
+            "description": "Provide information about how to open the hover in an accessible view.",
             "type": "boolean",
             "default": true,
             "tags": [
@@ -4379,7 +4421,18 @@
             "restricted": false
         },
         "accessibility.verbosity.notification": {
-            "description": "アクセス可能なビューで通知を開く方法に関する情報を提供します。",
+            "description": "Provide information about how to open the notification in an accessible view.",
+            "type": "boolean",
+            "default": true,
+            "tags": [
+                "accessibility"
+            ],
+            "defaultDefaultValue": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "accessibility.verbosity.untitledHint": {
+            "description": "Provide information about relevant actions in an untitled text editor.",
             "type": "boolean",
             "default": true,
             "tags": [
@@ -4497,6 +4550,11 @@
                     "default": true,
                     "description": "生キーを表示します。"
                 },
+                "showKeybindings": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Show keyboard shortcuts."
+                },
                 "showCommands": {
                     "type": "boolean",
                     "default": true,
@@ -4515,6 +4573,7 @@
             },
             "default": {
                 "showKeys": true,
+                "showKeybindings": true,
                 "showCommands": true,
                 "showCommandGroups": false,
                 "showSingleEditorCursorMoves": true
@@ -4522,6 +4581,7 @@
             "additionalProperties": false,
             "defaultDefaultValue": {
                 "showKeys": true,
+                "showKeybindings": true,
                 "showCommands": true,
                 "showCommandGroups": false,
                 "showSingleEditorCursorMoves": true
@@ -4621,87 +4681,6 @@
             "default": true,
             "type": "boolean",
             "defaultDefaultValue": true,
-            "scope": 3,
-            "restricted": false
-        },
-        "chat.editor.fontSize": {
-            "type": "number",
-            "description": "チャット コード ブロック内のフォント サイズをピクセル単位で制御します。",
-            "default": 14,
-            "defaultDefaultValue": 14,
-            "scope": 3,
-            "restricted": false
-        },
-        "chat.editor.fontFamily": {
-            "type": "string",
-            "description": "チャット コード ブロック内のフォント ファミリを制御します。",
-            "default": "default",
-            "defaultDefaultValue": "default",
-            "scope": 3,
-            "restricted": false
-        },
-        "chat.editor.fontWeight": {
-            "type": "string",
-            "description": "チャット コード ブロック内のフォントの太さを制御します。",
-            "default": "default",
-            "defaultDefaultValue": "default",
-            "scope": 3,
-            "restricted": false
-        },
-        "chat.editor.wordWrap": {
-            "type": "string",
-            "description": "チャット コード ブロックで行を折り返すかどうかを制御します。",
-            "default": "off",
-            "enum": [
-                "on",
-                "off"
-            ],
-            "defaultDefaultValue": "off",
-            "scope": 3,
-            "restricted": false
-        },
-        "chat.editor.lineHeight": {
-            "type": "number",
-            "description": "チャット コード ブロック内の行の高さをピクセル単位で制御します。フォント サイズから行の高さを計算するには 0 を使用します。",
-            "default": 0,
-            "defaultDefaultValue": 0,
-            "scope": 3,
-            "restricted": false
-        },
-        "chat.experimental.defaultMode": {
-            "type": "string",
-            "tags": [
-                "experimental"
-            ],
-            "enum": [
-                "chatView",
-                "quickQuestion",
-                "both"
-            ],
-            "enumDescriptions": [
-                "既定のモードとしてチャット ビューを使用します。アクティビティ バーにチャット アイコンを表示します。",
-                "クイック質問を既定のモードとして使用します。タイトル バーにチャット アイコンを表示します。",
-                "アクティビティ バーとタイトル バーにチャット アイコンを表示し、それぞれのチャット モードを開きます。"
-            ],
-            "description": "チャット エクスペリエンスの既定のモードを制御します。",
-            "default": "chatView",
-            "defaultDefaultValue": "chatView",
-            "scope": 3,
-            "restricted": false
-        },
-        "chat.experimental.quickQuestion.mode": {
-            "type": "string",
-            "tags": [
-                "experimental"
-            ],
-            "enum": [
-                "singleQuestion",
-                "inputOnTopChat",
-                "inputOnBottomChat"
-            ],
-            "description": "クイック質問チャット エクスペリエンスのモードを制御します。",
-            "default": "inputOnTopChat",
-            "defaultDefaultValue": "inputOnTopChat",
             "scope": 3,
             "restricted": false
         },
@@ -4979,6 +4958,50 @@
             "description": "デバッガーがアクティブな場合のカラー ステータス バー",
             "default": true,
             "defaultDefaultValue": true,
+            "scope": 3,
+            "restricted": false
+        },
+        "chat.editor.fontSize": {
+            "type": "number",
+            "description": "チャット コード ブロック内のフォント サイズをピクセル単位で制御します。",
+            "default": 14,
+            "defaultDefaultValue": 14,
+            "scope": 3,
+            "restricted": false
+        },
+        "chat.editor.fontFamily": {
+            "type": "string",
+            "description": "チャット コード ブロック内のフォント ファミリを制御します。",
+            "default": "default",
+            "defaultDefaultValue": "default",
+            "scope": 3,
+            "restricted": false
+        },
+        "chat.editor.fontWeight": {
+            "type": "string",
+            "description": "チャット コード ブロック内のフォントの太さを制御します。",
+            "default": "default",
+            "defaultDefaultValue": "default",
+            "scope": 3,
+            "restricted": false
+        },
+        "chat.editor.wordWrap": {
+            "type": "string",
+            "description": "チャット コード ブロックで行を折り返すかどうかを制御します。",
+            "default": "off",
+            "enum": [
+                "on",
+                "off"
+            ],
+            "defaultDefaultValue": "off",
+            "scope": 3,
+            "restricted": false
+        },
+        "chat.editor.lineHeight": {
+            "type": "number",
+            "description": "チャット コード ブロック内の行の高さをピクセル単位で制御します。フォント サイズから行の高さを計算するには 0 を使用します。",
+            "default": 0,
+            "defaultDefaultValue": 0,
             "scope": 3,
             "restricted": false
         },
@@ -7832,6 +7855,14 @@
                             "scope": 5,
                             "restricted": false
                         },
+                        "editor.stickyScroll.scrollWithEditor": {
+                            "type": "boolean",
+                            "default": true,
+                            "description": "Enable scrolling of the sticky scroll widget with the editor's horizontal scrollbar.",
+                            "defaultDefaultValue": true,
+                            "scope": 5,
+                            "restricted": false
+                        },
                         "editor.stickyTabStops": {
                             "description": "インデントにスペースを使用するときは、タブ文字の選択動作をエミュレートします。選択範囲はタブ位置に留まります。",
                             "type": "boolean",
@@ -8551,6 +8582,14 @@
                             "defaultDefaultValue": "clickAndHover",
                             "scope": 5,
                             "restricted": false
+                        },
+                        "editor.inlineCompletionsAccessibilityVerbose": {
+                            "description": "Controls whether the accessibility hint should be provided to screen reader users when an inline completion is shown.",
+                            "type": "boolean",
+                            "default": false,
+                            "defaultDefaultValue": false,
+                            "scope": 5,
+                            "restricted": false
                         }
                     }
                 }
@@ -9019,6 +9058,14 @@
             "scope": 3,
             "restricted": false
         },
+        "search.experimental.quickAccess.preserveInput": {
+            "type": "boolean",
+            "description": "Controls whether the last typed input to Quick Search should be restored when opening it the next time.",
+            "default": false,
+            "defaultDefaultValue": false,
+            "scope": 3,
+            "restricted": false
+        },
         "terminal.integrated.automationProfile.linux": {
             "restricted": true,
             "markdownDescription": "タスクやデバッグなどのオートメーション関連のターミナルの使用に Linux で使用するターミナル プロファイル。",
@@ -9078,6 +9125,7 @@
                                 "tag",
                                 "tag-add",
                                 "tag-remove",
+                                "git-pull-request-label",
                                 "person",
                                 "person-follow",
                                 "person-outline",
@@ -9332,6 +9380,7 @@
                                 "megaphone",
                                 "mention",
                                 "milestone",
+                                "git-pull-request-milestone",
                                 "mortar-board",
                                 "move",
                                 "multiple-windows",
@@ -9456,9 +9505,11 @@
                                 "menu",
                                 "expand-all",
                                 "feedback",
+                                "git-pull-request-reviewer",
                                 "group-by-ref-type",
                                 "ungroup-by-ref-type",
                                 "account",
+                                "git-pull-request-assignee",
                                 "bell-dot",
                                 "debug-console",
                                 "library",
@@ -9581,6 +9632,7 @@
                                 "send",
                                 "sparkle",
                                 "insert",
+                                "mic",
                                 "dialog-error",
                                 "dialog-warning",
                                 "dialog-info",
@@ -9618,6 +9670,7 @@
                                 "$(tag)",
                                 "$(tag-add)",
                                 "$(tag-remove)",
+                                "$(git-pull-request-label)",
                                 "$(person)",
                                 "$(person-follow)",
                                 "$(person-outline)",
@@ -9872,6 +9925,7 @@
                                 "$(megaphone)",
                                 "$(mention)",
                                 "$(milestone)",
+                                "$(git-pull-request-milestone)",
                                 "$(mortar-board)",
                                 "$(move)",
                                 "$(multiple-windows)",
@@ -9996,9 +10050,11 @@
                                 "$(menu)",
                                 "$(expand-all)",
                                 "$(feedback)",
+                                "$(git-pull-request-reviewer)",
                                 "$(group-by-ref-type)",
                                 "$(ungroup-by-ref-type)",
                                 "$(account)",
+                                "$(git-pull-request-assignee)",
                                 "$(bell-dot)",
                                 "$(debug-console)",
                                 "$(library)",
@@ -10121,6 +10177,7 @@
                                 "$(send)",
                                 "$(sparkle)",
                                 "$(insert)",
+                                "$(mic)",
                                 "$(dialog-error)",
                                 "$(dialog-warning)",
                                 "$(dialog-info)",
@@ -10243,6 +10300,7 @@
                                 "tag",
                                 "tag-add",
                                 "tag-remove",
+                                "git-pull-request-label",
                                 "person",
                                 "person-follow",
                                 "person-outline",
@@ -10497,6 +10555,7 @@
                                 "megaphone",
                                 "mention",
                                 "milestone",
+                                "git-pull-request-milestone",
                                 "mortar-board",
                                 "move",
                                 "multiple-windows",
@@ -10621,9 +10680,11 @@
                                 "menu",
                                 "expand-all",
                                 "feedback",
+                                "git-pull-request-reviewer",
                                 "group-by-ref-type",
                                 "ungroup-by-ref-type",
                                 "account",
+                                "git-pull-request-assignee",
                                 "bell-dot",
                                 "debug-console",
                                 "library",
@@ -10746,6 +10807,7 @@
                                 "send",
                                 "sparkle",
                                 "insert",
+                                "mic",
                                 "dialog-error",
                                 "dialog-warning",
                                 "dialog-info",
@@ -10783,6 +10845,7 @@
                                 "$(tag)",
                                 "$(tag-add)",
                                 "$(tag-remove)",
+                                "$(git-pull-request-label)",
                                 "$(person)",
                                 "$(person-follow)",
                                 "$(person-outline)",
@@ -11037,6 +11100,7 @@
                                 "$(megaphone)",
                                 "$(mention)",
                                 "$(milestone)",
+                                "$(git-pull-request-milestone)",
                                 "$(mortar-board)",
                                 "$(move)",
                                 "$(multiple-windows)",
@@ -11161,9 +11225,11 @@
                                 "$(menu)",
                                 "$(expand-all)",
                                 "$(feedback)",
+                                "$(git-pull-request-reviewer)",
                                 "$(group-by-ref-type)",
                                 "$(ungroup-by-ref-type)",
                                 "$(account)",
+                                "$(git-pull-request-assignee)",
                                 "$(bell-dot)",
                                 "$(debug-console)",
                                 "$(library)",
@@ -11286,6 +11352,7 @@
                                 "$(send)",
                                 "$(sparkle)",
                                 "$(insert)",
+                                "$(mic)",
                                 "$(dialog-error)",
                                 "$(dialog-warning)",
                                 "$(dialog-info)",
@@ -11408,6 +11475,7 @@
                                 "tag",
                                 "tag-add",
                                 "tag-remove",
+                                "git-pull-request-label",
                                 "person",
                                 "person-follow",
                                 "person-outline",
@@ -11662,6 +11730,7 @@
                                 "megaphone",
                                 "mention",
                                 "milestone",
+                                "git-pull-request-milestone",
                                 "mortar-board",
                                 "move",
                                 "multiple-windows",
@@ -11786,9 +11855,11 @@
                                 "menu",
                                 "expand-all",
                                 "feedback",
+                                "git-pull-request-reviewer",
                                 "group-by-ref-type",
                                 "ungroup-by-ref-type",
                                 "account",
+                                "git-pull-request-assignee",
                                 "bell-dot",
                                 "debug-console",
                                 "library",
@@ -11911,6 +11982,7 @@
                                 "send",
                                 "sparkle",
                                 "insert",
+                                "mic",
                                 "dialog-error",
                                 "dialog-warning",
                                 "dialog-info",
@@ -11948,6 +12020,7 @@
                                 "$(tag)",
                                 "$(tag-add)",
                                 "$(tag-remove)",
+                                "$(git-pull-request-label)",
                                 "$(person)",
                                 "$(person-follow)",
                                 "$(person-outline)",
@@ -12202,6 +12275,7 @@
                                 "$(megaphone)",
                                 "$(mention)",
                                 "$(milestone)",
+                                "$(git-pull-request-milestone)",
                                 "$(mortar-board)",
                                 "$(move)",
                                 "$(multiple-windows)",
@@ -12326,9 +12400,11 @@
                                 "$(menu)",
                                 "$(expand-all)",
                                 "$(feedback)",
+                                "$(git-pull-request-reviewer)",
                                 "$(group-by-ref-type)",
                                 "$(ungroup-by-ref-type)",
                                 "$(account)",
+                                "$(git-pull-request-assignee)",
                                 "$(bell-dot)",
                                 "$(debug-console)",
                                 "$(library)",
@@ -12451,6 +12527,7 @@
                                 "$(send)",
                                 "$(sparkle)",
                                 "$(insert)",
+                                "$(mic)",
                                 "$(dialog-error)",
                                 "$(dialog-warning)",
                                 "$(dialog-info)",
@@ -12582,6 +12659,7 @@
                                     "tag",
                                     "tag-add",
                                     "tag-remove",
+                                    "git-pull-request-label",
                                     "person",
                                     "person-follow",
                                     "person-outline",
@@ -12836,6 +12914,7 @@
                                     "megaphone",
                                     "mention",
                                     "milestone",
+                                    "git-pull-request-milestone",
                                     "mortar-board",
                                     "move",
                                     "multiple-windows",
@@ -12960,9 +13039,11 @@
                                     "menu",
                                     "expand-all",
                                     "feedback",
+                                    "git-pull-request-reviewer",
                                     "group-by-ref-type",
                                     "ungroup-by-ref-type",
                                     "account",
+                                    "git-pull-request-assignee",
                                     "bell-dot",
                                     "debug-console",
                                     "library",
@@ -13085,6 +13166,7 @@
                                     "send",
                                     "sparkle",
                                     "insert",
+                                    "mic",
                                     "dialog-error",
                                     "dialog-warning",
                                     "dialog-info",
@@ -13122,6 +13204,7 @@
                                     "$(tag)",
                                     "$(tag-add)",
                                     "$(tag-remove)",
+                                    "$(git-pull-request-label)",
                                     "$(person)",
                                     "$(person-follow)",
                                     "$(person-outline)",
@@ -13376,6 +13459,7 @@
                                     "$(megaphone)",
                                     "$(mention)",
                                     "$(milestone)",
+                                    "$(git-pull-request-milestone)",
                                     "$(mortar-board)",
                                     "$(move)",
                                     "$(multiple-windows)",
@@ -13500,9 +13584,11 @@
                                     "$(menu)",
                                     "$(expand-all)",
                                     "$(feedback)",
+                                    "$(git-pull-request-reviewer)",
                                     "$(group-by-ref-type)",
                                     "$(ungroup-by-ref-type)",
                                     "$(account)",
+                                    "$(git-pull-request-assignee)",
                                     "$(bell-dot)",
                                     "$(debug-console)",
                                     "$(library)",
@@ -13625,6 +13711,7 @@
                                     "$(send)",
                                     "$(sparkle)",
                                     "$(insert)",
+                                    "$(mic)",
                                     "$(dialog-error)",
                                     "$(dialog-warning)",
                                     "$(dialog-info)",
@@ -13728,6 +13815,7 @@
                                     "tag",
                                     "tag-add",
                                     "tag-remove",
+                                    "git-pull-request-label",
                                     "person",
                                     "person-follow",
                                     "person-outline",
@@ -13982,6 +14070,7 @@
                                     "megaphone",
                                     "mention",
                                     "milestone",
+                                    "git-pull-request-milestone",
                                     "mortar-board",
                                     "move",
                                     "multiple-windows",
@@ -14106,9 +14195,11 @@
                                     "menu",
                                     "expand-all",
                                     "feedback",
+                                    "git-pull-request-reviewer",
                                     "group-by-ref-type",
                                     "ungroup-by-ref-type",
                                     "account",
+                                    "git-pull-request-assignee",
                                     "bell-dot",
                                     "debug-console",
                                     "library",
@@ -14231,6 +14322,7 @@
                                     "send",
                                     "sparkle",
                                     "insert",
+                                    "mic",
                                     "dialog-error",
                                     "dialog-warning",
                                     "dialog-info",
@@ -14268,6 +14360,7 @@
                                     "$(tag)",
                                     "$(tag-add)",
                                     "$(tag-remove)",
+                                    "$(git-pull-request-label)",
                                     "$(person)",
                                     "$(person-follow)",
                                     "$(person-outline)",
@@ -14522,6 +14615,7 @@
                                     "$(megaphone)",
                                     "$(mention)",
                                     "$(milestone)",
+                                    "$(git-pull-request-milestone)",
                                     "$(mortar-board)",
                                     "$(move)",
                                     "$(multiple-windows)",
@@ -14646,9 +14740,11 @@
                                     "$(menu)",
                                     "$(expand-all)",
                                     "$(feedback)",
+                                    "$(git-pull-request-reviewer)",
                                     "$(group-by-ref-type)",
                                     "$(ungroup-by-ref-type)",
                                     "$(account)",
+                                    "$(git-pull-request-assignee)",
                                     "$(bell-dot)",
                                     "$(debug-console)",
                                     "$(library)",
@@ -14771,6 +14867,7 @@
                                     "$(send)",
                                     "$(sparkle)",
                                     "$(insert)",
+                                    "$(mic)",
                                     "$(dialog-error)",
                                     "$(dialog-warning)",
                                     "$(dialog-info)",
@@ -14873,6 +14970,7 @@
                                     "tag",
                                     "tag-add",
                                     "tag-remove",
+                                    "git-pull-request-label",
                                     "person",
                                     "person-follow",
                                     "person-outline",
@@ -15127,6 +15225,7 @@
                                     "megaphone",
                                     "mention",
                                     "milestone",
+                                    "git-pull-request-milestone",
                                     "mortar-board",
                                     "move",
                                     "multiple-windows",
@@ -15251,9 +15350,11 @@
                                     "menu",
                                     "expand-all",
                                     "feedback",
+                                    "git-pull-request-reviewer",
                                     "group-by-ref-type",
                                     "ungroup-by-ref-type",
                                     "account",
+                                    "git-pull-request-assignee",
                                     "bell-dot",
                                     "debug-console",
                                     "library",
@@ -15376,6 +15477,7 @@
                                     "send",
                                     "sparkle",
                                     "insert",
+                                    "mic",
                                     "dialog-error",
                                     "dialog-warning",
                                     "dialog-info",
@@ -15413,6 +15515,7 @@
                                     "$(tag)",
                                     "$(tag-add)",
                                     "$(tag-remove)",
+                                    "$(git-pull-request-label)",
                                     "$(person)",
                                     "$(person-follow)",
                                     "$(person-outline)",
@@ -15667,6 +15770,7 @@
                                     "$(megaphone)",
                                     "$(mention)",
                                     "$(milestone)",
+                                    "$(git-pull-request-milestone)",
                                     "$(mortar-board)",
                                     "$(move)",
                                     "$(multiple-windows)",
@@ -15791,9 +15895,11 @@
                                     "$(menu)",
                                     "$(expand-all)",
                                     "$(feedback)",
+                                    "$(git-pull-request-reviewer)",
                                     "$(group-by-ref-type)",
                                     "$(ungroup-by-ref-type)",
                                     "$(account)",
+                                    "$(git-pull-request-assignee)",
                                     "$(bell-dot)",
                                     "$(debug-console)",
                                     "$(library)",
@@ -15916,6 +16022,7 @@
                                     "$(send)",
                                     "$(sparkle)",
                                     "$(insert)",
+                                    "$(mic)",
                                     "$(dialog-error)",
                                     "$(dialog-warning)",
                                     "$(dialog-info)",
@@ -16075,6 +16182,7 @@
                                     "tag",
                                     "tag-add",
                                     "tag-remove",
+                                    "git-pull-request-label",
                                     "person",
                                     "person-follow",
                                     "person-outline",
@@ -16329,6 +16437,7 @@
                                     "megaphone",
                                     "mention",
                                     "milestone",
+                                    "git-pull-request-milestone",
                                     "mortar-board",
                                     "move",
                                     "multiple-windows",
@@ -16453,9 +16562,11 @@
                                     "menu",
                                     "expand-all",
                                     "feedback",
+                                    "git-pull-request-reviewer",
                                     "group-by-ref-type",
                                     "ungroup-by-ref-type",
                                     "account",
+                                    "git-pull-request-assignee",
                                     "bell-dot",
                                     "debug-console",
                                     "library",
@@ -16578,6 +16689,7 @@
                                     "send",
                                     "sparkle",
                                     "insert",
+                                    "mic",
                                     "dialog-error",
                                     "dialog-warning",
                                     "dialog-info",
@@ -16615,6 +16727,7 @@
                                     "$(tag)",
                                     "$(tag-add)",
                                     "$(tag-remove)",
+                                    "$(git-pull-request-label)",
                                     "$(person)",
                                     "$(person-follow)",
                                     "$(person-outline)",
@@ -16869,6 +16982,7 @@
                                     "$(megaphone)",
                                     "$(mention)",
                                     "$(milestone)",
+                                    "$(git-pull-request-milestone)",
                                     "$(mortar-board)",
                                     "$(move)",
                                     "$(multiple-windows)",
@@ -16993,9 +17107,11 @@
                                     "$(menu)",
                                     "$(expand-all)",
                                     "$(feedback)",
+                                    "$(git-pull-request-reviewer)",
                                     "$(group-by-ref-type)",
                                     "$(ungroup-by-ref-type)",
                                     "$(account)",
+                                    "$(git-pull-request-assignee)",
                                     "$(bell-dot)",
                                     "$(debug-console)",
                                     "$(library)",
@@ -17118,6 +17234,7 @@
                                     "$(send)",
                                     "$(sparkle)",
                                     "$(insert)",
+                                    "$(mic)",
                                     "$(dialog-error)",
                                     "$(dialog-warning)",
                                     "$(dialog-info)",
@@ -17220,6 +17337,7 @@
                                     "tag",
                                     "tag-add",
                                     "tag-remove",
+                                    "git-pull-request-label",
                                     "person",
                                     "person-follow",
                                     "person-outline",
@@ -17474,6 +17592,7 @@
                                     "megaphone",
                                     "mention",
                                     "milestone",
+                                    "git-pull-request-milestone",
                                     "mortar-board",
                                     "move",
                                     "multiple-windows",
@@ -17598,9 +17717,11 @@
                                     "menu",
                                     "expand-all",
                                     "feedback",
+                                    "git-pull-request-reviewer",
                                     "group-by-ref-type",
                                     "ungroup-by-ref-type",
                                     "account",
+                                    "git-pull-request-assignee",
                                     "bell-dot",
                                     "debug-console",
                                     "library",
@@ -17723,6 +17844,7 @@
                                     "send",
                                     "sparkle",
                                     "insert",
+                                    "mic",
                                     "dialog-error",
                                     "dialog-warning",
                                     "dialog-info",
@@ -17760,6 +17882,7 @@
                                     "$(tag)",
                                     "$(tag-add)",
                                     "$(tag-remove)",
+                                    "$(git-pull-request-label)",
                                     "$(person)",
                                     "$(person-follow)",
                                     "$(person-outline)",
@@ -18014,6 +18137,7 @@
                                     "$(megaphone)",
                                     "$(mention)",
                                     "$(milestone)",
+                                    "$(git-pull-request-milestone)",
                                     "$(mortar-board)",
                                     "$(move)",
                                     "$(multiple-windows)",
@@ -18138,9 +18262,11 @@
                                     "$(menu)",
                                     "$(expand-all)",
                                     "$(feedback)",
+                                    "$(git-pull-request-reviewer)",
                                     "$(group-by-ref-type)",
                                     "$(ungroup-by-ref-type)",
                                     "$(account)",
+                                    "$(git-pull-request-assignee)",
                                     "$(bell-dot)",
                                     "$(debug-console)",
                                     "$(library)",
@@ -18263,6 +18389,7 @@
                                     "$(send)",
                                     "$(sparkle)",
                                     "$(insert)",
+                                    "$(mic)",
                                     "$(dialog-error)",
                                     "$(dialog-warning)",
                                     "$(dialog-info)",
@@ -18425,6 +18552,7 @@
                                     "tag",
                                     "tag-add",
                                     "tag-remove",
+                                    "git-pull-request-label",
                                     "person",
                                     "person-follow",
                                     "person-outline",
@@ -18679,6 +18807,7 @@
                                     "megaphone",
                                     "mention",
                                     "milestone",
+                                    "git-pull-request-milestone",
                                     "mortar-board",
                                     "move",
                                     "multiple-windows",
@@ -18803,9 +18932,11 @@
                                     "menu",
                                     "expand-all",
                                     "feedback",
+                                    "git-pull-request-reviewer",
                                     "group-by-ref-type",
                                     "ungroup-by-ref-type",
                                     "account",
+                                    "git-pull-request-assignee",
                                     "bell-dot",
                                     "debug-console",
                                     "library",
@@ -18928,6 +19059,7 @@
                                     "send",
                                     "sparkle",
                                     "insert",
+                                    "mic",
                                     "dialog-error",
                                     "dialog-warning",
                                     "dialog-info",
@@ -18965,6 +19097,7 @@
                                     "$(tag)",
                                     "$(tag-add)",
                                     "$(tag-remove)",
+                                    "$(git-pull-request-label)",
                                     "$(person)",
                                     "$(person-follow)",
                                     "$(person-outline)",
@@ -19219,6 +19352,7 @@
                                     "$(megaphone)",
                                     "$(mention)",
                                     "$(milestone)",
+                                    "$(git-pull-request-milestone)",
                                     "$(mortar-board)",
                                     "$(move)",
                                     "$(multiple-windows)",
@@ -19343,9 +19477,11 @@
                                     "$(menu)",
                                     "$(expand-all)",
                                     "$(feedback)",
+                                    "$(git-pull-request-reviewer)",
                                     "$(group-by-ref-type)",
                                     "$(ungroup-by-ref-type)",
                                     "$(account)",
+                                    "$(git-pull-request-assignee)",
                                     "$(bell-dot)",
                                     "$(debug-console)",
                                     "$(library)",
@@ -19468,6 +19604,7 @@
                                     "$(send)",
                                     "$(sparkle)",
                                     "$(insert)",
+                                    "$(mic)",
                                     "$(dialog-error)",
                                     "$(dialog-warning)",
                                     "$(dialog-info)",
@@ -19570,6 +19707,7 @@
                                     "tag",
                                     "tag-add",
                                     "tag-remove",
+                                    "git-pull-request-label",
                                     "person",
                                     "person-follow",
                                     "person-outline",
@@ -19824,6 +19962,7 @@
                                     "megaphone",
                                     "mention",
                                     "milestone",
+                                    "git-pull-request-milestone",
                                     "mortar-board",
                                     "move",
                                     "multiple-windows",
@@ -19948,9 +20087,11 @@
                                     "menu",
                                     "expand-all",
                                     "feedback",
+                                    "git-pull-request-reviewer",
                                     "group-by-ref-type",
                                     "ungroup-by-ref-type",
                                     "account",
+                                    "git-pull-request-assignee",
                                     "bell-dot",
                                     "debug-console",
                                     "library",
@@ -20073,6 +20214,7 @@
                                     "send",
                                     "sparkle",
                                     "insert",
+                                    "mic",
                                     "dialog-error",
                                     "dialog-warning",
                                     "dialog-info",
@@ -20110,6 +20252,7 @@
                                     "$(tag)",
                                     "$(tag-add)",
                                     "$(tag-remove)",
+                                    "$(git-pull-request-label)",
                                     "$(person)",
                                     "$(person-follow)",
                                     "$(person-outline)",
@@ -20364,6 +20507,7 @@
                                     "$(megaphone)",
                                     "$(mention)",
                                     "$(milestone)",
+                                    "$(git-pull-request-milestone)",
                                     "$(mortar-board)",
                                     "$(move)",
                                     "$(multiple-windows)",
@@ -20488,9 +20632,11 @@
                                     "$(menu)",
                                     "$(expand-all)",
                                     "$(feedback)",
+                                    "$(git-pull-request-reviewer)",
                                     "$(group-by-ref-type)",
                                     "$(ungroup-by-ref-type)",
                                     "$(account)",
+                                    "$(git-pull-request-assignee)",
                                     "$(bell-dot)",
                                     "$(debug-console)",
                                     "$(library)",
@@ -20613,6 +20759,7 @@
                                     "$(send)",
                                     "$(sparkle)",
                                     "$(insert)",
+                                    "$(mic)",
                                     "$(dialog-error)",
                                     "$(dialog-warning)",
                                     "$(dialog-info)",
@@ -21072,6 +21219,20 @@
             "scope": 3,
             "restricted": false
         },
+        "terminal.integrated.cursorStyleInactive": {
+            "description": "Controls the style of terminal cursor when the terminal is not focused.",
+            "enum": [
+                "outline",
+                "block",
+                "line",
+                "underline",
+                "none"
+            ],
+            "default": "outline",
+            "defaultDefaultValue": "outline",
+            "scope": 3,
+            "restricted": false
+        },
         "terminal.integrated.cursorWidth": {
             "markdownDescription": "`#terminal.integrated.cursorStyle#` が `line` に設定されている場合のカーソルの幅を制御します。",
             "type": "number",
@@ -21219,7 +21380,7 @@
             "restricted": false
         },
         "terminal.integrated.commandsToSkipShell": {
-            "markdownDescription": "キー バインドがシェルに送信されず、代わりに常に VS Code で処理されるコマンド ID のセット。これにより、シェルによって通常使用されるキー バインドが、ターミナルがフォーカスされていない場合と同じ動作をするようにします。たとえば、'Ctrl+P' で Quick Open を起動します。\r\n\r\n&nbsp;\r\n\r\n既定では、多くのコマンドがスキップされます。既定値をオーバーライドし、代わりにそのコマンドのキー バインドをシェルに渡すには、先頭に '-' 文字が付いているコマンドを追加します。たとえば、'-workbench.action.quickOpen' を追加して、'Ctrl+P' でシェルにアクセスできるようにします。\r\n\r\n&nbsp;\r\n\r\n既定でスキップされる以下のコマンドの一覧は、設定エディターで表示したときには切り詰められます。完全な一覧を表示するには、下の一覧から最初のコマンドを [既定の設定の JSON を開く](command:workbench.action.openRawDefaultSettings '既定の設定 (JSON) を開く') して検索します。\r\n\r\n&nbsp;\r\n\r\n既定でスキップされるコマンド:\r\n\r\n- editor.action.accessibilityHelp\n- editor.action.toggleTabFocusMode\n- notification.acceptPrimaryAction\n- notifications.hideList\n- notifications.hideToasts\n- runCommands\n- workbench.action.closeQuickOpen\n- workbench.action.debug.continue\n- workbench.action.debug.pause\n- workbench.action.debug.restart\n- workbench.action.debug.run\n- workbench.action.debug.start\n- workbench.action.debug.stepInto\n- workbench.action.debug.stepOut\n- workbench.action.debug.stepOver\n- workbench.action.debug.stop\n- workbench.action.firstEditorInGroup\n- workbench.action.focusActiveEditorGroup\n- workbench.action.focusEighthEditorGroup\n- workbench.action.focusFifthEditorGroup\n- workbench.action.focusFirstEditorGroup\n- workbench.action.focusFourthEditorGroup\n- workbench.action.focusLastEditorGroup\n- workbench.action.focusNextPart\n- workbench.action.focusPreviousPart\n- workbench.action.focusSecondEditorGroup\n- workbench.action.focusSeventhEditorGroup\n- workbench.action.focusSixthEditorGroup\n- workbench.action.focusThirdEditorGroup\n- workbench.action.lastEditorInGroup\n- workbench.action.navigateDown\n- workbench.action.navigateLeft\n- workbench.action.navigateRight\n- workbench.action.navigateUp\n- workbench.action.nextEditor\n- workbench.action.nextEditorInGroup\n- workbench.action.nextPanelView\n- workbench.action.nextSideBarView\n- workbench.action.openNextRecentlyUsedEditor\n- workbench.action.openNextRecentlyUsedEditorInGroup\n- workbench.action.openPreviousRecentlyUsedEditor\n- workbench.action.openPreviousRecentlyUsedEditorInGroup\n- workbench.action.previousEditor\n- workbench.action.previousEditorInGroup\n- workbench.action.previousPanelView\n- workbench.action.previousSideBarView\n- workbench.action.quickOpen\n- workbench.action.quickOpenLeastRecentlyUsedEditor\n- workbench.action.quickOpenLeastRecentlyUsedEditorInGroup\n- workbench.action.quickOpenPreviousEditor\n- workbench.action.quickOpenPreviousRecentlyUsedEditor\n- workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup\n- workbench.action.quickOpenView\n- workbench.action.showCommands\n- workbench.action.tasks.build\n- workbench.action.tasks.reRunTask\n- workbench.action.tasks.restartTask\n- workbench.action.tasks.runTask\n- workbench.action.tasks.showLog\n- workbench.action.tasks.showTasks\n- workbench.action.tasks.terminate\n- workbench.action.tasks.test\n- workbench.action.terminal.acceptSelectedSuggestion\n- workbench.action.terminal.clear\n- workbench.action.terminal.clearSelection\n- workbench.action.terminal.copyAndClearSelection\n- workbench.action.terminal.copyLastCommandOutput\n- workbench.action.terminal.copySelection\n- workbench.action.terminal.copySelectionAsHtml\n- workbench.action.terminal.deleteToLineStart\n- workbench.action.terminal.deleteWordLeft\n- workbench.action.terminal.deleteWordRight\n- workbench.action.terminal.findNext\n- workbench.action.terminal.findPrevious\n- workbench.action.terminal.focus\n- workbench.action.terminal.focusAtIndex1\n- workbench.action.terminal.focusAtIndex2\n- workbench.action.terminal.focusAtIndex3\n- workbench.action.terminal.focusAtIndex4\n- workbench.action.terminal.focusAtIndex5\n- workbench.action.terminal.focusAtIndex6\n- workbench.action.terminal.focusAtIndex7\n- workbench.action.terminal.focusAtIndex8\n- workbench.action.terminal.focusAtIndex9\n- workbench.action.terminal.focusFind\n- workbench.action.terminal.focusHover\n- workbench.action.terminal.focusNext\n- workbench.action.terminal.focusNextPane\n- workbench.action.terminal.focusPrevious\n- workbench.action.terminal.focusPreviousPane\n- workbench.action.terminal.goToRecentDirectory\n- workbench.action.terminal.hideFind\n- workbench.action.terminal.hideSuggestWidget\n- workbench.action.terminal.kill\n- workbench.action.terminal.killEditor\n- workbench.action.terminal.moveToEditor\n- workbench.action.terminal.moveToLineEnd\n- workbench.action.terminal.moveToLineStart\n- workbench.action.terminal.moveToTerminalPanel\n- workbench.action.terminal.new\n- workbench.action.terminal.newInActiveWorkspace\n- workbench.action.terminal.paste\n- workbench.action.terminal.pasteSelection\n- workbench.action.terminal.resizePaneDown\n- workbench.action.terminal.resizePaneLeft\n- workbench.action.terminal.resizePaneRight\n- workbench.action.terminal.resizePaneUp\n- workbench.action.terminal.runActiveFile\n- workbench.action.terminal.runRecentCommand\n- workbench.action.terminal.runSelectedText\n- workbench.action.terminal.scrollDown\n- workbench.action.terminal.scrollDownPage\n- workbench.action.terminal.scrollToBottom\n- workbench.action.terminal.scrollToNextCommand\n- workbench.action.terminal.scrollToPreviousCommand\n- workbench.action.terminal.scrollToTop\n- workbench.action.terminal.scrollUp\n- workbench.action.terminal.scrollUpPage\n- workbench.action.terminal.selectAll\n- workbench.action.terminal.selectNextPageSuggestion\n- workbench.action.terminal.selectNextSuggestion\n- workbench.action.terminal.selectPrevPageSuggestion\n- workbench.action.terminal.selectPrevSuggestion\n- workbench.action.terminal.selectToNextCommand\n- workbench.action.terminal.selectToNextLine\n- workbench.action.terminal.selectToPreviousCommand\n- workbench.action.terminal.selectToPreviousLine\n- workbench.action.terminal.sendSequence\n- workbench.action.terminal.sizeToContentWidth\n- workbench.action.terminal.split\n- workbench.action.terminal.splitInActiveWorkspace\n- workbench.action.terminal.toggleFindCaseSensitive\n- workbench.action.terminal.toggleFindRegex\n- workbench.action.terminal.toggleFindWholeWord\n- workbench.action.terminal.toggleTerminal\n- workbench.action.toggleFullScreen\n- workbench.action.toggleMaximizedPanel\n- workbench.action.togglePanel",
+            "markdownDescription": "キー バインドがシェルに送信されず、代わりに常に VS Code で処理されるコマンド ID のセット。これにより、シェルによって通常使用されるキー バインドが、ターミナルがフォーカスされていない場合と同じ動作をするようにします。たとえば、'Ctrl+P' で Quick Open を起動します。\r\n\r\n&nbsp;\r\n\r\n既定では、多くのコマンドがスキップされます。既定値をオーバーライドし、代わりにそのコマンドのキー バインドをシェルに渡すには、先頭に '-' 文字が付いているコマンドを追加します。たとえば、'-workbench.action.quickOpen' を追加して、'Ctrl+P' でシェルにアクセスできるようにします。\r\n\r\n&nbsp;\r\n\r\n既定でスキップされる以下のコマンドの一覧は、設定エディターで表示したときには切り詰められます。完全な一覧を表示するには、下の一覧から最初のコマンドを [既定の設定の JSON を開く](command:workbench.action.openRawDefaultSettings '既定の設定 (JSON) を開く') して検索します。\r\n\r\n&nbsp;\r\n\r\n既定でスキップされるコマンド:\r\n\r\n- editor.action.accessibilityHelp\n- editor.action.toggleTabFocusMode\n- notification.acceptPrimaryAction\n- notifications.hideList\n- notifications.hideToasts\n- runCommands\n- workbench.action.closeQuickOpen\n- workbench.action.debug.continue\n- workbench.action.debug.pause\n- workbench.action.debug.restart\n- workbench.action.debug.run\n- workbench.action.debug.start\n- workbench.action.debug.stepInto\n- workbench.action.debug.stepOut\n- workbench.action.debug.stepOver\n- workbench.action.debug.stop\n- workbench.action.firstEditorInGroup\n- workbench.action.focusActiveEditorGroup\n- workbench.action.focusEighthEditorGroup\n- workbench.action.focusFifthEditorGroup\n- workbench.action.focusFirstEditorGroup\n- workbench.action.focusFourthEditorGroup\n- workbench.action.focusLastEditorGroup\n- workbench.action.focusNextPart\n- workbench.action.focusPreviousPart\n- workbench.action.focusSecondEditorGroup\n- workbench.action.focusSeventhEditorGroup\n- workbench.action.focusSixthEditorGroup\n- workbench.action.focusThirdEditorGroup\n- workbench.action.lastEditorInGroup\n- workbench.action.navigateDown\n- workbench.action.navigateLeft\n- workbench.action.navigateRight\n- workbench.action.navigateUp\n- workbench.action.nextEditor\n- workbench.action.nextEditorInGroup\n- workbench.action.nextPanelView\n- workbench.action.nextSideBarView\n- workbench.action.openNextRecentlyUsedEditor\n- workbench.action.openNextRecentlyUsedEditorInGroup\n- workbench.action.openPreviousRecentlyUsedEditor\n- workbench.action.openPreviousRecentlyUsedEditorInGroup\n- workbench.action.previousEditor\n- workbench.action.previousEditorInGroup\n- workbench.action.previousPanelView\n- workbench.action.previousSideBarView\n- workbench.action.quickOpen\n- workbench.action.quickOpenLeastRecentlyUsedEditor\n- workbench.action.quickOpenLeastRecentlyUsedEditorInGroup\n- workbench.action.quickOpenPreviousEditor\n- workbench.action.quickOpenPreviousRecentlyUsedEditor\n- workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup\n- workbench.action.quickOpenView\n- workbench.action.showCommands\n- workbench.action.tasks.build\n- workbench.action.tasks.reRunTask\n- workbench.action.tasks.restartTask\n- workbench.action.tasks.runTask\n- workbench.action.tasks.showLog\n- workbench.action.tasks.showTasks\n- workbench.action.tasks.terminate\n- workbench.action.tasks.test\n- workbench.action.terminal.acceptSelectedSuggestion\n- workbench.action.terminal.clear\n- workbench.action.terminal.clearSelection\n- workbench.action.terminal.copyAndClearSelection\n- workbench.action.terminal.copyLastCommandOutput\n- workbench.action.terminal.copySelection\n- workbench.action.terminal.copySelectionAsHtml\n- workbench.action.terminal.deleteToLineStart\n- workbench.action.terminal.deleteWordLeft\n- workbench.action.terminal.deleteWordRight\n- workbench.action.terminal.findNext\n- workbench.action.terminal.findPrevious\n- workbench.action.terminal.focus\n- workbench.action.terminal.focusAccessibleBuffer\n- workbench.action.terminal.focusAtIndex1\n- workbench.action.terminal.focusAtIndex2\n- workbench.action.terminal.focusAtIndex3\n- workbench.action.terminal.focusAtIndex4\n- workbench.action.terminal.focusAtIndex5\n- workbench.action.terminal.focusAtIndex6\n- workbench.action.terminal.focusAtIndex7\n- workbench.action.terminal.focusAtIndex8\n- workbench.action.terminal.focusAtIndex9\n- workbench.action.terminal.focusFind\n- workbench.action.terminal.focusHover\n- workbench.action.terminal.focusNext\n- workbench.action.terminal.focusNextPane\n- workbench.action.terminal.focusPrevious\n- workbench.action.terminal.focusPreviousPane\n- workbench.action.terminal.goToRecentDirectory\n- workbench.action.terminal.hideFind\n- workbench.action.terminal.hideSuggestWidget\n- workbench.action.terminal.kill\n- workbench.action.terminal.killEditor\n- workbench.action.terminal.moveToEditor\n- workbench.action.terminal.moveToLineEnd\n- workbench.action.terminal.moveToLineStart\n- workbench.action.terminal.moveToTerminalPanel\n- workbench.action.terminal.new\n- workbench.action.terminal.newInActiveWorkspace\n- workbench.action.terminal.paste\n- workbench.action.terminal.pasteSelection\n- workbench.action.terminal.resizePaneDown\n- workbench.action.terminal.resizePaneLeft\n- workbench.action.terminal.resizePaneRight\n- workbench.action.terminal.resizePaneUp\n- workbench.action.terminal.runActiveFile\n- workbench.action.terminal.runRecentCommand\n- workbench.action.terminal.runSelectedText\n- workbench.action.terminal.scrollDown\n- workbench.action.terminal.scrollDownPage\n- workbench.action.terminal.scrollToBottom\n- workbench.action.terminal.scrollToNextCommand\n- workbench.action.terminal.scrollToPreviousCommand\n- workbench.action.terminal.scrollToTop\n- workbench.action.terminal.scrollUp\n- workbench.action.terminal.scrollUpPage\n- workbench.action.terminal.selectAll\n- workbench.action.terminal.selectNextPageSuggestion\n- workbench.action.terminal.selectNextSuggestion\n- workbench.action.terminal.selectPrevPageSuggestion\n- workbench.action.terminal.selectPrevSuggestion\n- workbench.action.terminal.selectToNextCommand\n- workbench.action.terminal.selectToNextLine\n- workbench.action.terminal.selectToPreviousCommand\n- workbench.action.terminal.selectToPreviousLine\n- workbench.action.terminal.sendSequence\n- workbench.action.terminal.sizeToContentWidth\n- workbench.action.terminal.split\n- workbench.action.terminal.splitInActiveWorkspace\n- workbench.action.terminal.toggleFindCaseSensitive\n- workbench.action.terminal.toggleFindRegex\n- workbench.action.terminal.toggleFindWholeWord\n- workbench.action.terminal.toggleTerminal\n- workbench.action.toggleFullScreen\n- workbench.action.toggleMaximizedPanel\n- workbench.action.togglePanel",
             "type": "array",
             "items": {
                 "type": "string"
@@ -21441,22 +21602,20 @@
         "terminal.integrated.localEchoStyle": {
             "description": "ローカル エコー テキストの端末スタイル。フォント スタイルまたは RGB カラー。",
             "default": "dim",
-            "oneOf": [
+            "anyOf": [
                 {
-                    "type": "string",
-                    "default": "dim",
                     "enum": [
                         "bold",
                         "dim",
                         "italic",
                         "underlined",
-                        "inverted"
+                        "inverted",
+                        "#ff0000"
                     ]
                 },
                 {
                     "type": "string",
-                    "format": "color-hex",
-                    "default": "#ff0000"
+                    "format": "color-hex"
                 }
             ],
             "defaultDefaultValue": "dim",
@@ -21486,6 +21645,24 @@
             ],
             "default": "onExit",
             "defaultDefaultValue": "onExit",
+            "scope": 3,
+            "restricted": false
+        },
+        "terminal.integrated.hideOnStartup": {
+            "description": "Whether to hide the terminal view on startup, avoiding creating a terminal when there are no persistent sessions.",
+            "type": "string",
+            "enum": [
+                "never",
+                "whenEmpty",
+                "always"
+            ],
+            "markdownEnumDescriptions": [
+                "Never hide the terminal view on startup.",
+                "Only hide the terminal when there are no persistent sessions restored.",
+                "Always hide the terminal, even when there are persistent sessions restored."
+            ],
+            "default": "never",
+            "defaultDefaultValue": "never",
             "scope": 3,
             "restricted": false
         },
@@ -21568,13 +21745,41 @@
             "scope": 3,
             "restricted": false
         },
+        "terminal.integrated.ignoreBracketedPasteMode": {
+            "markdownDescription": "Controls whether the terminal will ignore bracketed paste mode even if the terminal was put into the mode, omitting the `\\x1b[200~` and `\\x1b[201~` sequences when pasting. This is useful when the shell is not respecting the mode which can happen in sub-shells for example.",
+            "type": "boolean",
+            "default": false,
+            "defaultDefaultValue": false,
+            "scope": 3,
+            "restricted": false
+        },
         "terminal.integrated.enableImages": {
             "restricted": true,
             "markdownDescription": "ターミナルでイメージのサポートを有効にします。これは、 `#terminal.integrated.gpuAcceleration#` が有効になっている場合にのみ機能します。Linux と macOS では、sixel と iTerm の両方のインライン イメージ プロトコルがサポートされています。ConPTY がシーケンスを通過すると、Windows のサポートが自動的に点灯します。現在、ウィンドウの再読み込み/再接続の間にイメージは復元されません。",
             "type": "boolean",
-            "default": true,
-            "defaultDefaultValue": true,
+            "default": false,
+            "defaultDefaultValue": false,
             "scope": 3
+        },
+        "terminal.integrated.focusAfterRun": {
+            "markdownDescription": "Controls whether the terminal, accessible buffer, or neither will be focused after `Terminal: Run Selected Text In Active Terminal` has been run.",
+            "enum": [
+                "terminal",
+                "accessible-buffer",
+                "none"
+            ],
+            "default": "none",
+            "tags": [
+                "accessibility"
+            ],
+            "markdownEnumDescriptions": [
+                "Always focus the terminal.",
+                "Always focus the accessible buffer.",
+                "Do nothing."
+            ],
+            "defaultDefaultValue": "none",
+            "scope": 3,
+            "restricted": false
         },
         "css.trace.server": {
             "type": "string",
@@ -22484,6 +22689,18 @@
             "scope": 3,
             "default": false,
             "description": "書式設定時に既存の改行をすべて保持します。",
+            "source": {
+                "id": "vscode.json-language-features",
+                "displayName": "JSON 言語機能"
+            },
+            "defaultDefaultValue": false,
+            "restricted": false
+        },
+        "json.sortOnSave.enable": {
+            "type": "boolean",
+            "scope": 3,
+            "default": false,
+            "description": "Enable/disable default sorting on save",
             "source": {
                 "id": "vscode.json-language-features",
                 "displayName": "JSON 言語機能"
@@ -25288,6 +25505,21 @@
             "defaultDefaultValue": true,
             "restricted": false
         },
+        "typescript.experimental.tsserver.web.typeAcquisition.enabled": {
+            "type": "boolean",
+            "default": false,
+            "description": "Enable/disable package acquisition on the web.",
+            "scope": 3,
+            "tags": [
+                "experimental"
+            ],
+            "source": {
+                "id": "vscode.typescript-language-features",
+                "displayName": "TypeScript と JavaScript の言語機能"
+            },
+            "defaultDefaultValue": false,
+            "restricted": false
+        },
         "typescript.preferGoToSourceDefinition": {
             "type": "boolean",
             "default": false,
@@ -25689,6 +25921,9 @@
             "type": "boolean",
             "default": false,
             "description": "従来のバックグラウンド トークン化に対して非同期トークン化を検証するかどうかを制御します。トークン化が遅くなる可能性があります。デバッグ専用です。",
+            "tags": [
+                "experimental"
+            ],
             "defaultDefaultValue": false,
             "scope": 5,
             "restricted": false
@@ -25765,6 +26000,22 @@
             "scope": 5,
             "restricted": false
         },
+        "diffEditor.renderSideBySideInlineBreakpoint": {
+            "type": "number",
+            "default": 900,
+            "description": "If the diff editor width is smaller than this value, the inline view is used.",
+            "defaultDefaultValue": 900,
+            "scope": 5,
+            "restricted": false
+        },
+        "diffEditor.useInlineViewWhenSpaceIsLimited": {
+            "type": "boolean",
+            "default": true,
+            "description": "If enabled and the editor width is too small, the inline view is used.",
+            "defaultDefaultValue": true,
+            "scope": 5,
+            "restricted": false
+        },
         "diffEditor.renderMarginRevertIcon": {
             "type": "boolean",
             "default": true,
@@ -25832,11 +26083,38 @@
             "scope": 5,
             "restricted": false
         },
-        "diffEditor.experimental.collapseUnchangedRegions": {
+        "diffEditor.hideUnchangedRegions.enabled": {
             "type": "boolean",
             "default": false,
-            "markdownDescription": "差分エディターで変更されていない領域を表示するかどうかを制御します。`#diffEditor.experimental.useVersion2#` が設定されている場合にのみ機能します。",
+            "markdownDescription": "Controls whether the diff editor shows unchanged regions. Only works when `#diffEditor.experimental.useVersion2#` is set.",
             "defaultDefaultValue": false,
+            "scope": 5,
+            "restricted": false
+        },
+        "diffEditor.hideUnchangedRegions.revealLineCount": {
+            "type": "integer",
+            "default": 20,
+            "markdownDescription": "Controls how many lines are used for unchanged regions. Only works when `#diffEditor.experimental.useVersion2#` is set.",
+            "minimum": 1,
+            "defaultDefaultValue": 20,
+            "scope": 5,
+            "restricted": false
+        },
+        "diffEditor.hideUnchangedRegions.minimumLineCount": {
+            "type": "integer",
+            "default": 3,
+            "markdownDescription": "Controls how many lines are used as a minimum for unchanged regions. Only works when `#diffEditor.experimental.useVersion2#` is set.",
+            "minimum": 1,
+            "defaultDefaultValue": 3,
+            "scope": 5,
+            "restricted": false
+        },
+        "diffEditor.hideUnchangedRegions.contextLineCount": {
+            "type": "integer",
+            "default": 3,
+            "markdownDescription": "Controls how many lines are used as context when comparing unchanged regions. Only works when `#diffEditor.experimental.useVersion2#` is set.",
+            "minimum": 1,
+            "defaultDefaultValue": 3,
             "scope": 5,
             "restricted": false
         },
@@ -25850,12 +26128,12 @@
         },
         "diffEditor.experimental.useVersion2": {
             "type": "boolean",
-            "default": false,
+            "default": true,
             "description": "差分エディターで新しい実装と古い実装のどちらを使用するかを制御します。",
             "tags": [
                 "experimental"
             ],
-            "defaultDefaultValue": false,
+            "defaultDefaultValue": true,
             "scope": 5,
             "restricted": false
         },
@@ -27625,6 +27903,14 @@
             "scope": 5,
             "restricted": false
         },
+        "editor.stickyScroll.scrollWithEditor": {
+            "type": "boolean",
+            "default": true,
+            "description": "Enable scrolling of the sticky scroll widget with the editor's horizontal scrollbar.",
+            "defaultDefaultValue": true,
+            "scope": 5,
+            "restricted": false
+        },
         "editor.stickyTabStops": {
             "description": "インデントにスペースを使用するときは、タブ文字の選択動作をエミュレートします。選択範囲はタブ位置に留まります。",
             "type": "boolean",
@@ -28345,6 +28631,14 @@
             "scope": 5,
             "restricted": false
         },
+        "editor.inlineCompletionsAccessibilityVerbose": {
+            "description": "Controls whether the accessibility hint should be provided to screen reader users when an inline completion is shown.",
+            "type": "boolean",
+            "default": false,
+            "defaultDefaultValue": false,
+            "scope": 5,
+            "restricted": false
+        },
         "editor.codeActionWidget.showHeaders": {
             "type": "boolean",
             "scope": 5,
@@ -28359,6 +28653,17 @@
             "default": true,
             "type": "boolean",
             "defaultDefaultValue": true,
+            "restricted": false
+        },
+        "editor.experimental.dropIntoEditor.defaultProvider": {
+            "type": "object",
+            "scope": 5,
+            "description": "Configures the default drop provider to use for content of a given mime type.",
+            "default": {},
+            "additionalProperties": {
+                "type": "string"
+            },
+            "defaultDefaultValue": {},
             "restricted": false
         },
         "breadcrumbs.symbolSortOrder": {
@@ -28664,6 +28969,7 @@
                 "ms-vscode-remote.remote-wsl-recommender",
                 "wraith13.save-vscode-schemas",
                 "vscode.simple-browser",
+                "vscode.tunnel-forwarding",
                 "ms-vscode.vscode-js-profile-table"
             ],
             "enumItemLabels": [
@@ -28699,6 +29005,7 @@
                 "WSL: レコメンダー",
                 "save-vscode-schemas",
                 "シンプル ブラウザー",
+                "Local Tunnel Port Forwarding",
                 "Table Visualizer for JavaScript Profiles"
             ],
             "markdownEnumDescriptions": [
@@ -28734,6 +29041,7 @@
                 "Linux 用 Windows サブシステム (WSL) および WSL 拡張機能の使用をお勧めします。",
                 "Save VS Code's schemas",
                 "Web コンテンツを表示するための非常に基本的な組み込みの Web ビューです。",
+                "Allows forwarding local ports to be accessible over the internet.",
                 "Text visualizer for profiles taken from the JavaScript debugger"
             ],
             "defaultDefaultValue": null,
@@ -28780,6 +29088,7 @@
                 "ms-vscode-remote.remote-wsl-recommender",
                 "wraith13.save-vscode-schemas",
                 "vscode.simple-browser",
+                "vscode.tunnel-forwarding",
                 "ms-vscode.vscode-js-profile-table"
             ],
             "enumItemLabels": [
@@ -28815,6 +29124,7 @@
                 "WSL: レコメンダー",
                 "save-vscode-schemas",
                 "シンプル ブラウザー",
+                "Local Tunnel Port Forwarding",
                 "Table Visualizer for JavaScript Profiles"
             ],
             "markdownEnumDescriptions": [
@@ -28850,6 +29160,7 @@
                 "Linux 用 Windows サブシステム (WSL) および WSL 拡張機能の使用をお勧めします。",
                 "Save VS Code's schemas",
                 "Web コンテンツを表示するための非常に基本的な組み込みの Web ビューです。",
+                "Allows forwarding local ports to be accessible over the internet.",
                 "Text visualizer for profiles taken from the JavaScript debugger"
             ],
             "defaultDefaultValue": null,
@@ -29948,6 +30259,7 @@
                 "tag",
                 "tag-add",
                 "tag-remove",
+                "git-pull-request-label",
                 "person",
                 "person-follow",
                 "person-outline",
@@ -30202,6 +30514,7 @@
                 "megaphone",
                 "mention",
                 "milestone",
+                "git-pull-request-milestone",
                 "mortar-board",
                 "move",
                 "multiple-windows",
@@ -30326,9 +30639,11 @@
                 "menu",
                 "expand-all",
                 "feedback",
+                "git-pull-request-reviewer",
                 "group-by-ref-type",
                 "ungroup-by-ref-type",
                 "account",
+                "git-pull-request-assignee",
                 "bell-dot",
                 "debug-console",
                 "library",
@@ -30451,6 +30766,7 @@
                 "send",
                 "sparkle",
                 "insert",
+                "mic",
                 "dialog-error",
                 "dialog-warning",
                 "dialog-info",
@@ -30488,6 +30804,7 @@
                 "$(tag)",
                 "$(tag-add)",
                 "$(tag-remove)",
+                "$(git-pull-request-label)",
                 "$(person)",
                 "$(person-follow)",
                 "$(person-outline)",
@@ -30742,6 +31059,7 @@
                 "$(megaphone)",
                 "$(mention)",
                 "$(milestone)",
+                "$(git-pull-request-milestone)",
                 "$(mortar-board)",
                 "$(move)",
                 "$(multiple-windows)",
@@ -30866,9 +31184,11 @@
                 "$(menu)",
                 "$(expand-all)",
                 "$(feedback)",
+                "$(git-pull-request-reviewer)",
                 "$(group-by-ref-type)",
                 "$(ungroup-by-ref-type)",
                 "$(account)",
+                "$(git-pull-request-assignee)",
                 "$(bell-dot)",
                 "$(debug-console)",
                 "$(library)",
@@ -30991,6 +31311,7 @@
                 "$(send)",
                 "$(sparkle)",
                 "$(insert)",
+                "$(mic)",
                 "$(dialog-error)",
                 "$(dialog-warning)",
                 "$(dialog-info)",
