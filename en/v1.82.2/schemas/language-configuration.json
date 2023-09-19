@@ -1,0 +1,497 @@
+{
+    "allowComments": true,
+    "allowTrailingCommas": true,
+    "default": {
+        "comments": {
+            "blockComment": [
+                "/*",
+                "*/"
+            ],
+            "lineComment": "//"
+        },
+        "brackets": [
+            [
+                "(",
+                ")"
+            ],
+            [
+                "[",
+                "]"
+            ],
+            [
+                "{",
+                "}"
+            ]
+        ],
+        "autoClosingPairs": [
+            [
+                "(",
+                ")"
+            ],
+            [
+                "[",
+                "]"
+            ],
+            [
+                "{",
+                "}"
+            ]
+        ],
+        "surroundingPairs": [
+            [
+                "(",
+                ")"
+            ],
+            [
+                "[",
+                "]"
+            ],
+            [
+                "{",
+                "}"
+            ]
+        ]
+    },
+    "definitions": {
+        "openBracket": {
+            "type": "string",
+            "description": "The opening bracket character or string sequence."
+        },
+        "closeBracket": {
+            "type": "string",
+            "description": "The closing bracket character or string sequence."
+        },
+        "bracketPair": {
+            "type": "array",
+            "items": [
+                {
+                    "$ref": "#/definitions/openBracket"
+                },
+                {
+                    "$ref": "#/definitions/closeBracket"
+                }
+            ]
+        }
+    },
+    "properties": {
+        "comments": {
+            "default": {
+                "blockComment": [
+                    "/*",
+                    "*/"
+                ],
+                "lineComment": "//"
+            },
+            "description": "Defines the comment symbols",
+            "type": "object",
+            "properties": {
+                "blockComment": {
+                    "type": "array",
+                    "description": "Defines how block comments are marked.",
+                    "items": [
+                        {
+                            "type": "string",
+                            "description": "The character sequence that starts a block comment."
+                        },
+                        {
+                            "type": "string",
+                            "description": "The character sequence that ends a block comment."
+                        }
+                    ]
+                },
+                "lineComment": {
+                    "type": "string",
+                    "description": "The character sequence that starts a line comment."
+                }
+            }
+        },
+        "brackets": {
+            "default": [
+                [
+                    "(",
+                    ")"
+                ],
+                [
+                    "[",
+                    "]"
+                ],
+                [
+                    "{",
+                    "}"
+                ]
+            ],
+            "markdownDescription": "Defines the bracket symbols that increase or decrease the indentation. When bracket pair colorization is enabled and `colorizedBracketPairs` is not defined, this also defines the bracket pairs that are colorized by their nesting level.",
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/bracketPair"
+            }
+        },
+        "colorizedBracketPairs": {
+            "default": [
+                [
+                    "(",
+                    ")"
+                ],
+                [
+                    "[",
+                    "]"
+                ],
+                [
+                    "{",
+                    "}"
+                ]
+            ],
+            "markdownDescription": "Defines the bracket pairs that are colorized by their nesting level if bracket pair colorization is enabled. Any brackets included here that are not included in `brackets` will be automatically included in `brackets`.",
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/bracketPair"
+            }
+        },
+        "autoClosingPairs": {
+            "default": [
+                [
+                    "(",
+                    ")"
+                ],
+                [
+                    "[",
+                    "]"
+                ],
+                [
+                    "{",
+                    "}"
+                ]
+            ],
+            "description": "Defines the bracket pairs. When a opening bracket is entered, the closing bracket is inserted automatically.",
+            "type": "array",
+            "items": {
+                "oneOf": [
+                    {
+                        "$ref": "#/definitions/bracketPair"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "open": {
+                                "$ref": "#/definitions/openBracket"
+                            },
+                            "close": {
+                                "$ref": "#/definitions/closeBracket"
+                            },
+                            "notIn": {
+                                "type": "array",
+                                "description": "Defines a list of scopes where the auto pairs are disabled.",
+                                "items": {
+                                    "enum": [
+                                        "string",
+                                        "comment"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                ]
+            }
+        },
+        "autoCloseBefore": {
+            "default": ";:.,=}])> \n\t",
+            "description": "Defines what characters must be after the cursor in order for bracket or quote autoclosing to occur when using the 'languageDefined' autoclosing setting. This is typically the set of characters which can not start an expression.",
+            "type": "string"
+        },
+        "surroundingPairs": {
+            "default": [
+                [
+                    "(",
+                    ")"
+                ],
+                [
+                    "[",
+                    "]"
+                ],
+                [
+                    "{",
+                    "}"
+                ]
+            ],
+            "description": "Defines the bracket pairs that can be used to surround a selected string.",
+            "type": "array",
+            "items": {
+                "oneOf": [
+                    {
+                        "$ref": "#/definitions/bracketPair"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "open": {
+                                "$ref": "#/definitions/openBracket"
+                            },
+                            "close": {
+                                "$ref": "#/definitions/closeBracket"
+                            }
+                        }
+                    }
+                ]
+            }
+        },
+        "wordPattern": {
+            "default": "",
+            "description": "Defines what is considered to be a word in the programming language.",
+            "type": [
+                "string",
+                "object"
+            ],
+            "properties": {
+                "pattern": {
+                    "type": "string",
+                    "description": "The RegExp pattern used to match words.",
+                    "default": ""
+                },
+                "flags": {
+                    "type": "string",
+                    "description": "The RegExp flags used to match words.",
+                    "default": "g",
+                    "pattern": "^([gimuy]+)$",
+                    "patternErrorMessage": "Must match the pattern `/^([gimuy]+)$/`."
+                }
+            }
+        },
+        "indentationRules": {
+            "default": {
+                "increaseIndentPattern": "",
+                "decreaseIndentPattern": ""
+            },
+            "description": "The language's indentation settings.",
+            "type": "object",
+            "properties": {
+                "increaseIndentPattern": {
+                    "type": [
+                        "string",
+                        "object"
+                    ],
+                    "description": "If a line matches this pattern, then all the lines after it should be indented once (until another rule matches).",
+                    "properties": {
+                        "pattern": {
+                            "type": "string",
+                            "description": "The RegExp pattern for increaseIndentPattern.",
+                            "default": ""
+                        },
+                        "flags": {
+                            "type": "string",
+                            "description": "The RegExp flags for increaseIndentPattern.",
+                            "default": "",
+                            "pattern": "^([gimuy]+)$",
+                            "patternErrorMessage": "Must match the pattern `/^([gimuy]+)$/`."
+                        }
+                    }
+                },
+                "decreaseIndentPattern": {
+                    "type": [
+                        "string",
+                        "object"
+                    ],
+                    "description": "If a line matches this pattern, then all the lines after it should be unindented once (until another rule matches).",
+                    "properties": {
+                        "pattern": {
+                            "type": "string",
+                            "description": "The RegExp pattern for decreaseIndentPattern.",
+                            "default": ""
+                        },
+                        "flags": {
+                            "type": "string",
+                            "description": "The RegExp flags for decreaseIndentPattern.",
+                            "default": "",
+                            "pattern": "^([gimuy]+)$",
+                            "patternErrorMessage": "Must match the pattern `/^([gimuy]+)$/`."
+                        }
+                    }
+                },
+                "indentNextLinePattern": {
+                    "type": [
+                        "string",
+                        "object"
+                    ],
+                    "description": "If a line matches this pattern, then **only the next line** after it should be indented once.",
+                    "properties": {
+                        "pattern": {
+                            "type": "string",
+                            "description": "The RegExp pattern for indentNextLinePattern.",
+                            "default": ""
+                        },
+                        "flags": {
+                            "type": "string",
+                            "description": "The RegExp flags for indentNextLinePattern.",
+                            "default": "",
+                            "pattern": "^([gimuy]+)$",
+                            "patternErrorMessage": "Must match the pattern `/^([gimuy]+)$/`."
+                        }
+                    }
+                },
+                "unIndentedLinePattern": {
+                    "type": [
+                        "string",
+                        "object"
+                    ],
+                    "description": "If a line matches this pattern, then its indentation should not be changed and it should not be evaluated against the other rules.",
+                    "properties": {
+                        "pattern": {
+                            "type": "string",
+                            "description": "The RegExp pattern for unIndentedLinePattern.",
+                            "default": ""
+                        },
+                        "flags": {
+                            "type": "string",
+                            "description": "The RegExp flags for unIndentedLinePattern.",
+                            "default": "",
+                            "pattern": "^([gimuy]+)$",
+                            "patternErrorMessage": "Must match the pattern `/^([gimuy]+)$/`."
+                        }
+                    }
+                }
+            }
+        },
+        "folding": {
+            "type": "object",
+            "description": "The language's folding settings.",
+            "properties": {
+                "offSide": {
+                    "type": "boolean",
+                    "description": "A language adheres to the off-side rule if blocks in that language are expressed by their indentation. If set, empty lines belong to the subsequent block."
+                },
+                "markers": {
+                    "type": "object",
+                    "description": "Language specific folding markers such as '#region' and '#endregion'. The start and end regexes will be tested against the contents of all lines and must be designed efficiently",
+                    "properties": {
+                        "start": {
+                            "type": "string",
+                            "description": "The RegExp pattern for the start marker. The regexp must start with '^'."
+                        },
+                        "end": {
+                            "type": "string",
+                            "description": "The RegExp pattern for the end marker. The regexp must start with '^'."
+                        }
+                    }
+                }
+            }
+        },
+        "onEnterRules": {
+            "type": "array",
+            "description": "The language's rules to be evaluated when pressing Enter.",
+            "items": {
+                "type": "object",
+                "description": "The language's rules to be evaluated when pressing Enter.",
+                "required": [
+                    "beforeText",
+                    "action"
+                ],
+                "properties": {
+                    "beforeText": {
+                        "type": [
+                            "string",
+                            "object"
+                        ],
+                        "description": "This rule will only execute if the text before the cursor matches this regular expression.",
+                        "properties": {
+                            "pattern": {
+                                "type": "string",
+                                "description": "The RegExp pattern for beforeText.",
+                                "default": ""
+                            },
+                            "flags": {
+                                "type": "string",
+                                "description": "The RegExp flags for beforeText.",
+                                "default": "",
+                                "pattern": "^([gimuy]+)$",
+                                "patternErrorMessage": "Must match the pattern `/^([gimuy]+)$/`."
+                            }
+                        }
+                    },
+                    "afterText": {
+                        "type": [
+                            "string",
+                            "object"
+                        ],
+                        "description": "This rule will only execute if the text after the cursor matches this regular expression.",
+                        "properties": {
+                            "pattern": {
+                                "type": "string",
+                                "description": "The RegExp pattern for afterText.",
+                                "default": ""
+                            },
+                            "flags": {
+                                "type": "string",
+                                "description": "The RegExp flags for afterText.",
+                                "default": "",
+                                "pattern": "^([gimuy]+)$",
+                                "patternErrorMessage": "Must match the pattern `/^([gimuy]+)$/`."
+                            }
+                        }
+                    },
+                    "previousLineText": {
+                        "type": [
+                            "string",
+                            "object"
+                        ],
+                        "description": "This rule will only execute if the text above the line matches this regular expression.",
+                        "properties": {
+                            "pattern": {
+                                "type": "string",
+                                "description": "The RegExp pattern for previousLineText.",
+                                "default": ""
+                            },
+                            "flags": {
+                                "type": "string",
+                                "description": "The RegExp flags for previousLineText.",
+                                "default": "",
+                                "pattern": "^([gimuy]+)$",
+                                "patternErrorMessage": "Must match the pattern `/^([gimuy]+)$/`."
+                            }
+                        }
+                    },
+                    "action": {
+                        "type": [
+                            "string",
+                            "object"
+                        ],
+                        "description": "The action to execute.",
+                        "required": [
+                            "indent"
+                        ],
+                        "default": {
+                            "indent": "indent"
+                        },
+                        "properties": {
+                            "indent": {
+                                "type": "string",
+                                "description": "Describe what to do with the indentation",
+                                "default": "indent",
+                                "enum": [
+                                    "none",
+                                    "indent",
+                                    "indentOutdent",
+                                    "outdent"
+                                ],
+                                "markdownEnumDescriptions": [
+                                    "Insert new line and copy the previous line's indentation.",
+                                    "Insert new line and indent once (relative to the previous line's indentation).",
+                                    "Insert two new lines:\n - the first one indented which will hold the cursor\n - the second one at the same indentation level",
+                                    "Insert new line and outdent once (relative to the previous line's indentation)."
+                                ]
+                            },
+                            "appendText": {
+                                "type": "string",
+                                "description": "Describes text to be appended after the new line and after the indentation.",
+                                "default": ""
+                            },
+                            "removeText": {
+                                "type": "number",
+                                "description": "Describes the number of characters to remove from the new line's indentation.",
+                                "default": 0
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
