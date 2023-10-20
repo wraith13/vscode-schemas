@@ -1700,15 +1700,15 @@
         },
         "diff-review-insert": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "Icon for 'Insert' in diff review.: $(diff-review-insert)"
+            "markdownDescription": "Icon for 'Insert' in accessible diff viewer.: $(diff-review-insert)"
         },
         "diff-review-remove": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "Icon for 'Remove' in diff review.: $(diff-review-remove)"
+            "markdownDescription": "Icon for 'Remove' in accessible diff viewer.: $(diff-review-remove)"
         },
         "diff-review-close": {
             "$ref": "#/definitions/icons",
-            "markdownDescription": "Icon for 'Close' in diff review.: $(diff-review-close)"
+            "markdownDescription": "Icon for 'Close' in accessible diff viewer.: $(diff-review-close)"
         },
         "parameter-hints-next": {
             "$ref": "#/definitions/icons",
@@ -2530,6 +2530,10 @@
             "$ref": "#/definitions/icons",
             "markdownDescription": "Icon for Default Profile.: $(defaultProfile-icon)"
         },
+        "settings-view-bar-icon": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "Settings icon in the view bar.: $(settings-view-bar-icon)"
+        },
         "settings-sync-view-icon": {
             "$ref": "#/definitions/icons",
             "markdownDescription": "View icon of the Settings Sync view.: $(settings-sync-view-icon)"
@@ -2634,10 +2638,6 @@
             "$ref": "#/definitions/icons",
             "markdownDescription": "Icon represents workbench layout configuration.: $(configure-layout-icon)"
         },
-        "settings-view-bar-icon": {
-            "$ref": "#/definitions/icons",
-            "markdownDescription": "Settings icon in the view bar.: $(settings-view-bar-icon)"
-        },
         "accounts-view-bar-icon": {
             "$ref": "#/definitions/icons",
             "markdownDescription": "Accounts icon in the view bar.: $(accounts-view-bar-icon)"
@@ -2721,6 +2721,190 @@
         "workspace-trust-editor-remove-folder": {
             "$ref": "#/definitions/icons",
             "markdownDescription": "Icon for the remove folder icon in the workspace trust editor.: $(workspace-trust-editor-remove-folder)"
+        },
+        "gitlens-commit-horizontal": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "commit-horizontal icon: $(gitlens-commit-horizontal)"
+        },
+        "gitlens-graph": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "graph icon: $(gitlens-graph)"
+        },
+        "gitlens-next-commit": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "next-commit icon: $(gitlens-next-commit)"
+        },
+        "gitlens-prev-commit-menu": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "prev-commit-menu icon: $(gitlens-prev-commit-menu)"
+        },
+        "gitlens-prev-commit": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "prev-commit icon: $(gitlens-prev-commit)"
+        },
+        "gitlens-compare-ref-working": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "compare-ref-working icon: $(gitlens-compare-ref-working)"
+        },
+        "gitlens-branches-view": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "branches-view icon: $(gitlens-branches-view)"
+        },
+        "gitlens-commit-view": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "commit-view icon: $(gitlens-commit-view)"
+        },
+        "gitlens-commits-view": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "commits-view icon: $(gitlens-commits-view)"
+        },
+        "gitlens-compare-view": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "compare-view icon: $(gitlens-compare-view)"
+        },
+        "gitlens-contributors-view": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "contributors-view icon: $(gitlens-contributors-view)"
+        },
+        "gitlens-history-view": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "history-view icon: $(gitlens-history-view)"
+        },
+        "gitlens-history": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "history icon: $(gitlens-history)"
+        },
+        "gitlens-remotes-view": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "remotes-view icon: $(gitlens-remotes-view)"
+        },
+        "gitlens-repositories-view": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "repositories-view icon: $(gitlens-repositories-view)"
+        },
+        "gitlens-search-view": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "search-view icon: $(gitlens-search-view)"
+        },
+        "gitlens-stashes-view": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "stashes-view icon: $(gitlens-stashes-view)"
+        },
+        "gitlens-stashes": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "stashes icon: $(gitlens-stashes)"
+        },
+        "gitlens-tags-view": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "tags-view icon: $(gitlens-tags-view)"
+        },
+        "gitlens-worktrees-view": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "worktrees-view icon: $(gitlens-worktrees-view)"
+        },
+        "gitlens-gitlens": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "gitlens icon: $(gitlens-gitlens)"
+        },
+        "gitlens-stash-pop": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "stash-pop icon: $(gitlens-stash-pop)"
+        },
+        "gitlens-stash-save": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "stash-save icon: $(gitlens-stash-save)"
+        },
+        "gitlens-unplug": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "unplug icon: $(gitlens-unplug)"
+        },
+        "gitlens-open-revision": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "open-revision icon: $(gitlens-open-revision)"
+        },
+        "gitlens-switch": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "switch icon: $(gitlens-switch)"
+        },
+        "gitlens-expand": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "expand icon: $(gitlens-expand)"
+        },
+        "gitlens-list-auto": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "list-auto icon: $(gitlens-list-auto)"
+        },
+        "gitlens-arrow-up-force": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "arrow-up-force icon: $(gitlens-arrow-up-force)"
+        },
+        "gitlens-pinned-filled": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "pinned-filled icon: $(gitlens-pinned-filled)"
+        },
+        "gitlens-clock": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "clock icon: $(gitlens-clock)"
+        },
+        "gitlens-provider-azdo": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "provider-azdo icon: $(gitlens-provider-azdo)"
+        },
+        "gitlens-provider-bitbucket": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "provider-bitbucket icon: $(gitlens-provider-bitbucket)"
+        },
+        "gitlens-provider-gerrit": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "provider-gerrit icon: $(gitlens-provider-gerrit)"
+        },
+        "gitlens-provider-gitea": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "provider-gitea icon: $(gitlens-provider-gitea)"
+        },
+        "gitlens-provider-github": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "provider-github icon: $(gitlens-provider-github)"
+        },
+        "gitlens-provider-gitlab": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "provider-gitlab icon: $(gitlens-provider-gitlab)"
+        },
+        "gitlens-gitlens-inspect": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "gitlens-inspect icon: $(gitlens-gitlens-inspect)"
+        },
+        "gitlens-workspaces-view": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "workspaces-view icon: $(gitlens-workspaces-view)"
+        },
+        "copilot-logo": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "GitHub Copilot icon: $(copilot-logo)"
+        },
+        "copilot-warning": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "GitHub Copilot icon: $(copilot-warning)"
+        },
+        "copilot-notconnected": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "GitHub Copilot icon: $(copilot-notconnected)"
+        },
+        "gitlab-code-suggestions-loading": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "GitLab Code Suggestions Loading: $(gitlab-code-suggestions-loading)"
+        },
+        "gitlab-code-suggestions-enabled": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "GitLab Code Suggestions Enabled: $(gitlab-code-suggestions-enabled)"
+        },
+        "gitlab-code-suggestions-disabled": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "GitLab Code Suggestions Disabled: $(gitlab-code-suggestions-disabled)"
+        },
+        "gitlab-code-suggestions-error": {
+            "$ref": "#/definitions/icons",
+            "markdownDescription": "GitLab Code Suggestions Error: $(gitlab-code-suggestions-error)"
         }
     }
 }

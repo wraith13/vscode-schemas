@@ -1,0 +1,93 @@
+{
+    "type": "object",
+    "allowComments": true,
+    "allowTrailingCommas": true,
+    "properties": {
+        "fonts": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "The ID of the font.",
+                        "pattern": "^([\\w_-]+)$",
+                        "patternErrorMessage": "The ID must only contain letters, numbers, underscore and minus."
+                    },
+                    "src": {
+                        "type": "array",
+                        "description": "The location of the font.",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "path": {
+                                    "type": "string",
+                                    "description": "The font path, relative to the current product icon theme file."
+                                },
+                                "format": {
+                                    "type": "string",
+                                    "description": "The format of the font.",
+                                    "enum": [
+                                        "woff",
+                                        "woff2",
+                                        "truetype",
+                                        "opentype",
+                                        "embedded-opentype",
+                                        "svg"
+                                    ]
+                                }
+                            },
+                            "required": [
+                                "path",
+                                "format"
+                            ]
+                        }
+                    },
+                    "weight": {
+                        "type": "string",
+                        "description": "The weight of the font. See https://developer.mozilla.org/en-US/docs/Web/CSS/font-weight for valid values.",
+                        "anyOf": [
+                            {
+                                "enum": [
+                                    "normal",
+                                    "bold",
+                                    "lighter",
+                                    "bolder"
+                                ]
+                            },
+                            {
+                                "type": "string",
+                                "pattern": "^(normal|bold|lighter|bolder|(\\d{0-1000}))$"
+                            }
+                        ]
+                    },
+                    "style": {
+                        "type": "string",
+                        "description": "The style of the font. See https://developer.mozilla.org/en-US/docs/Web/CSS/font-style for valid values.",
+                        "anyOf": [
+                            {
+                                "enum": [
+                                    "normal",
+                                    "italic",
+                                    "oblique"
+                                ]
+                            },
+                            {
+                                "type": "string",
+                                "pattern": "^(normal|italic|(oblique[ \\w\\s-]+))$"
+                            }
+                        ]
+                    }
+                },
+                "required": [
+                    "id",
+                    "src"
+                ]
+            }
+        },
+        "iconDefinitions": {
+            "description": "Association of icon name to a font character.",
+            "$ref": "vscode://schemas/icons"
+        }
+    }
+}

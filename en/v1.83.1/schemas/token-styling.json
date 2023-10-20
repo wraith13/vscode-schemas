@@ -1,0 +1,2215 @@
+{
+    "type": "object",
+    "properties": {
+        "comment": {
+            "description": "Style for comments.",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "string": {
+            "description": "Style for strings.",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "keyword": {
+            "description": "Style for keywords.",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "number": {
+            "description": "Style for numbers.",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "regexp": {
+            "description": "Style for expressions.",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "operator": {
+            "description": "Style for operators",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "namespace": {
+            "description": "Style for namespaces.",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "type": {
+            "description": "Style for types.",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "struct": {
+            "description": "Style for structs.",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "class": {
+            "description": "Style for classes.",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "interface": {
+            "description": "Style for interfaces.",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "enum": {
+            "description": "Style for enums.",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "typeParameter": {
+            "description": "Style for type parameters.",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "function": {
+            "description": "Style for functions",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "member": {
+            "description": "Style for member functions",
+            "deprecationMessage": "Deprecated use `method` instead",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "method": {
+            "description": "Style for method (member functions)",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "macro": {
+            "description": "Style for macros.",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "variable": {
+            "description": "Style for variables.",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "parameter": {
+            "description": "Style for parameters.",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "property": {
+            "description": "Style for properties.",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "enumMember": {
+            "description": "Style for enum members.",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "event": {
+            "description": "Style for events.",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "decorator": {
+            "description": "Style for decorators & annotations.",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "label": {
+            "description": "Style for labels",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "*.declaration": {
+            "description": "Style for all symbol declarations.",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "*.documentation": {
+            "description": "Style to use for references in documentation.",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "*.static": {
+            "description": "Style to use for symbols that are static.",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "*.abstract": {
+            "description": "Style to use for symbols that are abstract.",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "*.deprecated": {
+            "description": "Style to use for symbols that are deprecated.",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "*.modification": {
+            "description": "Style to use for write accesses.",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "*.async": {
+            "description": "Style for async functions and the `async` and `await` keywords",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "*.readonly": {
+            "description": "Style to use for symbols that are read-only.",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "module": {
+            "description": "module",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "intrinsic": {
+            "description": "intrinsic",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "selfParameter": {
+            "description": "self parameter",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "clsParameter": {
+            "description": "cls parameter",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "magicFunction": {
+            "description": "magic aka dunder function",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "builtinConstant": {
+            "description": "constants like True, False, None, or __debug__",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "parenthesis": {
+            "description": "Style for ( or )",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "bracket": {
+            "description": "Style for [ or ]",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "curlybrace": {
+            "description": "{} curly brace",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "colon": {
+            "description": "Style for :",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "semicolon": {
+            "description": "Style for ;",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "arrow": {
+            "description": "arrow token",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "referenceType": {
+            "description": "Style for C++/CLI reference types.",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "cliProperty": {
+            "description": "Style for C++/CLI properties.",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "genericType": {
+            "description": "Style for C++/CLI generic types.",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "valueType": {
+            "description": "Style for C++/CLI value types.",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "templateFunction": {
+            "description": "Style for C++ template functions.",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "templateType": {
+            "description": "Style for C++ template types.",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "operatorOverload": {
+            "description": "Style for C++ overloaded operators.",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "memberOperatorOverload": {
+            "description": "Style for C++ overloaded operator member functions.",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "newOperator": {
+            "description": "Style for C++ `new` or `delete` operators.",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "customLiteral": {
+            "description": "Style for C++ user-defined literals.",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "numberLiteral": {
+            "description": "Style for C++ user-defined literal numbers.",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "stringLiteral": {
+            "description": "Style for C++ user-defined literal strings.",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "bool": {
+            "description": "A boolean literal",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "punct": {
+            "description": "Punctuation in code",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "escape": {
+            "description": "Escape sequence",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "link": {
+            "description": "Hyperlink",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "raw": {
+            "description": "Raw text",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "ref": {
+            "description": "Reference to a label",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "heading": {
+            "description": "Heading",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "marker": {
+            "description": "List, enum, or term list marker",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "term": {
+            "description": "Term in a term list",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "delim": {
+            "description": "Delimiter of a different type of markup",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "pol": {
+            "description": "Interpolated variable",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "error": {
+            "description": "Syntax error",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "text": {
+            "description": "Text",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "angle": {
+            "description": "Style for < or >",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "arithmetic": {
+            "description": "Style for arithmetic operators",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "attribute": {
+            "description": "Style for attributes",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "attributeBracket": {
+            "description": "Style for attribute invocation brackets, that is the `#[` and `]` tokens",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "bitwise": {
+            "description": "Style for bitwise operators",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "boolean": {
+            "description": "Style for boolean literals",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "brace": {
+            "description": "Style for { or }",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "builtinAttribute": {
+            "description": "Style for builtin attributes",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "builtinType": {
+            "description": "Style for builtin types",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "character": {
+            "description": "Style for character literals",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "comma": {
+            "description": "Style for ,",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "comparison": {
+            "description": "Style for comparison operators",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "constParameter": {
+            "description": "Style for const generics",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "derive": {
+            "description": "Style for derives",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "deriveHelper": {
+            "description": "Style for derive helpers",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "dot": {
+            "description": "Style for .",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "escapeSequence": {
+            "description": "Style for char or byte escapes in strings",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "formatSpecifier": {
+            "description": "Style for {} placeholders in format strings",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "invalidEscapeSequence": {
+            "description": "Style for invalid char or byte escapes in strings",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "lifetime": {
+            "description": "Style for lifetimes",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "logical": {
+            "description": "Style for logic operators",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "macroBang": {
+            "description": "Style for the ! token of macro calls",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "punctuation": {
+            "description": "Style for generic punctuation",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "selfKeyword": {
+            "description": "Style for the self keyword",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "selfTypeKeyword": {
+            "description": "Style for the self type keyword",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "typeAlias": {
+            "description": "Style for type aliases",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "union": {
+            "description": "Style for C-style untagged unions",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "unresolvedReference": {
+            "description": "Style for names which can not be resolved due to compilation errors",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "tomlArrayKey": {
+            "description": "Keys of regular arrays.",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "tomlTableKey": {
+            "description": "Keys of inline tables.",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "*.typeHint": {
+            "description": "inside a type annotation",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "*.typeHintComment": {
+            "description": "inside a comment style type annotation",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "*.decorator": {
+            "description": "inside a decorator",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "*.builtin": {
+            "description": "built-in identifier",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "*.overridden": {
+            "description": "overridden token",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "*.global": {
+            "description": "Style to use for symbols that are global.",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "*.local": {
+            "description": "Style to use for symbols that are local.",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "*.math": {
+            "description": "Math mode markup",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "*.strong": {
+            "description": "Strong (usually bolded) text",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "*.emph": {
+            "description": "Emphasized (usually italicized) text",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "*.attribute": {
+            "description": "Style for elements within attributes",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "*.callable": {
+            "description": "Style for locals whose types implements one of the `Fn*` traits",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "*.constant": {
+            "description": "Style for compile-time constants",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "*.consuming": {
+            "description": "Style for locals that are being consumed when use in a function call",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "*.controlFlow": {
+            "description": "Style for control-flow related tokens, this includes the `?` operator",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "*.crateRoot": {
+            "description": "Style for names resolving to a crate root",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "*.injected": {
+            "description": "Style for doc-string injected highlighting like rust source blocks in documentation",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "*.intraDocLink": {
+            "description": "Style for intra doc links in doc-strings",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "*.library": {
+            "description": "Style for items that are defined outside of the current crate",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "*.mutable": {
+            "description": "Style for mutable locals and statics as well as functions taking `&mut self`",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "*.public": {
+            "description": "Style for items that are from the current crate and are `pub`",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "*.reference": {
+            "description": "Style for locals behind a reference and functions taking `self` by reference",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "*.trait": {
+            "description": "Style for associated trait items",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        },
+        "*.unsafe": {
+            "description": "Style for unsafe operations, like unsafe function calls, as well as the `unsafe` token",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        }
+    },
+    "patternProperties": {
+        "^(\\w+[-_\\w+]*|\\*)(\\.\\w+[-_\\w+]*)*(:\\w+[-_\\w+]*)?$": {
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ],
+            "anyOf": [
+                {
+                    "type": "string",
+                    "format": "color-hex"
+                },
+                {
+                    "$ref": "#/definitions/style"
+                }
+            ]
+        }
+    },
+    "additionalProperties": false,
+    "definitions": {
+        "style": {
+            "type": "object",
+            "description": "Colors and styles for the token.",
+            "properties": {
+                "foreground": {
+                    "type": "string",
+                    "description": "Foreground color for the token.",
+                    "format": "color-hex",
+                    "default": "#ff0000"
+                },
+                "background": {
+                    "type": "string",
+                    "deprecationMessage": "Token background colors are currently not supported."
+                },
+                "fontStyle": {
+                    "type": "string",
+                    "description": "Sets the all font styles of the rule: 'italic', 'bold', 'underline' or 'strikethrough' or a combination. All styles that are not listed are unset. The empty string unsets all styles.",
+                    "pattern": "^(\\s*(italic|bold|underline|strikethrough))*\\s*$",
+                    "patternErrorMessage": "Font style must be 'italic', 'bold', 'underline' or 'strikethrough' or a combination. The empty string unsets all styles.",
+                    "defaultSnippets": [
+                        {
+                            "label": "None (clear inherited style)",
+                            "bodyText": "\"\""
+                        },
+                        {
+                            "body": "italic"
+                        },
+                        {
+                            "body": "bold"
+                        },
+                        {
+                            "body": "underline"
+                        },
+                        {
+                            "body": "strikethrough"
+                        },
+                        {
+                            "body": "italic bold"
+                        },
+                        {
+                            "body": "italic underline"
+                        },
+                        {
+                            "body": "italic strikethrough"
+                        },
+                        {
+                            "body": "bold underline"
+                        },
+                        {
+                            "body": "bold strikethrough"
+                        },
+                        {
+                            "body": "underline strikethrough"
+                        },
+                        {
+                            "body": "italic bold underline"
+                        },
+                        {
+                            "body": "italic bold strikethrough"
+                        },
+                        {
+                            "body": "italic underline strikethrough"
+                        },
+                        {
+                            "body": "bold underline strikethrough"
+                        },
+                        {
+                            "body": "italic bold underline strikethrough"
+                        }
+                    ]
+                },
+                "bold": {
+                    "type": "boolean",
+                    "description": "Sets or unsets the font style to bold. Note, the presence of 'fontStyle' overrides this setting."
+                },
+                "italic": {
+                    "type": "boolean",
+                    "description": "Sets or unsets the font style to italic. Note, the presence of 'fontStyle' overrides this setting."
+                },
+                "underline": {
+                    "type": "boolean",
+                    "description": "Sets or unsets the font style to underline. Note, the presence of 'fontStyle' overrides this setting."
+                },
+                "strikethrough": {
+                    "type": "boolean",
+                    "description": "Sets or unsets the font style to strikethrough. Note, the presence of 'fontStyle' overrides this setting."
+                }
+            },
+            "defaultSnippets": [
+                {
+                    "body": {
+                        "foreground": "${1:#FF0000}",
+                        "fontStyle": "${2:bold}"
+                    }
+                }
+            ]
+        }
+    }
+}
