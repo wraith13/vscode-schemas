@@ -306,7 +306,7 @@
         "diffEditor.hideUnchangedRegions.enabled": {
             "type": "boolean",
             "default": false,
-            "markdownDescription": "Controls whether the diff editor shows unchanged regions. Only works when `#diffEditor.experimental.useVersion2#` is set.",
+            "markdownDescription": "Controls whether the diff editor shows unchanged regions.",
             "defaultDefaultValue": false,
             "scope": 5,
             "restricted": false
@@ -314,7 +314,7 @@
         "diffEditor.hideUnchangedRegions.revealLineCount": {
             "type": "integer",
             "default": 20,
-            "markdownDescription": "Controls how many lines are used for unchanged regions. Only works when `#diffEditor.experimental.useVersion2#` is set.",
+            "markdownDescription": "Controls how many lines are used for unchanged regions.",
             "minimum": 1,
             "defaultDefaultValue": 20,
             "scope": 5,
@@ -323,7 +323,7 @@
         "diffEditor.hideUnchangedRegions.minimumLineCount": {
             "type": "integer",
             "default": 3,
-            "markdownDescription": "Controls how many lines are used as a minimum for unchanged regions. Only works when `#diffEditor.experimental.useVersion2#` is set.",
+            "markdownDescription": "Controls how many lines are used as a minimum for unchanged regions.",
             "minimum": 1,
             "defaultDefaultValue": 3,
             "scope": 5,
@@ -332,7 +332,7 @@
         "diffEditor.hideUnchangedRegions.contextLineCount": {
             "type": "integer",
             "default": 3,
-            "markdownDescription": "Controls how many lines are used as context when comparing unchanged regions. Only works when `#diffEditor.experimental.useVersion2#` is set.",
+            "markdownDescription": "Controls how many lines are used as context when comparing unchanged regions.",
             "minimum": 1,
             "defaultDefaultValue": 3,
             "scope": 5,
@@ -341,19 +341,8 @@
         "diffEditor.experimental.showMoves": {
             "type": "boolean",
             "default": false,
-            "markdownDescription": "Controls whether the diff editor should show detected code moves. Only works when `#diffEditor.experimental.useVersion2#` is set.",
+            "markdownDescription": "Controls whether the diff editor should show detected code moves.",
             "defaultDefaultValue": false,
-            "scope": 5,
-            "restricted": false
-        },
-        "diffEditor.experimental.useVersion2": {
-            "type": "boolean",
-            "default": true,
-            "description": "Controls whether the diff editor uses the new or the old implementation.",
-            "tags": [
-                "experimental"
-            ],
-            "defaultDefaultValue": true,
             "scope": 5,
             "restricted": false
         },
@@ -433,6 +422,26 @@
                 ""
             ],
             "description": "Controls whether the editor should automatically close brackets after the user adds an opening bracket.",
+            "type": "string",
+            "enum": [
+                "always",
+                "languageDefined",
+                "beforeWhitespace",
+                "never"
+            ],
+            "default": "languageDefined",
+            "defaultDefaultValue": "languageDefined",
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.autoClosingComments": {
+            "enumDescriptions": [
+                "",
+                "Use language configurations to determine when to autoclose comments.",
+                "Autoclose comments only when the cursor is to the left of whitespace.",
+                ""
+            ],
+            "description": "Controls whether the editor should automatically close comments after the user adds an opening comment.",
             "type": "string",
             "enum": [
                 "always",
@@ -789,7 +798,7 @@
                 "`cursorSurroundingLines` is enforced only when triggered via the keyboard or API.",
                 "`cursorSurroundingLines` is enforced always."
             ],
-            "description": "Controls when `cursorSurroundingLines` should be enforced.",
+            "markdownDescription": "Controls when `#cursorSurroundingLines#` should be enforced.",
             "type": "string",
             "enum": [
                 "default",
@@ -920,6 +929,15 @@
             "scope": 5,
             "restricted": false
         },
+        "editor.find.globalFindClipboard": {
+            "type": "boolean",
+            "default": false,
+            "description": "Controls whether the Find Widget should read or modify the shared find clipboard on macOS.",
+            "included": true,
+            "defaultDefaultValue": false,
+            "scope": 5,
+            "restricted": false
+        },
         "editor.find.addExtraSpaceOnTop": {
             "type": "boolean",
             "default": true,
@@ -997,8 +1015,8 @@
         "editor.fontFamily": {
             "description": "Controls the font family.",
             "type": "string",
-            "default": "Consolas, 'Courier New', monospace",
-            "defaultDefaultValue": "Consolas, 'Courier New', monospace",
+            "default": "Menlo, Monaco, 'Courier New', monospace",
+            "defaultDefaultValue": "Menlo, Monaco, 'Courier New', monospace",
             "scope": 5,
             "restricted": false
         },
@@ -1023,9 +1041,9 @@
             "type": "number",
             "minimum": 6,
             "maximum": 100,
-            "default": 14,
+            "default": 12,
             "description": "Controls the font size in pixels.",
-            "defaultDefaultValue": 14,
+            "defaultDefaultValue": 12,
             "scope": 5,
             "restricted": false
         },
@@ -1341,6 +1359,15 @@
             "default": true,
             "description": "Controls whether the hover should remain visible when mouse is moved over it.",
             "defaultDefaultValue": true,
+            "scope": 5,
+            "restricted": false
+        },
+        "editor.hover.hidingDelay": {
+            "type": "integer",
+            "minimum": 0,
+            "default": 300,
+            "description": "Controls the delay in milliseconds after thich the hover is hidden. Requires `editor.hover.sticky` to be enabled.",
+            "defaultDefaultValue": 300,
             "scope": 5,
             "restricted": false
         },
@@ -2785,8 +2812,8 @@
             ],
             "markdownEnumDescriptions": [
                 "Inlay hints are enabled",
-                "Inlay hints are showing by default and hide when holding Ctrl+Alt",
-                "Inlay hints are hidden by default and show when holding Ctrl+Alt",
+                "Inlay hints are showing by default and hide when holding Ctrl+Option",
+                "Inlay hints are hidden by default and show when holding Ctrl+Option",
                 "Inlay hints are disabled"
             ],
             "defaultDefaultValue": "on",
@@ -2859,6 +2886,14 @@
             "scope": 5,
             "restricted": false
         },
+        "editor.rename.enablePreview": {
+            "scope": 5,
+            "description": "Enable/disable the ability to preview changes before renaming",
+            "default": true,
+            "type": "boolean",
+            "defaultDefaultValue": true,
+            "restricted": false
+        },
         "editor.codeActionWidget.showHeaders": {
             "type": "boolean",
             "scope": 5,
@@ -2867,12 +2902,12 @@
             "defaultDefaultValue": true,
             "restricted": false
         },
-        "editor.rename.enablePreview": {
-            "scope": 5,
-            "description": "Enable/disable the ability to preview changes before renaming",
-            "default": true,
+        "editor.codeActionWidget.includeNearbyQuickfixes": {
             "type": "boolean",
-            "defaultDefaultValue": true,
+            "scope": 5,
+            "description": "Enable/disable showing nearest quickfix within a line when not currently on a diagnostic.",
+            "default": false,
+            "defaultDefaultValue": false,
             "restricted": false
         },
         "editor.experimental.dropIntoEditor.defaultProvider": {
@@ -3118,12 +3153,33 @@
                     "type": "object",
                     "properties": {
                         "source.fixAll": {
-                            "type": "boolean",
+                            "type": [
+                                "string",
+                                "boolean"
+                            ],
+                            "enum": [
+                                "always",
+                                "explicit",
+                                "never",
+                                true,
+                                false
+                            ],
+                            "enumDescriptions": [
+                                "Triggers Code Actions on explicit saves and auto saves triggered by window or focus changes.",
+                                "Triggers Code Actions only when explicitly saved",
+                                "Never triggers Code Actions on save",
+                                "Triggers Code Actions only when explicitly saved. This value will be deprecated in favor of \"explicit\".",
+                                "Never triggers Code Actions on save. This value will be deprecated in favor of \"never\"."
+                            ],
+                            "default": true,
                             "description": "Controls whether auto fix action should be run on file save."
                         }
                     },
                     "additionalProperties": {
-                        "type": "boolean"
+                        "type": [
+                            "string",
+                            "boolean"
+                        ]
                     }
                 },
                 {
@@ -3133,18 +3189,71 @@
                     }
                 }
             ],
+            "markdownDescription": "Run CodeActions for the editor on save. CodeActions must be specified and the editor must not be shutting down. Example: `\"source.organizeImports\": \"explicit\" `",
+            "type": [
+                "object",
+                "array"
+            ],
+            "additionalProperties": {
+                "type": [
+                    "string",
+                    "boolean"
+                ],
+                "enum": [
+                    "always",
+                    "explicit",
+                    "never",
+                    true,
+                    false
+                ]
+            },
             "default": {},
-            "description": "Code Action kinds to be run on save.",
             "scope": 5,
             "defaultDefaultValue": {},
             "restricted": false,
             "properties": {
                 "source.fixAll": {
-                    "type": "boolean",
+                    "type": [
+                        "string",
+                        "boolean"
+                    ],
+                    "enum": [
+                        "always",
+                        "explicit",
+                        "never",
+                        true,
+                        false
+                    ],
+                    "enumDescriptions": [
+                        "Triggers Code Actions on explicit saves and auto saves triggered by window or focus changes.",
+                        "Triggers Code Actions only when explicitly saved",
+                        "Never triggers Code Actions on save",
+                        "Triggers Code Actions only when explicitly saved. This value will be deprecated in favor of \"explicit\".",
+                        "Never triggers Code Actions on save. This value will be deprecated in favor of \"never\"."
+                    ],
+                    "default": true,
                     "description": "Controls whether auto fix action should be run on file save."
                 },
                 "source.organizeImports": {
-                    "type": "boolean",
+                    "type": [
+                        "string",
+                        "boolean"
+                    ],
+                    "enum": [
+                        "always",
+                        "explicit",
+                        "never",
+                        true,
+                        false
+                    ],
+                    "enumDescriptions": [
+                        "Triggers Code Actions on explicit saves and auto saves triggered by window or focus changes.",
+                        "Triggers Code Actions only when explicitly saved",
+                        "Never triggers Code Actions on save",
+                        "Triggers Code Actions only when explicitly saved. This value will be deprecated in favor of \"explicit\".",
+                        "Never triggers Code Actions on save. This value will be deprecated in favor of \"never\"."
+                    ],
+                    "default": true,
                     "description": "Controls whether 'Organize Imports' actions should be run on file save."
                 }
             }
@@ -3158,111 +3267,246 @@
             "default": null,
             "enum": [
                 null,
+                "asciidoctor.asciidoctor-vscode",
+                "astro-build.astro-vscode",
+                "webfreak.code-d",
+                "GitHub.copilot",
+                "GitHub.copilot-chat",
+                "ms-vscode.cpptools",
                 "vscode.css-language-features",
+                "tamasfe.even-better-toml",
+                "golang.go",
+                "karunamurti.haml",
                 "vscode.html-language-features",
                 "vscode.json-language-features",
+                "sclu1034.justfile",
+                "justusadam.language-haskell",
+                "James-Yu.latex-workshop",
+                "sumneko.lua",
                 "vscode.markdown-language-features",
+                "scalameta.metals",
+                "jnoortheen.nix-ide",
                 "vscode.php-language-features",
+                "ms-python.python",
                 "vscode.references-view",
+                "rust-lang.rust-analyzer",
                 "vscode.search-result",
+                "svelte.svelte-vscode",
+                "vknabel.swift-coverage",
+                "sswg.swift-lang",
                 "vscode.typescript-language-features",
+                "denoland.vscode-deno",
+                "dbaeumer.vscode-eslint",
+                "unifiedjs.vscode-mdx",
+                "ms-python.vscode-pylance",
+                "redhat.vscode-yaml",
+                "kamadorueda.alejandra",
+                "aaron-bond.better-comments",
+                "Catppuccin.catppuccin-vsc",
+                "naumovs.color-highlight",
                 "vscode.configuration-editing",
                 "vscode.debug-auto-launch",
                 "vscode.debug-server-ready",
+                "mkhl.direnv",
                 "vscode.emmet",
+                "usernamehw.errorlens",
                 "vscode.extension-editing",
                 "vscode.git",
                 "vscode.git-base",
                 "vscode.github",
                 "vscode.github-authentication",
+                "GitLab.gitlab-workflow",
+                "eamodio.gitlens",
                 "vscode.grunt",
                 "vscode.gulp",
                 "vscode.ipynb",
                 "vscode.jake",
                 "ms-vscode.js-debug",
                 "ms-vscode.js-debug-companion",
+                "lunuan.kubernetes-templates",
                 "vscode.markdown-math",
                 "vscode.media-preview",
                 "vscode.merge-conflict",
                 "vscode.microsoft-authentication",
                 "vscode.npm",
-                "ms-vscode-remote.remote-wsl-recommender",
+                "esbenp.prettier-vscode",
                 "wraith13.save-vscode-schemas",
                 "vscode.simple-browser",
+                "ms-vscode.test-adapter-converter",
+                "Gruntfuggly.todo-tree",
                 "vscode.tunnel-forwarding",
-                "ms-vscode.vscode-js-profile-table"
+                "nvarner.typst-lsp",
+                "vscodevim.vim",
+                "ms-vscode.vscode-js-profile-table",
+                "ms-kubernetes-tools.vscode-kubernetes-tools",
+                "vadimcn.vscode-lldb",
+                "GitHub.vscode-pull-request-github",
+                "bradlc.vscode-tailwindcss",
+                "hbenl.vscode-test-explorer",
+                "LeonardSSH.vscord",
+                "ms-vsliveshare.vsliveshare"
             ],
             "enumItemLabels": [
                 "All",
+                "AsciiDoc",
+                "Astro",
+                "D Programming Language (code-d)",
+                "GitHub Copilot",
+                "GitHub Copilot Chat",
+                "C/C++",
                 "CSS Language Features",
+                "Even Better TOML",
+                "Go",
+                "Better Haml",
                 "HTML Language Features",
                 "JSON Language Features",
+                "justfile",
+                "Haskell Syntax Highlighting",
+                "LaTeX Workshop",
+                "Lua",
                 "Markdown Language Features",
+                "Scala (Metals)",
+                "Nix IDE",
                 "PHP Language Features",
+                "Python",
                 "Reference Search View",
+                "rust-analyzer",
                 "Search Result",
+                "Svelte for VS Code",
+                "Swift Coverage",
+                "Swift",
                 "TypeScript and JavaScript Language Features",
+                "Deno",
+                "ESLint",
+                "MDX",
+                "Pylance",
+                "YAML",
+                "Alejandra 💅",
+                "Better Comments",
+                "Catppuccin for VSCode",
+                "Color Highlight",
                 "Configuration Editing",
                 "Node Debug Auto-attach",
                 "Server Ready Action",
+                "direnv",
                 "Emmet",
+                "Error Lens",
                 "Extension Authoring",
                 "Git",
                 "Git Base",
                 "GitHub",
                 "GitHub Authentication",
+                "GitLab Workflow",
+                "GitLens — Git supercharged",
                 "Grunt support for VS Code",
                 "Gulp support for VSCode",
                 ".ipynb Support",
                 "Jake support for VS Code",
                 "JavaScript Debugger",
                 "JavaScript Debugger Companion Extension",
+                "Kubernetes Templates",
                 "Markdown Math",
                 "Media Preview",
                 "Merge Conflict",
                 "Microsoft Account",
                 "NPM support for VS Code",
-                "WSL: Recommender",
+                "Prettier - Code formatter",
                 "save-vscode-schemas",
                 "Simple Browser",
+                "Test Adapter Converter",
+                "Todo Tree",
                 "Local Tunnel Port Forwarding",
-                "Table Visualizer for JavaScript Profiles"
+                "Typst LSP",
+                "Vim",
+                "Table Visualizer for JavaScript Profiles",
+                "Kubernetes",
+                "CodeLLDB",
+                "GitHub Pull Requests and Issues",
+                "Tailwind CSS IntelliSense",
+                "Test Explorer UI",
+                "Discord Rich Presence",
+                "Live Share"
             ],
             "markdownEnumDescriptions": [
                 "All active folding range providers",
+                "Provides rich language support for AsciiDoc.",
+                "Language support for Astro",
+                "auto-complete, snippets, linter and formatter for dlang",
+                "Your AI pair programmer",
+                "AI chat features powered by Copilot",
+                "C/C++ IntelliSense, debugging, and code browsing.",
                 "Provides rich language support for CSS, LESS and SCSS files.",
+                "Fully-featured TOML support",
+                "Rich Go language support for Visual Studio Code",
+                "Better Haml syntax highlighting, auto close and suggestions",
                 "Provides rich language support for HTML and Handlebar files",
                 "Provides rich language support for JSON files.",
+                "Provides syntax and recipe launcher for Just scripts.",
+                "Syntax support for the Haskell programming language.",
+                "Boost LaTeX typesetting efficiency with preview, compile, autocomplete, colorize, and more.",
+                "Lua Language Server coded by Lua",
                 "Provides rich language support for Markdown.",
+                "Scala language server with rich IDE features",
+                "Nix language support with formatting and error report.",
                 "Provides rich language support for PHP files.",
+                "IntelliSense (Pylance), Linting, Debugging (multi-threaded, remote), code formatting, refactoring, unit tests, and more.",
                 "Reference Search results as separate, stable view in the sidebar",
+                "Rust language support for Visual Studio Code",
                 "Provides syntax highlighting and language features for tabbed search results.",
+                "Svelte language support for VS Code",
+                "Display coverage reports next to your code for Swift Package Manager projects.",
+                "Swift Language Support for Visual Studio Code.",
                 "Provides rich language support for JavaScript and TypeScript.",
+                "A language server client for Deno.",
+                "Integrates ESLint JavaScript into VS Code.",
+                "Language support for MDX",
+                "A performant, feature-rich language server for Python in VS Code",
+                "YAML Language Support by Red Hat, with built-in Kubernetes syntax support",
+                "The Uncompromising Nix Code Formatter",
+                "Improve your code commenting by annotating with alert, informational, TODOs, and more!",
+                "🦌 Soothing pastel theme for VSCode",
+                "Highlight web colors in your editor",
                 "Provides capabilities (advanced IntelliSense, auto-fixing) in configuration files like settings, launch, and extension recommendation files.",
                 "Helper for auto-attach feature when node-debug extensions are not active.",
                 "Open URI in browser if server under debugging is ready.",
+                "unclutter your .profile",
                 "Emmet support for VS Code",
+                "Improve highlighting of errors, warnings and other language diagnostics.",
                 "Provides linting capabilities for authoring extensions.",
                 "Git SCM Integration",
                 "Git static contributions and pickers.",
                 "GitHub features for VS Code",
                 "GitHub Authentication Provider",
+                "Official GitLab-maintained extension for Visual Studio Code.",
+                "Supercharge Git within VS Code — Visualize code authorship at a glance via Git blame annotations and CodeLens, seamlessly navigate and explore Git repositories, gain valuable insights via rich visualizations and powerful comparison commands, and so much more",
                 "Extension to add Grunt capabilities to VS Code.",
                 "Extension to add Gulp capabilities to VSCode.",
                 "Provides basic support for opening and reading Jupyter's .ipynb notebook files",
                 "Extension to add Jake capabilities to VS Code.",
                 "An extension for debugging Node.js programs and Chrome.",
                 "Companion extension to js-debug that provides capability for remote debugging",
+                "Kubernetes Templates",
                 "Adds math support to Markdown in notebooks.",
                 "Provides VS Code's built-in previews for images, audio, and video",
                 "Highlighting and commands for inline merge conflicts.",
                 "Microsoft authentication provider",
                 "Extension to add task support for npm scripts.",
-                "Recommends using the Windows Subsystem for Linux (WSL) and the WSL extension.",
+                "Code formatter using prettier",
                 "Save VS Code's schemas",
                 "A very basic built-in webview for displaying web content.",
+                "Converter extension from the Test Adapter UI to native VS Code testing",
+                "Show TODO, FIXME, etc. comment tags in a tree view",
                 "Allows forwarding local ports to be accessible over the internet.",
-                "Text visualizer for profiles taken from the JavaScript debugger"
+                "A language server for Typst",
+                "Vim emulation for Visual Studio Code",
+                "Text visualizer for profiles taken from the JavaScript debugger",
+                "Develop, deploy and debug Kubernetes applications",
+                "A native debugger powered by LLDB.  Debug C++, Rust and other compiled languages.",
+                "Pull Request and Issue Provider for GitHub",
+                "Intelligent Tailwind CSS tooling for VS Code",
+                "Run your tests in the Sidebar of Visual Studio Code",
+                "Highly customizable Discord Rich Presence extension for Visual Studio Code",
+                "Real-time collaborative development from the comfort of your favorite tools."
             ],
             "defaultDefaultValue": null,
             "scope": 5,
@@ -3277,111 +3521,246 @@
             "default": null,
             "enum": [
                 null,
+                "kamadorueda.alejandra",
+                "asciidoctor.asciidoctor-vscode",
+                "astro-build.astro-vscode",
+                "aaron-bond.better-comments",
+                "webfreak.code-d",
+                "GitHub.copilot",
+                "GitHub.copilot-chat",
+                "ms-vscode.cpptools",
                 "vscode.css-language-features",
+                "tamasfe.even-better-toml",
+                "golang.go",
+                "karunamurti.haml",
                 "vscode.html-language-features",
                 "vscode.json-language-features",
+                "sclu1034.justfile",
+                "justusadam.language-haskell",
+                "James-Yu.latex-workshop",
+                "sumneko.lua",
                 "vscode.markdown-language-features",
+                "scalameta.metals",
+                "jnoortheen.nix-ide",
                 "vscode.php-language-features",
+                "esbenp.prettier-vscode",
+                "ms-python.python",
                 "vscode.references-view",
+                "rust-lang.rust-analyzer",
                 "vscode.search-result",
+                "svelte.svelte-vscode",
+                "vknabel.swift-coverage",
+                "sswg.swift-lang",
                 "vscode.typescript-language-features",
+                "denoland.vscode-deno",
+                "dbaeumer.vscode-eslint",
+                "unifiedjs.vscode-mdx",
+                "ms-python.vscode-pylance",
+                "redhat.vscode-yaml",
+                "Catppuccin.catppuccin-vsc",
+                "naumovs.color-highlight",
                 "vscode.configuration-editing",
                 "vscode.debug-auto-launch",
                 "vscode.debug-server-ready",
+                "mkhl.direnv",
                 "vscode.emmet",
+                "usernamehw.errorlens",
                 "vscode.extension-editing",
                 "vscode.git",
                 "vscode.git-base",
                 "vscode.github",
                 "vscode.github-authentication",
+                "GitLab.gitlab-workflow",
+                "eamodio.gitlens",
                 "vscode.grunt",
                 "vscode.gulp",
                 "vscode.ipynb",
                 "vscode.jake",
                 "ms-vscode.js-debug",
                 "ms-vscode.js-debug-companion",
+                "lunuan.kubernetes-templates",
                 "vscode.markdown-math",
                 "vscode.media-preview",
                 "vscode.merge-conflict",
                 "vscode.microsoft-authentication",
                 "vscode.npm",
-                "ms-vscode-remote.remote-wsl-recommender",
                 "wraith13.save-vscode-schemas",
                 "vscode.simple-browser",
+                "ms-vscode.test-adapter-converter",
+                "Gruntfuggly.todo-tree",
                 "vscode.tunnel-forwarding",
-                "ms-vscode.vscode-js-profile-table"
+                "nvarner.typst-lsp",
+                "vscodevim.vim",
+                "ms-vscode.vscode-js-profile-table",
+                "ms-kubernetes-tools.vscode-kubernetes-tools",
+                "vadimcn.vscode-lldb",
+                "GitHub.vscode-pull-request-github",
+                "bradlc.vscode-tailwindcss",
+                "hbenl.vscode-test-explorer",
+                "LeonardSSH.vscord",
+                "ms-vsliveshare.vsliveshare"
             ],
             "enumItemLabels": [
                 "None",
+                "Alejandra 💅",
+                "AsciiDoc",
+                "Astro",
+                "Better Comments",
+                "D Programming Language (code-d)",
+                "GitHub Copilot",
+                "GitHub Copilot Chat",
+                "C/C++",
                 "CSS Language Features",
+                "Even Better TOML",
+                "Go",
+                "Better Haml",
                 "HTML Language Features",
                 "JSON Language Features",
+                "justfile",
+                "Haskell Syntax Highlighting",
+                "LaTeX Workshop",
+                "Lua",
                 "Markdown Language Features",
+                "Scala (Metals)",
+                "Nix IDE",
                 "PHP Language Features",
+                "Prettier - Code formatter",
+                "Python",
                 "Reference Search View",
+                "rust-analyzer",
                 "Search Result",
+                "Svelte for VS Code",
+                "Swift Coverage",
+                "Swift",
                 "TypeScript and JavaScript Language Features",
+                "Deno",
+                "ESLint",
+                "MDX",
+                "Pylance",
+                "YAML",
+                "Catppuccin for VSCode",
+                "Color Highlight",
                 "Configuration Editing",
                 "Node Debug Auto-attach",
                 "Server Ready Action",
+                "direnv",
                 "Emmet",
+                "Error Lens",
                 "Extension Authoring",
                 "Git",
                 "Git Base",
                 "GitHub",
                 "GitHub Authentication",
+                "GitLab Workflow",
+                "GitLens — Git supercharged",
                 "Grunt support for VS Code",
                 "Gulp support for VSCode",
                 ".ipynb Support",
                 "Jake support for VS Code",
                 "JavaScript Debugger",
                 "JavaScript Debugger Companion Extension",
+                "Kubernetes Templates",
                 "Markdown Math",
                 "Media Preview",
                 "Merge Conflict",
                 "Microsoft Account",
                 "NPM support for VS Code",
-                "WSL: Recommender",
                 "save-vscode-schemas",
                 "Simple Browser",
+                "Test Adapter Converter",
+                "Todo Tree",
                 "Local Tunnel Port Forwarding",
-                "Table Visualizer for JavaScript Profiles"
+                "Typst LSP",
+                "Vim",
+                "Table Visualizer for JavaScript Profiles",
+                "Kubernetes",
+                "CodeLLDB",
+                "GitHub Pull Requests and Issues",
+                "Tailwind CSS IntelliSense",
+                "Test Explorer UI",
+                "Discord Rich Presence",
+                "Live Share"
             ],
             "markdownEnumDescriptions": [
                 "None",
+                "The Uncompromising Nix Code Formatter",
+                "Provides rich language support for AsciiDoc.",
+                "Language support for Astro",
+                "Improve your code commenting by annotating with alert, informational, TODOs, and more!",
+                "auto-complete, snippets, linter and formatter for dlang",
+                "Your AI pair programmer",
+                "AI chat features powered by Copilot",
+                "C/C++ IntelliSense, debugging, and code browsing.",
                 "Provides rich language support for CSS, LESS and SCSS files.",
+                "Fully-featured TOML support",
+                "Rich Go language support for Visual Studio Code",
+                "Better Haml syntax highlighting, auto close and suggestions",
                 "Provides rich language support for HTML and Handlebar files",
                 "Provides rich language support for JSON files.",
+                "Provides syntax and recipe launcher for Just scripts.",
+                "Syntax support for the Haskell programming language.",
+                "Boost LaTeX typesetting efficiency with preview, compile, autocomplete, colorize, and more.",
+                "Lua Language Server coded by Lua",
                 "Provides rich language support for Markdown.",
+                "Scala language server with rich IDE features",
+                "Nix language support with formatting and error report.",
                 "Provides rich language support for PHP files.",
+                "Code formatter using prettier",
+                "IntelliSense (Pylance), Linting, Debugging (multi-threaded, remote), code formatting, refactoring, unit tests, and more.",
                 "Reference Search results as separate, stable view in the sidebar",
+                "Rust language support for Visual Studio Code",
                 "Provides syntax highlighting and language features for tabbed search results.",
+                "Svelte language support for VS Code",
+                "Display coverage reports next to your code for Swift Package Manager projects.",
+                "Swift Language Support for Visual Studio Code.",
                 "Provides rich language support for JavaScript and TypeScript.",
+                "A language server client for Deno.",
+                "Integrates ESLint JavaScript into VS Code.",
+                "Language support for MDX",
+                "A performant, feature-rich language server for Python in VS Code",
+                "YAML Language Support by Red Hat, with built-in Kubernetes syntax support",
+                "🦌 Soothing pastel theme for VSCode",
+                "Highlight web colors in your editor",
                 "Provides capabilities (advanced IntelliSense, auto-fixing) in configuration files like settings, launch, and extension recommendation files.",
                 "Helper for auto-attach feature when node-debug extensions are not active.",
                 "Open URI in browser if server under debugging is ready.",
+                "unclutter your .profile",
                 "Emmet support for VS Code",
+                "Improve highlighting of errors, warnings and other language diagnostics.",
                 "Provides linting capabilities for authoring extensions.",
                 "Git SCM Integration",
                 "Git static contributions and pickers.",
                 "GitHub features for VS Code",
                 "GitHub Authentication Provider",
+                "Official GitLab-maintained extension for Visual Studio Code.",
+                "Supercharge Git within VS Code — Visualize code authorship at a glance via Git blame annotations and CodeLens, seamlessly navigate and explore Git repositories, gain valuable insights via rich visualizations and powerful comparison commands, and so much more",
                 "Extension to add Grunt capabilities to VS Code.",
                 "Extension to add Gulp capabilities to VSCode.",
                 "Provides basic support for opening and reading Jupyter's .ipynb notebook files",
                 "Extension to add Jake capabilities to VS Code.",
                 "An extension for debugging Node.js programs and Chrome.",
                 "Companion extension to js-debug that provides capability for remote debugging",
+                "Kubernetes Templates",
                 "Adds math support to Markdown in notebooks.",
                 "Provides VS Code's built-in previews for images, audio, and video",
                 "Highlighting and commands for inline merge conflicts.",
                 "Microsoft authentication provider",
                 "Extension to add task support for npm scripts.",
-                "Recommends using the Windows Subsystem for Linux (WSL) and the WSL extension.",
                 "Save VS Code's schemas",
                 "A very basic built-in webview for displaying web content.",
+                "Converter extension from the Test Adapter UI to native VS Code testing",
+                "Show TODO, FIXME, etc. comment tags in a tree view",
                 "Allows forwarding local ports to be accessible over the internet.",
-                "Text visualizer for profiles taken from the JavaScript debugger"
+                "A language server for Typst",
+                "Vim emulation for Visual Studio Code",
+                "Text visualizer for profiles taken from the JavaScript debugger",
+                "Develop, deploy and debug Kubernetes applications",
+                "A native debugger powered by LLDB.  Debug C++, Rust and other compiled languages.",
+                "Pull Request and Issue Provider for GitHub",
+                "Intelligent Tailwind CSS tooling for VS Code",
+                "Run your tests in the Sidebar of Visual Studio Code",
+                "Highly customizable Discord Rich Presence extension for Visual Studio Code",
+                "Real-time collaborative development from the comfort of your favorite tools."
             ],
             "defaultDefaultValue": null,
             "scope": 5,
@@ -4286,6 +4665,284 @@
                 "displayName": "TypeScript and JavaScript Language Features"
             },
             "defaultDefaultValue": true,
+            "restricted": false
+        },
+        "tailwindCSS.suggestions": {
+            "type": "boolean",
+            "default": true,
+            "markdownDescription": "Enable autocomplete suggestions.",
+            "scope": 5,
+            "source": {
+                "id": "bradlc.vscode-tailwindcss",
+                "displayName": "Tailwind CSS IntelliSense"
+            },
+            "defaultDefaultValue": true,
+            "restricted": false
+        },
+        "tailwindCSS.hovers": {
+            "type": "boolean",
+            "default": true,
+            "markdownDescription": "Enable hovers.",
+            "scope": 5,
+            "source": {
+                "id": "bradlc.vscode-tailwindcss",
+                "displayName": "Tailwind CSS IntelliSense"
+            },
+            "defaultDefaultValue": true,
+            "restricted": false
+        },
+        "tailwindCSS.codeActions": {
+            "type": "boolean",
+            "default": true,
+            "markdownDescription": "Enable code actions.",
+            "scope": 5,
+            "source": {
+                "id": "bradlc.vscode-tailwindcss",
+                "displayName": "Tailwind CSS IntelliSense"
+            },
+            "defaultDefaultValue": true,
+            "restricted": false
+        },
+        "tailwindCSS.colorDecorators": {
+            "type": "boolean",
+            "default": true,
+            "markdownDescription": "Controls whether the editor should render inline color decorators for Tailwind CSS classes and helper functions.",
+            "scope": 5,
+            "source": {
+                "id": "bradlc.vscode-tailwindcss",
+                "displayName": "Tailwind CSS IntelliSense"
+            },
+            "defaultDefaultValue": true,
+            "restricted": false
+        },
+        "tailwindCSS.validate": {
+            "type": "boolean",
+            "default": true,
+            "markdownDescription": "Enable linting. Rules can be configured individually using the `tailwindcss.lint.*` settings",
+            "scope": 5,
+            "source": {
+                "id": "bradlc.vscode-tailwindcss",
+                "displayName": "Tailwind CSS IntelliSense"
+            },
+            "defaultDefaultValue": true,
+            "restricted": false
+        },
+        "tailwindCSS.lint.cssConflict": {
+            "type": "string",
+            "enum": [
+                "ignore",
+                "warning",
+                "error"
+            ],
+            "default": "warning",
+            "markdownDescription": "Class names on the same HTML element which apply the same CSS property or properties",
+            "scope": 5,
+            "source": {
+                "id": "bradlc.vscode-tailwindcss",
+                "displayName": "Tailwind CSS IntelliSense"
+            },
+            "defaultDefaultValue": "warning",
+            "restricted": false
+        },
+        "tailwindCSS.lint.invalidApply": {
+            "type": "string",
+            "enum": [
+                "ignore",
+                "warning",
+                "error"
+            ],
+            "default": "error",
+            "markdownDescription": "Unsupported use of the [`@apply` directive](https://tailwindcss.com/docs/functions-and-directives/#apply)",
+            "scope": 5,
+            "source": {
+                "id": "bradlc.vscode-tailwindcss",
+                "displayName": "Tailwind CSS IntelliSense"
+            },
+            "defaultDefaultValue": "error",
+            "restricted": false
+        },
+        "tailwindCSS.lint.invalidScreen": {
+            "type": "string",
+            "enum": [
+                "ignore",
+                "warning",
+                "error"
+            ],
+            "default": "error",
+            "markdownDescription": "Unknown screen name used with the [`@screen` directive](https://tailwindcss.com/docs/functions-and-directives/#screen)",
+            "scope": 5,
+            "source": {
+                "id": "bradlc.vscode-tailwindcss",
+                "displayName": "Tailwind CSS IntelliSense"
+            },
+            "defaultDefaultValue": "error",
+            "restricted": false
+        },
+        "tailwindCSS.lint.invalidVariant": {
+            "type": "string",
+            "enum": [
+                "ignore",
+                "warning",
+                "error"
+            ],
+            "default": "error",
+            "markdownDescription": "Unknown variant name used with the [`@variants` directive](https://tailwindcss.com/docs/functions-and-directives/#variants)",
+            "scope": 5,
+            "source": {
+                "id": "bradlc.vscode-tailwindcss",
+                "displayName": "Tailwind CSS IntelliSense"
+            },
+            "defaultDefaultValue": "error",
+            "restricted": false
+        },
+        "tailwindCSS.lint.invalidConfigPath": {
+            "type": "string",
+            "enum": [
+                "ignore",
+                "warning",
+                "error"
+            ],
+            "default": "error",
+            "markdownDescription": "Unknown or invalid path used with the [`theme` helper](https://tailwindcss.com/docs/functions-and-directives/#theme)",
+            "scope": 5,
+            "source": {
+                "id": "bradlc.vscode-tailwindcss",
+                "displayName": "Tailwind CSS IntelliSense"
+            },
+            "defaultDefaultValue": "error",
+            "restricted": false
+        },
+        "tailwindCSS.lint.invalidTailwindDirective": {
+            "type": "string",
+            "enum": [
+                "ignore",
+                "warning",
+                "error"
+            ],
+            "default": "error",
+            "markdownDescription": "Unknown value used with the [`@tailwind` directive](https://tailwindcss.com/docs/functions-and-directives/#tailwind)",
+            "scope": 5,
+            "source": {
+                "id": "bradlc.vscode-tailwindcss",
+                "displayName": "Tailwind CSS IntelliSense"
+            },
+            "defaultDefaultValue": "error",
+            "restricted": false
+        },
+        "tailwindCSS.lint.recommendedVariantOrder": {
+            "type": "string",
+            "enum": [
+                "ignore",
+                "warning",
+                "error"
+            ],
+            "default": "warning",
+            "markdownDescription": "Class variants not in the recommended order (applies in [JIT mode](https://tailwindcss.com/docs/just-in-time-mode) only)",
+            "scope": 5,
+            "source": {
+                "id": "bradlc.vscode-tailwindcss",
+                "displayName": "Tailwind CSS IntelliSense"
+            },
+            "defaultDefaultValue": "warning",
+            "restricted": false
+        },
+        "tailwindCSS.experimental.classRegex": {
+            "type": "array",
+            "scope": 5,
+            "source": {
+                "id": "bradlc.vscode-tailwindcss",
+                "displayName": "Tailwind CSS IntelliSense"
+            },
+            "default": [],
+            "restricted": false
+        },
+        "gitlens.codeLens.scopes": {
+            "type": "array",
+            "default": [
+                "document",
+                "containers"
+            ],
+            "items": {
+                "type": "string",
+                "enum": [
+                    "document",
+                    "containers",
+                    "blocks"
+                ],
+                "enumDescriptions": [
+                    "Adds CodeLens at the top of the document",
+                    "Adds CodeLens at the start of container-like symbols (modules, classes, interfaces, etc)",
+                    "Adds CodeLens at the start of block-like symbols (functions, methods, etc) lines"
+                ]
+            },
+            "minItems": 0,
+            "maxItems": 3,
+            "uniqueItems": true,
+            "markdownDescription": "Specifies where Git CodeLens will be shown in the document",
+            "scope": 5,
+            "order": 40,
+            "source": {
+                "id": "eamodio.gitlens",
+                "displayName": "GitLens — Git supercharged"
+            },
+            "defaultDefaultValue": [
+                "document",
+                "containers"
+            ],
+            "restricted": false
+        },
+        "gitlens.codeLens.symbolScopes": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "uniqueItems": true,
+            "markdownDescription": "Specifies a set of document symbols where Git CodeLens will or will not be shown in the document. Prefix with `!` to avoid providing a Git CodeLens for the symbol. Must be a member of `SymbolKind`",
+            "scope": 5,
+            "order": 50,
+            "source": {
+                "id": "eamodio.gitlens",
+                "displayName": "GitLens — Git supercharged"
+            },
+            "default": [],
+            "restricted": false
+        },
+        "github.copilot.editor.enableAutoCompletions": {
+            "type": "boolean",
+            "scope": 5,
+            "default": true,
+            "description": "Automatically show inline completions",
+            "source": {
+                "id": "GitHub.copilot",
+                "displayName": "GitHub Copilot"
+            },
+            "defaultDefaultValue": true,
+            "restricted": false
+        },
+        "todo-tree.regex.regex": {
+            "default": "(//|#|<!--|;|/\\*|^|^[ \\t]*(-|\\d+.))\\s*($TAGS)",
+            "markdownDescription": "Regular expression for matching TODOs. Note: **($TAGS)** will be replaced by the expanded tag list. For some of the extension features to work, **($TAGS)** should be present in the regex, however, the basic functionality should still work if you need to explicitly expand the tag list.",
+            "type": "string",
+            "minLength": 1,
+            "scope": 5,
+            "source": {
+                "id": "Gruntfuggly.todo-tree",
+                "displayName": "Todo Tree"
+            },
+            "defaultDefaultValue": "(//|#|<!--|;|/\\*|^|^[ \\t]*(-|\\d+.))\\s*($TAGS)",
+            "restricted": false
+        },
+        "vim.textwidth": {
+            "type": "number",
+            "markdownDescription": "Width to word-wrap to when using `gq`.",
+            "default": 80,
+            "scope": 5,
+            "minimum": 1,
+            "source": {
+                "id": "vscodevim.vim",
+                "displayName": "Vim"
+            },
+            "defaultDefaultValue": 80,
             "restricted": false
         }
     },

@@ -2002,9 +2002,9 @@
                 }
             ]
         },
-        "minimap.errorHighlight": {
+        "minimap.infoHighlight": {
             "type": "string",
-            "description": "Minimap marker color for errors.",
+            "description": "Minimap marker color for infos.",
             "format": "color-hex",
             "defaultSnippets": [
                 {
@@ -2015,6 +2015,16 @@
         "minimap.warningHighlight": {
             "type": "string",
             "description": "Minimap marker color for warnings.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "minimap.errorHighlight": {
+            "type": "string",
+            "description": "Minimap marker color for errors.",
             "format": "color-hex",
             "defaultSnippets": [
                 {
@@ -4785,6 +4795,86 @@
                 }
             ]
         },
+        "commandCenter.foreground": {
+            "type": "string",
+            "description": "Foreground color of the command center",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "commandCenter.activeForeground": {
+            "type": "string",
+            "description": "Active foreground color of the command center",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "commandCenter.inactiveForeground": {
+            "type": "string",
+            "description": "Foreground color of the command center when the window is inactive",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "commandCenter.background": {
+            "type": "string",
+            "description": "Background color of the command center",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "commandCenter.activeBackground": {
+            "type": "string",
+            "description": "Active background color of the command center",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "commandCenter.border": {
+            "type": "string",
+            "description": "Border color of the command center",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "commandCenter.activeBorder": {
+            "type": "string",
+            "description": "Active border color of the command center",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "commandCenter.inactiveBorder": {
+            "type": "string",
+            "description": "Border color of the command center when the window is inactive",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
         "notificationCenter.border": {
             "type": "string",
             "description": "Notifications center border color. Notifications slide in from the bottom right of the window.",
@@ -4908,86 +4998,6 @@
         "window.inactiveBorder": {
             "type": "string",
             "description": "The color used for the border of the window when it is inactive. Only supported in the macOS and Linux desktop client when using the custom title bar.",
-            "format": "color-hex",
-            "defaultSnippets": [
-                {
-                    "body": "${1:#ff0000}"
-                }
-            ]
-        },
-        "commandCenter.foreground": {
-            "type": "string",
-            "description": "Foreground color of the command center",
-            "format": "color-hex",
-            "defaultSnippets": [
-                {
-                    "body": "${1:#ff0000}"
-                }
-            ]
-        },
-        "commandCenter.activeForeground": {
-            "type": "string",
-            "description": "Active foreground color of the command center",
-            "format": "color-hex",
-            "defaultSnippets": [
-                {
-                    "body": "${1:#ff0000}"
-                }
-            ]
-        },
-        "commandCenter.inactiveForeground": {
-            "type": "string",
-            "description": "Foreground color of the command center when the window is inactive",
-            "format": "color-hex",
-            "defaultSnippets": [
-                {
-                    "body": "${1:#ff0000}"
-                }
-            ]
-        },
-        "commandCenter.background": {
-            "type": "string",
-            "description": "Background color of the command center",
-            "format": "color-hex",
-            "defaultSnippets": [
-                {
-                    "body": "${1:#ff0000}"
-                }
-            ]
-        },
-        "commandCenter.activeBackground": {
-            "type": "string",
-            "description": "Active background color of the command center",
-            "format": "color-hex",
-            "defaultSnippets": [
-                {
-                    "body": "${1:#ff0000}"
-                }
-            ]
-        },
-        "commandCenter.border": {
-            "type": "string",
-            "description": "Border color of the command center",
-            "format": "color-hex",
-            "defaultSnippets": [
-                {
-                    "body": "${1:#ff0000}"
-                }
-            ]
-        },
-        "commandCenter.activeBorder": {
-            "type": "string",
-            "description": "Active border color of the command center",
-            "format": "color-hex",
-            "defaultSnippets": [
-                {
-                    "body": "${1:#ff0000}"
-                }
-            ]
-        },
-        "commandCenter.inactiveBorder": {
-            "type": "string",
-            "description": "Border color of the command center when the window is inactive",
             "format": "color-hex",
             "defaultSnippets": [
                 {
@@ -6105,6 +6115,16 @@
                 }
             ]
         },
+        "commandCenter.debuggingBackground": {
+            "type": "string",
+            "description": "Command center background color when a program is being debugged",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
         "editor.inlineValuesForeground": {
             "type": "string",
             "description": "Color for the debug inline value text.",
@@ -7178,6 +7198,976 @@
         "gitDecoration.submoduleResourceForeground": {
             "type": "string",
             "description": "Color for submodule resources.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "gitlens.gutterBackgroundColor": {
+            "type": "string",
+            "description": "Specifies the background color of the file blame annotations",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "gitlens.gutterForegroundColor": {
+            "type": "string",
+            "description": "Specifies the foreground color of the file blame annotations",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "gitlens.gutterUncommittedForegroundColor": {
+            "type": "string",
+            "description": "Specifies the foreground color of an uncommitted line in the file blame annotations",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "gitlens.trailingLineBackgroundColor": {
+            "type": "string",
+            "description": "Specifies the background color of the inline blame annotation for the current line",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "gitlens.trailingLineForegroundColor": {
+            "type": "string",
+            "description": "Specifies the foreground color of the inline blame annotation for the current line",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "gitlens.lineHighlightBackgroundColor": {
+            "type": "string",
+            "description": "Specifies the background color of the associated line highlights in blame annotations",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "gitlens.lineHighlightOverviewRulerColor": {
+            "type": "string",
+            "description": "Specifies the scroll bar color of the associated line highlights in blame annotations",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "gitlens.openAutolinkedIssueIconColor": {
+            "type": "string",
+            "description": "Specifies the icon color of open issues in the GitLens views",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "gitlens.closedAutolinkedIssueIconColor": {
+            "type": "string",
+            "description": "Specifies the icon color of closed issues in the GitLens views",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "gitlens.closedPullRequestIconColor": {
+            "type": "string",
+            "description": "Specifies the icon color of closed pull requests in the GitLens views",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "gitlens.openPullRequestIconColor": {
+            "type": "string",
+            "description": "Specifies the icon color of open pull requests in the GitLens views",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "gitlens.mergedPullRequestIconColor": {
+            "type": "string",
+            "description": "Specifies the icon color of merged pull requests in the GitLens views",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "gitlens.unpublishedChangesIconColor": {
+            "type": "string",
+            "description": "Specifies the icon color of unpublished changes in the GitLens views",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "gitlens.unpublishedCommitIconColor": {
+            "type": "string",
+            "description": "Specifies the icon color of unpublished commits in the GitLens views",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "gitlens.unpulledChangesIconColor": {
+            "type": "string",
+            "description": "Specifies the icon color of unpulled changes in the GitLens views",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "gitlens.decorations.addedForegroundColor": {
+            "type": "string",
+            "description": "Specifies the decoration foreground color of added files",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "gitlens.decorations.copiedForegroundColor": {
+            "type": "string",
+            "description": "Specifies the decoration foreground color of copied files",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "gitlens.decorations.deletedForegroundColor": {
+            "type": "string",
+            "description": "Specifies the decoration foreground color of deleted files",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "gitlens.decorations.ignoredForegroundColor": {
+            "type": "string",
+            "description": "Specifies the decoration foreground color of ignored files",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "gitlens.decorations.modifiedForegroundColor": {
+            "type": "string",
+            "description": "Specifies the decoration foreground color of modified files",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "gitlens.decorations.untrackedForegroundColor": {
+            "type": "string",
+            "description": "Specifies the decoration foreground color of untracked files",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "gitlens.decorations.renamedForegroundColor": {
+            "type": "string",
+            "description": "Specifies the decoration foreground color of renamed files",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "gitlens.decorations.branchAheadForegroundColor": {
+            "type": "string",
+            "description": "Specifies the decoration foreground color of branches that are ahead of their upstream",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "gitlens.decorations.branchBehindForegroundColor": {
+            "type": "string",
+            "description": "Specifies the decoration foreground color of branches that are behind their upstream",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "gitlens.decorations.branchDivergedForegroundColor": {
+            "type": "string",
+            "description": "Specifies the decoration foreground color of branches that are both ahead and behind their upstream",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "gitlens.decorations.branchUpToDateForegroundColor": {
+            "type": "string",
+            "description": "Specifies the decoration foreground color of branches that are up to date with their upstream",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "gitlens.decorations.branchUnpublishedForegroundColor": {
+            "type": "string",
+            "description": "Specifies the decoration foreground color of branches that are not yet published to an upstream",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "gitlens.decorations.branchMissingUpstreamForegroundColor": {
+            "type": "string",
+            "description": "Specifies the decoration foreground color of branches that have a missing upstream",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "gitlens.decorations.statusMergingOrRebasingConflictForegroundColor": {
+            "type": "string",
+            "description": "Specifies the decoration foreground color of the status during a rebase operation with conflicts",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "gitlens.decorations.statusMergingOrRebasingForegroundColor": {
+            "type": "string",
+            "description": "Specifies the decoration foreground color of the status during a rebase operation",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "gitlens.decorations.workspaceRepoMissingForegroundColor": {
+            "type": "string",
+            "description": "Specifies the decoration foreground color of workspace repos which are missing a local path",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "gitlens.decorations.workspaceCurrentForegroundColor": {
+            "type": "string",
+            "description": "Specifies the decoration foreground color of workspaces which are currently open as a Code Workspace file",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "gitlens.decorations.workspaceRepoOpenForegroundColor": {
+            "type": "string",
+            "description": "Specifies the decoration foreground color of workspace repos which are open in the current workspace",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "gitlens.decorations.worktreeHasUncommittedChangesForegroundColor": {
+            "type": "string",
+            "description": "Specifies the decoration foreground color for worktrees that have uncommitted changes",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "gitlens.decorations.worktreeMissingForegroundColor": {
+            "type": "string",
+            "description": "Specifies the decoration foreground color for worktrees cannot be found on disk",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "gitlens.graphLane1Color": {
+            "type": "string",
+            "description": "Specifies the color for the first commit lane of the _Commit Graph_ visualization",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "gitlens.graphLane2Color": {
+            "type": "string",
+            "description": "Specifies the color for the second commit lane of the _Commit Graph_ visualization",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "gitlens.graphLane3Color": {
+            "type": "string",
+            "description": "Specifies the color for the third commit lane of the _Commit Graph_ visualization",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "gitlens.graphLane4Color": {
+            "type": "string",
+            "description": "Specifies the color for the fourth commit lane of the _Commit Graph_ visualization",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "gitlens.graphLane5Color": {
+            "type": "string",
+            "description": "Specifies the color for the fifth commit lane of the _Commit Graph_ visualization",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "gitlens.graphLane6Color": {
+            "type": "string",
+            "description": "Specifies the color for the sixth commit lane of the _Commit Graph_ visualization",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "gitlens.graphLane7Color": {
+            "type": "string",
+            "description": "Specifies the color for the seventh commit lane of the _Commit Graph_ visualization",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "gitlens.graphLane8Color": {
+            "type": "string",
+            "description": "Specifies the color for the eighth commit lane of the _Commit Graph_ visualization",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "gitlens.graphLane9Color": {
+            "type": "string",
+            "description": "Specifies the color for the ninth commit lane of the _Commit Graph_ visualization",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "gitlens.graphLane10Color": {
+            "type": "string",
+            "description": "Specifies the color for the tenth commit lane of the _Commit Graph_ visualization",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "gitlens.graphChangesColumnAddedColor": {
+            "type": "string",
+            "description": "Specifies the color for denoting lines added in the _Changes_ column on the _Commit Graph_",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "gitlens.graphChangesColumnDeletedColor": {
+            "type": "string",
+            "description": "Specifies the color for denoting lines deleted in the _Changes_ column on the _Commit Graph_",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "gitlens.graphMinimapMarkerHeadColor": {
+            "type": "string",
+            "description": "Specifies the color marking HEAD on the minimap of the _Commit Graph_",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "gitlens.graphScrollMarkerHeadColor": {
+            "type": "string",
+            "description": "Specifies the color marking HEAD on the scrollbar of the _Commit Graph_",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "gitlens.graphMinimapMarkerUpstreamColor": {
+            "type": "string",
+            "description": "Specifies the color marking HEAD's upstream on the minimap of the _Commit Graph_",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "gitlens.graphScrollMarkerUpstreamColor": {
+            "type": "string",
+            "description": "Specifies the color marking HEAD's upstream on the scrollbar of the _Commit Graph_",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "gitlens.graphMinimapMarkerHighlightsColor": {
+            "type": "string",
+            "description": "Specifies the color marking highlights (matches) on the minimap of the _Commit Graph_",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "gitlens.graphScrollMarkerHighlightsColor": {
+            "type": "string",
+            "description": "Specifies the color marking highlights (matches) on the scrollbar of the _Commit Graph_",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "gitlens.graphMinimapMarkerLocalBranchesColor": {
+            "type": "string",
+            "description": "Specifies the color marking local branches on the minimap of the _Commit Graph_",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "gitlens.graphScrollMarkerLocalBranchesColor": {
+            "type": "string",
+            "description": "Specifies the color marking local branches on the scrollbar of the _Commit Graph_",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "gitlens.graphMinimapMarkerRemoteBranchesColor": {
+            "type": "string",
+            "description": "Specifies the color marking remote branches on the minimap of the _Commit Graph_",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "gitlens.graphScrollMarkerRemoteBranchesColor": {
+            "type": "string",
+            "description": "Specifies the color marking remote branches on the scrollbar of the _Commit Graph_",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "gitlens.graphMinimapMarkerStashesColor": {
+            "type": "string",
+            "description": "Specifies the color marking stashes on the minimap of the _Commit Graph_",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "gitlens.graphScrollMarkerStashesColor": {
+            "type": "string",
+            "description": "Specifies the color marking stashes on the scrollbar of the _Commit Graph_",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "gitlens.graphMinimapMarkerTagsColor": {
+            "type": "string",
+            "description": "Specifies the color marking tags on the minimap of the _Commit Graph_",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "gitlens.graphScrollMarkerTagsColor": {
+            "type": "string",
+            "description": "Specifies the color marking tags on the scrollbar of the _Commit Graph_",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "issues.newIssueDecoration": {
+            "type": "string",
+            "description": "The color used for the assignees and labels fields in a new issue editor.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "issues.open": {
+            "type": "string",
+            "description": "The color used for indicating that an issue is open.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "issues.closed": {
+            "type": "string",
+            "description": "The color used for indicating that an issue is closed.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "pullRequests.merged": {
+            "type": "string",
+            "description": "The color used for indicating that a pull request is merged.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "pullRequests.draft": {
+            "type": "string",
+            "description": "The color used for indicating that a pull request is a draft.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "pullRequests.open": {
+            "type": "string",
+            "description": "The color used for indicating that a pull request is open.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "pullRequests.closed": {
+            "type": "string",
+            "description": "The color used for indicating that a pull request is closed.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "pullRequests.notification": {
+            "type": "string",
+            "description": "The color used for indicating a notification on a pull request",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "testExplorer.errorDecorationBackground": {
+            "type": "string",
+            "description": "Background color of the editor error decoration",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "rust_analyzer.syntaxTreeBorder": {
+            "type": "string",
+            "description": "Color of the border displayed in the Rust source code for the selected syntax node (see \"Show Syntax Tree\" command)",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "errorLens.errorBackground": {
+            "type": "string",
+            "description": "Background color of the entire line containing error.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "errorLens.errorMessageBackground": {
+            "type": "string",
+            "description": "Background color of the error message.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "errorLens.errorBackgroundLight": {
+            "type": "string",
+            "description": "Background color of the entire line containing error (Only in light themes).",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "errorLens.errorForeground": {
+            "type": "string",
+            "description": "Text color used to highlight lines containing errors.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "errorLens.errorForegroundLight": {
+            "type": "string",
+            "description": "Text color used to highlight lines containing errors (Only in light themes).",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "errorLens.warningBackground": {
+            "type": "string",
+            "description": "Background color used to highlight lines containing warnings.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "errorLens.warningMessageBackground": {
+            "type": "string",
+            "description": "Background color of the warning message.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "errorLens.warningBackgroundLight": {
+            "type": "string",
+            "description": "Background color used to highlight lines containing warnings (Only in light themes).",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "errorLens.warningForeground": {
+            "type": "string",
+            "description": "Text color used to highlight lines containing warnings.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "errorLens.warningForegroundLight": {
+            "type": "string",
+            "description": "Text color used to highlight lines containing warnings (Only in light themes).",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "errorLens.infoBackground": {
+            "type": "string",
+            "description": "Background color used to highlight lines containing info.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "errorLens.infoMessageBackground": {
+            "type": "string",
+            "description": "Background color of the info message.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "errorLens.infoBackgroundLight": {
+            "type": "string",
+            "description": "Background color used to highlight lines containing info (Only in light themes).",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "errorLens.infoForeground": {
+            "type": "string",
+            "description": "Text color used to highlight lines containing info.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "errorLens.infoForegroundLight": {
+            "type": "string",
+            "description": "Text color used to highlight lines containing info (Only in light themes).",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "errorLens.hintBackground": {
+            "type": "string",
+            "description": "Background color used to highlight lines containing hints.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "errorLens.hintMessageBackground": {
+            "type": "string",
+            "description": "Background color of the hint message.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "errorLens.hintBackgroundLight": {
+            "type": "string",
+            "description": "Background color used to highlight lines containing hints (Only in light themes).",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "errorLens.hintForeground": {
+            "type": "string",
+            "description": "Text color used to highlight lines containing hints.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "errorLens.hintForegroundLight": {
+            "type": "string",
+            "description": "Text color used to highlight lines containing hints (Only in light themes).",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "errorLens.statusBarIconErrorForeground": {
+            "type": "string",
+            "description": "Status bar icon item error color. Foreground is used when the `errorLens.statusBarIconsUseBackground` setting is disabled.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "errorLens.statusBarIconWarningForeground": {
+            "type": "string",
+            "description": "Status bar icon item error color. Foreground is used when the `errorLens.statusBarIconsUseBackground` setting is disabled.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "errorLens.statusBarErrorForeground": {
+            "type": "string",
+            "description": "Status bar item error color.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "errorLens.statusBarWarningForeground": {
+            "type": "string",
+            "description": "Status bar item warning color.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "errorLens.statusBarInfoForeground": {
+            "type": "string",
+            "description": "Status bar item info color.",
+            "format": "color-hex",
+            "defaultSnippets": [
+                {
+                    "body": "${1:#ff0000}"
+                }
+            ]
+        },
+        "errorLens.statusBarHintForeground": {
+            "type": "string",
+            "description": "Status bar item hint color.",
             "format": "color-hex",
             "defaultSnippets": [
                 {
